@@ -36,6 +36,8 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.collect.list.Lists;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
 import java.util.function.Consumer;
@@ -49,8 +51,24 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * Visit all {@link ExpressionFunction functions}.
      */
     public static void visit(final Consumer<ExpressionFunction<?, ?>> consumer) {
-        Lists.<ExpressionFunction<?, ?>>of(
+        Lists.of(
+                column(),
+                row()
         ).forEach(consumer);
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#COLUMN}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> column() {
+        return SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#ROW}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> row() {
+        return SpreadsheetExpressionFunctionNumberColumnOrRow.ROW;
     }
 
     /**

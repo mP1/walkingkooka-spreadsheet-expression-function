@@ -20,14 +20,32 @@ import com.google.j2cl.junit.apt.J2clTestInput;
 import org.junit.Assert;
 import org.junit.Test;
 
+import walkingkooka.collect.list.Lists;
+import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
+import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.tree.expression.ExpressionNumberKind;
+
 @J2clTestInput(JunitTest.class)
 public class JunitTest {
 
     @Test
-    public void testTrue() {
+    public void testColumnE1() {
+        final ExpressionNumberKind kind = ExpressionNumberKind.DOUBLE;
+
         Assert.assertEquals(
-                true,
-                true
+                kind.create(5),
+                SpreadsheetExpressionFunctions.column()
+                        .apply(
+                                Lists.of(SpreadsheetSelection.parseCell("E1")),
+                                new FakeSpreadsheetExpressionFunctionContext() {
+
+                                    @Override
+                                    public ExpressionNumberKind expressionNumberKind() {
+                                        return kind;
+                                    }
+                                }
+                        )
         );
     }
 }
