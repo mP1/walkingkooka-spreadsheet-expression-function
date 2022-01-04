@@ -65,7 +65,13 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     @Test
     public final void testResolveReferences() {
-        this.resolveReferenceAndCheck(! (this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest));
+        this.resolveReferenceAndCheck(
+                !(
+                        this instanceof SpreadsheetExpressionFunctionCellTest ||
+                                this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
+                                this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest
+                )
+        );
     }
 
     @Override
