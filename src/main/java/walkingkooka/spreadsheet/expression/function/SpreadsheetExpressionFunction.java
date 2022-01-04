@@ -55,7 +55,11 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
 
     @Override
     public final boolean resolveReferences() {
-        return !(this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow);
+        return !(
+                this instanceof SpreadsheetExpressionFunctionCell ||
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows
+        );
     }
 
     @Override
