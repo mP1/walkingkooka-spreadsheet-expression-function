@@ -15,7 +15,9 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 ## Available functions
 
 - column (cellReference?)
+- columns (cellReference/range)
 - row (cellReference?)
+- rows (cellReference/range)
 
 
 Many more functions are outstanding and remain [TODO](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues).
