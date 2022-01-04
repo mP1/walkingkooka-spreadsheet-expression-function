@@ -51,4 +51,9 @@ public abstract class SpreadsheetExpressionFunctionNumberTestCase<F extends Spre
                 result
         );
     }
+
+    @Override
+    public final String typeNamePrefix() {
+        return SpreadsheetExpressionFunctionNumber.class.getSimpleName();
+    }
 }
