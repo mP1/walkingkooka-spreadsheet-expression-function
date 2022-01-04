@@ -53,7 +53,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static void visit(final Consumer<ExpressionFunction<?, ?>> consumer) {
         Lists.of(
                 column(),
-                row()
+                columns(),
+                row(),
+                rows()
         ).forEach(consumer);
     }
 
@@ -65,10 +67,24 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionNumberColumnsOrRows#COLUMNS}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> columns() {
+        return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#ROW}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> row() {
         return SpreadsheetExpressionFunctionNumberColumnOrRow.ROW;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberColumnsOrRows#ROWS}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> rows() {
+        return SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS;
     }
 
     /**
