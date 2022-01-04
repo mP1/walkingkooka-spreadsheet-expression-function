@@ -95,12 +95,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         return JavaVisibility.PACKAGE_PRIVATE;
     }
 
-
-    @Override
-    public final String typeNamePrefix() {
-        return SpreadsheetExpressionFunctionNumber.class.getSimpleName();
-    }
-
     @Override
     public final String typeNameSuffix() {
         return "";
