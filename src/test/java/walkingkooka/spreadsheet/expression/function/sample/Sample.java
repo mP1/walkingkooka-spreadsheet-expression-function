@@ -20,15 +20,27 @@ package walkingkooka.spreadsheet.expression.function.sample;
 import org.junit.jupiter.api.Assertions;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
-import walkingkooka.tree.expression.function.ExpressionFunctionContexts;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.tree.expression.ExpressionNumberKind;
 
 public final class Sample {
     public static void main(final String[] args) {
+        final ExpressionNumberKind kind = ExpressionNumberKind.DOUBLE;
+
         Assertions.assertEquals(
-                true,
-                true
+                kind.create(5),
+                SpreadsheetExpressionFunctions.column()
+                        .apply(
+                                Lists.of(SpreadsheetSelection.parseCell("E1")),
+                                new FakeSpreadsheetExpressionFunctionContext() {
+
+                                    @Override
+                                    public ExpressionNumberKind expressionNumberKind() {
+                                        return kind;
+                                    }
+                                }
+                        )
         );
     }
 }
