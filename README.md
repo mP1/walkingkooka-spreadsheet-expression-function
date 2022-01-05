@@ -17,6 +17,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - cell(typeInfo=address, col, filename, row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
 - column (cellReference?)
 - columns (cellReference/range)
+- formulatext(cellReference)
 - hyperlink(cellReference)
 - row (cellReference?)
 - rows (cellReference/range)
