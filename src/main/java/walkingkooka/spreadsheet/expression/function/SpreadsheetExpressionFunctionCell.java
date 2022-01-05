@@ -45,12 +45,9 @@ final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunct
     private final static ExpressionFunctionParameter<String> TYPE_INFO = ExpressionFunctionParameterName.with("typeInfo")
             .setType(String.class);
 
-    private final static ExpressionFunctionParameter<SpreadsheetExpressionReference> REFERENCE =  ExpressionFunctionParameterName.with("reference")
-            .setType(SpreadsheetExpressionReference.class);
-
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
         TYPE_INFO,
-            REFERENCE
+            CELL_OR_RANGE_REFERENCE
     );
 
     @Override
@@ -75,7 +72,7 @@ final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunct
                 break;
             case 2:
                 typeInfo = TYPE_INFO.getOrFail(parameters, 0);
-                selection = REFERENCE.getOrFail(parameters, 1);
+                selection = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 1);
                 break;
             default:
                 throw new IllegalArgumentException("Expected typeInfo and possibly reference but got " + count);
