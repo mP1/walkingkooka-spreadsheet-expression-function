@@ -19,19 +19,26 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.net.AbsoluteUrl;
+import walkingkooka.net.Url;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
+import walkingkooka.spreadsheet.SpreadsheetId;
+import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
+import java.util.Locale;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
@@ -49,6 +56,12 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     );
 
     final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
+
+    final static SpreadsheetId ID = SpreadsheetId.with(0x123);
+
+    final static SpreadsheetName NAME = SpreadsheetName.with("spreadsheet-name-456");
+
+    final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("http://example.com/path789");
 
     SpreadsheetExpressionFunctionTestCase() {
         super();
@@ -87,6 +100,20 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 return Optional.of(
                     CELL
                 );
+            }
+
+            @Override
+            public SpreadsheetMetadata spreadsheetMetadata() {
+                return SpreadsheetMetadata.EMPTY
+                        .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.forLanguageTag("EN-AU"))
+                        .loadFromLocale()
+                        .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, ID)
+                        .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, NAME);
+            }
+
+            @Override
+            public AbsoluteUrl serverUrl() {
+                return SERVER_URL;
             }
 
             @Override

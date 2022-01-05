@@ -18,14 +18,24 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 /**
  * A {@link ExpressionFunction} with an assumed {@Link SpreadsheetExpressionFunctionContext}.
  */
 abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionFunctionContext> {
+
+    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE =  ExpressionFunctionParameterName.with("reference")
+            .setType(SpreadsheetCellReference.class);
+
+    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE =  ExpressionFunctionParameterName.with("reference")
+            .setType(SpreadsheetExpressionReference.class);
 
     SpreadsheetExpressionFunction(final String name) {
         super();
