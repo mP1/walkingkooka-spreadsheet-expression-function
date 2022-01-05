@@ -48,7 +48,17 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     final static SpreadsheetCellReference REFERENCE = SpreadsheetSelection.parseCell("Z99");
 
-    final static SpreadsheetFormula FORMULA = SpreadsheetFormula.EMPTY.setText("=1+2");
+    final static SpreadsheetCellReference LOAD_CELL_REFERENCE = SpreadsheetSelection.parseCell("M31");
+
+    final static String LOAD_FORMULA_TEXT = "='loaded formulatext result";
+
+    final static SpreadsheetCell LOAD_CELL = SpreadsheetCell.with(
+            LOAD_CELL_REFERENCE,
+            SpreadsheetFormula.EMPTY.setText(LOAD_FORMULA_TEXT)
+    );
+
+    final static SpreadsheetFormula FORMULA = SpreadsheetFormula.EMPTY
+            .setText("=1+2");
 
     final static SpreadsheetCell CELL = SpreadsheetCell.with(
             REFERENCE,
@@ -98,8 +108,14 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             @Override
             public Optional<SpreadsheetCell> cell() {
                 return Optional.of(
-                    CELL
+                        CELL
                 );
+            }
+
+            @Override
+            public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell) {
+                checkEquals(LOAD_CELL_REFERENCE, cell);
+                return Optional.of(LOAD_CELL);
             }
 
             @Override

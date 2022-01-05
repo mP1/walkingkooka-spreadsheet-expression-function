@@ -55,6 +55,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         Lists.of(
                 column(),
                 columns(),
+                formulaText(),
                 hyperlink(),
                 row(),
                 rows()
@@ -73,6 +74,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> columns() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionStringFormulaText}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionFunctionContext> formulaText() {
+        return SpreadsheetExpressionFunctionStringFormulaText.INSTANCE;
     }
 
     /**
