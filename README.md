@@ -19,6 +19,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - columns (cellReference/range)
 - formulatext(cellReference)
 - hyperlink(cellReference)
+- isFormula(cellReference/Range)
 - row (cellReference?)
 - rows (cellReference/range)
 
