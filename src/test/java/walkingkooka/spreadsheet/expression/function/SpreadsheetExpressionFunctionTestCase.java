@@ -57,6 +57,11 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             SpreadsheetFormula.EMPTY.setText(LOAD_FORMULA_TEXT)
     );
 
+    final static SpreadsheetCell CELL_EMPTY_FOMRULA = SpreadsheetCell.with(
+            SpreadsheetSelection.parseCell("E5"),
+            SpreadsheetFormula.EMPTY.setText("")
+    );
+
     final static SpreadsheetFormula FORMULA = SpreadsheetFormula.EMPTY
             .setText("=1+2");
 
@@ -114,8 +119,13 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
             @Override
             public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell) {
-                checkEquals(LOAD_CELL_REFERENCE, cell);
-                return Optional.of(LOAD_CELL);
+                if (LOAD_CELL_REFERENCE.equals(cell)) {
+                    return Optional.of(LOAD_CELL);
+                }
+                if (CELL_EMPTY_FOMRULA.reference().equals(cell)) {
+                    return Optional.of(CELL_EMPTY_FOMRULA);
+                }
+                return Optional.empty();
             }
 
             @Override

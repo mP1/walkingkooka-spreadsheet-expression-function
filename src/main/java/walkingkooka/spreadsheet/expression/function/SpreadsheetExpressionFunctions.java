@@ -57,6 +57,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 columns(),
                 formulaText(),
                 hyperlink(),
+                isFormula(),
                 row(),
                 rows()
         ).forEach(consumer);
@@ -88,6 +89,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<AbsoluteUrl, SpreadsheetExpressionFunctionContext> hyperlink() {
         return SpreadsheetExpressionFunctionHyperlink.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionHyperlink}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isFormula() {
+        return SpreadsheetExpressionFunctionBooleanIsFormula.INSTANCE;
     }
 
     /**
