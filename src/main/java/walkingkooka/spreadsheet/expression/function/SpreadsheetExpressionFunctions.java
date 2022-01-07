@@ -92,7 +92,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionHyperlink}
+     * {@see SpreadsheetExpressionFunctionBooleanIsFormula}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isFormula() {
         return SpreadsheetExpressionFunctionBooleanIsFormula.INSTANCE;
