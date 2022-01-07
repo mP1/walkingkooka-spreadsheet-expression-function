@@ -57,6 +57,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 columns(),
                 formulaText(),
                 hyperlink(),
+                isBlank(),
                 isFormula(),
                 row(),
                 rows()
@@ -89,6 +90,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<AbsoluteUrl, SpreadsheetExpressionFunctionContext> hyperlink() {
         return SpreadsheetExpressionFunctionHyperlink.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionBooleanIsBlank}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isBlank() {
+        return SpreadsheetExpressionFunctionBooleanIsBlank.INSTANCE;
     }
 
     /**
