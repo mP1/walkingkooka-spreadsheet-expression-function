@@ -38,6 +38,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
@@ -53,6 +54,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static void visit(final Consumer<ExpressionFunction<?, ?>> consumer) {
         Lists.of(
+                address(),
                 column(),
                 columns(),
                 formulaText(),
@@ -62,6 +64,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 row(),
                 rows()
         ).forEach(consumer);
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionAddress}
+     */
+    public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionFunctionContext> address() {
+        return SpreadsheetExpressionFunctionAddress.INSTANCE;
     }
 
     /**
