@@ -93,7 +93,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     @Test
     public final void testResolveReferences() {
-        this.resolveReferenceAndCheck(
+        this.resolveReferencesAndCheck(
                 !(
                         this instanceof SpreadsheetExpressionFunctionCellTest ||
                                 this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
