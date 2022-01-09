@@ -64,6 +64,11 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
     }
 
     @Override
+    public final boolean requiresEvaluatedParameters() {
+        return true;
+    }
+
+    @Override
     public final boolean resolveReferences() {
         return !(
                 this instanceof SpreadsheetExpressionFunctionCell ||
