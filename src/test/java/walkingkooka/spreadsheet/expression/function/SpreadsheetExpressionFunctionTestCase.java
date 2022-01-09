@@ -92,6 +92,11 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     }
 
     @Test
+    public final void testRequiresEvaluatedParameters() {
+        this.requiresEvaluatedParametersAndCheck(true);
+    }
+
+    @Test
     public final void testResolveReferences() {
         this.resolveReferencesAndCheck(
                 !(
