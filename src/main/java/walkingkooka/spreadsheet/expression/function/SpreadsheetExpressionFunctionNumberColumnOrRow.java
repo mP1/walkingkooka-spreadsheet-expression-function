@@ -64,18 +64,12 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
         }
 
         final SpreadsheetCellReference reference = REFERENCE.get(parameters, 0)
-                .orElseGet(() -> SpreadsheetExpressionFunctionNumberColumnOrRow.cellReferenceOrFail(context));
+                .orElseGet(() -> context.cellOrFail().reference());
 
         return context.expressionNumberKind()
                 .create(
                         BIAS + this.mapper.apply(reference).value()
                 );
-    }
-
-    private static SpreadsheetCellReference cellReferenceOrFail(final SpreadsheetExpressionFunctionContext context) {
-        return context.cell()
-                .orElseThrow(() -> new IllegalArgumentException("Context missing cell"))
-                .reference();
     }
 
     /**
