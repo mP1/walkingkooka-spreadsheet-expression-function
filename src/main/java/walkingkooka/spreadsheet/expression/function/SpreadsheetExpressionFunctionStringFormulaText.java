@@ -47,7 +47,7 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
     @Override
     public String apply(final List<Object> parameters,
                         final SpreadsheetExpressionFunctionContext context) {
-        this.checkOnlyRequiredParameters(parameters);
+        this.checkParameterCount(parameters);
 
         final SpreadsheetCellReference cell = REFERENCE.getOrFail(parameters, 0);
         return context.loadCell(cell)

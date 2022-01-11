@@ -42,7 +42,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
     @Override
     public Boolean apply(final List<Object> parameters,
                          final SpreadsheetExpressionFunctionContext context) {
-        this.checkOnlyRequiredParameters(parameters);
+        this.checkParameterCount(parameters);
 
         final Object maybeReference = REFERENCE.getOrFail(parameters, 0);
         boolean blank = false;
@@ -61,7 +61,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
     }
 
     final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .setType(Object.class);
+            .required(Object.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }

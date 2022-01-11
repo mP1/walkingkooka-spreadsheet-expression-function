@@ -32,11 +32,14 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionFunctionContext> {
 
     final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE =  ExpressionFunctionParameterName.with("reference")
-            .setType(SpreadsheetCellReference.class);
+            .required(SpreadsheetCellReference.class);
 
     final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE =  ExpressionFunctionParameterName.with("reference")
-            .setType(SpreadsheetExpressionReference.class);
+            .required(SpreadsheetExpressionReference.class);
 
+    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL =  ExpressionFunctionParameterName.with("reference")
+            .optional(SpreadsheetExpressionReference.class);
+    
     SpreadsheetExpressionFunction(final String name) {
         super();
         this.name = FunctionExpressionName.with(name);
@@ -48,12 +51,6 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
     }
 
     private final FunctionExpressionName name;
-
-
-    @Override
-    public final boolean lsLastParameterVariable() {
-        return false;
-    }
 
     /**
      * All number functions are pure. Does not assume anything about any parameters.

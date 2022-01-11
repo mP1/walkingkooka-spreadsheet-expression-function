@@ -56,7 +56,7 @@ final class SpreadsheetExpressionFunctionHyperlink extends SpreadsheetExpression
     @Override
     public AbsoluteUrl apply(final List<Object> parameters,
                              final SpreadsheetExpressionFunctionContext context) {
-        this.checkOnlyRequiredParameters(parameters);
+        this.checkParameterCount(parameters);
 
         final SpreadsheetCellReference reference = REFERENCE.getOrFail(parameters, 0);
         final SpreadsheetMetadata metadata = context.spreadsheetMetadata();
