@@ -44,16 +44,16 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
     }
 
     private final static ExpressionFunctionParameter<ExpressionNumber> ROW_NUM = ExpressionFunctionParameterName.with("row-num")
-            .setType(ExpressionNumber.class);
+            .required(ExpressionNumber.class);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> COLUMN_NUM = ExpressionFunctionParameterName.with("col-num")
-            .setType(ExpressionNumber.class);
+            .required(ExpressionNumber.class);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> ABS_NUM = ExpressionFunctionParameterName.with("abs-num")
-            .setType(ExpressionNumber.class);
+            .required(ExpressionNumber.class);
 
     private final static ExpressionFunctionParameter<Boolean> A1_STYLE = ExpressionFunctionParameterName.with("a1-style")
-            .setType(Boolean.class);
+            .required(Boolean.class);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
             ROW_NUM,

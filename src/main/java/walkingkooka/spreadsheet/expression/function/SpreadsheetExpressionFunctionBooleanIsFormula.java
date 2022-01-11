@@ -44,7 +44,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
     @Override
     public Boolean apply(final List<Object> parameters,
                          final SpreadsheetExpressionFunctionContext context) {
-        this.checkOnlyRequiredParameters(parameters);
+        this.checkParameterCount(parameters);
 
         final SpreadsheetExpressionReference reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0);
         final Optional<SpreadsheetCell> cell = context.loadCell(reference.toCell());
@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
     }
 
     final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .setType(SpreadsheetCellReference.class);
+            .required(SpreadsheetCellReference.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }

@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     @Override
     public ExpressionNumber apply(final List<Object> parameters,
                                   final SpreadsheetExpressionFunctionContext context) {
-        this.checkOnlyRequiredParameters(parameters);
+        this.checkParameterCount(parameters);
 
         final SpreadsheetSelection reference = REFERENCE.getOrFail(parameters, 0);
 
@@ -80,7 +80,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     }
 
     final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .setType(SpreadsheetCellReference.class);
+            .required(SpreadsheetCellReference.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }
