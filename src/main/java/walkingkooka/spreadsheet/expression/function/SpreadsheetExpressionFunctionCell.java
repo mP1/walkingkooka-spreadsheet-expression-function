@@ -62,8 +62,7 @@ final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunct
 
         final String typeInfo;
         final SpreadsheetExpressionReference selection;
-        final SpreadsheetCell cell = context.cell()
-                .orElseThrow(() -> new IllegalArgumentException("Missing context cell"));
+        final SpreadsheetCell cell = context.cellOrFail();
 
         switch(count) {
             case 1:
