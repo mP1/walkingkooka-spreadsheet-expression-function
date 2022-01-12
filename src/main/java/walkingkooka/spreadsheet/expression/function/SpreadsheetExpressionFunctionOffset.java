@@ -85,10 +85,12 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
         final int columns = COLUMNS.getOrFail(parameters, 2)
                 .intValue();
 
-        final int height = HEIGHT.getOrDefault(parameters, 3, DEFAULT_HEIGHT_WIDTH)
+        final int height = HEIGHT.get(parameters, 3)
+                .orElse(DEFAULT_HEIGHT_WIDTH)
                 .intValue();
 
-        final int width = WIDTH.getOrDefault(parameters, 4, DEFAULT_HEIGHT_WIDTH)
+        final int width = WIDTH.get(parameters, 4)
+                .orElse(DEFAULT_HEIGHT_WIDTH)
                 .intValue();
 
         final SpreadsheetCellReference topLeft = start.add(
