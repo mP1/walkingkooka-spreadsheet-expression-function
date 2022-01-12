@@ -21,6 +21,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - formulatext(cellReference)
 - hyperlink(cellReference)
 - isFormula(cellReference/Range)
+- offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
 - rows (cellReference/range)
 

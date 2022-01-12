@@ -39,6 +39,7 @@ import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
@@ -61,6 +62,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 hyperlink(),
                 isBlank(),
                 isFormula(),
+                offset(),
                 row(),
                 rows()
         ).forEach(consumer);
@@ -113,6 +115,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isFormula() {
         return SpreadsheetExpressionFunctionBooleanIsFormula.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionOffset}
+     */
+    public static ExpressionFunction<SpreadsheetExpressionReference, SpreadsheetExpressionFunctionContext> offset() {
+        return SpreadsheetExpressionFunctionOffset.INSTANCE;
     }
 
     /**
