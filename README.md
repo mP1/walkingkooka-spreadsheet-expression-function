@@ -14,13 +14,20 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 
 ## Available functions
 
-- address(rowNum, colNum, absNum) [TODO referenceStyle=r1c1](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/45) [TODO sheet](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/46)
-- cell(typeInfo=address, col, filename, row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
+- address(rowNum, colNum,
+  absNum) [TODO referenceStyle=r1c1](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/45) [TODO sheet](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/46)
+- cell(typeInfo=address, col, filename,
+  row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
 - column (cellReference?)
 - columns (cellReference/range)
 - formulatext(cellReference)
 - hyperlink(cellReference)
+- isBlank(object)
+- isErr(object)
+- isError(object)
 - isFormula(cellReference/Range)
+- isNa(object)
+- na()
 - offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
 - rows (cellReference/range)
