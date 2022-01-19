@@ -61,7 +61,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 formulaText(),
                 hyperlink(),
                 isBlank(),
+                isErr(),
+                isError(),
                 isFormula(),
+                isNa(),
                 offset(),
                 row(),
                 rows()
@@ -111,10 +114,31 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isErr}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isErr() {
+        return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isErr();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isError}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isError() {
+        return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError();
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionBooleanIsFormula}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isFormula() {
         return SpreadsheetExpressionFunctionBooleanIsFormula.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isNs}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isNa() {
+        return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa();
     }
 
     /**
