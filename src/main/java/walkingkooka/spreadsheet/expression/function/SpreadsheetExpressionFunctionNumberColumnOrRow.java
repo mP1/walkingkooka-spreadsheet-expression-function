@@ -83,7 +83,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
     }
 
     final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetCellReference.class);
+            .optional(SpreadsheetCellReference.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }
