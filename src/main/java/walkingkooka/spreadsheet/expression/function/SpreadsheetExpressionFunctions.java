@@ -37,6 +37,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
@@ -65,6 +66,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 isError(),
                 isFormula(),
                 isNa(),
+                na(),
                 offset(),
                 row(),
                 rows()
@@ -139,6 +141,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isNa() {
         return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNa}
+     */
+    public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionFunctionContext> na() {
+        return SpreadsheetExpressionFunctionNa.INSTANCE;
     }
 
     /**
