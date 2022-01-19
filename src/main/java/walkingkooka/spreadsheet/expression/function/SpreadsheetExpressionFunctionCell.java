@@ -58,24 +58,13 @@ final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunct
     @Override
     public Object apply(final List<Object> parameters,
                         final SpreadsheetExpressionFunctionContext context) {
-        final int count = parameters.size();
+        this.checkParameterCount(parameters);
 
-        final String typeInfo;
-        final SpreadsheetExpressionReference selection;
         final SpreadsheetCell cell = context.cellOrFail();
 
-        switch(count) {
-            case 1:
-                typeInfo = TYPE_INFO.getOrFail(parameters, 0);
-                selection = cell.reference();
-                break;
-            case 2:
-                typeInfo = TYPE_INFO.getOrFail(parameters, 0);
-                selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.getOrFail(parameters, 1);
-                break;
-            default:
-                throw new IllegalArgumentException("Expected typeInfo and possibly reference but got " + count);
-        }
+        final String typeInfo = TYPE_INFO.getOrFail(parameters, 0);
+        final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1)
+                .orElseGet(cell::reference);
 
         return SpreadsheetExpressionFunctionCellTypeInfo.typeInfo(typeInfo)
                 .value(
