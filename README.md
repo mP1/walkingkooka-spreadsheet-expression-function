@@ -20,6 +20,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
   row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
 - column (cellReference?)
 - columns (cellReference/range)
+- error.type(object)
 - formulatext(cellReference)
 - hyperlink(cellReference)
 - isBlank(object)

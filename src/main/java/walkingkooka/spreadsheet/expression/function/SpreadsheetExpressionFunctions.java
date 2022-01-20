@@ -60,6 +60,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 cell(),
                 column(),
                 columns(),
+                errorType(),
                 formulaText(),
                 hyperlink(),
                 isBlank(),
@@ -100,6 +101,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> columns() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectErrorType}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionFunctionContext> errorType() {
+        return SpreadsheetExpressionFunctionObjectErrorType.INSTANCE;
     }
 
     /**
