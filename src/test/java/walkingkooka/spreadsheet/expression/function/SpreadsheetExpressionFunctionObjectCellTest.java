@@ -25,7 +25,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class SpreadsheetExpressionFunctionCellTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionCell, Object> {
+public final class SpreadsheetExpressionFunctionObjectCellTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionObjectCell, Object> {
 
     final static SpreadsheetCellReference REFERENCE2 = SpreadsheetSelection.parseCell("E5");
 
@@ -214,13 +214,13 @@ public final class SpreadsheetExpressionFunctionCellTest extends SpreadsheetExpr
     }
 
     @Override
-    public SpreadsheetExpressionFunctionCell createBiFunction() {
-        return SpreadsheetExpressionFunctionCell.INSTANCE;
+    public SpreadsheetExpressionFunctionObjectCell createBiFunction() {
+        return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
     }
 
     @Override
-    public Class<SpreadsheetExpressionFunctionCell> type() {
-        return SpreadsheetExpressionFunctionCell.class;
+    public Class<SpreadsheetExpressionFunctionObjectCell> type() {
+        return SpreadsheetExpressionFunctionObjectCell.class;
     }
 
     @Override

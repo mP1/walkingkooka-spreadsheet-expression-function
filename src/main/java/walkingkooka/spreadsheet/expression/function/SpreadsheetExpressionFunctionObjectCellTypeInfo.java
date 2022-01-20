@@ -27,7 +27,7 @@ import java.util.Arrays;
 /**
  * An enum value for each type info parameter for cell function.
  */
-enum SpreadsheetExpressionFunctionCellTypeInfo {
+enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
     ADDRESS {
         @Override
         Object value(final SpreadsheetCellReference reference,
@@ -155,7 +155,7 @@ enum SpreadsheetExpressionFunctionCellTypeInfo {
                           final SpreadsheetCell cell,
                           final SpreadsheetExpressionFunctionContext context);
 
-    static SpreadsheetExpressionFunctionCellTypeInfo typeInfo(final String typeInfo) {
+    static SpreadsheetExpressionFunctionObjectCellTypeInfo typeInfo(final String typeInfo) {
         return Arrays.stream(values())
                 .filter(v -> v.name().toLowerCase().equals(typeInfo))
                 .findFirst()
