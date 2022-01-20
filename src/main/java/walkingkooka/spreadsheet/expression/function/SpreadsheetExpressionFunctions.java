@@ -57,6 +57,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static void visit(final Consumer<ExpressionFunction<?, ?>> consumer) {
         Lists.of(
                 address(),
+                cell(),
                 column(),
                 columns(),
                 formulaText(),
@@ -78,6 +79,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionFunctionContext> address() {
         return SpreadsheetExpressionFunctionAddress.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectCell}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionFunctionContext> cell() {
+        return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
     }
 
     /**
