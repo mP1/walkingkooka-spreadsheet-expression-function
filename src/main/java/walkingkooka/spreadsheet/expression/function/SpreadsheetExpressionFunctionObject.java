@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Miroslav Pokorny (github.com/mP1)
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,22 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+/**
+ * Base for any function that returns an Object
+ */
+abstract class SpreadsheetExpressionFunctionObject extends SpreadsheetExpressionFunction<Object> {
 
-public final class SpreadsheetExpressionFunctionCellTypeInfoTest implements ClassTesting<SpreadsheetExpressionFunctionCellTypeInfo> {
+    final static int BIAS = 1;
 
-    @Override
-    public Class<SpreadsheetExpressionFunctionCellTypeInfo> type() {
-        return SpreadsheetExpressionFunctionCellTypeInfo.class;
+    /**
+     * Package private ctor
+     */
+    SpreadsheetExpressionFunctionObject(final String name) {
+        super(name);
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
+    public final Class<Object> returnType() {
+        return Object.class;
     }
 }

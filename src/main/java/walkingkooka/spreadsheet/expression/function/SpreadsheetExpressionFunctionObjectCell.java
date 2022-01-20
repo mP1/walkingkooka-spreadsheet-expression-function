@@ -26,14 +26,14 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import java.util.List;
 
 // https://exceljet.net/excel-functions/excel-cell-function
-final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunction<Object> {
+final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressionFunctionObject {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionCell INSTANCE = new SpreadsheetExpressionFunctionCell();
+    final static SpreadsheetExpressionFunctionObjectCell INSTANCE = new SpreadsheetExpressionFunctionObjectCell();
 
-    private SpreadsheetExpressionFunctionCell() {
+    private SpreadsheetExpressionFunctionObjectCell() {
         super("cell");
     }
 
@@ -51,11 +51,6 @@ final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunct
     );
 
     @Override
-    public Class<Object> returnType() {
-        return Object.class;
-    }
-
-    @Override
     public Object apply(final List<Object> parameters,
                         final SpreadsheetExpressionFunctionContext context) {
         this.checkParameterCount(parameters);
@@ -66,7 +61,7 @@ final class SpreadsheetExpressionFunctionCell extends SpreadsheetExpressionFunct
         final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1)
                 .orElseGet(cell::reference);
 
-        return SpreadsheetExpressionFunctionCellTypeInfo.typeInfo(typeInfo)
+        return SpreadsheetExpressionFunctionObjectCellTypeInfo.typeInfo(typeInfo)
                 .value(
                         selection.toCell(),
                         cell,

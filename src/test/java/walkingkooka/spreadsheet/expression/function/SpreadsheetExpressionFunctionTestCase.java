@@ -100,7 +100,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     public final void testResolveReferences() {
         this.resolveReferencesAndCheck(
                 !(
-                        this instanceof SpreadsheetExpressionFunctionCellTest ||
+                        this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
                                 this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
                                 this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest
                 )
