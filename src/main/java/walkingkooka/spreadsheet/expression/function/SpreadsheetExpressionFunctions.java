@@ -71,7 +71,8 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 na(),
                 offset(),
                 row(),
-                rows()
+                rows(),
+                type()
         ).forEach(consumer);
     }
 
@@ -185,6 +186,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> rows() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberType}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> type() {
+        return SpreadsheetExpressionFunctionNumberType.INSTANCE;
     }
 
     /**

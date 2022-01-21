@@ -32,6 +32,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
 - rows (cellReference/range)
+- type(object)
 
 
 Many more functions are outstanding and remain [TODO](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues).

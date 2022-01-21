@@ -70,7 +70,8 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
         return !(
                 this instanceof SpreadsheetExpressionFunctionObjectCell ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
-                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
+                        this instanceof SpreadsheetExpressionFunctionNumberType
         );
     }
 
