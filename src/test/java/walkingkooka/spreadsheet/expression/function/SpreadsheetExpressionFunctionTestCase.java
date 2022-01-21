@@ -102,7 +102,8 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 !(
                         this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
                                 this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
-                                this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest
+                                this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest ||
+                                this instanceof SpreadsheetExpressionFunctionNumberTypeTest
                 )
         );
     }
