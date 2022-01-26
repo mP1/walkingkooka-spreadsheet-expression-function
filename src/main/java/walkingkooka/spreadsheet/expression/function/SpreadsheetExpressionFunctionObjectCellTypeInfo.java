@@ -69,7 +69,13 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
                      final SpreadsheetExpressionFunctionContext context) {
-            throw new UnsupportedOperationException();
+            final Optional<SpreadsheetCell> loaded = context.loadCell(reference);
+            return loaded.isPresent() ?
+                    loaded.get()
+                            .formatted()
+                            .get()
+                            .text() :
+                    "0"; // cell absent use 0
         }
     },
 
