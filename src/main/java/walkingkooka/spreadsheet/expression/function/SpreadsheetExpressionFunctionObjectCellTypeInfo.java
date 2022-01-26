@@ -17,12 +17,16 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.NeverError;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.text.CharSequences;
+import walkingkooka.tree.text.TextAlign;
+import walkingkooka.tree.text.TextStylePropertyName;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * An enum value for each type info parameter for cell function.
@@ -101,7 +105,34 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
                      final SpreadsheetExpressionFunctionContext context) {
-            throw new UnsupportedOperationException();
+            String value = "";
+
+            if (cell.formatted().isPresent()) {
+                final Optional<TextAlign> maybeTextAlign = cell.style()
+                        .get(TextStylePropertyName.TEXT_ALIGN);
+                if (maybeTextAlign.isPresent()) {
+
+                    final TextAlign textAlign = maybeTextAlign.get();
+                    switch (textAlign) {
+                        case LEFT:
+                            value = "'";
+                            break;
+                        case RIGHT:
+                            value = "\"";
+                            break;
+                        case CENTER:
+                            value = "^";
+                            break;
+                        case JUSTIFY:
+                            break;
+                        default:
+                            NeverError.unhandledCase(textAlign, TextAlign.values());
+                            break;
+                    }
+                }
+            }
+
+            return value;
         }
     },
 

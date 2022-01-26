@@ -20,11 +20,16 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.tree.text.TextAlign;
+import walkingkooka.tree.text.TextNode;
+import walkingkooka.tree.text.TextStyle;
+import walkingkooka.tree.text.TextStylePropertyName;
 
 import java.util.Optional;
 
@@ -62,11 +67,6 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Test
     public void testParenthesisFail() {
         this.notYetImplemented("parenthesis");
-    }
-
-    @Test
-    public void testPrefixFail() {
-        this.notYetImplemented("prefix");
     }
 
     @Test
@@ -160,6 +160,100 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                 ""
         );
     }
+
+    // prefix...........................................................................................................
+
+    @Test
+    public void testPrefixMissingText() {
+        this.prefixAndCheck(
+                SpreadsheetCell.with(
+                        REFERENCE,
+                        SpreadsheetFormula.EMPTY
+                ),
+                ""
+        );
+    }
+
+    @Test
+    public void testPrefixMissingTextAlign() {
+        this.prefixAndCheck(
+                TextStyle.EMPTY,
+                ""
+        );
+    }
+
+    @Test
+    public void testPrefixTextAlignLeft() {
+        this.prefixAndCheck(
+                TextAlign.LEFT,
+                "'"
+        );
+    }
+
+    @Test
+    public void testPrefixTextAlignRight() {
+        this.prefixAndCheck(
+                TextAlign.RIGHT,
+                "\""
+        );
+    }
+
+    @Test
+    public void testPrefixTextAlignCenter() {
+        this.prefixAndCheck(
+                TextAlign.CENTER,
+                "^"
+        );
+    }
+
+    @Test
+    public void testPrefixTextAlignJustify() {
+        this.prefixAndCheck(
+                TextAlign.JUSTIFY,
+                ""
+        );
+    }
+
+    private void prefixAndCheck(final TextAlign textAlign,
+                                final String expected) {
+        this.prefixAndCheck(
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.TEXT_ALIGN, textAlign
+                ),
+                expected
+        );
+    }
+
+    private void prefixAndCheck(final TextStyle textStyle,
+                                final String expected) {
+        this.cellAndCheck(
+                "prefix",
+                REFERENCE,
+                SpreadsheetCell.with(
+                        REFERENCE,
+                        SpreadsheetFormula.EMPTY.setText("'Hello")
+                ).setStyle(
+                        textStyle
+                ).setFormatted(
+                        Optional.of(
+                                TextNode.text("Hello")
+                        )
+                ),
+                expected
+        );
+    }
+
+    private void prefixAndCheck(final SpreadsheetCell cell,
+                                final String expected) {
+        this.cellAndCheck(
+                "prefix",
+                cell.reference(),
+                cell,
+                expected
+        );
+    }
+
+    // row...........................................................................................................
 
     @Test
     public void testRowIncludesCellReferenceParameter() {
