@@ -19,9 +19,14 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -88,7 +93,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testAddressIncludesCellReferenceParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "address",
                 REFERENCE2,
                 REFERENCE2
@@ -97,7 +102,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testAddressIncludesCellRangeParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "address",
                 RANGE,
                 SpreadsheetSelection.parseCell("B2")
@@ -106,7 +111,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testAddressMissingReferenceParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "address",
                 REFERENCE
         );
@@ -114,7 +119,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testColIncludesCellReferenceParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "col",
                 REFERENCE2,
                 KIND.create(
@@ -126,7 +131,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testColIncludesRangeParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "col",
                 RANGE,
                 KIND.create(
@@ -139,7 +144,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testColMissingReferenceParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "col",
                 KIND.create(
                         REFERENCE.column()
@@ -150,7 +155,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testFilename() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "filename",
                 ""
         );
@@ -158,7 +163,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testRowIncludesCellReferenceParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "row",
                 REFERENCE2,
                 KIND.create(
@@ -170,7 +175,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testRowIncludesRangeParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "row",
                 RANGE,
                 KIND.create(
@@ -183,7 +188,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     @Test
     public void testRowMissingReferenceParameter() {
-        this.applyAndCheck3(
+        this.cellAndCheck(
                 "row",
                 KIND.create(
                         REFERENCE.row().value()
@@ -191,19 +196,54 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         );
     }
 
-    private void applyAndCheck3(final String typeInfo,
-                                final Object expected) {
+    private void cellAndCheck(final String typeInfo,
+                              final Object expected) {
         this.applyAndCheck2(
                 Lists.of(typeInfo),
                 expected
         );
     }
 
-    private void applyAndCheck3(final String typeInfo,
-                                final SpreadsheetSelection selection,
-                                final Object expected) {
-        this.applyAndCheck2(
+    private void cellAndCheck(final String typeInfo,
+                              final SpreadsheetSelection selection,
+                              final Object expected) {
+        this.cellAndCheck(
+                typeInfo,
+                selection,
+                this.createContext(),
+                expected
+        );
+    }
+
+    private void cellAndCheck(final String typeInfo,
+                              final SpreadsheetSelection selection,
+                              final SpreadsheetCell cell,
+                              final Object expected) {
+        this.cellAndCheck(
+                typeInfo,
+                selection,
+                new FakeSpreadsheetExpressionFunctionContext() {
+                    @Override
+                    public Optional<SpreadsheetCell> cell() {
+                        return Optional.of(cell);
+                    }
+
+                    @Override
+                    public String toString() {
+                        return "cell: " + this.cell();
+                    }
+                },
+                expected
+        );
+    }
+
+    private void cellAndCheck(final String typeInfo,
+                              final SpreadsheetSelection selection,
+                              final SpreadsheetExpressionFunctionContext context,
+                              final Object expected) {
+        this.applyAndCheck(
                 Lists.of(typeInfo, selection),
+                context,
                 expected
         );
     }
