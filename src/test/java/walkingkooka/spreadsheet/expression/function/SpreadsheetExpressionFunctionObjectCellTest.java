@@ -55,11 +55,6 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     }
 
     @Test
-    public void testContentsFail() {
-        this.notYetImplemented("contents");
-    }
-
-    @Test
     public void testFormatFail() {
         this.notYetImplemented("format");
     }
@@ -152,6 +147,62 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                 )
         );
     }
+
+    // contents........................................................................................................
+
+    @Test
+    public void testContentsCellNotFound() {
+        this.contentsAndCheck(
+                REFERENCE,
+                null,
+                "0"
+        );
+    }
+
+    @Test
+    public void testContentsCellExits() {
+        final String contents = "Contents 123";
+
+        this.contentsAndCheck(
+                REFERENCE,
+                SpreadsheetCell.with(
+                        REFERENCE,
+                        SpreadsheetFormula.EMPTY.setText("=function()")
+                ).setFormatted(
+                        Optional.of(TextNode.text(contents))
+                ),
+                contents
+        );
+    }
+
+    private void contentsAndCheck(final SpreadsheetCellReference reference,
+                                  final SpreadsheetCell cell,
+                                  final String expected) {
+        this.cellAndCheck(
+                "contents",
+                reference,
+                new FakeSpreadsheetExpressionFunctionContext() {
+
+                    @Override
+                    public Optional<SpreadsheetCell> cell() {
+                        return createContext().cell();
+                    }
+
+                    @Override
+                    public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference c) {
+                        checkEquals(reference, c, "loadCell");
+                        return Optional.ofNullable(cell);
+                    }
+
+                    public String toString() {
+                        return "loadCell " + reference + " -> " + cell;
+                    }
+                },
+                expected
+        );
+    }
+
+    // filename...........................................................................................................
 
     @Test
     public void testFilename() {
