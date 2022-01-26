@@ -60,7 +60,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     }
 
     @Test
-    public void testParethesisFail() {
+    public void testParenthesisFail() {
         this.notYetImplemented("parenthesis");
     }
 
