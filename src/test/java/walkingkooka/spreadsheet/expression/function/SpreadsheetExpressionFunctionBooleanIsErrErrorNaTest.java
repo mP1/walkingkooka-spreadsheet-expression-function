@@ -49,7 +49,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testisErrNumber() {
         this.isErrAndCheck(
-                ExpressionNumberKind.DOUBLE.create(0),
+                ExpressionNumberKind.DOUBLE.zero(),
                 false
         );
     }
@@ -137,7 +137,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testisErrorNumber() {
         this.isErrorAndCheck(
-                ExpressionNumberKind.DOUBLE.create(0),
+                ExpressionNumberKind.DOUBLE.zero(),
                 false
         );
     }
@@ -214,7 +214,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testisNaNumber() {
         this.isNaAndCheck(
-                ExpressionNumberKind.DOUBLE.create(0),
+                ExpressionNumberKind.DOUBLE.zero(),
                 false
         );
     }

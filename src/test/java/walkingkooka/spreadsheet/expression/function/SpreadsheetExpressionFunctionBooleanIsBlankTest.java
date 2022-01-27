@@ -46,7 +46,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsBlankTest extends Sprea
     @Test
     public void testZero() {
         this.isBlankAndCheck(
-                ExpressionNumberKind.DOUBLE.create(0),
+                ExpressionNumberKind.DOUBLE.zero(),
                 false
         );
     }
