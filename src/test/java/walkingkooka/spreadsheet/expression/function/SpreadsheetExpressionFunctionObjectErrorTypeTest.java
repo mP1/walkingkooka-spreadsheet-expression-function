@@ -36,7 +36,7 @@ public final class SpreadsheetExpressionFunctionObjectErrorTypeTest extends Spre
 
     @Test
     public void testNumber() {
-        this.errorTypeAndCheck(ExpressionNumberKind.DEFAULT.create(1));
+        this.errorTypeAndCheck(ExpressionNumberKind.DEFAULT.one());
     }
 
     @Test
