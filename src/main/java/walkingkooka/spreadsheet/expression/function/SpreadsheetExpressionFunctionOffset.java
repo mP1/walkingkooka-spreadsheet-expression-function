@@ -102,7 +102,7 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
                 height - BIAS
         );
 
-        final SpreadsheetCellRange range = topLeft.spreadsheetCellRange(bottomRight);
+        final SpreadsheetCellRange range = topLeft.cellRange(bottomRight);
 
         return range.width() == 1 && range.height() == 1 ?
                 range.toCell() :

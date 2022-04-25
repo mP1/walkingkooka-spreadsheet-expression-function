@@ -78,7 +78,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsBlankTest extends Sprea
     @Test
     public void testRangeTopLeftMissingCellReference() {
         this.isBlankAndCheck(
-                REFERENCE.spreadsheetCellRange(
+                REFERENCE.cellRange(
                         REFERENCE.add(1, 1)
                 ),
                 false
@@ -88,7 +88,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsBlankTest extends Sprea
     @Test
     public void testRange() {
         this.isBlankAndCheck(
-                LOAD_CELL_REFERENCE.spreadsheetCellRange(
+                LOAD_CELL_REFERENCE.cellRange(
                         LOAD_CELL_REFERENCE.add(2, 3)
                 ),
                 false

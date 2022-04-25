@@ -64,7 +64,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsFormulaTest extends Spr
     public void testRange() {
         this.applyAndCheck2(
                 Lists.of(
-                        LOAD_CELL_REFERENCE.spreadsheetCellRange(
+                        LOAD_CELL_REFERENCE.cellRange(
                                 LOAD_CELL_REFERENCE.add(2, 3)
                         )
                 ),
@@ -77,7 +77,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsFormulaTest extends Spr
         this.applyAndCheck2(
                 Lists.of(
                         LOAD_CELL_REFERENCE.add(1, 0)
-                                .spreadsheetCellRange(
+                                .cellRange(
                                         LOAD_CELL_REFERENCE.add(2, 3)
                                 )
                 ),
