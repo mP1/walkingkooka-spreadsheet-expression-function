@@ -19,6 +19,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
 import walkingkooka.reflect.ClassTesting2;
@@ -36,10 +37,12 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
         implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionFunctionContext>,
@@ -92,19 +95,22 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     }
 
     @Test
-    public final void testRequiresEvaluatedParameters() {
-        this.requiresEvaluatedParametersAndCheck(true);
-    }
+    public final void testKind() {
+        final Set<ExpressionFunctionKind> kinds = Sets.ordered();
+        kinds.add(ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS);
 
-    @Test
-    public final void testResolveReferences() {
-        this.resolveReferencesAndCheck(
-                !(
-                        this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
-                                this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
-                                this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest ||
-                                this instanceof SpreadsheetExpressionFunctionNumberTypeTest
-                )
+        if (!(
+                this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest ||
+                        this instanceof SpreadsheetExpressionFunctionNumberTypeTest
+        )) {
+            kinds.add(ExpressionFunctionKind.RESOLVE_REFERENCES);
+        }
+
+        this.checkEquals(
+                kinds,
+                this.createBiFunction().kinds()
         );
     }
 
