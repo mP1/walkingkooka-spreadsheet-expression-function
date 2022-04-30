@@ -23,8 +23,12 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * A {@link ExpressionFunction} with an assumed {@Link SpreadsheetExpressionFunctionContext}.
@@ -39,10 +43,23 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
 
     final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL =  ExpressionFunctionParameterName.with("reference")
             .optional(SpreadsheetExpressionReference.class);
-    
+
     SpreadsheetExpressionFunction(final String name) {
         super();
         this.name = FunctionExpressionName.with(name);
+
+        this.kinds =
+                this instanceof SpreadsheetExpressionFunctionObjectCell ||
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
+                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
+                        this instanceof SpreadsheetExpressionFunctionNumberType ?
+                        EnumSet.of(
+                                ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS
+                        ) :
+                        EnumSet.of(
+                                ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS,
+                                ExpressionFunctionKind.RESOLVE_REFERENCES
+                        );
     }
 
     @Override
@@ -61,19 +78,11 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
     }
 
     @Override
-    public final boolean requiresEvaluatedParameters() {
-        return true;
+    public final Set<ExpressionFunctionKind> kinds() {
+        return this.kinds;
     }
 
-    @Override
-    public final boolean resolveReferences() {
-        return !(
-                this instanceof SpreadsheetExpressionFunctionObjectCell ||
-                        this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
-                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
-                        this instanceof SpreadsheetExpressionFunctionNumberType
-        );
-    }
+    private final Set<ExpressionFunctionKind> kinds;
 
     @Override
     public final String toString() {
