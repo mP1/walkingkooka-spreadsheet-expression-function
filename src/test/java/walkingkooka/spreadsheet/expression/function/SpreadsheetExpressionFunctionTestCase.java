@@ -97,7 +97,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     @Test
     public final void testKind() {
         final Set<ExpressionFunctionKind> kinds = Sets.ordered();
-        kinds.add(ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS);
+        kinds.add(ExpressionFunctionKind.EVALUATE_PARAMETERS);
 
         if (!(
                 this instanceof SpreadsheetExpressionFunctionBooleanIsFormulaTest ||

@@ -55,10 +55,10 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
                         this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
                         this instanceof SpreadsheetExpressionFunctionNumberType ?
                         EnumSet.of(
-                                ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS
+                                ExpressionFunctionKind.EVALUATE_PARAMETERS
                         ) :
                         EnumSet.of(
-                                ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS,
+                                ExpressionFunctionKind.EVALUATE_PARAMETERS,
                                 ExpressionFunctionKind.RESOLVE_REFERENCES
                         );
     }
