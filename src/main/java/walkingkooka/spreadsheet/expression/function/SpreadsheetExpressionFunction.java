@@ -50,6 +50,7 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
 
         this.kinds =
                 this instanceof SpreadsheetExpressionFunctionObjectCell ||
+                        this instanceof SpreadsheetExpressionFunctionBooleanIsFormula ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
                         this instanceof SpreadsheetExpressionFunctionNumberType ?
