@@ -100,6 +100,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         kinds.add(ExpressionFunctionKind.REQUIRES_EVALUATED_PARAMETERS);
 
         if (!(
+                this instanceof SpreadsheetExpressionFunctionBooleanIsFormulaTest ||
                 this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest ||
