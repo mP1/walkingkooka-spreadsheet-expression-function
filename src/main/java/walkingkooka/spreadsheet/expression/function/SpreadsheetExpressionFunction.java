@@ -50,10 +50,14 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
 
         this.kinds =
                 this instanceof SpreadsheetExpressionFunctionObjectCell ||
+                        this instanceof SpreadsheetExpressionFunctionBooleanIsBlank ||
                         this instanceof SpreadsheetExpressionFunctionBooleanIsFormula ||
+                        this instanceof SpreadsheetExpressionFunctionHyperlink ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
-                        this instanceof SpreadsheetExpressionFunctionNumberType ?
+                        this instanceof SpreadsheetExpressionFunctionNumberType ||
+                        this instanceof SpreadsheetExpressionFunctionOffset ||
+                        this instanceof SpreadsheetExpressionFunctionStringFormulaText ?
                         EnumSet.of(
                                 ExpressionFunctionKind.EVALUATE_PARAMETERS
                         ) :
