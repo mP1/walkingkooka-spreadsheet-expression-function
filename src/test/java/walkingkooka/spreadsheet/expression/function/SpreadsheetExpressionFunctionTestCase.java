@@ -100,11 +100,15 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         kinds.add(ExpressionFunctionKind.EVALUATE_PARAMETERS);
 
         if (!(
-                this instanceof SpreadsheetExpressionFunctionBooleanIsFormulaTest ||
-                this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
+                this instanceof SpreadsheetExpressionFunctionBooleanIsBlankTest ||
+                        this instanceof SpreadsheetExpressionFunctionBooleanIsFormulaTest ||
+                        this instanceof SpreadsheetExpressionFunctionHyperlinkTest ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRowsTest ||
-                        this instanceof SpreadsheetExpressionFunctionNumberTypeTest
+                        this instanceof SpreadsheetExpressionFunctionNumberTypeTest ||
+                        this instanceof SpreadsheetExpressionFunctionObjectCellTest ||
+                        this instanceof SpreadsheetExpressionFunctionOffsetTest ||
+                        this instanceof SpreadsheetExpressionFunctionStringFormulaTextTest
         )) {
             kinds.add(ExpressionFunctionKind.RESOLVE_REFERENCES);
         }
