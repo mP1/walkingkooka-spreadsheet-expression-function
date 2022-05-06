@@ -22,6 +22,7 @@ import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.time.temporal.Temporal;
@@ -34,7 +35,10 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
     final static SpreadsheetExpressionFunctionNumberType INSTANCE = new SpreadsheetExpressionFunctionNumberType();
 
     private SpreadsheetExpressionFunctionNumberType() {
-        super("type");
+        super(
+                "type",
+                ExpressionFunctionKind.EVALUATE_PARAMETERS
+        );
     }
 
     @Override

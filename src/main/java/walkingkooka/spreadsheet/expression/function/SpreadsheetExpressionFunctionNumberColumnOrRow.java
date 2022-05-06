@@ -21,6 +21,7 @@ import walkingkooka.Value;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
@@ -47,7 +48,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
 
     private SpreadsheetExpressionFunctionNumberColumnOrRow(final String name,
                                                            final Function<SpreadsheetCellReference, Value<Integer>> mapper) {
-        super(name);
+        super(name, ExpressionFunctionKind.EVALUATE_PARAMETERS);
         this.mapper = mapper;
     }
 

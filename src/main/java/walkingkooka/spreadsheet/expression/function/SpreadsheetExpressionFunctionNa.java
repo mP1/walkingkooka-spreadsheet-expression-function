@@ -20,6 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -33,7 +34,11 @@ final class SpreadsheetExpressionFunctionNa extends SpreadsheetExpressionFunctio
     final static SpreadsheetExpressionFunctionNa INSTANCE = new SpreadsheetExpressionFunctionNa();
 
     private SpreadsheetExpressionFunctionNa() {
-        super("na");
+        super(
+                "na",
+                ExpressionFunctionKind.EVALUATE_PARAMETERS,
+                ExpressionFunctionKind.RESOLVE_REFERENCES
+        );
     }
 
     @Override

@@ -18,6 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 
 /**
  * Base for any function that handles and requires numbers.
@@ -29,8 +30,12 @@ abstract class SpreadsheetExpressionFunctionNumber extends SpreadsheetExpression
     /**
      * Package private ctor
      */
-    SpreadsheetExpressionFunctionNumber(final String name) {
-        super(name);
+    SpreadsheetExpressionFunctionNumber(final String name,
+                                        final ExpressionFunctionKind... kinds) {
+        super(
+                name,
+                kinds
+        );
     }
 
     @Override

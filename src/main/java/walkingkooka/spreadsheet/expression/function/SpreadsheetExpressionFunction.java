@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
@@ -27,7 +28,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
-import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -35,36 +35,21 @@ import java.util.Set;
  */
 abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionFunctionContext> {
 
-    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE =  ExpressionFunctionParameterName.with("reference")
+    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference" )
             .required(SpreadsheetCellReference.class);
 
-    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE =  ExpressionFunctionParameterName.with("reference")
+    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE = ExpressionFunctionParameterName.with("reference" )
             .required(SpreadsheetExpressionReference.class);
 
-    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL =  ExpressionFunctionParameterName.with("reference")
+    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference" )
             .optional(SpreadsheetExpressionReference.class);
 
-    SpreadsheetExpressionFunction(final String name) {
+    SpreadsheetExpressionFunction(final String name,
+                                  final ExpressionFunctionKind... kinds) {
         super();
         this.name = FunctionExpressionName.with(name);
 
-        this.kinds =
-                this instanceof SpreadsheetExpressionFunctionObjectCell ||
-                        this instanceof SpreadsheetExpressionFunctionBooleanIsBlank ||
-                        this instanceof SpreadsheetExpressionFunctionBooleanIsFormula ||
-                        this instanceof SpreadsheetExpressionFunctionHyperlink ||
-                        this instanceof SpreadsheetExpressionFunctionNumberColumnOrRow ||
-                        this instanceof SpreadsheetExpressionFunctionNumberColumnsOrRows ||
-                        this instanceof SpreadsheetExpressionFunctionNumberType ||
-                        this instanceof SpreadsheetExpressionFunctionOffset ||
-                        this instanceof SpreadsheetExpressionFunctionStringFormulaText ?
-                        EnumSet.of(
-                                ExpressionFunctionKind.EVALUATE_PARAMETERS
-                        ) :
-                        EnumSet.of(
-                                ExpressionFunctionKind.EVALUATE_PARAMETERS,
-                                ExpressionFunctionKind.RESOLVE_REFERENCES
-                        );
+        this.kinds = Sets.of(kinds);
     }
 
     @Override

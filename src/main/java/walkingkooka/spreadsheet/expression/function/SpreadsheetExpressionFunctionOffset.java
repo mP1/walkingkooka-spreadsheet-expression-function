@@ -24,6 +24,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
@@ -38,7 +39,10 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
     final static SpreadsheetExpressionFunctionOffset INSTANCE = new SpreadsheetExpressionFunctionOffset();
 
     private SpreadsheetExpressionFunctionOffset() {
-        super("offset");
+        super(
+                "offset",
+                ExpressionFunctionKind.EVALUATE_PARAMETERS
+        );
     }
 
     @Override

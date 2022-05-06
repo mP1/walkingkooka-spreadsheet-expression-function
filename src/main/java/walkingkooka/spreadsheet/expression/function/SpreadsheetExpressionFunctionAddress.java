@@ -21,6 +21,7 @@ import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetReferenceKind;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
@@ -35,7 +36,11 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
     final static SpreadsheetExpressionFunctionAddress INSTANCE = new SpreadsheetExpressionFunctionAddress();
 
     private SpreadsheetExpressionFunctionAddress() {
-        super("address");
+        super(
+                "address",
+                ExpressionFunctionKind.EVALUATE_PARAMETERS,
+                ExpressionFunctionKind.RESOLVE_REFERENCES
+        );
     }
 
     @Override

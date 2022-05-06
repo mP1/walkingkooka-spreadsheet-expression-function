@@ -22,6 +22,7 @@ import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.text.CharSequences;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -35,7 +36,11 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
     final static SpreadsheetExpressionFunctionObjectErrorType INSTANCE = new SpreadsheetExpressionFunctionObjectErrorType();
 
     private SpreadsheetExpressionFunctionObjectErrorType() {
-        super("Error.Type");
+        super(
+                "Error.Type",
+                ExpressionFunctionKind.EVALUATE_PARAMETERS,
+                ExpressionFunctionKind.RESOLVE_REFERENCES
+        );
     }
 
     @Override

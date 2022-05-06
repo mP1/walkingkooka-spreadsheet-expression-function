@@ -17,6 +17,8 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
+
 /**
  * Base for any function that returns a {@link String} result.
  */
@@ -25,8 +27,12 @@ abstract class SpreadsheetExpressionFunctionString extends SpreadsheetExpression
     /**
      * Package private ctor
      */
-    SpreadsheetExpressionFunctionString(final String name) {
-        super(name);
+    SpreadsheetExpressionFunctionString(final String name,
+                                        final ExpressionFunctionKind... kinds) {
+        super(
+                name,
+                kinds
+        );
     }
 
     @Override
