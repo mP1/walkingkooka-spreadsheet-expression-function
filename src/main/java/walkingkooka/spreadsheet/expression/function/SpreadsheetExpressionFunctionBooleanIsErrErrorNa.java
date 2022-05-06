@@ -23,6 +23,7 @@ import walkingkooka.predicate.Predicates;
 import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -46,7 +47,9 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
             "isErr",
             Predicates.not(
                     Predicates.is(SpreadsheetErrorKind.NA)
-            )
+            ),
+            ExpressionFunctionKind.EVALUATE_PARAMETERS,
+            ExpressionFunctionKind.RESOLVE_REFERENCES
     );
 
     /**
@@ -60,7 +63,9 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
 
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISERROR = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
             "isError",
-            Predicates.always()
+            Predicates.always(),
+            ExpressionFunctionKind.EVALUATE_PARAMETERS,
+            ExpressionFunctionKind.RESOLVE_REFERENCES
     );
 
     /**
@@ -74,12 +79,15 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
 
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISNA = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
             "isNa",
-            Predicates.is(SpreadsheetErrorKind.NA)
+            Predicates.is(SpreadsheetErrorKind.NA),
+            ExpressionFunctionKind.EVALUATE_PARAMETERS,
+            ExpressionFunctionKind.RESOLVE_REFERENCES
     );
 
     private SpreadsheetExpressionFunctionBooleanIsErrErrorNa(final String name,
-                                                             final Predicate<SpreadsheetErrorKind> kind) {
-        super(name);
+                                                             final Predicate<SpreadsheetErrorKind> kind,
+                                                             final ExpressionFunctionKind... kinds) {
+        super(name, kinds);
         this.kind = kind;
     }
 

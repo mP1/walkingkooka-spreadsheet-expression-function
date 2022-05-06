@@ -22,6 +22,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
@@ -50,7 +51,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
                                                              final Function<SpreadsheetCellRange, Integer> mapper) {
-        super(name);
+        super(name, ExpressionFunctionKind.EVALUATE_PARAMETERS);
         this.mapper = mapper;
     }
 

@@ -22,6 +22,7 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
@@ -38,7 +39,10 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
     final static SpreadsheetExpressionFunctionBooleanIsFormula INSTANCE = new SpreadsheetExpressionFunctionBooleanIsFormula();
 
     private SpreadsheetExpressionFunctionBooleanIsFormula() {
-        super("isFormula");
+        super(
+                "isFormula",
+                ExpressionFunctionKind.EVALUATE_PARAMETERS
+        );
     }
 
     @Override
