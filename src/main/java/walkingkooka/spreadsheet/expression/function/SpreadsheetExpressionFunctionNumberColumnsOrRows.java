@@ -19,7 +19,6 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
@@ -80,8 +79,8 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
         return PARAMETERS;
     }
 
-    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetCellReference.class);
+    final static ExpressionFunctionParameter<SpreadsheetCellRange> REFERENCE = ExpressionFunctionParameterName.with("reference" )
+            .required(SpreadsheetCellRange.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }
