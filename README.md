@@ -14,8 +14,8 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 
 ## Available functions
 
-- address(rowNum, colNum,
-  absNum) [TODO referenceStyle=r1c1](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/45) [TODO sheet](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/46)
+- address(rowNum, colNum, abs(
+  num)) [TODO referenceStyle=r1c1](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/45) [TODO sheet](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/46)
 - cell(typeInfo=address, col, contents, filename, prefix,
   row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
 - column (cellReference?)
