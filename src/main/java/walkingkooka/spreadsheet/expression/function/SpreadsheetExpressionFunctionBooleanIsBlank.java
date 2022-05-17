@@ -39,6 +39,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
     private SpreadsheetExpressionFunctionBooleanIsBlank() {
         super(
                 "isBlank",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

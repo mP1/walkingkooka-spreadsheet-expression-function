@@ -41,6 +41,7 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
     private SpreadsheetExpressionFunctionOffset() {
         super(
                 "offset",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

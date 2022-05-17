@@ -50,7 +50,11 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
                                                              final Function<SpreadsheetCellRange, Integer> mapper) {
-        super(name, ExpressionFunctionKind.EVALUATE_PARAMETERS);
+        super(
+                name,
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
+                ExpressionFunctionKind.EVALUATE_PARAMETERS
+        );
         this.mapper = mapper;
     }
 
