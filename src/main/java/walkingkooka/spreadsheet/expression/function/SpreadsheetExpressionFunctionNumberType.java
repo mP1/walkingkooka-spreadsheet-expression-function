@@ -37,6 +37,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
     private SpreadsheetExpressionFunctionNumberType() {
         super(
                 "type",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

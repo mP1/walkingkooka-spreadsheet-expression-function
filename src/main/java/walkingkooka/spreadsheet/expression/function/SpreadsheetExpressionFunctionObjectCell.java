@@ -37,6 +37,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
     private SpreadsheetExpressionFunctionObjectCell() {
         super(
                 "cell",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

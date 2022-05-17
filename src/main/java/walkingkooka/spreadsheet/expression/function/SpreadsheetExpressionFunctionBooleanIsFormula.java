@@ -41,6 +41,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
     private SpreadsheetExpressionFunctionBooleanIsFormula() {
         super(
                 "isFormula",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

@@ -38,6 +38,7 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
     private SpreadsheetExpressionFunctionObjectErrorType() {
         super(
                 "Error.Type",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS,
                 ExpressionFunctionKind.RESOLVE_REFERENCES
         );

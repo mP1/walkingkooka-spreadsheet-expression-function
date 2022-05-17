@@ -39,6 +39,7 @@ final class SpreadsheetExpressionFunctionHyperlink extends SpreadsheetExpression
     private SpreadsheetExpressionFunctionHyperlink() {
         super(
                 "hyperlink",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

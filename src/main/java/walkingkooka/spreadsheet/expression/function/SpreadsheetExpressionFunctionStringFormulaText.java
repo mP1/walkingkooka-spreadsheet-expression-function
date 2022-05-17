@@ -35,6 +35,7 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
     private SpreadsheetExpressionFunctionStringFormulaText() {
         super(
                 "formulatext",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS
         );
     }

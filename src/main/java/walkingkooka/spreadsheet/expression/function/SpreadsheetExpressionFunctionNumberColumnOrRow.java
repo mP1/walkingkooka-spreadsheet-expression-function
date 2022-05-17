@@ -48,7 +48,11 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
 
     private SpreadsheetExpressionFunctionNumberColumnOrRow(final String name,
                                                            final Function<SpreadsheetCellReference, Value<Integer>> mapper) {
-        super(name, ExpressionFunctionKind.EVALUATE_PARAMETERS);
+        super(
+                name,
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
+                ExpressionFunctionKind.EVALUATE_PARAMETERS
+        );
         this.mapper = mapper;
     }
 

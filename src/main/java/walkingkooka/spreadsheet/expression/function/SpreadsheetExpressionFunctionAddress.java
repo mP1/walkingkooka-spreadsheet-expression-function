@@ -38,6 +38,7 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
     private SpreadsheetExpressionFunctionAddress() {
         super(
                 "address",
+                ExpressionFunctionKind.CONVERT_PARAMETERS,
                 ExpressionFunctionKind.EVALUATE_PARAMETERS,
                 ExpressionFunctionKind.RESOLVE_REFERENCES
         );

@@ -48,6 +48,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
             Predicates.not(
                     Predicates.is(SpreadsheetErrorKind.NA)
             ),
+            ExpressionFunctionKind.CONVERT_PARAMETERS,
             ExpressionFunctionKind.EVALUATE_PARAMETERS,
             ExpressionFunctionKind.RESOLVE_REFERENCES
     );
@@ -64,6 +65,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISERROR = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
             "isError",
             Predicates.always(),
+            ExpressionFunctionKind.CONVERT_PARAMETERS,
             ExpressionFunctionKind.EVALUATE_PARAMETERS,
             ExpressionFunctionKind.RESOLVE_REFERENCES
     );
@@ -80,6 +82,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISNA = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
             "isNa",
             Predicates.is(SpreadsheetErrorKind.NA),
+            ExpressionFunctionKind.CONVERT_PARAMETERS,
             ExpressionFunctionKind.EVALUATE_PARAMETERS,
             ExpressionFunctionKind.RESOLVE_REFERENCES
     );
