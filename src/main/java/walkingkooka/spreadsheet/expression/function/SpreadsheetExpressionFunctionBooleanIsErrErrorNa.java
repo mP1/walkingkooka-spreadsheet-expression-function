@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.predicate.Predicates;
 import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 

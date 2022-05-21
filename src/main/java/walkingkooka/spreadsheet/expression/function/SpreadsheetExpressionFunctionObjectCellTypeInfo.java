@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.NeverError;
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.text.TextAlign;
