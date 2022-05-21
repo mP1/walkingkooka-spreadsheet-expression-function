@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
 
     @Override
     public Object apply(final List<Object> parameters,
-                        final SpreadsheetExpressionFunctionContext context) {
+                        final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         final SpreadsheetCell cell = context.cellOrFail();

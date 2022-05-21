@@ -19,7 +19,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
@@ -48,7 +48,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
 
     @Override
     public Boolean apply(final List<Object> parameters,
-                         final SpreadsheetExpressionFunctionContext context) {
+                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         final SpreadsheetExpressionReference reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0);

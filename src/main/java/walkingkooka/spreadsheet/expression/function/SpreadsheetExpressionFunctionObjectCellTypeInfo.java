@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.NeverError;
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.text.TextAlign;
@@ -36,7 +36,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             return reference;
         }
     },
@@ -44,7 +44,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             return context.expressionNumberKind()
                     .create(
                             reference.toCell()
@@ -58,7 +58,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             throw new UnsupportedOperationException();
         }
     },
@@ -68,7 +68,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             final Optional<SpreadsheetCell> loaded = context.loadCell(reference);
             return loaded.isPresent() ?
                     loaded.get()
@@ -83,7 +83,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             return ""; // always empty.
         }
     },
@@ -92,7 +92,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             throw new UnsupportedOperationException();
         }
     },
@@ -101,7 +101,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             throw new UnsupportedOperationException();
         }
     },
@@ -110,7 +110,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             String value = "";
 
             if (cell.formatted().isPresent()) {
@@ -146,7 +146,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             throw new UnsupportedOperationException();
         }
     },
@@ -155,7 +155,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             return context.expressionNumberKind()
                     .create(
                             reference
@@ -174,7 +174,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             throw new UnsupportedOperationException();
         }
     },
@@ -183,14 +183,14 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
         @Override
         Object value(final SpreadsheetCellReference reference,
                      final SpreadsheetCell cell,
-                     final SpreadsheetExpressionFunctionContext context) {
+                     final SpreadsheetExpressionEvaluationContext context) {
             throw new UnsupportedOperationException();
         }
     };
 
     abstract Object value(final SpreadsheetCellReference reference,
                           final SpreadsheetCell cell,
-                          final SpreadsheetExpressionFunctionContext context);
+                          final SpreadsheetExpressionEvaluationContext context);
 
     static SpreadsheetExpressionFunctionObjectCellTypeInfo typeInfo(final String typeInfo) {
         return Arrays.stream(values())

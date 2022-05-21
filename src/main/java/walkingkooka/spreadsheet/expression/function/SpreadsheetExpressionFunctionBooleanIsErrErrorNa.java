@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.predicate.Predicates;
 import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
@@ -96,7 +96,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
 
     @Override
     public Boolean apply(final List<Object> parameters,
-                         final SpreadsheetExpressionFunctionContext context) {
+                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         final Object value = VALUE.getOrFail(parameters, 0);

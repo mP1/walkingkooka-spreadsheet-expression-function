@@ -29,8 +29,8 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
-import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
@@ -45,7 +45,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
-        implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionFunctionContext>,
+        implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionEvaluationContext>,
         ClassTesting2<F>,
         TypeNameTesting<F> {
 
@@ -121,8 +121,8 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     }
 
     @Override
-    public final SpreadsheetExpressionFunctionContext createContext() {
-        return new FakeSpreadsheetExpressionFunctionContext() {
+    public final SpreadsheetExpressionEvaluationContext createContext() {
+        return new FakeSpreadsheetExpressionEvaluationContext() {
             @Override
             public ExpressionNumberKind expressionNumberKind() {
                 return KIND;

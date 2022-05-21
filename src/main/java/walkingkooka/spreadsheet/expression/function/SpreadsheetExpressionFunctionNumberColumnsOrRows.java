@@ -17,7 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -60,7 +60,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
 
     @Override
     public ExpressionNumber apply(final List<Object> parameters,
-                                  final SpreadsheetExpressionFunctionContext context) {
+                                  final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         final SpreadsheetSelection reference = REFERENCE.getOrFail(parameters, 0);

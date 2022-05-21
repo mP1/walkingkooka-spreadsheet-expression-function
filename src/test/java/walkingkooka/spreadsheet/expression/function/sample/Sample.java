@@ -20,7 +20,7 @@ package walkingkooka.spreadsheet.expression.function.sample;
 import org.junit.jupiter.api.Assertions;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
-import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
@@ -33,7 +33,7 @@ public final class Sample {
                 SpreadsheetExpressionFunctions.column()
                         .apply(
                                 Lists.of(SpreadsheetSelection.parseCell("E1")),
-                                new FakeSpreadsheetExpressionFunctionContext() {
+                                new FakeSpreadsheetExpressionEvaluationContext() {
 
                                     @Override
                                     public ExpressionNumberKind expressionNumberKind() {
