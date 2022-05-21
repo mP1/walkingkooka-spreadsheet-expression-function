@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -44,7 +44,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
 
     @Override
     public ExpressionNumber apply(final List<Object> parameters,
-                                  final SpreadsheetExpressionFunctionContext context) {
+                                  final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         int type = 0;

@@ -21,7 +21,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetError;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -62,119 +62,119 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see SpreadsheetExpressionFunctionAddress}
      */
-    public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionFunctionContext> address() {
+    public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionEvaluationContext> address() {
         return SpreadsheetExpressionFunctionAddress.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionObjectCell}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionFunctionContext> cell() {
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cell() {
         return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#COLUMN}
      */
-    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> column() {
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> column() {
         return SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionNumberColumnsOrRows#COLUMNS}
      */
-    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> columns() {
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> columns() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionObjectErrorType}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionFunctionContext> errorType() {
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> errorType() {
         return SpreadsheetExpressionFunctionObjectErrorType.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionStringFormulaText}
      */
-    public static ExpressionFunction<String, SpreadsheetExpressionFunctionContext> formulaText() {
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> formulaText() {
         return SpreadsheetExpressionFunctionStringFormulaText.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionHyperlink}
      */
-    public static ExpressionFunction<AbsoluteUrl, SpreadsheetExpressionFunctionContext> hyperlink() {
+    public static ExpressionFunction<AbsoluteUrl, SpreadsheetExpressionEvaluationContext> hyperlink() {
         return SpreadsheetExpressionFunctionHyperlink.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionBooleanIsBlank}
      */
-    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isBlank() {
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isBlank() {
         return SpreadsheetExpressionFunctionBooleanIsBlank.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isErr}
      */
-    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isErr() {
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isErr() {
         return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isErr();
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isError}
      */
-    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isError() {
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isError() {
         return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError();
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionBooleanIsFormula}
      */
-    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isFormula() {
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isFormula() {
         return SpreadsheetExpressionFunctionBooleanIsFormula.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isNs}
      */
-    public static ExpressionFunction<Boolean, SpreadsheetExpressionFunctionContext> isNa() {
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNa() {
         return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa();
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionNa}
      */
-    public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionFunctionContext> na() {
+    public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionEvaluationContext> na() {
         return SpreadsheetExpressionFunctionNa.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionOffset}
      */
-    public static ExpressionFunction<SpreadsheetExpressionReference, SpreadsheetExpressionFunctionContext> offset() {
+    public static ExpressionFunction<SpreadsheetExpressionReference, SpreadsheetExpressionEvaluationContext> offset() {
         return SpreadsheetExpressionFunctionOffset.INSTANCE;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#ROW}
      */
-    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> row() {
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> row() {
         return SpreadsheetExpressionFunctionNumberColumnOrRow.ROW;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionNumberColumnsOrRows#ROWS}
      */
-    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> rows() {
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> rows() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS;
     }
 
     /**
      * {@see SpreadsheetExpressionFunctionNumberType}
      */
-    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionFunctionContext> type() {
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> type() {
         return SpreadsheetExpressionFunctionNumberType.INSTANCE;
     }
 

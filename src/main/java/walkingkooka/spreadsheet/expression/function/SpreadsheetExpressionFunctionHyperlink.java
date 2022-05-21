@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.UrlPath;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
@@ -60,7 +60,7 @@ final class SpreadsheetExpressionFunctionHyperlink extends SpreadsheetExpression
 
     @Override
     public AbsoluteUrl apply(final List<Object> parameters,
-                             final SpreadsheetExpressionFunctionContext context) {
+                             final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         final SpreadsheetCellReference reference = REFERENCE.getOrFail(parameters, 0);

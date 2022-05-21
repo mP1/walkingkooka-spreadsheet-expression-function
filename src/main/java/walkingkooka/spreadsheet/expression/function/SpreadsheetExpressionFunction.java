@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.collect.set.Sets;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionPurityContext;
@@ -31,17 +31,17 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import java.util.Set;
 
 /**
- * A {@link ExpressionFunction} with an assumed {@Link SpreadsheetExpressionFunctionContext}.
+ * A {@link ExpressionFunction} with an assumed {@Link SpreadsheetExpressionEvaluationContext}.
  */
-abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionFunctionContext> {
+abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> {
 
-    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference" )
+    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
             .required(SpreadsheetCellReference.class);
 
-    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE = ExpressionFunctionParameterName.with("reference" )
+    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE = ExpressionFunctionParameterName.with("reference")
             .required(SpreadsheetExpressionReference.class);
 
-    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference" )
+    final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference")
             .optional(SpreadsheetExpressionReference.class);
 
     SpreadsheetExpressionFunction(final String name,

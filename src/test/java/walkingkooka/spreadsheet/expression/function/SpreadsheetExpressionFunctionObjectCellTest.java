@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
-import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionFunctionContext;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.FakeSpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
@@ -181,7 +181,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         this.cellAndCheck(
                 "contents",
                 reference,
-                new FakeSpreadsheetExpressionFunctionContext() {
+                new FakeSpreadsheetExpressionEvaluationContext() {
 
                     @Override
                     public Optional<SpreadsheetCell> cell() {
@@ -367,7 +367,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         this.cellAndCheck(
                 typeInfo,
                 selection,
-                new FakeSpreadsheetExpressionFunctionContext() {
+                new FakeSpreadsheetExpressionEvaluationContext() {
                     @Override
                     public Optional<SpreadsheetCell> cell() {
                         return Optional.of(cell);
@@ -384,7 +384,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     private void cellAndCheck(final String typeInfo,
                               final SpreadsheetSelection selection,
-                              final SpreadsheetExpressionFunctionContext context,
+                              final SpreadsheetExpressionEvaluationContext context,
                               final Object expected) {
         this.applyAndCheck(
                 Lists.of(typeInfo, selection),

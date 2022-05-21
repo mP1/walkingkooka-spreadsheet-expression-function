@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
@@ -54,7 +54,7 @@ final class SpreadsheetExpressionFunctionNa extends SpreadsheetExpressionFunctio
 
     @Override
     public SpreadsheetError apply(final List<Object> parameters,
-                                  final SpreadsheetExpressionFunctionContext context) {
+                                  final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
         return NA;
     }

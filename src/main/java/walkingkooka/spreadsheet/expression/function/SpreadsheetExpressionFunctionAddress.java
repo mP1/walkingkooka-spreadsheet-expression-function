@@ -17,7 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetReferenceKind;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -75,7 +75,7 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
 
     @Override
     public SpreadsheetCellReference apply(final List<Object> parameters,
-                                          final SpreadsheetExpressionFunctionContext context) {
+                                          final SpreadsheetExpressionEvaluationContext context) {
         final int count = parameters.size();
 
         final int row;

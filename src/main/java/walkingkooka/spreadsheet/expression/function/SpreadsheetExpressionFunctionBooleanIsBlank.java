@@ -18,7 +18,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.spreadsheet.function.SpreadsheetExpressionFunctionContext;
+import walkingkooka.spreadsheet.function.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
@@ -46,7 +46,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
 
     @Override
     public Boolean apply(final List<Object> parameters,
-                         final SpreadsheetExpressionFunctionContext context) {
+                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
         final Object maybeReference = REFERENCE.getOrFail(parameters, 0);
