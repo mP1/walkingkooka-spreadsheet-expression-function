@@ -102,6 +102,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
         if (!(
                 this instanceof SpreadsheetExpressionFunctionBooleanIsBlankTest ||
+                        this instanceof SpreadsheetExpressionFunctionBooleanIsRefTest ||
                         this instanceof SpreadsheetExpressionFunctionBooleanIsFormulaTest ||
                         this instanceof SpreadsheetExpressionFunctionHyperlinkTest ||
                         this instanceof SpreadsheetExpressionFunctionNumberColumnOrRowTest ||
