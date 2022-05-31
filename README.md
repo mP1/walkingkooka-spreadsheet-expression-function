@@ -28,6 +28,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - isError(object)
 - isFormula(cellReference/Range)
 - isNa(object)
+- isRef(object)
 - na()
 - offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
