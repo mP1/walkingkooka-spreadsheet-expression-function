@@ -83,8 +83,8 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
         return PARAMETERS;
     }
 
-    final static ExpressionFunctionParameter<SpreadsheetCellRange> REFERENCE = ExpressionFunctionParameterName.with("reference" )
-            .required(SpreadsheetCellRange.class);
+    final static ExpressionFunctionParameter<SpreadsheetSelection> REFERENCE = ExpressionFunctionParameterName.with("reference")
+            .required(SpreadsheetSelection.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }
