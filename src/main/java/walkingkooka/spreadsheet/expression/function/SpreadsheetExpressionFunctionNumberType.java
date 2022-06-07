@@ -56,7 +56,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
                 type = 1;
                 break;
             }
-            if (value instanceof Character || value instanceof String) {
+            if (context.isText(value)) {
                 type = 2;
                 break;
             }

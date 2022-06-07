@@ -137,6 +137,11 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             }
 
             @Override
+            public boolean isText(final Object value) {
+                return value instanceof Character || value instanceof String;
+            }
+
+            @Override
             public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell) {
                 if (LOAD_CELL_REFERENCE.equals(cell)) {
                     return Optional.of(LOAD_CELL);
