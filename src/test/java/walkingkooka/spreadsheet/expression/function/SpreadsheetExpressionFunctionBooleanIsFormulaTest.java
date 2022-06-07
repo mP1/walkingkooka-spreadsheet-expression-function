@@ -19,8 +19,6 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
-import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -84,8 +82,6 @@ public final class SpreadsheetExpressionFunctionBooleanIsFormulaTest extends Spr
                 false
         );
     }
-
-    private final static SpreadsheetCellReference B5 = SpreadsheetSelection.parseCell("B5");
 
     @Test
     public void testToString() {

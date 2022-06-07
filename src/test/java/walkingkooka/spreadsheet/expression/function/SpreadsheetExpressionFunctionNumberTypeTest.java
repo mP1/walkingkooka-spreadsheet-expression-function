@@ -20,7 +20,6 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 
 import java.time.LocalDate;
@@ -28,9 +27,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public final class SpreadsheetExpressionFunctionNumberTypeTest extends SpreadsheetExpressionFunctionNumberTestCase<SpreadsheetExpressionFunctionNumberType> {
-
-
-    private final static SpreadsheetCellReference B5 = SpreadsheetSelection.parseCell("B5");
 
     @Test
     public void testNull() {
