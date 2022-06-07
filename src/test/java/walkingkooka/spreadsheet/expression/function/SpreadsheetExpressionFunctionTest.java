@@ -17,14 +17,15 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.Cast;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public final class SpreadsheetExpressionFunctionTest implements ClassTesting<SpreadsheetExpressionFunction> {
+public final class SpreadsheetExpressionFunctionTest implements ClassTesting<SpreadsheetExpressionFunction<Void>> {
 
     @Override
-    public Class<SpreadsheetExpressionFunction> type() {
-        return SpreadsheetExpressionFunction.class;
+    public Class<SpreadsheetExpressionFunction<Void>> type() {
+        return Cast.to(SpreadsheetExpressionFunction.class);
     }
 
     @Override
