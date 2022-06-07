@@ -31,13 +31,6 @@ public abstract class SpreadsheetExpressionFunctionNumberTestCase<F extends Spre
         super();
     }
 
-    final void apply2(final Number... parameters) {
-        this.createBiFunction()
-                .apply(parameters(parameters),
-                        this.createContext()
-                );
-    }
-
     @Override
     public final void applyAndCheck2(final F function,
                                      final List<Object> parameters,

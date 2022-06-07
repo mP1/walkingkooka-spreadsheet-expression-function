@@ -21,17 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
-import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class SpreadsheetExpressionFunctionHyperlinkTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionHyperlink, AbsoluteUrl> {
-
-    final static SpreadsheetCellReference REFERENCE2 = SpreadsheetSelection.parseCell("E5");
-
-    final static SpreadsheetCellRange RANGE = SpreadsheetSelection.parseCellRange("B2:C3");
 
     @Test
     public void testUnknownTypeFail() {
