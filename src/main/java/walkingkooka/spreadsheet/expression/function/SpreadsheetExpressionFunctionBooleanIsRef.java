@@ -46,7 +46,7 @@ final class SpreadsheetExpressionFunctionBooleanIsRef extends SpreadsheetExpress
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        return CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0) instanceof SpreadsheetSelection;
+        return CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0) instanceof SpreadsheetSelection; // lgtm [java/useless-type-test]
     }
 
     @Override
