@@ -46,6 +46,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 errorType(),
                 formulaText(),
                 hyperlink(),
+                indirect(),
                 isBlank(),
                 isErr(),
                 isError(),
@@ -107,6 +108,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<AbsoluteUrl, SpreadsheetExpressionEvaluationContext> hyperlink() {
         return SpreadsheetExpressionFunctionHyperlink.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionIndirect}
+     */
+    public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionEvaluationContext> indirect() {
+        return SpreadsheetExpressionFunctionIndirect.INSTANCE;
     }
 
     /**

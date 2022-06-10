@@ -23,6 +23,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - error.type(object)
 - formulatext(cellReference)
 - hyperlink(cellReference)
+- indirect(string)
 - isBlank(object)
 - isErr(object)
 - isError(object)
