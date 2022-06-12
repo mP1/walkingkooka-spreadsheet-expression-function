@@ -64,7 +64,10 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
      */
     @Override
     public final boolean isPure(final ExpressionPurityContext context) {
-        return !(this instanceof SpreadsheetExpressionFunctionObjectCell);
+        return !(
+                this instanceof SpreadsheetExpressionFunctionObjectCell ||
+                        this instanceof SpreadsheetExpressionFunctionOffset
+        );
     }
 
     @Override
