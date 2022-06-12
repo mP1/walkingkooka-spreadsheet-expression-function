@@ -88,11 +88,14 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     @Test
     public final void testIsPure() {
         final F function = this.createBiFunction();
+        final String name = function.name()
+                .value()
+                .toLowerCase();
 
         this.isPureAndCheck(
                 function,
                 ExpressionEvaluationContexts.fake(),
-                !function.name().value().equals("cell")
+                !(name.equals("cell") || name.equals("offset"))
         );
     }
 
