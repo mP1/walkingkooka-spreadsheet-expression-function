@@ -86,11 +86,13 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     }
 
     @Test
-    public final void testIsPureTrue() {
+    public final void testIsPure() {
+        final F function = this.createBiFunction();
+
         this.isPureAndCheck(
-                this.createBiFunction(),
+                function,
                 ExpressionEvaluationContexts.fake(),
-                true
+                !function.name().value().equals("cell")
         );
     }
 
