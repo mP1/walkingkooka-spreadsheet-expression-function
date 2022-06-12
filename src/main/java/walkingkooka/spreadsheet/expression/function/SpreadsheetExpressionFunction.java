@@ -60,11 +60,11 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
     private final FunctionExpressionName name;
 
     /**
-     * All number functions are pure. Does not assume anything about any parameters.
+     * All functions are pure except for cell.
      */
     @Override
     public final boolean isPure(final ExpressionPurityContext context) {
-        return true;
+        return !(this instanceof SpreadsheetExpressionFunctionObjectCell);
     }
 
     @Override
