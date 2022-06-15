@@ -40,11 +40,10 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     public void testColumnReferenceParameterMissingFails() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> {
-                    this.apply2(
-                            SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
-                            Lists.empty());
-                }
+                () -> this.apply2(
+                        SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
+                        Lists.empty()
+                )
         );
     }
 
@@ -52,11 +51,10 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     public void testRowReferenceParameterMissingFails() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> {
-                    this.apply2(
-                            SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
-                            Lists.empty());
-                }
+                () -> this.apply2(
+                        SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
+                        Lists.empty()
+                )
         );
     }
 
