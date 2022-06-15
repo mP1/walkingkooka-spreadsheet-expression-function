@@ -79,7 +79,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     final static SpreadsheetName NAME = SpreadsheetName.with("spreadsheet-name-456");
 
-    final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("http://example.com/path789");
+    final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://example.com/path789");
 
     SpreadsheetExpressionFunctionTestCase() {
         super();
