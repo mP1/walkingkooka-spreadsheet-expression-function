@@ -82,7 +82,7 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
         this.checkParameterCount(parameters);
 
         final SpreadsheetCellReference start = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0)
-                .toCell();
+                .toCellOrFail();
 
         final int rows = ROWS.getOrFail(parameters, 1)
                 .intValue();
@@ -110,7 +110,7 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
         final SpreadsheetCellRange range = topLeft.cellRange(bottomRight);
 
         return range.width() == 1 && range.height() == 1 ?
-                range.toCell() :
+                range.toCellOrFail() :
                 range;
     }
 
