@@ -68,7 +68,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
 
         return SpreadsheetExpressionFunctionObjectCellTypeInfo.typeInfo(typeInfo)
                 .value(
-                        selection.toCell(),
+                        selection.toCellOrFail(),
                         cell,
                         context
                 );
