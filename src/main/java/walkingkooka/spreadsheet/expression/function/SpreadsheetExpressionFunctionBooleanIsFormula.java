@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters() {
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
 

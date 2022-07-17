@@ -43,7 +43,7 @@ final class SpreadsheetExpressionFunctionNa extends SpreadsheetExpressionFunctio
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters() {
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return ExpressionFunctionParameter.EMPTY;
     }
 

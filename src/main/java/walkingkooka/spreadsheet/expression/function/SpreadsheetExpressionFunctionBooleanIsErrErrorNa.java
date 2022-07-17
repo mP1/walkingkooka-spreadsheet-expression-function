@@ -115,7 +115,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE;
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters() {
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
 

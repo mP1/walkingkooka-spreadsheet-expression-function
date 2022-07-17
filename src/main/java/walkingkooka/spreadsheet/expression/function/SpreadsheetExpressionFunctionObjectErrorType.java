@@ -45,7 +45,7 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters() {
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
 
