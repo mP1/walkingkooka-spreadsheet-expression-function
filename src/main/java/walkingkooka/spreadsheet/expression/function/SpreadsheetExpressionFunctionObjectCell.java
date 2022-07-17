@@ -43,7 +43,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters() {
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
 

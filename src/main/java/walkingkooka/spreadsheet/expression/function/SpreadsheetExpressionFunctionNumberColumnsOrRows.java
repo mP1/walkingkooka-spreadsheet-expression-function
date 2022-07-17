@@ -79,7 +79,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     private final Function<SpreadsheetCellRange, Integer> mapper;
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters() {
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
 
