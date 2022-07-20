@@ -21,8 +21,8 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetReferenceKind;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -36,37 +36,8 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
     final static SpreadsheetExpressionFunctionAddress INSTANCE = new SpreadsheetExpressionFunctionAddress();
 
     private SpreadsheetExpressionFunctionAddress() {
-        super(
-                "address",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS,
-                ExpressionFunctionKind.RESOLVE_REFERENCES
-        );
+        super("address");
     }
-
-    @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
-    }
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> ROW_NUM = ExpressionFunctionParameterName.with("row-num")
-            .required(ExpressionNumber.class);
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> COLUMN_NUM = ExpressionFunctionParameterName.with("col-num")
-            .required(ExpressionNumber.class);
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> ABS_NUM = ExpressionFunctionParameterName.with("abs-num")
-            .required(ExpressionNumber.class);
-
-    private final static ExpressionFunctionParameter<Boolean> A1_STYLE = ExpressionFunctionParameterName.with("a1-style")
-            .required(Boolean.class);
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            ROW_NUM,
-            COLUMN_NUM,
-            ABS_NUM,
-            A1_STYLE
-    );
 
     @Override
     public Class<SpreadsheetCellReference> returnType() {
@@ -139,4 +110,32 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
                         columnKind.column(column - 1)
                 );
     }
+
+    private final static ExpressionFunctionParameter<ExpressionNumber> ROW_NUM = ExpressionFunctionParameterName.with("row-num")
+            .required(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+
+    private final static ExpressionFunctionParameter<ExpressionNumber> COLUMN_NUM = ExpressionFunctionParameterName.with("col-num")
+            .required(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+
+    private final static ExpressionFunctionParameter<ExpressionNumber> ABS_NUM = ExpressionFunctionParameterName.with("abs-num")
+            .required(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+
+    private final static ExpressionFunctionParameter<Boolean> A1_STYLE = ExpressionFunctionParameterName.with("a1-style")
+            .required(Boolean.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+
+    @Override
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
+        return PARAMETERS;
+    }
+
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
+            ROW_NUM,
+            COLUMN_NUM,
+            ABS_NUM,
+            A1_STYLE
+    );
 }

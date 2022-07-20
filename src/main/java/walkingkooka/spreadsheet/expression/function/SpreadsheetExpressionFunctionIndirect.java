@@ -20,9 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
-import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
 
@@ -35,20 +33,8 @@ final class SpreadsheetExpressionFunctionIndirect extends SpreadsheetExpressionF
     final static SpreadsheetExpressionFunctionIndirect INSTANCE = new SpreadsheetExpressionFunctionIndirect();
 
     private SpreadsheetExpressionFunctionIndirect() {
-        super("indirect",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("indirect");
     }
-
-    @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
-    }
-
-    private final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.REFERENCE.required(SpreadsheetCellReference.class);
-
-    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(REFERENCE);
 
     @Override
     public Class<SpreadsheetCellReference> returnType() {
@@ -62,4 +48,11 @@ final class SpreadsheetExpressionFunctionIndirect extends SpreadsheetExpressionF
 
         return REFERENCE.getOrFail(parameters, 0); // parameter will be converted during get to SpreadsheetCellReference
     }
+
+    @Override
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
+        return PARAMETERS;
+    }
+
+    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(REFERENCE);
 }

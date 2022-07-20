@@ -21,8 +21,8 @@ import walkingkooka.Value;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -48,11 +48,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
 
     private SpreadsheetExpressionFunctionNumberColumnOrRow(final String name,
                                                            final Function<SpreadsheetCellReference, Value<Integer>> mapper) {
-        super(
-                name,
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super(name);
         this.mapper = mapper;
     }
 
@@ -68,7 +64,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
                 throw new IllegalArgumentException("Expected only optional cell reference but got " + count);
         }
 
-        final SpreadsheetCellReference reference = REFERENCE.get(parameters, 0)
+        final SpreadsheetCellReference reference = REFERENCE_OPTIONAL.get(parameters, 0)
                 .orElseGet(() -> context.cellOrFail().reference());
 
         return context.expressionNumberKind()
@@ -76,6 +72,10 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
                         BIAS + this.mapper.apply(reference).value()
                 );
     }
+
+    private final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference")
+            .optional(SpreadsheetCellReference.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     /**
      * Lambda that returns either the column or row for a given {@link SpreadsheetCellReference}.
@@ -86,9 +86,6 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
-
-    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .optional(SpreadsheetCellReference.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }

@@ -22,8 +22,8 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -39,11 +39,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
     final static SpreadsheetExpressionFunctionBooleanIsFormula INSTANCE = new SpreadsheetExpressionFunctionBooleanIsFormula();
 
     private SpreadsheetExpressionFunctionBooleanIsFormula() {
-        super(
-                "isFormula",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("isFormula");
     }
 
     @Override
@@ -56,13 +52,14 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
         return cell.isPresent() && cell.get().formula().text().length() > 0;
     }
 
+    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
+            .required(SpreadsheetCellReference.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
-
-    final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetCellReference.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }

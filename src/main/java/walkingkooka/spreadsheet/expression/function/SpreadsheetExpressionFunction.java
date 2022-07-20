@@ -17,18 +17,15 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.collect.set.Sets;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
-
-import java.util.Set;
 
 /**
  * A {@link ExpressionFunction} with an assumed {@link SpreadsheetExpressionEvaluationContext}.
@@ -36,20 +33,20 @@ import java.util.Set;
 abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> {
 
     final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetCellReference.class);
+            .required(SpreadsheetCellReference.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetExpressionReference.class);
+            .required(SpreadsheetExpressionReference.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference")
-            .optional(SpreadsheetExpressionReference.class);
+            .optional(SpreadsheetExpressionReference.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
-    SpreadsheetExpressionFunction(final String name,
-                                  final ExpressionFunctionKind... kinds) {
+    SpreadsheetExpressionFunction(final String name) {
         super();
         this.name = FunctionExpressionName.with(name);
-
-        this.kinds = Sets.of(kinds);
     }
 
     @Override
@@ -69,13 +66,6 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
                         this instanceof SpreadsheetExpressionFunctionOffset
         );
     }
-
-    @Override
-    public final Set<ExpressionFunctionKind> kinds() {
-        return this.kinds;
-    }
-
-    private final Set<ExpressionFunctionKind> kinds;
 
     @Override
     public final String toString() {

@@ -19,7 +19,6 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -33,21 +32,8 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
     final static SpreadsheetExpressionFunctionStringFormulaText INSTANCE = new SpreadsheetExpressionFunctionStringFormulaText();
 
     private SpreadsheetExpressionFunctionStringFormulaText() {
-        super(
-                "formulatext",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("formulatext");
     }
-
-    @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
-    }
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            REFERENCE
-    );
 
     @Override
     public String apply(final List<Object> parameters,
@@ -60,4 +46,13 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
                 .formula()
                 .text();
     }
+
+    @Override
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
+        return PARAMETERS;
+    }
+
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
+            REFERENCE
+    );
 }

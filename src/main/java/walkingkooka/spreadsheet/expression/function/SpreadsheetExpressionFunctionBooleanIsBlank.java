@@ -18,10 +18,11 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -37,11 +38,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
     final static SpreadsheetExpressionFunctionBooleanIsBlank INSTANCE = new SpreadsheetExpressionFunctionBooleanIsBlank();
 
     private SpreadsheetExpressionFunctionBooleanIsBlank() {
-        super(
-                "isBlank",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("isBlank");
     }
 
     @Override
@@ -60,13 +57,19 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
         return blank;
     }
 
+    final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
+            .required(Object.class)
+            .setKinds(
+                    Sets.of(
+                            ExpressionFunctionParameterKind.CONVERT,
+                            ExpressionFunctionParameterKind.EVALUATE
+                    )
+            );
+
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
-
-    final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(Object.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }

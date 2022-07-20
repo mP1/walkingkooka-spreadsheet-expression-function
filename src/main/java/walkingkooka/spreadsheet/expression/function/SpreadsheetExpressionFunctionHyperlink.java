@@ -23,7 +23,6 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -37,11 +36,7 @@ final class SpreadsheetExpressionFunctionHyperlink extends SpreadsheetExpression
     final static SpreadsheetExpressionFunctionHyperlink INSTANCE = new SpreadsheetExpressionFunctionHyperlink();
 
     private SpreadsheetExpressionFunctionHyperlink() {
-        super(
-                "hyperlink",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("hyperlink");
     }
 
     @Override
@@ -49,9 +44,7 @@ final class SpreadsheetExpressionFunctionHyperlink extends SpreadsheetExpression
         return PARAMETERS;
     }
 
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            REFERENCE
-    );
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 
     @Override
     public Class<AbsoluteUrl> returnType() {

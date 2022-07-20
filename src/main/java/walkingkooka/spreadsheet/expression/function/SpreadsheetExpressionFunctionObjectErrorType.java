@@ -22,8 +22,8 @@ import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 
 import java.util.List;
 
@@ -36,25 +36,8 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
     final static SpreadsheetExpressionFunctionObjectErrorType INSTANCE = new SpreadsheetExpressionFunctionObjectErrorType();
 
     private SpreadsheetExpressionFunctionObjectErrorType() {
-        super(
-                "Error.Type",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS,
-                ExpressionFunctionKind.RESOLVE_REFERENCES
-        );
+        super("Error.Type");
     }
-
-    @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
-    }
-
-    // Expecting a HasSpreadsheetErrorKind but could be anything.
-    final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE;
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            VALUE
-    );
 
     @Override
     public Object apply(final List<Object> parameters,
@@ -76,10 +59,23 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
         return result;
     }
 
+    // Expecting a HasSpreadsheetErrorKind but could be anything.
+    final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+
     static SpreadsheetError na(final Object value) {
         return SpreadsheetErrorKind.NA.setMessage(
                 "Expected error got: " +
                         CharSequences.quoteIfChars(value)
         );
     }
+
+    @Override
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
+        return PARAMETERS;
+    }
+
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
+            VALUE
+    );
 }
