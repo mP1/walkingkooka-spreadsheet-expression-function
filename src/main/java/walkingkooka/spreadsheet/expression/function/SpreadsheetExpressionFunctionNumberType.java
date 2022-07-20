@@ -23,6 +23,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 
 import java.time.temporal.Temporal;
 import java.util.Collection;
@@ -45,7 +46,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
         int type = 0;
 
         do {
-            final Object value = ExpressionFunctionParameter.VALUE.getOrFail(parameters, 0);
+            final Object value = VALUE.getOrFail(parameters, 0);
 
             if (null == value || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
                 type = 1;
@@ -74,6 +75,8 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
         return context.expressionNumberKind()
                 .create(type);
     }
+
+    private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE.setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
