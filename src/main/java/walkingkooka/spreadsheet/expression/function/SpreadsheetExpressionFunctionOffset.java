@@ -24,8 +24,8 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -39,37 +39,8 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
     final static SpreadsheetExpressionFunctionOffset INSTANCE = new SpreadsheetExpressionFunctionOffset();
 
     private SpreadsheetExpressionFunctionOffset() {
-        super(
-                "offset",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("offset");
     }
-
-    @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
-    }
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> ROWS = ExpressionFunctionParameterName.with("rows")
-            .required(ExpressionNumber.class);
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> COLUMNS = ExpressionFunctionParameterName.with("columns")
-            .required(ExpressionNumber.class);
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> WIDTH = ExpressionFunctionParameterName.with("width")
-            .optional(ExpressionNumber.class);
-
-    private final static ExpressionFunctionParameter<ExpressionNumber> HEIGHT = ExpressionFunctionParameterName.with("height")
-            .optional(ExpressionNumber.class);
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            CELL_OR_RANGE_REFERENCE,
-            ROWS,
-            COLUMNS,
-            WIDTH,
-            HEIGHT
-    );
 
     @Override
     public Class<SpreadsheetExpressionReference> returnType() {
@@ -114,8 +85,37 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
                 range;
     }
 
+    private final static ExpressionFunctionParameter<ExpressionNumber> ROWS = ExpressionFunctionParameterName.with("rows")
+            .required(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
+    private final static ExpressionFunctionParameter<ExpressionNumber> COLUMNS = ExpressionFunctionParameterName.with("columns")
+            .required(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
+    private final static ExpressionFunctionParameter<ExpressionNumber> WIDTH = ExpressionFunctionParameterName.with("width")
+            .optional(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
+    private final static ExpressionFunctionParameter<ExpressionNumber> HEIGHT = ExpressionFunctionParameterName.with("height")
+            .optional(ExpressionNumber.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
     // only width and height have a bias of 1
     private final static int BIAS = 1;
 
     private final static ExpressionNumber DEFAULT_HEIGHT_WIDTH = ExpressionNumberKind.DEFAULT.create(BIAS);
+
+    @Override
+    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
+        return PARAMETERS;
+    }
+
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
+            CELL_OR_RANGE_REFERENCE,
+            ROWS,
+            COLUMNS,
+            WIDTH,
+            HEIGHT
+    );
 }

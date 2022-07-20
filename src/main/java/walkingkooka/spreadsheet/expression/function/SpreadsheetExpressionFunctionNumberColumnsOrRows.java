@@ -21,9 +21,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
-import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
 import java.util.function.Function;
@@ -50,11 +48,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
                                                              final Function<SpreadsheetCellRange, Integer> mapper) {
-        super(
-                name,
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super(name);
         this.mapper = mapper;
     }
 
@@ -82,9 +76,6 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
-
-    final static ExpressionFunctionParameter<SpreadsheetSelection> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetSelection.class);
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 }

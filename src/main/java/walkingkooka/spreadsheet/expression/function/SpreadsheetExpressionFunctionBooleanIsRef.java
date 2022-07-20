@@ -20,7 +20,6 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -34,11 +33,7 @@ final class SpreadsheetExpressionFunctionBooleanIsRef extends SpreadsheetExpress
     final static SpreadsheetExpressionFunctionBooleanIsRef INSTANCE = new SpreadsheetExpressionFunctionBooleanIsRef();
 
     private SpreadsheetExpressionFunctionBooleanIsRef() {
-        super(
-                "isRef",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("isRef");
     }
 
     @Override
@@ -49,12 +44,10 @@ final class SpreadsheetExpressionFunctionBooleanIsRef extends SpreadsheetExpress
         return CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0) instanceof SpreadsheetSelection; // lgtm [java/useless-type-test]
     }
 
+    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(CELL_OR_RANGE_REFERENCE);
+
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
-
-    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            ExpressionFunctionParameter.VALUE
-    );
 }

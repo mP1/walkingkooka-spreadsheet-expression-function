@@ -20,7 +20,6 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
@@ -35,11 +34,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
     final static SpreadsheetExpressionFunctionObjectCell INSTANCE = new SpreadsheetExpressionFunctionObjectCell();
 
     private SpreadsheetExpressionFunctionObjectCell() {
-        super(
-                "cell",
-                ExpressionFunctionKind.CONVERT_PARAMETERS,
-                ExpressionFunctionKind.EVALUATE_PARAMETERS
-        );
+        super("cell");
     }
 
     @Override

@@ -17,8 +17,6 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.tree.expression.function.ExpressionFunctionKind;
-
 /**
  * Base for any function that returns a boolean result.
  */
@@ -27,12 +25,8 @@ abstract class SpreadsheetExpressionFunctionBoolean extends SpreadsheetExpressio
     /**
      * Package private ctor
      */
-    SpreadsheetExpressionFunctionBoolean(final String name,
-                                         final ExpressionFunctionKind... kinds) {
-        super(
-                name,
-                kinds
-        );
+    SpreadsheetExpressionFunctionBoolean(final String name) {
+        super(name);
     }
 
     @Override
