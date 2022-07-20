@@ -83,7 +83,5 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
         return PARAMETERS;
     }
 
-    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            ExpressionFunctionParameter.VALUE
-    );
+    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(VALUE);
 }
