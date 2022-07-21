@@ -21,6 +21,7 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -43,7 +44,8 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
     }
 
     private final static ExpressionFunctionParameter<String> TYPE_INFO = ExpressionFunctionParameterName.with("typeInfo")
-            .required(String.class);
+            .required(String.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
         TYPE_INFO,
