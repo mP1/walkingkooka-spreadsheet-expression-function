@@ -87,5 +87,5 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
         return PARAMETERS;
     }
 
-    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
+    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE_OPTIONAL);
 }
