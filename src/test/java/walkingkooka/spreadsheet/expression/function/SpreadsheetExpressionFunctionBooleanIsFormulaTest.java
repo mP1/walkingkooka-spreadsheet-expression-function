@@ -94,6 +94,11 @@ public final class SpreadsheetExpressionFunctionBooleanIsFormulaTest extends Spr
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionBooleanIsFormula> type() {
         return SpreadsheetExpressionFunctionBooleanIsFormula.class;
     }

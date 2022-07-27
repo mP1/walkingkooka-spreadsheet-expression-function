@@ -123,6 +123,11 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionNumberColumnsOrRows> type() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.class;
     }

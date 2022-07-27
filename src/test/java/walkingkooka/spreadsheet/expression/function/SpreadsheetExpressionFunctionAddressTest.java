@@ -156,6 +156,11 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 3;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionAddress> type() {
         return SpreadsheetExpressionFunctionAddress.class;
     }

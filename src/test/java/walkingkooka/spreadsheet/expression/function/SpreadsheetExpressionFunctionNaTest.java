@@ -74,6 +74,11 @@ public final class SpreadsheetExpressionFunctionNaTest extends SpreadsheetExpres
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionNa> type() {
         return SpreadsheetExpressionFunctionNa.class;
     }

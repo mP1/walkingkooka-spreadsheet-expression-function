@@ -93,6 +93,11 @@ public final class SpreadsheetExpressionFunctionBooleanIsRefTest extends Spreads
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionBooleanIsRef> type() {
         return SpreadsheetExpressionFunctionBooleanIsRef.class;
     }

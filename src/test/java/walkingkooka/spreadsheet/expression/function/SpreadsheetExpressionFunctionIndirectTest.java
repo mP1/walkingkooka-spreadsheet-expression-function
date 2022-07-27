@@ -45,6 +45,11 @@ public final class SpreadsheetExpressionFunctionIndirectTest extends Spreadsheet
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionIndirect> type() {
         return SpreadsheetExpressionFunctionIndirect.class;
     }

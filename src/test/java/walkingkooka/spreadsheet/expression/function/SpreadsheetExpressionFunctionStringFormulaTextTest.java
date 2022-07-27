@@ -36,6 +36,11 @@ public final class SpreadsheetExpressionFunctionStringFormulaTextTest extends Sp
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionStringFormulaText> type() {
         return SpreadsheetExpressionFunctionStringFormulaText.class;
     }

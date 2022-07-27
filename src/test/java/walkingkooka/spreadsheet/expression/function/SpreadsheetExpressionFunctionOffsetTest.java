@@ -274,6 +274,11 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 3;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionOffset> type() {
         return SpreadsheetExpressionFunctionOffset.class;
     }

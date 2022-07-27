@@ -53,6 +53,11 @@ public final class SpreadsheetExpressionFunctionHyperlinkTest extends Spreadshee
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionHyperlink> type() {
         return SpreadsheetExpressionFunctionHyperlink.class;
     }

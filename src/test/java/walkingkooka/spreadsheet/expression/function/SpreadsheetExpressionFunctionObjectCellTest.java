@@ -404,6 +404,11 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 2;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionObjectCell> type() {
         return SpreadsheetExpressionFunctionObjectCell.class;
     }
