@@ -82,6 +82,11 @@ public final class SpreadsheetExpressionFunctionObjectErrorTypeTest extends Spre
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionObjectErrorType> type() {
         return SpreadsheetExpressionFunctionObjectErrorType.class;
     }

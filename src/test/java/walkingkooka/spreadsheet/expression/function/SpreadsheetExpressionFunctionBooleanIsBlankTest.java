@@ -116,6 +116,11 @@ public final class SpreadsheetExpressionFunctionBooleanIsBlankTest extends Sprea
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionBooleanIsBlank> type() {
         return SpreadsheetExpressionFunctionBooleanIsBlank.class;
     }

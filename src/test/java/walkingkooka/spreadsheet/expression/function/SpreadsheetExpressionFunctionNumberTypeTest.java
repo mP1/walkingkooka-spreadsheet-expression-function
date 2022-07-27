@@ -164,6 +164,11 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionNumberType> type() {
         return SpreadsheetExpressionFunctionNumberType.class;
     }

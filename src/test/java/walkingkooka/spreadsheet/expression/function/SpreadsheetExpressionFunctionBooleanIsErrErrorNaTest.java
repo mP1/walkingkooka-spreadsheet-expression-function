@@ -326,6 +326,11 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     }
 
     @Override
+    public int minimumParameterCount() {
+        return 1;
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionBooleanIsErrErrorNa> type() {
         return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.class;
     }
