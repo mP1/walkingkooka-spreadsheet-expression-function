@@ -27,6 +27,8 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
+import java.util.Optional;
+
 /**
  * A {@link ExpressionFunction} with an assumed {@link SpreadsheetExpressionEvaluationContext}.
  */
@@ -46,15 +48,17 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
 
     SpreadsheetExpressionFunction(final String name) {
         super();
-        this.name = FunctionExpressionName.with(name);
+        this.name = Optional.of(
+                FunctionExpressionName.with(name)
+        );
     }
 
     @Override
-    public final FunctionExpressionName name() {
-        return name;
+    public final Optional<FunctionExpressionName> name() {
+        return this.name;
     }
 
-    private final FunctionExpressionName name;
+    private final Optional<FunctionExpressionName> name;
 
     /**
      * All functions are pure except for cell.
@@ -69,6 +73,8 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
 
     @Override
     public final String toString() {
-        return this.name().toString();
+        return this.name()
+                .get()
+                .toString();
     }
 }

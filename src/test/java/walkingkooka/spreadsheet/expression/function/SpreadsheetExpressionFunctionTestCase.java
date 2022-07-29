@@ -86,6 +86,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     public final void testIsPure() {
         final F function = this.createBiFunction();
         final String name = function.name()
+                .get()
                 .value()
                 .toLowerCase();
 
