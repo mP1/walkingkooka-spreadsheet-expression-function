@@ -35,7 +35,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testVisit() {
         final Set<FunctionExpressionName> names = Sets.sorted();
-        SpreadsheetExpressionFunctions.visit((e) -> names.add(e.name()));
+        SpreadsheetExpressionFunctions.visit((e) -> names.add(e.name().get()));
 
         this.checkEquals(Arrays.stream(SpreadsheetExpressionFunctions.class.getDeclaredMethods())
                         .filter(m -> m.getReturnType() == ExpressionFunction.class)
