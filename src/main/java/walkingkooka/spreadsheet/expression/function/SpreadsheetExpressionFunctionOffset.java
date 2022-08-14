@@ -23,12 +23,12 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
+import java.util.Optional;
 
 // https://exceljet.net/excel-functions/excel-offset-function
 final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFunction<SpreadsheetExpressionReference> {
@@ -62,11 +62,23 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
                 .intValue();
 
         final int height = HEIGHT.get(parameters, 3)
-                .orElse(DEFAULT_HEIGHT_WIDTH)
+                .orElseGet(
+                        () -> Optional.of(
+                                context.expressionNumberKind()
+                                        .one()
+                        )
+                )
+                .orElse(null)
                 .intValue();
 
         final int width = WIDTH.get(parameters, 4)
-                .orElse(DEFAULT_HEIGHT_WIDTH)
+                .orElseGet(
+                        () -> Optional.of(
+                                context.expressionNumberKind()
+                                        .one()
+                        )
+                )
+                .orElse(null)
                 .intValue();
 
         final SpreadsheetCellReference topLeft = start.add(
@@ -103,8 +115,6 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
 
     // only width and height have a bias of 1
     private final static int BIAS = 1;
-
-    private final static ExpressionNumber DEFAULT_HEIGHT_WIDTH = ExpressionNumberKind.DEFAULT.create(BIAS);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
