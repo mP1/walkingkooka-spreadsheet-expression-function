@@ -25,6 +25,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
+import java.util.Optional;
 
 // https://exceljet.net/excel-functions/excel-cell-function
 final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressionFunctionObject {
@@ -61,7 +62,11 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
 
         final String typeInfo = TYPE_INFO.getOrFail(parameters, 0);
         final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1)
-                .orElseGet(cell::reference);
+                .orElseGet(
+                        () -> Optional.of(
+                                cell.reference()
+                        )
+                ).get();
 
         return SpreadsheetExpressionFunctionObjectCellTypeInfo.typeInfo(typeInfo)
                 .value(
