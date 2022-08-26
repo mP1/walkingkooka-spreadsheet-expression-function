@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
@@ -76,7 +77,9 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
                 .create(type);
     }
 
-    private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE.setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+    private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE.setKinds(
+            Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+    );
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {

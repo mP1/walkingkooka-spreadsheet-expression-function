@@ -60,10 +60,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
     final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
             .required(Object.class)
             .setKinds(
-                    Sets.of(
-                            ExpressionFunctionParameterKind.CONVERT,
-                            ExpressionFunctionParameterKind.EVALUATE
-                    )
+                    Sets.of(ExpressionFunctionParameterKind.EVALUATE)
             );
 
     @Override

@@ -61,7 +61,7 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
 
     // Expecting a HasSpreadsheetErrorKind but could be anything.
     final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     static SpreadsheetError na(final Object value) {
         return SpreadsheetErrorKind.NA.setMessage(
