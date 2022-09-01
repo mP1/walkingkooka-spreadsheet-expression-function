@@ -54,7 +54,7 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testCellRangeX1Y1() {
         this.offsetAndCheck(
-                B2.cellRange(),
+                B2.toCellRangeOrFail(),
                 1,
                 1,
                 SpreadsheetSelection.parseCell("C3")
@@ -64,7 +64,7 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testCellRangeXMinus1YMinus1() {
         this.offsetAndCheck(
-                B2.cellRange(),
+                B2.toCellRangeOrFail(),
                 -1,
                 -1,
                 SpreadsheetSelection.parseCell("A1")
