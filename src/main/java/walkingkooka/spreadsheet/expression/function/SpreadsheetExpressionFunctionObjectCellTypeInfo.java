@@ -47,7 +47,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
                      final SpreadsheetExpressionEvaluationContext context) {
             return context.expressionNumberKind()
                     .create(
-                            reference.toCellOrFail()
+                            reference.toCell()
                                     .column()
                                     .value()
                     );
@@ -159,7 +159,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
             return context.expressionNumberKind()
                     .create(
                             reference
-                                    .toCellOrFail()
+                                    .toCell()
                                     .row()
                                     .value()
                     );
