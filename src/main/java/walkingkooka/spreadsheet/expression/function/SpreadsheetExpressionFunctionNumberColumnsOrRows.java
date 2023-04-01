@@ -35,7 +35,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
      */
     final static SpreadsheetExpressionFunctionNumberColumnsOrRows COLUMNS = new SpreadsheetExpressionFunctionNumberColumnsOrRows(
             "columns",
-            (r) -> r.columnReferenceRange().count()
+            (r) -> r.columnRange().count()
     );
 
     /**
@@ -43,7 +43,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
      */
     final static SpreadsheetExpressionFunctionNumberColumnsOrRows ROWS = new SpreadsheetExpressionFunctionNumberColumnsOrRows(
             "rows",
-            (r) -> r.rowReferenceRange().count()
+            (r) -> r.rowRange().count()
     );
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
