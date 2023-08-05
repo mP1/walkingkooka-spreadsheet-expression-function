@@ -47,7 +47,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     );
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
-                                                             final Function<SpreadsheetCellRange, Integer> mapper) {
+                                                             final Function<SpreadsheetCellRange, Long> mapper) {
         super(name);
         this.mapper = mapper;
     }
@@ -62,7 +62,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
         return context.expressionNumberKind()
                 .create(
                         reference.isCellReference() ?
-                                1 :
+                                1L :
                                 this.mapper.apply((SpreadsheetCellRange) reference)
                 );
     }
@@ -70,7 +70,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     /**
      * Lambda that returns either the column or row count for a given {@link SpreadsheetSelection}.
      */
-    private final Function<SpreadsheetCellRange, Integer> mapper;
+    private final Function<SpreadsheetCellRange, Long> mapper;
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
