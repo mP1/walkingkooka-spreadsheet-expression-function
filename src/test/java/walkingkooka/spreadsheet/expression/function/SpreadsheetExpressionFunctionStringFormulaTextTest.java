@@ -19,6 +19,9 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class SpreadsheetExpressionFunctionStringFormulaTextTest extends SpreadsheetExpressionFunctionStringTestCase<SpreadsheetExpressionFunctionStringFormulaText> {
 
@@ -28,6 +31,26 @@ public final class SpreadsheetExpressionFunctionStringFormulaTextTest extends Sp
                 Lists.of(LOAD_CELL_REFERENCE),
                 LOAD_FORMULA_TEXT
         );
+    }
+
+    @Test
+    public void testApplyMissingCellFails() {
+        final IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> this.apply2(
+                        SpreadsheetSelection.parseCell("Z999")
+                )
+        );
+
+        this.checkEquals(
+                "Formula missing from Z999",
+                thrown.getMessage()
+        );
+    }
+
+    @Test
+    public void testCellMissingFormulaFail() {
+
     }
 
     @Override
