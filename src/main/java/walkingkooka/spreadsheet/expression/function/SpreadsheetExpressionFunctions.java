@@ -41,6 +41,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         Lists.of(
                 address(),
                 cell(),
+                cellValue(),
                 column(),
                 columns(),
                 errorType(),
@@ -73,6 +74,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cell() {
         return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectCellValue}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValue() {
+        return SpreadsheetExpressionFunctionObjectCellValue.INSTANCE;
     }
 
     /**
