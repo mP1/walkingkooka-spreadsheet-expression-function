@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * An enum value for each type info parameter for cell function.
+ * An enum value for each type info parameter for the "cell" function.
  */
 enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
     ADDRESS {
