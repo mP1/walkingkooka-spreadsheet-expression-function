@@ -23,7 +23,7 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.text.TextAlign;
@@ -39,7 +39,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     final static SpreadsheetCellReference REFERENCE2 = SpreadsheetSelection.parseCell("E5");
 
-    final static SpreadsheetCellRange RANGE = SpreadsheetSelection.parseCellRange("B2:C3");
+    final static SpreadsheetCellRangeReference RANGE = SpreadsheetSelection.parseCellRange("B2:C3");
 
     @Test
     public void testUnknownTypeFail() {

@@ -19,7 +19,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -90,7 +90,7 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
                 height - BIAS
         );
 
-        final SpreadsheetCellRange range = topLeft.cellRange(bottomRight);
+        final SpreadsheetCellRangeReference range = topLeft.cellRange(bottomRight);
 
         return range.width() == 1 && range.height() == 1 ?
                 range.toCell() :
