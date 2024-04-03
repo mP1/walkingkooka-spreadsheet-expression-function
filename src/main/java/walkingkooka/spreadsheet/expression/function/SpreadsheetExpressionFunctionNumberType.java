@@ -20,7 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
@@ -65,7 +65,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
                 type = 16;
                 break;
             }
-            if (value instanceof Collection || value instanceof SpreadsheetCellRange) {
+            if (value instanceof Collection || value instanceof SpreadsheetCellRangeReference) {
                 type = 64;
                 break;
             }

@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellRange;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
@@ -47,7 +47,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
     );
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
-                                                             final Function<SpreadsheetCellRange, Long> mapper) {
+                                                             final Function<SpreadsheetCellRangeReference, Long> mapper) {
         super(name);
         this.mapper = mapper;
     }
@@ -63,14 +63,14 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
                 .create(
                         reference.isCellReference() ?
                                 1L :
-                                this.mapper.apply((SpreadsheetCellRange) reference)
+                                this.mapper.apply((SpreadsheetCellRangeReference) reference)
                 );
     }
 
     /**
      * Lambda that returns either the column or row count for a given {@link SpreadsheetSelection}.
      */
-    private final Function<SpreadsheetCellRange, Long> mapper;
+    private final Function<SpreadsheetCellRangeReference, Long> mapper;
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
