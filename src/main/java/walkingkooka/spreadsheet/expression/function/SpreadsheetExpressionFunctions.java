@@ -26,6 +26,7 @@ import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
@@ -42,6 +43,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunctionProvider expressionFunctionProvider() {
         return ExpressionFunctionProviders.basic(
                 Url.parseAbsolute("https://github.com/mP1/walkingkooka-spreadsheet-expression-function/"),
+                CaseSensitivity.SENSITIVE,
                 Cast.to(
                         Sets.of(
                                 address(),
