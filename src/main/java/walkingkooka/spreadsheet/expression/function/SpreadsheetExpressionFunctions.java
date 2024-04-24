@@ -17,8 +17,10 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.collect.list.Lists;
+import walkingkooka.Cast;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.net.AbsoluteUrl;
+import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
@@ -26,8 +28,8 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
-
-import java.util.function.Consumer;
+import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
+import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
 
 /**
  * Collection of static factory methods for numerous {@link ExpressionFunction}.
@@ -35,31 +37,36 @@ import java.util.function.Consumer;
 public final class SpreadsheetExpressionFunctions implements PublicStaticHelper {
 
     /**
-     * Visit all {@link ExpressionFunction functions}.
+     * An {@link ExpressionFunctionProvider} with all the functions in this project.
      */
-    public static void visit(final Consumer<ExpressionFunction<?, ?>> consumer) {
-        Lists.of(
-                address(),
-                cell(),
-                cellValue(),
-                column(),
-                columns(),
-                errorType(),
-                formulaText(),
-                hyperlink(),
-                indirect(),
-                isBlank(),
-                isErr(),
-                isError(),
-                isFormula(),
-                isNa(),
-                isRef(),
-                na(),
-                offset(),
-                row(),
-                rows(),
-                type()
-        ).forEach(consumer);
+    public static ExpressionFunctionProvider expressionFunctionProvider() {
+        return ExpressionFunctionProviders.basic(
+                Url.parseAbsolute("https://github.com/mP1/walkingkooka-spreadsheet-expression-function/"),
+                Cast.to(
+                        Sets.of(
+                                address(),
+                                cell(),
+                                cellValue(),
+                                column(),
+                                columns(),
+                                errorType(),
+                                formulaText(),
+                                hyperlink(),
+                                indirect(),
+                                isBlank(),
+                                isErr(),
+                                isError(),
+                                isFormula(),
+                                isNa(),
+                                isRef(),
+                                na(),
+                                offset(),
+                                row(),
+                                rows(),
+                                type()
+                        )
+                )
+        );
     }
 
     /**
