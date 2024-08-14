@@ -20,8 +20,8 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionPurityContext;
-import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
@@ -49,16 +49,16 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
     SpreadsheetExpressionFunction(final String name) {
         super();
         this.name = Optional.of(
-                FunctionExpressionName.with(name)
+                ExpressionFunctionName.with(name)
         );
     }
 
     @Override
-    public final Optional<FunctionExpressionName> name() {
+    public final Optional<ExpressionFunctionName> name() {
         return this.name;
     }
 
-    private final Optional<FunctionExpressionName> name;
+    private final Optional<ExpressionFunctionName> name;
 
     /**
      * All functions are pure except for cell.
