@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.collect.set.Sets;
+import walkingkooka.collect.set.SortedSets;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -47,12 +47,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                             return n;
                                     }
                                 }
-                        ).collect(Collectors.toCollection(Sets::sorted)),
+                        ).collect(Collectors.toCollection(SortedSets::tree)),
                 SpreadsheetExpressionFunctions.expressionFunctionProvider()
                         .expressionFunctionInfos()
                         .stream()
                         .map(i -> i.name().value())
-                        .collect(Collectors.toCollection(Sets::sorted))
+                        .collect(Collectors.toCollection(SortedSets::tree))
         );
     }
 
