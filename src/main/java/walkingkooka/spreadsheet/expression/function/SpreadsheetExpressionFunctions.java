@@ -27,15 +27,18 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
+import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 /**
  * Collection of static factory methods for numerous {@link ExpressionFunction}.
@@ -58,6 +61,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 cellValue(),
                                 column(),
                                 columns(),
+                                concat(),
                                 count(),
                                 countIf(),
                                 errorType(),
@@ -136,6 +140,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> columns() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
     }
+
+    /**
+     * {@see StringExpressionFunctions#concat}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> concat() {
+        return CONCAT;
+    }
+
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> CONCAT = SpreadsheetExpressionFunctionUnformattedNumber.with(
+            StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>concat()
+                    .filterParameterValues(SpreadsheetExpressionFunctions::filterNonNullAndNotMissingCell)
+    );
 
     /**
      * Counts the {@link ExpressionNumber} present in the parameter values
@@ -321,6 +337,27 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> type() {
         return SpreadsheetExpressionFunctionNumberType.INSTANCE;
+    }
+
+    private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> unformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function,
+                                                                                                       final String name) {
+        return SpreadsheetExpressionFunctionUnformattedNumber.with(
+                function.setName(
+                        functionName(name)
+                )
+        );
+    }
+
+    private static boolean filterNonNullAndNotMissingCell(final Object value,
+                                                          final SpreadsheetExpressionEvaluationContext context) {
+        return null != value &&
+                false == (value instanceof SpreadsheetError && ((SpreadsheetError) value).isMissingCell());
+    }
+
+    private static Optional<ExpressionFunctionName> functionName(final String name) {
+        return Optional.of(
+                ExpressionFunctionName.with(name)
+        );
     }
 
     /**

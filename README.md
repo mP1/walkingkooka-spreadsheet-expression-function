@@ -23,6 +23,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - cellValue()
 - column (cellReference?)
 - columns (cellReference/range)
+- concat()
 - count(),
 - countIf(),
 - error.type(object)

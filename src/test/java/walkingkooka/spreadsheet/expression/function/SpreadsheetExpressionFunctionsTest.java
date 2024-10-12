@@ -35,6 +35,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.checkEquals(
                 Arrays.stream(SpreadsheetExpressionFunctions.class.getDeclaredMethods())
                         .filter(m -> m.getReturnType() == ExpressionFunction.class)
+                        .filter(m -> JavaVisibility.PUBLIC == JavaVisibility.of(m))
                         .map(Method::getName)
                         .map(n -> {
                                     // JDK BUG cant have a lambda with switch as the body ???
