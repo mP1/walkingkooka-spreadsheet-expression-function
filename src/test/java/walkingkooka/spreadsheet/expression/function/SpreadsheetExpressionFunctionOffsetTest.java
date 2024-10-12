@@ -257,7 +257,7 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
         parameters.add(cellOrRange);
 
         for (int number : numbers) {
-            parameters.add(KIND.create(number));
+            parameters.add(EXPRESSION_NUMBER_KIND.create(number));
         }
 
         return parameters;

@@ -108,8 +108,8 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
                                  final String expected) {
         this.applyAndCheck2(
                 Lists.of(
-                        KIND.create(rowNum),
-                        KIND.create(columnNum)
+                        EXPRESSION_NUMBER_KIND.create(rowNum),
+                        EXPRESSION_NUMBER_KIND.create(columnNum)
                 ),
                 SpreadsheetSelection.parseCell(expected)
         );
@@ -121,9 +121,9 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
                                  final String expected) {
         this.applyAndCheck2(
                 Lists.of(
-                        KIND.create(rowNum),
-                        KIND.create(columnNum),
-                        KIND.create(absNum)
+                        EXPRESSION_NUMBER_KIND.create(rowNum),
+                        EXPRESSION_NUMBER_KIND.create(columnNum),
+                        EXPRESSION_NUMBER_KIND.create(absNum)
                 ),
                 SpreadsheetSelection.parseCell(expected)
         );
@@ -136,9 +136,9 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
                                  final String expected) {
         this.applyAndCheck2(
                 Lists.of(
-                        KIND.create(rowNum),
-                        KIND.create(columnNum),
-                        KIND.create(absNum),
+                        EXPRESSION_NUMBER_KIND.create(rowNum),
+                        EXPRESSION_NUMBER_KIND.create(columnNum),
+                        EXPRESSION_NUMBER_KIND.create(absNum),
                         a1style
                 ),
                 SpreadsheetSelection.parseCell(expected)

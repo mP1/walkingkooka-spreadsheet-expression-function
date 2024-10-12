@@ -70,7 +70,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             FORMULA
     );
 
-    final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
+    final static ExpressionNumberKind EXPRESSION_NUMBER_KIND = ExpressionNumberKind.DEFAULT;
 
     final static SpreadsheetId ID = SpreadsheetId.with(0x123);
 
@@ -102,7 +102,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         return new FakeSpreadsheetExpressionEvaluationContext() {
             @Override
             public ExpressionNumberKind expressionNumberKind() {
-                return KIND;
+                return EXPRESSION_NUMBER_KIND;
             }
 
             @Override
@@ -144,7 +144,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
             @Override
             public String toString() {
-                return KIND + " " + CELL;
+                return EXPRESSION_NUMBER_KIND + " " + CELL;
             }
         };
     }

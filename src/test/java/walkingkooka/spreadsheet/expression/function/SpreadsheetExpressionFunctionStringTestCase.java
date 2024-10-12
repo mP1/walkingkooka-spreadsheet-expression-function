@@ -32,7 +32,7 @@ public abstract class SpreadsheetExpressionFunctionStringTestCase<F extends Spre
         this.applyAndCheck2(
                 function,
                 parameters.stream()
-                        .map(i -> i instanceof Number ? KIND.create((Number) i) : i)
+                        .map(i -> i instanceof Number ? EXPRESSION_NUMBER_KIND.create((Number) i) : i)
                         .collect(Collectors.toList()),
                 this.createContext(),
                 result

@@ -58,7 +58,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsRefTest extends Spreads
     @Test
     public void testNumber() {
         this.isRefAndCheck(
-                KIND.one(),
+                EXPRESSION_NUMBER_KIND.one(),
                 false
         );
     }
