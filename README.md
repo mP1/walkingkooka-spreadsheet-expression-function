@@ -31,6 +31,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - isFormula(cellReference/Range)
 - isNa(object)
 - isRef(object)
+- lambda()
 - na()
 - offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
