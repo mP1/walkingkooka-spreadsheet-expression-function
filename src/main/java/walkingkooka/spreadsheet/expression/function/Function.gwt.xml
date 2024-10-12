@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <inherits name="walkingkooka.spreadsheet.Spreadsheet"/>
+    <inherits name="walkingkooka.tree.expression.function.booleann.Boolean"/>
+    <inherits name="walkingkooka.tree.expression.function.datetime.DateTime"/>
+    <inherits name="walkingkooka.tree.expression.function.engineering.Engineering"/>
+    <inherits name="walkingkooka.tree.expression.function.net.Net"/>
+    <inherits name="walkingkooka.tree.expression.function.number.Number"/>
+    <inherits name="walkingkooka.tree.expression.function.number.trigonometry.Trigonometry"/>
+    <inherits name="walkingkooka.tree.expression.function.provider.TreeExpressionFunctionProvider"/>
+    <inherits name="walkingkooka.tree.expression.function.stat.Stat"/>
+    <inherits name="walkingkooka.tree.expression.function.string.String"/>
     <source path=""/>
 </module>
