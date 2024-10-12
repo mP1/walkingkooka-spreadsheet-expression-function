@@ -18,14 +18,11 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class SpreadsheetExpressionFunctionNumberTestCase<F extends SpreadsheetExpressionFunctionNumber> extends SpreadsheetExpressionFunctionTestCase<F, ExpressionNumber> {
-
-    final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
     SpreadsheetExpressionFunctionNumberTestCase() {
         super();

@@ -19,8 +19,11 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.convert.Converters;
+import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
@@ -28,23 +31,30 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
-import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
+import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.spreadsheet.store.FakeSpreadsheetCellStore;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
         implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionEvaluationContext>,
         ClassTesting2<F>,
-        TypeNameTesting<F> {
+        TypeNameTesting<F>,
+        SpreadsheetMetadataTesting {
 
     final static SpreadsheetCellReference REFERENCE = SpreadsheetSelection.parseCell("Z99");
 
@@ -70,7 +80,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             FORMULA
     );
 
-    final static ExpressionNumberKind EXPRESSION_NUMBER_KIND = ExpressionNumberKind.DEFAULT;
+    final static ExpressionNumberKind KIND = SpreadsheetMetadataTesting.EXPRESSION_NUMBER_KIND;
 
     final static SpreadsheetId ID = SpreadsheetId.with(0x123);
 
@@ -98,55 +108,50 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     }
 
     @Override
-    public final SpreadsheetExpressionEvaluationContext createContext() {
-        return new FakeSpreadsheetExpressionEvaluationContext() {
-            @Override
-            public ExpressionNumberKind expressionNumberKind() {
-                return EXPRESSION_NUMBER_KIND;
-            }
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
+                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
+                .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.ENGLISH)
+                .loadFromLocale()
+                .set(SpreadsheetMetadataPropertyName.CREATOR, EmailAddress.parse("creator@example.com"))
+                .set(SpreadsheetMetadataPropertyName.CREATE_DATE_TIME, LocalDateTime.now())
+                .set(SpreadsheetMetadataPropertyName.MODIFIED_BY, EmailAddress.parse("modified@example.com"))
+                .set(SpreadsheetMetadataPropertyName.MODIFIED_DATE_TIME, LocalDateTime.now())
+                .set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
+                .set(SpreadsheetMetadataPropertyName.DATETIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+                .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
+                .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, KIND)
+                .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("general"))
+                .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
+                .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
+                .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
+                .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
+                .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
-            @Override
-            public Optional<SpreadsheetCell> cell() {
-                return Optional.of(
-                        CELL
-                );
-            }
-
-            @Override
-            public boolean isText(final Object value) {
-                return value instanceof Character || value instanceof String;
-            }
-
-            @Override
-            public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell) {
-                if (LOAD_CELL_REFERENCE.equals(cell)) {
-                    return Optional.of(LOAD_CELL);
-                }
-                if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
-                    return Optional.of(CELL_EMPTY_FORMULA);
-                }
-                return Optional.empty();
-            }
-
-            @Override
-            public SpreadsheetMetadata spreadsheetMetadata() {
-                return SpreadsheetMetadata.EMPTY
-                        .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.forLanguageTag("EN-AU"))
-                        .loadFromLocale()
-                        .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, ID)
-                        .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, NAME);
-            }
-
-            @Override
-            public AbsoluteUrl serverUrl() {
-                return SERVER_URL;
-            }
-
-            @Override
-            public String toString() {
-                return EXPRESSION_NUMBER_KIND + " " + CELL;
-            }
-        };
+        return SpreadsheetExpressionEvaluationContexts.basic(
+                Optional.of(CELL),
+                new FakeSpreadsheetCellStore() {
+                    @Override
+                    public Optional<SpreadsheetCell> load(final SpreadsheetCellReference cell) {
+                        if (LOAD_CELL_REFERENCE.equals(cell)) {
+                            return Optional.of(LOAD_CELL);
+                        }
+                        if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
+                            return Optional.of(CELL_EMPTY_FORMULA);
+                        }
+                        return Optional.empty();
+                    }
+                },
+                SERVER_URL,
+                (r) -> {
+                    throw new UnsupportedOperationException();
+                },
+                metadata,
+                SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+                EXPRESSION_FUNCTION_PROVIDER,
+                PROVIDER_CONTEXT
+        );
     }
 
     @Override
