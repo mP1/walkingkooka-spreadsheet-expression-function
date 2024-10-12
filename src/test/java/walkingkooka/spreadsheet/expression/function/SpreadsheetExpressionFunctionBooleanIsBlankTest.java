@@ -19,6 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -70,7 +71,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsBlankTest extends Sprea
     @Test
     public void testMissingCellReference() {
         this.isBlankAndCheck(
-                REFERENCE,
+                SpreadsheetSelection.parseCell("M404"),
                 true
         );
     }

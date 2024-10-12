@@ -38,7 +38,7 @@ public final class SpreadsheetExpressionFunctionHyperlinkTest extends Spreadshee
     public void testReference() {
         this.applyAndCheck2(
                 Lists.of(REFERENCE),
-                Url.parseAbsolute("https://example.com/path789/123/spreadsheet-name-456/cell/" + REFERENCE)
+                Url.parseAbsolute("https://example.com/path789/1234/Untitled5678/cell/" + REFERENCE)
         );
     }
 

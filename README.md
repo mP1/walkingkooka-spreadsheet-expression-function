@@ -16,11 +16,15 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 
 - address(rowNum, colNum, abs(
   num)) [TODO referenceStyle=r1c1](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/45) [TODO sheet](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/46)
+- average(),
+- averageIf(),
 - cell(typeInfo=address, col, contents, filename, prefix,
   row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
 - cellValue()
 - column (cellReference?)
 - columns (cellReference/range)
+- count(),
+- countIf(),
 - error.type(object)
 - formulatext(cellReference)
 - hyperlink(cellReference)
@@ -32,10 +36,16 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - isNa(object)
 - isRef(object)
 - lambda()
+- max(),
+- maxIf(),
+- min(),
+- minIf(),
 - na()
 - offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
 - rows (cellReference/range)
+- sum(),
+- sumIf()
 - type(object)
 
 

@@ -31,6 +31,11 @@ import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
+import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Collection of static factory methods for numerous {@link ExpressionFunction}.
@@ -47,10 +52,14 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                 Cast.to(
                         Sets.of(
                                 address(),
+                                average(),
+                                averageIf(),
                                 cell(),
                                 cellValue(),
                                 column(),
                                 columns(),
+                                count(),
+                                countIf(),
                                 errorType(),
                                 formulaText(),
                                 hyperlink(),
@@ -62,10 +71,16 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 isNa(),
                                 isRef(),
                                 lambda(),
+                                max(),
+                                maxIf(),
+                                min(),
+                                minIf(),
                                 na(),
                                 offset(),
                                 row(),
                                 rows(),
+                                sum(),
+                                sumIf(),
                                 type()
                         )
                 )
@@ -77,6 +92,20 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionEvaluationContext> address() {
         return SpreadsheetExpressionFunctionAddress.INSTANCE;
+    }
+
+    /**
+     * {@see StatExpressionFunctions#average}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> average() {
+        return StatExpressionFunctions.average();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberIf#averageIf}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> averageIf() {
+        return SpreadsheetExpressionFunctionNumberIf.averageIf();
     }
 
     /**
@@ -105,6 +134,31 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> columns() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
+    }
+
+    /**
+     * Counts the {@link ExpressionNumber} present in the parameter values
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> count() {
+        return COUNT;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> COUNT = StatExpressionFunctions.<SpreadsheetExpressionEvaluationContext>count()
+            .filterParameterValues(SpreadsheetExpressionFunctions::filterNumbers);
+
+    private static boolean filterNumbers(final Object value,
+                                         final SpreadsheetExpressionEvaluationContext context) {
+        return value instanceof ExpressionNumber |
+                value instanceof LocalDate |
+                value instanceof LocalDateTime |
+                value instanceof LocalTime;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberIf#countIf}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countIf() {
+        return SpreadsheetExpressionFunctionNumberIf.countIf();
     }
 
     /**
@@ -185,6 +239,34 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StatExpressionFunctions#max}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> max() {
+        return StatExpressionFunctions.max();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberIf.maxIf}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> maxIf() {
+        return SpreadsheetExpressionFunctionNumberIf.maxIf();
+    }
+
+    /**
+     * {@see StatExpressionFunctions#min}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> min() {
+        return StatExpressionFunctions.min();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberIf.minIf}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> minIf() {
+        return SpreadsheetExpressionFunctionNumberIf.minIf();
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionNa}
      */
     public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionEvaluationContext> na() {
@@ -210,6 +292,20 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> rows() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS;
+    }
+
+    /**
+     * {@see StatExpressionFunctions#sum}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sum() {
+        return StatExpressionFunctions.sum();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberIf#sumIf}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sumIf() {
+        return SpreadsheetExpressionFunctionNumberIf.sumIf();
     }
 
     /**
