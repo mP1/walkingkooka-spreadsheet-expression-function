@@ -18,20 +18,20 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
-import walkingkooka.collect.set.Sets;
 import walkingkooka.net.AbsoluteUrl;
-import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
-import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
-import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
-import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
+import walkingkooka.tree.expression.function.booleann.BooleanExpressionFunctions;
+import walkingkooka.tree.expression.function.datetime.DateTimeExpressionFunctions;
+import walkingkooka.tree.expression.function.engineering.EngineeringExpressionFunctions;
+import walkingkooka.tree.expression.function.number.NumberExpressionFunctions;
+import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomteryExpressionFunctions;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 
@@ -46,64 +46,45 @@ import java.util.Optional;
 public final class SpreadsheetExpressionFunctions implements PublicStaticHelper {
 
     /**
-     * An {@link ExpressionFunctionProvider} with all the functions in this project.
+     * {@see NumberExpressionFunctions#abs}
      */
-    public static ExpressionFunctionProvider expressionFunctionProvider() {
-        return ExpressionFunctionProviders.basic(
-                Url.parseAbsolute("https://github.com/mP1/walkingkooka-spreadsheet-expression-function/"),
-                CaseSensitivity.SENSITIVE,
-                Cast.to(
-                        Sets.of(
-                                address(),
-                                average(),
-                                averageIf(),
-                                cell(),
-                                cellValue(),
-                                column(),
-                                columns(),
-                                concat(),
-                                count(),
-                                countIf(),
-                                dollar(),
-                                errorType(),
-                                find(),
-                                formulaText(),
-                                hyperlink(),
-                                indirect(),
-                                isBlank(),
-                                isErr(),
-                                isError(),
-                                isFormula(),
-                                isNa(),
-                                isRef(),
-                                lambda(),
-                                len(),
-                                let(),
-                                lower(),
-                                max(),
-                                maxIf(),
-                                min(),
-                                minIf(),
-                                na(),
-                                numberValue(),
-                                offset(),
-                                row(),
-                                rows(),
-                                sum(),
-                                sumIf(),
-                                text(),
-                                type(),
-                                upper()
-                        )
-                )
-        );
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> abs() {
+        return NumberExpressionFunctions.abs();
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionAddress}
+     * {@see NumberTrigonomteryExpressionFunctions#acos}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> acos() {
+        return NumberTrigonomteryExpressionFunctions.acos();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctions#address}
      */
     public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionEvaluationContext> address() {
         return SpreadsheetExpressionFunctionAddress.INSTANCE;
+    }
+
+    /**
+     * {@see BooleanExpressionFunctions#and}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> and() {
+        return BooleanExpressionFunctions.and();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#asin}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> asin() {
+        return NumberTrigonomteryExpressionFunctions.asin();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#atan}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> atan() {
+        return NumberTrigonomteryExpressionFunctions.atan();
     }
 
     /**
@@ -114,14 +95,76 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionNumberIf#averageIf}
+     * {@see SpreadsheetExpressionFunctions#averageIf}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> averageIf() {
         return SpreadsheetExpressionFunctionNumberIf.averageIf();
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectCell}
+     * {@see NumberExpressionFunctions#base}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> base() {
+        return NumberExpressionFunctions.base();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#bin2dec}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> bin2dec() {
+        return EngineeringExpressionFunctions.bin2dec();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#bin2hex}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> bin2hex() {
+        return EngineeringExpressionFunctions.bin2hex();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#bin2oct}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> bin2oct() {
+        return EngineeringExpressionFunctions.bin2oct();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#bitAnd}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> bitAnd() {
+        return BITAND;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITAND = EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitAnd();
+
+    /**
+     * {@see EngineeringExpressionFunctions#bitOr}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> bitOr() {
+        return BITOR;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITOR = EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitOr();
+
+    /**
+     * {@see EngineeringExpressionFunctions#bitXor}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> bitXor() {
+        return BitXor;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BitXor = EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitXor();
+
+    /**
+     * {@see NumberExpressionFunctions#ceil}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ceil() {
+        return NumberExpressionFunctions.ceil();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctions#cell}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cell() {
         return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
@@ -133,6 +176,40 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValue() {
         return SpreadsheetExpressionFunctionObjectCellValue.INSTANCE;
     }
+
+    /**
+     * {@see StringExpressionFunctions#ascii}
+     */
+    public static ExpressionFunction<Character, SpreadsheetExpressionEvaluationContext> charFunction() {
+        return CHAR_FUNCTION;
+    }
+
+    private final static ExpressionFunction<Character, SpreadsheetExpressionEvaluationContext> CHAR_FUNCTION = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>ascii()
+            .setName(functionName("char"));
+
+    /**
+     * {@see BooleanExpressionFunctions#choose}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> choose() {
+        return BooleanExpressionFunctions.choose();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#clean}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> clean() {
+        return StringExpressionFunctions.clean();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#unicode}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> code() {
+        return CODE;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> CODE = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>unicode()
+            .setName(functionName("code"));
 
     /**
      * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#COLUMN}
@@ -161,6 +238,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     );
 
     /**
+     * {@see NumberTrigonomteryExpressionFunctions#cos}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> cos() {
+        return NumberTrigonomteryExpressionFunctions.cos();
+    }
+
+    /**
      * Counts the {@link ExpressionNumber} present in the parameter values
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> count() {
@@ -179,10 +263,103 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * Counts the values present in the parameter values, skipping missing or null values.
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countA() {
+        return COUNTA;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> COUNTA = StatExpressionFunctions.<SpreadsheetExpressionEvaluationContext>count()
+            .filterParameterValues(SpreadsheetExpressionFunctions::filterNonNullAndNotMissingCell)
+            .setName(functionName("countA"));
+
+    /**
+     * Counts the missing values or cells or null values
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countBlank() {
+        return COUNT_BLANK;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> COUNT_BLANK = StatExpressionFunctions.<SpreadsheetExpressionEvaluationContext>count()
+            .filterParameterValues(SpreadsheetExpressionFunctions::filterNullAndNotMissingCell)
+            .setName(functionName("countBlank"));
+
+    private static boolean filterNullAndNotMissingCell(final Object value,
+                                                       final SpreadsheetExpressionEvaluationContext context) {
+        return null == value ||
+                (value instanceof SpreadsheetError &&
+                        ((SpreadsheetError) value).isMissingCell()
+                );
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionNumberIf#countIf}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countIf() {
         return SpreadsheetExpressionFunctionNumberIf.countIf();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#date}
+     */
+    public static ExpressionFunction<LocalDate, SpreadsheetExpressionEvaluationContext> date() {
+        return DateTimeExpressionFunctions.date();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#day}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> day() {
+        return DateTimeExpressionFunctions.day();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#days}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> days() {
+        return DateTimeExpressionFunctions.days();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#dec2bin}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2bin() {
+        return EngineeringExpressionFunctions.dec2bin();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#dec2hex}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2hex() {
+        return EngineeringExpressionFunctions.dec2hex();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#dec2oct}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2oct() {
+        return EngineeringExpressionFunctions.dec2oct();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#decimal}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> decimal() {
+        return NumberExpressionFunctions.decimal();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#degrees}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> degrees() {
+        return NumberTrigonomteryExpressionFunctions.degrees();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#delta}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> delta() {
+        return EngineeringExpressionFunctions.delta();
     }
 
     /**
@@ -193,10 +370,50 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectErrorType}
+     * {@see NumberExpressionFunctions#e}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> errorType() {
-        return SpreadsheetExpressionFunctionObjectErrorType.INSTANCE;
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> e() {
+        return NumberExpressionFunctions.e();
+    }
+
+    /**
+     * {@see walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions#error}
+     */
+    public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionEvaluationContext> error() {
+        return Cast.to(
+                walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.error()
+        );
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#even}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> even() {
+        return NumberExpressionFunctions.even();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#equalsCaseSensitive}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> exact() {
+        return EXACT;
+    }
+
+    private final static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> EXACT = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>equalsCaseSensitive()
+            .setName(functionName("exact"));
+
+    /**
+     * {@see NumberExpressionFunctions#exp}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> exp() {
+        return NumberExpressionFunctions.exp();
+    }
+
+    /**
+     * {@see BooleanExpressionFunctions#falseFunction}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> falseFunction() {
+        return BooleanExpressionFunctions.falseFunction();
     }
 
     /**
@@ -207,10 +424,52 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see NumberExpressionFunctions#fixed()}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> fixed() {
+        return NumberExpressionFunctions.fixed();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#floor}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> floor() {
+        return NumberExpressionFunctions.floor();
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionStringFormulaText}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> formulaText() {
         return SpreadsheetExpressionFunctionStringFormulaText.INSTANCE;
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#hex2bin}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2bin() {
+        return EngineeringExpressionFunctions.hex2bin();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#hex2dec}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2dec() {
+        return EngineeringExpressionFunctions.hex2dec();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#hex2oct}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2oct() {
+        return EngineeringExpressionFunctions.hex2oct();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#hour}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> hour() {
+        return DateTimeExpressionFunctions.hour();
     }
 
     /**
@@ -221,6 +480,20 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see BooleanExpressionFunctions#ifFunction}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> ifFunction() {
+        return BooleanExpressionFunctions.ifFunction();
+    }
+
+    /**
+     * {@see BooleanExpressionFunctions#ifs}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> ifs() {
+        return BooleanExpressionFunctions.ifs();
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionIndirect}
      */
     public static ExpressionFunction<SpreadsheetCellReference, SpreadsheetExpressionEvaluationContext> indirect() {
@@ -228,10 +501,24 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see NumberExpressionFunctions#intFunction}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> intFunction() {
+        return NumberExpressionFunctions.intFunction();
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionBooleanIsBlank}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isBlank() {
         return SpreadsheetExpressionFunctionBooleanIsBlank.INSTANCE;
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#isDate}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isDate() {
+        return DateTimeExpressionFunctions.isDate();
     }
 
     /**
@@ -249,6 +536,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see NumberExpressionFunctions#isEven}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isEven() {
+        return NumberExpressionFunctions.isEven();
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionBooleanIsFormula}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isFormula() {
@@ -256,10 +550,48 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see BooleanExpressionFunctions#isBoolean}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isLogical() {
+        return IS_LOGICAL;
+    }
+
+    private final static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> IS_LOGICAL = BooleanExpressionFunctions.<SpreadsheetExpressionEvaluationContext>isBoolean()
+            .setName(functionName("isLogical"));
+
+    /**
      * {@see SpreadsheetExpressionFunctionBooleanIsErrErrorNa#isNs}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNa() {
         return SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#isNonText}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNonText() {
+        return StringExpressionFunctions.isNonText();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#isNumber}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNumber() {
+        return NumberExpressionFunctions.isNumber();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#isOdd}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isOdd() {
+        return NumberExpressionFunctions.isOdd();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions.isoWeekNum}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> isoWeekNum() {
+        return DateTimeExpressionFunctions.isoWeekNum();
     }
 
     /**
@@ -270,10 +602,24 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see LambdaExpressionFunction}
+     * {@see StringExpressionFunctions#isText}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isText() {
+        return StringExpressionFunctions.isText();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionLambda}
      */
     public static ExpressionFunction<ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> lambda() {
         return SpreadsheetExpressionFunctionLambda.INSTANCE;
+    }
+
+    /**
+     * {@see StringExpressionFunctions#left}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> left() {
+        return StringExpressionFunctions.left();
     }
 
     /**
@@ -293,6 +639,27 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> let() {
         return SpreadsheetExpressionFunctionObjectLet.INSTANCE;
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#ln}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ln() {
+        return NumberExpressionFunctions.ln();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#log}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> log() {
+        return NumberExpressionFunctions.log();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#log10}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> log10() {
+        return NumberExpressionFunctions.log10();
     }
 
     /**
@@ -322,6 +689,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StringExpressionFunctions#mid}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> mid() {
+        return StringExpressionFunctions.mid();
+    }
+
+    /**
      * {@see StatExpressionFunctions#min}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> min() {
@@ -336,17 +710,73 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionNa}
+     * {@see DateTimeExpressionFunctions#minute}
      */
-    public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionEvaluationContext> na() {
-        return SpreadsheetExpressionFunctionNa.INSTANCE;
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> minute() {
+        return DateTimeExpressionFunctions.minute();
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionNumberValue#INSTANCE}
+     * {@see NumberExpressionFunctions#mod}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> mod() {
+        return NumberExpressionFunctions.mod();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#month}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> month() {
+        return DateTimeExpressionFunctions.month();
+    }
+
+    /**
+     * {@see BooleanExpressionFunctions#not}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> not() {
+        return BooleanExpressionFunctions.not();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#now}
+     */
+    public static ExpressionFunction<LocalDateTime, SpreadsheetExpressionEvaluationContext> now() {
+        return DateTimeExpressionFunctions.now();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberValue}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> numberValue() {
         return SpreadsheetExpressionFunctionNumberValue.INSTANCE;
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#oct2bin}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> oct2bin() {
+        return EngineeringExpressionFunctions.oct2bin();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#oct2dec}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> oct2dec() {
+        return EngineeringExpressionFunctions.oct2dec();
+    }
+
+    /**
+     * {@see EngineeringExpressionFunctions#oct2hex}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> oct2hex() {
+        return EngineeringExpressionFunctions.oct2hex();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#odd}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> odd() {
+        return NumberExpressionFunctions.odd();
     }
 
     /**
@@ -357,17 +787,186 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#ROW}
+     * {@see BooleanExpressionFunctions#or}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> or() {
+        return BooleanExpressionFunctions.or();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#pi}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> pi() {
+        return NumberExpressionFunctions.pi();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#product}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> product() {
+        return NumberExpressionFunctions.product();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#proper}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> proper() {
+        return StringExpressionFunctions.proper();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#quotient}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> quotient() {
+        return NumberExpressionFunctions.quotient();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#radians}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> radians() {
+        return NumberTrigonomteryExpressionFunctions.radians();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#random}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> rand() {
+        return RAND;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> RAND = NumberExpressionFunctions.<SpreadsheetExpressionEvaluationContext>random()
+            .setName(functionName("rand"));
+
+    /**
+     * {@see NumberExpressionFunctions#randomBetween}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> randBetween() {
+        return RANDBETWEEN;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> RANDBETWEEN = NumberExpressionFunctions.<SpreadsheetExpressionEvaluationContext>randomBetween()
+            .setName(functionName("randBetween"));
+
+    /**
+     * {@see StringExpressionFunctions#replace}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> replace() {
+        return StringExpressionFunctions.replace();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#rept}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> rept() {
+        return REPT;
+    }
+
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> REPT = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>repeat()
+            .setName(functionName("rept"));
+
+    /**
+     * {@see StringExpressionFunctions#right}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> right() {
+        return StringExpressionFunctions.right();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#roman}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> roman() {
+        return NumberExpressionFunctions.roman();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#roundHalf}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> round() {
+        return ROUND;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ROUND = NumberExpressionFunctions.<SpreadsheetExpressionEvaluationContext>roundHalf()
+            .setName(functionName("round"));
+
+    /**
+     * {@see NumberExpressionFunctions#roundDown}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> roundDown() {
+        return NumberExpressionFunctions.roundDown();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#roundUp}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> roundUp() {
+        return NumberExpressionFunctions.roundUp();
+    }
+
+    /**
+     * {@see SSpreadsheetExpressionFunctionNumberColumnOrRow#ROW}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> row() {
         return SpreadsheetExpressionFunctionNumberColumnOrRow.ROW;
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionNumberColumnsOrRows#ROWS}
+     * {@see SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> rows() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS;
+    }
+
+    /**
+     * {@see StringExpressionFunctions#searchCaseInsensitive}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> search() {
+        return SEARCH;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> SEARCH = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>searchCaseInsensitive()
+            .setName(functionName("search"));
+
+    /**
+     * {@see DateTimeExpressionFunctions#second}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> second() {
+        return DateTimeExpressionFunctions.second();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#sign}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sign() {
+        return NumberExpressionFunctions.sign();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#sin}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sin() {
+        return NumberTrigonomteryExpressionFunctions.sin();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#sinh}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sinh() {
+        return NumberTrigonomteryExpressionFunctions.sinh();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#sqrt}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
+        return NumberExpressionFunctions.sqrt();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#substitute}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> substitute() {
+        return StringExpressionFunctions.substitute();
     }
 
     /**
@@ -385,18 +984,113 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionStringText}
+     * {@see BooleanExpressionFunctions#switchFunction}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> switchFunction() {
+        return BooleanExpressionFunctions.switchFunction();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#t}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> t() {
+        return StringExpressionFunctions.t();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#tan}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> tan() {
+        return NumberTrigonomteryExpressionFunctions.tan();
+    }
+
+    /**
+     * {@see NumberTrigonomteryExpressionFunctions#tanh}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> tanh() {
+        return NumberTrigonomteryExpressionFunctions.tanh();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionStringText#INSTANCE}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> text() {
         return SpreadsheetExpressionFunctionStringText.INSTANCE;
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionNumberType}
+     * {@see StringExpressionFunctions#textJoin}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> textJoin() {
+        return TEXTJOIN;
+    }
+
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> TEXTJOIN = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>textJoin();
+
+    /**
+     * {@see DateTimeExpressionFunctions#time}
+     */
+    public static ExpressionFunction<LocalTime, SpreadsheetExpressionEvaluationContext> time() {
+        return DateTimeExpressionFunctions.time();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#today}
+     */
+    public static ExpressionFunction<LocalDate, SpreadsheetExpressionEvaluationContext> today() {
+        return DateTimeExpressionFunctions.today();
+    }
+
+    /**
+     * {@see StringExpressionFunctions#trim}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> trim() {
+        return TRIM;
+    }
+
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> TRIM = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>spaceTrim()
+            .setName(functionName("trim"));
+
+    /**
+     * {@see BooleanExpressionFunctions#trueFunction}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> trueFunction() {
+        return BooleanExpressionFunctions.trueFunction();
+    }
+
+    /**
+     * {@see NumberExpressionFunctions#trunc}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> trunc() {
+        return NumberExpressionFunctions.trunc();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberType#INSTANCE}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> type() {
         return SpreadsheetExpressionFunctionNumberType.INSTANCE;
     }
+
+    /**
+     * {@see StringExpressionFunctions#character}
+     */
+    public static ExpressionFunction<Character, SpreadsheetExpressionEvaluationContext> unichar() {
+        return UNICHAR;
+    }
+
+    private final static ExpressionFunction<Character, SpreadsheetExpressionEvaluationContext> UNICHAR = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>character()
+            .setName(functionName("unichar"));
+
+    /**
+     * {@see StringExpressionFunctions#unicode}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> unicode() {
+        return UNICODE;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> UNICODE = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>unicode()
+            .setName(functionName("unicode"));
 
     /**
      * {@see StringExpressionFunctions#upper}
@@ -409,6 +1103,44 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             StringExpressionFunctions.upperCase(),
             "upper"
     );
+
+    /**
+     * {@see NumberExpressionFunctions#number}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> value() {
+        return VALUE;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> VALUE = NumberExpressionFunctions.<SpreadsheetExpressionEvaluationContext>number()
+            .setName(functionName("value"));
+
+    /**
+     * {@see DateTimeExpressionFunctions#weekDay}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> weekDay() {
+        return DateTimeExpressionFunctions.weekday();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#weekNum}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> weekNum() {
+        return DateTimeExpressionFunctions.weekNum();
+    }
+
+    /**
+     * {@see DateTimeExpressionFunctions#year}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> year() {
+        return DateTimeExpressionFunctions.year();
+    }
+
+    /**
+     * {@see BooleanExpressionFunctions#xor}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> xor() {
+        return BooleanExpressionFunctions.xor();
+    }
 
     private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> unformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function,
                                                                                                        final String name) {
