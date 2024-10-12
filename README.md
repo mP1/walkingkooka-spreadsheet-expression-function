@@ -26,6 +26,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - concat()
 - count(),
 - countIf(),
+- dollar(),
 - error.type(object)
 - find()
 - formulatext(cellReference)
@@ -52,6 +53,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - rows (cellReference/range)
 - sum(),
 - sumIf()
+- text()
 - type(object)
 - upper()
 

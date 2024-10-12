@@ -64,6 +64,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 concat(),
                                 count(),
                                 countIf(),
+                                dollar(),
                                 errorType(),
                                 find(),
                                 formulaText(),
@@ -90,6 +91,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 rows(),
                                 sum(),
                                 sumIf(),
+                                text(),
                                 type(),
                                 upper()
                         )
@@ -181,6 +183,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countIf() {
         return SpreadsheetExpressionFunctionNumberIf.countIf();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionStringDollar}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dollar() {
+        return SpreadsheetExpressionFunctionStringDollar.INSTANCE;
     }
 
     /**
@@ -373,6 +382,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sumIf() {
         return SpreadsheetExpressionFunctionNumberIf.sumIf();
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionStringText}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> text() {
+        return SpreadsheetExpressionFunctionStringText.INSTANCE;
     }
 
     /**
