@@ -35,7 +35,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class SpreadsheetExpressionFunctionObjectCellTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionObjectCell, Object> {
+public final class SpreadsheetExpressionFunctionObjectCellTest extends SpreadsheetExpressionFunctionObjectTestCase<SpreadsheetExpressionFunctionObjectCell> {
 
     final static SpreadsheetCellReference REFERENCE2 = SpreadsheetSelection.parseCell("E5");
 
@@ -413,10 +413,5 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Override
     public Class<SpreadsheetExpressionFunctionObjectCell> type() {
         return SpreadsheetExpressionFunctionObjectCell.class;
-    }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
     }
 }
