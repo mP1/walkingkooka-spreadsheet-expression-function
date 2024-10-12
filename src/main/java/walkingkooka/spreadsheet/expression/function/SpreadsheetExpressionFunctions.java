@@ -75,6 +75,8 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 isNa(),
                                 isRef(),
                                 lambda(),
+                                len(),
+                                lower(),
                                 max(),
                                 maxIf(),
                                 min(),
@@ -86,7 +88,8 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 rows(),
                                 sum(),
                                 sumIf(),
-                                type()
+                                type(),
+                                upper()
                         )
                 )
         );
@@ -256,6 +259,30 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StringExpressionFunctions#stringLength}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> len() {
+        return LEN;
+    }
+
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> LEN = unformattedNumber(
+            StringExpressionFunctions.stringLength(),
+            "len"
+    );
+
+    /**
+     * {@see StringExpressionFunctions#lower}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> lower() {
+        return LOWER;
+    }
+
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> LOWER = unformattedNumber(
+            StringExpressionFunctions.lowerCase(),
+            "lower"
+    );
+
+    /**
      * {@see StatExpressionFunctions#max}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> max() {
@@ -338,6 +365,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> type() {
         return SpreadsheetExpressionFunctionNumberType.INSTANCE;
     }
+
+    /**
+     * {@see StringExpressionFunctions#upper}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> upper() {
+        return UPPER;
+    }
+
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> UPPER = unformattedNumber(
+            StringExpressionFunctions.upperCase(),
+            "upper"
+    );
 
     private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> unformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function,
                                                                                                        final String name) {

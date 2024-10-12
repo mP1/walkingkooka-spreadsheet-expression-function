@@ -37,6 +37,8 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - isNa(object)
 - isRef(object)
 - lambda()
+- len()
+- lower()
 - max(),
 - maxIf(),
 - min(),
@@ -49,6 +51,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - sum(),
 - sumIf()
 - type(object)
+- upper()
 
 
 Many more functions are outstanding and remain [TODO](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues).
