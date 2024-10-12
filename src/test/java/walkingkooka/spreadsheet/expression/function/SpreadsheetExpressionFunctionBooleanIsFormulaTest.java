@@ -45,7 +45,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsFormulaTest extends Spr
     @Test
     public void testCellReferenceMissingFormula() {
         this.applyAndCheck2(
-                Lists.of(CELL_EMPTY_FOMRULA.reference()),
+                Lists.of(CELL_EMPTY_FORMULA.reference()),
                 false
         );
     }

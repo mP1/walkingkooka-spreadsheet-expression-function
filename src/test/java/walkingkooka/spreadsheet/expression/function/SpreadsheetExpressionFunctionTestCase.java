@@ -57,7 +57,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             SpreadsheetFormula.EMPTY.setText(LOAD_FORMULA_TEXT)
     );
 
-    final static SpreadsheetCell CELL_EMPTY_FOMRULA = SpreadsheetCell.with(
+    final static SpreadsheetCell CELL_EMPTY_FORMULA = SpreadsheetCell.with(
             SpreadsheetSelection.parseCell("E5"),
             SpreadsheetFormula.EMPTY.setText("")
     );
@@ -122,8 +122,8 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 if (LOAD_CELL_REFERENCE.equals(cell)) {
                     return Optional.of(LOAD_CELL);
                 }
-                if (CELL_EMPTY_FOMRULA.reference().equals(cell)) {
-                    return Optional.of(CELL_EMPTY_FOMRULA);
+                if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
+                    return Optional.of(CELL_EMPTY_FORMULA);
                 }
                 return Optional.empty();
             }
