@@ -61,6 +61,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 isFormula(),
                                 isNa(),
                                 isRef(),
+                                lambda(),
                                 na(),
                                 offset(),
                                 row(),
@@ -174,6 +175,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isRef() {
         return SpreadsheetExpressionFunctionBooleanIsRef.INSTANCE;
+    }
+
+    /**
+     * {@see LambdaExpressionFunction}
+     */
+    public static ExpressionFunction<ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> lambda() {
+        return SpreadsheetExpressionFunctionLambda.INSTANCE;
     }
 
     /**
