@@ -28,7 +28,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class SpreadsheetExpressionFunctionObjectCellValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionObjectCellValue, Object> {
+public final class SpreadsheetExpressionFunctionObjectCellValueTest extends SpreadsheetExpressionFunctionObjectTestCase<SpreadsheetExpressionFunctionObjectCellValue> {
 
     @Test
     public void testApplyValuePresent() {
@@ -111,10 +111,5 @@ public final class SpreadsheetExpressionFunctionObjectCellValueTest extends Spre
     @Override
     public Class<SpreadsheetExpressionFunctionObjectCellValue> type() {
         return SpreadsheetExpressionFunctionObjectCellValue.class;
-    }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
     }
 }
