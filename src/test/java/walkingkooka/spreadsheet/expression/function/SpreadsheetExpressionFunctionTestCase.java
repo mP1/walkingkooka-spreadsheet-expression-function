@@ -107,8 +107,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         );
     }
 
-    @Override
-    public SpreadsheetExpressionEvaluationContext createContext() {
+    final SpreadsheetExpressionEvaluationContext createContext0() {
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))

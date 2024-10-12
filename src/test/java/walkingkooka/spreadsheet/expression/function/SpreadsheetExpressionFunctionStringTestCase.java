@@ -17,6 +17,8 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +39,11 @@ public abstract class SpreadsheetExpressionFunctionStringTestCase<F extends Spre
                 this.createContext(),
                 result
         );
+    }
+
+    @Override
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        return this.createContext0();
     }
 
     @Override

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -55,6 +56,11 @@ public final class SpreadsheetExpressionFunctionHyperlinkTest extends Spreadshee
     @Override
     public int minimumParameterCount() {
         return 1;
+    }
+
+    @Override
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        return this.createContext0();
     }
 
     @Override

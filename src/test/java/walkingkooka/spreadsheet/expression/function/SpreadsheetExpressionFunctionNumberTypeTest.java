@@ -20,6 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 
 import java.time.LocalDate;
@@ -166,6 +167,11 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     @Override
     public int minimumParameterCount() {
         return 1;
+    }
+
+    @Override
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        return this.createContext0();
     }
 
     @Override

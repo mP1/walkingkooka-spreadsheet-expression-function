@@ -76,6 +76,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 min(),
                                 minIf(),
                                 na(),
+                                numberValue(),
                                 offset(),
                                 row(),
                                 rows(),
@@ -271,6 +272,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionEvaluationContext> na() {
         return SpreadsheetExpressionFunctionNa.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNumberValue#INSTANCE}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> numberValue() {
+        return SpreadsheetExpressionFunctionNumberValue.INSTANCE;
     }
 
     /**
