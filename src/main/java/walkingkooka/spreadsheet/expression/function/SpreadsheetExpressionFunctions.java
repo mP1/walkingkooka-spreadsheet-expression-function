@@ -65,6 +65,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 count(),
                                 countIf(),
                                 errorType(),
+                                find(),
                                 formulaText(),
                                 hyperlink(),
                                 indirect(),
@@ -76,6 +77,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
                                 isRef(),
                                 lambda(),
                                 len(),
+                                let(),
                                 lower(),
                                 max(),
                                 maxIf(),
@@ -189,6 +191,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionObjectFind}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> find() {
+        return SpreadsheetExpressionFunctionObjectFind.INSTANCE;
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionStringFormulaText}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> formulaText() {
@@ -269,6 +278,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             StringExpressionFunctions.stringLength(),
             "len"
     );
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectLet}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> let() {
+        return SpreadsheetExpressionFunctionObjectLet.INSTANCE;
+    }
 
     /**
      * {@see StringExpressionFunctions#lower}

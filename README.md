@@ -27,6 +27,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - count(),
 - countIf(),
 - error.type(object)
+- find()
 - formulatext(cellReference)
 - hyperlink(cellReference)
 - indirect(string)
@@ -38,6 +39,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - isRef(object)
 - lambda()
 - len()
+- let()
 - lower()
 - max(),
 - maxIf(),
