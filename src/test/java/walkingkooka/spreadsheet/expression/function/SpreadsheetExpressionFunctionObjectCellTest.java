@@ -117,7 +117,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         this.cellAndCheck(
                 "col",
                 REFERENCE2,
-                KIND.create(
+                EXPRESSION_NUMBER_KIND.create(
                         REFERENCE2.column()
                                 .value()
                 )
@@ -129,7 +129,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         this.cellAndCheck(
                 "col",
                 RANGE,
-                KIND.create(
+                EXPRESSION_NUMBER_KIND.create(
                         RANGE.begin()
                                 .column()
                                 .value()
@@ -141,7 +141,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     public void testColMissingReferenceParameter() {
         this.cellAndCheck(
                 "col",
-                KIND.create(
+                EXPRESSION_NUMBER_KIND.create(
                         REFERENCE.column()
                                 .value()
                 )
@@ -313,7 +313,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         this.cellAndCheck(
                 "row",
                 REFERENCE2,
-                KIND.create(
+                EXPRESSION_NUMBER_KIND.create(
                         REFERENCE2.row()
                                 .value()
                 )
@@ -325,7 +325,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         this.cellAndCheck(
                 "row",
                 RANGE,
-                KIND.create(
+                EXPRESSION_NUMBER_KIND.create(
                         RANGE.begin()
                                 .row()
                                 .value()
@@ -337,7 +337,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     public void testRowMissingReferenceParameter() {
         this.cellAndCheck(
                 "row",
-                KIND.create(
+                EXPRESSION_NUMBER_KIND.create(
                         REFERENCE.row().value()
                 )
         );
