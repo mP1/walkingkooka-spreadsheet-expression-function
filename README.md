@@ -41,6 +41,7 @@ A collection of ExpressionFunction(s) that require a spreadsheet
 - min(),
 - minIf(),
 - na()
+- numberValue()
 - offset(cellReference, rows, columns, height?, width?)
 - row (cellReference?)
 - rows (cellReference/range)

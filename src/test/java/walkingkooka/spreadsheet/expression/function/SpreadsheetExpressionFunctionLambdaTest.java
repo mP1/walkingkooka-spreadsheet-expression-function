@@ -101,6 +101,11 @@ public final class SpreadsheetExpressionFunctionLambdaTest extends SpreadsheetEx
     }
 
     @Override
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        return this.createContext0();
+    }
+
+    @Override
     public Class<SpreadsheetExpressionFunctionLambda> type() {
         return Cast.to(SpreadsheetExpressionFunctionLambda.class);
     }

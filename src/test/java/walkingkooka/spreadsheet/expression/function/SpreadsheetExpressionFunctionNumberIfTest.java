@@ -19,6 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -143,6 +144,11 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
     @Override
     public int minimumParameterCount() {
         return 1;
+    }
+
+    @Override
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        return this.createContext0();
     }
 
     @Override
