@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
@@ -1273,6 +1274,55 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateIsNonTextWithString() {
         this.evaluateAndValueCheck(
                 "=isNonText(\"abc\")",
+                false
+        );
+    }
+
+    @Test
+    public void testEvaluateIsNullWithBoolean() {
+        this.evaluateAndValueCheck(
+                "=isNull(true)",
+                false
+        );
+    }
+
+    @Test
+    public void testEvaluateIsNullWithErrorDivideByZero() {
+        this.evaluateAndValueCheck(
+                "=isNull(1/0)",
+                false
+        );
+    }
+
+    @Disabled("Require nullValue()")
+    @Test
+    public void testEvaluateIsNullWithNullValue() {
+        this.evaluateAndValueCheck(
+                "=isNull(nullValue())",
+                true
+        );
+    }
+
+    @Test
+    public void testEvaluateIsNullWithNumber() {
+        this.evaluateAndValueCheck(
+                "=isNull(123)",
+                false
+        );
+    }
+
+    @Test
+    public void testEvaluateIsNullWithReference() {
+        this.evaluateAndValueCheck(
+                "=isNull(A2)",
+                false
+        );
+    }
+
+    @Test
+    public void testEvaluateIsNullWithText() {
+        this.evaluateAndValueCheck(
+                "=isNull(\"Abc\")",
                 false
         );
     }
