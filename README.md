@@ -53,6 +53,7 @@ different semantics that exist within a spreadsheet formula or function evaluati
 - ceil()
 - cell(typeInfo=address, col, contents, filename, prefix,
   row) [TODO typeinfos](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/26)
+- cellFormatter()
 - char()
 - choose()
 - clean()
