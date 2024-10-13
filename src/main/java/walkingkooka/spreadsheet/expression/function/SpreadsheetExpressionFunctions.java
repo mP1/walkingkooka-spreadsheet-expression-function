@@ -27,6 +27,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
+import walkingkooka.tree.expression.function.ExpressionFunctions;
 import walkingkooka.tree.expression.function.booleann.BooleanExpressionFunctions;
 import walkingkooka.tree.expression.function.datetime.DateTimeExpressionFunctions;
 import walkingkooka.tree.expression.function.engineering.EngineeringExpressionFunctions;
@@ -749,6 +750,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<LocalDateTime, SpreadsheetExpressionEvaluationContext> now() {
         return DateTimeExpressionFunctions.now();
+    }
+
+    /**
+     * {@see ExpressionFunctions#nullValue}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> nullValue() {
+        return ExpressionFunctions.nullValue();
     }
 
     /**
