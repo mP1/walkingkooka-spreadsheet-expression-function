@@ -990,6 +990,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateHyperlink() {
+        this.evaluateAndValueCheck(
+                "=hyperlink(\"A12\")",
+                SpreadsheetError.with(
+                        SpreadsheetErrorKind.VALUE,
+                        "Cannot convert https://server.example.com/1234/Untitled5678/cell/A12 to String",
+                        Optional.of(
+                                Url.parseAbsolute("https://server.example.com/1234/Untitled5678/cell/A12")
+                        )
+                )
+        );
+    }
+
+    @Test
     public void testEvaluateIfTrue() {
         this.evaluateAndValueCheck(
                 "=if(true(), 111, 222)",
@@ -1300,6 +1314,46 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=isoWeekNum(date(1999,12,31))",
                 EXPRESSION_NUMBER_KIND.create(52)
+        );
+    }
+
+    @Test
+    public void testEvaluateIsRefWithNull() {
+        this.evaluateAndValueCheck(
+                "=isRef(null)",
+                true
+        );
+    }
+
+    @Test
+    public void testEvaluateIsRefWithNumber() {
+        this.evaluateAndValueCheck(
+                "=isRef(123)",
+                false
+        );
+    }
+
+    @Test
+    public void testEvaluateIsRefWithCellReference() {
+        this.evaluateAndValueCheck(
+                "=isRef(A2)",
+                true
+        );
+    }
+
+    @Test
+    public void testEvaluateIsRefWithStringWithCellReference() {
+        this.evaluateAndValueCheck(
+                "=isRef(\"A1\")",
+                false
+        );
+    }
+
+    @Test
+    public void testEvaluateIsRefWithCellUnknownLabel() {
+        this.evaluateAndValueCheck(
+                "=isRef(UnknownLabel)",
+                true
         );
     }
 
