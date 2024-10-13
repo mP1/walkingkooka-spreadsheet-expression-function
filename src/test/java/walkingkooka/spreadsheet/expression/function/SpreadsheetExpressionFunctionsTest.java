@@ -366,7 +366,18 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateChar65() {
+    public void testEvaluateCellValueFails() {
+        // cellValue cannot be used within a regular formula because it tries to get the value from itself.
+        // it is intended to be only used within find/highlighting queries.
+        this.evaluateAndValueCheck(
+                "=cellValue()",
+                Maps.of("A1", "=1*2*3*4"),
+                SpreadsheetErrorKind.VALUE.setMessage("Missing cell value for A1")
+        );
+    }
+
+    @Test
+    public void testEvaluateCharWith65() {
         this.evaluateAndValueCheck(
                 "=char(65)",
                 'A'
