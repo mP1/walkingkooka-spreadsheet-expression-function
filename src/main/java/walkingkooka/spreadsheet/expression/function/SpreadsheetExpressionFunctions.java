@@ -574,6 +574,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see BooleanExpressionFunctions#isNull}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNull() {
+        return BooleanExpressionFunctions.isNull();
+    }
+
+    /**
      * {@see NumberExpressionFunctions#isNumber}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNumber() {

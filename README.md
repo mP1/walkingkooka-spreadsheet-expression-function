@@ -99,6 +99,7 @@ different semantics that exist within a spreadsheet formula or function evaluati
 - isLogical()
 - isNa(),
 - isNonText(),
+- isNull(),
 - isNumber(),
 - isOdd()
 - isoWeekNum()

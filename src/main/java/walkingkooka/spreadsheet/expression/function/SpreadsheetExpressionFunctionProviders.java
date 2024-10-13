@@ -107,6 +107,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.isLogical(),
                                 SpreadsheetExpressionFunctions.isNa(),
                                 SpreadsheetExpressionFunctions.isNonText(),
+                                SpreadsheetExpressionFunctions.isNull(),
                                 SpreadsheetExpressionFunctions.isNumber(),
                                 SpreadsheetExpressionFunctions.isOdd(),
                                 SpreadsheetExpressionFunctions.isoWeekNum(),
