@@ -993,13 +993,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateHyperlink() {
         this.evaluateAndValueCheck(
                 "=hyperlink(\"A12\")",
-                SpreadsheetError.with(
-                        SpreadsheetErrorKind.VALUE,
-                        "Cannot convert https://server.example.com/1234/Untitled5678/cell/A12 to String",
-                        Optional.of(
-                                Url.parseAbsolute("https://server.example.com/1234/Untitled5678/cell/A12")
-                        )
-                )
+                Url.parseAbsolute("https://server.example.com/1234/Untitled5678/cell/A12")
         );
     }
 
