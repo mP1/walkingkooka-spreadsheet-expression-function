@@ -96,7 +96,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // error handling tests............................................................................................
 
     @Test
-    public void testFormulaError() {
+    public void testEvaluateWithIncompleteExpression() {
         this.evaluateAndValueCheck(
                 "=1+",
                 SpreadsheetErrorKind.ERROR.setMessage(
@@ -106,7 +106,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFormulaEqMissingCell() {
+    public void testEvaluateWithEqMissingCell() {
         this.evaluateAndValueCheck(
                 "=Z99",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -114,7 +114,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFormulaEqUnknownLabel() {
+    public void testEvaluateWithEqUnknownLabel() {
         this.evaluateAndValueCheck(
                 "=Label123",
                 SpreadsheetError.selectionNotFound(
@@ -124,7 +124,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFormulaEqUnknownFunction() {
+    public void testEvaluateWithEqUnknownFunction() {
         this.evaluateAndValueCheck(
                 "=UnknownFunction123()",
                 SpreadsheetError.functionNotFound(
@@ -134,7 +134,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFormulaIncludesMissingCell() {
+    public void testEvaluateWithExpressionIncludesMissingCell() {
         this.evaluateAndValueCheck(
                 "=123+Z99",
                 EXPRESSION_NUMBER_KIND.create(123)
@@ -144,7 +144,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // evaluateAndValueCheck tests......................................................................................
 
     @Test
-    public void testMathExpression() {
+    public void testEvaluateWithMathExpression() {
         this.evaluateAndValueCheck(
                 "=1+2+3",
                 EXPRESSION_NUMBER_KIND.create(1 + 2 + 3)
@@ -152,7 +152,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMathExpressionWithReferences() {
+    public void testEvaluateWithExpressionIncludingReferences() {
         this.evaluateAndValueCheck(
                 "=1+A2+A3",
                 Maps.of(
@@ -164,7 +164,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMathExpressionEvaluationFailureDivideByZero() {
+    public void testEvaluateWithDivideByZero() {
         this.evaluateAndValueCheck(
                 "=1/0",
                 SpreadsheetErrorKind.DIV0.setMessage("Division by zero")
@@ -172,7 +172,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMathExpressionEvaluation() {
+    public void testEvaluateWithMathExpressionEvaluation() {
         this.evaluateAndValueCheck(
                 "=1+A2+A3",
                 Maps.of(
@@ -185,7 +185,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFunctionNameCaseInsensitive() {
+    public void testEvaluateWithFunctionNameCaseInsensitive() {
         this.evaluateAndValueCheck(
                 "=TRUE()",
                 true
@@ -195,7 +195,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // function tests...................................................................................................
 
     @Test
-    public void testAbs() {
+    public void testEvaluateAbs() {
         this.evaluateAndValueCheck(
                 "=abs(-1.5)+abs(0.5)",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -203,7 +203,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAcos() {
+    public void testEvaluateAcos() {
         this.evaluateAndValueCheck(
                 "=acos(0.5)",
                 EXPRESSION_NUMBER_KIND.create(1.047198)
@@ -211,7 +211,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAddress() {
+    public void testEvaluateAddress() {
         this.evaluateAndValueCheck(
                 "=address(1, 2)",
                 SpreadsheetSelection.parseCell("$B$1")
@@ -219,7 +219,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAndTrueTrue() {
+    public void testEvaluateAndTrueTrue() {
         this.evaluateAndValueCheck(
                 "=and(true(), true())",
                 Boolean.TRUE
@@ -227,7 +227,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAndTrue1() {
+    public void testEvaluateAndTrue1() {
         this.evaluateAndValueCheck(
                 "=and(true(), 1)",
                 Boolean.TRUE
@@ -235,7 +235,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAndTrue0() {
+    public void testEvaluateAndTrue0() {
         this.evaluateAndValueCheck(
                 "=and(true(), 0)",
                 Boolean.FALSE
@@ -243,7 +243,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAndTrueTrueTrue() {
+    public void testEvaluateAndTrueTrueTrue() {
         this.evaluateAndValueCheck(
                 "=and(true(), true(), true())",
                 Boolean.TRUE
@@ -251,7 +251,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAsin() {
+    public void testEvaluateAsin() {
         this.evaluateAndValueCheck(
                 "=asin(0.5)",
                 EXPRESSION_NUMBER_KIND.create(0.5235988)
@@ -259,7 +259,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAtan() {
+    public void testEvaluateAtan() {
         this.evaluateAndValueCheck(
                 "=atan(0.5)",
                 EXPRESSION_NUMBER_KIND.create(0.4636476)
@@ -267,7 +267,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAverage() {
+    public void testEvaluateAverage() {
         this.evaluateAndValueCheck(
                 "=average(1,20,300,B1:D1)",
                 Maps.of(
@@ -280,7 +280,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testAverageIfSomeValuesFiltered() {
+    public void testEvaluateAverageIfSomeValuesFiltered() {
         this.evaluateAndValueCheck(
                 "=averageIf(A2:A4, \">100\")",
                 Maps.of(
@@ -293,7 +293,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBase() {
+    public void testEvaluateBase() {
         this.evaluateAndValueCheck(
                 "=base(13, 2)",
                 "1101"
@@ -301,7 +301,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBin2Dec() {
+    public void testEvaluateBin2Dec() {
         this.evaluateAndValueCheck(
                 "=bin2dec(\"1101\")",
                 "13"
@@ -309,7 +309,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBin2Hex() {
+    public void testEvaluateBin2Hex() {
         this.evaluateAndValueCheck(
                 "=bin2hex(\"1101\")",
                 "d"
@@ -317,7 +317,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBin2Oct() {
+    public void testEvaluateBin2Oct() {
         this.evaluateAndValueCheck(
                 "=bin2oct(\"1001\")",
                 "11"
@@ -325,7 +325,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBitAnd() {
+    public void testEvaluateBitAnd() {
         this.evaluateAndValueCheck(
                 "=bitand(14, 7)",
                 EXPRESSION_NUMBER_KIND.create(6)
@@ -333,7 +333,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBitOr() {
+    public void testEvaluateBitOr() {
         this.evaluateAndValueCheck(
                 "=bitor(3, 6)",
                 EXPRESSION_NUMBER_KIND.create(7)
@@ -341,7 +341,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testBitXor() {
+    public void testEvaluateBitXor() {
         this.evaluateAndValueCheck(
                 "=bitxor(7, 3)",
                 EXPRESSION_NUMBER_KIND.create(4)
@@ -349,7 +349,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCeil() {
+    public void testEvaluateCeil() {
         this.evaluateAndValueCheck(
                 "=ceil(1.75)",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -357,7 +357,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCell() {
+    public void testEvaluateCell() {
         this.evaluateAndValueCheck(
                 "=cell(\"address\", B2)",
                 Maps.of("b2", "=1*2"),
@@ -366,7 +366,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testChar65() {
+    public void testEvaluateChar65() {
         this.evaluateAndValueCheck(
                 "=char(65)",
                 'A'
@@ -374,7 +374,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testChooseFirst() {
+    public void testEvaluateChooseFirst() {
         this.evaluateAndValueCheck(
                 "=choose(1, 111, 222, 333)",
                 EXPRESSION_NUMBER_KIND.create(111)
@@ -382,7 +382,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testChooseSecond() {
+    public void testEvaluateChooseSecond() {
         this.evaluateAndValueCheck(
                 "=choose(2, 111, 222, 333)",
                 EXPRESSION_NUMBER_KIND.create(222)
@@ -390,7 +390,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testChooseThird() {
+    public void testEvaluateChooseThird() {
         this.evaluateAndValueCheck(
                 "=choose(3, 111, true(), \"Third\")",
                 "Third"
@@ -398,7 +398,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testClean() {
+    public void testEvaluateClean() {
         this.evaluateAndValueCheck(
                 "=clean(\"\t\nNeeds cleaning \r\")",
                 "Needs cleaning "
@@ -406,7 +406,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCodeCapitalA() {
+    public void testEvaluateCodeCapitalA() {
         this.evaluateAndValueCheck(
                 "=code(\"A\")",
                 EXPRESSION_NUMBER_KIND.create(65)
@@ -414,7 +414,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testColumn() {
+    public void testEvaluateColumn() {
         this.evaluateAndValueCheck(
                 "=column(C1)",
                 EXPRESSION_NUMBER_KIND.create(3)
@@ -422,7 +422,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testColumns() {
+    public void testEvaluateColumns() {
         this.evaluateAndValueCheck(
                 "=columns(Z99)",
                 EXPRESSION_NUMBER_KIND.create(1)
@@ -430,7 +430,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testColumnsWithRange() {
+    public void testEvaluateColumnsWithRange() {
         this.evaluateAndValueCheck(
                 "=columns(B1:D1)",
                 EXPRESSION_NUMBER_KIND.create(3)
@@ -438,7 +438,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatNumber() {
+    public void testEvaluateConcatNumber() {
         this.evaluateAndValueCheck(
                 "=concat(1.25)",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -447,7 +447,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatString() {
+    public void testEvaluateConcatString() {
         this.evaluateAndValueCheck(
                 "=concat(\"abc\")",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -456,7 +456,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatSingleValues() {
+    public void testEvaluateConcatSingleValues() {
         this.evaluateAndValueCheck(
                 "=concat(A2,A3)",
                 Maps.of("A2", "'abc", "A3", "'123"),
@@ -466,7 +466,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatRange() {
+    public void testEvaluateConcatRange() {
         this.evaluateAndValueCheck(
                 "=concat(A2:A3)",
                 Maps.of("A2", "'abc", "A3", "'123"),
@@ -476,7 +476,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatRangeIncludesNumbers() {
+    public void testEvaluateConcatRangeIncludesNumbers() {
         this.evaluateAndValueCheck(
                 "=concat(A2:A3)",
                 Maps.of("A2", "'abc", "A3", "=123"),
@@ -486,7 +486,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatRangeMissingCell() {
+    public void testEvaluateConcatRangeMissingCell() {
         this.evaluateAndValueCheck(
                 "=concat(A2:A5)",
                 Maps.of("A2", "'abc", "A4", "'123"),
@@ -496,7 +496,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testConcatSingleValuesAndRange() {
+    public void testEvaluateConcatSingleValuesAndRange() {
         this.evaluateAndValueCheck(
                 "=concat(\"First\",A2:A3,\"!!!\",B1:B2)",
                 Maps.of(
@@ -511,7 +511,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCos() {
+    public void testEvaluateCos() {
         this.evaluateAndValueCheck(
                 "=cos(1)",
                 EXPRESSION_NUMBER_KIND.create(0.5403023)
@@ -519,7 +519,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithDate() {
+    public void testEvaluateCountWithDate() {
         this.evaluateAndValueCheck(
                 "=count(date(1999, 12, 31))",
                 EXPRESSION_NUMBER_KIND.one()
@@ -527,7 +527,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithDateTime() {
+    public void testEvaluateCountWithDateTime() {
         this.evaluateAndValueCheck(
                 "=count(now())",
                 EXPRESSION_NUMBER_KIND.one()
@@ -535,7 +535,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithNumber() {
+    public void testEvaluateCountWithNumber() {
         this.evaluateAndValueCheck(
                 "=count(1)",
                 EXPRESSION_NUMBER_KIND.one()
@@ -543,7 +543,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithString() {
+    public void testEvaluateCountWithString() {
         this.evaluateAndValueCheck(
                 "=count(\"abc\")",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -551,7 +551,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithStringConvertible() {
+    public void testEvaluateCountWithStringConvertible() {
         this.evaluateAndValueCheck(
                 "=count(\"123\")",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -559,7 +559,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithTime() {
+    public void testEvaluateCountWithTime() {
         this.evaluateAndValueCheck(
                 "=count(time(12, 58, 59))",
                 EXPRESSION_NUMBER_KIND.one()
@@ -567,7 +567,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithRangeOfNumbers() {
+    public void testEvaluateCountWithRangeOfNumbers() {
         this.evaluateAndValueCheck(
                 "=count(A2:A4)",
                 Maps.of(
@@ -580,7 +580,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithRangeIncludesEmptyCells() {
+    public void testEvaluateCountWithRangeIncludesEmptyCells() {
         this.evaluateAndValueCheck(
                 "=count(A2:A4)",
                 Maps.of(
@@ -592,7 +592,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithRangeIncludesStrings() {
+    public void testEvaluateCountWithRangeIncludesStrings() {
         this.evaluateAndValueCheck(
                 "=count(A2:A4)",
                 Maps.of(
@@ -605,7 +605,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountWithRangeMixed() {
+    public void testEvaluateCountWithRangeMixed() {
         this.evaluateAndValueCheck(
                 "=count(A2:A7)",
                 Maps.of(
@@ -620,7 +620,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountAEmptyString() {
+    public void testEvaluateCountAEmptyString() {
         this.evaluateAndValueCheck(
                 "=countA(\"\")",
                 EXPRESSION_NUMBER_KIND.one()
@@ -628,7 +628,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountAMissingCell() {
+    public void testEvaluateCountAMissingCell() {
         this.evaluateAndValueCheck(
                 "=countA(Z99)", // becomes a #NAME which is ignored
                 EXPRESSION_NUMBER_KIND.zero()
@@ -636,7 +636,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountARangeOfMixedValues() {
+    public void testEvaluateCountARangeOfMixedValues() {
         this.evaluateAndValueCheck(
                 "=countA(A2:A8)",
                 Maps.of(
@@ -652,7 +652,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountBlankEmptyString() {
+    public void testEvaluateCountBlankEmptyString() {
         this.evaluateAndValueCheck(
                 "=countBlank(\"\")",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -660,7 +660,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountBlankNotEmptyString() {
+    public void testEvaluateCountBlankNotEmptyString() {
         this.evaluateAndValueCheck(
                 "=countBlank(\"not-empty\")",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -668,7 +668,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountBlankMissingCell() {
+    public void testEvaluateCountBlankMissingCell() {
         this.evaluateAndValueCheck(
                 "=countBlank(Z99)", // becomes a #REF which counts as a non empty cell
                 EXPRESSION_NUMBER_KIND.one()
@@ -676,7 +676,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountBlankRangeOfMixedValues() {
+    public void testEvaluateCountBlankRangeOfMixedValues() {
         this.evaluateAndValueCheck(
                 "=countBlank(A2:A8)",
                 Maps.of(
@@ -692,7 +692,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountIfOne() {
+    public void testEvaluateCountIfOne() {
         this.evaluateAndValueCheck(
                 "=countIf(123, 123)",
                 EXPRESSION_NUMBER_KIND.one()
@@ -700,7 +700,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountIfZero() {
+    public void testEvaluateCountIfZero() {
         this.evaluateAndValueCheck(
                 "=countIf(123, 456)",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -708,7 +708,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testCountIfSomeValuesFiltered() {
+    public void testEvaluateCountIfSomeValuesFiltered() {
         this.evaluateAndValueCheck(
                 "=countIf(A2:A5, \">99+1\")",
                 Maps.of(
@@ -722,7 +722,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDate() {
+    public void testEvaluateDate() {
         this.evaluateAndValueCheck(
                 "=date(1999, 12, 31)",
                 LocalDate.of(1999, 12, 31)
@@ -730,7 +730,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDay() {
+    public void testEvaluateDay() {
         this.evaluateAndValueCheck(
                 "=day(date(1999, 12, 31))",
                 EXPRESSION_NUMBER_KIND.create(31)
@@ -738,7 +738,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDays() {
+    public void testEvaluateDays() {
         this.evaluateAndValueCheck(
                 "=days(date(2000, 1, 28), date(1999, 12, 31))",
                 EXPRESSION_NUMBER_KIND.create(28)
@@ -746,7 +746,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDec2BinFromString() {
+    public void testEvaluateDec2BinFromString() {
         this.evaluateAndValueCheck(
                 "=dec2bin(\"14\")",
                 "1110"
@@ -754,7 +754,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDec2BinFromNumber() {
+    public void testEvaluateDec2BinFromNumber() {
         this.evaluateAndValueCheck(
                 "=dec2bin(14)",
                 "1110"
@@ -762,7 +762,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDec2Hex() {
+    public void testEvaluateDec2Hex() {
         this.evaluateAndValueCheck(
                 "=dec2hex(\"255\")",
                 "ff"
@@ -770,7 +770,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDec2Oct() {
+    public void testEvaluateDec2Oct() {
         this.evaluateAndValueCheck(
                 "=dec2oct(\"255\")",
                 "377"
@@ -778,7 +778,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDegrees() {
+    public void testEvaluateDegrees() {
         this.evaluateAndValueCheck(
                 "=degrees(1.5)",
                 EXPRESSION_NUMBER_KIND.create(85.943655)
@@ -786,7 +786,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDecimal() {
+    public void testEvaluateDecimal() {
         this.evaluateAndValueCheck(
                 "=decimal(\"11\", 2)",
                 EXPRESSION_NUMBER_KIND.create(3)
@@ -794,7 +794,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDeltaNumbersEquals() {
+    public void testEvaluateDeltaNumbersEquals() {
         this.evaluateAndValueCheck(
                 "=delta(1.25, \"1.25\")",
                 true
@@ -802,7 +802,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDollarWithNumberAndMissingDecimals() {
+    public void testEvaluateDollarWithNumberAndMissingDecimals() {
         this.evaluateAndValueCheck(
                 "=dollar(123.4567)",
                 "$123.46"
@@ -810,7 +810,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDollarWithStringAndMissingDecimals() {
+    public void testEvaluateDollarWithStringAndMissingDecimals() {
         this.evaluateAndValueCheck(
                 "=dollar(\"123.4567\")",
                 "$123.46"
@@ -818,7 +818,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDollarWithNumberAndPlus2Decimals() {
+    public void testEvaluateDollarWithNumberAndPlus2Decimals() {
         this.evaluateAndValueCheck(
                 "=dollar(123.4567, 2)",
                 "$123.46"
@@ -826,7 +826,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testDollarWithNumberAndMinus2Decimals() {
+    public void testEvaluateDollarWithNumberAndMinus2Decimals() {
         this.evaluateAndValueCheck(
                 "=dollar(123.4567, -2)",
                 "$100"
@@ -834,7 +834,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testE() {
+    public void testEvaluateE() {
         this.evaluateAndValueCheck(
                 "=e()",
                 EXPRESSION_NUMBER_KIND.create(2.718282)
@@ -842,7 +842,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEven() {
+    public void testEvaluateEven() {
         this.evaluateAndValueCheck(
                 "=even(1.7)",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -850,7 +850,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testExactDifferentCaseStrings() {
+    public void testEvaluateExactDifferentCaseStrings() {
         this.evaluateAndValueCheck(
                 "=exact(\"ABC\", \"abc\")",
                 false
@@ -858,7 +858,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testExactSameStrings() {
+    public void testEvaluateExactSameStrings() {
         this.evaluateAndValueCheck(
                 "=exact(\"ABC\", \"ABC\")",
                 true
@@ -866,7 +866,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testExactSameString2() {
+    public void testEvaluateExactSameString2() {
         this.evaluateAndValueCheck(
                 "=exact(\"12.5\",12.5)",
                 true
@@ -874,7 +874,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testExp() {
+    public void testEvaluateExp() {
         this.evaluateAndValueCheck(
                 "=exp(1)",
                 EXPRESSION_NUMBER_KIND.create(2.718282)
@@ -882,7 +882,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFalse() {
+    public void testEvaluateFalse() {
         this.evaluateAndValueCheck(
                 "=false()",
                 Boolean.FALSE
@@ -890,7 +890,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFindFound() {
+    public void testEvaluateFindFound() {
         this.evaluateAndValueCheck(
                 "=find(\"abc\", \"before abc\")",
                 EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
@@ -898,7 +898,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFindNotFound() {
+    public void testEvaluateFindNotFound() {
         this.evaluateAndValueCheck(
                 "=find(\"Not found\", \"123\")",
                 SpreadsheetErrorKind.VALUE.setMessage("\"Not found\" not found in \"123\"")
@@ -906,7 +906,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFixedWithNumber() {
+    public void testEvaluateFixedWithNumber() {
         this.evaluateAndValueCheck(
                 "=fixed(123.456)",
                 "123.46"
@@ -914,7 +914,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFixedWithNumberAndDecimals() {
+    public void testEvaluateFixedWithNumberAndDecimals() {
         this.evaluateAndValueCheck(
                 "=fixed(123.567, 1)",
                 "123.6"
@@ -922,7 +922,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFixedWithNumberAndDecimalsAndCommas() {
+    public void testEvaluateFixedWithNumberAndDecimalsAndCommas() {
         this.evaluateAndValueCheck(
                 "=fixed(1234.567, 1, false())",
                 "1,234.6"
@@ -930,7 +930,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFloor() {
+    public void testEvaluateFloor() {
         this.evaluateAndValueCheck(
                 "=floor(1.8)",
                 EXPRESSION_NUMBER_KIND.one()
@@ -938,7 +938,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testFormulaText() {
+    public void testEvaluateFormulaText() {
         this.evaluateAndValueCheck(
                 "=formulatext(A2)",
                 Maps.of("A2", "=1+2+3"),
@@ -947,7 +947,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testHex2Bin() {
+    public void testEvaluateHex2Bin() {
         this.evaluateAndValueCheck(
                 "=hex2bin(\"f\")",
                 "1111"
@@ -955,7 +955,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testHex2Dec() {
+    public void testEvaluateHex2Dec() {
         this.evaluateAndValueCheck(
                 "=hex2dec(\"ff\")",
                 "255"
@@ -963,7 +963,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testHex2Oct() {
+    public void testEvaluateHex2Oct() {
         this.evaluateAndValueCheck(
                 "=hex2oct(\"ff\")",
                 "377"
@@ -971,7 +971,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testHour() {
+    public void testEvaluateHour() {
         this.evaluateAndValueCheck(
                 "=hour(time(12, 58, 59))",
                 EXPRESSION_NUMBER_KIND.create(12)
@@ -979,7 +979,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfTrue() {
+    public void testEvaluateIfTrue() {
         this.evaluateAndValueCheck(
                 "=if(true(), 111, 222)",
                 EXPRESSION_NUMBER_KIND.create(111)
@@ -987,7 +987,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfTrueCaseInsensitiveStringCompare() {
+    public void testEvaluateIfTrueCaseInsensitiveStringCompare() {
         this.evaluateAndValueCheck(
                 "=if(\"abc\" = \"ABC\", 111, 222)",
                 EXPRESSION_NUMBER_KIND.create(111)
@@ -995,7 +995,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfTrueCaseInsensitiveStringCompareDifferent() {
+    public void testEvaluateIfTrueCaseInsensitiveStringCompareDifferent() {
         this.evaluateAndValueCheck(
                 "=if(\"abc\" = \"different\", 111, 222)",
                 EXPRESSION_NUMBER_KIND.create(222)
@@ -1003,7 +1003,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfFalse() {
+    public void testEvaluateIfFalse() {
         this.evaluateAndValueCheck(
                 "=if(false(), 111, 222)",
                 EXPRESSION_NUMBER_KIND.create(222)
@@ -1011,7 +1011,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfsFirst() {
+    public void testEvaluateIfsFirst() {
         this.evaluateAndValueCheck(
                 "=ifs(true(), 111, false(), 222)",
                 EXPRESSION_NUMBER_KIND.create(111)
@@ -1019,7 +1019,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfsSecond() {
+    public void testEvaluateIfsSecond() {
         this.evaluateAndValueCheck(
                 "=ifs(\"abc\"=\"different\", 111, true(), 222)",
                 EXPRESSION_NUMBER_KIND.create(222)
@@ -1027,7 +1027,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIfsSecondStringCaseInsensitiveEquals() {
+    public void testEvaluateIfsSecondStringCaseInsensitiveEquals() {
         this.evaluateAndValueCheck(
                 "=ifs(\"abc\"=\"different\", 111, \"same\"=\"SAME\", 222)",
                 EXPRESSION_NUMBER_KIND.create(222)
@@ -1035,7 +1035,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIndirect() {
+    public void testEvaluateIndirect() {
         this.evaluateAndValueCheck(
                 "=indirect(\"Z99\")",
                 SpreadsheetSelection.parseCell("Z99")
@@ -1043,7 +1043,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testInt() {
+    public void testEvaluateInt() {
         this.evaluateAndValueCheck(
                 "=int(1.8)",
                 EXPRESSION_NUMBER_KIND.one()
@@ -1051,7 +1051,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsBlankNoCell() {
+    public void testEvaluateIsBlankNoCell() {
         this.evaluateAndValueCheck(
                 "=isBlank(B2)",
                 true
@@ -1059,7 +1059,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsBlankCell() {
+    public void testEvaluateIsBlankCell() {
         this.evaluateAndValueCheck(
                 "=isBlank(B2)",
                 Maps.of("B2", "'NotBlank"),
@@ -1068,7 +1068,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsDateWithDate() {
+    public void testEvaluateIsDateWithDate() {
         this.evaluateAndValueCheck(
                 "=isDate(today())",
                 true
@@ -1076,7 +1076,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsDateWithNumber() {
+    public void testEvaluateIsDateWithNumber() {
         this.evaluateAndValueCheck(
                 "=isDate(1)",
                 true
@@ -1084,7 +1084,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsDateWithString() {
+    public void testEvaluateIsDateWithString() {
         this.evaluateAndValueCheck(
                 "=isDate(\"31/12/2000\")",
                 true
@@ -1092,7 +1092,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsDateWithTime() {
+    public void testEvaluateIsDateWithTime() {
         this.evaluateAndValueCheck(
                 "=isDate(time(1,1,1))",
                 true
@@ -1100,7 +1100,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsErrWithError() {
+    public void testEvaluateIsErrWithError() {
         this.evaluateAndValueCheck(
                 "=isErr(1/0)",
                 true
@@ -1108,7 +1108,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsErrWithErrorRef() {
+    public void testEvaluateIsErrWithErrorRef() {
         this.evaluateAndValueCheck(
                 "=isErr(#REF!)",
                 true
@@ -1116,7 +1116,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsErrWithNumber() {
+    public void testEvaluateIsErrWithNumber() {
         this.evaluateAndValueCheck(
                 "=isErr(123)",
                 false
@@ -1124,7 +1124,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsErrorWithErroror() {
+    public void testEvaluateIsErrorWithErroror() {
         this.evaluateAndValueCheck(
                 "=isError(1/0)",
                 true
@@ -1132,7 +1132,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsErrorWithNumber() {
+    public void testEvaluateIsErrorWithNumber() {
         this.evaluateAndValueCheck(
                 "=isError(123)",
                 false
@@ -1140,7 +1140,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsEvenWithEvenNumber() {
+    public void testEvaluateIsEvenWithEvenNumber() {
         this.evaluateAndValueCheck(
                 "=isEven(2)",
                 true
@@ -1148,7 +1148,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsEvenWithOddNumber() {
+    public void testEvaluateIsEvenWithOddNumber() {
         this.evaluateAndValueCheck(
                 "=isEven(1)",
                 false
@@ -1156,7 +1156,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsFormulaWithCellWithFormula() {
+    public void testEvaluateIsFormulaWithCellWithFormula() {
         this.evaluateAndValueCheck(
                 "=isFormula(B2)",
                 Maps.of("B2", "=1"),
@@ -1165,7 +1165,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsFormulaWithMissingCell() {
+    public void testEvaluateIsFormulaWithMissingCell() {
         this.evaluateAndValueCheck(
                 "=isFormula(B2)",
                 false
@@ -1173,7 +1173,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsLogicalWithBooleanTrue() {
+    public void testEvaluateIsLogicalWithBooleanTrue() {
         this.evaluateAndValueCheck(
                 "=isLogical(true())",
                 true
@@ -1181,7 +1181,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsLogicalWithBooleanFalse() {
+    public void testEvaluateIsLogicalWithBooleanFalse() {
         this.evaluateAndValueCheck(
                 "=isLogical(false())",
                 true
@@ -1189,7 +1189,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsLogicalWithMissingCell() {
+    public void testEvaluateIsLogicalWithMissingCell() {
         this.evaluateAndValueCheck(
                 "=isLogical(B2)",
                 false
@@ -1197,7 +1197,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsLogicalWithNumber() {
+    public void testEvaluateIsLogicalWithNumber() {
         this.evaluateAndValueCheck(
                 "=isLogical(123)",
                 false
@@ -1205,7 +1205,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsLogicalWithString() {
+    public void testEvaluateIsLogicalWithString() {
         this.evaluateAndValueCheck(
                 "=isLogical(\"abc\")",
                 false
@@ -1213,7 +1213,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNaWithError() {
+    public void testEvaluateIsNaWithError() {
         this.evaluateAndValueCheck(
                 "=isNa(1/0)",
                 false
@@ -1221,7 +1221,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNaWithNumber() {
+    public void testEvaluateIsNaWithNumber() {
         this.evaluateAndValueCheck(
                 "=isNa(123)",
                 false
@@ -1229,7 +1229,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNonTextWithEmptyCell() {
+    public void testEvaluateIsNonTextWithEmptyCell() {
         this.evaluateAndValueCheck(
                 "=isNonText(Z99)",
                 true
@@ -1237,7 +1237,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNonTextWithError() {
+    public void testEvaluateIsNonTextWithError() {
         this.evaluateAndValueCheck(
                 "=isNonText(1/0)",
                 true
@@ -1245,7 +1245,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNonTextWithString() {
+    public void testEvaluateIsNonTextWithString() {
         this.evaluateAndValueCheck(
                 "=isNonText(\"abc\")",
                 false
@@ -1253,7 +1253,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNumberWithNonNumberString() {
+    public void testEvaluateIsNumberWithNonNumberString() {
         this.evaluateAndValueCheck(
                 "=isNumber(\"ABC\")",
                 false
@@ -1261,7 +1261,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsNumberWithNumber() {
+    public void testEvaluateIsNumberWithNumber() {
         this.evaluateAndValueCheck(
                 "=isNumber(2)",
                 true
@@ -1269,7 +1269,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsOddWithEvenNumber() {
+    public void testEvaluateIsOddWithEvenNumber() {
         this.evaluateAndValueCheck(
                 "=isOdd(2)",
                 false
@@ -1277,7 +1277,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsOddWithOddNumber() {
+    public void testEvaluateIsOddWithOddNumber() {
         this.evaluateAndValueCheck(
                 "=isOdd(1)",
                 true
@@ -1285,7 +1285,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsoWeekNum() {
+    public void testEvaluateIsoWeekNum() {
         this.evaluateAndValueCheck(
                 "=isoWeekNum(date(1999,12,31))",
                 EXPRESSION_NUMBER_KIND.create(52)
@@ -1293,7 +1293,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsTextWithError() {
+    public void testEvaluateIsTextWithError() {
         this.evaluateAndValueCheck(
                 "=isText(1/0)",
                 false
@@ -1301,7 +1301,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsTextWithNumber() {
+    public void testEvaluateIsTextWithNumber() {
         this.evaluateAndValueCheck(
                 "=isText(123)",
                 false
@@ -1309,7 +1309,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsTextWithEmptyString() {
+    public void testEvaluateIsTextWithEmptyString() {
         this.evaluateAndValueCheck(
                 "=isText(\"\")",
                 true
@@ -1317,7 +1317,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testIsTextWithString() {
+    public void testEvaluateIsTextWithString() {
         this.evaluateAndValueCheck(
                 "=isText(\"abc\")",
                 true
@@ -1325,7 +1325,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLambdaWithParameters() {
+    public void testEvaluateLambdaWithParameters() {
         this.evaluateAndValueCheck(
                 "=lambda(x,y,x*y)(10,20)",
                 EXPRESSION_NUMBER_KIND.create(10 * 20)
@@ -1333,7 +1333,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLAMBDAWithParameters() {
+    public void testEvaluateLAMBDAWithParameters() {
         this.evaluateAndValueCheck(
                 "=LAMBDA(x,y,z,x*y*z)(20,30, 40)",
                 EXPRESSION_NUMBER_KIND.create(20 * 30 * 40)
@@ -1341,7 +1341,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLambdaWithParametersAndCellReference() {
+    public void testEvaluateLambdaWithParametersAndCellReference() {
         this.evaluateAndValueCheck(
                 "=lambda(x,y,x*y*b2)(10,20)",
                 Maps.of("b2", "30"),
@@ -1352,7 +1352,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // https://www.microsoft.com/en-us/research/blog/lambda-the-ultimatae-excel-worksheet-function/
 
     @Test
-    public void testLambdaWithParametersLet() {
+    public void testEvaluateLambdaWithParametersLet() {
         this.evaluateAndValueCheck(
                 "=lambda(x,y,    Let(xs, x*x, ys, y*y, xs+ys))(3, 4)",
                 EXPRESSION_NUMBER_KIND.create(25)
@@ -1360,7 +1360,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLambdaWithParametersLet2() {
+    public void testEvaluateLambdaWithParametersLet2() {
         this.evaluateAndValueCheck(
                 "=lambda(x,y,    Let(xs, x*x, ys, y*y, sqrt(xs+ys)))(3, 4)",
                 EXPRESSION_NUMBER_KIND.create(5)
@@ -1368,7 +1368,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLeftMissingCellReference() {
+    public void testEvaluateLeftMissingCellReference() {
         this.evaluateAndValueCheck(
                 "=left(Z99)",
                 SpreadsheetErrorKind.VALUE.setMessage(
@@ -1378,7 +1378,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLeft() {
+    public void testEvaluateLeft() {
         this.evaluateAndValueCheck(
                 "=left(\"abc\")",
                 "a"
@@ -1386,7 +1386,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLeft2() {
+    public void testEvaluateLeft2() {
         this.evaluateAndValueCheck(
                 "=left(\"abc\", 2)",
                 "ab"
@@ -1394,7 +1394,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLenWithNumber() {
+    public void testEvaluateLenWithNumber() {
         this.evaluateAndValueCheck(
                 "=len(1.23)",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -1403,7 +1403,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLenWithString() {
+    public void testEvaluateLenWithString() {
         this.evaluateAndValueCheck(
                 "=len(\"hello\")",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -1412,7 +1412,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLetOnlyStringLiteral() {
+    public void testEvaluateLetOnlyStringLiteral() {
         this.evaluateAndValueCheck(
                 "=let(\"hello\")",
                 "hello"
@@ -1420,7 +1420,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLetWithBackReferences() {
+    public void testEvaluateLetWithBackReferences() {
         this.evaluateAndValueCheck(
                 "=let(x, 2, x * 3)",
                 EXPRESSION_NUMBER_KIND.create(2 * 3)
@@ -1428,7 +1428,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLetWithBackReferences2() {
+    public void testEvaluateLetWithBackReferences2() {
         this.evaluateAndValueCheck(
                 "=let(x, 2, y, 3, x * y * x * y)",
                 EXPRESSION_NUMBER_KIND.create(2 * 3 * 2 * 3)
@@ -1436,7 +1436,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLn() {
+    public void testEvaluateLn() {
         this.evaluateAndValueCheck(
                 "=ln(2)",
                 EXPRESSION_NUMBER_KIND.create(0.6931472)
@@ -1444,7 +1444,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLog() {
+    public void testEvaluateLog() {
         this.evaluateAndValueCheck(
                 "=log(3, 2)",
                 EXPRESSION_NUMBER_KIND.create(1.584962)
@@ -1452,7 +1452,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLog10() {
+    public void testEvaluateLog10() {
         this.evaluateAndValueCheck(
                 "=log10(100)",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -1460,7 +1460,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLowerWithNumber() {
+    public void testEvaluateLowerWithNumber() {
         this.evaluateAndValueCheck(
                 "=lower(1.25)",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -1469,7 +1469,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testLowerWithString() {
+    public void testEvaluateLowerWithString() {
         this.evaluateAndValueCheck(
                 "=lower(\"ABCxyz\")",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -1478,7 +1478,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMax() {
+    public void testEvaluateMax() {
         this.evaluateAndValueCheck(
                 "=max(1,20,300,B1:D1)",
                 Maps.of(
@@ -1491,7 +1491,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMaxIf() {
+    public void testEvaluateMaxIf() {
         this.evaluateAndValueCheck(
                 "=maxIf(A2:A4, \">=19\")",
                 Maps.of(
@@ -1504,7 +1504,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMid() {
+    public void testEvaluateMid() {
         this.evaluateAndValueCheck(
                 "=mid(\"apple\", 2, 3)",
                 "ppl"
@@ -1512,7 +1512,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMin() {
+    public void testEvaluateMin() {
         this.evaluateAndValueCheck(
                 "=min(1,20,300,B1:D1)",
                 Maps.of(
@@ -1525,7 +1525,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMinIf() {
+    public void testEvaluateMinIf() {
         this.evaluateAndValueCheck(
                 "=minIf(A2:A4, \">=19\")",
                 Maps.of(
@@ -1538,7 +1538,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMinute() {
+    public void testEvaluateMinute() {
         this.evaluateAndValueCheck(
                 "=minute(time(12, 58, 59))",
                 EXPRESSION_NUMBER_KIND.create(58)
@@ -1546,7 +1546,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMod() {
+    public void testEvaluateMod() {
         this.evaluateAndValueCheck(
                 "=mod(5, 3)",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -1554,7 +1554,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testMonth() {
+    public void testEvaluateMonth() {
         this.evaluateAndValueCheck(
                 "=month(date(1999, 12, 31))",
                 EXPRESSION_NUMBER_KIND.create(12)
@@ -1562,7 +1562,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testNotFalse() {
+    public void testEvaluateNotFalse() {
         this.evaluateAndValueCheck(
                 "=not(false())",
                 Boolean.TRUE
@@ -1570,7 +1570,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testNotTrue() {
+    public void testEvaluateNotTrue() {
         this.evaluateAndValueCheck(
                 "=not(true())",
                 Boolean.FALSE
@@ -1578,7 +1578,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testNotZero() {
+    public void testEvaluateNotZero() {
         this.evaluateAndValueCheck(
                 "=not(0)",
                 Boolean.TRUE
@@ -1587,7 +1587,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
 
     @Test
-    public void testNow() {
+    public void testEvaluateNow() {
         this.evaluateAndValueCheck(
                 "=now()",
                 NOW.get()
@@ -1595,7 +1595,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testNumberValue() {
+    public void testEvaluateNumberValue() {
         this.evaluateAndValueCheck(
                 "=numberValue(\"1G234D5\", \"D\", \"G\")",
                 EXPRESSION_NUMBER_KIND.create(1234.5)
@@ -1603,7 +1603,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOct2Bin() {
+    public void testEvaluateOct2Bin() {
         this.evaluateAndValueCheck(
                 "=oct2bin(\"34\")",
                 "11100"
@@ -1611,7 +1611,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOct2Dec() {
+    public void testEvaluateOct2Dec() {
         this.evaluateAndValueCheck(
                 "=oct2dec(\"34\")",
                 "28"
@@ -1619,7 +1619,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOct2Hex() {
+    public void testEvaluateOct2Hex() {
         this.evaluateAndValueCheck(
                 "=oct2hex(\"34\")",
                 "1c"
@@ -1627,7 +1627,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOdd() {
+    public void testEvaluateOdd() {
         this.evaluateAndValueCheck(
                 "=odd(12.3)",
                 EXPRESSION_NUMBER_KIND.create(13)
@@ -1635,7 +1635,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOffset() {
+    public void testEvaluateOffset() {
         this.evaluateAndValueCheck(
                 "=offset(B2,1,2,3,3)",
                 SpreadsheetSelection.parseCellRange("D3:F5")
@@ -1643,7 +1643,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOrTrueTrueTrue() {
+    public void testEvaluateOrTrueTrueTrue() {
         this.evaluateAndValueCheck(
                 "=or(true(), true(), true())",
                 Boolean.TRUE
@@ -1651,7 +1651,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOrFalseFalseTrue() {
+    public void testEvaluateOrFalseFalseTrue() {
         this.evaluateAndValueCheck(
                 "=or(false(), false(), true())",
                 Boolean.TRUE
@@ -1659,7 +1659,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testOrFalseFalseFalseFalse() {
+    public void testEvaluateOrFalseFalseFalseFalse() {
         this.evaluateAndValueCheck(
                 "=or(false(), false(), false(), false())",
                 Boolean.FALSE
@@ -1667,7 +1667,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testPi() {
+    public void testEvaluatePi() {
         this.evaluateAndValueCheck(
                 "=pi()",
                 EXPRESSION_NUMBER_KIND.create(3.141593)
@@ -1675,7 +1675,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testProduct() {
+    public void testEvaluateProduct() {
         this.evaluateAndValueCheck(
                 "=product(2, 5)",
                 EXPRESSION_NUMBER_KIND.create(10)
@@ -1683,7 +1683,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testProper() {
+    public void testEvaluateProper() {
         this.evaluateAndValueCheck(
                 "=proper(\"apple\")",
                 "Apple"
@@ -1691,7 +1691,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testProper2() {
+    public void testEvaluateProper2() {
         this.evaluateAndValueCheck(
                 "=proper(\"apple, pears\")",
                 "Apple, Pears"
@@ -1699,7 +1699,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testQuotient() {
+    public void testEvaluateQuotient() {
         this.evaluateAndValueCheck(
                 "=quotient(12, 3)",
                 EXPRESSION_NUMBER_KIND.create(4)
@@ -1707,7 +1707,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRadians() {
+    public void testEvaluateRadians() {
         this.evaluateAndValueCheck(
                 "=radians(90)",
                 EXPRESSION_NUMBER_KIND.create(1.5707961)
@@ -1715,7 +1715,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRand() {
+    public void testEvaluateRand() {
         this.evaluateAndValueCheck(
                 "=rand() > 0",
                 true
@@ -1723,7 +1723,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRandBetween() {
+    public void testEvaluateRandBetween() {
         this.evaluateAndValueCheck(
                 "=randBetween(2, 34) >= 2",
                 true
@@ -1731,7 +1731,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testReplace() {
+    public void testEvaluateReplace() {
         this.evaluateAndValueCheck(
                 "=replace(\"XYZ123\",4,3,\"456\")",
                 "XYZ456"
@@ -1739,7 +1739,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRept() {
+    public void testEvaluateRept() {
         this.evaluateAndValueCheck(
                 "=rept(\"abc\", 3)",
                 "abcabcabc"
@@ -1747,7 +1747,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRight() {
+    public void testEvaluateRight() {
         this.evaluateAndValueCheck(
                 "=right(\"abc\")",
                 "c"
@@ -1755,7 +1755,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRight2() {
+    public void testEvaluateRight2() {
         this.evaluateAndValueCheck(
                 "=right(\"abc\", 2)",
                 "bc"
@@ -1763,7 +1763,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRoman() {
+    public void testEvaluateRoman() {
         this.evaluateAndValueCheck(
                 "=roman(123)",
                 "CXXIII"
@@ -1771,7 +1771,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRound() {
+    public void testEvaluateRound() {
         this.evaluateAndValueCheck(
                 "=round(5.7845, 1)",
                 EXPRESSION_NUMBER_KIND.create(5.8)
@@ -1779,7 +1779,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRoundDown() {
+    public void testEvaluateRoundDown() {
         this.evaluateAndValueCheck(
                 "=roundDown(1.25, 1)",
                 EXPRESSION_NUMBER_KIND.create(1.2)
@@ -1787,7 +1787,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRoundUp() {
+    public void testEvaluateRoundUp() {
         this.evaluateAndValueCheck(
                 "=roundUp(1.25, 1)",
                 EXPRESSION_NUMBER_KIND.create(1.3)
@@ -1795,7 +1795,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRow() {
+    public void testEvaluateRow() {
         this.evaluateAndValueCheck(
                 "=row(A99)",
                 EXPRESSION_NUMBER_KIND.create(99)
@@ -1803,7 +1803,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRowsWithCell() {
+    public void testEvaluateRowsWithCell() {
         this.evaluateAndValueCheck(
                 "=rows(Z99)",
                 EXPRESSION_NUMBER_KIND.create(1)
@@ -1811,7 +1811,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRowsWithRange() {
+    public void testEvaluateRowsWithRange() {
         this.evaluateAndValueCheck(
                 "=rows(B1:D1)",
                 EXPRESSION_NUMBER_KIND.create(1)
@@ -1819,7 +1819,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testRowsWithRange2() {
+    public void testEvaluateRowsWithRange2() {
         this.evaluateAndValueCheck(
                 "=rows(B3:D6)",
                 EXPRESSION_NUMBER_KIND.create(4)
@@ -1827,7 +1827,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSearchCaseWithInsensitiveFound() {
+    public void testEvaluateSearchCaseWithInsensitiveFound() {
         this.evaluateAndValueCheck(
                 "=search(\"bc\", \"ABCDE\")",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -1835,7 +1835,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSearchCaseWithSensitiveFound() {
+    public void testEvaluateSearchCaseWithSensitiveFound() {
         this.evaluateAndValueCheck(
                 "=search(\"bc\", \"abcde\")",
                 EXPRESSION_NUMBER_KIND.create(2)
@@ -1843,7 +1843,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSearchCaseWithQuestionMark() {
+    public void testEvaluateSearchCaseWithQuestionMark() {
         this.evaluateAndValueCheck(
                 "=search(\"1?3\", \"before 123 after\")",
                 EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
@@ -1851,7 +1851,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSearchCaseWithQuestionMark2() {
+    public void testEvaluateSearchCaseWithQuestionMark2() {
         this.evaluateAndValueCheck(
                 "=search(\"1?3\", \"before 111 123 after\")",
                 EXPRESSION_NUMBER_KIND.create(1 + "before 111 ".length())
@@ -1859,7 +1859,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSearchCaseWithWildcard() {
+    public void testEvaluateSearchCaseWithWildcard() {
         this.evaluateAndValueCheck(
                 "=search(\"1*4\", \"before 1234 after\")",
                 EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
@@ -1867,7 +1867,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSearchNotFound() {
+    public void testEvaluateSearchNotFound() {
         this.evaluateAndValueCheck(
                 "=search(\"!\", \"abcde\")",
                 EXPRESSION_NUMBER_KIND.create(0)
@@ -1875,7 +1875,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSecond() {
+    public void testEvaluateSecond() {
         this.evaluateAndValueCheck(
                 "=second(time(12, 58, 59))",
                 EXPRESSION_NUMBER_KIND.create(59)
@@ -1883,7 +1883,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSignWithNegativeNumber() {
+    public void testEvaluateSignWithNegativeNumber() {
         this.evaluateAndValueCheck(
                 "=sign(-123)",
                 EXPRESSION_NUMBER_KIND.create(-1)
@@ -1891,7 +1891,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSignWithZero() {
+    public void testEvaluateSignWithZero() {
         this.evaluateAndValueCheck(
                 "=sign(0)",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -1899,7 +1899,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSignWithPositiveNumber() {
+    public void testEvaluateSignWithPositiveNumber() {
         this.evaluateAndValueCheck(
                 "=sign(+123)",
                 EXPRESSION_NUMBER_KIND.one()
@@ -1907,7 +1907,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSin() {
+    public void testEvaluateSin() {
         this.evaluateAndValueCheck(
                 "=sin(1)",
                 EXPRESSION_NUMBER_KIND.create(0.841471)
@@ -1915,7 +1915,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSinh() {
+    public void testEvaluateSinh() {
         this.evaluateAndValueCheck(
                 "=sinh(1)",
                 EXPRESSION_NUMBER_KIND.create(1.175201)
@@ -1923,7 +1923,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSqrtWithNegativeNumber() {
+    public void testEvaluateSqrtWithNegativeNumber() {
         this.evaluateAndValueCheck(
                 "=sqrt(-1)",
                 SpreadsheetErrorKind.VALUE.setMessage("Illegal sqrt(x) for x < 0: x = -1")
@@ -1931,7 +1931,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSqrtWithPositiveNumber() {
+    public void testEvaluateSqrtWithPositiveNumber() {
         this.evaluateAndValueCheck(
                 "=sqrt(100)",
                 EXPRESSION_NUMBER_KIND.create(10)
@@ -1939,7 +1939,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSubstitute() {
+    public void testEvaluateSubstitute() {
         this.evaluateAndValueCheck(
                 "=substitute(\"123-456-7890\",\"-\",\"\") ",
                 "1234567890"
@@ -1947,7 +1947,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSum() {
+    public void testEvaluateSum() {
         this.evaluateAndValueCheck(
                 "=sum(1,20,300,B1:D1)",
                 Maps.of(
@@ -1960,7 +1960,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumMissingCell() {
+    public void testEvaluateSumMissingCell() {
         this.evaluateAndValueCheck(
                 "=sum(B2)",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -1968,7 +1968,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumMissingCell2() {
+    public void testEvaluateSumMissingCell2() {
         this.evaluateAndValueCheck(
                 "=sum(123+B2)",
                 EXPRESSION_NUMBER_KIND.create(123)
@@ -1976,7 +1976,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumMissingCellRange() {
+    public void testEvaluateSumMissingCellRange() {
         this.evaluateAndValueCheck(
                 "=sum(B2:B3)",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -1984,7 +1984,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumMissingCellRange2() {
+    public void testEvaluateSumMissingCellRange2() {
         this.evaluateAndValueCheck(
                 "=sum(B2:B3,123)",
                 EXPRESSION_NUMBER_KIND.create(123)
@@ -1992,7 +1992,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumMissingCellRange3() {
+    public void testEvaluateSumMissingCellRange3() {
         this.evaluateAndValueCheck(
                 "=sum(123,B2:B3)",
                 Maps.of(
@@ -2003,7 +2003,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumIfOne() {
+    public void testEvaluateSumIfOne() {
         this.evaluateAndValueCheck(
                 "=sumIf(123, 123)",
                 EXPRESSION_NUMBER_KIND.create(123)
@@ -2011,7 +2011,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumIfZero() {
+    public void testEvaluateSumIfZero() {
         this.evaluateAndValueCheck(
                 "=sumIf(123, 456)",
                 EXPRESSION_NUMBER_KIND.zero()
@@ -2019,7 +2019,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSumIfSomeValuesFiltered() {
+    public void testEvaluateSumIfSomeValuesFiltered() {
         this.evaluateAndValueCheck(
                 "=sumIf(A2:A4, \">100\")",
                 Maps.of(
@@ -2032,7 +2032,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSwitchFirst() {
+    public void testEvaluateSwitchFirst() {
         this.evaluateAndValueCheck(
                 "=switch(1, 1, \"One\", 2, \"Two\", 3, 333)",
                 "One"
@@ -2040,7 +2040,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSwitchSecond() {
+    public void testEvaluateSwitchSecond() {
         this.evaluateAndValueCheck(
                 "=switch(\"TWO22\", 1, \"One\", \"Two22\", \"Two\", 3, 333, \"switch-default\")",
                 "Two"
@@ -2048,7 +2048,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testSwitchDefaults() {
+    public void testEvaluateSwitchDefaults() {
         this.evaluateAndValueCheck(
                 "=switch(999, 1, \"One\", 22, \"Two\", 3, 333, \"switch-default\")",
                 "switch-default"
@@ -2056,7 +2056,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTan() {
+    public void testEvaluateTan() {
         this.evaluateAndValueCheck(
                 "=tan(2)",
                 EXPRESSION_NUMBER_KIND.create(-2.18504)
@@ -2064,7 +2064,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTanh() {
+    public void testEvaluateTanh() {
         this.evaluateAndValueCheck(
                 "=tanh(2)",
                 EXPRESSION_NUMBER_KIND.create(0.9640276)
@@ -2072,7 +2072,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTextWithDate() {
+    public void testEvaluateTextWithDate() {
         this.evaluateAndValueCheck(
                 "=text(date(1999,12,31), \"yyyy mm dd\")",
                 "1999 12 31"
@@ -2080,7 +2080,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTextWithDateTime() {
+    public void testEvaluateTextWithDateTime() {
         this.evaluateAndValueCheck(
                 "=text(now(), \"yyyy mm dd hh mm ss\")",
                 "1999 12 31 12 58 00"
@@ -2088,7 +2088,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTextWithNumber() {
+    public void testEvaluateTextWithNumber() {
         this.evaluateAndValueCheck(
                 "=text(123.5, \"$0000.0000$\")",
                 "$0123.5000$"
@@ -2096,7 +2096,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTextWithString() {
+    public void testEvaluateTextWithString() {
         this.evaluateAndValueCheck(
                 "=text(\"abc\", \"Ignored-pattern\")",
                 "abc"
@@ -2104,7 +2104,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTextWithTime() {
+    public void testEvaluateTextWithTime() {
         this.evaluateAndValueCheck(
                 "=text(time(12,58,59), \"ss hh mm\")",
                 "59 12 58"
@@ -2112,7 +2112,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTextJoin() {
+    public void testEvaluateTextJoin() {
         this.evaluateAndFormattedCheck(
                 "=textJoin(\",\", true(), \"a\", \"b\", \"\", \"d\")",
                 TextNode.text("a,b,da,b,d")
@@ -2120,7 +2120,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTime() {
+    public void testEvaluateTime() {
         this.evaluateAndValueCheck(
                 "=time(12, 58, 59)",
                 LocalTime.of(12, 58, 59)
@@ -2128,7 +2128,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTWithText() {
+    public void testEvaluateTWithText() {
         this.evaluateAndValueCheck(
                 "=t(\"abc123\")",
                 "abc123"
@@ -2136,7 +2136,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testToday() {
+    public void testEvaluateToday() {
         this.evaluateAndValueCheck(
                 "=today()",
                 NOW.get().toLocalDate()
@@ -2144,7 +2144,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTrim() {
+    public void testEvaluateTrim() {
         this.evaluateAndValueCheck(
                 "=trim(\"  a  b  c  \")",
                 "a b c"
@@ -2152,7 +2152,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTrue() {
+    public void testEvaluateTrue() {
         this.evaluateAndValueCheck(
                 "=true()",
                 Boolean.TRUE
@@ -2160,7 +2160,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTrue2() {
+    public void testEvaluateTrue2() {
         this.evaluateAndValueCheck(
                 "=true()",
                 Maps.of("A2", "=true()"),
@@ -2169,7 +2169,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTrunc() {
+    public void testEvaluateTrunc() {
         this.evaluateAndValueCheck(
                 "=trunc(999.999,1)",
                 EXPRESSION_NUMBER_KIND.create(999.9)
@@ -2177,7 +2177,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTruncWithNegativePlaces() {
+    public void testEvaluateTruncWithNegativePlaces() {
         this.evaluateAndValueCheck(
                 "=trunc(999.999,-2)",
                 EXPRESSION_NUMBER_KIND.create(900)
@@ -2185,7 +2185,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTypeWithNumber() {
+    public void testEvaluateTypeWithNumber() {
         this.evaluateAndValueCheck(
                 "=type(123)",
                 EXPRESSION_NUMBER_KIND.one()
@@ -2193,7 +2193,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTypeWithDate() {
+    public void testEvaluateTypeWithDate() {
         this.evaluateAndValueCheck(
                 "=type(date(2000, 1, 1))",
                 EXPRESSION_NUMBER_KIND.one()
@@ -2201,7 +2201,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testTypeWithErrorDivByZero() {
+    public void testEvaluateTypeWithErrorDivByZero() {
         this.evaluateAndValueCheck(
                 "=type(1/0)",
                 EXPRESSION_NUMBER_KIND.create(16)
@@ -2209,7 +2209,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testUnichar97() {
+    public void testEvaluateUnichar97() {
         this.evaluateAndValueCheck(
                 "=unichar(97)",
                 'a'
@@ -2217,7 +2217,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testUnichar1000() {
+    public void testEvaluateUnichar1000() {
         this.evaluateAndValueCheck(
                 "=unichar(1000)",
                 Character.valueOf((char) 1000)
@@ -2225,7 +2225,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testUnicodeA() {
+    public void testEvaluateUnicodeA() {
         this.evaluateAndValueCheck(
                 "=unicode(\"A\")",
                 EXPRESSION_NUMBER_KIND.create((int) 'A')
@@ -2233,7 +2233,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testUnicodeChar1000() {
+    public void testEvaluateUnicodeChar1000() {
         final char c = 1000;
         this.evaluateAndValueCheck(
                 "=unicode(\"" + c + "\")",
@@ -2242,7 +2242,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testUpperWithNumber() {
+    public void testEvaluateUpperWithNumber() {
         this.evaluateAndValueCheck(
                 "=upper(1.25)",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -2252,7 +2252,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
 
     @Test
-    public void testUpperWithString() {
+    public void testEvaluateUpperWithString() {
         this.evaluateAndValueCheck(
                 "=upper(\"ABCxyz\")",
                 this.metadataWithStrangeNumberFormatPattern(),
@@ -2261,7 +2261,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testValueWithNumber() {
+    public void testEvaluateValueWithNumber() {
         this.evaluateAndValueCheck(
                 "=value(123)",
                 EXPRESSION_NUMBER_KIND.create(123)
@@ -2269,7 +2269,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testValueWithString() {
+    public void testEvaluateValueWithString() {
         this.evaluateAndValueCheck(
                 "=value(\"123\")",
                 EXPRESSION_NUMBER_KIND.create(123)
@@ -2277,7 +2277,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testValueWithInvalidString() {
+    public void testEvaluateValueWithInvalidString() {
         this.evaluateAndValueCheck(
                 "=value(\"abc\")",
                 SpreadsheetErrorKind.VALUE.setMessage("Failed to convert SpreadsheetError to ExpressionNumber")
@@ -2285,7 +2285,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testWeekday() {
+    public void testEvaluateWeekday() {
         this.evaluateAndValueCheck(
                 "=weekday(date(2022, 5, 12))",
                 EXPRESSION_NUMBER_KIND.create(5)
@@ -2293,7 +2293,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testWeeknum() {
+    public void testEvaluateWeeknum() {
         this.evaluateAndValueCheck(
                 "=weeknum(date(2000, 2, 1))",
                 EXPRESSION_NUMBER_KIND.create(6)
@@ -2301,7 +2301,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testYear() {
+    public void testEvaluateYear() {
         this.evaluateAndValueCheck(
                 "=year(date(1999, 12, 31))",
                 EXPRESSION_NUMBER_KIND.create(1999)
@@ -2309,7 +2309,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testXorTrueTrueTrue() {
+    public void testEvaluateXorTrueTrueTrue() {
         this.evaluateAndValueCheck(
                 "=xor(true(), true(), true())",
                 Boolean.TRUE
@@ -2317,7 +2317,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testXorFalseFalseTrue() {
+    public void testEvaluateXorFalseFalseTrue() {
         this.evaluateAndValueCheck(
                 "=xor(true(), false(), true())",
                 Boolean.FALSE
@@ -2325,7 +2325,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testXorFalseFalseFalseFalse() {
+    public void testEvaluateXorFalseFalseFalseFalse() {
         this.evaluateAndValueCheck(
                 "=xor(false(), false(), false(), false())",
                 Boolean.FALSE
