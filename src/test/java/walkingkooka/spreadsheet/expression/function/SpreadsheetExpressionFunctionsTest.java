@@ -17,7 +17,6 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
@@ -1294,7 +1293,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    @Disabled("Require nullValue()")
     @Test
     public void testEvaluateIsNullWithNullValue() {
         this.evaluateAndValueCheck(
@@ -1370,8 +1368,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIsRefWithNull() {
         this.evaluateAndValueCheck(
-                "=isRef(null)",
-                true
+                "=isRef(nullValue())",
+                false
         );
     }
 
