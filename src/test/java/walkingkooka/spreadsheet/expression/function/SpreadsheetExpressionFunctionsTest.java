@@ -2598,9 +2598,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 NOW,
                 metadata,
                 engine,
-                (b) -> {
-                    throw new UnsupportedOperationException();
-                },
                 repo,
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                 SpreadsheetProviders.basic(
