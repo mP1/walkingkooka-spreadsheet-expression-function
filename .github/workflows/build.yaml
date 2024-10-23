@@ -24,13 +24,13 @@ jobs:
         run: mvn dependency:resolve
 
       - name: Maven install
-        run: mvn install -Dmaven.javadoc.skip=true -B -V -e > it-output.txt
+        run: mvn install -Dmaven.javadoc.skip=true -B -V -e > maven-install.txt
 
       - name: Print logs
         if: ${{ always() }}
         run: |
           tail -n 500 target/it-tests/junit-test/build.log
-          tail -n 500 it-output.txt
+          tail -n 500 maven-install.txt
 
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -41,5 +41,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: walkingkooka-spreadsheet-it-output.txt
-          path: it-output.txt
+          name: walkingkooka-spreadsheet-maven-install.txt
+          path: maven-install.txt
