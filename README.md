@@ -7,10 +7,9 @@
 
 # walkingkooka-spreadsheet-expression-function
 
-An assembly of functions that faithfully match their Excel equivalents, and are ready for use by
-walkingkooka-spreadsheet-server.
+An assembly of functions that faithfully match their Excel equivalents in terms of functionality and errors.
 
-This is mostly an assembly of the following repos which concentrate on `ExpressionFunction` implementations.
+This includes an assembly of other general purpose `ExpressionFunction(s)` from other repos.
 
 - [boolean](https://github.com/mP1/walkingkooka-tree-expression-function-boolean)
 - [datetime](https://github.com/mP1/walkingkooka-tree-expression-function-datetime)
@@ -18,21 +17,15 @@ This is mostly an assembly of the following repos which concentrate on `Expressi
 - [net](https://github.com/mP1/walkingkooka-tree-expression-function-net)
 - [number](https://github.com/mP1/walkingkooka-tree-expression-function-number)
 - [number-trigonometry](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry)
-- [spreadsheet](https://github.com/mP1/walkingkooka-spreadsheet-expression-function)
 - [stat](https://github.com/mP1/walkingkooka-tree-expression-function-stat)
 - [string](https://github.com/mP1/walkingkooka-tree-expression-function-string)
 
-All the functions in the above repos have been executed using the default environment which has several important
-different semantics that exist within a spreadsheet formula or function evaluation.
+The two links below provide links to available functions in Excel and Sheets
 
-- All java exceptions thrown by an expression or function are converted to the correct error, the normal function
-  execution simply throws exception.
-  This is important because an expression like `isError(1/0)` needs the divide by error as its argument rather than
-  lettering the exception propogate.
-- The functions include tests that use spreadsheet context that handles value converting using spreadsheet rules and
-  formatters.
+- [Excel](https://support.microsoft.com/en-au/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188)
+- [Sheets](https://support.google.com/docs/table/25273?hl=en)
 
-## Available functions
+Note the list is incomplete when compared to Excel and Sheets and should be considered a work in progress.
 
 - address(rowNum, colNum)
 - abs()
