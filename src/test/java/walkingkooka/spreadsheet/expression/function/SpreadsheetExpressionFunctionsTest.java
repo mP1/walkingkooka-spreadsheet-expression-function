@@ -2716,6 +2716,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    // README...........................................................................................................
+
+    // not really a test, basically a tool to help update the function list present in the README.
+    @Test
+    public void testReadmePrintFunctionList() {
+        SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(CaseSensitivity.INSENSITIVE)
+                .expressionFunctionInfos()
+                .forEach(
+                        i ->
+                                System.out.println("  - " + i.name())
+                );
+    }
+
     // PublicStaticHelperTesting........................................................................................
 
     @Test
