@@ -17,38 +17,36 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
 
 /**
- * A custom function that retrieves the current cell formatted value.
- * This is intended to be used to create a query expression and not actual cell formulas.
+ * A custom function that retrieves a property from the active cell in the {@link SpreadsheetExpressionEvaluationContext#cell()}.
+ * If the cell is absent it will as this is probably a failure within a query expression.
  */
-final class SpreadsheetExpressionFunctionObjectCellFormattedValue extends SpreadsheetExpressionFunctionObject {
+abstract class SpreadsheetExpressionFunctionCell<T> extends SpreadsheetExpressionFunction<T> {
 
-    /**
-     * Singleton
-     */
-    final static SpreadsheetExpressionFunctionObjectCellFormattedValue INSTANCE = new SpreadsheetExpressionFunctionObjectCellFormattedValue();
-
-    private SpreadsheetExpressionFunctionObjectCellFormattedValue() {
-        super("cellFormattedValue");
+    SpreadsheetExpressionFunctionCell(final String name) {
+        super(name);
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
+    public final List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return ExpressionFunctionParameter.EMPTY;
     }
 
     @Override
-    public Object apply(final List<Object> parameters,
-                        final SpreadsheetExpressionEvaluationContext context) {
+    public final T apply(final List<Object> parameters,
+                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        return context.cellOrFail()
-                .formattedValue()
-                .orElse(null);
+        return this.extractCellPropertyOrNull(
+                context.cellOrFail()
+        );
     }
+
+    abstract T extractCellPropertyOrNull(final SpreadsheetCell cell);
 }

@@ -19,45 +19,50 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.color.Color;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.format.SpreadsheetText;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
-import walkingkooka.tree.text.TextNode;
 
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionObjectCellFormattedValueTest extends SpreadsheetExpressionFunctionObjectTestCase<SpreadsheetExpressionFunctionObjectCellFormattedValue> {
+public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends SpreadsheetExpressionFunctionCell<T>, T> extends SpreadsheetExpressionFunctionTestCase<F, T> {
+
+    SpreadsheetExpressionFunctionCellTestCase() {
+        super();
+    }
 
     @Test
-    public void testApplyWhenFormattedValuePresent() {
+    public void testApplyWhenPropertyPresent() {
         this.applyAndCheck2(
-                SpreadsheetText.with(
-                        "Hello123"
-                ).setColor(
-                        Optional.of(Color.parse("#456789"))
-                ).toTextNode()
+                this.valuePresent()
         );
     }
 
+    abstract T valuePresent();
+
     @Test
-    public void testApplyWhenFormattedValueAbsent() {
-        this.applyAndCheck2(null);
+    public void testApplyWhenPropertyAbsent() {
+        this.applyAndCheck2(
+                this.valueAbsent()
+        );
     }
 
-    private void applyAndCheck2(final TextNode formattedValue) {
+    abstract T valueAbsent();
+
+    private void applyAndCheck2(final T value) {
         this.applyAndCheck(
                 Lists.empty(),
                 new FakeSpreadsheetExpressionEvaluationContext() {
                     @Override
                     public Optional<SpreadsheetCell> cell() {
                         return Optional.of(
-                                SpreadsheetSelection.A1.setFormula(SpreadsheetFormula.EMPTY)
-                                        .setFormattedValue(
-                                                Optional.ofNullable(formattedValue)
-                                        )
+                                setProperty(
+                                        SpreadsheetSelection.A1.setFormula(SpreadsheetFormula.EMPTY),
+                                        value
+                                )
                         );
                     }
 
@@ -66,34 +71,28 @@ public final class SpreadsheetExpressionFunctionObjectCellFormattedValueTest ext
                         return "cell: " + this.cell();
                     }
                 },
-                formattedValue
+                value
         );
     }
 
-    @Override
-    public SpreadsheetExpressionFunctionObjectCellFormattedValue createBiFunction() {
-        return SpreadsheetExpressionFunctionObjectCellFormattedValue.INSTANCE;
-    }
+    abstract SpreadsheetCell setProperty(final SpreadsheetCell cell,
+                                         final T value);
 
     @Override
-    public int minimumParameterCount() {
+    public final int minimumParameterCount() {
         return 0;
     }
 
-    // toString.........................................................................................................
 
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellFormattedValue"
-        );
+    @Override
+    public SpreadsheetExpressionEvaluationContext createContext() {
+        return SpreadsheetExpressionEvaluationContexts.fake();
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionObjectCellFormattedValue> type() {
-        return SpreadsheetExpressionFunctionObjectCellFormattedValue.class;
+    public final String typeNamePrefix() {
+        return SpreadsheetExpressionFunctionCell.class.getSimpleName();
     }
 }
