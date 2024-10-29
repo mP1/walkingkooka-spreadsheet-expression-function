@@ -56,6 +56,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.bitXor(),
                                 SpreadsheetExpressionFunctions.ceil(),
                                 SpreadsheetExpressionFunctions.cell(),
+                                SpreadsheetExpressionFunctions.cellFormattedValue(),
                                 SpreadsheetExpressionFunctions.cellFormatter(),
                                 SpreadsheetExpressionFunctions.cellParser(),
                                 SpreadsheetExpressionFunctions.cellStyle(),
