@@ -22,6 +22,8 @@ import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector;
+import walkingkooka.spreadsheet.parser.SpreadsheetParserSelector;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.ExpressionFunctionName;
@@ -35,6 +37,8 @@ import walkingkooka.tree.expression.function.number.NumberExpressionFunctions;
 import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomteryExpressionFunctions;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
+import walkingkooka.tree.text.TextNode;
+import walkingkooka.tree.text.TextStyle;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -172,38 +176,38 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectCellFormattedValue}
+     * {@see SpreadsheetExpressionFunctionCellFormattedValue}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellFormattedValue() {
-        return SpreadsheetExpressionFunctionObjectCellFormattedValue.INSTANCE;
+    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> cellFormattedValue() {
+        return SpreadsheetExpressionFunctionCellFormattedValue.INSTANCE;
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectCellFormatter}
+     * {@see SpreadsheetExpressionFunctionCellFormatter}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellFormatter() {
-        return SpreadsheetExpressionFunctionObjectCellFormatter.INSTANCE;
+    public static ExpressionFunction<SpreadsheetFormatterSelector, SpreadsheetExpressionEvaluationContext> cellFormatter() {
+        return SpreadsheetExpressionFunctionCellFormatter.INSTANCE;
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectCellParser}
+     * {@see SpreadsheetExpressionFunctionCellParser}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellParser() {
-        return SpreadsheetExpressionFunctionObjectCellParser.INSTANCE;
+    public static ExpressionFunction<SpreadsheetParserSelector, SpreadsheetExpressionEvaluationContext> cellParser() {
+        return SpreadsheetExpressionFunctionCellParser.INSTANCE;
     }
     
     /**
-     * {@see SpreadsheetExpressionFunctionObjectCellStyle}
+     * {@see SpreadsheetExpressionFunctionCellStyle}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellStyle() {
-        return SpreadsheetExpressionFunctionObjectCellStyle.INSTANCE;
+    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> cellStyle() {
+        return SpreadsheetExpressionFunctionCellStyle.INSTANCE;
     }
     
     /**
      * {@see SpreadsheetExpressionFunctionObjectCellValue}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValue() {
-        return SpreadsheetExpressionFunctionObjectCellValue.INSTANCE;
+        return SpreadsheetExpressionFunctionCellValue.INSTANCE;
     }
 
     /**

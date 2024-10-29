@@ -18,42 +18,31 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
-
-import java.util.List;
 
 /**
  * A custom function that retrieves the value for the current cell. This function exists primarily to support
  * filtering cells using a predicate of the current cell.
  */
-final class SpreadsheetExpressionFunctionObjectCellValue extends SpreadsheetExpressionFunctionObject {
+final class SpreadsheetExpressionFunctionCellValue extends SpreadsheetExpressionFunctionCell<Object> {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionObjectCellValue INSTANCE = new SpreadsheetExpressionFunctionObjectCellValue();
+    final static SpreadsheetExpressionFunctionCellValue INSTANCE = new SpreadsheetExpressionFunctionCellValue();
 
-    private SpreadsheetExpressionFunctionObjectCellValue() {
+    private SpreadsheetExpressionFunctionCellValue() {
         super("cellValue");
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return ExpressionFunctionParameter.EMPTY;
+    public Class<Object> returnType() {
+        return Object.class;
     }
 
     @Override
-    public Object apply(final List<Object> parameters,
-                        final SpreadsheetExpressionEvaluationContext context) {
-        this.checkParameterCount(parameters);
-
-        final SpreadsheetCell cell = context.cellOrFail();
+    Object extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.formula()
                 .value()
-                .orElseThrow(
-                        () -> new IllegalArgumentException("Missing cell value for " + cell.reference()
-                        )
-                );
+                .orElse(null);
     }
 }
