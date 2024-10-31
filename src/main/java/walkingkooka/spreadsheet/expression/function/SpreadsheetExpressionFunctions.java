@@ -1083,6 +1083,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> TEXTJOIN = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>textJoin();
 
     /**
+     * {@see SpreadsheetExpressionFunctionBooleanTextMatch}
+     */
+    public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> textMatch() {
+        return SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE;
+    }
+
+    /**
      * {@see DateTimeExpressionFunctions#time}
      */
     public static ExpressionFunction<LocalTime, SpreadsheetExpressionEvaluationContext> time() {

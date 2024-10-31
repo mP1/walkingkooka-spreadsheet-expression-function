@@ -175,6 +175,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.tanh(),
                                 SpreadsheetExpressionFunctions.text(),
                                 SpreadsheetExpressionFunctions.textJoin(),
+                                SpreadsheetExpressionFunctions.textMatch(),
                                 SpreadsheetExpressionFunctions.time(),
                                 SpreadsheetExpressionFunctions.today(),
                                 SpreadsheetExpressionFunctions.trim(),
