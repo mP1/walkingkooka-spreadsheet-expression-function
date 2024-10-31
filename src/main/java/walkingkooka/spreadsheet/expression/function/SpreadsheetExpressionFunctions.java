@@ -21,6 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetError;
+import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.parser.SpreadsheetParserSelector;
@@ -187,6 +188,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetFormatterSelector, SpreadsheetExpressionEvaluationContext> cellFormatter() {
         return SpreadsheetExpressionFunctionCellFormatter.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionCellFormula}
+     */
+    public static ExpressionFunction<SpreadsheetFormula, SpreadsheetExpressionEvaluationContext> cellFormula() {
+        return SpreadsheetExpressionFunctionCellFormula.INSTANCE;
     }
 
     /**

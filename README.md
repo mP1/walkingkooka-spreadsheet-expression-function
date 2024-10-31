@@ -47,6 +47,7 @@ Note the list is incomplete when compared to Excel and Sheets and should be cons
 - cell
 - cellFormattedValue
 - cellFormatter
+- cellFormula
 - cellParser
 - cellStyle
 - cellValue
