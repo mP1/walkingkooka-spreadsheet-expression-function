@@ -180,3 +180,16 @@ Note the list is incomplete when compared to Excel and Sheets and should be cons
 - year
 
 Many more functions are outstanding and remain [TODO](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues).
+
+# Search functions
+
+The following functions are only useful within a search context, each extracting
+a [SpreadsheetCell](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/SpreadsheetCell.java)
+so the value may be used by a predicate to filter cells. They are not intended to be used with formula expressions.
+
+- cellFormattedValue
+- cellFormatter
+- cellFormula
+- cellParser
+- cellStyle
+- cellValue
