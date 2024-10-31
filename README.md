@@ -165,6 +165,7 @@ majority of these functions are formula expression functions.
 - tanh
 - text
 - textJoin
+- textMatch
 - time
 - today
 - trim
@@ -194,3 +195,4 @@ so the value may be used by a predicate to filter cells. They are not intended t
 - cellParser
 - cellStyle
 - cellValue
+- textMatch
