@@ -57,6 +57,7 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
                                 pattern.split(" "))
                         .filter(s -> s.length() > 0)
                         .map(SpreadsheetExpressionFunctionBooleanTextMatch::predicate)
+                        .distinct()
                         .collect(Collectors.<Predicate<CharSequence>>toList())
         );
 
