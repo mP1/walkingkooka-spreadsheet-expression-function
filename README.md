@@ -26,7 +26,8 @@ The two links below provide links to available functions in Excel and Sheets
 - [Excel](https://support.microsoft.com/en-au/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188)
 - [Sheets](https://support.google.com/docs/table/25273?hl=en)
 
-Note the list is incomplete when compared to Excel and Sheets and should be considered a work in progress.
+Note the list is incomplete when compared to Excel and Sheets and should be considered a work in progress. The vast
+majority of these functions are formula expression functions.
 
 - abs
 - acos
@@ -183,8 +184,8 @@ Many more functions are outstanding and remain [TODO](https://github.com/mP1/wal
 
 # Search functions
 
-The following functions are only useful within a search context, each extracting
-a [SpreadsheetCell](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/SpreadsheetCell.java)
+The following functions are only useful within a search context, each extracting a
+[SpreadsheetCell](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/SpreadsheetCell.java)
 so the value may be used by a predicate to filter cells. They are not intended to be used with formula expressions.
 
 - cellFormattedValue
