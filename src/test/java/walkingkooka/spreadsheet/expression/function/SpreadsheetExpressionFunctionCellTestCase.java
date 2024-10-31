@@ -18,17 +18,24 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.convert.ConverterTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.text.HasText;
+import walkingkooka.tree.expression.ExpressionNumber;
 
 import java.util.Optional;
 
-public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends SpreadsheetExpressionFunctionCell<T>, T> extends SpreadsheetExpressionFunctionTestCase<F, T> {
+public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends SpreadsheetExpressionFunctionCell<T>, T> extends SpreadsheetExpressionFunctionTestCase<F, T>
+        implements ConverterTesting,
+        SpreadsheetMetadataTesting {
 
     SpreadsheetExpressionFunctionCellTestCase() {
         super();
@@ -83,10 +90,34 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
         return 0;
     }
 
-
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionEvaluationContexts.fake();
+    }
+
+    @Test
+    public final void testGeneralConverterValueToString() {
+        Object value = this.valuePresent();
+        if (value instanceof Optional) {
+            final Optional<?> optional = Cast.to(value);
+            value = optional.get();
+        }
+
+        this.convertAndCheck(
+                METADATA_EN_AU.generalConverter(
+                        SPREADSHEET_FORMATTER_PROVIDER,
+                        SPREADSHEET_PARSER_PROVIDER,
+                        PROVIDER_CONTEXT
+                ),
+                value,
+                String.class,
+                SpreadsheetMetadataTesting.SPREADSHEET_FORMATTER_CONTEXT,
+                value instanceof HasText ?
+                        HasText.class.cast(value).text() :
+                        value instanceof ExpressionNumber ?
+                                "1." :
+                                "*Something went wrong here*"
+        );
     }
 
     // class............................................................................................................
