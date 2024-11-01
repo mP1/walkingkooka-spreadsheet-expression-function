@@ -25,10 +25,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * This function is intended to be used within a search query expression to match text using a GLOB pattern
@@ -51,29 +48,13 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
         this.checkParameterCount(parameters);
 
         final String pattern = PATTERN.getOrFail(parameters, 0);
+        final String text = VALUE.getOrFail(parameters, 1);
 
-        final Predicate<CharSequence> predicate = Predicates.any(
-                Arrays.stream(
-                                pattern.split(" "))
-                        .filter(s -> s.length() > 0)
-                        .map(SpreadsheetExpressionFunctionBooleanTextMatch::predicate)
-                        .distinct()
-                        .collect(Collectors.<Predicate<CharSequence>>toList())
-        );
-
-        return predicate.test(
-                VALUE.getOrFail(
-                        parameters,
-                        1
-                )
-        );
-    }
-
-    private static Predicate<CharSequence> predicate(final String pattern) {
-        return CaseSensitivity.INSENSITIVE.globPattern(
+        return Predicates.globPatterns(
                 pattern,
+                CaseSensitivity.INSENSITIVE,
                 '\\'
-        );
+        ).test(text);
     }
 
     final static ExpressionFunctionParameter<String> PATTERN = ExpressionFunctionParameterName.with("pattern")
