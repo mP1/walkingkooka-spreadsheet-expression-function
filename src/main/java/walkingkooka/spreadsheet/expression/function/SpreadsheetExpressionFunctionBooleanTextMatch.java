@@ -52,8 +52,7 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
 
         return Predicates.globPatterns(
                 pattern,
-                CaseSensitivity.INSENSITIVE,
-                '\\'
+                CaseSensitivity.INSENSITIVE
         ).test(text);
     }
 
