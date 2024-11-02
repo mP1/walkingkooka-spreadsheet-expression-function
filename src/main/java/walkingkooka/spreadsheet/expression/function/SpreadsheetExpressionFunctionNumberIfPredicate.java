@@ -159,7 +159,7 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
     private static Predicate<Object> equalsString(final String expression,
                                                   final SpreadsheetExpressionEvaluationContext context) {
         return (v) ->
-                CaseSensitivity.SENSITIVE.globPattern(expression, '~')
+                CaseSensitivity.SENSITIVE.globPattern(expression)
                         .test(
                                 context.convertOrFail(
                                         context.evaluate(
