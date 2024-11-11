@@ -20,6 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.Cast;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetFormula;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
@@ -50,6 +51,60 @@ import java.util.Optional;
  * Collection of static factory methods for numerous {@link ExpressionFunction}.
  */
 public final class SpreadsheetExpressionFunctions implements PublicStaticHelper {
+
+    /**
+     * Constant that holds the textMatch function to be used by the find wizard when building the BIG query from cell component contains text boxes.
+     */
+    public final static ExpressionFunctionName TEXT_MATCH = cellFindWizardHelperFunction(
+            textMatch()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#formula()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_FORMULA = cellFindWizardHelperFunction(
+            cellFormula()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#formatter()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_FORMATTER = cellFindWizardHelperFunction(
+            cellFormatter()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#parser()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_PARSER = cellFindWizardHelperFunction(
+            cellParser()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#style()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_STYLE = cellFindWizardHelperFunction(
+            cellStyle()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetFormula#value()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_VALUE = cellFindWizardHelperFunction(
+            cellValue()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
+            cellFormattedValue()
+    );
+
+    private static ExpressionFunctionName cellFindWizardHelperFunction(final ExpressionFunction<?, ?> function) {
+        return function.name()
+                .orElseThrow(() -> new IllegalStateException("Missing function for " + function));
+    }
 
     /**
      * {@see NumberExpressionFunctions#abs}
