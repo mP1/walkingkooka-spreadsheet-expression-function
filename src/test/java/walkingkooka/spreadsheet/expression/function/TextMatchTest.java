@@ -18,6 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.CanBeEmptyTesting;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.predicate.PredicateTesting2;
 import walkingkooka.test.ParseStringTesting;
@@ -26,7 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class TextMatchTest implements ParseStringTesting<TextMatch>,
         PredicateTesting2<TextMatch, CharSequence>,
-        HashCodeEqualsDefinedTesting2<TextMatch> {
+        HashCodeEqualsDefinedTesting2<TextMatch>,
+        CanBeEmptyTesting {
 
     // with.............................................................................................................
 
@@ -75,6 +77,56 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
     @Override
     public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
         return thrown;
+    }
+
+    // isEmpty..........................................................................................................
+
+    @Test
+    public void testIsEmptyWhenEmptyString() {
+        this.isEmptyAndCheck(
+                "",
+                true
+        );
+    }
+
+    @Test
+    public void testIsEmptyWhenNotEmptyWhitespaceOnlyString() {
+        this.isEmptyAndCheck(
+                " ",
+                true
+        );
+    }
+
+    @Test
+    public void testIsEmptyWhenNotEmptyWhitespaceOnlyString2() {
+        this.isEmptyAndCheck(
+                "  ",
+                true
+        );
+    }
+
+    @Test
+    public void testIsEmptyWhenOneGlobPattern() {
+        this.isEmptyAndCheck(
+                "*",
+                false
+        );
+    }
+
+    @Test
+    public void testIsEmptyWhenSeveralGlobPatterns() {
+        this.isEmptyAndCheck(
+                "1 2* ?3",
+                false
+        );
+    }
+
+    private void isEmptyAndCheck(final String text,
+                                 final boolean expected) {
+        this.isEmptyAndCheck(
+                this.parseString(text),
+                expected
+        );
     }
 
     // Predicate........................................................................................................
