@@ -18,9 +18,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.predicate.Predicates;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
@@ -47,13 +45,11 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final String pattern = PATTERN.getOrFail(parameters, 0);
-        final String text = VALUE.getOrFail(parameters, 1);
-
-        return Predicates.globPatterns(
-                pattern,
-                CaseSensitivity.INSENSITIVE
-        ).test(text);
+        return TextMatch.parse(
+                PATTERN.getOrFail(parameters, 0)
+        ).test(
+                VALUE.getOrFail(parameters, 1)
+        );
     }
 
     final static ExpressionFunctionParameter<String> PATTERN = ExpressionFunctionParameterName.with("pattern")
