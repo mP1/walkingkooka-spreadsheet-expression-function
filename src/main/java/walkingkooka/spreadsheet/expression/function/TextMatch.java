@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.CanBeEmpty;
 import walkingkooka.Value;
 import walkingkooka.predicate.Predicates;
 import walkingkooka.text.CaseSensitivity;
@@ -30,7 +31,8 @@ import java.util.function.Predicate;
  */
 public final class TextMatch implements Value<String>,
         Predicate<CharSequence>,
-        HasCaseSensitivity {
+        HasCaseSensitivity,
+        CanBeEmpty {
 
     public static TextMatch parse(final String text) {
         Objects.requireNonNull(text, "text");
@@ -64,6 +66,17 @@ public final class TextMatch implements Value<String>,
     }
 
     private final static CaseSensitivity CASE_SENSITIVITY = CaseSensitivity.INSENSITIVE;
+
+    // CanBeEmpty.......................................................................................................
+
+    /**
+     * A {@link TextMatch} is empty if it is only whitespace and has no actual glob pattern(s).
+     */
+    @Override
+    public boolean isEmpty() {
+        return this.text.trim()
+                .isEmpty();
+    }
 
     // Predicate........................................................................................................
 
