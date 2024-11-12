@@ -22,6 +22,7 @@ import walkingkooka.Value;
 import walkingkooka.predicate.Predicates;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.HasCaseSensitivity;
+import walkingkooka.text.HasText;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -30,6 +31,7 @@ import java.util.function.Predicate;
  * Contains a text match pattern and is also a {@link Predicate}.
  */
 public final class TextMatch implements Value<String>,
+        HasText,
         Predicate<CharSequence>,
         HasCaseSensitivity,
         CanBeEmpty {
@@ -57,6 +59,13 @@ public final class TextMatch implements Value<String>,
     }
 
     private final String text;
+
+    // HasText..........................................................................................................
+
+    @Override
+    public String text() {
+        return this.value();
+    }
 
     // HasCasSensitive..................................................................................................
 

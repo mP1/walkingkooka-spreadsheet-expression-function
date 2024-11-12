@@ -22,10 +22,12 @@ import walkingkooka.CanBeEmptyTesting;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.predicate.PredicateTesting2;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.HasTextTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class TextMatchTest implements ParseStringTesting<TextMatch>,
+        HasTextTesting,
         PredicateTesting2<TextMatch, CharSequence>,
         HashCodeEqualsDefinedTesting2<TextMatch>,
         CanBeEmptyTesting {
@@ -37,6 +39,16 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
         assertThrows(
                 NullPointerException.class,
                 () -> TextMatch.parse(null)
+        );
+    }
+
+    @Test
+    public void testText() {
+        final String text = "* 22 333";
+
+        this.textAndCheck(
+                this.parseString(text),
+                text
         );
     }
 
