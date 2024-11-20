@@ -46,7 +46,6 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
-import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.provider.SpreadsheetProviders;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
@@ -2576,7 +2575,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                   final Optional<TextNode> formatted) {
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
-        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
         metadataStore.save(metadata);
 
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
