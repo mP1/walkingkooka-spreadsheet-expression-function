@@ -322,7 +322,6 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                 metadata,
                 metadata.spreadsheetConverterContext(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        NOW,
                         SPREADSHEET_LABEL_NAME_RESOLVER,
                         SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                                 metadata,
