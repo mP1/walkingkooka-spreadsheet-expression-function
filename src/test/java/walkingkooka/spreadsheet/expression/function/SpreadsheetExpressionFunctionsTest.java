@@ -1696,7 +1696,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateNow() {
         this.evaluateAndValueCheck(
                 "=now()",
-                NOW.get()
+                NOW.now()
         );
     }
 
@@ -2245,7 +2245,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateToday() {
         this.evaluateAndValueCheck(
                 "=today()",
-                NOW.get().toLocalDate()
+                NOW.now()
+                        .toLocalDate()
         );
     }
 
@@ -2594,7 +2595,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
                 SERVER_URL,
-                NOW,
                 metadata,
                 engine,
                 repo,
