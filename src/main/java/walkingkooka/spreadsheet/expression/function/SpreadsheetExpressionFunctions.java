@@ -259,14 +259,14 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<SpreadsheetParserSelector, SpreadsheetExpressionEvaluationContext> cellParser() {
         return SpreadsheetExpressionFunctionCellParser.INSTANCE;
     }
-    
+
     /**
      * {@see SpreadsheetExpressionFunctionCellStyle}
      */
     public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> cellStyle() {
         return SpreadsheetExpressionFunctionCellStyle.INSTANCE;
     }
-    
+
     /**
      * {@see SpreadsheetExpressionFunctionObjectCellValue}
      */

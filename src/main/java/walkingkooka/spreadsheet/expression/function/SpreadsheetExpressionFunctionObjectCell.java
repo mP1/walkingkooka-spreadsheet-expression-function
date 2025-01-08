@@ -49,7 +49,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
             .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-        TYPE_INFO,
+            TYPE_INFO,
             CELL_OR_RANGE_REFERENCE_OPTIONAL
     );
 
