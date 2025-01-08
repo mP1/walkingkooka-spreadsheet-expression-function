@@ -65,7 +65,7 @@ final class SpreadsheetExpressionFunctionHyperlink extends SpreadsheetExpression
                         .append(
                                 UrlPath.parse(
                                         "" +
-                                        metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID) +
+                                                metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID) +
                                                 UrlPath.SEPARATOR +
                                                 metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME) +
                                                 UrlPath.SEPARATOR +

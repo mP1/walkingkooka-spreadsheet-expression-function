@@ -125,7 +125,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
                 false
         );
     }
-    
+
     @Test
     public void testIsErrorBoolean() {
         this.isErrorAndCheck(
@@ -185,7 +185,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     }
 
     private void isErrorAndCheck(final Object value,
-                              final boolean expected) {
+                                 final boolean expected) {
         this.isAndCheck(
                 SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError(),
                 value,
@@ -262,7 +262,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testIsNaAnySpreadsheetErrorKind() {
         for (final SpreadsheetErrorKind kind : SpreadsheetErrorKind.values()) {
-            if(SpreadsheetErrorKind.NA == kind) {
+            if (SpreadsheetErrorKind.NA == kind) {
                 continue;
             }
             this.isNaAndCheck(
@@ -273,7 +273,7 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     }
 
     private void isNaAndCheck(final Object value,
-                               final boolean expected) {
+                              final boolean expected) {
         this.isAndCheck(
                 SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa(),
                 value,
