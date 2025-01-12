@@ -142,7 +142,7 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
                                                     final BiFunction<Expression, Expression, Expression> condition,
                                                     final SpreadsheetExpressionEvaluationContext context) {
 
-        return (v) -> (Boolean) context.evaluate(
+        return (v) -> (Boolean) context.evaluateExpression(
                 condition.apply(
                         Expression.value(v),
                         context.parseFormula(
@@ -162,7 +162,7 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
                 CaseSensitivity.SENSITIVE.globPattern(expression)
                         .test(
                                 context.convertOrFail(
-                                        context.evaluate(
+                                        context.evaluateExpression(
                                                 Expression.value(v)
                                         ),
                                         String.class
@@ -172,7 +172,7 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
 
     private static Predicate<Object> equalsExpression(final Object value,
                                                       final SpreadsheetExpressionEvaluationContext context) {
-        return (v) -> (Boolean) context.evaluate(
+        return (v) -> (Boolean) context.evaluateExpression(
                 Expression.equalsExpression(
                         Expression.value(v),
                         Expression.value(value)
