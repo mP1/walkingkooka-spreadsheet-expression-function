@@ -100,7 +100,7 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
         }
 
         // now create the context with the given labels and values.
-        final SpreadsheetExpressionEvaluationContext context2 = context.context(
+        final SpreadsheetExpressionEvaluationContext context2 = context.enterScope(
                 (n) -> {
                     final Object value = nameAndValues.get(n);
 
