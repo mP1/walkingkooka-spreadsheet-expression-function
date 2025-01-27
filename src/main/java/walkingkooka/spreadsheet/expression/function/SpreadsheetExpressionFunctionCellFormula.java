@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.SpreadsheetFormula;
+import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 
 /**
  * A custom function that retrieves the {@link SpreadsheetFormula} for the current cell.

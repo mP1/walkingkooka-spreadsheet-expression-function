@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.SpreadsheetFormula;
+import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 
 public final class SpreadsheetExpressionFunctionCellFormulaTest extends SpreadsheetExpressionFunctionCellTestCase<SpreadsheetExpressionFunctionCellFormula, SpreadsheetFormula> {
 
