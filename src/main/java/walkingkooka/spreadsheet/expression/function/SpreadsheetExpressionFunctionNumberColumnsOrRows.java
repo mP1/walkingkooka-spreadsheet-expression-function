@@ -63,7 +63,9 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
                 .create(
                         reference.isCell() ?
                                 1L :
-                                this.mapper.apply((SpreadsheetCellRangeReference) reference)
+                                this.mapper.apply(
+                                        reference.toCellRange()
+                                )
                 );
     }
 
