@@ -35,6 +35,16 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     private final static char POSITIVE_SYMBOL = 'P';
 
     @Override
+    public void testLoadCellWithNullCellFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testLoadLabelMappingWithNullLabelMappingFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testEvaluateExpressionUnknownFunctionNameFails() {
         throw new UnsupportedOperationException();
     }

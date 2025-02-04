@@ -40,6 +40,8 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.store.FakeSpreadsheetCellStore;
+import walkingkooka.spreadsheet.store.SpreadsheetCellStore;
+import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
@@ -130,17 +132,25 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
         return SpreadsheetExpressionEvaluationContexts.basic(
                 Optional.of(CELL),
-                new FakeSpreadsheetCellStore() {
+                new FakeSpreadsheetStoreRepository() {
+
                     @Override
-                    public Optional<SpreadsheetCell> load(final SpreadsheetCellReference cell) {
-                        if (LOAD_CELL_REFERENCE.equals(cell)) {
-                            return Optional.of(LOAD_CELL);
-                        }
-                        if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
-                            return Optional.of(CELL_EMPTY_FORMULA);
-                        }
-                        return Optional.empty();
+                    public SpreadsheetCellStore cells() {
+                        return this.cells;
                     }
+
+                    private final SpreadsheetCellStore cells = new FakeSpreadsheetCellStore() {
+                        @Override
+                        public Optional<SpreadsheetCell> load(final SpreadsheetCellReference cell) {
+                            if (LOAD_CELL_REFERENCE.equals(cell)) {
+                                return Optional.of(LOAD_CELL);
+                            }
+                            if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
+                                return Optional.of(CELL_EMPTY_FORMULA);
+                            }
+                            return Optional.empty();
+                        }
+                    };
                 },
                 SERVER_URL,
                 (r) -> {

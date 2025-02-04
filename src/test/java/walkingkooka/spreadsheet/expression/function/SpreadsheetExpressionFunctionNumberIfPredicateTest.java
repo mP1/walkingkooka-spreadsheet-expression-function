@@ -31,7 +31,7 @@ import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
-import walkingkooka.spreadsheet.store.SpreadsheetCellStores;
+import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
 import java.math.MathContext;
@@ -292,7 +292,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
 
         return SpreadsheetExpressionEvaluationContexts.basic(
                 Optional.empty(),
-                SpreadsheetCellStores.fake(),
+                SpreadsheetStoreRepositories.fake(),
                 Url.parseAbsolute("https://example.com/server"),
                 (r) -> {
                     throw new UnsupportedOperationException();
