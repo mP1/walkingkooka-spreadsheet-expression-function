@@ -30,7 +30,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.store.SpreadsheetCellStores;
+import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
 
 import java.math.MathContext;
@@ -77,7 +77,7 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
     public SpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionEvaluationContexts.basic(
                 Optional.empty(),
-                SpreadsheetCellStores.fake(),
+                SpreadsheetStoreRepositories.fake(),
                 Url.parseAbsolute("https://example.com/server"),
                 (r) -> {
                     throw new UnsupportedOperationException();
