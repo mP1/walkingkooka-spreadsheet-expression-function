@@ -25,6 +25,7 @@ import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.formula.parser.SpreadsheetFormulaParserToken;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
+import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelMapping;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelName;
@@ -44,6 +45,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * A {@link SpreadsheetExpressionEvaluationContext} that has a main goal of preparing parameters with a converter
@@ -79,6 +81,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference reference) {
         return this.context.loadCell(reference);
+    }
+
+    @Override
+    public Set<SpreadsheetCell> loadCells(final SpreadsheetCellRangeReference range) {
+        return this.context.loadCells(range);
     }
 
     @Override
