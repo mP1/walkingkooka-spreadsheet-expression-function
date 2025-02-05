@@ -40,6 +40,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testLoadCellsWithNullRangeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testLoadLabelMappingWithNullLabelMappingFails() {
         throw new UnsupportedOperationException();
     }
