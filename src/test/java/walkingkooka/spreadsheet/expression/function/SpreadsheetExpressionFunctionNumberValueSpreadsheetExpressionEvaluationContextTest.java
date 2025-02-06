@@ -17,10 +17,12 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
 
 import java.math.MathContext;
+import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext> {
 
@@ -40,7 +42,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
-    public void testLoadCellsWithNullRangeFails() {
+    public void testLoadCellRangeWithNullRangeFails() {
         throw new UnsupportedOperationException();
     }
 
@@ -70,6 +72,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 DECIMAL_SEPARATOR,
                 GROUP_SEPARATOR,
                 new FakeSpreadsheetExpressionEvaluationContext() {
+
+                    @Override
+                    public Optional<SpreadsheetCell> cell() {
+                        return Optional.empty();
+                    }
 
                     @Override
                     public String currencySymbol() {
