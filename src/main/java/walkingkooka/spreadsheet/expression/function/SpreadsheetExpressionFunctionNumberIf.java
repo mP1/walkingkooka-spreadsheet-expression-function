@@ -31,7 +31,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * A {@link NumberExpressionFunction} that wraps another function, using the 2nd parameter as a condition to filter the first parameter
+ * A {@link SpreadsheetExpressionFunctionNumber} that wraps another function, using the 2nd parameter as a condition to filter the first parameter
  * which may be a value or a {@link List} of values from a range etc.
  */
 final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionFunctionNumber {
