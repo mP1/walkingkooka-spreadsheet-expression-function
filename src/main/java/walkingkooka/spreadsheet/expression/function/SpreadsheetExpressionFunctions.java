@@ -374,19 +374,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * Counts the missing values or cells or null values
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countBlank() {
-        return COUNT_BLANK;
-    }
-
-    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> COUNT_BLANK = StatExpressionFunctions.<SpreadsheetExpressionEvaluationContext>count()
-            .filterParameterValues(SpreadsheetExpressionFunctions::filterNullAndNotMissingCell)
-            .setName(functionName("countBlank"));
-
-    private static boolean filterNullAndNotMissingCell(final Object value,
-                                                       final SpreadsheetExpressionEvaluationContext context) {
-        return null == value ||
-                (value instanceof SpreadsheetError &&
-                        ((SpreadsheetError) value).isMissingCell()
-                );
+        return SpreadsheetExpressionFunctionNumberCountBlank.INSTANCE;
     }
 
     /**
