@@ -2596,7 +2596,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
                 SERVER_URL,
                 metadata,
-                engine,
                 repo,
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                 SpreadsheetProviders.basic(
