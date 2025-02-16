@@ -31,8 +31,8 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
-import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -314,11 +314,8 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
 
         return SpreadsheetExpressionEvaluationContexts.basic(
                 Optional.empty(),
-                SpreadsheetStoreRepositories.fake(),
+                SpreadsheetExpressionReferenceLoaders.fake(),
                 Url.parseAbsolute("https://example.com/server"),
-                (r) -> {
-                    throw new UnsupportedOperationException();
-                },
                 metadata,
                 metadata.spreadsheetConverterContext(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
