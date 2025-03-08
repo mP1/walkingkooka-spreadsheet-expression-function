@@ -136,7 +136,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.month(),
                                 SpreadsheetExpressionFunctions.not(),
                                 SpreadsheetExpressionFunctions.now(),
-                                SpreadsheetExpressionFunctions.nullValue(),
+                                SpreadsheetExpressionFunctions.nullFunction(),
                                 SpreadsheetExpressionFunctions.numberValue(),
                                 SpreadsheetExpressionFunctions.oct2bin(),
                                 SpreadsheetExpressionFunctions.oct2dec(),

@@ -126,7 +126,7 @@ majority of these functions are formula expression functions.
 - month
 - not
 - now
-- nullValue
+- null
 - numberValue
 - oct2bin
 - oct2dec
