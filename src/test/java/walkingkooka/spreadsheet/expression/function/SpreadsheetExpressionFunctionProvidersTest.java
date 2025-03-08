@@ -60,6 +60,8 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
                                             return "int";
                                         case "isoWeekNum":
                                             return "isoweeknum";
+                                        case "nullFunction":
+                                            return "null";
                                         case "switchFunction":
                                             return "switch";
                                         case "trueFunction":

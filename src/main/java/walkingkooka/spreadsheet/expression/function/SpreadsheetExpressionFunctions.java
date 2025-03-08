@@ -837,10 +837,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see ExpressionFunctions#nullValue}
+     * {@see ExpressionFunctions#nullFunction}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> nullValue() {
-        return ExpressionFunctions.nullValue();
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> nullFunction() {
+        return ExpressionFunctions.nullFunction();
     }
 
     /**

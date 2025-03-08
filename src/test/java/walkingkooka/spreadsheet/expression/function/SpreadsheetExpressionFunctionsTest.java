@@ -1290,7 +1290,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIsNullWithNullValue() {
         this.evaluateAndValueCheck(
-                "=isNull(nullValue())",
+                "=isNull(null())",
                 true
         );
     }
