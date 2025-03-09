@@ -109,7 +109,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateWithEqMissingCell() {
         this.evaluateAndValueCheck(
                 "=Z99",
-                EXPRESSION_NUMBER_KIND.zero()
+                null
         );
     }
 
@@ -1478,9 +1478,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateLeftMissingCellReference() {
         this.evaluateAndValueCheck(
                 "=left(Z99)",
-                SpreadsheetErrorKind.VALUE.setMessage(
-                        "Failed to convert SpreadsheetError to String"
-                )
+                SpreadsheetErrorKind.VALUE.toError()
         );
     }
 
