@@ -2530,7 +2530,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.CREATED_BY, EmailAddress.parse("creator@example.com"))
                 .set(SpreadsheetMetadataPropertyName.CREATED_TIMESTAMP, LocalDateTime.now())
                 .set(SpreadsheetMetadataPropertyName.MODIFIED_BY, EmailAddress.parse("modified@example.com"))
-                .set(SpreadsheetMetadataPropertyName.MODIFIED_DATE_TIME, LocalDateTime.now())
+                .set(SpreadsheetMetadataPropertyName.MODIFIED_TIMESTAMP, LocalDateTime.now())
                 .set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
                 .set(SpreadsheetMetadataPropertyName.DATETIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
                 .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
