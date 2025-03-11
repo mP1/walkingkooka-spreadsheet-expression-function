@@ -94,7 +94,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
                 .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.ENGLISH)
                 .loadFromLocale()
                 .set(SpreadsheetMetadataPropertyName.CREATED_BY, EmailAddress.parse("creator@example.com"))
-                .set(SpreadsheetMetadataPropertyName.CREATE_DATE_TIME, LocalDateTime.now())
+                .set(SpreadsheetMetadataPropertyName.CREATED_TIMESTAMP, LocalDateTime.now())
                 .set(SpreadsheetMetadataPropertyName.MODIFIED_BY, EmailAddress.parse("modified@example.com"))
                 .set(SpreadsheetMetadataPropertyName.MODIFIED_DATE_TIME, LocalDateTime.now())
                 .set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
