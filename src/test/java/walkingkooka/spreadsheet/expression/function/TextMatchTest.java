@@ -144,6 +144,11 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
     // Predicate........................................................................................................
 
     @Test
+    public void testTestWithNullFalse() {
+        this.testFalse(null);
+    }
+
+    @Test
     public void testTestWhenEmptyString() {
         this.testFalse(
                 TextMatch.parse(""),
