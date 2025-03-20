@@ -76,6 +76,7 @@ majority of these functions are formula expression functions.
 - dollar
 - e
 - error
+- eval
 - even
 - exact
 - exp
