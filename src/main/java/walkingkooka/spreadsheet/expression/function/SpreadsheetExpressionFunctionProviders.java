@@ -86,6 +86,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.dollar(),
                                 SpreadsheetExpressionFunctions.e(),
                                 SpreadsheetExpressionFunctions.error(),
+                                SpreadsheetExpressionFunctions.eval(),
                                 SpreadsheetExpressionFunctions.even(),
                                 SpreadsheetExpressionFunctions.exact(),
                                 SpreadsheetExpressionFunctions.exp(),

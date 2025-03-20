@@ -471,6 +471,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionObjectEval}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> eval() {
+        return SpreadsheetExpressionFunctionObjectEval.INSTANCE;
+    }
+
+    /**
      * {@see NumberExpressionFunctions#even}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> even() {

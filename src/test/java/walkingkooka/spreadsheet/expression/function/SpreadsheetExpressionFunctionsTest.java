@@ -90,7 +90,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
-
     private final static ExpressionFunctionProvider EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(CaseSensitivity.INSENSITIVE);
 
     // error handling tests............................................................................................
@@ -849,6 +848,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=e()",
                 EXPRESSION_NUMBER_KIND.create(2.718282)
+        );
+    }
+
+    @Test
+    public void testEvaluateEval() {
+        this.evaluateAndValueCheck(
+                "=eval(\"11+22\")",
+                EXPRESSION_NUMBER_KIND.create(
+                        11 + 22
+                )
         );
     }
 
@@ -2537,7 +2546,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection (string-to-selection, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
+                        ConverterSelector.parse("collection (string-to-expression, string-to-selection, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         ExpressionFunctionAliasSet.parse(
