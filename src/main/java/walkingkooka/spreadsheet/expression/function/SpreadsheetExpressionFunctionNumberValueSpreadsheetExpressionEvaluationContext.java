@@ -33,6 +33,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelMapping;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelName;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.storage.StorageStore;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.tree.expression.Expression;
@@ -253,6 +254,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public boolean isPure(final ExpressionFunctionName name) {
         return this.context.isPure(name);
+    }
+
+    @Override
+    public StorageStore storage() {
+        return this.context.storage();
     }
 
     private final SpreadsheetExpressionEvaluationContext context;
