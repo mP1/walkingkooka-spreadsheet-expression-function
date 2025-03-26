@@ -31,6 +31,7 @@ import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
+import walkingkooka.storage.StorageStores;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -113,6 +114,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
                 SpreadsheetExpressionReferenceLoaders.fake(),
                 Url.parseAbsolute("https://example.com/server"),
                 metadata,
+                StorageStores.tree(STORAGE_STORE_CONTEXT),
                 SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
                 EXPRESSION_FUNCTION_PROVIDER,
                 PROVIDER_CONTEXT
