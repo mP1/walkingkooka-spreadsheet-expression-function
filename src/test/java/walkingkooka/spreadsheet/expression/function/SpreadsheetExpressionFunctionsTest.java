@@ -60,6 +60,7 @@ import walkingkooka.spreadsheet.store.SpreadsheetLabelStores;
 import walkingkooka.spreadsheet.store.SpreadsheetRowStores;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
+import walkingkooka.storage.StorageStores;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -2395,7 +2396,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateValueWithInvalidString() {
         this.evaluateAndValueCheck(
                 "=value(\"abc\")",
-                SpreadsheetErrorKind.VALUE.setMessage("Failed to convert SpreadsheetError to ExpressionNumber")
+                SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Invalid type walkingkooka.spreadsheet.SpreadsheetError expected walkingkooka.tree.expression.ExpressionNumber")
         );
     }
 
@@ -2598,6 +2599,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetCellRangeStores.treeMap(),
                 SpreadsheetCellRangeStores.treeMap(),
                 SpreadsheetRowStores.treeMap(),
+                StorageStores.tree(STORAGE_STORE_CONTEXT),
                 SpreadsheetUserStores.treeMap()
         );
 
