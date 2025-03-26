@@ -18,9 +18,12 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.collect.set.Sets;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
 
@@ -41,10 +44,16 @@ final class SpreadsheetExpressionFunctionBooleanIsRef extends SpreadsheetExpress
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        return CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0) instanceof SpreadsheetSelection; // lgtm [java/useless-type-test]
+        return REFERENCE.getOrFail(parameters, 0) instanceof SpreadsheetSelection; // lgtm [java/useless-type-test]
     }
 
-    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(CELL_OR_RANGE_REFERENCE);
+    final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
+            .required(Object.class)
+            .setKinds(
+                    Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+            );
+
+    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
