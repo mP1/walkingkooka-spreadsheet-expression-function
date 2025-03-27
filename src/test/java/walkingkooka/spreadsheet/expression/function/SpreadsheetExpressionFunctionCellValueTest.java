@@ -45,7 +45,7 @@ public final class SpreadsheetExpressionFunctionCellValueTest extends Spreadshee
                                 final Object value) {
         return cell.setFormula(
                 cell.formula()
-                        .setValue(
+                        .setExpressionValue(
                                 Optional.ofNullable(value)
                         )
         );
