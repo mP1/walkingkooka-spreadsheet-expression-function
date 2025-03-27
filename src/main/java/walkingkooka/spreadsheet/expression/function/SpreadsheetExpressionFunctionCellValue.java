@@ -42,7 +42,7 @@ final class SpreadsheetExpressionFunctionCellValue extends SpreadsheetExpression
     @Override
     Object extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.formula()
-                .expressionValue()
+                .value()
                 .orElse(null);
     }
 }
