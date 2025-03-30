@@ -33,6 +33,8 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
+import walkingkooka.storage.StorageStore;
 import walkingkooka.storage.StorageStores;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.Expression;
@@ -318,7 +320,15 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                 SpreadsheetExpressionReferenceLoaders.fake(),
                 Url.parseAbsolute("https://example.com/server"),
                 metadata,
-                StorageStores.tree(STORAGE_STORE_CONTEXT),
+                new FakeSpreadsheetStoreRepository() {
+
+                    @Override
+                    public StorageStore storage() {
+                        return storage;
+                    }
+
+                    private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
+                },
                 metadata.spreadsheetConverterContext(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         SPREADSHEET_LABEL_NAME_RESOLVER,

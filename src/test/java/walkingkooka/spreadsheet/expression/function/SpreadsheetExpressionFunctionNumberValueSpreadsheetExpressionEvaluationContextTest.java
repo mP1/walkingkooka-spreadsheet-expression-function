@@ -162,6 +162,18 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testSetSpreadsheetMetadataWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetSpreadsheetMetadataWithDifferentIdFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    // class............................................................................................................
+
+    @Override
     public Class<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext> type() {
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.class;
     }
