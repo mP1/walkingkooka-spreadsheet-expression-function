@@ -156,9 +156,6 @@ majority of these functions are formula expression functions.
 - sign
 - sin
 - sinh
-- spreadsheetMetadataGet
-- spreadsheetMetadataRemove
-- spreadsheetMetadataSet
 - sqrt
 - substitute
 - sum
@@ -200,3 +197,12 @@ so the value may be used by a predicate to filter cells. They are not intended t
 - cellStyle
 - cellValue
 - textMatch
+
+# SpreadsheetMetadata functions
+
+These functions are not intended to be used within a spreadsheet formula, but rather provide utility for other
+purposes (TODO share example)
+
+- spreadsheetMetadataGet
+- spreadsheetMetadataRemove
+- spreadsheetMetadataSet
