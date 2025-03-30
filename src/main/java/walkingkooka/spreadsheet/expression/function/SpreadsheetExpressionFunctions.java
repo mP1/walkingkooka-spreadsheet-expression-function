@@ -1069,6 +1069,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSet}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> spreadsheetMetadataSet() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataSet.INSTANCE;
+    }
+
+    /**
      * {@see NumberExpressionFunctions#sqrt}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
