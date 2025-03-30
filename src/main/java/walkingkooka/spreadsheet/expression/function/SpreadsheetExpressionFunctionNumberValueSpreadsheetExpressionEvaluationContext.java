@@ -121,6 +121,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public void setSpreadsheetMetadata(final SpreadsheetMetadata metadata) {
+        this.context.setSpreadsheetMetadata(metadata);
+    }
+
+    @Override
     public AbsoluteUrl serverUrl() {
         return this.context.serverUrl();
     }
