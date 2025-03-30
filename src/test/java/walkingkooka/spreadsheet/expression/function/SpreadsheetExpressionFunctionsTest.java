@@ -2038,6 +2038,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSpreadsheetMetadataGet() {
+        this.evaluateAndValueCheck(
+                "=spreadsheetMetadataGet(\"spreadsheet-name\", \"missing!!!\")",
+                SpreadsheetName.with("Untitled5678")
+        );
+    }
+
+    @Test
     public void testEvaluateSqrtWithNegativeNumber() {
         this.evaluateAndValueCheck(
                 "=sqrt(-1)",
@@ -2547,7 +2555,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection (string-to-expression, string-to-selection, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
+                        ConverterSelector.parse("collection (string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         ExpressionFunctionAliasSet.parse(

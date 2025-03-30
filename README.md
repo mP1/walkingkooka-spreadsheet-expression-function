@@ -156,6 +156,7 @@ majority of these functions are formula expression functions.
 - sign
 - sin
 - sinh
+- spreadsheetMetadataGet
 - sqrt
 - substitute
 - sum
