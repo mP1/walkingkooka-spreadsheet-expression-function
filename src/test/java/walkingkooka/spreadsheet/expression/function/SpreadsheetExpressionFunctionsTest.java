@@ -2046,6 +2046,29 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSpreadsheetMetadataSet() {
+        final SpreadsheetName expected = SpreadsheetName.with("NewName222");
+
+        final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
+                "=spreadsheetMetadataSet(\"spreadsheet-name\", \"NewName222\")",
+                expected
+        );
+
+        // must load SpreadsheetMetadata because BasicSpreadsheetEngineContext#spreadsheetMetadata is not refreshed after spreadsheet save.
+        final SpreadsheetId id = context.spreadsheetMetadata()
+                .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
+
+        this.checkEquals(
+                expected,
+                context.storeRepository()
+                        .metadatas()
+                        .loadOrFail(id)
+                        .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
+                "spreadsheetMetadata"
+        );
+    }
+
+    @Test
     public void testEvaluateSqrtWithNegativeNumber() {
         this.evaluateAndValueCheck(
                 "=sqrt(-1)",
@@ -2458,19 +2481,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // evaluateAndCheckValue............................................................................................
 
-    private void evaluateAndValueCheck(final String cellFormula,
-                                       final Object expectedValue) {
-        this.evaluateAndValueCheck(
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
                 cellFormula,
                 Maps.empty(),
                 expectedValue
         );
     }
 
-    private void evaluateAndValueCheck(final String cellFormula,
-                                       final SpreadsheetMetadata metadata,
-                                       final Object expectedValue) {
-        this.evaluateAndValueCheck(
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+                                                           final SpreadsheetMetadata metadata,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
                 cellFormula,
                 Maps.empty(),
                 metadata,
@@ -2478,10 +2501,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private void evaluateAndValueCheck(final String cellFormula,
-                                       final Map<String, String> preload,
-                                       final Object expectedValue) {
-        this.evaluateAndValueCheck(
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+                                                           final Map<String, String> preload,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
                 cellFormula,
                 preload,
                 this.metadata(),
@@ -2489,11 +2512,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private void evaluateAndValueCheck(final String cellFormula,
-                                       final Map<String, String> preload,
-                                       final SpreadsheetMetadata metadata,
-                                       final Object expectedValue) {
-        this.evaluateAndCheck(
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+                                                           final Map<String, String> preload,
+                                                           final SpreadsheetMetadata metadata,
+                                                           final Object expectedValue) {
+        return this.evaluateAndCheck(
                 SpreadsheetSelection.parseCell("A1"),
                 cellFormula,
                 preload,
@@ -2512,10 +2535,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private void evaluateAndFormattedCheck(final String cellFormula,
-                                           final Map<String, String> preload,
-                                           final TextNode expectedFormatted) {
-        this.evaluateAndCheck(
+    private SpreadsheetEngineContext evaluateAndFormattedCheck(final String cellFormula,
+                                                               final Map<String, String> preload,
+                                                               final TextNode expectedFormatted) {
+        return this.evaluateAndCheck(
                 SpreadsheetSelection.parseCell("A1"),
                 cellFormula,
                 preload,
@@ -2524,12 +2547,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private void evaluateAndCheck(final SpreadsheetCellReference cellReference,
-                                  final String cellFormula,
-                                  final Map<String, String> preload,
-                                  final Optional<?> expectedValue,
-                                  final Optional<TextNode> formatted) {
-        this.evaluateAndCheck(
+    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCellReference cellReference,
+                                                      final String cellFormula,
+                                                      final Map<String, String> preload,
+                                                      final Optional<?> expectedValue,
+                                                      final Optional<TextNode> formatted) {
+        return this.evaluateAndCheck(
                 cellReference,
                 cellFormula,
                 preload,
@@ -2555,7 +2578,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection (string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
+                        ConverterSelector.parse("collection (string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, string-to-spreadsheet-name, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         ExpressionFunctionAliasSet.parse(
@@ -2585,12 +2608,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("\"Number:\"#.###").spreadsheetFormatterSelector());
     }
 
-    private void evaluateAndCheck(final SpreadsheetCellReference cellReference,
-                                  final String cellFormula,
-                                  final Map<String, String> preload,
-                                  final SpreadsheetMetadata metadata,
-                                  final Optional<?> expectedValue,
-                                  final Optional<TextNode> formatted) {
+    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCellReference cellReference,
+                                                      final String cellFormula,
+                                                      final Map<String, String> preload,
+                                                      final SpreadsheetMetadata metadata,
+                                                      final Optional<?> expectedValue,
+                                                      final Optional<TextNode> formatted) {
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
@@ -2674,6 +2697,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                     .collect(Collectors.joining("\n"))
             );
         }
+
+        return context;
     }
 
     // isPure..........................................................................................................
