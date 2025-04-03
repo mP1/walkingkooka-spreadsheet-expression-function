@@ -2650,7 +2650,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SPREADSHEET_EXPORTER_PROVIDER,
                         SPREADSHEET_FORMATTER_PROVIDER,
                         SPREADSHEET_IMPORTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER
+                        SPREADSHEET_PARSER_PROVIDER,
+                        VALIDATOR_PROVIDER
                 ),
                 PROVIDER_CONTEXT
         );
