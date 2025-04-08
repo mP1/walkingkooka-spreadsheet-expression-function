@@ -48,11 +48,6 @@ public final class SpreadsheetExpressionFunctionStringFormulaTextTest extends Sp
         );
     }
 
-    @Test
-    public void testCellMissingFormulaFail() {
-
-    }
-
     @Override
     public SpreadsheetExpressionFunctionStringFormulaText createBiFunction() {
         return SpreadsheetExpressionFunctionStringFormulaText.INSTANCE;
