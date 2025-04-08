@@ -72,6 +72,7 @@ import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.TextStylePropertyName;
+import walkingkooka.validation.ValidationError;
 
 import java.lang.reflect.Method;
 import java.math.MathContext;
@@ -2416,6 +2417,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateValidationError() {
+        this.evaluateAndValueCheck(
+                "=ValidationError(\"#N/A Hello message 123\")",
+                ValidationError.with(
+                        SpreadsheetSelection.A1,
+                        "Hello message 123"
+                )
+        );
+    }
+
+    @Test
     public void testEvaluateValueWithString() {
         this.evaluateAndValueCheck(
                 "=value(\"123\")",
@@ -2578,7 +2590,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection (string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, string-to-spreadsheet-name, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
+                        ConverterSelector.parse("collection (string-to-error, string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, string-to-spreadsheet-name, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         ExpressionFunctionAliasSet.parse(

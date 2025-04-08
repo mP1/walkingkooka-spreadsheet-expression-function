@@ -206,3 +206,4 @@ purposes (TODO share example)
 - spreadsheetMetadataGet
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
+- validationError
