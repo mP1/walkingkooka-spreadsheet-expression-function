@@ -42,6 +42,7 @@ import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
+import walkingkooka.validation.ValidationError;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -1237,6 +1238,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             StringExpressionFunctions.upperCase(),
             "upper"
     );
+
+    /**
+     * {@see SpreadsheetExpressionFunctionValidationError}
+     */
+    public static ExpressionFunction<ValidationError<SpreadsheetCellReference>, SpreadsheetExpressionEvaluationContext> validationError() {
+        return SpreadsheetExpressionFunctionValidationError.INSTANCE;
+    }
 
     /**
      * {@see NumberExpressionFunctions#number}
