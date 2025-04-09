@@ -40,6 +40,8 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.FakeSpreadsheetExpressionReferenceLoader;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.spreadsheet.store.SpreadsheetCellStore;
+import walkingkooka.spreadsheet.store.SpreadsheetCellStores;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.storage.StorageStore;
 import walkingkooka.storage.StorageStores;
@@ -149,6 +151,13 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 SERVER_URL,
                 metadata,
                 new FakeSpreadsheetStoreRepository() {
+
+                    @Override
+                    public SpreadsheetCellStore cells() {
+                        return this.cells;
+                    }
+
+                    private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
 
                     @Override
                     public StorageStore storage() {
