@@ -30,6 +30,7 @@ import walkingkooka.spreadsheet.parser.SpreadsheetParserSelector;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetColumnReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -836,6 +837,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetColumnReference, SpreadsheetExpressionEvaluationContext> nextEmptyColumn() {
         return SpreadsheetExpressionFunctionNextEmptyColumn.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionNextEmptyRow}
+     */
+    public static ExpressionFunction<SpreadsheetRowReference, SpreadsheetExpressionEvaluationContext> nextEmptyRow() {
+        return SpreadsheetExpressionFunctionNextEmptyRow.INSTANCE;
     }
 
     /**

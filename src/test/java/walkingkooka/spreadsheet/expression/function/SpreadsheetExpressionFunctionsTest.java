@@ -1686,6 +1686,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateNextEmptyRow() {
+        this.evaluateAndValueCheck(
+                "=nextEmptyRow(\"A\")",
+                SpreadsheetSelection.parseRow("2")
+        );
+    }
+
+    @Test
     public void testEvaluateNotFalse() {
         this.evaluateAndValueCheck(
                 "=not(false())",
