@@ -135,6 +135,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.minute(),
                                 SpreadsheetExpressionFunctions.mod(),
                                 SpreadsheetExpressionFunctions.month(),
+                                SpreadsheetExpressionFunctions.nextEmptyColumn(),
                                 SpreadsheetExpressionFunctions.not(),
                                 SpreadsheetExpressionFunctions.now(),
                                 SpreadsheetExpressionFunctions.nullFunction(),

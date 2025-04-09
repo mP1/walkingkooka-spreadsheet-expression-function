@@ -206,4 +206,10 @@ purposes (TODO share example)
 - spreadsheetMetadataGet
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
+
+# SpreadsheetForm function
+
+These functions exist to support forms that display and store cell values in the enclosing spreadsheet.
+
+- nextEmptyColumn
 - validationError
