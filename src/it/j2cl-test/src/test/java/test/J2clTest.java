@@ -27,7 +27,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
 @J2clTestInput(JunitTest.class)
-public class JunitTest {
+public class J2clTest {
 
     @Test
     public void testColumnE1() {

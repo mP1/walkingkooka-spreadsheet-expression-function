@@ -127,7 +127,7 @@
 
                             <skip>false</skip>
                             <tests>
-                                <test>test.JunitTest</test>
+                                <test>test.J2clTest</test>
                             </tests>
                             <test-timeout>20</test-timeout>
                         </configuration>
