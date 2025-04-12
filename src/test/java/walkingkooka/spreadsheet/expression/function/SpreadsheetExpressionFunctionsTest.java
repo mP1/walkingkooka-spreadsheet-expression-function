@@ -2058,7 +2058,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateSpreadsheetMetadataGet() {
         this.evaluateAndValueCheck(
-                "=spreadsheetMetadataGet(\"spreadsheet-name\", \"missing!!!\")",
+                "=spreadsheetMetadataGet(\"spreadsheetName\", \"missing!!!\")",
                 SpreadsheetName.with("Untitled5678")
         );
     }
@@ -2068,7 +2068,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetName expected = SpreadsheetName.with("NewName222");
 
         final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
-                "=spreadsheetMetadataSet(\"spreadsheet-name\", \"NewName222\")",
+                "=spreadsheetMetadataSet(\"spreadsheetName\", \"NewName222\")",
                 expected
         );
 
