@@ -20,6 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converters;
+import walkingkooka.environment.AuditInfo;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
@@ -87,11 +88,15 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                         .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
                         .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.ENGLISH)
                         .loadFromLocale()
-                        .set(SpreadsheetMetadataPropertyName.CREATED_BY, EmailAddress.parse("creator@example.com"))
-                        .set(SpreadsheetMetadataPropertyName.CREATED_TIMESTAMP, LocalDateTime.now())
-                        .set(SpreadsheetMetadataPropertyName.MODIFIED_BY, EmailAddress.parse("modified@example.com"))
-                        .set(SpreadsheetMetadataPropertyName.MODIFIED_TIMESTAMP, LocalDateTime.now())
-                        .set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
+                        .set(
+                                SpreadsheetMetadataPropertyName.AUDIT_INFO,
+                                AuditInfo.with(
+                                        EmailAddress.parse("creator@example.com"),
+                                        LocalDateTime.of(1999, 12, 31, 12, 58, 59),
+                                        EmailAddress.parse("modified@example.com"),
+                                        LocalDateTime.of(2000, 1, 2, 3, 4, 5)
+                                )
+                        ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
                         .set(SpreadsheetMetadataPropertyName.DATETIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
                         .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
                         .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
