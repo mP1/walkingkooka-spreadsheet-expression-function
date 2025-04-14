@@ -62,6 +62,7 @@ import walkingkooka.spreadsheet.store.SpreadsheetLabelStores;
 import walkingkooka.spreadsheet.store.SpreadsheetRowStores;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
+import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.StorageStores;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -2656,6 +2657,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetCellStores.treeMap(),
                 SpreadsheetCellReferencesStores.treeMap(),
                 SpreadsheetColumnStores.treeMap(),
+                SpreadsheetFormStores.treeMap(),
                 SpreadsheetGroupStores.treeMap(),
                 SpreadsheetLabelStores.treeMap(),
                 SpreadsheetExpressionReferenceStores.treeMap(),
