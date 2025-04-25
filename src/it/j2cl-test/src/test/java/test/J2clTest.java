@@ -26,7 +26,7 @@ import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctio
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
-@J2clTestInput(JunitTest.class)
+@J2clTestInput(J2clTest.class)
 public class J2clTest {
 
     @Test
