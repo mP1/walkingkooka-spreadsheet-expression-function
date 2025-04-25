@@ -97,7 +97,7 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                                         LocalDateTime.of(2000, 1, 2, 3, 4, 5)
                                 )
                         ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-                        .set(SpreadsheetMetadataPropertyName.DATETIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+                        .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
                         .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
                         .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                         .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
