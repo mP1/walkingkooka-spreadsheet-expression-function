@@ -45,6 +45,7 @@ import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.validation.ValidationError;
+import walkingkooka.validation.provider.ValidatorSelector;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -103,6 +104,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
             cellFormattedValue()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_VALIDATOR = cellFindWizardHelperFunction(
+            cellValidator()
     );
 
     private static ExpressionFunctionName cellFindWizardHelperFunction(final ExpressionFunction<?, ?> function) {
@@ -275,6 +283,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValue() {
         return SpreadsheetExpressionFunctionCellValue.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectCellValidator}
+     */
+    public static ExpressionFunction<ValidatorSelector, SpreadsheetExpressionEvaluationContext> cellValidator() {
+        return SpreadsheetExpressionFunctionCellValidator.INSTANCE;
     }
 
     /**
