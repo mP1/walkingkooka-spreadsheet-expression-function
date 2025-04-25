@@ -128,7 +128,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                                 LocalDateTime.of(2000, 1, 2, 3, 4, 5)
                         )
                 ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-                .set(SpreadsheetMetadataPropertyName.DATETIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+                .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
                 .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, KIND)
                 .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("general"))
