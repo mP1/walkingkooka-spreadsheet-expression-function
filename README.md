@@ -196,6 +196,7 @@ so the value may be used by a predicate to filter cells. They are not intended t
 - cellParser
 - cellStyle
 - cellValue
+- cellValidator
 - textMatch
 
 # SpreadsheetMetadata functions
