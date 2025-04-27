@@ -15,12 +15,13 @@
  *
  */
 
-package walkingkooka.spreadsheet.expression.function;
+package walkingkooka.spreadsheet.expression.function.provider;
 
 import walkingkooka.Cast;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
