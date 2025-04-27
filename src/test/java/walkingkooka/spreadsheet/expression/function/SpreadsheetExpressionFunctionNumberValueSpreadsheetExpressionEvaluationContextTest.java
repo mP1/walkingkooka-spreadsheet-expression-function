@@ -17,11 +17,20 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
+import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext> {
@@ -116,6 +125,41 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     @Override
                     public char positiveSign() {
                         return POSITIVE_SYMBOL;
+                    }
+
+                    // FormHandlerContext...............................................................................
+
+                    @Override
+                    public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
+                        Objects.requireNonNull(name, "name");
+
+                        throw new UnsupportedOperationException();
+                    }
+
+                    @Override
+                    public Optional<?> loadFieldValue(final SpreadsheetExpressionReference reference) {
+                        Objects.requireNonNull(reference, "reference");
+
+                        throw new UnsupportedOperationException();
+                    }
+
+                    @Override
+                    public SpreadsheetDelta saveFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
+                        Objects.requireNonNull(fields, "fields");
+
+                        throw new UnsupportedOperationException();
+                    }
+
+                    @Override
+                    public Optional<EmailAddress> user() {
+                        return Optional.of(SpreadsheetMetadataTesting.USER);
+                    }
+
+                    @Override
+                    public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
+                        Objects.requireNonNull(reference, "reference");
+
+                        throw new UnsupportedOperationException();
                     }
                 }
         );

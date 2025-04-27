@@ -40,6 +40,7 @@ import walkingkooka.storage.StorageStores;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.validation.form.FormHandlerContexts;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -344,6 +345,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                         ),
                         PROVIDER_CONTEXT
                 ),
+                FormHandlerContexts.fake(),
                 EXPRESSION_FUNCTION_PROVIDER,
                 PROVIDER_CONTEXT
         );

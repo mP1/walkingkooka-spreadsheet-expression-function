@@ -49,6 +49,7 @@ import walkingkooka.storage.StorageStores;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.validation.form.FormHandlerContexts;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -172,6 +173,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                     private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
                 },
                 SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+                FormHandlerContexts.fake(),
                 EXPRESSION_FUNCTION_PROVIDER,
                 PROVIDER_CONTEXT
         );
