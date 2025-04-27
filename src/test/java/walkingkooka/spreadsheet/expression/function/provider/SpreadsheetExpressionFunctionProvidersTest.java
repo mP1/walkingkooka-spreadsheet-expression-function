@@ -15,13 +15,14 @@
  *
  */
 
-package walkingkooka.spreadsheet.expression.function;
+package walkingkooka.spreadsheet.expression.function.provider;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.SpreadsheetExpressionFunctionNames;
+import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
