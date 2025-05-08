@@ -20,6 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -38,7 +39,7 @@ final class SpreadsheetExpressionFunctionNa extends SpreadsheetExpressionFunctio
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return ExpressionFunctionParameter.EMPTY;
+        return ExpressionFunction.NO_PARAMETERS;
     }
 
     @Override
