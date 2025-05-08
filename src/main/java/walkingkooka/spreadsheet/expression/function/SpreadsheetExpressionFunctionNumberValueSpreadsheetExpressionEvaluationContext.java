@@ -151,6 +151,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public Optional<Object> validationValue() {
+        return this.context.validationValue();
+    }
+
+    @Override
     public CaseSensitivity stringEqualsCaseSensitivity() {
         return this.context.stringEqualsCaseSensitivity();
     }
