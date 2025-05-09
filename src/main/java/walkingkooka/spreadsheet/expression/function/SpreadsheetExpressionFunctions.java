@@ -1331,8 +1331,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
 
     private static Optional<ExpressionFunctionName> functionName(final String name) {
         return Optional.of(
-                ExpressionFunctionName.with(name)
-                        .setCaseSensitivity(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
+                walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.name(name)
         );
     }
 
