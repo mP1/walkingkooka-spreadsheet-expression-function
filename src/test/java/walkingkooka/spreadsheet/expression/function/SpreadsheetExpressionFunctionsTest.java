@@ -31,7 +31,6 @@ import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
-import walkingkooka.spreadsheet.SpreadsheetExpressionFunctionNames;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.convert.SpreadsheetConvertersConverterProviders;
@@ -95,7 +94,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
-    private final static ExpressionFunctionProvider EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(SpreadsheetExpressionFunctionNames.CASE_SENSITIVITY);
+    private final static ExpressionFunctionProvider EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
     // error handling tests............................................................................................
 
@@ -2754,7 +2753,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetExpressionEvaluationContext context = SpreadsheetExpressionEvaluationContexts.fake();
 
         final List<ExpressionFunction<?, ExpressionEvaluationContext>> pureFunctions = Lists.array();
-        final ExpressionFunctionProvider provider = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(SpreadsheetExpressionFunctionNames.CASE_SENSITIVITY);
+        final ExpressionFunctionProvider provider = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
         provider.expressionFunctionInfos()
                 .forEach(
@@ -2800,7 +2799,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // not really a test, basically a tool to help update the function list present in the README.
     @Test
     public void testReadmePrintFunctionList() {
-        SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(SpreadsheetExpressionFunctionNames.CASE_SENSITIVITY)
+        SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
                 .expressionFunctionInfos()
                 .forEach(
                         i ->

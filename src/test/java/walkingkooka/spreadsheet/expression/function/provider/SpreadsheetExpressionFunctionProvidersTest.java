@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.SortedSets;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
-import walkingkooka.spreadsheet.SpreadsheetExpressionFunctionNames;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -76,7 +75,7 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
                                     }
                                 }
                         ).collect(Collectors.toCollection(SortedSets::tree)),
-                (Object) SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(SpreadsheetExpressionFunctionNames.CASE_SENSITIVITY)
+                (Object) SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
                         .expressionFunctionInfos()
                         .stream()
                         .map(i -> i.name().value())
