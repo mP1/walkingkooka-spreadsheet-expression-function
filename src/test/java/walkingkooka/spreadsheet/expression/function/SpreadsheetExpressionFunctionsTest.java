@@ -131,7 +131,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=UnknownFunction123()",
                 SpreadsheetError.functionNotFound(
-                        ExpressionFunctionName.with("UnknownFunction123")
+                        walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.name("UnknownFunction123")
                 )
         );
     }
