@@ -2615,7 +2615,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         ConverterSelector.parse("collection (string-to-error, string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, string-to-spreadsheet-name, selection-to-selection, selection-to-string, error-to-number, error-throwing, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-                        ExpressionFunctionAliasSet.parse(
+                        walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.parseAliasSet(
                                 EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
                                         .stream()
                                         .map(i -> i.name().value())
