@@ -21,6 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
@@ -34,7 +35,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
     /**
      * An {@link ExpressionFunctionProvider} with all the functions in this project.
      */
-    public static ExpressionFunctionProvider expressionFunctionProvider(final CaseSensitivity nameCaseSensitivity) {
+    public static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> expressionFunctionProvider(final CaseSensitivity nameCaseSensitivity) {
         return ExpressionFunctionProviders.basic(
                 Url.parseAbsolute("https://github.com/mP1/walkingkooka-spreadsheet-expression-function/"),
                 nameCaseSensitivity,
