@@ -26,6 +26,7 @@ import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
+import walkingkooka.spreadsheet.convert.SpreadsheetConverterContexts;
 import walkingkooka.spreadsheet.convert.SpreadsheetConvertersConverterProviders;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
@@ -336,6 +337,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                     private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
                 },
                 metadata.spreadsheetConverterContext(
+                        SpreadsheetConverterContexts.NO_VALIDATION_REFERENCE,
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         SPREADSHEET_LABEL_NAME_RESOLVER,
                         SpreadsheetConvertersConverterProviders.spreadsheetConverters(
