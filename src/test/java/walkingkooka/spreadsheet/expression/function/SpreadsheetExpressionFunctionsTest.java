@@ -65,7 +65,6 @@ import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.StorageStores;
 import walkingkooka.text.printer.TreePrintableTesting;
-import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionAliasSet;
@@ -2752,8 +2751,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testIsPure() {
         final SpreadsheetExpressionEvaluationContext context = SpreadsheetExpressionEvaluationContexts.fake();
 
-        final List<ExpressionFunction<?, ExpressionEvaluationContext>> pureFunctions = Lists.array();
-        final ExpressionFunctionProvider provider = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
+        final List<ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>> pureFunctions = Lists.array();
+        final ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> provider = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
         provider.expressionFunctionInfos()
                 .forEach(
@@ -2777,7 +2776,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                     break;
                             }
 
-                            final ExpressionFunction<?, ExpressionEvaluationContext> function = provider.expressionFunction(
+                            final ExpressionFunction<?, SpreadsheetExpressionEvaluationContext> function = provider.expressionFunction(
                                     name,
                                     Lists.empty(),
                                     PROVIDER_CONTEXT
