@@ -291,6 +291,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         return this.context.storage();
     }
 
+    @Override
+    public SpreadsheetExpressionReference validationReference() {
+        return this.context.validationReference();
+    }
+
     private final SpreadsheetExpressionEvaluationContext context;
 
     // EnvironmentContext...............................................................................................
