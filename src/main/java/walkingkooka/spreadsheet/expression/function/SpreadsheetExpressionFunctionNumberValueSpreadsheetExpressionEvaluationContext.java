@@ -262,8 +262,23 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     private final char groupSeparator;
 
     @Override
+    public String infinitySymbol() {
+        return this.context.infinitySymbol();
+    }
+
+    @Override
     public MathContext mathContext() {
         return this.context.mathContext();
+    }
+
+    @Override
+    public char monetaryDecimalSeparator() {
+        return this.context.monetaryDecimalSeparator();
+    }
+
+    @Override
+    public String nanSymbol() {
+        return this.context.nanSymbol();
     }
 
     @Override
@@ -277,8 +292,18 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public char permillSymbol() {
+        return this.context.permillSymbol();
+    }
+
+    @Override
     public char positiveSign() {
         return this.context.positiveSign();
+    }
+
+    @Override
+    public char zeroDigit() {
+        return this.context.zeroDigit();
     }
 
     @Override
