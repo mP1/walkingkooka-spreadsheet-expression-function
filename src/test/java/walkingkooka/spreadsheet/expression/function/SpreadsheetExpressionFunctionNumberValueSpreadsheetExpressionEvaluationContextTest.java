@@ -42,7 +42,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL128;
 
     private final static char NEGATIVE_SYMBOL = 'N';
-    private final static char PERCENTAGE_SYMBOL = 'R';
+    private final static char PERCENT_SYMBOL = 'R';
     private final static char POSITIVE_SYMBOL = 'P';
 
     @Override
@@ -118,8 +118,8 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     }
 
                     @Override
-                    public char percentageSymbol() {
-                        return PERCENTAGE_SYMBOL;
+                    public char percentSymbol() {
+                        return PERCENT_SYMBOL;
                     }
 
                     @Override
@@ -196,8 +196,8 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
-    public char percentageSymbol() {
-        return PERCENTAGE_SYMBOL;
+    public char percentSymbol() {
+        return PERCENT_SYMBOL;
     }
 
     @Override
