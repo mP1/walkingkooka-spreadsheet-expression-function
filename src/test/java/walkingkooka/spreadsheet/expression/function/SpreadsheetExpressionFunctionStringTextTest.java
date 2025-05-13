@@ -157,7 +157,7 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
             }
 
             @Override
-            public char percentageSymbol() {
+            public char percentSymbol() {
                 return '%';
             }
 
