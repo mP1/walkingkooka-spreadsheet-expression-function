@@ -61,7 +61,7 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
         this.textAndCheck(
                 EXPRESSION_NUMBER_KIND.create(123.50),
                 "$0000.0000$",
-                "!0123.5000!"
+                "!0123*5000!"
         );
     }
 
@@ -149,6 +149,11 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
             @Override
             public char groupSeparator() {
                 return ',';
+            }
+
+            @Override
+            public char monetaryDecimalSeparator() {
+                return '*';
             }
 
             @Override

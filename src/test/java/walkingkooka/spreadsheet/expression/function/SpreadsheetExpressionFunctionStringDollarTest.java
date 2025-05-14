@@ -41,7 +41,7 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
     public void testMissingDecimals() {
         this.dollarAndCheck(
                 123.456,
-                "$AUD123.46"
+                "$AUD123*46"
         );
     }
 
@@ -50,7 +50,7 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
         this.dollarAndCheck(
                 123.0,
                 2,
-                "$AUD123.00"
+                "$AUD123*00"
         );
     }
 
@@ -59,7 +59,7 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
         this.dollarAndCheck(
                 123.456,
                 2,
-                "$AUD123.46"
+                "$AUD123*46"
         );
     }
 
@@ -68,7 +68,7 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
         this.dollarAndCheck(
                 123.000,
                 1,
-                "$AUD123.0"
+                "$AUD123*0"
         );
     }
 
@@ -77,7 +77,7 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
         this.dollarAndCheck(
                 123.456,
                 1,
-                "$AUD123.5"
+                "$AUD123*5"
         );
     }
 
@@ -292,13 +292,13 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
             }
 
             @Override
-            public char decimalSeparator() {
-                return '.';
+            public char groupSeparator() {
+                return ',';
             }
 
             @Override
-            public char groupSeparator() {
-                return ',';
+            public char monetaryDecimalSeparator() {
+                return '*';
             }
 
             @Override
