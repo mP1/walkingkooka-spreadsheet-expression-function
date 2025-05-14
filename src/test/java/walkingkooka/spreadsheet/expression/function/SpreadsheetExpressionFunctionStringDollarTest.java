@@ -26,8 +26,8 @@ import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.ExpressionNumberConverters;
 import walkingkooka.tree.expression.ExpressionNumberKind;
+import walkingkooka.tree.expression.convert.ExpressionNumberConverters;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.math.BigDecimal;
