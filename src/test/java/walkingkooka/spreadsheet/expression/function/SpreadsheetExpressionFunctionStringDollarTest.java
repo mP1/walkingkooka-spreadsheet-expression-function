@@ -315,6 +315,11 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
             public char positiveSign() {
                 return '+';
             }
+
+            @Override
+            public char zeroDigit() {
+                return '0';
+            }
         };
     }
 

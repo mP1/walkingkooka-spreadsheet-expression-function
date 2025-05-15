@@ -170,6 +170,11 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
             public char positiveSign() {
                 return '+';
             }
+
+            @Override
+            public char zeroDigit() {
+                return '0';
+            }
         };
     }
 
