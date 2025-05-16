@@ -2622,7 +2622,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         )
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMAT_CONVERTER,
-                        ConverterSelector.parse("collection (text-to-selection, selection-to-selection, selection-to-text, error-to-number, error-to-string, general)")
+                        ConverterSelector.parse("collection (text-to-selection, selection-to-selection, selection-to-text, error-to-number, error-to-text, general)")
                 ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
                 .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
