@@ -23,10 +23,10 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
 import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
+import walkingkooka.spreadsheet.convert.SpreadsheetConverters;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverters;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.math.MathContext;
@@ -101,6 +101,17 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
             }
 
             @Override
+            public boolean canConvert(final Object value,
+                                      final Class<?> type) {
+                return this.converter()
+                        .canConvert(
+                                value,
+                                type,
+                                this
+                        );
+            }
+
+            @Override
             public <TT> Either<TT, String> convert(final Object value,
                                                    final Class<TT> target) {
                 return this.converter()
@@ -116,12 +127,11 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
                 return Converters.collection(
                         Lists.of(
                                 Converters.simple(),
-                                Converters.object(),
+                                Converters.booleanToNumber(),
+                                SpreadsheetConverters.textToText(),
+                                SpreadsheetConverters.numberToNumber(),
                                 Converters.localDateToLocalDateTime(),
-                                Converters.localTimeToLocalDateTime(),
-                                ExpressionNumberConverters.toNumberOrExpressionNumber(
-                                        Converters.numberToNumber()
-                                )
+                                Converters.localTimeToLocalDateTime()
                         )
                 );
             }

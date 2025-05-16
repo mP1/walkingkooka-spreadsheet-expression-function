@@ -91,7 +91,7 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
                     );
         }
 
-        return SpreadsheetConverters.stringToFormatPattern(pattern)
+        return SpreadsheetConverters.formatPatternToString(pattern)
                 .convertOrFail(
                         value,
                         String.class,
