@@ -2611,7 +2611,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection (string-to-error, string-to-expression, string-to-selection, string-to-spreadsheet-metadata-property-name, string-to-spreadsheet-name, selection-to-selection, selection-to-text, error-to-number, error-throwing, general)")
+                        ConverterSelector.parse("collection (text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, error-to-number, error-throwing, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.parseAliasSet(
@@ -2622,7 +2622,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         )
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMAT_CONVERTER,
-                        ConverterSelector.parse("collection (string-to-selection, selection-to-selection, selection-to-text, error-to-number, error-to-string, general)")
+                        ConverterSelector.parse("collection (text-to-selection, selection-to-selection, selection-to-text, error-to-number, error-to-string, general)")
                 ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
                 .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
