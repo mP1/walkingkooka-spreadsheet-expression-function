@@ -67,7 +67,6 @@ import walkingkooka.storage.StorageStores;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
-import walkingkooka.tree.expression.function.provider.ExpressionFunctionAliasSet;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.TextNode;
@@ -2614,12 +2613,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-                        walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.parseAliasSet(
-                                EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
-                                        .stream()
-                                        .map(i -> i.name().value())
-                                        .collect(Collectors.joining(ExpressionFunctionAliasSet.SEPARATOR.string()))
-                        )
+                        EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
+                                .aliasSet()
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMAT_CONVERTER,
                         ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, error-to-text, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
