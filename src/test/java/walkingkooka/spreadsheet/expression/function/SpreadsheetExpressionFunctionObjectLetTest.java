@@ -337,6 +337,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                     private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
                 },
                 metadata.spreadsheetConverterContext(
+                        SpreadsheetConverterContexts.NO_METADATA,
                         SpreadsheetConverterContexts.NO_VALIDATION_REFERENCE,
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         SPREADSHEET_LABEL_NAME_RESOLVER,
