@@ -22,6 +22,7 @@ import walkingkooka.convert.Converter;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -304,6 +305,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public char zeroDigit() {
         return this.context.zeroDigit();
+    }
+
+    @Override
+    public DecimalNumberSymbols decimalNumberSymbols() {
+        return this.context.decimalNumberSymbols();
     }
 
     @Override
