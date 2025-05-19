@@ -21,10 +21,10 @@ import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
-import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
@@ -55,6 +55,7 @@ import walkingkooka.validation.form.Form;
 import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -66,7 +67,8 @@ import java.util.Set;
  * that uses the provided decimal separator and group separator.
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
-        DateTimeContextDelegator {
+        DateTimeContextDelegator,
+        EnvironmentContextDelegator {
 
     static SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext with(final char decimalSeparator,
                                                                                                final char groupSeparator,
@@ -329,21 +331,16 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
 
     private final SpreadsheetExpressionEvaluationContext context;
 
-    // EnvironmentContext...............................................................................................
+    // EnvironmentContextDelegator......................................................................................
 
     @Override
-    public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
-        return this.context.environmentValue(name);
+    public EnvironmentContext environmentContext() {
+        return this.context;
     }
 
     @Override
-    public Set<EnvironmentValueName<?>> environmentValueNames() {
-        return this.context.environmentValueNames();
-    }
-
-    @Override
-    public Optional<EmailAddress> user() {
-        return this.context.user();
+    public LocalDateTime now() {
+        return this.context.now();
     }
 
     // FormHandlerContext...............................................................................................
