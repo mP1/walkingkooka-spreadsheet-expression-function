@@ -47,6 +47,7 @@ majority of these functions are formula expression functions.
 - ceil
 - cell
 - cellDateTimeSymbols
+- cellDecimalNumberSymbols
 - cellFormattedValue
 - cellFormatter
 - cellFormula

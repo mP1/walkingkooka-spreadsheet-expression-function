@@ -59,6 +59,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.ceil(),
                                 SpreadsheetExpressionFunctions.cell(),
                                 SpreadsheetExpressionFunctions.cellDateTimeSymbols(),
+                                SpreadsheetExpressionFunctions.cellDecimalNumberSymbols(),
                                 SpreadsheetExpressionFunctions.cellFormattedValue(),
                                 SpreadsheetExpressionFunctions.cellFormatter(),
                                 SpreadsheetExpressionFunctions.cellFormula(),
