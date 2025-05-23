@@ -18,6 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -61,6 +62,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public final static ExpressionFunctionName TEXT_MATCH = cellFindWizardHelperFunction(
             textMatch()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#dateTimeSymbols()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_DATE_TIME_SYMBOLS = cellFindWizardHelperFunction(
+            cellDateTimeSymbols()
     );
 
     /**
@@ -240,6 +248,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cell() {
         return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionCellDateTimeSymbols}
+     */
+    public static ExpressionFunction<DateTimeSymbols, SpreadsheetExpressionEvaluationContext> cellDateTimeSymbols() {
+        return SpreadsheetExpressionFunctionCellDateTimeSymbols.INSTANCE;
     }
 
     /**
