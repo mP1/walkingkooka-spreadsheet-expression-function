@@ -19,6 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -255,6 +256,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<DateTimeSymbols, SpreadsheetExpressionEvaluationContext> cellDateTimeSymbols() {
         return SpreadsheetExpressionFunctionCellDateTimeSymbols.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionCellDecimalNumberSymbols}
+     */
+    public static ExpressionFunction<DecimalNumberSymbols, SpreadsheetExpressionEvaluationContext> cellDecimalNumberSymbols() {
+        return SpreadsheetExpressionFunctionCellDecimalNumberSymbols.INSTANCE;
     }
 
     /**
