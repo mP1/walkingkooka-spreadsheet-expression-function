@@ -2617,7 +2617,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 .aliasSet()
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMAT_CONVERTER,
-                        ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, error-to-text, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
                 ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
                 .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
