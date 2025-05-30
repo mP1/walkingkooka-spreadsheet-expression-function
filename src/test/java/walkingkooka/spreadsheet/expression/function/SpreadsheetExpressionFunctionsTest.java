@@ -2721,7 +2721,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             this.checkEquals(
                     expectedValue,
                     saved.formula()
-                            .value(),
+                            .errorOrValue(),
                     cellReference + "=" + cellFormula + "\n" +
                             preload.entrySet().stream()
                                     .map(e -> e.getKey() + "=" + e.getValue())
