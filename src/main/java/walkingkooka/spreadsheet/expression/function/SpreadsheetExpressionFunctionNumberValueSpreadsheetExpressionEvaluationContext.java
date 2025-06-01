@@ -51,6 +51,12 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.ExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.json.marshall.JsonNodeContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextDelegator;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContext;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextDelegator;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 import walkingkooka.validation.form.Form;
 import walkingkooka.validation.form.FormField;
 
@@ -68,7 +74,9 @@ import java.util.Set;
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
         DateTimeContextDelegator,
-        EnvironmentContextDelegator {
+        EnvironmentContextDelegator,
+        JsonNodeMarshallContextDelegator,
+        JsonNodeUnmarshallContextDelegator {
 
     static SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext with(final char decimalSeparator,
                                                                                                final char groupSeparator,
@@ -146,6 +154,20 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public void setSpreadsheetMetadata(final SpreadsheetMetadata metadata) {
         this.context.setSpreadsheetMetadata(metadata);
+    }
+
+    @Override
+    public SpreadsheetExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+        final SpreadsheetExpressionEvaluationContext before = this.context;
+        final SpreadsheetExpressionEvaluationContext after = before.setPreProcessor(processor);
+
+        return before.equals(after) ?
+                this :
+                new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
+                        this.decimalSeparator,
+                        this.groupSeparator,
+                        after
+                );
     }
 
     @Override
@@ -374,6 +396,25 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
 
     @Override
     public DateTimeContext dateTimeContext() {
+        return this.context;
+    }
+
+    // JsonNodeMarshallContextDelegator.................................................................................
+
+    @Override
+    public JsonNodeMarshallContext jsonNodeMarshallContext() {
+        return this.context;
+    }
+
+    // JsonNodeUnmarshallContextDelegator...............................................................................
+
+    @Override
+    public JsonNodeUnmarshallContext jsonNodeUnmarshallContext() {
+        return this.context;
+    }
+
+    @Override
+    public JsonNodeContext jsonNodeContext() {
         return this.context;
     }
 
