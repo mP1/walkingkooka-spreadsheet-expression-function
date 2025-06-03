@@ -53,6 +53,7 @@ majority of these functions are formula expression functions.
 - cellFormula
 - cellParser
 - cellStyle
+- cellValidator
 - cellValue
 - cellValueType
 - char
@@ -109,9 +110,9 @@ majority of these functions are formula expression functions.
 - isNull
 - isNumber
 - isOdd
+- isoweeknum
 - isRef
 - isText
-- isoweeknum
 - lambda
 - left
 - len
@@ -128,6 +129,8 @@ majority of these functions are formula expression functions.
 - minute
 - mod
 - month
+- nextEmptyColumn
+- nextEmptyRow
 - not
 - now
 - null
@@ -159,6 +162,9 @@ majority of these functions are formula expression functions.
 - sign
 - sin
 - sinh
+- spreadsheetMetadataGet
+- spreadsheetMetadataRemove
+- spreadsheetMetadataSet
 - sqrt
 - substitute
 - sum
@@ -179,6 +185,7 @@ majority of these functions are formula expression functions.
 - unichar
 - unicode
 - upper
+- validationError
 - value
 - weekday
 - weeknum
