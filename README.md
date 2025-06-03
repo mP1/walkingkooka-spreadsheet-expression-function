@@ -54,6 +54,7 @@ majority of these functions are formula expression functions.
 - cellParser
 - cellStyle
 - cellValue
+- cellValueType
 - char
 - choose
 - clean

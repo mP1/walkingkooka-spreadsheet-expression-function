@@ -108,6 +108,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     );
 
     /**
+     * The function name of the getter that retrieve the {@link SpreadsheetFormula#valueType()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_VALUE_TYPE = cellFindWizardHelperFunction(
+            cellValueType()
+    );
+
+    /**
      * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
      */
     public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
@@ -312,6 +319,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ValidatorSelector, SpreadsheetExpressionEvaluationContext> cellValidator() {
         return SpreadsheetExpressionFunctionCellValidator.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectCellValueType}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValueType() {
+        return SpreadsheetExpressionFunctionCellValueType.INSTANCE;
     }
 
     /**
