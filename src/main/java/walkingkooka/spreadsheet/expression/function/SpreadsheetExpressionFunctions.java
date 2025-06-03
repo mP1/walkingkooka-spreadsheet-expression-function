@@ -308,17 +308,17 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectCellValue}
-     */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValue() {
-        return SpreadsheetExpressionFunctionCellValue.INSTANCE;
-    }
-
-    /**
      * {@see SpreadsheetExpressionFunctionObjectCellValidator}
      */
     public static ExpressionFunction<ValidatorSelector, SpreadsheetExpressionEvaluationContext> cellValidator() {
         return SpreadsheetExpressionFunctionCellValidator.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectCellValue}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cellValue() {
+        return SpreadsheetExpressionFunctionCellValue.INSTANCE;
     }
 
     /**
