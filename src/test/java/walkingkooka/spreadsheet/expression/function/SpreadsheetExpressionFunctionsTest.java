@@ -378,6 +378,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateCellValueType() {
+        this.evaluateAndValueCheck(
+                "=cellValueType()",
+                Maps.of("A1", "=1*2*3*4"),
+                null
+        );
+    }
+
+    @Test
     public void testEvaluateCharWith65() {
         this.evaluateAndValueCheck(
                 "=char(65)",
