@@ -119,15 +119,14 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
         final SpreadsheetExpressionEvaluationContext context = this.createContext();
 
         final RuntimeException thrown = assertThrows(
-                RuntimeException.class, () -> {
-                    function.apply(
-                            context.prepareParameters(
-                                    function,
-                                    parameters
-                            ),
-                            context
-                    );
-                });
+                RuntimeException.class, () -> function.apply(
+                        context.prepareParameters(
+                                function,
+                                parameters
+                        ),
+                        context
+                )
+        );
         if (null != message) {
             this.checkEquals(
                     message,
