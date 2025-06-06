@@ -73,6 +73,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     );
 
     /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#decimalNumberSymbols()}  within a find.
+     */
+    public final static ExpressionFunctionName CELL_DECIMAL_NUMBER_SYMBOLS = cellFindWizardHelperFunction(
+            cellDecimalNumberSymbols()
+    );
+
+    /**
      * The function name of the getter that retrieve the {@link SpreadsheetCell#formula()} within a find.
      */
     public final static ExpressionFunctionName CELL_FORMULA = cellFindWizardHelperFunction(
