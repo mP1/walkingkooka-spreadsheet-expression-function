@@ -143,8 +143,11 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     );
 
     private static ExpressionFunctionName cellFindWizardHelperFunction(final ExpressionFunction<?, ?> function) {
-        return function.name()
+        final ExpressionFunctionName name = function.name()
                 .orElseThrow(() -> new IllegalStateException("Missing function for " + function));
+        return name.setCaseSensitivity(
+                walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY
+        );
     }
 
     /**

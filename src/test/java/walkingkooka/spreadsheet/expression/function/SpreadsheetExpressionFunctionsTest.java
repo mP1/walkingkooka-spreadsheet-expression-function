@@ -20,6 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -85,6 +86,7 @@ import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -99,7 +101,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
     private final static ExpressionFunctionProvider EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
-    // error handling tests............................................................................................
+    // wizard function names are all case-insensitive...................................................................
+
+    @Test
+    public void testCellFindWizardHelperFunctionConstants() {
+        this.checkEquals(
+                Sets.empty(),
+                Arrays.stream(
+                                SpreadsheetExpressionFunctions.class.getDeclaredFields()
+                        ).filter(m -> m.getType() == ExpressionFunctionName.class)
+                        .filter(m -> {
+                                    try {
+                                        return ExpressionFunctionName.class.cast(m.get(null))
+                                                .caseSensitivity() != walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY;
+                                    } catch (final Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                        ).collect(Collectors.toSet())
+        );
+    }
+
+    // error handling tests.............................................................................................
 
     @Test
     public void testEvaluateWithIncompleteExpression() {
