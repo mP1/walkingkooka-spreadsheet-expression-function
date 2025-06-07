@@ -2292,6 +2292,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateTextMatchWithStringLiteral() {
+        this.evaluateAndValueCheck(
+                "=textMatch(\"*e*\", \"Hello\")",
+                true
+        );
+    }
+
+    @Test
     public void testEvaluateTime() {
         this.evaluateAndValueCheck(
                 "=time(12, 58, 59)",
