@@ -2526,44 +2526,92 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // evaluateAndCheckValue............................................................................................
 
-    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                cellFormula,
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText(formula)
+                ),
+                expectedValue
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndValueCheck(final SpreadsheetCell save,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
+                save,
                 Maps.empty(),
                 expectedValue
         );
     }
 
-    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
                                                            final SpreadsheetMetadata metadata,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                cellFormula,
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText(formula)
+                ),
+                metadata,
+                expectedValue
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndValueCheck(final SpreadsheetCell save,
+                                                           final SpreadsheetMetadata metadata,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
+                save,
                 Maps.empty(),
                 metadata,
                 expectedValue
         );
     }
 
-    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
                                                            final Map<String, String> preload,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                cellFormula,
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText(formula)
+                ),
                 preload,
                 this.metadata(),
                 expectedValue
         );
     }
 
-    private SpreadsheetEngineContext evaluateAndValueCheck(final String cellFormula,
+    private SpreadsheetEngineContext evaluateAndValueCheck(final SpreadsheetCell save,
+                                                           final Map<String, String> preload,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
+                save,
+                preload,
+                this.metadata(),
+                expectedValue
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
+                                                           final Map<String, String> preload,
+                                                           final SpreadsheetMetadata metadata,
+                                                           final Object expectedValue) {
+        return this.evaluateAndValueCheck(
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText(formula)
+                ),
+                preload,
+                metadata,
+                expectedValue
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndValueCheck(final SpreadsheetCell save,
                                                            final Map<String, String> preload,
                                                            final SpreadsheetMetadata metadata,
                                                            final Object expectedValue) {
         return this.evaluateAndCheck(
-                SpreadsheetSelection.parseCell("A1"),
-                cellFormula,
+                save,
                 preload,
                 metadata,
                 Optional.ofNullable(expectedValue),
@@ -2571,35 +2619,43 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private void evaluateAndFormattedCheck(final String cellFormula,
+    private void evaluateAndFormattedCheck(final String formula,
                                            final TextNode expectedValue) {
         this.evaluateAndFormattedCheck(
-                cellFormula,
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText(formula)
+                ),
                 Maps.empty(),
                 expectedValue
         );
     }
 
-    private SpreadsheetEngineContext evaluateAndFormattedCheck(final String cellFormula,
+    private void evaluateAndFormattedCheck(final SpreadsheetCell save,
+                                           final TextNode expectedValue) {
+        this.evaluateAndFormattedCheck(
+                save,
+                Maps.empty(),
+                expectedValue
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndFormattedCheck(final SpreadsheetCell save,
                                                                final Map<String, String> preload,
                                                                final TextNode expectedFormatted) {
         return this.evaluateAndCheck(
-                SpreadsheetSelection.parseCell("A1"),
-                cellFormula,
+                save,
                 preload,
                 null, // no value
                 Optional.ofNullable(expectedFormatted)
         );
     }
 
-    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCellReference cellReference,
-                                                      final String cellFormula,
+    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCell save,
                                                       final Map<String, String> preload,
                                                       final Optional<?> expectedValue,
                                                       final Optional<TextNode> formatted) {
         return this.evaluateAndCheck(
-                cellReference,
-                cellFormula,
+                save,
                 preload,
                 this.metadata(),
                 expectedValue,
@@ -2653,8 +2709,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("\"Number:\"#.###").spreadsheetFormatterSelector());
     }
 
-    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCellReference cellReference,
-                                                      final String cellFormula,
+    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCell save,
                                                       final Map<String, String> preload,
                                                       final SpreadsheetMetadata metadata,
                                                       final Optional<?> expectedValue,
@@ -2715,10 +2770,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             );
         }
 
+        final SpreadsheetCellReference cellReference = save.reference();
+        final SpreadsheetFormula cellFormula = save.formula();
+
         final SpreadsheetCell saved = engine.saveCell(
-                        cellReference.setFormula(
-                                SpreadsheetFormula.EMPTY.setText(cellFormula)
-                        ),
+                        save,
                         context
                 ).cell(cellReference)
                 .orElseThrow(() -> new AssertionError("Missing " + cellReference + " after saving " + cellFormula));
