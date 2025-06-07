@@ -59,6 +59,13 @@ import java.util.Optional;
 public final class SpreadsheetExpressionFunctions implements PublicStaticHelper {
 
     /**
+     * Constant that holds the OR function which is used to combine multiple query tests.
+     */
+    public final static ExpressionFunctionName OR = cellFindWizardHelperFunction(
+            or()
+    );
+
+    /**
      * Constant that holds the textMatch function to be used by the find wizard when building the BIG query from cell component contains text boxes.
      */
     public final static ExpressionFunctionName TEXT_MATCH = cellFindWizardHelperFunction(
