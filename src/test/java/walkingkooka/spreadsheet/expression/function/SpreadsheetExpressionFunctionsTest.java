@@ -22,6 +22,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
@@ -77,6 +78,7 @@ import walkingkooka.validation.ValidationError;
 import java.lang.reflect.Method;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -363,6 +365,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 "=cell(\"address\", B2)",
                 Maps.of("b2", "=1*2"),
                 SpreadsheetSelection.parseCell("B2")
+        );
+    }
+
+    @Test
+    public void testEvaluateCellDateTimeSymbols() {
+        final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
+                new DateFormatSymbols(Locale.ENGLISH)
+        );
+        this.evaluateAndValueCheck(
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText("=cellDateTimeSymbols()")
+                ).setDateTimeSymbols(
+                        Optional.of(dateTimeSymbols)
+                ),
+                dateTimeSymbols
         );
     }
 
