@@ -24,6 +24,7 @@ import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
@@ -79,6 +80,7 @@ import java.lang.reflect.Method;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DateFormatSymbols;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -380,6 +382,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         Optional.of(dateTimeSymbols)
                 ),
                 dateTimeSymbols
+        );
+    }
+
+    @Test
+    public void testEvaluateCellDecimalNumberSymbols() {
+        final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
+                '+',
+                new DecimalFormatSymbols(Locale.ENGLISH)
+        );
+        this.evaluateAndValueCheck(
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText("=cellDecimalNumberSymbols()")
+                ).setDecimalNumberSymbols(
+                        Optional.of(decimalNumberSymbols)
+                ),
+                decimalNumberSymbols
         );
     }
 
