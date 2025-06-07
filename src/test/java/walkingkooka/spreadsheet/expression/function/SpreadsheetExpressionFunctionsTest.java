@@ -44,6 +44,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.expression.function.provider.SpreadsheetExpressionFunctionProviders;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
+import walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
@@ -398,6 +399,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         Optional.of(decimalNumberSymbols)
                 ),
                 decimalNumberSymbols
+        );
+    }
+
+    @Test
+    public void testEvaluateCellFormatter() {
+        final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("text-format-pattern @");
+        this.evaluateAndValueCheck(
+                SpreadsheetSelection.A1.setFormula(
+                        SpreadsheetFormula.EMPTY.setText("=cellFormatter()")
+                ).setFormatter(
+                        Optional.of(formatter)
+                ),
+                formatter
         );
     }
 
