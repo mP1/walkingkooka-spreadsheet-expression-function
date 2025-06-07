@@ -122,6 +122,32 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    // all functions have case-insensitive names........................................................................
+
+    @Test
+    public void testFunctionsHaveCaseInsensitiveNames() {
+        this.checkEquals(
+                "",
+                Arrays.stream(
+                                SpreadsheetExpressionFunctions.class.getMethods()
+                        ).filter(m -> m.getReturnType() == ExpressionFunction.class)
+                        .filter(m -> {
+                                    try {
+                                        final ExpressionFunction<ExpressionFunctionName, ?> function = ExpressionFunction.class.cast(m.invoke(null));
+                                        final ExpressionFunctionName name = function.name()
+                                                .orElseThrow(() -> new IllegalStateException("Missing function name " + m.toGenericString()));
+
+                                        return name.caseSensitivity() != walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY;
+                                    } catch (final Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                        ).map(m -> m.getName().toString())
+                        .sorted()
+                        .collect(Collectors.joining("\n"))
+        );
+    }
+
     // error handling tests.............................................................................................
 
     @Test

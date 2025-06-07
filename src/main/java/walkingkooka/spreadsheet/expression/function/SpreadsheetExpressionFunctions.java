@@ -154,14 +154,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#abs}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> abs() {
-        return NumberExpressionFunctions.abs();
+        return fixName(
+                NumberExpressionFunctions.abs()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#acos}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> acos() {
-        return NumberTrigonomteryExpressionFunctions.acos();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.acos()
+        );
     }
 
     /**
@@ -175,28 +179,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#and}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> and() {
-        return BooleanExpressionFunctions.and();
+        return fixName(
+                BooleanExpressionFunctions.and()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#asin}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> asin() {
-        return NumberTrigonomteryExpressionFunctions.asin();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.asin()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#atan}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> atan() {
-        return NumberTrigonomteryExpressionFunctions.atan();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.atan()
+        );
     }
 
     /**
      * {@see StatExpressionFunctions#average}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> average() {
-        return StatExpressionFunctions.average();
+        return fixName(
+                StatExpressionFunctions.average()
+        );
     }
 
     /**
@@ -210,28 +222,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#base}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> base() {
-        return NumberExpressionFunctions.base();
+        return fixName(
+                NumberExpressionFunctions.base()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#bin2dec}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> bin2dec() {
-        return EngineeringExpressionFunctions.bin2dec();
+        return fixName(
+                EngineeringExpressionFunctions.bin2dec()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#bin2hex}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> bin2hex() {
-        return EngineeringExpressionFunctions.bin2hex();
+        return fixName(
+                EngineeringExpressionFunctions.bin2hex()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#bin2oct}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> bin2oct() {
-        return EngineeringExpressionFunctions.bin2oct();
+        return fixName(
+                EngineeringExpressionFunctions.bin2oct()
+        );
     }
 
     /**
@@ -241,7 +261,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return BITAND;
     }
 
-    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITAND = EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitAnd();
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITAND = fixName(
+            EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitAnd()
+    );
 
     /**
      * {@see EngineeringExpressionFunctions#bitOr}
@@ -250,7 +272,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return BITOR;
     }
 
-    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITOR = EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitOr();
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITOR = fixName(
+            EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitOr()
+    );
 
     /**
      * {@see EngineeringExpressionFunctions#bitXor}
@@ -259,13 +283,17 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return BitXor;
     }
 
-    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BitXor = EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitXor();
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BitXor = fixName(
+            EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitXor()
+    );
 
     /**
      * {@see NumberExpressionFunctions#ceil}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ceil() {
-        return NumberExpressionFunctions.ceil();
+        return fixName(
+                NumberExpressionFunctions.ceil()
+        );
     }
 
     /**
@@ -359,14 +387,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#choose}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> choose() {
-        return BooleanExpressionFunctions.choose();
+        return fixName(
+                BooleanExpressionFunctions.choose()
+        );
     }
 
     /**
      * {@see StringExpressionFunctions#clean}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> clean() {
-        return StringExpressionFunctions.clean();
+        return fixName(
+                StringExpressionFunctions.clean()
+        );
     }
 
     /**
@@ -409,7 +441,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberTrigonomteryExpressionFunctions#cos}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> cos() {
-        return NumberTrigonomteryExpressionFunctions.cos();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.cos()
+        );
     }
 
     /**
@@ -419,8 +453,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return COUNT;
     }
 
-    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> COUNT = StatExpressionFunctions.<SpreadsheetExpressionEvaluationContext>count()
-            .filterParameterValues(SpreadsheetExpressionFunctions::filterNumbers);
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> COUNT = fixName(
+            StatExpressionFunctions.<SpreadsheetExpressionEvaluationContext>count()
+                    .filterParameterValues(SpreadsheetExpressionFunctions::filterNumbers)
+    );
 
     private static boolean filterNumbers(final Object value,
                                          final SpreadsheetExpressionEvaluationContext context) {
@@ -459,63 +495,81 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see DateTimeExpressionFunctions#date}
      */
     public static ExpressionFunction<LocalDate, SpreadsheetExpressionEvaluationContext> date() {
-        return DateTimeExpressionFunctions.date();
+        return fixName(
+                DateTimeExpressionFunctions.date()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#day}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> day() {
-        return DateTimeExpressionFunctions.day();
+        return fixName(
+                DateTimeExpressionFunctions.day()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#days}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> days() {
-        return DateTimeExpressionFunctions.days();
+        return fixName(
+                DateTimeExpressionFunctions.days()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#dec2bin}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2bin() {
-        return EngineeringExpressionFunctions.dec2bin();
+        return fixName(
+                EngineeringExpressionFunctions.dec2bin()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#dec2hex}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2hex() {
-        return EngineeringExpressionFunctions.dec2hex();
+        return fixName(
+                EngineeringExpressionFunctions.dec2hex()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#dec2oct}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2oct() {
-        return EngineeringExpressionFunctions.dec2oct();
+        return fixName(
+                EngineeringExpressionFunctions.dec2oct()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#decimal}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> decimal() {
-        return NumberExpressionFunctions.decimal();
+        return fixName(
+                NumberExpressionFunctions.decimal()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#degrees}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> degrees() {
-        return NumberTrigonomteryExpressionFunctions.degrees();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.degrees()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#delta}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> delta() {
-        return EngineeringExpressionFunctions.delta();
+        return fixName(
+                EngineeringExpressionFunctions.delta()
+        );
     }
 
     /**
@@ -529,7 +583,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#e}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> e() {
-        return NumberExpressionFunctions.e();
+        return fixName(
+                NumberExpressionFunctions.e()
+        );
     }
 
     /**
@@ -552,7 +608,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#even}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> even() {
-        return NumberExpressionFunctions.even();
+        return fixName(
+                NumberExpressionFunctions.even()
+        );
     }
 
     /**
@@ -569,14 +627,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#exp}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> exp() {
-        return NumberExpressionFunctions.exp();
+        return fixName(
+                NumberExpressionFunctions.exp()
+        );
     }
 
     /**
      * {@see BooleanExpressionFunctions#falseFunction}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> falseFunction() {
-        return BooleanExpressionFunctions.falseFunction();
+        return fixName(
+                BooleanExpressionFunctions.falseFunction()
+        );
     }
 
     /**
@@ -590,14 +652,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#fixed()}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> fixed() {
-        return NumberExpressionFunctions.fixed();
+        return fixName(
+                NumberExpressionFunctions.fixed()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#floor}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> floor() {
-        return NumberExpressionFunctions.floor();
+        return fixName(
+                NumberExpressionFunctions.floor()
+        );
     }
 
     /**
@@ -611,28 +677,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see EngineeringExpressionFunctions#hex2bin}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2bin() {
-        return EngineeringExpressionFunctions.hex2bin();
+        return fixName(
+                EngineeringExpressionFunctions.hex2bin()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#hex2dec}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2dec() {
-        return EngineeringExpressionFunctions.hex2dec();
+        return fixName(
+                EngineeringExpressionFunctions.hex2dec()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#hex2oct}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2oct() {
-        return EngineeringExpressionFunctions.hex2oct();
+        return fixName(
+                EngineeringExpressionFunctions.hex2oct()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#hour}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> hour() {
-        return DateTimeExpressionFunctions.hour();
+        return fixName(
+                DateTimeExpressionFunctions.hour()
+        );
     }
 
     /**
@@ -646,14 +720,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#ifFunction}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> ifFunction() {
-        return BooleanExpressionFunctions.ifFunction();
+        return fixName(
+                BooleanExpressionFunctions.ifFunction()
+        );
     }
 
     /**
      * {@see BooleanExpressionFunctions#ifs}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> ifs() {
-        return BooleanExpressionFunctions.ifs();
+        return fixName(
+                BooleanExpressionFunctions.ifs()
+        );
     }
 
     /**
@@ -667,7 +745,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#intFunction}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> intFunction() {
-        return NumberExpressionFunctions.intFunction();
+        return fixName(
+                NumberExpressionFunctions.intFunction()
+        );
     }
 
     /**
@@ -681,7 +761,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see DateTimeExpressionFunctions#isDate}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isDate() {
-        return DateTimeExpressionFunctions.isDate();
+        return fixName(
+                DateTimeExpressionFunctions.isDate()
+        );
     }
 
     /**
@@ -702,7 +784,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#isEven}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isEven() {
-        return NumberExpressionFunctions.isEven();
+        return fixName(
+                NumberExpressionFunctions.isEven()
+        );
     }
 
     /**
@@ -733,35 +817,45 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StringExpressionFunctions#isNonText}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNonText() {
-        return StringExpressionFunctions.isNonText();
+        return fixName(
+                StringExpressionFunctions.isNonText()
+        );
     }
 
     /**
      * {@see BooleanExpressionFunctions#isNull}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNull() {
-        return BooleanExpressionFunctions.isNull();
+        return fixName(
+                BooleanExpressionFunctions.isNull()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#isNumber}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isNumber() {
-        return NumberExpressionFunctions.isNumber();
+        return fixName(
+                NumberExpressionFunctions.isNumber()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#isOdd}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isOdd() {
-        return NumberExpressionFunctions.isOdd();
+        return fixName(
+                NumberExpressionFunctions.isOdd()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions.isoWeekNum}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> isoWeekNum() {
-        return DateTimeExpressionFunctions.isoWeekNum();
+        return fixName(
+                DateTimeExpressionFunctions.isoWeekNum()
+        );
     }
 
     /**
@@ -775,7 +869,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StringExpressionFunctions#isText}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isText() {
-        return StringExpressionFunctions.isText();
+        return fixName(
+                StringExpressionFunctions.isText()
+        );
     }
 
     /**
@@ -789,7 +885,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StringExpressionFunctions#left}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> left() {
-        return StringExpressionFunctions.left();
+        return fixName(
+                StringExpressionFunctions.left()
+        );
     }
 
     /**
@@ -815,21 +913,27 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#ln}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ln() {
-        return NumberExpressionFunctions.ln();
+        return fixName(
+                NumberExpressionFunctions.ln()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#log}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> log() {
-        return NumberExpressionFunctions.log();
+        return fixName(
+                NumberExpressionFunctions.log()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#log10}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> log10() {
-        return NumberExpressionFunctions.log10();
+        return fixName(
+                NumberExpressionFunctions.log10()
+        );
     }
 
     /**
@@ -848,7 +952,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StatExpressionFunctions#max}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> max() {
-        return StatExpressionFunctions.max();
+        return fixName(
+                StatExpressionFunctions.max()
+        );
     }
 
     /**
@@ -862,14 +968,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StringExpressionFunctions#mid}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> mid() {
-        return StringExpressionFunctions.mid();
+        return fixName(
+                StringExpressionFunctions.mid()
+        );
     }
 
     /**
      * {@see StatExpressionFunctions#min}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> min() {
-        return StatExpressionFunctions.min();
+        return fixName(
+                StatExpressionFunctions.min()
+        );
     }
 
     /**
@@ -883,21 +993,27 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see DateTimeExpressionFunctions#minute}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> minute() {
-        return DateTimeExpressionFunctions.minute();
+        return fixName(
+                DateTimeExpressionFunctions.minute()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#mod}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> mod() {
-        return NumberExpressionFunctions.mod();
+        return fixName(
+                NumberExpressionFunctions.mod()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#month}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> month() {
-        return DateTimeExpressionFunctions.month();
+        return fixName(
+                DateTimeExpressionFunctions.month()
+        );
     }
 
     /**
@@ -918,21 +1034,27 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#not}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> not() {
-        return BooleanExpressionFunctions.not();
+        return fixName(
+                BooleanExpressionFunctions.not()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#now}
      */
     public static ExpressionFunction<LocalDateTime, SpreadsheetExpressionEvaluationContext> now() {
-        return DateTimeExpressionFunctions.now();
+        return fixName(
+                DateTimeExpressionFunctions.now()
+        );
     }
 
     /**
      * {@see ExpressionFunctions#nullFunction}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> nullFunction() {
-        return ExpressionFunctions.nullFunction();
+        return fixName(
+                ExpressionFunctions.nullFunction()
+        );
     }
 
     /**
@@ -946,28 +1068,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see EngineeringExpressionFunctions#oct2bin}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> oct2bin() {
-        return EngineeringExpressionFunctions.oct2bin();
+        return fixName(
+                EngineeringExpressionFunctions.oct2bin()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#oct2dec}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> oct2dec() {
-        return EngineeringExpressionFunctions.oct2dec();
+        return fixName(
+                EngineeringExpressionFunctions.oct2dec()
+        );
     }
 
     /**
      * {@see EngineeringExpressionFunctions#oct2hex}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> oct2hex() {
-        return EngineeringExpressionFunctions.oct2hex();
+        return fixName(
+                EngineeringExpressionFunctions.oct2hex()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#odd}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> odd() {
-        return NumberExpressionFunctions.odd();
+        return fixName(
+                NumberExpressionFunctions.odd()
+        );
     }
 
     /**
@@ -981,42 +1111,54 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#or}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> or() {
-        return BooleanExpressionFunctions.or();
+        return fixName(
+                BooleanExpressionFunctions.or()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#pi}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> pi() {
-        return NumberExpressionFunctions.pi();
+        return fixName(
+                NumberExpressionFunctions.pi()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#product}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> product() {
-        return NumberExpressionFunctions.product();
+        return fixName(
+                NumberExpressionFunctions.product()
+        );
     }
 
     /**
      * {@see StringExpressionFunctions#proper}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> proper() {
-        return StringExpressionFunctions.proper();
+        return fixName(
+                StringExpressionFunctions.proper()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#quotient}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> quotient() {
-        return NumberExpressionFunctions.quotient();
+        return fixName(
+                NumberExpressionFunctions.quotient()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#radians}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> radians() {
-        return NumberTrigonomteryExpressionFunctions.radians();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.radians()
+        );
     }
 
     /**
@@ -1043,7 +1185,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StringExpressionFunctions#replace}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> replace() {
-        return StringExpressionFunctions.replace();
+        return fixName(
+                StringExpressionFunctions.replace()
+        );
     }
 
     /**
@@ -1060,14 +1204,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see StringExpressionFunctions#right}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> right() {
-        return StringExpressionFunctions.right();
+        return fixName(
+                StringExpressionFunctions.right()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#roman}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> roman() {
-        return NumberExpressionFunctions.roman();
+        return fixName(
+                NumberExpressionFunctions.roman()
+        );
     }
 
     /**
@@ -1084,14 +1232,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#roundDown}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> roundDown() {
-        return NumberExpressionFunctions.roundDown();
+        return fixName(
+                NumberExpressionFunctions.roundDown()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#roundUp}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> roundUp() {
-        return NumberExpressionFunctions.roundUp();
+        return fixName(
+                NumberExpressionFunctions.roundUp()
+        );
     }
 
     /**
@@ -1122,28 +1274,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see DateTimeExpressionFunctions#second}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> second() {
-        return DateTimeExpressionFunctions.second();
+        return fixName(
+                DateTimeExpressionFunctions.second()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#sign}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sign() {
-        return NumberExpressionFunctions.sign();
+        return fixName(
+                NumberExpressionFunctions.sign()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#sin}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sin() {
-        return NumberTrigonomteryExpressionFunctions.sin();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.sin()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#sinh}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sinh() {
-        return NumberTrigonomteryExpressionFunctions.sinh();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.sinh()
+        );
     }
 
     /**
@@ -1171,21 +1331,27 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see NumberExpressionFunctions#sqrt}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
-        return NumberExpressionFunctions.sqrt();
+        return fixName(
+                NumberExpressionFunctions.sqrt()
+        );
     }
 
     /**
      * {@see StringExpressionFunctions#substitute}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> substitute() {
-        return StringExpressionFunctions.substitute();
+        return fixName(
+                StringExpressionFunctions.substitute()
+        );
     }
 
     /**
      * {@see StatExpressionFunctions#sum}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sum() {
-        return StatExpressionFunctions.sum();
+        return fixName(
+                StatExpressionFunctions.sum()
+        );
     }
 
     /**
@@ -1199,28 +1365,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#switchFunction}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> switchFunction() {
-        return BooleanExpressionFunctions.switchFunction();
+        return fixName(
+                BooleanExpressionFunctions.switchFunction()
+        );
     }
 
     /**
      * {@see StringExpressionFunctions#t}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> t() {
-        return StringExpressionFunctions.t();
+        return fixName(
+                StringExpressionFunctions.t()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#tan}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> tan() {
-        return NumberTrigonomteryExpressionFunctions.tan();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.tan()
+        );
     }
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#tanh}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> tanh() {
-        return NumberTrigonomteryExpressionFunctions.tanh();
+        return fixName(
+                NumberTrigonomteryExpressionFunctions.tanh()
+        );
     }
 
     /**
@@ -1237,7 +1411,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return TEXTJOIN;
     }
 
-    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> TEXTJOIN = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>textJoin();
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> TEXTJOIN = fixName(
+            StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>textJoin()
+    );
 
     /**
      * {@see SpreadsheetExpressionFunctionBooleanTextMatch}
@@ -1250,14 +1426,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see DateTimeExpressionFunctions#time}
      */
     public static ExpressionFunction<LocalTime, SpreadsheetExpressionEvaluationContext> time() {
-        return DateTimeExpressionFunctions.time();
+        return fixName(
+                DateTimeExpressionFunctions.time()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#today}
      */
     public static ExpressionFunction<LocalDate, SpreadsheetExpressionEvaluationContext> today() {
-        return DateTimeExpressionFunctions.today();
+        return fixName(
+                DateTimeExpressionFunctions.today()
+        );
     }
 
     /**
@@ -1274,14 +1454,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see BooleanExpressionFunctions#trueFunction}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> trueFunction() {
-        return BooleanExpressionFunctions.trueFunction();
+        return fixName(
+                BooleanExpressionFunctions.trueFunction()
+        );
     }
 
     /**
      * {@see NumberExpressionFunctions#trunc}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> trunc() {
-        return NumberExpressionFunctions.trunc();
+        return fixName(
+                NumberExpressionFunctions.trunc()
+        );
     }
 
     /**
@@ -1344,28 +1528,36 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      * {@see DateTimeExpressionFunctions#weekDay}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> weekDay() {
-        return DateTimeExpressionFunctions.weekday();
+        return fixName(
+                DateTimeExpressionFunctions.weekday()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#weekNum}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> weekNum() {
-        return DateTimeExpressionFunctions.weekNum();
+        return fixName(
+                DateTimeExpressionFunctions.weekNum()
+        );
     }
 
     /**
      * {@see DateTimeExpressionFunctions#year}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> year() {
-        return DateTimeExpressionFunctions.year();
+        return fixName(
+                DateTimeExpressionFunctions.year()
+        );
     }
 
     /**
      * {@see BooleanExpressionFunctions#xor}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> xor() {
-        return BooleanExpressionFunctions.xor();
+        return fixName(
+                BooleanExpressionFunctions.xor()
+        );
     }
 
     private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> unformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function,
@@ -1386,6 +1578,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     private static Optional<ExpressionFunctionName> functionName(final String name) {
         return Optional.of(
                 walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.name(name)
+        );
+    }
+
+    private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> fixName(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function) {
+        return function.setName(
+                function.name()
+                        .map(f -> f.setCaseSensitivity(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY))
         );
     }
 

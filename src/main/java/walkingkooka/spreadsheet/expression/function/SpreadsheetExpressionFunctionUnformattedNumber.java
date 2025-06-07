@@ -21,6 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.spreadsheet.convert.SpreadsheetConverters;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -41,7 +42,10 @@ final class SpreadsheetExpressionFunctionUnformattedNumber<T> implements Express
 
     private SpreadsheetExpressionFunctionUnformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function) {
         super();
-        this.function = function;
+        this.function = function.setName(
+                function.name()
+                        .map(n -> n.setCaseSensitivity(SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY))
+        );
     }
 
     @Override
