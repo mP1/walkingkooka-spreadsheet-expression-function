@@ -1067,6 +1067,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateFormatValue() {
+        this.evaluateAndValueCheck(
+                "=formatValue()",
+                SpreadsheetError.referenceNotFound(SpreadsheetExpressionEvaluationContext.FORMAT_VALUE)
+        );
+    }
+
+    @Test
     public void testEvaluateFormulaText() {
         this.evaluateAndValueCheck(
                 "=formulatext(A2)",

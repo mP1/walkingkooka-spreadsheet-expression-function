@@ -88,6 +88,7 @@ majority of these functions are formula expression functions.
 - find
 - fixed
 - floor
+- formatValue
 - formulatext
 - hex2bin
 - hex2dec
@@ -220,6 +221,13 @@ purposes (TODO share example)
 - spreadsheetMetadataGet
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
+
+# SpreadsheetFormatter functions
+
+Functions that are especially useful when formatting a value via
+an [Expression](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/Expression.java).
+
+- formatValue
 
 # SpreadsheetForm function
 
