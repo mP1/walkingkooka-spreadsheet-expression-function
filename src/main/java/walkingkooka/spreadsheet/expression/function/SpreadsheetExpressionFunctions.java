@@ -667,6 +667,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionFormatValue}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> formatValue() {
+        return SpreadsheetExpressionFunctionFormatValue.INSTANCE;
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionStringFormulaText}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> formulaText() {
