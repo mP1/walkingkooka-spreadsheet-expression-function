@@ -2795,7 +2795,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
                                 .aliasSet()
                 ).set(
-                        SpreadsheetMetadataPropertyName.FORMAT_CONVERTER,
+                        SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
                         ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
                 ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
