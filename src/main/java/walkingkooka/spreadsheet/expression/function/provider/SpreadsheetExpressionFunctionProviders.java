@@ -106,7 +106,6 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.hex2dec(),
                                 SpreadsheetExpressionFunctions.hex2oct(),
                                 SpreadsheetExpressionFunctions.hour(),
-                                SpreadsheetExpressionFunctions.hyperlink(),
                                 SpreadsheetExpressionFunctions.ifFunction(),
                                 SpreadsheetExpressionFunctions.ifs(),
                                 SpreadsheetExpressionFunctions.indirect(),

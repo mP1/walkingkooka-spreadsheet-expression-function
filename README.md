@@ -94,7 +94,6 @@ majority of these functions are formula expression functions.
 - hex2dec
 - hex2oct
 - hour
-- hyperlink
 - if
 - ifs
 - indirect

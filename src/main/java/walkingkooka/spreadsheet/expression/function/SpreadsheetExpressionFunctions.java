@@ -20,7 +20,6 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
-import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
@@ -714,13 +713,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return fixName(
                 DateTimeExpressionFunctions.hour()
         );
-    }
-
-    /**
-     * {@see SpreadsheetExpressionFunctionHyperlink}
-     */
-    public static ExpressionFunction<AbsoluteUrl, SpreadsheetExpressionEvaluationContext> hyperlink() {
-        return SpreadsheetExpressionFunctionHyperlink.INSTANCE;
     }
 
     /**

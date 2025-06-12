@@ -1116,14 +1116,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateHyperlink() {
-        this.evaluateAndValueCheck(
-                "=hyperlink(\"A12\")",
-                Url.parseAbsolute("https://server.example.com/1234/Untitled5678/cell/A12")
-        );
-    }
-
-    @Test
     public void testEvaluateIfTrue() {
         this.evaluateAndValueCheck(
                 "=if(true(), 111, 222)",
