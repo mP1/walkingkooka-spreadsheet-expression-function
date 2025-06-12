@@ -2485,6 +2485,132 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateTemplateWithPlainTextString() {
+        this.evaluateAndValueCheck(
+                "=template(\"Hello World 123\")",
+                "Hello World 123"
+        );
+    }
+
+    @Test
+    public void testEvaluateTemplateWithNamedParameter() {
+        this.evaluateAndValueCheck(
+                "=template(\"Hello ${hello} !!!\", \"hello\", \"WORLD\")",
+                "Hello WORLD !!!"
+        );
+    }
+
+    @Test
+    public void testEvaluateTemplateWithNamedParameter2() {
+        this.evaluateAndValueCheck(
+                "=template(\"Hello ${hello1} and ${hello2} !!!\", \"hello1\", \"WORLD\", \"hello2\", \"WORLD2\")",
+                "Hello WORLD and WORLD2 !!!"
+        );
+    }
+
+    @Test
+    public void testEvaluateTemplateWithExpression() {
+        this.evaluateAndValueCheck(
+                "=template(\"Before ${sum(1,2,3)} After\")",
+                "Before 6. After" // extra dot is because of number formatting
+        );
+    }
+
+    @Test
+    public void testEvaluateTemplateWithUnknownLabel() {
+        this.evaluateAndValueCheck(
+                "=template(\"${Hello} 123\")",
+                "#NAME? 123"
+        );
+    }
+
+    @Test
+    public void testEvaluateTemplateWithLabel() {
+        final SpreadsheetEngine engine = SpreadsheetEngines.basic();
+
+        final SpreadsheetMetadata metadata = this.metadata()
+                .set(
+                        SpreadsheetMetadataPropertyName.TEXT_FORMATTER,
+                        SpreadsheetPattern.DEFAULT_TEXT_FORMAT_PATTERN.spreadsheetFormatterSelector()
+                );
+
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
+        metadataStore.save(metadata);
+
+        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
+                SpreadsheetCellStores.treeMap(),
+                SpreadsheetCellReferencesStores.treeMap(),
+                SpreadsheetColumnStores.treeMap(),
+                SpreadsheetFormStores.treeMap(),
+                SpreadsheetGroupStores.treeMap(),
+                SpreadsheetLabelStores.treeMap(),
+                SpreadsheetLabelReferencesStores.treeMap(),
+                metadataStore,
+                SpreadsheetCellRangeStores.treeMap(),
+                SpreadsheetCellRangeStores.treeMap(),
+                SpreadsheetRowStores.treeMap(),
+                StorageStores.tree(STORAGE_STORE_CONTEXT),
+                SpreadsheetUserStores.treeMap()
+        );
+
+        final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
+                SERVER_URL,
+                metadata,
+                repo,
+                SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+                SpreadsheetProviders.basic(
+                        SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                                metadata,
+                                SPREADSHEET_FORMATTER_PROVIDER,
+                                SPREADSHEET_PARSER_PROVIDER
+                        ),
+                        EXPRESSION_FUNCTION_PROVIDER,
+                        SPREADSHEET_COMPARATOR_PROVIDER,
+                        SPREADSHEET_EXPORTER_PROVIDER,
+                        SPREADSHEET_FORMATTER_PROVIDER,
+                        FORM_HANDLER_PROVIDER,
+                        SPREADSHEET_IMPORTER_PROVIDER,
+                        SPREADSHEET_PARSER_PROVIDER,
+                        VALIDATOR_PROVIDER
+                ),
+                PROVIDER_CONTEXT
+        );
+
+        final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
+
+        engine.saveLabel(
+                SpreadsheetSelection.labelName("Hello")
+                        .setLabelMappingReference(labelTarget),
+                context
+        );
+
+        engine.saveCell(
+                labelTarget.setFormula(
+                        SpreadsheetFormula.EMPTY.setValue(
+                                Optional.of("WORLD")
+                        )
+                ),
+                context
+        );
+
+        final SpreadsheetCell cell = SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=template(\"${Hello} 123\")")
+        );
+
+        final SpreadsheetCell saved = engine.saveCell(
+                        cell,
+                        context
+                ).cell(cell.reference())
+                .get();
+
+        this.checkEquals(
+                TextNode.text("WORLD 123"),
+                saved.formattedValue()
+                        .orElse(null)
+        );
+    }
+
+    @Test
     public void testEvaluateTextWithDate() {
         this.evaluateAndValueCheck(
                 "=text(date(1999,12,31), \"yyyy mm dd\")",
@@ -2924,7 +3050,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()

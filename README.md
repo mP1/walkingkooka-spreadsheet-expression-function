@@ -182,6 +182,7 @@ majority of these functions are formula expression functions.
 - t
 - tan
 - tanh
+- template
 - text
 - textJoin
 - textMatch
