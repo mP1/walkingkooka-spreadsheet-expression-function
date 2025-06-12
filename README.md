@@ -90,6 +90,7 @@ majority of these functions are formula expression functions.
 - floor
 - formatValue
 - formulatext
+- getStyle
 - hex2bin
 - hex2dec
 - hex2oct
@@ -159,6 +160,8 @@ majority of these functions are formula expression functions.
 - rows
 - search
 - second
+- setStyle
+- setText
 - sign
 - sin
 - sinh
@@ -166,6 +169,10 @@ majority of these functions are formula expression functions.
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
 - sqrt
+- styleGet
+- styleRemove
+- styleSet
+- styledText
 - substitute
 - sum
 - sumIf
@@ -227,6 +234,15 @@ Functions that are especially useful when formatting a value via
 an [Expression](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/Expression.java).
 
 - formatValue
+- [getStyle](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionGetStyle.java)
+- [hyperlink](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionHyperlink.java)
+- [image](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionImage.java)
+- [setText](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionSetText.java)
+- [setStyle](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionSetStyle.java)
+- [styleGet](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionTextStyleGet.java)
+- [styleRemove](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionTextStyleRemove.java)
+- [styleSet](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionTextStyleSet.java)
+- [styledText](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionStyledText.java)
 
 # SpreadsheetForm function
 

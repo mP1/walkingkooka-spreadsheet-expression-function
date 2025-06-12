@@ -42,8 +42,11 @@ import walkingkooka.tree.expression.function.number.NumberExpressionFunctions;
 import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomteryExpressionFunctions;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
+import walkingkooka.tree.text.Hyperlink;
+import walkingkooka.tree.text.Image;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
+import walkingkooka.tree.text.expression.function.TreeTextExpressionFunctions;
 import walkingkooka.validation.ValidationError;
 import walkingkooka.validation.provider.ValidatorSelector;
 
@@ -680,6 +683,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#getStyle}
+     */
+    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> getStyle() {
+        return fixName(
+                TreeTextExpressionFunctions.getStyle()
+        );
+    }
+
+    /**
      * {@see EngineeringExpressionFunctions#hex2bin}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2bin() {
@@ -716,6 +728,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#hyperlink}
+     */
+    public static ExpressionFunction<Hyperlink, SpreadsheetExpressionEvaluationContext> hyperlink() {
+        return fixName(
+                TreeTextExpressionFunctions.hyperlink()
+        );
+    }
+
+    /**
      * {@see BooleanExpressionFunctions#ifFunction}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> ifFunction() {
@@ -733,6 +754,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         );
     }
 
+    /**
+     * {@see TreeTextExpressionFunctions#image}
+     */
+    public static ExpressionFunction<Image, SpreadsheetExpressionEvaluationContext> image() {
+        return fixName(
+                TreeTextExpressionFunctions.image()
+        );
+    }
+    
     /**
      * {@see SpreadsheetExpressionFunctionIndirect}
      */
@@ -1279,6 +1309,24 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#setStyle}
+     */
+    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> setStyle() {
+        return fixName(
+                TreeTextExpressionFunctions.setStyle()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#setText}
+     */
+    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> setText() {
+        return fixName(
+                TreeTextExpressionFunctions.setText()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#sign}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sign() {
@@ -1332,6 +1380,42 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
         return fixName(
                 NumberExpressionFunctions.sqrt()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#styleGet}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> styleGet() {
+        return fixName(
+                TreeTextExpressionFunctions.styleGet()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#styleRemove}
+     */
+    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> styleRemove() {
+        return fixName(
+                TreeTextExpressionFunctions.styleRemove()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#styleSet}
+     */
+    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> styleSet() {
+        return fixName(
+                TreeTextExpressionFunctions.styleSet()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#styledText}
+     */
+    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> styledText() {
+        return fixName(
+                TreeTextExpressionFunctions.styledText()
         );
     }
 

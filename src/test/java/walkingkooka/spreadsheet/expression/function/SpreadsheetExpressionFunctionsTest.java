@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.color.Color;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -1084,6 +1085,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetStyle() {
+        this.evaluateAndValueCheck(
+                "=getStyle(setStyle(hyperlink(\"https://example.com\"),\"color: #123456\"))",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#123456")
+                )
+        );
+    }
+
+    @Test
     public void testEvaluateHex2Bin() {
         this.evaluateAndValueCheck(
                 "=hex2bin(\"f\")",
@@ -2122,6 +2134,41 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetStyle() {
+        this.evaluateAndValueCheck(
+                "=setStyle(hyperlink(\"https://example.com\"),\"color: #123456\")",
+                TextNode.hyperlink(
+                        Url.parseAbsolute("https://example.com")
+                ).setTextStyle(
+                        TextStyle.EMPTY.set(
+                                TextStylePropertyName.COLOR,
+                                Color.parse("#123456")
+                        )
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateSetTextWithHyperlink() {
+        this.evaluateAndValueCheck(
+                "=setText(hyperlink(\"https://example.com\"),\"Text123\")",
+                TextNode.hyperlink(
+                        Url.parseAbsolute("https://example.com")
+                ).setText("Text123")
+        );
+    }
+
+    @Test
+    public void testEvaluateSetTextWithStringAndString() {
+        this.evaluateAndValueCheck(
+                "=setText(\"LostText111\",\"Text222\")",
+                TextNode.text(
+                        "LostText111"
+                ).setText("Text222")
+        );
+    }
+
+    @Test
     public void testEvaluateSignWithNegativeNumber() {
         this.evaluateAndValueCheck(
                 "=sign(-123)",
@@ -2205,6 +2252,72 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=sqrt(100)",
                 EXPRESSION_NUMBER_KIND.create(10)
+        );
+    }
+
+
+    @Test
+    public void testEvaluateStyleGet() {
+        this.evaluateAndValueCheck(
+                "=styleGet(hyperlink(\"https://example.com\"), \"color\")",
+                TextNode.hyperlink(
+                                Url.parseAbsolute("https://example.com")
+                        ).textStyle()
+                        .get(TextStylePropertyName.COLOR)
+                        .orElse(null)
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleGet2() {
+        this.evaluateAndValueCheck(
+                "=styleGet(styleSet(hyperlink(\"https://example.com\"),\"color\",\"#123456\"),\"color\")",
+                TextNode.hyperlink(
+                                Url.parseAbsolute("https://example.com")
+                        ).setTextStyle(
+                                TextStyle.EMPTY.set(
+                                        TextStylePropertyName.COLOR,
+                                        Color.parse("#123456")
+                                )
+                        ).textStyle()
+                        .get(TextStylePropertyName.COLOR)
+                        .orElse(null)
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleRemove() {
+        this.evaluateAndValueCheck(
+                "=styleRemove(\"background-color: #111111; color: #222222\",\"color\")",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.BACKGROUND_COLOR,
+                        Color.parse("#111111")
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleSet() {
+        this.evaluateAndValueCheck(
+                "=styleSet(\"background-color: #111111\",\"color\",\"#222222\")",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.BACKGROUND_COLOR,
+                        Color.parse("#111111")
+                ).set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#222222")
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateStyledText() {
+        this.evaluateAndValueCheck(
+                "=styledText(\"Text123\",\"{color:#123456\")",
+                TextNode.text("Text123")
+                        .setTextStyle(
+                                TextStyle.parse("{color:#123456}")
+                        )
         );
     }
 
@@ -2781,14 +2894,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
                                 .aliasSet()
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
-                        ConverterSelector.parse("collection(null-to-number, number-to-number, text-to-text, error-to-number, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
                 ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
                 .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
