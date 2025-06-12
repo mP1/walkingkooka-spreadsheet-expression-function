@@ -91,6 +91,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testResolveLabelWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
                 DECIMAL_SEPARATOR,
@@ -166,6 +171,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     public char zeroDigit() {
                         return ZERO_DIGIT;
                     }
+
 
                     // FormHandlerContext...............................................................................
 
