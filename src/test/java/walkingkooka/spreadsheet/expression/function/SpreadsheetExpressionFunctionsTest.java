@@ -74,6 +74,7 @@ import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.text.Length;
+import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.TextStylePropertyName;
@@ -2274,6 +2275,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    @Test
+    public void testEvaluateStyle() {
+        this.evaluateAndValueCheck(
+                "=style(\"text-align: left;\")",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.TEXT_ALIGN,
+                        TextAlign.LEFT
+                )
+        );
+    }
 
     @Test
     public void testEvaluateStyleGet() {

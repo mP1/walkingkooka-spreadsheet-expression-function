@@ -1393,6 +1393,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#style}
+     */
+    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> style() {
+        return fixName(
+                TreeTextExpressionFunctions.style()
+        );
+    }
+
+    /**
      * {@see TreeTextExpressionFunctions#styleGet}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> styleGet() {
