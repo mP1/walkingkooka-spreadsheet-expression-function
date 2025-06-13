@@ -1739,6 +1739,25 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateMergeStyle() {
+        this.evaluateAndValueCheck(
+                "=mergeStyle(\"color:#111;\",\"text-align:left;\")",
+                TextStyle.parse("color: #111; text-align: left;")
+        );
+    }
+
+    @Test
+    public void testEvaluateMergeStyleAndStyledText() {
+        this.evaluateAndValueCheck(
+                "=styledText(\"HelloText123\", mergeStyle(\"color:#111;\",\"text-align:left\"))",
+                TextNode.text("HelloText123")
+                        .setTextStyle(
+                                TextStyle.parse("color: #111; text-align: left;")
+                        )
+        );
+    }
+
+    @Test
     public void testEvaluateMid() {
         this.evaluateAndValueCheck(
                 "=mid(\"apple\", 2, 3)",

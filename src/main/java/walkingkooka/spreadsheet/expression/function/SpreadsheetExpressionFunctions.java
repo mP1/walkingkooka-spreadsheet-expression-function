@@ -994,6 +994,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#mergeStyle}
+     */
+    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> mergeStyle() {
+        return fixName(
+                TreeTextExpressionFunctions.mergeStyle()
+        );
+    }
+
+    /**
      * {@see StringExpressionFunctions#mid}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> mid() {

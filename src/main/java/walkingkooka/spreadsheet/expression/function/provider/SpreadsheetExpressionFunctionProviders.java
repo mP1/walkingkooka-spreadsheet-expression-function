@@ -138,6 +138,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.lower(),
                                 SpreadsheetExpressionFunctions.max(),
                                 SpreadsheetExpressionFunctions.maxIf(),
+                                SpreadsheetExpressionFunctions.mergeStyle(),
                                 SpreadsheetExpressionFunctions.mid(),
                                 SpreadsheetExpressionFunctions.min(),
                                 SpreadsheetExpressionFunctions.minIf(),
