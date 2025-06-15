@@ -1086,9 +1086,39 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateGetStyle() {
+    public void testEvaluateGetStyleWithString() {
+        this.evaluateAndValueCheck(
+                "=getStyle(\"color: #123456\")",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#123456")
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateGetStyleWithHyperlink() {
+        this.evaluateAndValueCheck(
+                "=getStyle(hyperlink(\"https://example.com\"))",
+                TextStyle.EMPTY
+        );
+    }
+
+    @Test
+    public void testEvaluateGetStyleWithSetStyleWithHyperlink() {
         this.evaluateAndValueCheck(
                 "=getStyle(setStyle(hyperlink(\"https://example.com\"),\"color: #123456\"))",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#123456")
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateGetStyleWithStyledText() {
+        this.evaluateAndValueCheck(
+                "=getStyle(styledText(\"Hello\",\"color: #123456\"))",
                 TextStyle.EMPTY.set(
                         TextStylePropertyName.COLOR,
                         Color.parse("#123456")
@@ -3041,7 +3071,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
                 .set(
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
+                        // "has-style-to-style" must be before "text-to-text" otherwise value=TextNode & type=HasTextStyle will fail because TextNode also implements HasText
+                        // TextStyleNode.text will produce invalid TextStyle text.
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
