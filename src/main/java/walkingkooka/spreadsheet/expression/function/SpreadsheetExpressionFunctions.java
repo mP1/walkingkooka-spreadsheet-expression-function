@@ -1499,6 +1499,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionStringTemplate#INSTANCE}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> template() {
+        return SpreadsheetExpressionFunctionStringTemplate.INSTANCE;
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionStringText#INSTANCE}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> text() {
