@@ -2997,15 +2997,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private void evaluateAndFormattedCheck(final SpreadsheetCell save,
-                                           final TextNode expectedValue) {
-        this.evaluateAndFormattedCheck(
-                save,
-                Maps.empty(),
-                expectedValue
-        );
-    }
-
     private SpreadsheetEngineContext evaluateAndFormattedCheck(final SpreadsheetCell save,
                                                                final Map<String, String> preload,
                                                                final TextNode expectedFormatted) {
