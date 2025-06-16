@@ -535,6 +535,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateColorWithString() {
+        this.evaluateAndValueCheck(
+                "=color(\"#123456\")",
+                Color.parse("#123456")
+        );
+    }
+
+    @Test
     public void testEvaluateColumn() {
         this.evaluateAndValueCheck(
                 "=column(C1)",
@@ -1231,6 +1239,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateInvertColorWithColor() {
+        this.evaluateAndValueCheck(
+                "=invertColor(color(\"#123456\"))",
+                Color.parse("#123456")
+                        .invert()
+        );
+    }
+
+    @Test
+    public void testEvaluateInvertColorWithString() {
+        this.evaluateAndValueCheck(
+                "=invertColor(\"#123456\")",
+                Color.parse("#123456")
+                        .invert()
+        );
+    }
+
+    @Test
     public void testEvaluateIsBlankNoCell() {
         this.evaluateAndValueCheck(
                 "=isBlank(B2)",
@@ -1827,6 +1853,18 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=minute(time(12, 58, 59))",
                 EXPRESSION_NUMBER_KIND.create(58)
+        );
+    }
+
+    @Test
+    public void testEvaluateMixColorWithColorColorNumber() {
+        this.evaluateAndValueCheck(
+                "=mixColor(color(\"#111\"), color(\"#222\"), 0.5)",
+                Color.parse("#111")
+                        .mix(
+                                Color.parse("#222"),
+                                0.5f
+                        )
         );
     }
 
@@ -2722,6 +2760,26 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateToRgbHexStringWithColor() {
+        this.evaluateAndValueCheck(
+                "=toRgbHexString(color(\"#123456\"))",
+                Color.parse("#123456")
+                        .toRgb()
+                        .toHexString()
+        );
+    }
+
+    @Test
+    public void testEvaluateToRgbHexStringWithString() {
+        this.evaluateAndValueCheck(
+                "=toRgbHexString(\"#123456\")",
+                Color.parse("#123456")
+                        .toRgb()
+                        .toHexString()
+        );
+    }
+
+    @Test
     public void testEvaluateTrim() {
         this.evaluateAndValueCheck(
                 "=trim(\"  a  b  c  \")",
@@ -3073,7 +3131,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         // "has-style-to-style" must be before "text-to-text" otherwise value=TextNode & type=HasTextStyle will fail because TextNode also implements HasText
                         // TextStyleNode.text will produce invalid TextStyle text.
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
