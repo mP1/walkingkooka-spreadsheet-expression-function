@@ -18,6 +18,8 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
+import walkingkooka.color.Color;
+import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.PublicStaticHelper;
@@ -414,6 +416,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             .setName(functionName("code"));
 
     /**
+     * {@see ColorExpressionFunctions.#color}
+     */
+    public static ExpressionFunction<Color, SpreadsheetExpressionEvaluationContext> color() {
+        return fixName(
+                ColorExpressionFunctions.color()
+        );
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionNumberColumnOrRow#COLUMN}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> column() {
@@ -780,6 +791,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ColorExpressionFunctions.#invertColor}
+     */
+    public static ExpressionFunction<Color, SpreadsheetExpressionEvaluationContext> invertColor() {
+        return fixName(
+                ColorExpressionFunctions.invertColor()
+        );
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionBooleanIsBlank}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isBlank() {
@@ -1036,6 +1056,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         );
     }
 
+    /**
+     * {@see ColorExpressionFunctions.#mixColor}
+     */
+    public static ExpressionFunction<Color, SpreadsheetExpressionEvaluationContext> mixColor() {
+        return fixName(
+                ColorExpressionFunctions.mixColor()
+        );
+    }
+    
     /**
      * {@see NumberExpressionFunctions#mod}
      */
@@ -1545,6 +1574,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<LocalDate, SpreadsheetExpressionEvaluationContext> today() {
         return fixName(
                 DateTimeExpressionFunctions.today()
+        );
+    }
+
+    /**
+     * {@see ColorExpressionFunctions#toRgbHexString}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> toRgbHexString() {
+        return fixName(
+                ColorExpressionFunctions.toRgbHexString()
         );
     }
 
