@@ -252,6 +252,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // function tests...................................................................................................
 
     @Test
+    public void testEvaluateAbsInvalidParameterTypeFails() {
+        this.evaluateAndValueCheck(
+                "=abs(\"Hello\")",
+                SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"Hello\" to ExpressionNumber")
+        );
+    }
+
+    @Test
     public void testEvaluateAbs() {
         this.evaluateAndValueCheck(
                 "=abs(-1.5)+abs(0.5)",
@@ -2927,7 +2935,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateValueWithInvalidString() {
         this.evaluateAndValueCheck(
                 "=value(\"abc\")",
-                SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Invalid type walkingkooka.spreadsheet.SpreadsheetError expected walkingkooka.tree.expression.ExpressionNumber")
+                SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"abc\" to ExpressionNumber")
         );
     }
 
