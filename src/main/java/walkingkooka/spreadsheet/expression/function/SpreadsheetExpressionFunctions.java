@@ -266,7 +266,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITAND = fixName(
-            EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitAnd()
+            EngineeringExpressionFunctions.bitAnd()
     );
 
     /**
@@ -277,7 +277,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BITOR = fixName(
-            EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitOr()
+            EngineeringExpressionFunctions.bitOr()
     );
 
     /**
@@ -288,7 +288,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> BitXor = fixName(
-            EngineeringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>bitXor()
+            EngineeringExpressionFunctions.bitXor()
     );
 
     /**
@@ -1549,7 +1549,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> TEXTJOIN = fixName(
-            StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>textJoin()
+            StringExpressionFunctions.textJoin()
     );
 
     /**
