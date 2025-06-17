@@ -101,7 +101,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
-    private final static ExpressionFunctionProvider EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
+    private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
     // wizard function names are all case-insensitive...................................................................
 
