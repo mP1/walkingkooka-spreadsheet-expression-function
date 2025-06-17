@@ -680,10 +680,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionFormatValue}
+     * {@see SpreadsheetExpressionFunctionObjectFormatValue}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> formatValue() {
-        return SpreadsheetExpressionFunctionFormatValue.INSTANCE;
+        return SpreadsheetExpressionFunctionObjectFormatValue.INSTANCE;
     }
 
     /**

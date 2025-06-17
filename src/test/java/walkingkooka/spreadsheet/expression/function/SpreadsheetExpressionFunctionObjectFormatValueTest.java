@@ -24,7 +24,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionFormatValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionFormatValue, Object> {
+public final class SpreadsheetExpressionFunctionObjectFormatValueTest extends SpreadsheetExpressionFunctionObjectTestCase<SpreadsheetExpressionFunctionObjectFormatValue> {
 
     private final static Object VALUE = "abc123";
 
@@ -45,8 +45,8 @@ public final class SpreadsheetExpressionFunctionFormatValueTest extends Spreadsh
     }
 
     @Override
-    public SpreadsheetExpressionFunctionFormatValue createBiFunction() {
-        return SpreadsheetExpressionFunctionFormatValue.INSTANCE;
+    public SpreadsheetExpressionFunctionObjectFormatValue createBiFunction() {
+        return SpreadsheetExpressionFunctionObjectFormatValue.INSTANCE;
     }
 
     @Override
@@ -66,12 +66,7 @@ public final class SpreadsheetExpressionFunctionFormatValueTest extends Spreadsh
     }
 
     @Override
-    public Class<SpreadsheetExpressionFunctionFormatValue> type() {
-        return SpreadsheetExpressionFunctionFormatValue.class;
-    }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
+    public Class<SpreadsheetExpressionFunctionObjectFormatValue> type() {
+        return SpreadsheetExpressionFunctionObjectFormatValue.class;
     }
 }
