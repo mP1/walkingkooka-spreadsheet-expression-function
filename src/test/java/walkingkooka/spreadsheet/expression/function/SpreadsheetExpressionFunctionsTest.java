@@ -2634,6 +2634,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 metadata,
                 repo,
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+                LOCALE_CONTEXT,
                 SpreadsheetProviders.basic(
                         SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                                 metadata,
@@ -3196,6 +3197,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 metadata,
                 repo,
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+                LOCALE_CONTEXT,
                 SpreadsheetProviders.basic(
                         SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                                 metadata,
