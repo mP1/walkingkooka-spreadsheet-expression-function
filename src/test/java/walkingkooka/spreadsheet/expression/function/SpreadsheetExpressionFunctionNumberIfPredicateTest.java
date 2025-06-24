@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.environment.AuditInfo;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.predicate.PredicateTesting;
@@ -275,12 +276,15 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
     }
 
     private SpreadsheetExpressionEvaluationContext context() {
+        final Locale locale = Locale.ENGLISH;
+
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-                .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.ENGLISH)
-                .loadFromLocale()
-                .set(
+                .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
+                .loadFromLocale(
+                        LocaleContexts.jre(locale)
+                ).set(
                         SpreadsheetMetadataPropertyName.AUDIT_INFO,
                         AuditInfo.with(
                                 EmailAddress.parse("creator@example.com"),
