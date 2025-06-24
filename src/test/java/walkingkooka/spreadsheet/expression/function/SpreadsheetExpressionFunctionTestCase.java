@@ -180,6 +180,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
                 FormHandlerContexts.fake(),
                 EXPRESSION_FUNCTION_PROVIDER,
+                LOCALE_CONTEXT,
                 PROVIDER_CONTEXT
         );
     }

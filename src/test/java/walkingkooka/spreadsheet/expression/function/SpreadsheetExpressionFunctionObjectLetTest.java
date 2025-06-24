@@ -349,10 +349,12 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                                 SPREADSHEET_FORMATTER_PROVIDER,
                                 SPREADSHEET_PARSER_PROVIDER
                         ),
+                        LOCALE_CONTEXT,
                         PROVIDER_CONTEXT
                 ),
                 FormHandlerContexts.fake(),
                 EXPRESSION_FUNCTION_PROVIDER,
+                LOCALE_CONTEXT,
                 PROVIDER_CONTEXT
         );
     }
