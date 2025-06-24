@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converters;
 import walkingkooka.environment.AuditInfo;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
@@ -80,6 +81,8 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
 
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
+        final Locale locale = Locale.ENGLISH;
+
         return SpreadsheetExpressionEvaluationContexts.basic(
                 Optional.empty(), // cell
                 SpreadsheetExpressionReferenceLoaders.fake(),
@@ -87,9 +90,10 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                 SpreadsheetMetadata.EMPTY
                         .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
                         .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-                        .set(SpreadsheetMetadataPropertyName.LOCALE, Locale.ENGLISH)
-                        .loadFromLocale()
-                        .set(
+                        .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
+                        .loadFromLocale(
+                                LocaleContexts.jre(locale)
+                        ).set(
                                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
                                 AuditInfo.with(
                                         EmailAddress.parse("creator@example.com"),

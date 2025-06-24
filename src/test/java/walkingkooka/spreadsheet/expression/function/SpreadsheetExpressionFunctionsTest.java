@@ -26,6 +26,7 @@ import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
@@ -3123,7 +3124,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
                 .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
-                .loadFromLocale()
+                .loadFromLocale(
+                        LocaleContexts.jre(LOCALE)
+                )
                 .set(
                         SpreadsheetMetadataPropertyName.AUDIT_INFO,
                         AuditInfo.with(
