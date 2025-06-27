@@ -23,6 +23,8 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextDelegator;
+import walkingkooka.locale.LocaleContext;
+import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -76,7 +78,8 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         DateTimeContextDelegator,
         EnvironmentContextDelegator,
         JsonNodeMarshallContextDelegator,
-        JsonNodeUnmarshallContextDelegator {
+        JsonNodeUnmarshallContextDelegator,
+        LocaleContextDelegator {
 
     static SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext with(final char decimalSeparator,
                                                                                                final char groupSeparator,
@@ -183,11 +186,6 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public CaseSensitivity stringEqualsCaseSensitivity() {
         return this.context.stringEqualsCaseSensitivity();
-    }
-
-    @Override
-    public Locale locale() {
-        return this.context.locale();
     }
 
     @Override
@@ -416,6 +414,18 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public JsonNodeContext jsonNodeContext() {
         return this.context;
+    }
+
+    // LocaleContextDelegator...........................................................................................
+
+    @Override
+    public LocaleContext localeContext() {
+        return this.context;
+    }
+
+    @Override
+    public Locale locale() {
+        return this.context.locale();
     }
 
     // Object...........................................................................................................
