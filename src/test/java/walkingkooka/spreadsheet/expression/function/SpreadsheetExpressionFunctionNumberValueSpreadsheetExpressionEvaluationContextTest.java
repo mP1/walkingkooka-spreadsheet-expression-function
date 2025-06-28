@@ -101,6 +101,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testSpreadsheetFormatterContextWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
                 DECIMAL_SEPARATOR,

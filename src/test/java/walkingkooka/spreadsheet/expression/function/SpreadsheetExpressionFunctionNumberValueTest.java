@@ -25,6 +25,7 @@ import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
@@ -136,6 +137,9 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
                     private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
                 },
                 SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+                (Optional<SpreadsheetCell> cell) -> {
+                    throw new UnsupportedOperationException();
+                },
                 FormHandlerContexts.fake(),
                 EXPRESSION_FUNCTION_PROVIDER,
                 LOCALE_CONTEXT,

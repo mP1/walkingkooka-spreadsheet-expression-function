@@ -32,6 +32,7 @@ import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
+import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.formula.parser.SpreadsheetFormulaParserToken;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
@@ -144,6 +145,7 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     public Optional<SpreadsheetSelection> resolveLabel(final SpreadsheetLabelName labelName) {
         return this.context.resolveLabel(labelName);
     }
+
 
     @Override
     public SpreadsheetMetadata spreadsheetMetadata() {
@@ -338,6 +340,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public StorageStore storage() {
         return this.context.storage();
+    }
+
+    @Override
+    public SpreadsheetFormatterContext spreadsheetFormatterContext(final Optional<SpreadsheetCell> cell) {
+        return this.context.spreadsheetFormatterContext(cell);
     }
 
     @Override
