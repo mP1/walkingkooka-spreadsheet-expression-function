@@ -29,15 +29,15 @@ import java.util.Optional;
  * A function that should only be used with a {@link walkingkooka.spreadsheet.format.SpreadsheetFormatter#format(Optional, SpreadsheetFormatterContext)},
  * and may be used by an expression to retrieve the value being formatted via function instead of a using {@link SpreadsheetExpressionEvaluationContext#FORMAT_VALUE}.
  */
-final class SpreadsheetExpressionFunctionObjectFormatValue extends SpreadsheetExpressionFunctionObject {
+final class SpreadsheetExpressionFunctionObjectGetFormatValue extends SpreadsheetExpressionFunctionObject {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionObjectFormatValue INSTANCE = new SpreadsheetExpressionFunctionObjectFormatValue();
+    final static SpreadsheetExpressionFunctionObjectGetFormatValue INSTANCE = new SpreadsheetExpressionFunctionObjectGetFormatValue();
 
-    private SpreadsheetExpressionFunctionObjectFormatValue() {
-        super("formatValue");
+    private SpreadsheetExpressionFunctionObjectGetFormatValue() {
+        super("getFormatValue");
     }
 
     @Override
