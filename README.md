@@ -89,6 +89,7 @@ majority of these functions are formula expression functions.
 - find
 - fixed
 - floor
+- formatValue
 - formulatext
 - getFormatValue
 - getStyle
