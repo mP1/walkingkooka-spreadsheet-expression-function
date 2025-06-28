@@ -31,6 +31,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.text.HasText;
 import walkingkooka.tree.expression.ExpressionNumber;
 
+import java.util.Locale;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends SpreadsheetExpressionFunctionCell<T>, T> extends SpreadsheetExpressionFunctionTestCase<F, T>
@@ -112,11 +113,13 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
                 value,
                 String.class,
                 SpreadsheetMetadataTesting.SPREADSHEET_FORMATTER_CONTEXT,
-                value instanceof HasText ?
-                        HasText.class.cast(value).text() :
-                        value instanceof ExpressionNumber ?
-                                "1." :
-                                "*Something went wrong here*"
+                value instanceof Locale ?
+                        ((Locale) value).toLanguageTag() :
+                        value instanceof HasText ?
+                                HasText.class.cast(value).text() :
+                                value instanceof ExpressionNumber ?
+                                        "1." :
+                                        "*Something went wrong here*"
         );
     }
 
