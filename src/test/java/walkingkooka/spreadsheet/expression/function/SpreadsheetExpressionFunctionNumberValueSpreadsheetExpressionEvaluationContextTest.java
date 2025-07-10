@@ -91,6 +91,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testLocaleTextWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testParseFormulaNullFails() {
         throw new UnsupportedOperationException();
     }
