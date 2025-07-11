@@ -46,6 +46,7 @@ import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.text.Hyperlink;
 import walkingkooka.tree.text.Image;
+import walkingkooka.tree.text.Styleable;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.expression.function.TreeTextExpressionFunctions;
@@ -1023,7 +1024,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see TreeTextExpressionFunctions#mergeStyle}
      */
-    public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> mergeStyle() {
+    public static ExpressionFunction<Styleable, SpreadsheetExpressionEvaluationContext> mergeStyle() {
         return fixName(
                 TreeTextExpressionFunctions.mergeStyle()
         );

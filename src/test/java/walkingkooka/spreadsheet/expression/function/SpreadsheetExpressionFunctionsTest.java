@@ -2021,10 +2021,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateMergeStyle() {
+    public void testEvaluateMergeStyleWithStringAndString() {
         this.evaluateAndValueCheck(
-                "=mergeStyle(\"color:#111;\",\"text-align:left;\")",
-                TextStyle.parse("color: #111; text-align: left;")
+                "=mergeStyle(\"background-color:#111;\",\"color:#222;\")",
+                TextStyle.parse("background-color: #111; color: #222;")
+        );
+    }
+
+    @Test
+    public void testEvaluateMergeStyleWithTextNodeAndString() {
+        this.evaluateAndValueCheck(
+                "=mergeStyle(styledText(\"HelloText123\",\"background-color:#111;\"),\"color:#222;\")",
+                TextNode.text("HelloText123")
+                        .setTextStyle(
+                                TextStyle.parse("background-color: #111; color: #222;")
+                        )
         );
     }
 
@@ -3517,14 +3528,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         // "has-style-to-style" must be before "text-to-text" otherwise value=TextNode & type=HasTextStyle will fail because TextNode also implements HasText
                         // TextStyleNode.text will produce invalid TextStyle text.
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
                                 .aliasSet()
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, text-to-expression, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, text-to-text, error-to-number, text-to-expression, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, general)")
                 ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
                 .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
