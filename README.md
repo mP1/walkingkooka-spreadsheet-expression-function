@@ -123,6 +123,7 @@ majority of these functions are formula expression functions.
 - len
 - let
 - ln
+- locale
 - log
 - log10
 - lower

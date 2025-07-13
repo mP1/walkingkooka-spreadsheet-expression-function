@@ -1945,6 +1945,18 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLocaleWithString() {
+        // formatting fails to convert Locale to String for formatting
+        this.evaluateAndValueCheck(
+                "=locale(\"EN-AU\")",
+                SpreadsheetErrorKind.VALUE.setMessage("Cannot convert en_AU to String")
+                        .setValue(
+                                Optional.of(Locale.forLanguageTag("en-AU"))
+                        )
+        );
+    }
+
+    @Test
     public void testEvaluateLogWIthNumbers() {
         this.evaluateAndValueCheck(
                 "=log(3, 2)",
@@ -3590,7 +3602,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         // "has-style-to-style" must be before "text-to-text" otherwise value=TextNode & type=HasTextStyle will fail because TextNode also implements HasText
                         // TextStyleNode.text will produce invalid TextStyle text.
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-locale, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
