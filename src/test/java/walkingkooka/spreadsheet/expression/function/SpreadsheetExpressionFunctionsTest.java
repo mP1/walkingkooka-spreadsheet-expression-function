@@ -2731,13 +2731,27 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateStyleRemove() {
+    public void testEvaluateStyleRemoveWithTextStyleAndString() {
         this.evaluateAndValueCheck(
                 "=styleRemove(\"background-color: #111111; color: #222222\",\"color\")",
                 TextStyle.EMPTY.set(
                         TextStylePropertyName.BACKGROUND_COLOR,
                         Color.parse("#111111")
                 )
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleRemoveWithTextNodeAndString() {
+        this.evaluateAndValueCheck(
+                "=styleRemove(styledText(\"HelloText\",\"background-color: #111111; color: #222222\"),\"color\")",
+                TextNode.text("HelloText")
+                        .setTextStyle(
+                                TextStyle.EMPTY.set(
+                                        TextStylePropertyName.BACKGROUND_COLOR,
+                                        Color.parse("#111111")
+                                )
+                        )
         );
     }
 
