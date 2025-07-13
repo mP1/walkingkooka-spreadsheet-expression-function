@@ -2756,7 +2756,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateStyleSet() {
+    public void testEvaluateStyleSetWithStringAndStringAndString() {
         this.evaluateAndValueCheck(
                 "=styleSet(\"background-color: #111111\",\"color\",\"#222222\")",
                 TextStyle.EMPTY.set(
@@ -2766,6 +2766,54 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         TextStylePropertyName.COLOR,
                         Color.parse("#222222")
                 )
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleSetWithTextStyleAndStringAndString() {
+        this.evaluateAndValueCheck(
+                "=styleSet(style(\"background-color: #111111\"),\"color\",\"#222222\")",
+                TextStyle.EMPTY.set(
+                        TextStylePropertyName.BACKGROUND_COLOR,
+                        Color.parse("#111111")
+                ).set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#222222")
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleSetWithTextNodeAndStringAndString() {
+        this.evaluateAndValueCheck(
+                "=styleSet(styledText(\"HelloText123\",\"background-color: #111111\"),\"color\",\"#222222\")",
+                TextNode.text("HelloText123")
+                        .setTextStyle(
+                                TextStyle.EMPTY.set(
+                                        TextStylePropertyName.BACKGROUND_COLOR,
+                                        Color.parse("#111111")
+                                ).set(
+                                        TextStylePropertyName.COLOR,
+                                        Color.parse("#222222")
+                                )
+                        )
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleSetWithTextNodeAndStringAndString2() {
+        this.evaluateAndValueCheck(
+                "=styleSet(styledText(\"HelloText123\",style(\"background-color: #111111\")),\"color\",\"#222222\")",
+                TextNode.text("HelloText123")
+                        .setTextStyle(
+                                TextStyle.EMPTY.set(
+                                        TextStylePropertyName.BACKGROUND_COLOR,
+                                        Color.parse("#111111")
+                                ).set(
+                                        TextStylePropertyName.COLOR,
+                                        Color.parse("#222222")
+                                )
+                        )
         );
     }
 
