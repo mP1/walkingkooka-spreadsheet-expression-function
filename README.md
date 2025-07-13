@@ -221,6 +221,7 @@ so the value may be used by a predicate to filter cells. They are not intended t
 - cellFormattedValue
 - cellFormatter
 - cellFormula
+- cellLocale
 - cellParser
 - cellStyle
 - cellValidator
