@@ -338,6 +338,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionCellLocale}
+     */
+    public static ExpressionFunction<Locale, SpreadsheetExpressionEvaluationContext> cellLocale() {
+        return SpreadsheetExpressionFunctionCellLocale.INSTANCE;
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionCellFormula}
      */
     public static ExpressionFunction<SpreadsheetFormula, SpreadsheetExpressionEvaluationContext> cellFormula() {

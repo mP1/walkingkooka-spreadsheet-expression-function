@@ -51,6 +51,7 @@ majority of these functions are formula expression functions.
 - cellFormattedValue
 - cellFormatter
 - cellFormula
+- cellLocale
 - cellParser
 - cellStyle
 - cellValidator
