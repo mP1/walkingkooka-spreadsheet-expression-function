@@ -51,7 +51,6 @@ majority of these functions are formula expression functions.
 - cellFormattedValue
 - cellFormatter
 - cellFormula
-- cellLocale
 - cellParser
 - cellStyle
 - cellValidator
@@ -98,8 +97,10 @@ majority of these functions are formula expression functions.
 - hex2dec
 - hex2oct
 - hour
+- hyperlink
 - if
 - ifs
+- image
 - indirect
 - int
 - invertColor
@@ -177,10 +178,10 @@ majority of these functions are formula expression functions.
 - spreadsheetMetadataSet
 - sqrt
 - style
+- styledText
 - styleGet
 - styleRemove
 - styleSet
-- styledText
 - substitute
 - sum
 - sumIf
