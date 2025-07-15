@@ -208,6 +208,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.textMatch(),
                                 SpreadsheetExpressionFunctions.time(),
                                 SpreadsheetExpressionFunctions.today(),
+                                SpreadsheetExpressionFunctions.toGray(),
                                 SpreadsheetExpressionFunctions.toRgbHexString(),
                                 SpreadsheetExpressionFunctions.trim(),
                                 SpreadsheetExpressionFunctions.trueFunction(),

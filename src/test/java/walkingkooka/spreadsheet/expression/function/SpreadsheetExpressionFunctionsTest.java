@@ -3206,6 +3206,26 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateToGrayWithColor() {
+        this.evaluateAndValueCheck(
+                "=toGray(color(\"#123\"))",
+                Color.parse("#123")
+                        .toRgb()
+                        .toGray()
+        );
+    }
+
+    @Test
+    public void testEvaluateToGrayWithStringRgb() {
+        this.evaluateAndValueCheck(
+                "=toGray(\"#123\")",
+                Color.parse("#123")
+                        .toRgb()
+                        .toGray()
+        );
+    }
+
+    @Test
     public void testEvaluateToRgbHexStringWithColor() {
         this.evaluateAndValueCheck(
                 "=toRgbHexString(color(\"#123456\"))",
