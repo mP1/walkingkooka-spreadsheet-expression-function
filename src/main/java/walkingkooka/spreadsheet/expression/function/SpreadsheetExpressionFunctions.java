@@ -19,6 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
 import walkingkooka.color.Color;
+import walkingkooka.color.RgbColor;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -1597,6 +1598,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<LocalDate, SpreadsheetExpressionEvaluationContext> today() {
         return fixName(
                 DateTimeExpressionFunctions.today()
+        );
+    }
+
+    /**
+     * {@see ColorExpressionFunctions#toGray}
+     */
+    public static ExpressionFunction<RgbColor, SpreadsheetExpressionEvaluationContext> toGray() {
+        return fixName(
+                ColorExpressionFunctions.toGray()
         );
     }
 
