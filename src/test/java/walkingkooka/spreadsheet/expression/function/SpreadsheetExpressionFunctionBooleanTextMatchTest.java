@@ -29,8 +29,7 @@ public final class SpreadsheetExpressionFunctionBooleanTextMatchTest extends Spr
     public void testApplyMissingPatternAndValueFails() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> this.apply2(
-                )
+                this::apply2
         );
     }
 
