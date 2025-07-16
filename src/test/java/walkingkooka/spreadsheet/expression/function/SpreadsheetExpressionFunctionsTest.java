@@ -145,7 +145,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                         throw new RuntimeException(e);
                                     }
                                 }
-                        ).map(m -> m.getName().toString())
+                        ).map(m -> m.getName())
                         .sorted()
                         .collect(Collectors.joining("\n"))
         );
