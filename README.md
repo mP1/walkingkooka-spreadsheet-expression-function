@@ -93,6 +93,7 @@ majority of these functions are formula expression functions.
 - formatValue
 - formulatext
 - getAlpha
+- getGreen
 - getFormatValue
 - getStyle
 - hex2bin
