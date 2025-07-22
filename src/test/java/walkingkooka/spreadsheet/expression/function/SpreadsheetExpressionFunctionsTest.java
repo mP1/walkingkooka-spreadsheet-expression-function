@@ -22,6 +22,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.color.Color;
+import walkingkooka.color.RgbColorComponent;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -2545,6 +2546,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=second(time(12, 58, 59))",
                 EXPRESSION_NUMBER_KIND.create(59)
+        );
+    }
+
+    @Test
+    public void testEvaluateSetRed() {
+        this.evaluateAndValueCheck(
+                "=setRed(\"#123\", \"9\")",
+                Color.parseRgb("#123")
+                        .set(
+                                RgbColorComponent.red((byte) 9)
+                        )
         );
     }
 
