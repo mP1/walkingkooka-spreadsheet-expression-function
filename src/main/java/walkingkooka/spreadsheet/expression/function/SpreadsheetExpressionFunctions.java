@@ -18,6 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
+import walkingkooka.color.AlphaRgbColorComponent;
 import walkingkooka.color.Color;
 import walkingkooka.color.RgbColor;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
@@ -708,6 +709,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getFormatValue() {
         return SpreadsheetExpressionFunctionObjectGetFormatValue.INSTANCE;
+    }
+
+    /**
+     * {@see ColorExpressionFunctions#getAlpha}
+     */
+    public static ExpressionFunction<AlphaRgbColorComponent, SpreadsheetExpressionEvaluationContext> getAlpha() {
+        return fixName(
+                ColorExpressionFunctions.getAlpha()
+        );
     }
 
     /**

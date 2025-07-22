@@ -92,6 +92,7 @@ majority of these functions are formula expression functions.
 - floor
 - formatValue
 - formulatext
+- getAlpha
 - getFormatValue
 - getStyle
 - hex2bin
