@@ -1281,6 +1281,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetBlue() {
+        this.evaluateAndValueCheck(
+                "=getBlue(color(\"#11223380\"))",
+                Color.parseRgb("#11223380")
+                        .blue()
+        );
+    }
+
+    @Test
     public void testEvaluateGetFormatValue() {
         this.evaluateAndValueCheck(
                 "=getFormatValue()",
