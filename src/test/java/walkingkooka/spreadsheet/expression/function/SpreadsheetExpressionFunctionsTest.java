@@ -1272,6 +1272,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetAlpha() {
+        this.evaluateAndValueCheck(
+                "=getAlpha(color(\"#11223380\"))",
+                Color.parseRgb("#11223380")
+                        .alpha()
+        );
+    }
+
+    @Test
     public void testEvaluateGetFormatValue() {
         this.evaluateAndValueCheck(
                 "=getFormatValue()",
@@ -3683,7 +3692,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         // "has-style-to-style" must be before "text-to-text" otherwise value=TextNode & type=HasTextStyle will fail because TextNode also implements HasText
                         // TextStyleNode.text will produce invalid TextStyle text.
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-locale, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, number-to-color, general)")
+                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-locale, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, text-to-color, number-to-color, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
