@@ -2550,6 +2550,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetBlue() {
+        this.evaluateAndValueCheck(
+                "=setBlue(\"#112233\", \"255\")",
+                Color.parseRgb("#112233")
+                        .set(
+                                RgbColorComponent.blue((byte) 255)
+                        )
+        );
+    }
+    
+    @Test
     public void testEvaluateSetGreen() {
         this.evaluateAndValueCheck(
                 "=setGreen(\"#112233\", \"255\")",
