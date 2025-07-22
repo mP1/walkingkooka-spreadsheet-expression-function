@@ -96,6 +96,7 @@ majority of these functions are formula expression functions.
 - getBlue
 - getGreen
 - getFormatValue
+- getRed
 - getStyle
 - hex2bin
 - hex2dec

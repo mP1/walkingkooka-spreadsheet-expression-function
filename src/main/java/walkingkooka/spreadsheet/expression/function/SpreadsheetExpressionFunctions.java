@@ -22,6 +22,7 @@ import walkingkooka.color.AlphaRgbColorComponent;
 import walkingkooka.color.BlueRgbColorComponent;
 import walkingkooka.color.Color;
 import walkingkooka.color.GreenRgbColorComponent;
+import walkingkooka.color.RedRgbColorComponent;
 import walkingkooka.color.RgbColor;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -737,6 +738,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<GreenRgbColorComponent, SpreadsheetExpressionEvaluationContext> getGreen() {
         return fixName(
                 ColorExpressionFunctions.getGreen()
+        );
+    }
+
+    /**
+     * {@see ColorExpressionFunctions#getRed}
+     */
+    public static ExpressionFunction<RedRgbColorComponent, SpreadsheetExpressionEvaluationContext> getRed() {
+        return fixName(
+                ColorExpressionFunctions.getRed()
         );
     }
 
