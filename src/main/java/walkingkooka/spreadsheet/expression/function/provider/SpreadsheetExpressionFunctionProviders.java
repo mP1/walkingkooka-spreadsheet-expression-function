@@ -181,6 +181,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.rows(),
                                 SpreadsheetExpressionFunctions.search(),
                                 SpreadsheetExpressionFunctions.second(),
+                                SpreadsheetExpressionFunctions.setAlpha(),
                                 SpreadsheetExpressionFunctions.setBlue(),
                                 SpreadsheetExpressionFunctions.setGreen(),
                                 SpreadsheetExpressionFunctions.setRed(),
