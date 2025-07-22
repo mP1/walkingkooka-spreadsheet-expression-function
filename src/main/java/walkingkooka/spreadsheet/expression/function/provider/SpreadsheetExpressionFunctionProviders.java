@@ -106,6 +106,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                                 SpreadsheetExpressionFunctions.formulaText(),
                                 SpreadsheetExpressionFunctions.getAlpha(),
                                 SpreadsheetExpressionFunctions.getBlue(),
+                                SpreadsheetExpressionFunctions.getGreen(),
                                 SpreadsheetExpressionFunctions.getFormatValue(),
                                 SpreadsheetExpressionFunctions.getStyle(),
                                 SpreadsheetExpressionFunctions.hex2bin(),
