@@ -169,6 +169,7 @@ majority of these functions are formula expression functions.
 - rows
 - search
 - second
+- setGreen
 - setRed
 - setStyle
 - setText
