@@ -1371,6 +1371,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ColorExpressionFunctions.setGreen()}
+     */
+    public static ExpressionFunction<RgbColor, SpreadsheetExpressionEvaluationContext> setGreen() {
+        return fixName(
+                ColorExpressionFunctions.setGreen()
+        );
+    }
+    
+    /**
      * {@see ColorExpressionFunctions.setRed()}
      */
     public static ExpressionFunction<RgbColor, SpreadsheetExpressionEvaluationContext> setRed() {
