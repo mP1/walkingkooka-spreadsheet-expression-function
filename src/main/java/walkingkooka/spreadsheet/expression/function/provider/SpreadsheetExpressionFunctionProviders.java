@@ -21,9 +21,12 @@ import walkingkooka.Cast;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.spreadsheet.SpreadsheetStrings;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.tree.expression.function.provider.ExpressionFunctionAliasSet;
+import walkingkooka.tree.expression.function.provider.ExpressionFunctionInfo;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
 
@@ -31,6 +34,92 @@ import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider
  * Provider getter.
  */
 public final class SpreadsheetExpressionFunctionProviders implements PublicStaticHelper {
+
+    public final static ExpressionFunctionAliasSet FIND = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+        .expressionFunctionInfos()
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
+        .aliasSet();
+
+    public final static ExpressionFunctionAliasSet FORMATTING = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+        .expressionFunctionInfos()
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
+        .aliasSet();
+
+    public final static ExpressionFunctionAliasSet FORMULA = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+        .expressionFunctionInfos()
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
+        .aliasSet();
+
+    public final static ExpressionFunctionAliasSet VALIDATION = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+        .expressionFunctionInfos()
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
+        .aliasSet();
+
+    private static boolean filterCell(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.startsWith("cell") ||
+            name.equals("cell");
+    }
+
+    private static boolean filterColor(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.contains("color") ||
+            name.contains("rgb") ||
+            name.equals("setalpha") ||
+            name.equals("setblue") ||
+            name.equals("setgreen") ||
+            name.equals("setred") ||
+            name.equals("getalpha") ||
+            name.equals("getblue") ||
+            name.equals("getgreen") ||
+            name.equals("getred") ||
+            name.equals("togray");
+    }
+
+    private static boolean filterFormatting(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.equals("hyperlink") ||
+            name.equals("image");
+    }
+
+    private static boolean filterMetadata(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.contains("metadata");
+    }
+
+    private static boolean filterStyle(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.contains("style");
+    }
+
+    private static boolean filterValidation(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.startsWith("nextempty");
+    }
 
     /**
      * An {@link ExpressionFunctionProvider} with all the functions in this project.
