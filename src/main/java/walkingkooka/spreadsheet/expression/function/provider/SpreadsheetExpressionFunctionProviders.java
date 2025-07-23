@@ -21,7 +21,6 @@ import walkingkooka.Cast;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
-import walkingkooka.spreadsheet.SpreadsheetStrings;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.CaseSensitivity;
@@ -35,7 +34,7 @@ import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider
  */
 public final class SpreadsheetExpressionFunctionProviders implements PublicStaticHelper {
 
-    public final static ExpressionFunctionAliasSet FIND = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+    public final static ExpressionFunctionAliasSet FIND = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
         .expressionFunctionInfos()
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
@@ -44,13 +43,13 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
-    public final static ExpressionFunctionAliasSet FORMATTING = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+    public final static ExpressionFunctionAliasSet FORMATTING = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
         .expressionFunctionInfos()
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
-    public final static ExpressionFunctionAliasSet FORMULA = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+    public final static ExpressionFunctionAliasSet FORMULA = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
         .expressionFunctionInfos()
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
@@ -59,7 +58,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
-    public final static ExpressionFunctionAliasSet VALIDATION = expressionFunctionProvider(SpreadsheetStrings.CASE_SENSITIVITY)
+    public final static ExpressionFunctionAliasSet VALIDATION = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
         .expressionFunctionInfos()
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
