@@ -36,6 +36,31 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
      * An {@link ExpressionFunctionProvider} with all the functions in this project.
      */
     public static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> expressionFunctionProvider(final CaseSensitivity nameCaseSensitivity) {
+        final ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> expressionFunctionProvider;
+
+        if (nameCaseSensitivity == CaseSensitivity.SENSITIVE) {
+            if (null == caseSensitive) {
+                caseSensitive = create(CaseSensitivity.SENSITIVE);
+            }
+            expressionFunctionProvider = caseSensitive;
+        } else {
+            if (null == caseInsensitive) {
+                caseInsensitive = create(CaseSensitivity.INSENSITIVE);
+            }
+            expressionFunctionProvider = caseInsensitive;
+        }
+
+        return expressionFunctionProvider;
+    }
+
+    private static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> caseSensitive;
+
+    private static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> caseInsensitive;
+
+    /**
+     * Factory that is called twice lazily once for each {@link CaseSensitivity}.
+     */
+    private static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> create(final CaseSensitivity nameCaseSensitivity) {
         return ExpressionFunctionProviders.basic(
             Url.parseAbsolute("https://github.com/mP1/walkingkooka-spreadsheet-expression-function/"),
             nameCaseSensitivity,
