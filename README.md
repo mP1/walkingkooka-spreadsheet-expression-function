@@ -94,8 +94,8 @@ majority of these functions are formula expression functions.
 - formulatext
 - getAlpha
 - getBlue
-- getGreen
 - getFormatValue
+- getGreen
 - getRed
 - getStyle
 - hex2bin
@@ -173,6 +173,7 @@ majority of these functions are formula expression functions.
 - rows
 - search
 - second
+- setAlpha
 - setBlue
 - setGreen
 - setRed
