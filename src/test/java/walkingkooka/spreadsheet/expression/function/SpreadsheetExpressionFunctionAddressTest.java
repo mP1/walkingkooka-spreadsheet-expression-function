@@ -30,77 +30,77 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
     @Test
     public void testUnknownTypeFail() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2("???")
+            IllegalArgumentException.class,
+            () -> this.apply2("???")
         );
     }
 
     @Test
     public void testRow1Column1() {
         this.addressAndCheck(
-                1,
-                1,
-                "$A$1"
+            1,
+            1,
+            "$A$1"
         );
     }
 
     @Test
     public void testRow1Column1Abs1() {
         this.addressAndCheck(
-                1,
-                1,
-                1,
-                "$A$1"
+            1,
+            1,
+            1,
+            "$A$1"
         );
     }
 
     @Test
     public void testRow1Column1Abs2() {
         this.addressAndCheck(
-                1,
-                1,
-                2,
-                "A$1"
+            1,
+            1,
+            2,
+            "A$1"
         );
     }
 
     @Test
     public void testRow1Column1Abs3() {
         this.addressAndCheck(
-                1,
-                1,
-                3,
-                "$A1"
+            1,
+            1,
+            3,
+            "$A1"
         );
     }
 
     @Test
     public void testRow1Column1Abs4() {
         this.addressAndCheck(
-                1,
-                1,
-                4,
-                "A1"
+            1,
+            1,
+            4,
+            "A1"
         );
     }
 
     @Test
     public void testRow4Column5() {
         this.addressAndCheck(
-                4,
-                5,
-                "$E$4"
+            4,
+            5,
+            "$E$4"
         );
     }
 
     @Test
     public void testRow4Column5Abs1A1StyleTrue() {
         this.addressAndCheck(
-                4,
-                5,
-                1,
-                true,
-                "$E$4"
+            4,
+            5,
+            1,
+            true,
+            "$E$4"
         );
     }
 
@@ -108,11 +108,11 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
                                  final int columnNum,
                                  final String expected) {
         this.applyAndCheck2(
-                Lists.of(
-                        EXPRESSION_NUMBER_KIND.create(rowNum),
-                        EXPRESSION_NUMBER_KIND.create(columnNum)
-                ),
-                SpreadsheetSelection.parseCell(expected)
+            Lists.of(
+                EXPRESSION_NUMBER_KIND.create(rowNum),
+                EXPRESSION_NUMBER_KIND.create(columnNum)
+            ),
+            SpreadsheetSelection.parseCell(expected)
         );
     }
 
@@ -121,12 +121,12 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
                                  final int absNum,
                                  final String expected) {
         this.applyAndCheck2(
-                Lists.of(
-                        EXPRESSION_NUMBER_KIND.create(rowNum),
-                        EXPRESSION_NUMBER_KIND.create(columnNum),
-                        EXPRESSION_NUMBER_KIND.create(absNum)
-                ),
-                SpreadsheetSelection.parseCell(expected)
+            Lists.of(
+                EXPRESSION_NUMBER_KIND.create(rowNum),
+                EXPRESSION_NUMBER_KIND.create(columnNum),
+                EXPRESSION_NUMBER_KIND.create(absNum)
+            ),
+            SpreadsheetSelection.parseCell(expected)
         );
     }
 
@@ -136,13 +136,13 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
                                  final boolean a1style,
                                  final String expected) {
         this.applyAndCheck2(
-                Lists.of(
-                        EXPRESSION_NUMBER_KIND.create(rowNum),
-                        EXPRESSION_NUMBER_KIND.create(columnNum),
-                        EXPRESSION_NUMBER_KIND.create(absNum),
-                        a1style
-                ),
-                SpreadsheetSelection.parseCell(expected)
+            Lists.of(
+                EXPRESSION_NUMBER_KIND.create(rowNum),
+                EXPRESSION_NUMBER_KIND.create(columnNum),
+                EXPRESSION_NUMBER_KIND.create(absNum),
+                a1style
+            ),
+            SpreadsheetSelection.parseCell(expected)
         );
     }
 

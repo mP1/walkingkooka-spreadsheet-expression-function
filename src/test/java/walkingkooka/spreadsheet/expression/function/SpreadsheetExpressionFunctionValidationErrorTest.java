@@ -29,21 +29,21 @@ public final class SpreadsheetExpressionFunctionValidationErrorTest extends Spre
     @Test
     public void testApply() {
         this.applyAndCheck2(
-                Lists.of(
-                        SpreadsheetError.parse("#N/A Hello message 123")
-                ),
-                ValidationError.with(
-                        CELL.reference(),
-                        "Hello message 123"
-                )
+            Lists.of(
+                SpreadsheetError.parse("#N/A Hello message 123")
+            ),
+            ValidationError.with(
+                CELL.reference(),
+                "Hello message 123"
+            )
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "validationError"
+            this.createBiFunction(),
+            "validationError"
         );
     }
 

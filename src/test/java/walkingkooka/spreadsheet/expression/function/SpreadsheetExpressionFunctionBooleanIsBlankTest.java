@@ -29,80 +29,80 @@ public final class SpreadsheetExpressionFunctionBooleanIsBlankTest extends Sprea
     @Test
     public void testTwoParametersFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        "1a", "2b"
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                "1a", "2b"
+            )
         );
     }
 
     @Test
     public void testNull() {
         this.isBlankAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testZero() {
         this.isBlankAndCheck(
-                ExpressionNumberKind.DOUBLE.zero(),
-                false
+            ExpressionNumberKind.DOUBLE.zero(),
+            false
         );
     }
 
     @Test
     public void testEmptyString() {
         this.isBlankAndCheck(
-                "",
-                false
+            "",
+            false
         );
     }
 
     @Test
     public void testExistingCellReference() {
         this.isBlankAndCheck(
-                LOAD_CELL_REFERENCE,
-                false
+            LOAD_CELL_REFERENCE,
+            false
         );
     }
 
     @Test
     public void testMissingCellReference() {
         this.isBlankAndCheck(
-                SpreadsheetSelection.parseCell("M404"),
-                true
+            SpreadsheetSelection.parseCell("M404"),
+            true
         );
     }
 
     @Test
     public void testRangeTopLeftMissingCellReference() {
         this.isBlankAndCheck(
-                REFERENCE.cellRange(
-                        REFERENCE.add(1, 1)
-                ),
-                false
+            REFERENCE.cellRange(
+                REFERENCE.add(1, 1)
+            ),
+            false
         );
     }
 
     @Test
     public void testRange() {
         this.isBlankAndCheck(
-                LOAD_CELL_REFERENCE.cellRange(
-                        LOAD_CELL_REFERENCE.add(2, 3)
-                ),
-                false
+            LOAD_CELL_REFERENCE.cellRange(
+                LOAD_CELL_REFERENCE.add(2, 3)
+            ),
+            false
         );
     }
 
     private void isBlankAndCheck(final Object value,
                                  final boolean expected) {
         this.applyAndCheck2(
-                Lists.of(
-                        value
-                ),
-                expected
+            Lists.of(
+                value
+            ),
+            expected
         );
     }
 

@@ -52,14 +52,14 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataSet extends Spreadsh
     }
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameterName.with("value")
-            .required(Object.class)
-            .setKinds(
-                    Sets.of(ExpressionFunctionParameterKind.EVALUATE)
-            );
+        .required(Object.class)
+        .setKinds(
+            Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+        );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            PROPERTY_NAME,
-            VALUE
+        PROPERTY_NAME,
+        VALUE
     );
 
     @Override
@@ -74,24 +74,24 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataSet extends Spreadsh
         Objects.requireNonNull(context, "context");
 
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
-                parameters,
-                0
+            parameters,
+            0
         );
 
         final Object value = context.convertOrFail(
-                VALUE.getOrFail(
-                        parameters,
-                        1
-                ),
-                propertyName.type()
+            VALUE.getOrFail(
+                parameters,
+                1
+            ),
+            propertyName.type()
         );
 
         context.setSpreadsheetMetadata(
-                context.spreadsheetMetadata()
-                        .set(
-                                propertyName,
-                                Cast.to(value)
-                        )
+            context.spreadsheetMetadata()
+                .set(
+                    propertyName,
+                    Cast.to(value)
+                )
         );
 
         return value;

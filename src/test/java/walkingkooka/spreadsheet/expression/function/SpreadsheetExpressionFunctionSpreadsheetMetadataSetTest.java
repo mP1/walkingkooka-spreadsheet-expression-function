@@ -28,7 +28,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataSet, Object>
-        implements SpreadsheetMetadataTesting {
+    implements SpreadsheetMetadataTesting {
 
     @Test
     public void testApply() {
@@ -37,16 +37,16 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
         final SpreadsheetName name = SpreadsheetName.with("NewName222");
 
         this.applyAndCheck(
-                Lists.of(
-                        SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                        name
-                ),
+            Lists.of(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
                 name
+            ),
+            name
         );
 
         this.checkEquals(
-                name,
-                this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+            name,
+            this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
         );
     }
 
@@ -73,8 +73,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
             public <T> Either<T, String> convert(final Object value,
                                                  final Class<T> target) {
                 return this.successfulConversion(
-                        target.cast(value),
-                        target
+                    target.cast(value),
+                    target
                 );
             }
         };
@@ -92,8 +92,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "spreadsheetMetadataSet"
+            this.createBiFunction(),
+            "spreadsheetMetadataSet"
         );
     }
 

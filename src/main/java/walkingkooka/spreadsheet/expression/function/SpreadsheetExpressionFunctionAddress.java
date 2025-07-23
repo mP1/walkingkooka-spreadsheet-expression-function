@@ -106,26 +106,26 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
         }
 
         return rowKind.row(row - 1)
-                .setColumn(
-                        columnKind.column(column - 1)
-                );
+            .setColumn(
+                columnKind.column(column - 1)
+            );
     }
 
     private final static ExpressionFunctionParameter<ExpressionNumber> ROW_NUM = ExpressionFunctionParameterName.with("row-num")
-            .required(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> COLUMN_NUM = ExpressionFunctionParameterName.with("col-num")
-            .required(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> ABS_NUM = ExpressionFunctionParameterName.with("abs-num")
-            .required(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<Boolean> A1_STYLE = ExpressionFunctionParameterName.with("a1-style")
-            .required(Boolean.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(Boolean.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
@@ -133,9 +133,9 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
     }
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            ROW_NUM,
-            COLUMN_NUM,
-            ABS_NUM,
-            A1_STYLE
+        ROW_NUM,
+        COLUMN_NUM,
+        ABS_NUM,
+        A1_STYLE
     );
 }

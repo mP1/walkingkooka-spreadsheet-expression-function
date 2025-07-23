@@ -44,6 +44,6 @@ final class SpreadsheetExpressionFunctionCellFormatter extends SpreadsheetExpres
     @Override
     SpreadsheetFormatterSelector extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.formatter()
-                .orElse(null);
+            .orElse(null);
     }
 }

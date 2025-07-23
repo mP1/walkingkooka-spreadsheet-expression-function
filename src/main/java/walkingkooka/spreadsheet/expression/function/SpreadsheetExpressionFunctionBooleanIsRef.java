@@ -48,10 +48,10 @@ final class SpreadsheetExpressionFunctionBooleanIsRef extends SpreadsheetExpress
     }
 
     final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(Object.class)
-            .setKinds(
-                    Sets.of(ExpressionFunctionParameterKind.EVALUATE)
-            );
+        .required(Object.class)
+        .setKinds(
+            Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+        );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(REFERENCE);
 

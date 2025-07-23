@@ -37,31 +37,31 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
     @Test
     public void testCharacter() {
         this.textAndCheck(
-                'A'
+            'A'
         );
     }
 
     @Test
     public void testText() {
         this.textAndCheck(
-                "Hello"
+            "Hello"
         );
     }
 
     private void textAndCheck(final Object value) {
         this.textAndCheck(
-                value,
-                "Ignored!",
-                value.toString()
+            value,
+            "Ignored!",
+            value.toString()
         );
     }
 
     @Test
     public void testNumber() {
         this.textAndCheck(
-                EXPRESSION_NUMBER_KIND.create(123.50),
-                "$0000.0000$",
-                "!0123*5000!"
+            EXPRESSION_NUMBER_KIND.create(123.50),
+            "$0000.0000$",
+            "!0123*5000!"
         );
     }
 
@@ -69,8 +69,8 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
                               final String pattern,
                               final String expected) {
         this.applyAndCheck2(
-                Lists.of(value, pattern),
-                expected
+            Lists.of(value, pattern),
+            expected
         );
     }
 
@@ -104,35 +104,35 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
             public boolean canConvert(final Object value,
                                       final Class<?> type) {
                 return this.converter()
-                        .canConvert(
-                                value,
-                                type,
-                                this
-                        );
+                    .canConvert(
+                        value,
+                        type,
+                        this
+                    );
             }
 
             @Override
             public <TT> Either<TT, String> convert(final Object value,
                                                    final Class<TT> target) {
                 return this.converter()
-                        .convert(
-                                value,
-                                target,
-                                this
-                        );
+                    .convert(
+                        value,
+                        target,
+                        this
+                    );
             }
 
             @Override
             public Converter<SpreadsheetConverterContext> converter() {
                 return Converters.collection(
-                        Lists.of(
-                                Converters.simple(),
-                                Converters.booleanToNumber(),
-                                SpreadsheetConverters.textToText(),
-                                SpreadsheetConverters.numberToNumber(),
-                                Converters.localDateToLocalDateTime(),
-                                Converters.localTimeToLocalDateTime()
-                        )
+                    Lists.of(
+                        Converters.simple(),
+                        Converters.booleanToNumber(),
+                        SpreadsheetConverters.textToText(),
+                        SpreadsheetConverters.numberToNumber(),
+                        Converters.localDateToLocalDateTime(),
+                        Converters.localTimeToLocalDateTime()
+                    )
                 );
             }
 

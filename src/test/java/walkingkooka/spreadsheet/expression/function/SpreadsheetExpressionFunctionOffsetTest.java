@@ -37,92 +37,92 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testUnknownTypeFail() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2("???")
+            IllegalArgumentException.class,
+            () -> this.apply2("???")
         );
     }
 
     @Test
     public void testCellX0Y0() {
         this.offsetAndCheck(
-                B2,
-                0,
-                0,
-                B2
+            B2,
+            0,
+            0,
+            B2
         );
     }
 
     @Test
     public void testCellRangeX1Y1() {
         this.offsetAndCheck(
-                B2.toCellRange(),
-                1,
-                1,
-                SpreadsheetSelection.parseCell("C3")
+            B2.toCellRange(),
+            1,
+            1,
+            SpreadsheetSelection.parseCell("C3")
         );
     }
 
     @Test
     public void testCellRangeXMinus1YMinus1() {
         this.offsetAndCheck(
-                B2.toCellRange(),
-                -1,
-                -1,
-                SpreadsheetSelection.parseCell("A1")
+            B2.toCellRange(),
+            -1,
+            -1,
+            SpreadsheetSelection.parseCell("A1")
         );
     }
 
     @Test
     public void testCellXY() {
         this.offsetAndCheck(
-                B2,
-                2,
-                3,
-                SpreadsheetSelection.parseCell("E4")
+            B2,
+            2,
+            3,
+            SpreadsheetSelection.parseCell("E4")
         );
     }
 
     @Test
     public void testCellXY2() {
         this.offsetAndCheck(
-                SpreadsheetSelection.parseCell("D3"),
-                -1,
-                -2,
-                B2
+            SpreadsheetSelection.parseCell("D3"),
+            -1,
+            -2,
+            B2
         );
     }
 
     @Test
     public void testCellXYHeight() {
         this.offsetAndCheck(
-                B2,
-                0,
-                0,
-                2,
-                SpreadsheetSelection.parseCellRange("B2:B3")
+            B2,
+            0,
+            0,
+            2,
+            SpreadsheetSelection.parseCellRange("B2:B3")
         );
     }
 
     @Test
     public void testCellXYHeight2() {
         this.offsetAndCheck(
-                B2,
-                1,
-                2,
-                3,
-                SpreadsheetSelection.parseCellRange("D3:D5")
+            B2,
+            1,
+            2,
+            3,
+            SpreadsheetSelection.parseCellRange("D3:D5")
         );
     }
 
     @Test
     public void testCellXYHeightWidth() {
         this.offsetAndCheck(
-                B2,
-                1,
-                2,
-                3,
-                4,
-                SpreadsheetSelection.parseCellRange("D3:G5")
+            B2,
+            1,
+            2,
+            3,
+            4,
+            SpreadsheetSelection.parseCellRange("D3:G5")
         );
     }
 
@@ -131,10 +131,10 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetA1_4_2() {
         this.offsetAndCheck(
-                SpreadsheetSelection.parseCell("A1"),
-                4,
-                2,
-                SpreadsheetSelection.parseCell("C5")
+            SpreadsheetSelection.parseCell("A1"),
+            4,
+            2,
+            SpreadsheetSelection.parseCell("C5")
         );
     }
 
@@ -143,12 +143,12 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetA1_0_2_5_1() {
         this.offsetAndCheck(
-                SpreadsheetSelection.parseCell("A1"),
-                0,
-                2,
-                5,
-                1,
-                SpreadsheetSelection.parseCellRange("C1:C5")
+            SpreadsheetSelection.parseCell("A1"),
+            0,
+            2,
+            5,
+            1,
+            SpreadsheetSelection.parseCellRange("C1:C5")
         );
     }
 
@@ -157,10 +157,10 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetB3_3_2() {
         this.offsetAndCheck(
-                B3,
-                3,
-                2,
-                SpreadsheetSelection.parseCell("D6")
+            B3,
+            3,
+            2,
+            SpreadsheetSelection.parseCell("D6")
         );
     }
 
@@ -169,11 +169,11 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetB3_1_3_6() {
         this.offsetAndCheck(
-                B3,
-                1,
-                3,
-                6,
-                SpreadsheetSelection.parseCellRange("E4:E9")
+            B3,
+            1,
+            3,
+            6,
+            SpreadsheetSelection.parseCellRange("E4:E9")
         );
     }
 
@@ -182,12 +182,12 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetB3_5_1_1_4() {
         this.offsetAndCheck(
-                B3,
-                5,
-                1,
-                1,
-                4,
-                SpreadsheetSelection.parseCellRange("C8:F8")
+            B3,
+            5,
+            1,
+            1,
+            4,
+            SpreadsheetSelection.parseCellRange("C8:F8")
         );
     }
 
@@ -196,12 +196,12 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetB3_4_2_3_1() {
         this.offsetAndCheck(
-                B3,
-                4,
-                2,
-                3,
-                1,
-                SpreadsheetSelection.parseCellRange("D7:D9")
+            B3,
+            4,
+            2,
+            3,
+            1,
+            SpreadsheetSelection.parseCellRange("D7:D9")
         );
     }
 
@@ -210,12 +210,12 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     @Test
     public void testOffsetB3_4_2_3_2() {
         this.offsetAndCheck(
-                B3,
-                4,
-                2,
-                3,
-                2,
-                SpreadsheetSelection.parseCellRange("D7:E9")
+            B3,
+            4,
+            2,
+            3,
+            2,
+            SpreadsheetSelection.parseCellRange("D7:E9")
         );
     }
 
@@ -224,8 +224,8 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
                                 final int columns,
                                 final SpreadsheetExpressionReference expected) {
         this.applyAndCheck2(
-                this.parameters2(cellOrRange, rows, columns),
-                expected
+            this.parameters2(cellOrRange, rows, columns),
+            expected
         );
     }
 
@@ -235,8 +235,8 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
                                 final int height,
                                 final SpreadsheetExpressionReference expected) {
         this.applyAndCheck2(
-                this.parameters2(cellOrRange, rows, columns, height),
-                expected
+            this.parameters2(cellOrRange, rows, columns, height),
+            expected
         );
     }
 
@@ -247,8 +247,8 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
                                 final int width,
                                 final SpreadsheetExpressionReference expected) {
         this.applyAndCheck2(
-                this.parameters2(cellOrRange, rows, columns, height, width),
-                expected
+            this.parameters2(cellOrRange, rows, columns, height, width),
+            expected
         );
     }
 

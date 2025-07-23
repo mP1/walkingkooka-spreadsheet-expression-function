@@ -30,56 +30,56 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public final class SpreadsheetExpressionFunctionProvidersTest implements PublicStaticHelperTesting<SpreadsheetExpressionFunctionProviders>,
-        TreePrintableTesting {
+    TreePrintableTesting {
 
     @Test
     public void testExpressionFunctionProvider() {
         this.checkEquals(
-                Arrays.stream(SpreadsheetExpressionFunctions.class.getDeclaredMethods())
-                        .filter(m -> m.getReturnType() == ExpressionFunction.class)
-                        .filter(m -> m.getParameterTypes().length == 0)
-                        .map(Method::getName)
-                        .map(n -> {
-                                    // JDK BUG cant have a lambda with switch as the body ???
-                                    switch (n) {
-                                        case "bitAnd":
-                                            return "bitand";
-                                        case "bitOr":
-                                            return "bitor";
-                                        case "bitXor":
-                                            return "bitxor";
-                                        case "charFunction":
-                                            return "char";
-                                        case "falseFunction":
-                                            return "false";
-                                        case "formulaText":
-                                            return "formulatext";
-                                        case "ifFunction":
-                                            return "if";
-                                        case "intFunction":
-                                            return "int";
-                                        case "isoWeekNum":
-                                            return "isoweeknum";
-                                        case "nullFunction":
-                                            return "null";
-                                        case "switchFunction":
-                                            return "switch";
-                                        case "trueFunction":
-                                            return "true";
-                                        case "weekDay":
-                                            return "weekday";
-                                        case "weekNum":
-                                            return "weeknum";
-                                        default:
-                                            return n;
-                                    }
-                                }
-                        ).collect(Collectors.toCollection(SortedSets::tree)),
-                (Object) SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-                        .expressionFunctionInfos()
-                        .stream()
-                        .map(i -> i.name().value())
-                        .collect(Collectors.toCollection(SortedSets::tree))
+            Arrays.stream(SpreadsheetExpressionFunctions.class.getDeclaredMethods())
+                .filter(m -> m.getReturnType() == ExpressionFunction.class)
+                .filter(m -> m.getParameterTypes().length == 0)
+                .map(Method::getName)
+                .map(n -> {
+                        // JDK BUG cant have a lambda with switch as the body ???
+                        switch (n) {
+                            case "bitAnd":
+                                return "bitand";
+                            case "bitOr":
+                                return "bitor";
+                            case "bitXor":
+                                return "bitxor";
+                            case "charFunction":
+                                return "char";
+                            case "falseFunction":
+                                return "false";
+                            case "formulaText":
+                                return "formulatext";
+                            case "ifFunction":
+                                return "if";
+                            case "intFunction":
+                                return "int";
+                            case "isoWeekNum":
+                                return "isoweeknum";
+                            case "nullFunction":
+                                return "null";
+                            case "switchFunction":
+                                return "switch";
+                            case "trueFunction":
+                                return "true";
+                            case "weekDay":
+                                return "weekday";
+                            case "weekNum":
+                                return "weeknum";
+                            default:
+                                return n;
+                        }
+                    }
+                ).collect(Collectors.toCollection(SortedSets::tree)),
+            (Object) SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
+                .expressionFunctionInfos()
+                .stream()
+                .map(i -> i.name().value())
+                .collect(Collectors.toCollection(SortedSets::tree))
         );
     }
 

@@ -26,64 +26,64 @@ public final class SpreadsheetExpressionFunctionBooleanIsRefTest extends Spreads
     @Test
     public void testCellRange() {
         this.isRefAndCheck(
-                SpreadsheetSelection.parseCellRange("B2:C3"),
-                true
+            SpreadsheetSelection.parseCellRange("B2:C3"),
+            true
         );
     }
 
     @Test
     public void testCellReference() {
         this.isRefAndCheck(
-                SpreadsheetSelection.parseCell("B2"),
-                true
+            SpreadsheetSelection.parseCell("B2"),
+            true
         );
     }
 
     @Test
     public void testLabel() {
         this.isRefAndCheck(
-                SpreadsheetSelection.labelName("Label123"),
-                true
+            SpreadsheetSelection.labelName("Label123"),
+            true
         );
     }
 
     @Test
     public void testBoolean() {
         this.isRefAndCheck(
-                true,
-                false
+            true,
+            false
         );
     }
 
     @Test
     public void testNumber() {
         this.isRefAndCheck(
-                EXPRESSION_NUMBER_KIND.one(),
-                false
+            EXPRESSION_NUMBER_KIND.one(),
+            false
         );
     }
 
     @Test
     public void testString() {
         this.isRefAndCheck(
-                "A",
-                false
+            "A",
+            false
         );
     }
 
     private void isRefAndCheck(final Object value,
                                final boolean expected) {
         this.applyAndCheck2(
-                Lists.of(value),
-                expected
+            Lists.of(value),
+            expected
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "isRef"
+            this.createBiFunction(),
+            "isRef"
         );
     }
 

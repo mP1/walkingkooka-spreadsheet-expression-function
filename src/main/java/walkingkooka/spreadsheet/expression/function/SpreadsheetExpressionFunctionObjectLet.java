@@ -64,8 +64,8 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
                     throw new IllegalArgumentException(MISSING_EXPRESSION);
                 }
                 value = this.apply0(
-                        values,
-                        context
+                    values,
+                    context
                 );
                 break;
         }
@@ -101,25 +101,25 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
 
         // now create the context with the given labels and values.
         final SpreadsheetExpressionEvaluationContext context2 = context.enterScope(
-                (n) -> {
-                    final Object value = nameAndValues.get(n);
+            (n) -> {
+                final Object value = nameAndValues.get(n);
 
-                    return null != value || nameAndValues.containsKey(n) ?
-                            Optional.of(
-                                    Optional.ofNullable(value)
-                            ) :
-                            Optional.empty();
-                }
+                return null != value || nameAndValues.containsKey(n) ?
+                    Optional.of(
+                        Optional.ofNullable(value)
+                    ) :
+                    Optional.empty();
+            }
         );
 
         return context2.evaluateIfNecessary(
-                EXPRESSION.getOrFail(
-                        context2.prepareParameters(
-                                this,
-                                values
-                        ),
-                        count - 1
-                )
+            EXPRESSION.getOrFail(
+                context2.prepareParameters(
+                    this,
+                    values
+                ),
+                count - 1
+            )
         );
     }
 
@@ -144,8 +144,8 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
     }
 
     private final ExpressionFunctionParameter<Object> EXPRESSION = ExpressionFunctionParameterName.with("expression")
-            .required(Object.class)
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .required(Object.class)
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     private final List<ExpressionFunctionParameter<?>> COMPUTED_PARAMETERS = Lists.of(EXPRESSION);
 
@@ -173,10 +173,10 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
     // declaring both LABEL_NAME and LABEL_VALUE will mean these parameters will appear as required in the UI.
 
     private final ExpressionFunctionParameter<SpreadsheetLabelName> LABEL_NAME = ExpressionFunctionParameterName.with("label")
-            .required(SpreadsheetLabelName.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(SpreadsheetLabelName.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     private final ExpressionFunctionParameter<Object> LABEL_VALUE = ExpressionFunctionParameterName.with("value")
-            .required(Object.class)
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .required(Object.class)
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 }

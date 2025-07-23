@@ -28,62 +28,62 @@ public final class SpreadsheetExpressionFunctionBooleanTextMatchTest extends Spr
     @Test
     public void testApplyMissingPatternAndValueFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                this::apply2
+            IllegalArgumentException.class,
+            this::apply2
         );
     }
 
     @Test
     public void testApplyMissingValueFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        "*"
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                "*"
+            )
         );
     }
 
     @Test
     public void testApplyMatch() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE,
-                List.of(
-                        "*Hello*",
-                        "123Hello456"
-                ),
-                true
+            SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE,
+            List.of(
+                "*Hello*",
+                "123Hello456"
+            ),
+            true
         );
     }
 
     @Test
     public void testApplyMatch2() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE,
-                List.of(
-                        "Not *Hello*",
-                        "123Hello456"
-                ),
-                true
+            SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE,
+            List.of(
+                "Not *Hello*",
+                "123Hello456"
+            ),
+            true
         );
     }
 
     @Test
     public void testApplyNotMatch() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE,
-                List.of(
-                        "*Hello*",
-                        "NotMatched"
-                ),
-                false
+            SpreadsheetExpressionFunctionBooleanTextMatch.INSTANCE,
+            List.of(
+                "*Hello*",
+                "NotMatched"
+            ),
+            false
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "textMatch"
+            this.createBiFunction(),
+            "textMatch"
         );
     }
 

@@ -30,8 +30,8 @@ abstract class SpreadsheetExpressionFunctionSpreadsheetMetadata<T> extends Sprea
     }
 
     final static ExpressionFunctionParameter<SpreadsheetMetadataPropertyName<?>> PROPERTY_NAME = Cast.to(
-            ExpressionFunctionParameterName.with("propertyName")
-                    .required(SpreadsheetMetadataPropertyName.class)
-                    .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE)
+        ExpressionFunctionParameterName.with("propertyName")
+            .required(SpreadsheetMetadataPropertyName.class)
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE)
     );
 }

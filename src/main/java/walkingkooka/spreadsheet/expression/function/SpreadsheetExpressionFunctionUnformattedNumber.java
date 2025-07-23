@@ -43,8 +43,8 @@ final class SpreadsheetExpressionFunctionUnformattedNumber<T> implements Express
     private SpreadsheetExpressionFunctionUnformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function) {
         super();
         this.function = function.setName(
-                function.name()
-                        .map(n -> n.setCaseSensitivity(SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY))
+            function.name()
+                .map(n -> n.setCaseSensitivity(SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY))
         );
     }
 
@@ -67,11 +67,11 @@ final class SpreadsheetExpressionFunctionUnformattedNumber<T> implements Express
     public T apply(final List<Object> parameters,
                    final SpreadsheetExpressionEvaluationContext context) {
         return this.apply0(
-                parameters,
-                SpreadsheetExpressionEvaluationContexts.converter(
-                        SpreadsheetConverters.unformattedNumber().cast(SpreadsheetExpressionEvaluationContext.class),
-                        context
-                )
+            parameters,
+            SpreadsheetExpressionEvaluationContexts.converter(
+                SpreadsheetConverters.unformattedNumber().cast(SpreadsheetExpressionEvaluationContext.class),
+                context
+            )
         );
     }
 
@@ -79,11 +79,11 @@ final class SpreadsheetExpressionFunctionUnformattedNumber<T> implements Express
                      final SpreadsheetExpressionEvaluationContext context) {
         final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function = this.function;
         return function.apply(
-                context.prepareParameters(
-                        Cast.to(function),
-                        parameters
-                ),
-                context
+            context.prepareParameters(
+                Cast.to(function),
+                parameters
+            ),
+            context
         );
     }
 

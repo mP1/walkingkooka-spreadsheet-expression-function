@@ -19,8 +19,8 @@ public class TestGwtTest extends GWTTestCase {
 
     public void testAssertEquals() {
         assertEquals(
-                1,
-                1
+            1,
+            1
         );
     }
 
@@ -28,18 +28,18 @@ public class TestGwtTest extends GWTTestCase {
         final ExpressionNumberKind kind = ExpressionNumberKind.DOUBLE;
 
         assertEquals(
-                kind.create(5),
-                SpreadsheetExpressionFunctions.column()
-                        .apply(
-                                Lists.of(SpreadsheetSelection.parseCell("E1")),
-                                new FakeSpreadsheetExpressionEvaluationContext() {
+            kind.create(5),
+            SpreadsheetExpressionFunctions.column()
+                .apply(
+                    Lists.of(SpreadsheetSelection.parseCell("E1")),
+                    new FakeSpreadsheetExpressionEvaluationContext() {
 
-                                    @Override
-                                    public ExpressionNumberKind expressionNumberKind() {
-                                        return kind;
-                                    }
-                                }
-                        )
+                        @Override
+                        public ExpressionNumberKind expressionNumberKind() {
+                            return kind;
+                        }
+                    }
+                )
         );
     }
 }

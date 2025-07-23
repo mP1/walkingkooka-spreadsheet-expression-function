@@ -1314,7 +1314,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         .red()
         );
     }
-    
+
     @Test
     public void testEvaluateGetStyleWithString() {
         this.evaluateAndValueCheck(
@@ -2611,7 +2611,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         )
         );
     }
-    
+
     @Test
     public void testEvaluateSetBlue() {
         this.evaluateAndValueCheck(
@@ -2622,7 +2622,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         )
         );
     }
-    
+
     @Test
     public void testEvaluateSetGreen() {
         this.evaluateAndValueCheck(

@@ -50,8 +50,8 @@ final class SpreadsheetExpressionFunctionLocale extends SpreadsheetExpressionFun
     public Locale apply(final List<Object> values,
                         final SpreadsheetExpressionEvaluationContext context) {
         return LOCALE.getOrFail(
-                values,
-                0
+            values,
+            0
         );
     }
 
@@ -76,8 +76,8 @@ final class SpreadsheetExpressionFunctionLocale extends SpreadsheetExpressionFun
     }
 
     private final ExpressionFunctionParameter<Locale> LOCALE = ExpressionFunctionParameterName.with("locale")
-            .required(Locale.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(Locale.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     private final List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(LOCALE);
 }

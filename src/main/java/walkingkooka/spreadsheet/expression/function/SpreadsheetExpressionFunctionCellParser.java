@@ -44,6 +44,6 @@ final class SpreadsheetExpressionFunctionCellParser extends SpreadsheetExpressio
     @Override
     SpreadsheetParserSelector extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.parser()
-                .orElse(null);
+            .orElse(null);
     }
 }

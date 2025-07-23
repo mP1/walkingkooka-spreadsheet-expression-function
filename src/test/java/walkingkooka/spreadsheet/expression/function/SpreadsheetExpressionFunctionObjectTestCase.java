@@ -32,9 +32,9 @@ public abstract class SpreadsheetExpressionFunctionObjectTestCase<F extends Spre
     public final void applyAndCheck2(final List<Object> parameters,
                                      final Object result) {
         this.applyAndCheck2(
-                this.createBiFunction(),
-                parameters,
-                result
+            this.createBiFunction(),
+            parameters,
+            result
         );
     }
 
@@ -43,12 +43,12 @@ public abstract class SpreadsheetExpressionFunctionObjectTestCase<F extends Spre
                                      final List<Object> parameters,
                                      final Object result) {
         this.applyAndCheck2(
-                function,
-                parameters.stream()
-                        .map(i -> i instanceof Number ? EXPRESSION_NUMBER_KIND.create((Number) i) : i)
-                        .collect(Collectors.toList()),
-                this.createContext(),
-                result
+            function,
+            parameters.stream()
+                .map(i -> i instanceof Number ? EXPRESSION_NUMBER_KIND.create((Number) i) : i)
+                .collect(Collectors.toList()),
+            this.createContext(),
+            result
         );
     }
 

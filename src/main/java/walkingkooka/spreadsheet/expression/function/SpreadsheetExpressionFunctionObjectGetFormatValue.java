@@ -50,6 +50,6 @@ final class SpreadsheetExpressionFunctionObjectGetFormatValue extends Spreadshee
                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
         return context.formatValue()
-                .orElse(null); //unwrap Optional
+            .orElse(null); //unwrap Optional
     }
 }

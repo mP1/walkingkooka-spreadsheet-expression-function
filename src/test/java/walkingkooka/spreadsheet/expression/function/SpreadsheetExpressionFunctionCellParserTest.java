@@ -34,7 +34,7 @@ public final class SpreadsheetExpressionFunctionCellParserTest extends Spreadshe
     @Override
     SpreadsheetParserSelector valuePresent() {
         return SpreadsheetPattern.parseDateParsePattern("yyyy/mm/ddd")
-                .spreadsheetParserSelector();
+            .spreadsheetParserSelector();
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class SpreadsheetExpressionFunctionCellParserTest extends Spreadshe
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final SpreadsheetParserSelector value) {
         return cell.setParser(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -55,8 +55,8 @@ public final class SpreadsheetExpressionFunctionCellParserTest extends Spreadshe
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellParser"
+            this.createBiFunction(),
+            "cellParser"
         );
     }
 

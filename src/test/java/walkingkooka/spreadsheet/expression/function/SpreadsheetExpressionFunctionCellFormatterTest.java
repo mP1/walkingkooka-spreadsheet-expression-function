@@ -34,7 +34,7 @@ public final class SpreadsheetExpressionFunctionCellFormatterTest extends Spread
     @Override
     SpreadsheetFormatterSelector valuePresent() {
         return SpreadsheetPattern.parseDateFormatPattern("yyyy/mm/ddd")
-                .spreadsheetFormatterSelector();
+            .spreadsheetFormatterSelector();
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class SpreadsheetExpressionFunctionCellFormatterTest extends Spread
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final SpreadsheetFormatterSelector value) {
         return cell.setFormatter(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -55,8 +55,8 @@ public final class SpreadsheetExpressionFunctionCellFormatterTest extends Spread
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellFormatter"
+            this.createBiFunction(),
+            "cellFormatter"
         );
     }
 

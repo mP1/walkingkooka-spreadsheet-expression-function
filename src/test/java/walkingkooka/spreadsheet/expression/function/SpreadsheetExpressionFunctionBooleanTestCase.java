@@ -32,9 +32,9 @@ public abstract class SpreadsheetExpressionFunctionBooleanTestCase<F extends Spr
     public final void applyAndCheck2(final List<Object> parameters,
                                      final Boolean result) {
         this.applyAndCheck2(
-                this.createBiFunction(),
-                parameters,
-                result
+            this.createBiFunction(),
+            parameters,
+            result
         );
     }
 
@@ -43,12 +43,12 @@ public abstract class SpreadsheetExpressionFunctionBooleanTestCase<F extends Spr
                                      final List<Object> parameters,
                                      final Boolean result) {
         this.applyAndCheck2(
-                function,
-                parameters.stream()
-                        .map(i -> i instanceof Number ? EXPRESSION_NUMBER_KIND.create((Number) i) : i)
-                        .collect(Collectors.toList()),
-                this.createContext(),
-                result
+            function,
+            parameters.stream()
+                .map(i -> i instanceof Number ? EXPRESSION_NUMBER_KIND.create((Number) i) : i)
+                .collect(Collectors.toList()),
+            this.createContext(),
+            result
         );
     }
 

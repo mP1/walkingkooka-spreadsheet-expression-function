@@ -45,12 +45,12 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
     }
 
     private final static ExpressionFunctionParameter<String> TYPE_INFO = ExpressionFunctionParameterName.with("typeInfo")
-            .required(String.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(String.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            TYPE_INFO,
-            CELL_OR_RANGE_REFERENCE_OPTIONAL
+        TYPE_INFO,
+        CELL_OR_RANGE_REFERENCE_OPTIONAL
     );
 
     @Override
@@ -62,17 +62,17 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
 
         final String typeInfo = TYPE_INFO.getOrFail(parameters, 0);
         final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1)
-                .orElseGet(
-                        () -> Optional.of(
-                                cell.reference()
-                        )
-                ).get();
+            .orElseGet(
+                () -> Optional.of(
+                    cell.reference()
+                )
+            ).get();
 
         return SpreadsheetExpressionFunctionObjectCellTypeInfo.typeInfo(typeInfo)
-                .value(
-                        selection.toCell(),
-                        cell,
-                        context
-                );
+            .value(
+                selection.toCell(),
+                cell,
+                context
+            );
     }
 }

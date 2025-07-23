@@ -32,54 +32,54 @@ public final class SpreadsheetExpressionFunctionNumberCountBlankTest extends Spr
     @Test
     public void testApplyEmptyParameters() {
         this.applyAndCheck(
-                Lists.empty(),
-                EXPRESSION_NUMBER_KIND.zero()
+            Lists.empty(),
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testApplyNonNullBlank() {
         this.applyAndCheck(
-                Lists.of(
-                        11,
-                        22
-                ),
-                EXPRESSION_NUMBER_KIND.zero()
+            Lists.of(
+                11,
+                22
+            ),
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testApplyOnlyNulls() {
         this.applyAndCheck(
-                Lists.of(
-                        null,
-                        null
-                ),
-                EXPRESSION_NUMBER_KIND.create(2)
+            Lists.of(
+                null,
+                null
+            ),
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testApplyOnlySpreadsheetErrorNotFound() {
         this.applyAndCheck(
-                Lists.of(
-                        SpreadsheetError.selectionNotFound(SpreadsheetSelection.A1),
-                        SpreadsheetError.selectionNotFound(SpreadsheetSelection.parseCell("B2"))
-                ),
-                EXPRESSION_NUMBER_KIND.create(2)
+            Lists.of(
+                SpreadsheetError.selectionNotFound(SpreadsheetSelection.A1),
+                SpreadsheetError.selectionNotFound(SpreadsheetSelection.parseCell("B2"))
+            ),
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testApplyMixedNullNotFoundAndOthers() {
         this.applyAndCheck(
-                Lists.of(
-                        SpreadsheetError.selectionNotFound(SpreadsheetSelection.A1),
-                        null,
-                        EXPRESSION_NUMBER_KIND.create(2),
-                        LocalDateTime.now()
-                ),
-                EXPRESSION_NUMBER_KIND.create(2)
+            Lists.of(
+                SpreadsheetError.selectionNotFound(SpreadsheetSelection.A1),
+                null,
+                EXPRESSION_NUMBER_KIND.create(2),
+                LocalDateTime.now()
+            ),
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 

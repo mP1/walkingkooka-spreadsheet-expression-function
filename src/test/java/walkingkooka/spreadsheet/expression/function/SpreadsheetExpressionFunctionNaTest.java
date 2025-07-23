@@ -28,44 +28,44 @@ public final class SpreadsheetExpressionFunctionNaTest extends SpreadsheetExpres
     @Test
     public void testIsErr() {
         this.checkEquals(
-                false,
-                SpreadsheetExpressionFunctions.isErr()
-                        .apply(
-                                Lists.of(
-                                        this.apply2()
-                                ),
-                                this.createContext()
-                        )
+            false,
+            SpreadsheetExpressionFunctions.isErr()
+                .apply(
+                    Lists.of(
+                        this.apply2()
+                    ),
+                    this.createContext()
+                )
         );
     }
 
     @Test
     public void testIsNa() {
         this.checkEquals(
-                true,
-                SpreadsheetExpressionFunctions.isNa()
-                        .apply(
-                                Lists.of(
-                                        this.apply2()
-                                ),
-                                this.createContext()
-                        )
+            true,
+            SpreadsheetExpressionFunctions.isNa()
+                .apply(
+                    Lists.of(
+                        this.apply2()
+                    ),
+                    this.createContext()
+                )
         );
     }
 
     @Test
     public void testApply() {
         this.applyAndCheck2(
-                Lists.empty(),
-                SpreadsheetErrorKind.NA.setMessage("NA()")
+            Lists.empty(),
+            SpreadsheetErrorKind.NA.setMessage("NA()")
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "na"
+            this.createBiFunction(),
+            "na"
         );
     }
 

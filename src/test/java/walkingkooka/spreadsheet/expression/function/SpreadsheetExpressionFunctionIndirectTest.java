@@ -27,16 +27,16 @@ public final class SpreadsheetExpressionFunctionIndirectTest extends Spreadsheet
     @Test
     public void testReference() {
         this.applyAndCheck(
-                Lists.of(REFERENCE),
-                REFERENCE
+            Lists.of(REFERENCE),
+            REFERENCE
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "indirect"
+            this.createBiFunction(),
+            "indirect"
         );
     }
 

@@ -43,6 +43,6 @@ final class SpreadsheetExpressionFunctionCellDateTimeSymbols extends Spreadsheet
     @Override
     DateTimeSymbols extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.dateTimeSymbols()
-                .orElse(null);
+            .orElse(null);
     }
 }

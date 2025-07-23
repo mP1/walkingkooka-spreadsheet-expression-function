@@ -128,128 +128,128 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
-                DECIMAL_SEPARATOR,
-                GROUP_SEPARATOR,
-                new FakeSpreadsheetExpressionEvaluationContext() {
+            DECIMAL_SEPARATOR,
+            GROUP_SEPARATOR,
+            new FakeSpreadsheetExpressionEvaluationContext() {
 
-                    @Override
-                    public Optional<SpreadsheetCell> cell() {
-                        return Optional.empty();
-                    }
-
-                    @Override
-                    public String currencySymbol() {
-                        return CURRENCY_SYMBOL;
-                    }
-
-                    @Override
-                    public char decimalSeparator() {
-                        return DECIMAL_SEPARATOR;
-                    }
-
-                    @Override
-                    public String exponentSymbol() {
-                        return EXPONENT_SYMBOL;
-                    }
-
-                    @Override
-                    public char groupSeparator() {
-                        return GROUP_SEPARATOR;
-                    }
-
-                    @Override
-                    public String infinitySymbol() {
-                        return INFINITY_SYMBOL;
-                    }
-
-                    @Override
-                    public MathContext mathContext() {
-                        return MATH_CONTEXT;
-                    }
-
-                    @Override
-                    public String nanSymbol() {
-                        return NAN_SYMBOL;
-                    }
-
-                    @Override
-                    public char monetaryDecimalSeparator() {
-                        return MONETARY_DECIMAL_SEPARATOR;
-                    }
-
-                    @Override
-                    public char negativeSign() {
-                        return NEGATIVE_SYMBOL;
-                    }
-
-                    @Override
-                    public char percentSymbol() {
-                        return PERCENT_SYMBOL;
-                    }
-
-                    @Override
-                    public char permillSymbol() {
-                        return PERMILL_SYMBOL;
-                    }
-
-                    @Override
-                    public char positiveSign() {
-                        return POSITIVE_SYMBOL;
-                    }
-
-                    @Override
-                    public char zeroDigit() {
-                        return ZERO_DIGIT;
-                    }
-
-
-                    // FormHandlerContext...............................................................................
-
-                    @Override
-                    public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
-                        Objects.requireNonNull(name, "name");
-
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public Optional<Object> loadFormFieldValue(final SpreadsheetExpressionReference reference) {
-                        Objects.requireNonNull(reference, "reference");
-
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
-                        Objects.requireNonNull(fields, "fields");
-
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public Optional<EmailAddress> user() {
-                        return Optional.of(SpreadsheetMetadataTesting.USER);
-                    }
-
-                    @Override
-                    public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
-                        Objects.requireNonNull(reference, "reference");
-
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                        return this.localeContext.dateTimeSymbolsForLocale(locale);
-                    }
-
-                    @Override
-                    public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
-                        return this.localeContext.decimalNumberSymbolsForLocale(locale);
-                    }
-
-                    private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
+                @Override
+                public Optional<SpreadsheetCell> cell() {
+                    return Optional.empty();
                 }
+
+                @Override
+                public String currencySymbol() {
+                    return CURRENCY_SYMBOL;
+                }
+
+                @Override
+                public char decimalSeparator() {
+                    return DECIMAL_SEPARATOR;
+                }
+
+                @Override
+                public String exponentSymbol() {
+                    return EXPONENT_SYMBOL;
+                }
+
+                @Override
+                public char groupSeparator() {
+                    return GROUP_SEPARATOR;
+                }
+
+                @Override
+                public String infinitySymbol() {
+                    return INFINITY_SYMBOL;
+                }
+
+                @Override
+                public MathContext mathContext() {
+                    return MATH_CONTEXT;
+                }
+
+                @Override
+                public String nanSymbol() {
+                    return NAN_SYMBOL;
+                }
+
+                @Override
+                public char monetaryDecimalSeparator() {
+                    return MONETARY_DECIMAL_SEPARATOR;
+                }
+
+                @Override
+                public char negativeSign() {
+                    return NEGATIVE_SYMBOL;
+                }
+
+                @Override
+                public char percentSymbol() {
+                    return PERCENT_SYMBOL;
+                }
+
+                @Override
+                public char permillSymbol() {
+                    return PERMILL_SYMBOL;
+                }
+
+                @Override
+                public char positiveSign() {
+                    return POSITIVE_SYMBOL;
+                }
+
+                @Override
+                public char zeroDigit() {
+                    return ZERO_DIGIT;
+                }
+
+
+                // FormHandlerContext...............................................................................
+
+                @Override
+                public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
+                    Objects.requireNonNull(name, "name");
+
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public Optional<Object> loadFormFieldValue(final SpreadsheetExpressionReference reference) {
+                    Objects.requireNonNull(reference, "reference");
+
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
+                    Objects.requireNonNull(fields, "fields");
+
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public Optional<EmailAddress> user() {
+                    return Optional.of(SpreadsheetMetadataTesting.USER);
+                }
+
+                @Override
+                public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
+                    Objects.requireNonNull(reference, "reference");
+
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+                    return this.localeContext.dateTimeSymbolsForLocale(locale);
+                }
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return this.localeContext.decimalNumberSymbolsForLocale(locale);
+                }
+
+                private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
+            }
         );
     }
 

@@ -28,23 +28,23 @@ public final class SpreadsheetExpressionFunctionStringFormulaTextTest extends Sp
     @Test
     public void testApply() {
         this.applyAndCheck2(
-                Lists.of(LOAD_CELL_REFERENCE),
-                LOAD_FORMULA_TEXT
+            Lists.of(LOAD_CELL_REFERENCE),
+            LOAD_FORMULA_TEXT
         );
     }
 
     @Test
     public void testApplyMissingCellFails() {
         final IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        SpreadsheetSelection.parseCell("Z999")
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                SpreadsheetSelection.parseCell("Z999")
+            )
         );
 
         this.checkEquals(
-                "Formula missing from Z999",
-                thrown.getMessage()
+            "Formula missing from Z999",
+            thrown.getMessage()
         );
     }
 

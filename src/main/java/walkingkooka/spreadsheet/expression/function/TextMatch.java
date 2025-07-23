@@ -31,10 +31,10 @@ import java.util.function.Predicate;
  * Contains a text match pattern and is also a {@link Predicate}.
  */
 public final class TextMatch implements Value<String>,
-        HasText,
-        Predicate<CharSequence>,
-        HasCaseSensitivity,
-        CanBeEmpty {
+    HasText,
+    Predicate<CharSequence>,
+    HasCaseSensitivity,
+    CanBeEmpty {
 
     public static TextMatch parse(final String text) {
         Objects.requireNonNull(text, "text");
@@ -46,8 +46,8 @@ public final class TextMatch implements Value<String>,
     TextMatch(final String text) {
         this.text = text;
         this.predicate = Predicates.globPatterns(
-                text,
-                CASE_SENSITIVITY
+            text,
+            CASE_SENSITIVITY
         );
     }
 
@@ -84,7 +84,7 @@ public final class TextMatch implements Value<String>,
     @Override
     public boolean isEmpty() {
         return this.text.trim()
-                .isEmpty();
+            .isEmpty();
     }
 
     // Predicate........................................................................................................
@@ -105,7 +105,7 @@ public final class TextMatch implements Value<String>,
 
     public boolean equals(final Object other) {
         return this == other ||
-                other instanceof TextMatch && this.equals0((TextMatch) other);
+            other instanceof TextMatch && this.equals0((TextMatch) other);
     }
 
     private boolean equals0(final TextMatch other) {

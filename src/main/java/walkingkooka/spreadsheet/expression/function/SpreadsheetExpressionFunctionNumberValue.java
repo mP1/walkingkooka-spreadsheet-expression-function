@@ -51,46 +51,46 @@ final class SpreadsheetExpressionFunctionNumberValue extends SpreadsheetExpressi
         this.checkParameterCount(parameters);
 
         return this.apply0(
-                parameters.subList(0, 1),
-                SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
-                        DECIMAL_SEPARATOR.get(parameters, 1)
-                                .orElseGet(
-                                        () -> Optional.of(
-                                                context.decimalSeparator()
-                                        )
-                                ).get(),
-                        GROUP_SEPARATOR.get(parameters, 2)
-                                .orElseGet(
-                                        () -> Optional.of(
-                                                context.groupSeparator()
-                                        )
-                                ).get(),
-                        context
-                )
+            parameters.subList(0, 1),
+            SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
+                DECIMAL_SEPARATOR.get(parameters, 1)
+                    .orElseGet(
+                        () -> Optional.of(
+                            context.decimalSeparator()
+                        )
+                    ).get(),
+                GROUP_SEPARATOR.get(parameters, 2)
+                    .orElseGet(
+                        () -> Optional.of(
+                            context.groupSeparator()
+                        )
+                    ).get(),
+                context
+            )
         );
     }
 
     private final static ExpressionFunctionParameter<String> TEXT = ExpressionFunctionParameterName.with("text")
-            .required(String.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(String.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<Character> DECIMAL_SEPARATOR = ExpressionFunctionParameterName.with("decimal-separator")
-            .optional(Character.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .optional(Character.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<Character> GROUP_SEPARATOR = ExpressionFunctionParameterName.with("group-separator")
-            .optional(Character.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .optional(Character.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private ExpressionNumber apply0(final List<Object> parameters,
                                     final SpreadsheetExpressionEvaluationContext context) {
         final ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> function = this.function;
         return function.apply(
-                context.prepareParameters(
-                        Cast.to(function),
-                        parameters
-                ),
-                context
+            context.prepareParameters(
+                Cast.to(function),
+                parameters
+            ),
+            context
         );
     }
 
@@ -102,8 +102,8 @@ final class SpreadsheetExpressionFunctionNumberValue extends SpreadsheetExpressi
     }
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            TEXT,
-            DECIMAL_SEPARATOR,
-            GROUP_SEPARATOR
+        TEXT,
+        DECIMAL_SEPARATOR,
+        GROUP_SEPARATOR
     );
 }

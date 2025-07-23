@@ -35,7 +35,7 @@ public final class SpreadsheetExpressionFunctionCellDateTimeSymbolsTest extends 
     @Override
     DateTimeSymbols valuePresent() {
         return DateTimeSymbols.fromDateFormatSymbols(
-                new DateFormatSymbols(Locale.FRANCE)
+            new DateFormatSymbols(Locale.FRANCE)
         );
     }
 
@@ -48,7 +48,7 @@ public final class SpreadsheetExpressionFunctionCellDateTimeSymbolsTest extends 
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final DateTimeSymbols value) {
         return cell.setDateTimeSymbols(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -57,8 +57,8 @@ public final class SpreadsheetExpressionFunctionCellDateTimeSymbolsTest extends 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellDateTimeSymbols"
+            this.createBiFunction(),
+            "cellDateTimeSymbols"
         );
     }
 

@@ -44,10 +44,10 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     }
 
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISERR = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
-            "isErr",
-            Predicates.not(
-                    Predicates.is(SpreadsheetErrorKind.NA)
-            )
+        "isErr",
+        Predicates.not(
+            Predicates.is(SpreadsheetErrorKind.NA)
+        )
     );
 
     /**
@@ -60,8 +60,8 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     }
 
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISERROR = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
-            "isError",
-            Predicates.always()
+        "isError",
+        Predicates.always()
     );
 
     /**
@@ -74,8 +74,8 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     }
 
     private static final SpreadsheetExpressionFunctionBooleanIsErrErrorNa ISNA = new SpreadsheetExpressionFunctionBooleanIsErrErrorNa(
-            "isNa",
-            Predicates.is(SpreadsheetErrorKind.NA)
+        "isNa",
+        Predicates.is(SpreadsheetErrorKind.NA)
     );
 
     private SpreadsheetExpressionFunctionBooleanIsErrErrorNa(final String name,
@@ -101,7 +101,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
     }
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     private final Predicate<SpreadsheetErrorKind> kind;
 

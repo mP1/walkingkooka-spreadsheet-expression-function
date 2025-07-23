@@ -44,10 +44,10 @@ public final class SpreadsheetExpressionFunctionCellValueTest extends Spreadshee
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final Object value) {
         return cell.setFormula(
-                cell.formula()
-                        .setValue(
-                                Optional.ofNullable(value)
-                        )
+            cell.formula()
+                .setValue(
+                    Optional.ofNullable(value)
+                )
         );
     }
 
@@ -56,8 +56,8 @@ public final class SpreadsheetExpressionFunctionCellValueTest extends Spreadshee
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellValue"
+            this.createBiFunction(),
+            "cellValue"
         );
     }
 

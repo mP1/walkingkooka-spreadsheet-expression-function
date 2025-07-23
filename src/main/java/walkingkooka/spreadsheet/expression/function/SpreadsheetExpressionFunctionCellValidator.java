@@ -43,6 +43,6 @@ final class SpreadsheetExpressionFunctionCellValidator extends SpreadsheetExpres
     @Override
     ValidatorSelector extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.validator()
-                .orElse(null);
+            .orElse(null);
     }
 }
