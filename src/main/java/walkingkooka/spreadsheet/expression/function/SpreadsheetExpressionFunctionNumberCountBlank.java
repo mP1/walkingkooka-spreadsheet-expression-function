@@ -47,18 +47,18 @@ final class SpreadsheetExpressionFunctionNumberCountBlank extends SpreadsheetExp
     }
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameterName.VALUE.variable(Object.class)
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_FLATTEN_RESOLVE_REFERENCES);
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_FLATTEN_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            VALUE
+        VALUE
     );
 
     @Override
     public ExpressionNumber apply(final List<Object> parameters,
                                   final SpreadsheetExpressionEvaluationContext context) {
         return this.apply0(
-                VALUE.getVariable(parameters, 0),
-                context
+            VALUE.getVariable(parameters, 0),
+            context
         );
     }
 
@@ -68,14 +68,14 @@ final class SpreadsheetExpressionFunctionNumberCountBlank extends SpreadsheetExp
 
         for (final Object value : parameters) {
             if (null == value ||
-                    (value instanceof SpreadsheetError &&
-                            ((SpreadsheetError) value).isMissingCell()
-                    )) {
+                (value instanceof SpreadsheetError &&
+                    ((SpreadsheetError) value).isMissingCell()
+                )) {
                 count++;
             }
         }
 
         return context.expressionNumberKind()
-                .create(count);
+            .create(count);
     }
 }

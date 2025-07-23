@@ -31,26 +31,26 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
     @Test
     public void testCountIf() {
         this.countIfAndCheck(
-                Lists.of(
-                        1,
-                        2
-                ),
+            Lists.of(
                 1,
-                1
+                2
+            ),
+            1,
+            1
         );
     }
 
     @Test
     public void testCountIfHalfFiltered() {
         this.countIfAndCheck(
-                Lists.of(
-                        1,
-                        2,
-                        100,
-                        200
-                ),
-                "> 80 + 10",
-                2
+            Lists.of(
+                1,
+                2,
+                100,
+                200
+            ),
+            "> 80 + 10",
+            2
         );
     }
 
@@ -58,10 +58,10 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
                                  final Object condition,
                                  final Number expected) {
         this.applyIfAndCheck(
-                SpreadsheetExpressionFunctionNumberIf.countIf(),
-                values,
-                condition,
-                expected
+            SpreadsheetExpressionFunctionNumberIf.countIf(),
+            values,
+            condition,
+            expected
         );
     }
 
@@ -70,26 +70,26 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
     @Test
     public void testSumIf() {
         this.sumIfAndCheck(
-                Lists.of(
-                        1,
-                        2
-                ),
+            Lists.of(
                 1,
-                1
+                2
+            ),
+            1,
+            1
         );
     }
 
     @Test
     public void testSumIfHalfFiltered() {
         this.sumIfAndCheck(
-                Lists.of(
-                        1,
-                        2,
-                        100,
-                        200
-                ),
-                "> 80 + 10",
-                100 + 200
+            Lists.of(
+                1,
+                2,
+                100,
+                200
+            ),
+            "> 80 + 10",
+            100 + 200
         );
     }
 
@@ -97,10 +97,10 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
                                final Object condition,
                                final Number expected) {
         this.applyIfAndCheck(
-                SpreadsheetExpressionFunctionNumberIf.sumIf(),
-                values,
-                condition,
-                expected
+            SpreadsheetExpressionFunctionNumberIf.sumIf(),
+            values,
+            condition,
+            expected
         );
     }
 
@@ -111,28 +111,28 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
                                  final Object condition,
                                  final Number expected) {
         this.applyAndCheck(
-                function,
-                List.of(
-                        value instanceof List ?
-                                prepareList((List<?>) value) :
-                                wrapIfNumber(value),
-                        condition
-                ),
-                this.createContext(),
-                KIND.create(expected)
+            function,
+            List.of(
+                value instanceof List ?
+                    prepareList((List<?>) value) :
+                    wrapIfNumber(value),
+                condition
+            ),
+            this.createContext(),
+            KIND.create(expected)
         );
     }
 
     private List<Object> prepareList(final List<?> list) {
         return list.stream()
-                .map(this::wrapIfNumber)
-                .collect(Collectors.toList());
+            .map(this::wrapIfNumber)
+            .collect(Collectors.toList());
     }
 
     private Object wrapIfNumber(final Object value) {
         return value instanceof Number ?
-                KIND.create((Number) value) :
-                value;
+            KIND.create((Number) value) :
+            value;
     }
 
 

@@ -55,13 +55,13 @@ final class SpreadsheetExpressionFunctionObjectFind extends SpreadsheetExpressio
     public Object apply(final List<Object> parameters,
                         final SpreadsheetExpressionEvaluationContext context) {
         final ExpressionNumber result = FIND_CASE_SENSITIVE.apply(
-                parameters,
-                context
+            parameters,
+            context
         );
 
         return ExpressionNumberSign.POSITIVE == result.sign() ?
-                result :
-                notFound(parameters);
+            result :
+            notFound(parameters);
     }
 
     private static SpreadsheetError notFound(final List<Object> parameters) {
@@ -77,7 +77,7 @@ final class SpreadsheetExpressionFunctionObjectFind extends SpreadsheetExpressio
         }
 
         return SpreadsheetErrorKind.VALUE
-                .setMessage(b.toString());
+            .setMessage(b.toString());
     }
 
     private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> FIND_CASE_SENSITIVE = StringExpressionFunctions.findCaseSensitive();

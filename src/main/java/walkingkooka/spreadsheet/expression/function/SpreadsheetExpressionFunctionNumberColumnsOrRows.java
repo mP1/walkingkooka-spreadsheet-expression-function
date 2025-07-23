@@ -34,16 +34,16 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
      * A function that returns the column count for a given argument
      */
     final static SpreadsheetExpressionFunctionNumberColumnsOrRows COLUMNS = new SpreadsheetExpressionFunctionNumberColumnsOrRows(
-            "columns",
-            (r) -> r.columnRange().count()
+        "columns",
+        (r) -> r.columnRange().count()
     );
 
     /**
      * A function that returns the row count for a given argument
      */
     final static SpreadsheetExpressionFunctionNumberColumnsOrRows ROWS = new SpreadsheetExpressionFunctionNumberColumnsOrRows(
-            "rows",
-            (r) -> r.rowRange().count()
+        "rows",
+        (r) -> r.rowRange().count()
     );
 
     private SpreadsheetExpressionFunctionNumberColumnsOrRows(final String name,
@@ -60,13 +60,13 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
         final SpreadsheetSelection reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0);
 
         return context.expressionNumberKind()
-                .create(
-                        reference.isCell() ?
-                                1L :
-                                this.mapper.apply(
-                                        reference.toCellRange()
-                                )
-                );
+            .create(
+                reference.isCell() ?
+                    1L :
+                    this.mapper.apply(
+                        reference.toCellRange()
+                    )
+            );
     }
 
     /**

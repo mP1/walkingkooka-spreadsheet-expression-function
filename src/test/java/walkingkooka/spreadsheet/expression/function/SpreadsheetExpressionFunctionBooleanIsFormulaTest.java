@@ -27,59 +27,59 @@ public final class SpreadsheetExpressionFunctionBooleanIsFormulaTest extends Spr
     @Test
     public void testTwoParametersFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        "1a", "2b"
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                "1a", "2b"
+            )
         );
     }
 
     @Test
     public void testCellReference() {
         this.applyAndCheck2(
-                Lists.of(LOAD_CELL_REFERENCE),
-                true
+            Lists.of(LOAD_CELL_REFERENCE),
+            true
         );
     }
 
     @Test
     public void testCellReferenceMissingFormula() {
         this.applyAndCheck2(
-                Lists.of(CELL_EMPTY_FORMULA.reference()),
-                false
+            Lists.of(CELL_EMPTY_FORMULA.reference()),
+            false
         );
     }
 
     @Test
     public void testMissingCellReferenceFalse() {
         this.applyAndCheck2(
-                Lists.of(LOAD_CELL_REFERENCE.add(1, 1)),
-                false
+            Lists.of(LOAD_CELL_REFERENCE.add(1, 1)),
+            false
         );
     }
 
     @Test
     public void testRange() {
         this.applyAndCheck2(
-                Lists.of(
-                        LOAD_CELL_REFERENCE.cellRange(
-                                LOAD_CELL_REFERENCE.add(2, 3)
-                        )
-                ),
-                true
+            Lists.of(
+                LOAD_CELL_REFERENCE.cellRange(
+                    LOAD_CELL_REFERENCE.add(2, 3)
+                )
+            ),
+            true
         );
     }
 
     @Test
     public void testRangeTopLeftMissingFormula() {
         this.applyAndCheck2(
-                Lists.of(
-                        LOAD_CELL_REFERENCE.add(1, 0)
-                                .cellRange(
-                                        LOAD_CELL_REFERENCE.add(2, 3)
-                                )
-                ),
-                false
+            Lists.of(
+                LOAD_CELL_REFERENCE.add(1, 0)
+                    .cellRange(
+                        LOAD_CELL_REFERENCE.add(2, 3)
+                    )
+            ),
+            false
         );
     }
 

@@ -30,32 +30,32 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     @Test
     public void testTwoParametersFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        "1a", "2b"
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                "1a", "2b"
+            )
         );
     }
 
     @Test
     public void testColumnReferenceParameterMissingFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
-                        Lists.empty()
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
+                Lists.empty()
+            )
         );
     }
 
     @Test
     public void testRowReferenceParameterMissingFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
-                        Lists.empty()
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
+                Lists.empty()
+            )
         );
     }
 
@@ -64,18 +64,18 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     @Test
     public void testColumnReferenceParameter() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
-                Lists.of(B5),
-                KIND.one()
+            SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
+            Lists.of(B5),
+            KIND.one()
         );
     }
 
     @Test
     public void testRowReferenceParameter() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
-                Lists.of(B5),
-                KIND.one()
+            SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
+            Lists.of(B5),
+            KIND.one()
         );
     }
 
@@ -83,18 +83,18 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     @Test
     public void testColumnReferenceRange() {
         this.applyAndCheck3(
-                SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
-                SpreadsheetSelection.parseCellRange("B2:E3"),
-                4
+            SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
+            SpreadsheetSelection.parseCellRange("B2:E3"),
+            4
         );
     }
 
     @Test
     public void testRowReferenceRange() {
         this.applyAndCheck3(
-                SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
-                SpreadsheetSelection.parseCellRange("B2:C5"),
-                4
+            SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
+            SpreadsheetSelection.parseCellRange("B2:C5"),
+            4
         );
     }
 
@@ -102,9 +102,9 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
                                 final SpreadsheetSelection selection,
                                 final int expected) {
         this.applyAndCheck2(
-                function,
-                Lists.of(selection),
-                KIND.create(expected)
+            function,
+            Lists.of(selection),
+            KIND.create(expected)
         );
     }
 

@@ -38,144 +38,144 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
     @Test
     public void testMissingDecimals() {
         this.dollarAndCheck(
-                123.456,
-                "$AUD123*46"
+            123.456,
+            "$AUD123*46"
         );
     }
 
     @Test
     public void testPlus2Decimals() {
         this.dollarAndCheck(
-                123.0,
-                2,
-                "$AUD123*00"
+            123.0,
+            2,
+            "$AUD123*00"
         );
     }
 
     @Test
     public void testPlus2DecimalsRoundUp() {
         this.dollarAndCheck(
-                123.456,
-                2,
-                "$AUD123*46"
+            123.456,
+            2,
+            "$AUD123*46"
         );
     }
 
     @Test
     public void testPlus1Decimal() {
         this.dollarAndCheck(
-                123.000,
-                1,
-                "$AUD123*0"
+            123.000,
+            1,
+            "$AUD123*0"
         );
     }
 
     @Test
     public void testPlus1DecimalRoundUp() {
         this.dollarAndCheck(
-                123.456,
-                1,
-                "$AUD123*5"
+            123.456,
+            1,
+            "$AUD123*5"
         );
     }
 
     @Test
     public void testZeroDecimals() {
         this.dollarAndCheck(
-                123.456,
-                0,
-                "$AUD123"
+            123.456,
+            0,
+            "$AUD123"
         );
     }
 
     @Test
     public void testMinus1Decimal() {
         this.dollarAndCheck(
-                123.456,
-                -1,
-                "$AUD120"
+            123.456,
+            -1,
+            "$AUD120"
         );
     }
 
     @Test
     public void testMinus1DecimalRoundDown() {
         this.dollarAndCheck(
-                3,
-                -1,
-                "$AUD0"
+            3,
+            -1,
+            "$AUD0"
         );
     }
 
     @Test
     public void testMinus2Decimal() {
         this.dollarAndCheck(
-                123.456,
-                -2,
-                "$AUD100"
+            123.456,
+            -2,
+            "$AUD100"
         );
     }
 
     @Test
     public void testMinus2DecimalRoundUp() {
         this.dollarAndCheck(
-                567.890,
-                -2,
-                "$AUD600"
+            567.890,
+            -2,
+            "$AUD600"
         );
     }
 
     @Test
     public void testMinus2DecimalRoundDown() {
         this.dollarAndCheck(
-                3,
-                -2,
-                "$AUD0"
+            3,
+            -2,
+            "$AUD0"
         );
     }
 
     @Test
     public void testMinus4Decimal() {
         this.dollarAndCheck(
-                123456,
-                -4,
-                "$AUD120,000"
+            123456,
+            -4,
+            "$AUD120,000"
         );
     }
 
     @Test
     public void testMinus4DecimalRoundUp() {
         this.dollarAndCheck(
-                567890,
-                -4,
-                "$AUD570,000"
+            567890,
+            -4,
+            "$AUD570,000"
         );
     }
 
     @Test
     public void testMinus4DecimalRoundDown() {
         this.dollarAndCheck(
-                123,
-                -4,
-                "$AUD0"
+            123,
+            -4,
+            "$AUD0"
         );
     }
 
     @Test
     public void testMinusDecimalZerosValue() {
         this.dollarAndCheck(
-                123,
-                -10,
-                "$AUD0"
+            123,
+            -10,
+            "$AUD0"
         );
     }
 
     private void dollarAndCheck(final Number value,
                                 final String expected) {
         this.dollarAndCheck(
-                Lists.of(
-                        EXPRESSION_NUMBER_KIND.create(value)
-                ),
-                expected
+            Lists.of(
+                EXPRESSION_NUMBER_KIND.create(value)
+            ),
+            expected
         );
     }
 
@@ -183,19 +183,19 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
                                 final Number decimals,
                                 final String expected) {
         this.dollarAndCheck(
-                Lists.of(
-                        EXPRESSION_NUMBER_KIND.create(value),
-                        EXPRESSION_NUMBER_KIND.create(decimals)
-                ),
-                expected
+            Lists.of(
+                EXPRESSION_NUMBER_KIND.create(value),
+                EXPRESSION_NUMBER_KIND.create(decimals)
+            ),
+            expected
         );
     }
 
     private void dollarAndCheck(final List<Object> parameters,
                                 final String expected) {
         this.applyAndCheck2(
-                parameters,
-                expected
+            parameters,
+            expected
         );
     }
 
@@ -228,35 +228,35 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
             public boolean canConvert(final Object value,
                                       final Class<?> type) {
                 return this.converter()
-                        .canConvert(
-                                value,
-                                type,
-                                this
-                        );
+                    .canConvert(
+                        value,
+                        type,
+                        this
+                    );
             }
 
             @Override
             public <TT> Either<TT, String> convert(final Object value,
                                                    final Class<TT> target) {
                 return this.converter()
-                        .convert(
-                                value,
-                                target,
-                                this
-                        );
+                    .convert(
+                        value,
+                        target,
+                        this
+                    );
             }
 
             @Override
             public Converter<SpreadsheetConverterContext> converter() {
                 return Converters.collection(
-                        Lists.of(
-                                Converters.simple(),
-                                Converters.booleanToNumber(),
-                                SpreadsheetConverters.textToText(),
-                                SpreadsheetConverters.numberToNumber(),
-                                Converters.localDateToLocalDateTime(),
-                                Converters.localTimeToLocalDateTime()
-                        )
+                    Lists.of(
+                        Converters.simple(),
+                        Converters.booleanToNumber(),
+                        SpreadsheetConverters.textToText(),
+                        SpreadsheetConverters.numberToNumber(),
+                        Converters.localDateToLocalDateTime(),
+                        Converters.localTimeToLocalDateTime()
+                    )
                 );
             }
 

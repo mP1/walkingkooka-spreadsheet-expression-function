@@ -63,22 +63,22 @@ final class SpreadsheetExpressionFunctionLambda extends SpreadsheetExpressionFun
         for (int i = 0; i < parameterNamesCount; i++) {
             // the parameter must be a label(a label holds the parameter name).
             final SpreadsheetLabelName label = this.parameter(i, SpreadsheetLabelName.class)
-                    .getOrFail(
-                            values,
-                            i
-                    );
+                .getOrFail(
+                    values,
+                    i
+                );
 
             // create a ExpressionFunctionParameterName with the label (parameter name) and type of object.
             parameters[i] = this.parameter(
-                    ExpressionFunctionParameterName.with(label.value()),
-                    Object.class
+                ExpressionFunctionParameterName.with(label.value()),
+                Object.class
             );
         }
 
         return context.lambdaFunction(
-                Lists.of(parameters),
-                Object.class,
-                EXPRESSION.getOrFail(values, count - 1)
+            Lists.of(parameters),
+            Object.class,
+            EXPRESSION.getOrFail(values, count - 1)
         );
     }
 
@@ -104,8 +104,8 @@ final class SpreadsheetExpressionFunctionLambda extends SpreadsheetExpressionFun
     }
 
     private final ExpressionFunctionParameter<Expression> EXPRESSION = ExpressionFunctionParameterName.with("expression")
-            .required(Expression.class)
-            .setKinds(ExpressionFunctionParameter.NO_KINDS);
+        .required(Expression.class)
+        .setKinds(ExpressionFunctionParameter.NO_KINDS);
 
     private final List<ExpressionFunctionParameter<?>> COMPUTED_PARAMETERS = Lists.of(EXPRESSION);
 
@@ -127,15 +127,15 @@ final class SpreadsheetExpressionFunctionLambda extends SpreadsheetExpressionFun
     private <T> ExpressionFunctionParameter<T> parameter(final int suffix,
                                                          final Class<T> type) {
         return this.parameter(
-                this.parameterName(suffix),
-                type
+            this.parameterName(suffix),
+            type
         );
     }
 
     private <T> ExpressionFunctionParameter<T> parameter(final ExpressionFunctionParameterName name,
                                                          final Class<T> type) {
         return name.required(type)
-                .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
     }
 
     private ExpressionFunctionParameterName parameterName(final int suffix) {

@@ -46,11 +46,11 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
                      final SpreadsheetCell cell,
                      final SpreadsheetExpressionEvaluationContext context) {
             return context.expressionNumberKind()
-                    .create(
-                            reference.toCell()
-                                    .column()
-                                    .value()
-                    );
+                .create(
+                    reference.toCell()
+                        .column()
+                        .value()
+                );
         }
     },
 
@@ -71,11 +71,11 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
                      final SpreadsheetExpressionEvaluationContext context) {
             final Optional<SpreadsheetCell> loaded = context.loadCell(reference);
             return loaded.isPresent() ?
-                    loaded.get()
-                            .formattedValue()
-                            .get()
-                            .text() :
-                    "0"; // cell absent use 0
+                loaded.get()
+                    .formattedValue()
+                    .get()
+                    .text() :
+                "0"; // cell absent use 0
         }
     },
 
@@ -115,7 +115,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
 
             if (cell.formattedValue().isPresent()) {
                 final Optional<TextAlign> maybeTextAlign = cell.style()
-                        .get(TextStylePropertyName.TEXT_ALIGN);
+                    .get(TextStylePropertyName.TEXT_ALIGN);
                 if (maybeTextAlign.isPresent()) {
 
                     final TextAlign textAlign = maybeTextAlign.get();
@@ -157,12 +157,12 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
                      final SpreadsheetCell cell,
                      final SpreadsheetExpressionEvaluationContext context) {
             return context.expressionNumberKind()
-                    .create(
-                            reference
-                                    .toCell()
-                                    .row()
-                                    .value()
-                    );
+                .create(
+                    reference
+                        .toCell()
+                        .row()
+                        .value()
+                );
         }
     },
 
@@ -194,8 +194,8 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
 
     static SpreadsheetExpressionFunctionObjectCellTypeInfo typeInfo(final String typeInfo) {
         return Arrays.stream(values())
-                .filter(v -> v.name().toLowerCase().equals(typeInfo))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown typeInfo " + CharSequences.quoteAndEscape(typeInfo)));
+            .filter(v -> v.name().toLowerCase().equals(typeInfo))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Unknown typeInfo " + CharSequences.quoteAndEscape(typeInfo)));
     }
 }

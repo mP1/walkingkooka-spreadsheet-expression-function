@@ -35,8 +35,8 @@ public final class SpreadsheetExpressionFunctionCellDecimalNumberSymbolsTest ext
     @Override
     DecimalNumberSymbols valuePresent() {
         return DecimalNumberSymbols.fromDecimalFormatSymbols(
-                '+',
-                new DecimalFormatSymbols(Locale.FRANCE)
+            '+',
+            new DecimalFormatSymbols(Locale.FRANCE)
         );
     }
 
@@ -49,7 +49,7 @@ public final class SpreadsheetExpressionFunctionCellDecimalNumberSymbolsTest ext
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final DecimalNumberSymbols value) {
         return cell.setDecimalNumberSymbols(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -58,8 +58,8 @@ public final class SpreadsheetExpressionFunctionCellDecimalNumberSymbolsTest ext
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellDecimalNumberSymbols"
+            this.createBiFunction(),
+            "cellDecimalNumberSymbols"
         );
     }
 

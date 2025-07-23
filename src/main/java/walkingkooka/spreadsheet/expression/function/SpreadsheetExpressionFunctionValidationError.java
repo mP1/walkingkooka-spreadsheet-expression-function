@@ -52,13 +52,13 @@ final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpr
     }
 
     private final static ExpressionFunctionParameter<SpreadsheetError> ERROR = ExpressionFunctionParameterName.with("error")
-            .required(SpreadsheetError.class)
-            .setKinds(
-                    ExpressionFunctionParameterKind.CONVERT_EVALUATE
-            );
+        .required(SpreadsheetError.class)
+        .setKinds(
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            ERROR
+        ERROR
     );
 
     @Override
@@ -72,8 +72,8 @@ final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpr
         final SpreadsheetError spreadsheetError = ERROR.getOrFail(parameters, 0);
 
         return spreadsheetError.toValidationError(
-                context.cellOrFail()
-                        .reference()
+            context.cellOrFail()
+                .reference()
         );
     }
 }

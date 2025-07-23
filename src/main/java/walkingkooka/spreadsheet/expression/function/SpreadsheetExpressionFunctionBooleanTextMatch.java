@@ -46,19 +46,19 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
         this.checkParameterCount(parameters);
 
         return TextMatch.parse(
-                PATTERN.getOrFail(parameters, 0)
+            PATTERN.getOrFail(parameters, 0)
         ).test(
-                VALUE.getOrFail(parameters, 1)
+            VALUE.getOrFail(parameters, 1)
         );
     }
 
     final static ExpressionFunctionParameter<String> PATTERN = ExpressionFunctionParameterName.with("pattern")
-            .required(String.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(String.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static ExpressionFunctionParameter<String> VALUE = ExpressionFunctionParameterName.with("value")
-            .required(String.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(String.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
@@ -66,7 +66,7 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
     }
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            PATTERN,
-            VALUE
+        PATTERN,
+        VALUE
     );
 }

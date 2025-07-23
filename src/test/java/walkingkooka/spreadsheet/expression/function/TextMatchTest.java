@@ -27,18 +27,18 @@ import walkingkooka.text.HasTextTesting;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class TextMatchTest implements ParseStringTesting<TextMatch>,
-        HasTextTesting,
-        PredicateTesting2<TextMatch, CharSequence>,
-        HashCodeEqualsDefinedTesting2<TextMatch>,
-        CanBeEmptyTesting {
+    HasTextTesting,
+    PredicateTesting2<TextMatch, CharSequence>,
+    HashCodeEqualsDefinedTesting2<TextMatch>,
+    CanBeEmptyTesting {
 
     // with.............................................................................................................
 
     @Test
     public void testWithNullFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> TextMatch.parse(null)
+            NullPointerException.class,
+            () -> TextMatch.parse(null)
         );
     }
 
@@ -47,8 +47,8 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
         final String text = "* 22 333";
 
         this.textAndCheck(
-                this.parseString(text),
-                text
+            this.parseString(text),
+            text
         );
     }
 
@@ -62,16 +62,16 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
     @Test
     public void testParse() {
         this.parseStringAndCheck(
-                "*",
-                new TextMatch("*")
+            "*",
+            new TextMatch("*")
         );
     }
 
     @Test
     public void testParseEmpty() {
         this.parseStringAndCheck(
-                "",
-                new TextMatch("")
+            "",
+            new TextMatch("")
         );
     }
 
@@ -96,48 +96,48 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
     @Test
     public void testIsEmptyWhenEmptyString() {
         this.isEmptyAndCheck(
-                "",
-                true
+            "",
+            true
         );
     }
 
     @Test
     public void testIsEmptyWhenNotEmptyWhitespaceOnlyString() {
         this.isEmptyAndCheck(
-                " ",
-                true
+            " ",
+            true
         );
     }
 
     @Test
     public void testIsEmptyWhenNotEmptyWhitespaceOnlyString2() {
         this.isEmptyAndCheck(
-                "  ",
-                true
+            "  ",
+            true
         );
     }
 
     @Test
     public void testIsEmptyWhenOneGlobPattern() {
         this.isEmptyAndCheck(
-                "*",
-                false
+            "*",
+            false
         );
     }
 
     @Test
     public void testIsEmptyWhenSeveralGlobPatterns() {
         this.isEmptyAndCheck(
-                "1 2* ?3",
-                false
+            "1 2* ?3",
+            false
         );
     }
 
     private void isEmptyAndCheck(final String text,
                                  final boolean expected) {
         this.isEmptyAndCheck(
-                this.parseString(text),
-                expected
+            this.parseString(text),
+            expected
         );
     }
 
@@ -151,39 +151,39 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
     @Test
     public void testTestWhenEmptyString() {
         this.testFalse(
-                TextMatch.parse(""),
-                ""
+            TextMatch.parse(""),
+            ""
         );
     }
 
     @Test
     public void testTestStar() {
         this.testTrue(
-                "Hello"
+            "Hello"
         );
     }
 
     @Test
     public void testTestWithMultiplePatterns() {
         this.testTrue(
-                TextMatch.parse("123, hello"),
-                "Hello"
+            TextMatch.parse("123, hello"),
+            "Hello"
         );
     }
 
     @Test
     public void testTestWithMultiplePatterns2() {
         this.testTrue(
-                TextMatch.parse("123, h?l*"),
-                "Hello"
+            TextMatch.parse("123, h?l*"),
+            "Hello"
         );
     }
 
     @Test
     public void testTestWithMultiplePatterns3() {
         this.testFalse(
-                TextMatch.parse("123, h?l*"),
-                "No"
+            TextMatch.parse("123, h?l*"),
+            "No"
         );
     }
 
@@ -198,15 +198,15 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
     @Test
     public void testEqualsDifferent() {
         this.checkNotEquals(
-                TextMatch.parse("different")
+            TextMatch.parse("different")
         );
     }
 
     @Test
     public void testEqualsCaseUnimportantButDifferent() {
         this.checkEquals(
-                TextMatch.parse("*abc"),
-                TextMatch.parse("*ABC")
+            TextMatch.parse("*abc"),
+            TextMatch.parse("*ABC")
         );
     }
 

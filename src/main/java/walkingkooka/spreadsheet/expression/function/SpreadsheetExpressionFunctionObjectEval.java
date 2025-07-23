@@ -50,20 +50,20 @@ final class SpreadsheetExpressionFunctionObjectEval extends SpreadsheetExpressio
     public Object apply(final List<Object> parameters,
                         final SpreadsheetExpressionEvaluationContext context) {
         return context.evaluateExpression(
-                EXPRESSION.getOrFail(
-                        parameters,
-                        0
-                )
+            EXPRESSION.getOrFail(
+                parameters,
+                0
+            )
         );
     }
 
     private final static ExpressionFunctionParameter<Expression> EXPRESSION = ExpressionFunctionParameterName.with("expression")
-            .required(Expression.class)
-            .setKinds(
-                    ExpressionFunctionParameterKind.CONVERT_EVALUATE
-            );
+        .required(Expression.class)
+        .setKinds(
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        );
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            EXPRESSION
+        EXPRESSION
     );
 }

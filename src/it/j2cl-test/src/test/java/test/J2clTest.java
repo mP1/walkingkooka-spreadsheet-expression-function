@@ -34,18 +34,18 @@ public class J2clTest {
         final ExpressionNumberKind kind = ExpressionNumberKind.DOUBLE;
 
         Assert.assertEquals(
-                kind.create(5),
-                SpreadsheetExpressionFunctions.column()
-                        .apply(
-                                Lists.of(SpreadsheetSelection.parseCell("E1")),
-                                new FakeSpreadsheetExpressionEvaluationContext() {
+            kind.create(5),
+            SpreadsheetExpressionFunctions.column()
+                .apply(
+                    Lists.of(SpreadsheetSelection.parseCell("E1")),
+                    new FakeSpreadsheetExpressionEvaluationContext() {
 
-                                    @Override
-                                    public ExpressionNumberKind expressionNumberKind() {
-                                        return kind;
-                                    }
-                                }
-                        )
+                        @Override
+                        public ExpressionNumberKind expressionNumberKind() {
+                            return kind;
+                        }
+                    }
+                )
         );
     }
 }

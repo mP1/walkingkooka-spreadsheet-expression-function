@@ -38,36 +38,36 @@ final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionF
 
     static SpreadsheetExpressionFunctionNumberIf averageIf() {
         return new SpreadsheetExpressionFunctionNumberIf(
-                "averageIf",
-                SpreadsheetExpressionFunctions.average()
+            "averageIf",
+            SpreadsheetExpressionFunctions.average()
         );
     }
 
     static SpreadsheetExpressionFunctionNumberIf countIf() {
         return new SpreadsheetExpressionFunctionNumberIf(
-                "countIf",
-                SpreadsheetExpressionFunctions.count()
+            "countIf",
+            SpreadsheetExpressionFunctions.count()
         );
     }
 
     static SpreadsheetExpressionFunctionNumberIf maxIf() {
         return new SpreadsheetExpressionFunctionNumberIf(
-                "maxIf",
-                SpreadsheetExpressionFunctions.max()
+            "maxIf",
+            SpreadsheetExpressionFunctions.max()
         );
     }
 
     static SpreadsheetExpressionFunctionNumberIf minIf() {
         return new SpreadsheetExpressionFunctionNumberIf(
-                "minIf",
-                SpreadsheetExpressionFunctions.min()
+            "minIf",
+            SpreadsheetExpressionFunctions.min()
         );
     }
 
     static SpreadsheetExpressionFunctionNumberIf sumIf() {
         return new SpreadsheetExpressionFunctionNumberIf(
-                "sumIf",
-                SpreadsheetExpressionFunctions.sum()
+            "sumIf",
+            SpreadsheetExpressionFunctions.sum()
         );
     }
 
@@ -83,31 +83,31 @@ final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionF
         final Object value = ExpressionFunctionParameter.VALUE.getOrFail(parameters, 0);
 
         final Predicate<Object> criteria = SpreadsheetExpressionFunctionNumberIfPredicate.with(
-                CRITERIA.getOrFail(parameters, 1),
-                context
+            CRITERIA.getOrFail(parameters, 1),
+            context
         );
 
         final ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> function = this.function;
 
         return function.apply(
-                context.prepareParameters(
-                        Cast.to(function),
-                        this.filterParameters(
-                                value,
-                                criteria,
-                                context
-                        )
-                ),
-                context
+            context.prepareParameters(
+                Cast.to(function),
+                this.filterParameters(
+                    value,
+                    criteria,
+                    context
+                )
+            ),
+            context
         );
     }
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<Object> CRITERIA = ExpressionFunctionParameterName.with("criteria")
-            .required(Object.class)
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .required(Object.class)
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     /**
      * Filters the parameter values using the filter.
@@ -116,10 +116,10 @@ final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionF
                                           final Predicate<Object> filter,
                                           final SpreadsheetExpressionEvaluationContext context) {
         return this.filterParameters0(
-                value instanceof List ?
-                        Cast.to(value) :
-                        Lists.of(value),
-                filter
+            value instanceof List ?
+                Cast.to(value) :
+                Lists.of(value),
+            filter
         );
     }
 
@@ -129,8 +129,8 @@ final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionF
     private List<Object> filterParameters0(final List<Object> value,
                                            final Predicate<Object> filter) {
         return value.stream()
-                .filter(filter)
-                .collect(Collectors.toList());
+            .filter(filter)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -139,8 +139,8 @@ final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionF
     }
 
     private final List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            VALUE,
-            CRITERIA
+        VALUE,
+        CRITERIA
     );
 
     private final ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> function;

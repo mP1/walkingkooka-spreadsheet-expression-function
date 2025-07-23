@@ -26,7 +26,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import java.util.Locale;
 
 public final class SpreadsheetExpressionFunctionLocaleTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionLocale, Locale>
-        implements ToStringTesting<SpreadsheetExpressionFunctionLocale> {
+    implements ToStringTesting<SpreadsheetExpressionFunctionLocale> {
 
     @Override
     public void testSetParametersSame() {
@@ -43,16 +43,16 @@ public final class SpreadsheetExpressionFunctionLocaleTest extends SpreadsheetEx
         final Locale locale = Locale.forLanguageTag("en-AU");
 
         this.applyAndCheck(
-                Lists.of(locale),
-                locale
+            Lists.of(locale),
+            locale
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                SpreadsheetExpressionFunctionLocale.INSTANCE,
-                "locale"
+            SpreadsheetExpressionFunctionLocale.INSTANCE,
+            "locale"
         );
     }
 

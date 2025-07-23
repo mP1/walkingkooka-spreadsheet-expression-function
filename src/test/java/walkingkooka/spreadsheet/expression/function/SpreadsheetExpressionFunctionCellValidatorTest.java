@@ -44,7 +44,7 @@ public final class SpreadsheetExpressionFunctionCellValidatorTest extends Spread
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final ValidatorSelector value) {
         return cell.setValidator(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -53,8 +53,8 @@ public final class SpreadsheetExpressionFunctionCellValidatorTest extends Spread
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellValidator"
+            this.createBiFunction(),
+            "cellValidator"
         );
     }
 

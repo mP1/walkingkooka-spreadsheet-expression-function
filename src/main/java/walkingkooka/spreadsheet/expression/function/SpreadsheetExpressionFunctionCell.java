@@ -45,7 +45,7 @@ abstract class SpreadsheetExpressionFunctionCell<T> extends SpreadsheetExpressio
         this.checkParameterCount(parameters);
 
         return this.extractCellPropertyOrNull(
-                context.cellOrFail()
+            context.cellOrFail()
         );
     }
 

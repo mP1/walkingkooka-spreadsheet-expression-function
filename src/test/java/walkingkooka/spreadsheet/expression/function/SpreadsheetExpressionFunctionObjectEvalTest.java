@@ -26,19 +26,19 @@ public final class SpreadsheetExpressionFunctionObjectEvalTest extends Spreadshe
     @Test
     public void testApplyEvalExpression() {
         this.applyAndCheck2(
-                Lists.of(
-                        Expression.add(
-                                Expression.value(
-                                        EXPRESSION_NUMBER_KIND.create(11)
-                                ),
-                                Expression.value(
-                                        EXPRESSION_NUMBER_KIND.create(22)
-                                )
-                        )
-                ),
-                EXPRESSION_NUMBER_KIND.create(
-                        11 + 22
+            Lists.of(
+                Expression.add(
+                    Expression.value(
+                        EXPRESSION_NUMBER_KIND.create(11)
+                    ),
+                    Expression.value(
+                        EXPRESSION_NUMBER_KIND.create(22)
+                    )
                 )
+            ),
+            EXPRESSION_NUMBER_KIND.create(
+                11 + 22
+            )
         );
     }
 

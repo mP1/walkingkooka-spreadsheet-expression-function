@@ -51,42 +51,42 @@ final class SpreadsheetExpressionFunctionTextNodeFormatValue extends Spreadsheet
     }
 
     private final static ExpressionFunctionParameter<SpreadsheetFormatterSelector> FORMATTER = ExpressionFunctionParameterName.with("formatter")
-            .required(SpreadsheetFormatterSelector.class)
-            .setKinds(
-                    ExpressionFunctionParameterKind.CONVERT_EVALUATE
-            );
+        .required(SpreadsheetFormatterSelector.class)
+        .setKinds(
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        );
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameterName.with("value")
-            .required(Object.class)
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .required(Object.class)
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            FORMATTER,
-            VALUE
+        FORMATTER,
+        VALUE
     );
 
     @Override
     public TextNode apply(final List<Object> parameters,
                           final SpreadsheetExpressionEvaluationContext context) {
         final SpreadsheetFormatterContext formatterContext = context.spreadsheetFormatterContext(
-                context.cell()
+            context.cell()
         );
 
         final SpreadsheetFormatter formatter = formatterContext.spreadsheetFormatter(
-                FORMATTER.getOrFail(
-                        parameters,
-                        0
-                )
+            FORMATTER.getOrFail(
+                parameters,
+                0
+            )
         );
 
         final Object value = VALUE.getOrFail(
-                parameters,
-                1
+            parameters,
+            1
         );
 
         return formatter.format(
-                Optional.ofNullable(value),
-                formatterContext
+            Optional.ofNullable(value),
+            formatterContext
         ).orElse(null);
     }
 }

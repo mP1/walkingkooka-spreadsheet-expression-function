@@ -74,11 +74,11 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
         } while (false);
 
         return context.expressionNumberKind()
-                .create(type);
+            .create(type);
     }
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE.setKinds(
-            Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+        Sets.of(ExpressionFunctionParameterKind.EVALUATE)
     );
 
     @Override

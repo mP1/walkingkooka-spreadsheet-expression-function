@@ -43,6 +43,6 @@ final class SpreadsheetExpressionFunctionCellDecimalNumberSymbols extends Spread
     @Override
     DecimalNumberSymbols extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.decimalNumberSymbols()
-                .orElse(null);
+            .orElse(null);
     }
 }

@@ -26,16 +26,16 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataGet, Object>
-        implements SpreadsheetMetadataTesting {
+    implements SpreadsheetMetadataTesting {
 
     @Test
     public void testApplyPropertyPresent() {
         this.applyAndCheck(
-                Lists.of(
-                        SpreadsheetMetadataPropertyName.LOCALE,
-                        "missing!!!"
-                ),
-                METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+            Lists.of(
+                SpreadsheetMetadataPropertyName.LOCALE,
+                "missing!!!"
+            ),
+            METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
         );
     }
 
@@ -44,19 +44,19 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest exten
         final SpreadsheetMetadataPropertyName<?> property = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
 
         this.checkEquals(
-                null,
-                METADATA_EN_AU.get(property)
-                        .orElse(null)
+            null,
+            METADATA_EN_AU.get(property)
+                .orElse(null)
         );
 
         final Object defaultValue = "Missing!!!";
 
         this.applyAndCheck(
-                Lists.of(
-                        SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                        defaultValue
-                ),
+            Lists.of(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
                 defaultValue
+            ),
+            defaultValue
         );
     }
 
@@ -85,8 +85,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest exten
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "spreadsheetMetadataGet"
+            this.createBiFunction(),
+            "spreadsheetMetadataGet"
         );
     }
 

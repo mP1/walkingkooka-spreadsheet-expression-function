@@ -45,30 +45,30 @@ final class SpreadsheetExpressionFunctionStringText extends SpreadsheetExpressio
         this.checkParameterCount(parameters);
 
         final Object value = context.prepareParameter(
-                VALUE,
-                VALUE.getOrFail(parameters, 0)
+            VALUE,
+            VALUE.getOrFail(parameters, 0)
         );
 
         final String pattern = context.prepareParameter(
-                PATTERN,
-                PATTERN.getOrFail(parameters, 1)
+            PATTERN,
+            PATTERN.getOrFail(parameters, 1)
         );
 
         return SpreadsheetConverters.formatPatternToString(pattern)
-                .convertOrFail(
-                        value,
-                        String.class,
-                        context
-                );
+            .convertOrFail(
+                value,
+                String.class,
+                context
+            );
     }
 
     private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameterName.with("value")
-            .required(Object.class)
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .required(Object.class)
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<String> PATTERN = ExpressionFunctionParameterName.with("format-pattern")
-            .required(String.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(String.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
@@ -76,7 +76,7 @@ final class SpreadsheetExpressionFunctionStringText extends SpreadsheetExpressio
     }
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            VALUE,
-            PATTERN
+        VALUE,
+        PATTERN
     );
 }

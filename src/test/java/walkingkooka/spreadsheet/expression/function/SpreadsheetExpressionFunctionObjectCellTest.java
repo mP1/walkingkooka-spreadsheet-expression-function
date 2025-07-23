@@ -44,8 +44,8 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Test
     public void testUnknownTypeFail() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2("???")
+            IllegalArgumentException.class,
+            () -> this.apply2("???")
         );
     }
 
@@ -81,70 +81,70 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
 
     private void notYetImplemented(final Object... parameters) {
         assertThrows(
-                UnsupportedOperationException.class,
-                () -> this.apply2(parameters)
+            UnsupportedOperationException.class,
+            () -> this.apply2(parameters)
         );
     }
 
     @Test
     public void testAddressIncludesCellReferenceParameter() {
         this.cellAndCheck(
-                "address",
-                REFERENCE2,
-                REFERENCE2
+            "address",
+            REFERENCE2,
+            REFERENCE2
         );
     }
 
     @Test
     public void testAddressIncludesCellRangeParameter() {
         this.cellAndCheck(
-                "address",
-                RANGE,
-                SpreadsheetSelection.parseCell("B2")
+            "address",
+            RANGE,
+            SpreadsheetSelection.parseCell("B2")
         );
     }
 
     @Test
     public void testAddressMissingReferenceParameter() {
         this.cellAndCheck(
-                "address",
-                REFERENCE
+            "address",
+            REFERENCE
         );
     }
 
     @Test
     public void testColIncludesCellReferenceParameter() {
         this.cellAndCheck(
-                "col",
-                REFERENCE2,
-                EXPRESSION_NUMBER_KIND.create(
-                        REFERENCE2.column()
-                                .value()
-                )
+            "col",
+            REFERENCE2,
+            EXPRESSION_NUMBER_KIND.create(
+                REFERENCE2.column()
+                    .value()
+            )
         );
     }
 
     @Test
     public void testColIncludesRangeParameter() {
         this.cellAndCheck(
-                "col",
-                RANGE,
-                EXPRESSION_NUMBER_KIND.create(
-                        RANGE.begin()
-                                .column()
-                                .value()
-                )
+            "col",
+            RANGE,
+            EXPRESSION_NUMBER_KIND.create(
+                RANGE.begin()
+                    .column()
+                    .value()
+            )
         );
     }
 
     @Test
     public void testColMissingReferenceParameter() {
         this.cellAndCheck(
-                "col",
-                EXPRESSION_NUMBER_KIND.create(
-                        REFERENCE.column()
-                                .value()
-                )
+            "col",
+            EXPRESSION_NUMBER_KIND.create(
+                REFERENCE.column()
+                    .value()
+            )
         );
     }
 
@@ -153,9 +153,9 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Test
     public void testContentsCellNotFound() {
         this.contentsAndCheck(
-                REFERENCE,
-                null,
-                "0"
+            REFERENCE,
+            null,
+            "0"
         );
     }
 
@@ -164,16 +164,16 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
         final String contents = "Contents 123";
 
         this.contentsAndCheck(
+            REFERENCE,
+            SpreadsheetCell.with(
                 REFERENCE,
-                SpreadsheetCell.with(
-                        REFERENCE,
-                        SpreadsheetFormula.EMPTY.setText("=function()")
-                ).setFormattedValue(
-                        Optional.of(
-                                TextNode.text(contents)
-                        )
-                ),
-                contents
+                SpreadsheetFormula.EMPTY.setText("=function()")
+            ).setFormattedValue(
+                Optional.of(
+                    TextNode.text(contents)
+                )
+            ),
+            contents
         );
     }
 
@@ -181,26 +181,26 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                                   final SpreadsheetCell cell,
                                   final String expected) {
         this.cellAndCheck(
-                "contents",
-                reference,
-                new FakeSpreadsheetExpressionEvaluationContext() {
+            "contents",
+            reference,
+            new FakeSpreadsheetExpressionEvaluationContext() {
 
-                    @Override
-                    public Optional<SpreadsheetCell> cell() {
-                        return createContext().cell();
-                    }
+                @Override
+                public Optional<SpreadsheetCell> cell() {
+                    return createContext().cell();
+                }
 
-                    @Override
-                    public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference c) {
-                        checkEquals(reference, c, "loadCell");
-                        return Optional.ofNullable(cell);
-                    }
+                @Override
+                public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference c) {
+                    checkEquals(reference, c, "loadCell");
+                    return Optional.ofNullable(cell);
+                }
 
-                    public String toString() {
-                        return "loadCell " + reference + " -> " + cell;
-                    }
-                },
-                expected
+                public String toString() {
+                    return "loadCell " + reference + " -> " + cell;
+                }
+            },
+            expected
         );
     }
 
@@ -209,8 +209,8 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Test
     public void testFilename() {
         this.cellAndCheck(
-                "filename",
-                ""
+            "filename",
+            ""
         );
     }
 
@@ -219,90 +219,90 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Test
     public void testPrefixMissingText() {
         this.prefixAndCheck(
-                SpreadsheetCell.with(
-                        REFERENCE,
-                        SpreadsheetFormula.EMPTY
-                ),
-                ""
+            SpreadsheetCell.with(
+                REFERENCE,
+                SpreadsheetFormula.EMPTY
+            ),
+            ""
         );
     }
 
     @Test
     public void testPrefixMissingTextAlign() {
         this.prefixAndCheck(
-                TextStyle.EMPTY,
-                ""
+            TextStyle.EMPTY,
+            ""
         );
     }
 
     @Test
     public void testPrefixTextAlignLeft() {
         this.prefixAndCheck(
-                TextAlign.LEFT,
-                "'"
+            TextAlign.LEFT,
+            "'"
         );
     }
 
     @Test
     public void testPrefixTextAlignRight() {
         this.prefixAndCheck(
-                TextAlign.RIGHT,
-                "\""
+            TextAlign.RIGHT,
+            "\""
         );
     }
 
     @Test
     public void testPrefixTextAlignCenter() {
         this.prefixAndCheck(
-                TextAlign.CENTER,
-                "^"
+            TextAlign.CENTER,
+            "^"
         );
     }
 
     @Test
     public void testPrefixTextAlignJustify() {
         this.prefixAndCheck(
-                TextAlign.JUSTIFY,
-                ""
+            TextAlign.JUSTIFY,
+            ""
         );
     }
 
     private void prefixAndCheck(final TextAlign textAlign,
                                 final String expected) {
         this.prefixAndCheck(
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.TEXT_ALIGN, textAlign
-                ),
-                expected
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.TEXT_ALIGN, textAlign
+            ),
+            expected
         );
     }
 
     private void prefixAndCheck(final TextStyle textStyle,
                                 final String expected) {
         this.cellAndCheck(
-                "prefix",
+            "prefix",
+            REFERENCE,
+            SpreadsheetCell.with(
                 REFERENCE,
-                SpreadsheetCell.with(
-                        REFERENCE,
-                        SpreadsheetFormula.EMPTY.setText("'Hello")
-                ).setStyle(
-                        textStyle
-                ).setFormattedValue(
-                        Optional.of(
-                                TextNode.text("Hello")
-                        )
-                ),
-                expected
+                SpreadsheetFormula.EMPTY.setText("'Hello")
+            ).setStyle(
+                textStyle
+            ).setFormattedValue(
+                Optional.of(
+                    TextNode.text("Hello")
+                )
+            ),
+            expected
         );
     }
 
     private void prefixAndCheck(final SpreadsheetCell cell,
                                 final String expected) {
         this.cellAndCheck(
-                "prefix",
-                cell.reference(),
-                cell,
-                expected
+            "prefix",
+            cell.reference(),
+            cell,
+            expected
         );
     }
 
@@ -311,43 +311,43 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
     @Test
     public void testRowIncludesCellReferenceParameter() {
         this.cellAndCheck(
-                "row",
-                REFERENCE2,
-                EXPRESSION_NUMBER_KIND.create(
-                        REFERENCE2.row()
-                                .value()
-                )
+            "row",
+            REFERENCE2,
+            EXPRESSION_NUMBER_KIND.create(
+                REFERENCE2.row()
+                    .value()
+            )
         );
     }
 
     @Test
     public void testRowIncludesRangeParameter() {
         this.cellAndCheck(
-                "row",
-                RANGE,
-                EXPRESSION_NUMBER_KIND.create(
-                        RANGE.begin()
-                                .row()
-                                .value()
-                )
+            "row",
+            RANGE,
+            EXPRESSION_NUMBER_KIND.create(
+                RANGE.begin()
+                    .row()
+                    .value()
+            )
         );
     }
 
     @Test
     public void testRowMissingReferenceParameter() {
         this.cellAndCheck(
-                "row",
-                EXPRESSION_NUMBER_KIND.create(
-                        REFERENCE.row().value()
-                )
+            "row",
+            EXPRESSION_NUMBER_KIND.create(
+                REFERENCE.row().value()
+            )
         );
     }
 
     private void cellAndCheck(final String typeInfo,
                               final Object expected) {
         this.applyAndCheck2(
-                Lists.of(typeInfo),
-                expected
+            Lists.of(typeInfo),
+            expected
         );
     }
 
@@ -355,10 +355,10 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                               final SpreadsheetSelection selection,
                               final Object expected) {
         this.cellAndCheck(
-                typeInfo,
-                selection,
-                this.createContext(),
-                expected
+            typeInfo,
+            selection,
+            this.createContext(),
+            expected
         );
     }
 
@@ -367,20 +367,20 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                               final SpreadsheetCell cell,
                               final Object expected) {
         this.cellAndCheck(
-                typeInfo,
-                selection,
-                new FakeSpreadsheetExpressionEvaluationContext() {
-                    @Override
-                    public Optional<SpreadsheetCell> cell() {
-                        return Optional.of(cell);
-                    }
+            typeInfo,
+            selection,
+            new FakeSpreadsheetExpressionEvaluationContext() {
+                @Override
+                public Optional<SpreadsheetCell> cell() {
+                    return Optional.of(cell);
+                }
 
-                    @Override
-                    public String toString() {
-                        return "cell: " + this.cell();
-                    }
-                },
-                expected
+                @Override
+                public String toString() {
+                    return "cell: " + this.cell();
+                }
+            },
+            expected
         );
     }
 
@@ -389,9 +389,9 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                               final SpreadsheetExpressionEvaluationContext context,
                               final Object expected) {
         this.applyAndCheck(
-                Lists.of(typeInfo, selection),
-                context,
-                expected
+            Lists.of(typeInfo, selection),
+            context,
+            expected
         );
     }
 

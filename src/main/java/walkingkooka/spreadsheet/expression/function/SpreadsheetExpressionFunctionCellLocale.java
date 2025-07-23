@@ -45,6 +45,6 @@ final class SpreadsheetExpressionFunctionCellLocale extends SpreadsheetExpressio
     @Override
     Locale extractCellPropertyOrNull(final SpreadsheetCell cell) {
         return cell.locale()
-                .orElse(null);
+            .orElse(null);
     }
 }

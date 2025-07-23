@@ -48,26 +48,26 @@ public final class SpreadsheetExpressionFunctionObjectErrorTypeTest extends Spre
     public void testError() {
         for (final SpreadsheetErrorKind kind : SpreadsheetErrorKind.values()) {
             this.errorTypeAndCheck(
-                    kind.setMessage("Error!"),
-                    this.createContext().expressionNumberKind().create(kind.value())
+                kind.setMessage("Error!"),
+                this.createContext().expressionNumberKind().create(kind.value())
             );
         }
     }
 
     private void errorTypeAndCheck(final Object value) {
         this.errorTypeAndCheck(
-                value,
-                SpreadsheetExpressionFunctionObjectErrorType.na(value)
+            value,
+            SpreadsheetExpressionFunctionObjectErrorType.na(value)
         );
     }
 
     private void errorTypeAndCheck(final Object value,
                                    final Object expected) {
         this.applyAndCheck2(
-                Lists.of(
-                        value
-                ),
-                expected
+            Lists.of(
+                value
+            ),
+            expected
         );
     }
 

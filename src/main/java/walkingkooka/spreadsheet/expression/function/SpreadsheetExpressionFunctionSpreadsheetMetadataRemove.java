@@ -49,7 +49,7 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemove extends Sprea
     }
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            PROPERTY_NAME
+        PROPERTY_NAME
     );
 
     @Override
@@ -64,16 +64,16 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemove extends Sprea
         Objects.requireNonNull(context, "context");
 
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
-                parameters,
-                0
+            parameters,
+            0
         );
 
         final SpreadsheetMetadata metadata = context.spreadsheetMetadata();
         final Object removedValue = metadata.get(propertyName)
-                .orElse(null);
+            .orElse(null);
 
         context.setSpreadsheetMetadata(
-                metadata.remove(propertyName)
+            metadata.remove(propertyName)
         );
 
         return removedValue;

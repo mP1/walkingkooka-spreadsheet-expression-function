@@ -32,7 +32,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class SpreadsheetExpressionFunctionLambdaTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionLambda, ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>>
-        implements ToStringTesting<SpreadsheetExpressionFunctionLambda> {
+    implements ToStringTesting<SpreadsheetExpressionFunctionLambda> {
 
     @Override
     public void testSetParametersSame() {
@@ -47,51 +47,51 @@ public final class SpreadsheetExpressionFunctionLambdaTest extends SpreadsheetEx
     @Test
     public void testZeroParametersMissingExpressionFails() {
         final IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> SpreadsheetExpressionFunctionLambda.INSTANCE.parameters(0)
+            IllegalArgumentException.class,
+            () -> SpreadsheetExpressionFunctionLambda.INSTANCE.parameters(0)
         );
         this.checkEquals(
-                "Missing last parameter with expression",
-                thrown.getMessage(),
-                "message"
+            "Missing last parameter with expression",
+            thrown.getMessage(),
+            "message"
         );
     }
 
     @Test
     public void testOneParametersOnlyExpression() {
         this.checkEquals(
-                Lists.of(
-                        ExpressionFunctionParameterName.with("expression")
-                                .required(Expression.class)
-                                .setKinds(ExpressionFunctionParameter.NO_KINDS)
-                ),
-                SpreadsheetExpressionFunctionLambda.INSTANCE.parameters(1)
+            Lists.of(
+                ExpressionFunctionParameterName.with("expression")
+                    .required(Expression.class)
+                    .setKinds(ExpressionFunctionParameter.NO_KINDS)
+            ),
+            SpreadsheetExpressionFunctionLambda.INSTANCE.parameters(1)
         );
     }
 
     @Test
     public void testThreeParameters() {
         this.checkEquals(
-                Lists.of(
-                        ExpressionFunctionParameterName.with("parameter-1")
-                                .required(SpreadsheetLabelName.class)
-                                .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE),
-                        ExpressionFunctionParameterName.with("parameter-2")
-                                .required(SpreadsheetLabelName.class)
-                                .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE),
-                        ExpressionFunctionParameterName.with("expression")
-                                .required(Expression.class)
-                                .setKinds(ExpressionFunctionParameter.NO_KINDS)
-                ),
-                SpreadsheetExpressionFunctionLambda.INSTANCE.parameters(3)
+            Lists.of(
+                ExpressionFunctionParameterName.with("parameter-1")
+                    .required(SpreadsheetLabelName.class)
+                    .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE),
+                ExpressionFunctionParameterName.with("parameter-2")
+                    .required(SpreadsheetLabelName.class)
+                    .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE),
+                ExpressionFunctionParameterName.with("expression")
+                    .required(Expression.class)
+                    .setKinds(ExpressionFunctionParameter.NO_KINDS)
+            ),
+            SpreadsheetExpressionFunctionLambda.INSTANCE.parameters(3)
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                SpreadsheetExpressionFunctionLambda.INSTANCE,
-                "lambda"
+            SpreadsheetExpressionFunctionLambda.INSTANCE,
+            "lambda"
         );
     }
 

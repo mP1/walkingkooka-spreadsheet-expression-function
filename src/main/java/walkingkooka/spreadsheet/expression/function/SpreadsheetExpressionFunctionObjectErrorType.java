@@ -51,7 +51,7 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
         if (value instanceof HasSpreadsheetErrorKind) {
             final HasSpreadsheetErrorKind has = (HasSpreadsheetErrorKind) value;
             result = context.expressionNumberKind()
-                    .create(has.spreadsheetErrorKind().value());
+                .create(has.spreadsheetErrorKind().value());
         } else {
             result = na(value);
         }
@@ -61,12 +61,12 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
 
     // Expecting a HasSpreadsheetErrorKind but could be anything.
     final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameter.VALUE
-            .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     static SpreadsheetError na(final Object value) {
         return SpreadsheetErrorKind.NA.setMessage(
-                "Expected error got: " +
-                        CharSequences.quoteIfChars(value)
+            "Expected error got: " +
+                CharSequences.quoteIfChars(value)
         );
     }
 
@@ -76,6 +76,6 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
     }
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            VALUE
+        VALUE
     );
 }

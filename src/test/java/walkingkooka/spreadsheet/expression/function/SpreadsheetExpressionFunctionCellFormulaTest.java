@@ -49,8 +49,8 @@ public final class SpreadsheetExpressionFunctionCellFormulaTest extends Spreadsh
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellFormula"
+            this.createBiFunction(),
+            "cellFormula"
         );
     }
 

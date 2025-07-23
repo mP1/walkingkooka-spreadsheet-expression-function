@@ -34,11 +34,11 @@ public final class SpreadsheetExpressionFunctionCellStyleTest extends Spreadshee
     @Override
     TextStyle valuePresent() {
         return TextStyle.EMPTY.set(
-                TextStylePropertyName.TEXT_ALIGN,
-                TextAlign.LEFT
+            TextStylePropertyName.TEXT_ALIGN,
+            TextAlign.LEFT
         ).set(
-                TextStylePropertyName.COLOR,
-                Color.parse("#123")
+            TextStylePropertyName.COLOR,
+            Color.parse("#123")
         );
     }
 
@@ -58,8 +58,8 @@ public final class SpreadsheetExpressionFunctionCellStyleTest extends Spreadshee
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellStyle"
+            this.createBiFunction(),
+            "cellStyle"
         );
     }
 

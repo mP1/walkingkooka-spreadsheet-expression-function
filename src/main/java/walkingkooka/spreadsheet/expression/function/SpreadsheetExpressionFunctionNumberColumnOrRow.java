@@ -35,16 +35,16 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
      * A function that returns the column for a given argument or defaults to the enclosing cell.
      */
     final static SpreadsheetExpressionFunctionNumberColumnOrRow COLUMN = new SpreadsheetExpressionFunctionNumberColumnOrRow(
-            "column",
-            SpreadsheetCellReference::column
+        "column",
+        SpreadsheetCellReference::column
     );
 
     /**
      * A function that returns the row for a given argument or defaults to the enclosing cell.
      */
     final static SpreadsheetExpressionFunctionNumberColumnOrRow ROW = new SpreadsheetExpressionFunctionNumberColumnOrRow(
-            "row",
-            SpreadsheetCellReference::row
+        "row",
+        SpreadsheetCellReference::row
     );
 
     private SpreadsheetExpressionFunctionNumberColumnOrRow(final String name,
@@ -66,22 +66,22 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
         }
 
         final SpreadsheetCellReference reference = REFERENCE_OPTIONAL.get(parameters, 0)
-                .orElseGet(
-                        () -> Optional.of(
-                                context.cellOrFail()
-                                        .reference()
-                        )
-                ).get();
+            .orElseGet(
+                () -> Optional.of(
+                    context.cellOrFail()
+                        .reference()
+                )
+            ).get();
 
         return context.expressionNumberKind()
-                .create(
-                        BIAS + this.mapper.apply(reference).value()
-                );
+            .create(
+                BIAS + this.mapper.apply(reference).value()
+            );
     }
 
     private final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference")
-            .optional(SpreadsheetCellReference.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .optional(SpreadsheetCellReference.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     /**
      * Lambda that returns either the column or row for a given {@link SpreadsheetCellReference}.

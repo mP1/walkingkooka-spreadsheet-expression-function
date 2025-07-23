@@ -51,13 +51,13 @@ final class SpreadsheetExpressionFunctionNextEmptyColumn extends SpreadsheetExpr
     }
 
     private final static ExpressionFunctionParameter<SpreadsheetRowReference> ROW = ExpressionFunctionParameterName.with("error")
-            .required(SpreadsheetRowReference.class)
-            .setKinds(
-                    ExpressionFunctionParameterKind.CONVERT_EVALUATE
-            );
+        .required(SpreadsheetRowReference.class)
+        .setKinds(
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            ROW
+        ROW
     );
 
     @Override
@@ -71,6 +71,6 @@ final class SpreadsheetExpressionFunctionNextEmptyColumn extends SpreadsheetExpr
         final SpreadsheetRowReference row = ROW.getOrFail(parameters, 0);
 
         return context.nextEmptyColumn(row)
-                .orElseThrow(() -> SpreadsheetErrorKind.VALUE.setMessage("Row full").exception());
+            .orElseThrow(() -> SpreadsheetErrorKind.VALUE.setMessage("Row full").exception());
     }
 }

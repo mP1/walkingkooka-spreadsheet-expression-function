@@ -38,11 +38,11 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
     static Predicate<Object> with(final Object value,
                                   final SpreadsheetExpressionEvaluationContext context) {
         return context.isText(value) ?
-                analyzeExpression(
-                        context.convertOrFail(value, String.class),
-                        context
-                ) :
-                equalsExpression(value, context);
+            analyzeExpression(
+                context.convertOrFail(value, String.class),
+                context
+            ) :
+            equalsExpression(value, context);
     }
 
     /**
@@ -52,89 +52,89 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
     private static Predicate<Object> analyzeExpression(final String value,
                                                        final SpreadsheetExpressionEvaluationContext context) {
         return value.startsWith("<>") ?
-                notEqualsExpression(
-                        value.substring(2),
-                        context
+            notEqualsExpression(
+                value.substring(2),
+                context
+            ) :
+            value.startsWith("<=") ?
+                lessThanEquals(
+                    value.substring(2),
+                    context
                 ) :
-                value.startsWith("<=") ?
-                        lessThanEquals(
-                                value.substring(2),
-                                context
+                value.startsWith("<") ?
+                    lessThan(
+                        value.substring(1),
+                        context
+                    ) :
+                    value.startsWith(">=") ?
+                        greaterThanEquals(
+                            value.substring(2),
+                            context
                         ) :
-                        value.startsWith("<") ?
-                                lessThan(
-                                        value.substring(1),
-                                        context
+                        value.startsWith(">") ?
+                            greaterThan(
+                                value.substring(1),
+                                context
+                            ) :
+                            value.startsWith("=") ?
+                                equalsExpression(
+                                    value.substring(1),
+                                    context
                                 ) :
-                                value.startsWith(">=") ?
-                                        greaterThanEquals(
-                                                value.substring(2),
-                                                context
-                                        ) :
-                                        value.startsWith(">") ?
-                                                greaterThan(
-                                                        value.substring(1),
-                                                        context
-                                                ) :
-                                                value.startsWith("=") ?
-                                                        equalsExpression(
-                                                                value.substring(1),
-                                                                context
-                                                        ) :
-                                                        equalsString(value, context);
+                                equalsString(value, context);
     }
 
     private static Predicate<Object> notEqualsExpression(final String value,
                                                          final SpreadsheetExpressionEvaluationContext context) {
         return criteriaFilter(
-                value,
-                Expression::notEquals,
-                context
+            value,
+            Expression::notEquals,
+            context
         );
     }
 
     private static Predicate<Object> lessThanEquals(final String value,
                                                     final SpreadsheetExpressionEvaluationContext context) {
         return criteriaFilter(
-                value,
-                Expression::lessThanEquals,
-                context
+            value,
+            Expression::lessThanEquals,
+            context
         );
     }
 
     private static Predicate<Object> lessThan(final String value,
                                               final SpreadsheetExpressionEvaluationContext context) {
         return criteriaFilter(
-                value,
-                Expression::lessThan,
-                context
+            value,
+            Expression::lessThan,
+            context
         );
     }
 
     private static Predicate<Object> greaterThanEquals(final String value,
                                                        final SpreadsheetExpressionEvaluationContext context) {
         return criteriaFilter(
-                value,
-                Expression::greaterThanEquals,
-                context
+            value,
+            Expression::greaterThanEquals,
+            context
         );
     }
 
     private static Predicate<Object> greaterThan(final String value,
                                                  final SpreadsheetExpressionEvaluationContext context) {
         return criteriaFilter(
-                value,
-                Expression::greaterThan,
-                context
+            value,
+            Expression::greaterThan,
+            context
         );
     }
 
     private static Predicate<Object> equalsExpression(final String value,
                                                       final SpreadsheetExpressionEvaluationContext context) {
         return criteriaFilter(
-                value,
-                Expression::equalsExpression,
-                context
+            value,
+            Expression::equalsExpression,
+            context
         );
     }
 
@@ -143,13 +143,13 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
                                                     final SpreadsheetExpressionEvaluationContext context) {
 
         return (v) -> (Boolean) context.evaluateExpression(
-                condition.apply(
-                        Expression.value(v),
-                        context.parseFormula(
-                                        TextCursors.charSequence(value)
-                                ).toExpression(context)
-                                .orElse(null)
-                )
+            condition.apply(
+                Expression.value(v),
+                context.parseFormula(
+                        TextCursors.charSequence(value)
+                    ).toExpression(context)
+                    .orElse(null)
+            )
         );
     }
 
@@ -159,24 +159,24 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
     private static Predicate<Object> equalsString(final String expression,
                                                   final SpreadsheetExpressionEvaluationContext context) {
         return (v) ->
-                CaseSensitivity.SENSITIVE.globPattern(expression)
-                        .test(
-                                context.convertOrFail(
-                                        context.evaluateExpression(
-                                                Expression.value(v)
-                                        ),
-                                        String.class
-                                )
-                        );
+            CaseSensitivity.SENSITIVE.globPattern(expression)
+                .test(
+                    context.convertOrFail(
+                        context.evaluateExpression(
+                            Expression.value(v)
+                        ),
+                        String.class
+                    )
+                );
     }
 
     private static Predicate<Object> equalsExpression(final Object value,
                                                       final SpreadsheetExpressionEvaluationContext context) {
         return (v) -> (Boolean) context.evaluateExpression(
-                Expression.equalsExpression(
-                        Expression.value(v),
-                        Expression.value(value)
-                )
+            Expression.equalsExpression(
+                Expression.value(v),
+                Expression.value(value)
+            )
         );
     }
 }

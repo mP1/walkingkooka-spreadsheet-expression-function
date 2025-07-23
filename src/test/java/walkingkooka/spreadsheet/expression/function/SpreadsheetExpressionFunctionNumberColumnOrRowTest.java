@@ -30,28 +30,28 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     @Test
     public void testTwoParametersFails() {
         assertThrows(
-                IllegalArgumentException.class,
-                () -> this.apply2(
-                        "1a", "2b"
-                )
+            IllegalArgumentException.class,
+            () -> this.apply2(
+                "1a", "2b"
+            )
         );
     }
 
     @Test
     public void testColumnReferenceParameterMissing() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
-                Lists.empty(),
-                KIND.create(1 + REFERENCE.column().value())
+            SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
+            Lists.empty(),
+            KIND.create(1 + REFERENCE.column().value())
         );
     }
 
     @Test
     public void testRowReferenceParameterMissing() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
-                Lists.empty(),
-                KIND.create(1 + REFERENCE.row().value())
+            SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
+            Lists.empty(),
+            KIND.create(1 + REFERENCE.row().value())
         );
     }
 
@@ -60,18 +60,18 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     @Test
     public void testColumnReferenceParameterPresent() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
-                Lists.of(B5),
-                KIND.create(1 + B5.column().value())
+            SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
+            Lists.of(B5),
+            KIND.create(1 + B5.column().value())
         );
     }
 
     @Test
     public void testRowReferenceParameterPresent() {
         this.applyAndCheck2(
-                SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
-                Lists.of(B5),
-                KIND.create(1 + B5.row().value())
+            SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
+            Lists.of(B5),
+            KIND.create(1 + B5.row().value())
         );
     }
 

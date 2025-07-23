@@ -35,11 +35,11 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
     @Override
     TextNode valuePresent() {
         return SpreadsheetText.with("Hello123")
-                .setColor(
-                        Optional.of(
-                                Color.parse("#123456")
-                        )
-                ).toTextNode();
+            .setColor(
+                Optional.of(
+                    Color.parse("#123456")
+                )
+            ).toTextNode();
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final TextNode value) {
         return cell.setFormattedValue(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -60,8 +60,8 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellFormattedValue"
+            this.createBiFunction(),
+            "cellFormattedValue"
         );
     }
 

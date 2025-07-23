@@ -49,11 +49,11 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
         this.checkParameterCount(parameters);
 
         return this.apply0(
-                context.prepareParameters(
-                        Cast.to(this),
-                        parameters
-                ),
-                context
+            context.prepareParameters(
+                Cast.to(this),
+                parameters
+            ),
+            context
         );
     }
 
@@ -61,12 +61,12 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
                           final SpreadsheetExpressionEvaluationContext context) {
         ExpressionNumber value = NUMBER.getOrFail(parameters, 0); // needs to convert...
         final int decimals = (DECIMALS.get(parameters, 1)
-                .orElseGet(
-                        () -> Optional.of(
-                                context.expressionNumberKind().create(2)
-                        )
+            .orElseGet(
+                () -> Optional.of(
+                    context.expressionNumberKind().create(2)
                 )
-                .orElse(null)
+            )
+            .orElse(null)
         ).intValueExact();
 
 
@@ -82,30 +82,30 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
 
             // do some rounding...
             value = context.expressionNumberKind()
-                    .create(
-                            value.bigDecimal()
-                                    .setScale(
-                                            decimals,
-                                            context.mathContext().getRoundingMode()
-                                    ).stripTrailingZeros()
-                    );
+                .create(
+                    value.bigDecimal()
+                        .setScale(
+                            decimals,
+                            context.mathContext().getRoundingMode()
+                        ).stripTrailingZeros()
+                );
         }
 
         return SpreadsheetConverters.formatPatternToString(pattern)
-                .convertOrFail(
-                        value,
-                        String.class,
-                        context
-                );
+            .convertOrFail(
+                value,
+                String.class,
+                context
+            );
     }
 
     private final static ExpressionFunctionParameter<ExpressionNumber> NUMBER = ExpressionFunctionParameterName.NUMBER
-            .required(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .required(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> DECIMALS = ExpressionFunctionParameterName.with("decimals")
-            .optional(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .optional(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
@@ -113,7 +113,7 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
     }
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            NUMBER,
-            DECIMALS
+        NUMBER,
+        DECIMALS
     );
 }

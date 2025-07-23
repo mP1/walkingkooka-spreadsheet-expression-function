@@ -50,36 +50,36 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
     @Test
     public void testCustomDecimalSeparatorCustomGroupingSeparator() {
         this.applyAndCheck(
-                Lists.of(
-                        "1G234D5",
-                        'D',
-                        'G'
-                ),
-                this.createContext(),
-                EXPRESSION_NUMBER_KIND.create(1234.5)
+            Lists.of(
+                "1G234D5",
+                'D',
+                'G'
+            ),
+            this.createContext(),
+            EXPRESSION_NUMBER_KIND.create(1234.5)
         );
     }
 
     @Test
     public void testCustomDecimalSeparator() {
         this.applyAndCheck(
-                Lists.of(
-                        "1,234D5",
-                        'D'
-                ),
-                this.createContext(),
-                EXPRESSION_NUMBER_KIND.create(1234.5)
+            Lists.of(
+                "1,234D5",
+                'D'
+            ),
+            this.createContext(),
+            EXPRESSION_NUMBER_KIND.create(1234.5)
         );
     }
 
     @Test
     public void testOnlyNumber() {
         this.applyAndCheck(
-                Lists.of(
-                        "1,234.5"
-                ),
-                this.createContext(),
-                EXPRESSION_NUMBER_KIND.create(1234.5)
+            Lists.of(
+                "1,234.5"
+            ),
+            this.createContext(),
+            EXPRESSION_NUMBER_KIND.create(1234.5)
         );
     }
 
@@ -98,52 +98,52 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
         final Locale locale = Locale.ENGLISH;
 
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
-                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
-                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-                .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
-                .loadFromLocale(
-                        LocaleContexts.jre(locale)
-                ).set(
-                        SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                        AuditInfo.with(
-                                EmailAddress.parse("creator@example.com"),
-                                LocalDateTime.of(1999, 12, 31, 12, 58, 59),
-                                EmailAddress.parse("modified@example.com"),
-                                LocalDateTime.of(2000, 1, 2, 3, 4, 5)
-                        )
-                ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-                .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
-                .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
-                .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
-                .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("general"))
-                .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
-                .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
-                .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
-                .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
-                .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
+            .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
+            .loadFromLocale(
+                LocaleContexts.jre(locale)
+            ).set(
+                SpreadsheetMetadataPropertyName.AUDIT_INFO,
+                AuditInfo.with(
+                    EmailAddress.parse("creator@example.com"),
+                    LocalDateTime.of(1999, 12, 31, 12, 58, 59),
+                    EmailAddress.parse("modified@example.com"),
+                    LocalDateTime.of(2000, 1, 2, 3, 4, 5)
+                )
+            ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
+            .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+            .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
+            .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
+            .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("general"))
+            .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
+            .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
+            .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
+            .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
+            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-                Optional.empty(),
-                SpreadsheetExpressionReferenceLoaders.fake(),
-                Url.parseAbsolute("https://example.com/server"),
-                metadata,
-                new FakeSpreadsheetStoreRepository() {
+            Optional.empty(),
+            SpreadsheetExpressionReferenceLoaders.fake(),
+            Url.parseAbsolute("https://example.com/server"),
+            metadata,
+            new FakeSpreadsheetStoreRepository() {
 
-                    @Override
-                    public StorageStore storage() {
-                        return storage;
-                    }
+                @Override
+                public StorageStore storage() {
+                    return storage;
+                }
 
-                    private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
-                },
-                SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
-                (Optional<SpreadsheetCell> cell) -> {
-                    throw new UnsupportedOperationException();
-                },
-                FormHandlerContexts.fake(),
-                EXPRESSION_FUNCTION_PROVIDER,
-                LOCALE_CONTEXT,
-                PROVIDER_CONTEXT
+                private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
+            },
+            SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+            (Optional<SpreadsheetCell> cell) -> {
+                throw new UnsupportedOperationException();
+            },
+            FormHandlerContexts.fake(),
+            EXPRESSION_FUNCTION_PROVIDER,
+            LOCALE_CONTEXT,
+            PROVIDER_CONTEXT
         );
     }
 

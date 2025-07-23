@@ -51,17 +51,17 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
 
         if (maybeReference instanceof SpreadsheetCellReference) {
             blank = !context.loadCell((SpreadsheetCellReference) maybeReference)
-                    .isPresent();
+                .isPresent();
         }
 
         return blank;
     }
 
     final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(Object.class)
-            .setKinds(
-                    Sets.of(ExpressionFunctionParameterKind.EVALUATE)
-            );
+        .required(Object.class)
+        .setKinds(
+            Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+        );
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {

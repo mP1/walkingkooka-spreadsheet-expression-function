@@ -28,18 +28,18 @@ public final class SpreadsheetExpressionFunctionNextEmptyRowTest extends Spreads
     @Test
     public void testApply() {
         this.applyAndCheck2(
-                Lists.of(
-                        SpreadsheetSelection.parseColumn("Z")
-                ),
-                SpreadsheetSelection.parseRow("1")
+            Lists.of(
+                SpreadsheetSelection.parseColumn("Z")
+            ),
+            SpreadsheetSelection.parseRow("1")
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "nextEmptyRow"
+            this.createBiFunction(),
+            "nextEmptyRow"
         );
     }
 

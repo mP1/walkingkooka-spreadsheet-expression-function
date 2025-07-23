@@ -44,7 +44,7 @@ public final class SpreadsheetExpressionFunctionCellLocaleTest extends Spreadshe
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final Locale value) {
         return cell.setLocale(
-                Optional.ofNullable(value)
+            Optional.ofNullable(value)
         );
     }
 
@@ -53,8 +53,8 @@ public final class SpreadsheetExpressionFunctionCellLocaleTest extends Spreadshe
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellLocale"
+            this.createBiFunction(),
+            "cellLocale"
         );
     }
 

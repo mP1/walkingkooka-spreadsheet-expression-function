@@ -31,16 +31,16 @@ public final class SpreadsheetExpressionFunctionObjectGetFormatValueTest extends
     @Test
     public void testApply() {
         this.applyAndCheck2(
-                Lists.empty(),
-                VALUE
+            Lists.empty(),
+            VALUE
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "getFormatValue"
+            this.createBiFunction(),
+            "getFormatValue"
         );
     }
 

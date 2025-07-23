@@ -31,8 +31,8 @@ import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends SpreadsheetExpressionFunctionCell<T>, T> extends SpreadsheetExpressionFunctionTestCase<F, T>
-        implements ConverterTesting,
-        SpreadsheetMetadataTesting {
+    implements ConverterTesting,
+    SpreadsheetMetadataTesting {
 
     SpreadsheetExpressionFunctionCellTestCase() {
         super();
@@ -41,7 +41,7 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
     @Test
     public void testApplyWhenPropertyPresent() {
         this.applyAndCheck2(
-                this.valuePresent()
+            this.valuePresent()
         );
     }
 
@@ -50,7 +50,7 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
     @Test
     public void testApplyWhenPropertyAbsent() {
         this.applyAndCheck2(
-                this.valueAbsent()
+            this.valueAbsent()
         );
     }
 
@@ -58,24 +58,24 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
 
     private void applyAndCheck2(final T value) {
         this.applyAndCheck(
-                Lists.empty(),
-                new FakeSpreadsheetExpressionEvaluationContext() {
-                    @Override
-                    public Optional<SpreadsheetCell> cell() {
-                        return Optional.of(
-                                setProperty(
-                                        SpreadsheetSelection.A1.setFormula(SpreadsheetFormula.EMPTY),
-                                        value
-                                )
-                        );
-                    }
+            Lists.empty(),
+            new FakeSpreadsheetExpressionEvaluationContext() {
+                @Override
+                public Optional<SpreadsheetCell> cell() {
+                    return Optional.of(
+                        setProperty(
+                            SpreadsheetSelection.A1.setFormula(SpreadsheetFormula.EMPTY),
+                            value
+                        )
+                    );
+                }
 
-                    @Override
-                    public String toString() {
-                        return "cell: " + this.cell();
-                    }
-                },
-                value
+                @Override
+                public String toString() {
+                    return "cell: " + this.cell();
+                }
+            },
+            value
         );
     }
 

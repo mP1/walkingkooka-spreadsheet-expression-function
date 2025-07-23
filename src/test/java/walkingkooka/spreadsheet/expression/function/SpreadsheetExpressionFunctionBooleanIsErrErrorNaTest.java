@@ -33,64 +33,64 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testIsErrNull() {
         this.isErrAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testIsErrBoolean() {
         this.isErrAndCheck(
-                true,
-                false
+            true,
+            false
         );
     }
 
     @Test
     public void testisErrNumber() {
         this.isErrAndCheck(
-                ExpressionNumberKind.DOUBLE.zero(),
-                false
+            ExpressionNumberKind.DOUBLE.zero(),
+            false
         );
     }
 
     @Test
     public void testIsErrString() {
         this.isErrAndCheck(
-                "",
-                false
+            "",
+            false
         );
     }
 
     @Test
     public void testIsErrLocalDate() {
         this.isErrAndCheck(
-                LocalDate.now(),
-                false
+            LocalDate.now(),
+            false
         );
     }
 
     @Test
     public void testIsErrLocalDateTime() {
         this.isErrAndCheck(
-                LocalDateTime.now(),
-                false
+            LocalDateTime.now(),
+            false
         );
     }
 
     @Test
     public void testIsErrLocalTime() {
         this.isErrAndCheck(
-                LocalTime.now(),
-                false
+            LocalTime.now(),
+            false
         );
     }
 
     @Test
     public void testIsErrNAFale() {
         this.isErrAndCheck(
-                SpreadsheetErrorKind.NA.setMessage("123456"),
-                false
+            SpreadsheetErrorKind.NA.setMessage("123456"),
+            false
         );
     }
 
@@ -101,8 +101,8 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
                 continue;
             }
             this.isErrAndCheck(
-                    kind.setMessage("123456"),
-                    true
+                kind.setMessage("123456"),
+                true
             );
         }
     }
@@ -110,9 +110,9 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     private void isErrAndCheck(final Object value,
                                final boolean expected) {
         this.isAndCheck(
-                SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isErr(),
-                value,
-                expected
+            SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isErr(),
+            value,
+            expected
         );
     }
 
@@ -121,56 +121,56 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testIsErrorNull() {
         this.isErrorAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testIsErrorBoolean() {
         this.isErrorAndCheck(
-                true,
-                false
+            true,
+            false
         );
     }
 
     @Test
     public void testisErrorNumber() {
         this.isErrorAndCheck(
-                ExpressionNumberKind.DOUBLE.zero(),
-                false
+            ExpressionNumberKind.DOUBLE.zero(),
+            false
         );
     }
 
     @Test
     public void testIsErrorString() {
         this.isErrorAndCheck(
-                "",
-                false
+            "",
+            false
         );
     }
 
     @Test
     public void testIsErrorLocalDate() {
         this.isErrorAndCheck(
-                LocalDate.now(),
-                false
+            LocalDate.now(),
+            false
         );
     }
 
     @Test
     public void testIsErrorLocalDateTime() {
         this.isErrorAndCheck(
-                LocalDateTime.now(),
-                false
+            LocalDateTime.now(),
+            false
         );
     }
 
     @Test
     public void testIsErrorLocalTime() {
         this.isErrorAndCheck(
-                LocalTime.now(),
-                false
+            LocalTime.now(),
+            false
         );
     }
 
@@ -178,8 +178,8 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     public void testIsErrorAnySpreadsheetErrorKind() {
         for (final SpreadsheetErrorKind kind : SpreadsheetErrorKind.values()) {
             this.isErrorAndCheck(
-                    kind.setMessage("123456"),
-                    true
+                kind.setMessage("123456"),
+                true
             );
         }
     }
@@ -187,9 +187,9 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     private void isErrorAndCheck(final Object value,
                                  final boolean expected) {
         this.isAndCheck(
-                SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError(),
-                value,
-                expected
+            SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError(),
+            value,
+            expected
         );
     }
 
@@ -198,64 +198,64 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testIsNaNull() {
         this.isNaAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testIsNaBoolean() {
         this.isNaAndCheck(
-                true,
-                false
+            true,
+            false
         );
     }
 
     @Test
     public void testisNaNumber() {
         this.isNaAndCheck(
-                ExpressionNumberKind.DOUBLE.zero(),
-                false
+            ExpressionNumberKind.DOUBLE.zero(),
+            false
         );
     }
 
     @Test
     public void testIsNaString() {
         this.isNaAndCheck(
-                "",
-                false
+            "",
+            false
         );
     }
 
     @Test
     public void testIsNaLocalDate() {
         this.isNaAndCheck(
-                LocalDate.now(),
-                false
+            LocalDate.now(),
+            false
         );
     }
 
     @Test
     public void testIsNaLocalDateTime() {
         this.isNaAndCheck(
-                LocalDateTime.now(),
-                false
+            LocalDateTime.now(),
+            false
         );
     }
 
     @Test
     public void testIsNaLocalTime() {
         this.isNaAndCheck(
-                LocalTime.now(),
-                false
+            LocalTime.now(),
+            false
         );
     }
 
     @Test
     public void testIsNaSpreadsheetErrorKindNa() {
         this.isNaAndCheck(
-                SpreadsheetErrorKind.NA.setMessage("MustReturnTrue"),
-                true
+            SpreadsheetErrorKind.NA.setMessage("MustReturnTrue"),
+            true
         );
     }
 
@@ -266,8 +266,8 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
                 continue;
             }
             this.isNaAndCheck(
-                    kind.setMessage("MustReturnFalse"),
-                    false
+                kind.setMessage("MustReturnFalse"),
+                false
             );
         }
     }
@@ -275,9 +275,9 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     private void isNaAndCheck(final Object value,
                               final boolean expected) {
         this.isAndCheck(
-                SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa(),
-                value,
-                expected
+            SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa(),
+            value,
+            expected
         );
     }
 
@@ -285,12 +285,12 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
                             final Object value,
                             final boolean expected) {
         this.applyAndCheck(
-                function,
-                Lists.of(
-                        value
-                ),
-                this.createContext(),
-                expected
+            function,
+            Lists.of(
+                value
+            ),
+            this.createContext(),
+            expected
         );
     }
 
@@ -299,24 +299,24 @@ public final class SpreadsheetExpressionFunctionBooleanIsErrErrorNaTest extends 
     @Test
     public void testIsErrToString() {
         this.toStringAndCheck(
-                SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isErr(),
-                "isErr"
+            SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isErr(),
+            "isErr"
         );
     }
 
     @Test
     public void testIsErrorToString() {
         this.toStringAndCheck(
-                SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError(),
-                "isError"
+            SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isError(),
+            "isError"
         );
     }
 
     @Test
     public void testIsNaToString() {
         this.toStringAndCheck(
-                SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa(),
-                "isNa"
+            SpreadsheetExpressionFunctionBooleanIsErrErrorNa.isNa(),
+            "isNa"
         );
     }
 

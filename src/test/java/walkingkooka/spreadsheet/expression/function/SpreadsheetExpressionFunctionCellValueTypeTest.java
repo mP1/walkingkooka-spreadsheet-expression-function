@@ -44,12 +44,12 @@ public final class SpreadsheetExpressionFunctionCellValueTypeTest extends Spread
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final Object value) {
         return cell.setFormula(
-                cell.formula()
-                        .setValueType(
-                                Optional.ofNullable(
-                                        (ValidationValueTypeName) value
-                                )
-                        )
+            cell.formula()
+                .setValueType(
+                    Optional.ofNullable(
+                        (ValidationValueTypeName) value
+                    )
+                )
         );
     }
 
@@ -58,8 +58,8 @@ public final class SpreadsheetExpressionFunctionCellValueTypeTest extends Spread
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "cellValueType"
+            this.createBiFunction(),
+            "cellValueType"
         );
     }
 

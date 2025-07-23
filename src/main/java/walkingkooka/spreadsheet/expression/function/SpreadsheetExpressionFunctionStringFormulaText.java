@@ -42,9 +42,9 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
 
         final SpreadsheetCellReference cell = REFERENCE.getOrFail(parameters, 0);
         return context.loadCell(cell)
-                .orElseThrow(() -> new IllegalArgumentException("Formula missing from " + cell))
-                .formula()
-                .text();
+            .orElseThrow(() -> new IllegalArgumentException("Formula missing from " + cell))
+            .formula()
+            .text();
     }
 
     @Override
@@ -53,6 +53,6 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
     }
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            REFERENCE
+        REFERENCE
     );
 }

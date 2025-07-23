@@ -73,18 +73,18 @@ import java.util.Set;
  * that uses the provided decimal separator and group separator.
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
-        DateTimeContextDelegator,
-        EnvironmentContextDelegator,
-        JsonNodeMarshallUnmarshallContextDelegator,
-        LocaleContextDelegator {
+    DateTimeContextDelegator,
+    EnvironmentContextDelegator,
+    JsonNodeMarshallUnmarshallContextDelegator,
+    LocaleContextDelegator {
 
     static SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext with(final char decimalSeparator,
                                                                                                final char groupSeparator,
                                                                                                final SpreadsheetExpressionEvaluationContext context) {
         return new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
-                decimalSeparator,
-                groupSeparator,
-                context
+            decimalSeparator,
+            groupSeparator,
+            context
         );
     }
 
@@ -106,8 +106,8 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public SpreadsheetExpressionEvaluationContext setCell(final Optional<SpreadsheetCell> cell) {
         return SpreadsheetExpressionEvaluationContexts.cell(
-                cell,
-                this
+            cell,
+            this
         );
     }
 
@@ -163,12 +163,12 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         final SpreadsheetExpressionEvaluationContext after = before.setPreProcessor(processor);
 
         return before.equals(after) ?
-                this :
-                new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
-                        this.decimalSeparator,
-                        this.groupSeparator,
-                        after
-                );
+            this :
+            new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
+                this.decimalSeparator,
+                this.groupSeparator,
+                after
+            );
     }
 
     @Override
@@ -211,8 +211,8 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     public Object evaluateFunction(final ExpressionFunction<?, ? extends ExpressionEvaluationContext> function,
                                    final List<Object> parameters) {
         return this.context.evaluateFunction(
-                function,
-                parameters
+            function,
+            parameters
         );
     }
 
@@ -230,22 +230,22 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     public boolean canConvert(final Object value,
                               final Class<?> type) {
         return this.converter()
-                .canConvert(
-                        value,
-                        type,
-                        this
-                );
+            .canConvert(
+                value,
+                type,
+                this
+            );
     }
 
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type) {
         return this.converter()
-                .convert(
-                        value,
-                        type,
-                        this
-                );
+            .convert(
+                value,
+                type,
+                this
+            );
     }
 
     @Override

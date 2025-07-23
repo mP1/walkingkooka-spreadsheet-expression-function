@@ -27,7 +27,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataRemove, Object>
-        implements SpreadsheetMetadataTesting {
+    implements SpreadsheetMetadataTesting {
 
     private final static SpreadsheetMetadataPropertyName<Boolean> PROPERTY_NAME = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
 
@@ -38,16 +38,16 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
         this.metadata = METADATA_EN_AU;
 
         this.applyAndCheck(
-                Lists.of(
-                        SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES
-                ),
-                PROPERTY_VALUE
+            Lists.of(
+                SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES
+            ),
+            PROPERTY_VALUE
         );
 
         this.checkEquals(
-                null,
-                this.metadata.getIgnoringDefaults(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
-                        .orElse(null)
+            null,
+            this.metadata.getIgnoringDefaults(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+                .orElse(null)
         );
     }
 
@@ -63,8 +63,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
                 return METADATA_EN_AU.set(
-                        PROPERTY_NAME,
-                        PROPERTY_VALUE
+                    PROPERTY_NAME,
+                    PROPERTY_VALUE
                 );
             }
 
@@ -77,8 +77,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
             public <T> Either<T, String> convert(final Object value,
                                                  final Class<T> target) {
                 return this.successfulConversion(
-                        target.cast(value),
-                        target
+                    target.cast(value),
+                    target
                 );
             }
         };
@@ -96,8 +96,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createBiFunction(),
-                "spreadsheetMetadataRemove"
+            this.createBiFunction(),
+            "spreadsheetMetadataRemove"
         );
     }
 

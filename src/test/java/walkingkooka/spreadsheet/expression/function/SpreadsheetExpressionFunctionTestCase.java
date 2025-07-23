@@ -59,10 +59,10 @@ import java.util.Locale;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
-        implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionEvaluationContext>,
-        ClassTesting2<F>,
-        TypeNameTesting<F>,
-        SpreadsheetMetadataTesting {
+    implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionEvaluationContext>,
+    ClassTesting2<F>,
+    TypeNameTesting<F>,
+    SpreadsheetMetadataTesting {
 
     final static SpreadsheetCellReference REFERENCE = SpreadsheetSelection.parseCell("Z99");
 
@@ -71,21 +71,21 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     final static String LOAD_FORMULA_TEXT = "='loaded formulatext result";
 
     final static SpreadsheetCell LOAD_CELL = SpreadsheetCell.with(
-            LOAD_CELL_REFERENCE,
-            SpreadsheetFormula.EMPTY.setText(LOAD_FORMULA_TEXT)
+        LOAD_CELL_REFERENCE,
+        SpreadsheetFormula.EMPTY.setText(LOAD_FORMULA_TEXT)
     );
 
     final static SpreadsheetCell CELL_EMPTY_FORMULA = SpreadsheetCell.with(
-            SpreadsheetSelection.parseCell("E5"),
-            SpreadsheetFormula.EMPTY.setText("")
+        SpreadsheetSelection.parseCell("E5"),
+        SpreadsheetFormula.EMPTY.setText("")
     );
 
     final static SpreadsheetFormula FORMULA = SpreadsheetFormula.EMPTY
-            .setText("=1+2");
+        .setText("=1+2");
 
     final static SpreadsheetCell CELL = SpreadsheetCell.with(
-            REFERENCE,
-            FORMULA
+        REFERENCE,
+        FORMULA
     );
 
     final static ExpressionNumberKind KIND = SpreadsheetMetadataTesting.EXPRESSION_NUMBER_KIND;
@@ -104,14 +104,14 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     public final void testIsPure() {
         final F function = this.createBiFunction();
         final String name = function.name()
-                .get()
-                .value()
-                .toLowerCase();
+            .get()
+            .value()
+            .toLowerCase();
 
         this.isPureAndCheck(
-                function,
-                ExpressionEvaluationContexts.fake(),
-                !(name.equals("cell") || name.equals("offset"))
+            function,
+            ExpressionEvaluationContexts.fake(),
+            !(name.equals("cell") || name.equals("offset"))
         );
     }
 
@@ -119,72 +119,72 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         final Locale locale = Locale.ENGLISH;
 
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
-                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
-                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-                .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
-                .loadFromLocale(
-                        LocaleContexts.jre(locale)
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
+            .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
+            .loadFromLocale(
+                LocaleContexts.jre(locale)
+            )
+            .set(
+                SpreadsheetMetadataPropertyName.AUDIT_INFO,
+                AuditInfo.with(
+                    EmailAddress.parse("creator@example.com"),
+                    LocalDateTime.of(1999, 12, 31, 12, 58, 59),
+                    EmailAddress.parse("modified@example.com"),
+                    LocalDateTime.of(2000, 1, 2, 3, 4, 5)
                 )
-                .set(
-                        SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                        AuditInfo.with(
-                                EmailAddress.parse("creator@example.com"),
-                                LocalDateTime.of(1999, 12, 31, 12, 58, 59),
-                                EmailAddress.parse("modified@example.com"),
-                                LocalDateTime.of(2000, 1, 2, 3, 4, 5)
-                        )
-                ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-                .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
-                .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
-                .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, KIND)
-                .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("general"))
-                .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
-                .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
-                .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
-                .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
-                .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
+            ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
+            .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+            .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
+            .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, KIND)
+            .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("general"))
+            .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
+            .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
+            .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
+            .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
+            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-                Optional.of(CELL),
-                new FakeSpreadsheetExpressionReferenceLoader() {
-                    @Override
-                    public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell,
-                                                              final SpreadsheetExpressionEvaluationContext context) {
-                        if (LOAD_CELL_REFERENCE.equals(cell)) {
-                            return Optional.of(LOAD_CELL);
-                        }
-                        if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
-                            return Optional.of(CELL_EMPTY_FORMULA);
-                        }
-                        return Optional.empty();
+            Optional.of(CELL),
+            new FakeSpreadsheetExpressionReferenceLoader() {
+                @Override
+                public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell,
+                                                          final SpreadsheetExpressionEvaluationContext context) {
+                    if (LOAD_CELL_REFERENCE.equals(cell)) {
+                        return Optional.of(LOAD_CELL);
                     }
-                },
-                SERVER_URL,
-                metadata,
-                new FakeSpreadsheetStoreRepository() {
-
-                    @Override
-                    public SpreadsheetCellStore cells() {
-                        return this.cells;
+                    if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
+                        return Optional.of(CELL_EMPTY_FORMULA);
                     }
+                    return Optional.empty();
+                }
+            },
+            SERVER_URL,
+            metadata,
+            new FakeSpreadsheetStoreRepository() {
 
-                    private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
+                @Override
+                public SpreadsheetCellStore cells() {
+                    return this.cells;
+                }
 
-                    @Override
-                    public StorageStore storage() {
-                        return storage;
-                    }
+                private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
 
-                    private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
-                },
-                SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
-                (Optional<SpreadsheetCell> cell) -> {
-                    throw new UnsupportedOperationException();
-                },
-                FormHandlerContexts.fake(),
-                EXPRESSION_FUNCTION_PROVIDER,
-                LOCALE_CONTEXT,
-                PROVIDER_CONTEXT
+                @Override
+                public StorageStore storage() {
+                    return storage;
+                }
+
+                private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
+            },
+            SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+            (Optional<SpreadsheetCell> cell) -> {
+                throw new UnsupportedOperationException();
+            },
+            FormHandlerContexts.fake(),
+            EXPRESSION_FUNCTION_PROVIDER,
+            LOCALE_CONTEXT,
+            PROVIDER_CONTEXT
         );
     }
 

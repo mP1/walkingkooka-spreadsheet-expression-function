@@ -52,14 +52,14 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataGet extends Spreadsh
     }
 
     private final static ExpressionFunctionParameter<Object> DEFAULT_VALUE = ExpressionFunctionParameterName.with("defaultValue")
-            .required(Object.class)
-            .setKinds(
-                    Sets.of(ExpressionFunctionParameterKind.EVALUATE)
-            );
+        .required(Object.class)
+        .setKinds(
+            Sets.of(ExpressionFunctionParameterKind.EVALUATE)
+        );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            PROPERTY_NAME,
-            DEFAULT_VALUE
+        PROPERTY_NAME,
+        DEFAULT_VALUE
     );
 
     @Override
@@ -74,15 +74,15 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataGet extends Spreadsh
         Objects.requireNonNull(context, "context");
 
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
-                parameters,
-                0
+            parameters,
+            0
         );
         final Object defaultValue = DEFAULT_VALUE.getOrFail(
-                parameters,
-                1
+            parameters,
+            1
         );
         return context.spreadsheetMetadata()
-                .get(propertyName)
-                .orElse(Cast.to(defaultValue));
+            .get(propertyName)
+            .orElse(Cast.to(defaultValue));
     }
 }
