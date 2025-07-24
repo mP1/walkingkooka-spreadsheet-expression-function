@@ -32,6 +32,7 @@ import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.plugin.ProviderContext;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -3169,21 +3170,23 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 repo,
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                 LOCALE_CONTEXT,
-                SpreadsheetProviders.basic(
-                        SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                                metadata,
-                                SPREADSHEET_FORMATTER_PROVIDER,
-                                SPREADSHEET_PARSER_PROVIDER
-                        ),
-                        EXPRESSION_FUNCTION_PROVIDER,
-                        SPREADSHEET_COMPARATOR_PROVIDER,
-                        SPREADSHEET_EXPORTER_PROVIDER,
+            SpreadsheetProviders.basic(
+                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                    (ProviderContext p) -> metadata.generalConverter(
                         SPREADSHEET_FORMATTER_PROVIDER,
-                        FORM_HANDLER_PROVIDER,
-                        SPREADSHEET_IMPORTER_PROVIDER,
                         SPREADSHEET_PARSER_PROVIDER,
-                        VALIDATOR_PROVIDER
+                        p
+                    )
                 ),
+                EXPRESSION_FUNCTION_PROVIDER,
+                SPREADSHEET_COMPARATOR_PROVIDER,
+                SPREADSHEET_EXPORTER_PROVIDER,
+                SPREADSHEET_FORMATTER_PROVIDER,
+                FORM_HANDLER_PROVIDER,
+                SPREADSHEET_IMPORTER_PROVIDER,
+                SPREADSHEET_PARSER_PROVIDER,
+                VALIDATOR_PROVIDER
+            ),
                 PROVIDER_CONTEXT
         );
 
@@ -3772,27 +3775,29 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
-                SERVER_URL,
-                metadata,
-                repo,
-                SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-                LOCALE_CONTEXT,
-                SpreadsheetProviders.basic(
-                        SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                                metadata,
-                                SPREADSHEET_FORMATTER_PROVIDER,
-                                SPREADSHEET_PARSER_PROVIDER
-                        ),
-                        EXPRESSION_FUNCTION_PROVIDER,
-                        SPREADSHEET_COMPARATOR_PROVIDER,
-                        SPREADSHEET_EXPORTER_PROVIDER,
+            SERVER_URL,
+            metadata,
+            repo,
+            SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            LOCALE_CONTEXT,
+            SpreadsheetProviders.basic(
+                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                    (ProviderContext p) -> metadata.generalConverter(
                         SPREADSHEET_FORMATTER_PROVIDER,
-                        FORM_HANDLER_PROVIDER,
-                        SPREADSHEET_IMPORTER_PROVIDER,
                         SPREADSHEET_PARSER_PROVIDER,
-                        VALIDATOR_PROVIDER
+                        p
+                    )
                 ),
-                PROVIDER_CONTEXT
+                EXPRESSION_FUNCTION_PROVIDER,
+                SPREADSHEET_COMPARATOR_PROVIDER,
+                SPREADSHEET_EXPORTER_PROVIDER,
+                SPREADSHEET_FORMATTER_PROVIDER,
+                FORM_HANDLER_PROVIDER,
+                SPREADSHEET_IMPORTER_PROVIDER,
+                SPREADSHEET_PARSER_PROVIDER,
+                VALIDATOR_PROVIDER
+            ),
+            PROVIDER_CONTEXT
         );
 
         // save all the preload cells, these will contain references in the test cell.
