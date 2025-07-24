@@ -25,6 +25,7 @@ import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.plugin.ProviderContext;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
@@ -124,9 +125,11 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                 SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                 SPREADSHEET_LABEL_NAME_RESOLVER,
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                    metadata,
-                    SPREADSHEET_FORMATTER_PROVIDER,
-                    SPREADSHEET_PARSER_PROVIDER
+                    (ProviderContext p) -> metadata.generalConverter(
+                        SPREADSHEET_FORMATTER_PROVIDER,
+                        SPREADSHEET_PARSER_PROVIDER,
+                        p
+                    )
                 ),
                 LOCALE_CONTEXT,
                 PROVIDER_CONTEXT
