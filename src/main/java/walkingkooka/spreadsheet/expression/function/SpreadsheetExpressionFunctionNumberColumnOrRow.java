@@ -26,7 +26,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 
 final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetExpressionFunctionNumber {
@@ -67,11 +66,9 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
 
         final SpreadsheetCellReference reference = REFERENCE_OPTIONAL.get(parameters, 0)
             .orElseGet(
-                () -> Optional.of(
-                    context.cellOrFail()
-                        .reference()
-                )
-            ).get();
+                () -> context.cellOrFail()
+                    .reference()
+            );
 
         return context.expressionNumberKind()
             .create(
