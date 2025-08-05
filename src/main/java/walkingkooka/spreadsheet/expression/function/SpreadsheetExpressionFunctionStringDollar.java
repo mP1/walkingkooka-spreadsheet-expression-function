@@ -27,7 +27,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The excel dollar function.
@@ -62,13 +61,10 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
         ExpressionNumber value = NUMBER.getOrFail(parameters, 0); // needs to convert...
         final int decimals = (DECIMALS.get(parameters, 1)
             .orElseGet(
-                () -> Optional.of(
-                    context.expressionNumberKind().create(2)
-                )
+                () -> context.expressionNumberKind()
+                    .create(2)
             )
-            .orElse(null)
         ).intValueExact();
-
 
         final String pattern;
         if (decimals >= 0) {

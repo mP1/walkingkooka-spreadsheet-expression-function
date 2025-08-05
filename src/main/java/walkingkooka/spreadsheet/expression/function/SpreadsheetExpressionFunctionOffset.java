@@ -28,7 +28,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
-import java.util.Optional;
 
 // https://exceljet.net/excel-functions/excel-offset-function
 final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFunction<SpreadsheetExpressionReference> {
@@ -62,24 +61,16 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
                 .intValue();
 
         final int height = HEIGHT.get(parameters, 3)
-                .orElseGet(
-                        () -> Optional.of(
-                                context.expressionNumberKind()
-                                        .one()
-                        )
-                )
-                .orElse(null)
-                .intValue();
+            .orElseGet(
+                () -> context.expressionNumberKind()
+                    .one()
+            ).intValue();
 
         final int width = WIDTH.get(parameters, 4)
-                .orElseGet(
-                        () -> Optional.of(
-                                context.expressionNumberKind()
-                                        .one()
-                        )
-                )
-                .orElse(null)
-                .intValue();
+            .orElseGet(
+                () -> context.expressionNumberKind()
+                    .one()
+            ).intValue();
 
         final SpreadsheetCellReference topLeft = start.add(
                 columns,
