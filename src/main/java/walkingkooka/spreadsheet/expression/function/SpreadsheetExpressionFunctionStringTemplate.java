@@ -31,6 +31,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A function that accepts a single parameter holding the template. Following the template are pairs with the
@@ -56,6 +57,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
             String.class,
             ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
             ExpressionFunctionParameterCardinality.REQUIRED,
+        Optional.empty(), // defaultValue
             ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
@@ -104,6 +106,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
             TemplateValueName.class,
             ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
             ExpressionFunctionParameterCardinality.REQUIRED,
+        Optional.empty(), // defaultValue
             ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
@@ -121,6 +124,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
             Object.class,
             ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
             ExpressionFunctionParameterCardinality.REQUIRED,
+        Optional.empty(), // defaultValue
             ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
