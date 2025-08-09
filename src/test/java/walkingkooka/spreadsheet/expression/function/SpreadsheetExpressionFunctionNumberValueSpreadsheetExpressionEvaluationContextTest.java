@@ -26,6 +26,7 @@ import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
@@ -223,6 +224,14 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
                     Objects.requireNonNull(fields, "fields");
 
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                                                      final T value) {
+                    Objects.requireNonNull(name, "name");
+                    Objects.requireNonNull(value, "value");
                     throw new UnsupportedOperationException();
                 }
 

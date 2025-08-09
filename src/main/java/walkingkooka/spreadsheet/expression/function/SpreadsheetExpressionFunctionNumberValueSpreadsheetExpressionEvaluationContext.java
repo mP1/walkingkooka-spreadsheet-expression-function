@@ -23,6 +23,7 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextDelegator;
+import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -355,6 +356,16 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     private final SpreadsheetExpressionEvaluationContext context;
 
     // EnvironmentContextDelegator......................................................................................
+
+    @Override
+    public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                                          final T value) {
+        this.context.setEnvironmentValue(
+            name,
+            value
+        );
+        return this;
+    }
 
     @Override
     public EnvironmentContext environmentContext() {
