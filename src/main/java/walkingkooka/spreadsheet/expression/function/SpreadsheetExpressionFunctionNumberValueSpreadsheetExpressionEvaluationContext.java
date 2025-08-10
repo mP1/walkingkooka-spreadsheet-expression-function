@@ -368,6 +368,12 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+        this.context.removeEnvironmentValue(name);
+        return this;
+    }
+
+    @Override
     public EnvironmentContext environmentContext() {
         return this.context;
     }

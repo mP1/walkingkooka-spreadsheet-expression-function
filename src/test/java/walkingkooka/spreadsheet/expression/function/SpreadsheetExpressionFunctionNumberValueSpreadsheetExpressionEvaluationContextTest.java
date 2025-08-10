@@ -214,6 +214,12 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
+                public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+                    Objects.requireNonNull(name, "name");
+                    return super.removeEnvironmentValue(name);
+                }
+
+                @Override
                 public Optional<Object> loadFormFieldValue(final SpreadsheetExpressionReference reference) {
                     Objects.requireNonNull(reference, "reference");
 
