@@ -28,6 +28,7 @@ import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
@@ -767,6 +768,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> getStyle() {
         return fixName(
             TreeTextExpressionFunctions.getStyle()
+        );
+    }
+
+    /**
+     * {@see EnvironmentExpressionFunctions#getUser}
+     */
+    public static ExpressionFunction<EmailAddress, SpreadsheetExpressionEvaluationContext> getUser() {
+        return fixName(
+            EnvironmentExpressionFunctions.getUser()
         );
     }
 
