@@ -166,6 +166,7 @@ majority of these functions are formula expression functions.
 - radians
 - rand
 - randBetween
+- readLine
 - replace
 - rept
 - right

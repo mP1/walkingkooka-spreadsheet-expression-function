@@ -1332,6 +1332,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         .setName(functionName("randBetween"));
 
     /**
+     * {@see TerminalExpressionFunctions#readLine}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> readLine() {
+        return fixName(
+            TerminalExpressionFunctions.readLine()
+        );
+    }
+
+    /**
      * {@see StringExpressionFunctions#replace}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> replace() {

@@ -126,7 +126,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
             .value()
             .toLowerCase();
         return name.equals("print") ||
-            name.equals("println");
+            name.equals("println") ||
+            name.equals("readLine");
     }
 
     private static boolean filterValidation(final ExpressionFunctionInfo info) {
@@ -305,6 +306,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.radians(),
                     SpreadsheetExpressionFunctions.rand(),
                     SpreadsheetExpressionFunctions.randBetween(),
+                    SpreadsheetExpressionFunctions.readLine(),
                     SpreadsheetExpressionFunctions.replace(),
                     SpreadsheetExpressionFunctions.rept(),
                     SpreadsheetExpressionFunctions.right(),
