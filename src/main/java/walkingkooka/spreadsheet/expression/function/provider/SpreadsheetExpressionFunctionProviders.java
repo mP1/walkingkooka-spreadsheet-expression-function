@@ -127,7 +127,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
             .toLowerCase();
         return name.equals("print") ||
             name.equals("println") ||
-            name.equals("readLine");
+            name.equals("readLine") ||
+            name.equals("getEnv");
     }
 
     private static boolean filterValidation(final ExpressionFunctionInfo info) {
@@ -236,6 +237,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.formulaText(),
                     SpreadsheetExpressionFunctions.getAlpha(),
                     SpreadsheetExpressionFunctions.getBlue(),
+                    SpreadsheetExpressionFunctions.getEnv(),
                     SpreadsheetExpressionFunctions.getGreen(),
                     SpreadsheetExpressionFunctions.getFormatValue(),
                     SpreadsheetExpressionFunctions.getRed(),
