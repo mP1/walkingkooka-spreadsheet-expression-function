@@ -1351,6 +1351,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#removeEnv}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeEnv() {
+        return fixName(
+            EnvironmentExpressionFunctions.removeEnv()
+        );
+    }
+
+    /**
      * {@see StringExpressionFunctions#replace}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> replace() {

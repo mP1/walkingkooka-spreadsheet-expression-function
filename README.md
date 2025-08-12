@@ -168,6 +168,7 @@ majority of these functions are formula expression functions.
 - rand
 - randBetween
 - readLine
+- removeEnv
 - replace
 - rept
 - right

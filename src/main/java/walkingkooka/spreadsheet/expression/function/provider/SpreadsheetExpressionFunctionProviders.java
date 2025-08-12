@@ -309,6 +309,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.rand(),
                     SpreadsheetExpressionFunctions.randBetween(),
                     SpreadsheetExpressionFunctions.readLine(),
+                    SpreadsheetExpressionFunctions.removeEnv(),
                     SpreadsheetExpressionFunctions.replace(),
                     SpreadsheetExpressionFunctions.rept(),
                     SpreadsheetExpressionFunctions.right(),
