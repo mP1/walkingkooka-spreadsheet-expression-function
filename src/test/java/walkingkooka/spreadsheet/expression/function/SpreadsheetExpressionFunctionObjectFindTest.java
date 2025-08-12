@@ -127,7 +127,8 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
             FormHandlerContexts.fake(),
             ExpressionFunctionProviders.fake(),
             LOCALE_CONTEXT,
-            PROVIDER_CONTEXT
+            PROVIDER_CONTEXT,
+            TERMINAL_CONTEXT
         );
     }
 

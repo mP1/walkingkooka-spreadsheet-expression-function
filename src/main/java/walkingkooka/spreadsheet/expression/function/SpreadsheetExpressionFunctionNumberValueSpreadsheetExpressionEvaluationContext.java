@@ -46,6 +46,8 @@ import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.storage.StorageStore;
+import walkingkooka.terminal.TerminalContext;
+import walkingkooka.terminal.expression.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.tree.expression.Expression;
@@ -77,7 +79,8 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     DateTimeContextDelegator,
     EnvironmentContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
-    LocaleContextDelegator {
+    LocaleContextDelegator,
+    TerminalContextDelegator {
 
     static SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext with(final char decimalSeparator,
                                                                                                final char groupSeparator,
@@ -434,6 +437,13 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Locale locale() {
         return this.context.locale();
+    }
+
+    // TerminalContextDelegator.........................................................................................
+
+    @Override
+    public TerminalContext terminalContext() {
+        return this.context;
     }
 
     // Object...........................................................................................................

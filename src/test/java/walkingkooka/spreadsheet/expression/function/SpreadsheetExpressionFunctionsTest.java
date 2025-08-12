@@ -3187,7 +3187,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
             ),
-                PROVIDER_CONTEXT
+            PROVIDER_CONTEXT,
+            TERMINAL_CONTEXT
         );
 
         final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
@@ -3797,7 +3798,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
             ),
-            PROVIDER_CONTEXT
+            PROVIDER_CONTEXT,
+            TERMINAL_CONTEXT
         );
 
         // save all the preload cells, these will contain references in the test cell.
