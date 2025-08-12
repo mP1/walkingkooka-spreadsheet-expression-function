@@ -1467,6 +1467,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions.setEnv()}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> setEnv() {
+        return fixName(
+            EnvironmentExpressionFunctions.setEnv()
+        );
+    }
+
+    /**
      * {@see ColorExpressionFunctions.setGreen()}
      */
     public static ExpressionFunction<RgbColor, SpreadsheetExpressionEvaluationContext> setGreen() {
