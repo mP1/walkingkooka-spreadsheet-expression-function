@@ -3966,6 +3966,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "info":
                                 case "print":
                                 case "println":
+                                case "readline":
                                     pure = false;
                                     break;
                                 default:
