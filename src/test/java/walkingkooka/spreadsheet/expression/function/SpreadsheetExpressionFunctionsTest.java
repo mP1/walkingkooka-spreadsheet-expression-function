@@ -2351,6 +2351,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluatePrint() {
+        this.evaluateWithCheckPrinted(
+            "=print(\"Hello World\")",
+            "Hello World" // no EOL!!!
+        );
+    }
+
+    @Test
     public void testEvaluatePrintln() {
         this.evaluateWithCheckPrinted(
             "=println(\"Hello World\")",
@@ -3938,6 +3946,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "offset":
                                 case "cell":
                                 case "info":
+                                case "print":
                                 case "println":
                                     pure = false;
                                     break;

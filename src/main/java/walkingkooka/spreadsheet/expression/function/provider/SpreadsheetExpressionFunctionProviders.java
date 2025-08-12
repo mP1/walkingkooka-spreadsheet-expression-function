@@ -125,7 +125,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         final String name = info.name()
             .value()
             .toLowerCase();
-        return name.contains("println");
+        return name.equals("print") ||
+            name.equals("println");
     }
 
     private static boolean filterValidation(final ExpressionFunctionInfo info) {
@@ -296,6 +297,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.offset(),
                     SpreadsheetExpressionFunctions.or(),
                     SpreadsheetExpressionFunctions.pi(),
+                    SpreadsheetExpressionFunctions.print(),
                     SpreadsheetExpressionFunctions.println(),
                     SpreadsheetExpressionFunctions.product(),
                     SpreadsheetExpressionFunctions.proper(),
