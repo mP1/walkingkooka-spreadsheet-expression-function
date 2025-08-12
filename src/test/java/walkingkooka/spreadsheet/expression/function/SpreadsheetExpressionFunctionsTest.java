@@ -102,6 +102,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHelperTesting<SpreadsheetExpressionFunctions>,
@@ -2449,6 +2450,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateReadLine() {
+        this.evaluateAndPrintedCheck(
+            "=println(readLine())",
+            (timeout) -> Optional.of("Hello World"),
+            "Hello World\n"
+        );
+    }
+
+    @Test
     public void testEvaluateReplace() {
         this.evaluateAndValueCheck(
                 "=replace(\"XYZ123\",4,3,\"456\")",
@@ -3595,11 +3605,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final String expected) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            (timeout) -> {
+                throw new UnsupportedOperationException();
+            },
+            expected
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final Function<Long, Optional<String>> lineReader,
+                                                             final String expected) {
         final StringBuilder printed = new StringBuilder();
 
         final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
             this.metadata(),
-            TerminalContexts.printer(
+            TerminalContexts.basic(
+                lineReader,
                 Printers.stringBuilder(
                     printed,
                     LineEnding.NL
