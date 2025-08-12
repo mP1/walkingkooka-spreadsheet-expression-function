@@ -2487,6 +2487,33 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateRemoveEnvAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.fake()
+        );
+
+        final EnvironmentValueName name = EnvironmentValueName.with("Hello");
+        final String value = "Goodbye!";
+
+        environmentContext.setEnvironmentValue(
+            name,
+            value
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(removeEnv(\"Hello\"))",
+            environmentContext,
+            value
+        );
+
+        // value deleted should be missing now
+        this.environmentValueAndCheck(
+            environmentContext,
+            name
+        );
+    }
+
+    @Test
     public void testEvaluateReplace() {
         this.evaluateAndValueCheck(
                 "=replace(\"XYZ123\",4,3,\"456\")",
@@ -4076,6 +4103,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "print":
                                 case "println":
                                 case "readline":
+                                case "removeenv":
                                 case "setenv":
                                     pure = false;
                                     break;
