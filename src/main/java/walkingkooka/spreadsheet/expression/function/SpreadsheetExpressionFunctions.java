@@ -1258,6 +1258,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TerminalExpressionFunctions#print}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> print() {
+        return fixName(
+            TerminalExpressionFunctions.print()
+        );
+    }
+
+    /**
      * {@see TerminalExpressionFunctions#println}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> println() {
