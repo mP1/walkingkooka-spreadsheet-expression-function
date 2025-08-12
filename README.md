@@ -181,6 +181,7 @@ majority of these functions are formula expression functions.
 - second
 - setAlpha
 - setBlue
+- setEnv
 - setGreen
 - setRed
 - setStyle

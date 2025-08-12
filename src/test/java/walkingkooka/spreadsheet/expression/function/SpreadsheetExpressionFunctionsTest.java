@@ -29,6 +29,7 @@ import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContexts;
@@ -113,7 +114,8 @@ import java.util.stream.Collectors;
 
 public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHelperTesting<SpreadsheetExpressionFunctions>,
         SpreadsheetMetadataTesting,
-        TreePrintableTesting {
+    TreePrintableTesting,
+    EnvironmentContextTesting {
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
@@ -2683,6 +2685,33 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetEnvAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.fake()
+        );
+
+        final EnvironmentValueName name = EnvironmentValueName.with("Hello");
+        final String value = "Goodbye!";
+
+        environmentContext.setEnvironmentValue(
+            name,
+            value
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(setEnv(\"Hello\", \"Replacement2\"))",
+            environmentContext,
+            value
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            "Replacement2"
+        );
+    }
+
+    @Test
     public void testEvaluateSetGreen() {
         this.evaluateAndValueCheck(
                 "=setGreen(\"#112233\", \"255\")",
@@ -4047,6 +4076,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "print":
                                 case "println":
                                 case "readline":
+                                case "setenv":
                                     pure = false;
                                     break;
                                 default:
