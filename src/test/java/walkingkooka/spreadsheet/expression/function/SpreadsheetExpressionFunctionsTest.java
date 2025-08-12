@@ -58,6 +58,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.provider.SpreadsheetProviders;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.security.store.SpreadsheetGroupStores;
 import walkingkooka.spreadsheet.security.store.SpreadsheetUserStores;
@@ -75,6 +76,7 @@ import walkingkooka.storage.StorageStores;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionFunctionName;
@@ -2352,7 +2354,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluatePrint() {
-        this.evaluateAndCheckPrinted(
+        this.evaluateAndPrintedCheck(
             "=print(\"Hello World\")",
             "Hello World" // no EOL!!!
         );
@@ -2360,7 +2362,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluatePrintln() {
-        this.evaluateAndCheckPrinted(
+        this.evaluateAndPrintedCheck(
             "=println(\"Hello World\")",
             "Hello World\n"
         );
@@ -3591,18 +3593,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // evaluateAndCheckValue............................................................................................
 
-    private SpreadsheetEngineContext evaluateAndCheckPrinted(final String formula,
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final String expected) {
         final StringBuilder printed = new StringBuilder();
 
-        final SpreadsheetEngineContext context = this.evaluateAndCheck(
-            SpreadsheetSelection.A1.setFormula(
-                SpreadsheetFormula.EMPTY.setText(formula)
-            ),
-            Maps.empty(), // preload nothing
+        final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
             this.metadata(),
-            null, // expectedValue
-            null, // formatted
             TerminalContexts.printer(
                 Printers.stringBuilder(
                     printed,
@@ -3610,14 +3606,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 )
             )
         );
-
-        this.checkEquals(
-            expected + expected + expected,
-            printed.toString(),
-            () -> "function evaluated 3x\n" + formula
+        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.spreadsheetExpressionEvaluationContext(
+            SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
+            SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
+                spreadsheetEngineContext.storeRepository()
+            )
         );
 
-        return context;
+        spreadsheetExpressionEvaluationContext.evaluateExpression(
+            spreadsheetEngineContext.parseFormula(
+                    TextCursors.charSequence(formula),
+                    SpreadsheetExpressionEvaluationContext.NO_CELL
+                ).toExpression(spreadsheetExpressionEvaluationContext)
+                .orElseThrow(() -> new IllegalStateException("Unable to make Expression"))
+        );
+
+        this.checkEquals(
+            expected,
+            printed.toString(),
+            formula
+        );
+
+        return spreadsheetEngineContext;
     }
 
     private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
@@ -3821,49 +3831,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                       final TerminalContext terminalContext) {
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
-        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
-        metadataStore.save(metadata);
-
-        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
-                SpreadsheetCellStores.treeMap(),
-                SpreadsheetCellReferencesStores.treeMap(),
-                SpreadsheetColumnStores.treeMap(),
-                SpreadsheetFormStores.treeMap(),
-                SpreadsheetGroupStores.treeMap(),
-                SpreadsheetLabelStores.treeMap(),
-                SpreadsheetLabelReferencesStores.treeMap(),
-                metadataStore,
-                SpreadsheetCellRangeStores.treeMap(),
-                SpreadsheetCellRangeStores.treeMap(),
-                SpreadsheetRowStores.treeMap(),
-                StorageStores.tree(STORAGE_STORE_CONTEXT),
-                SpreadsheetUserStores.treeMap()
-        );
-
-        final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
-            SERVER_URL,
+        final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
             metadata,
-            repo,
-            SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-            LOCALE_CONTEXT,
-            SpreadsheetProviders.basic(
-                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                    (ProviderContext p) -> metadata.generalConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
-                    )
-                ),
-                EXPRESSION_FUNCTION_PROVIDER,
-                SPREADSHEET_COMPARATOR_PROVIDER,
-                SPREADSHEET_EXPORTER_PROVIDER,
-                SPREADSHEET_FORMATTER_PROVIDER,
-                FORM_HANDLER_PROVIDER,
-                SPREADSHEET_IMPORTER_PROVIDER,
-                SPREADSHEET_PARSER_PROVIDER,
-                VALIDATOR_PROVIDER
-            ),
-            PROVIDER_CONTEXT,
             terminalContext
         );
 
@@ -3912,6 +3881,55 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         }
 
         return context;
+    }
+
+    private SpreadsheetEngineContext spreadsheetEngineContext(final SpreadsheetMetadata spreadsheetMetadata,
+                                                              final TerminalContext terminalContext) {
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
+        metadataStore.save(spreadsheetMetadata);
+
+        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
+            SpreadsheetCellStores.treeMap(),
+            SpreadsheetCellReferencesStores.treeMap(),
+            SpreadsheetColumnStores.treeMap(),
+            SpreadsheetFormStores.treeMap(),
+            SpreadsheetGroupStores.treeMap(),
+            SpreadsheetLabelStores.treeMap(),
+            SpreadsheetLabelReferencesStores.treeMap(),
+            metadataStore,
+            SpreadsheetCellRangeStores.treeMap(),
+            SpreadsheetCellRangeStores.treeMap(),
+            SpreadsheetRowStores.treeMap(),
+            StorageStores.tree(STORAGE_STORE_CONTEXT),
+            SpreadsheetUserStores.treeMap()
+        );
+
+        return SpreadsheetEngineContexts.basic(
+            SERVER_URL,
+            spreadsheetMetadata,
+            repo,
+            SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            LOCALE_CONTEXT,
+            SpreadsheetProviders.basic(
+                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                    (ProviderContext p) -> spreadsheetMetadata.generalConverter(
+                        SPREADSHEET_FORMATTER_PROVIDER,
+                        SPREADSHEET_PARSER_PROVIDER,
+                        p
+                    )
+                ),
+                EXPRESSION_FUNCTION_PROVIDER,
+                SPREADSHEET_COMPARATOR_PROVIDER,
+                SPREADSHEET_EXPORTER_PROVIDER,
+                SPREADSHEET_FORMATTER_PROVIDER,
+                FORM_HANDLER_PROVIDER,
+                SPREADSHEET_IMPORTER_PROVIDER,
+                SPREADSHEET_PARSER_PROVIDER,
+                VALIDATOR_PROVIDER
+            ),
+            PROVIDER_CONTEXT,
+            terminalContext
+        );
     }
 
     // isPure..........................................................................................................
