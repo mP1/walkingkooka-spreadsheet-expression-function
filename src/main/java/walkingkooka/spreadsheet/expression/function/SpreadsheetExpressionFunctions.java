@@ -38,6 +38,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetColumnReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
+import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -1253,6 +1254,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> pi() {
         return fixName(
             NumberExpressionFunctions.pi()
+        );
+    }
+
+    /**
+     * {@see TerminalExpressionFunctions#println}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> println() {
+        return fixName(
+            TerminalExpressionFunctions.println()
         );
     }
 

@@ -158,6 +158,7 @@ majority of these functions are formula expression functions.
 - offset
 - or
 - pi
+- println
 - product
 - proper
 - quotient
