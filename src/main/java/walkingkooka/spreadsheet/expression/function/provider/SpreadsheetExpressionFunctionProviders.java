@@ -40,12 +40,14 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterTerminal)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
     public final static ExpressionFunctionAliasSet FORMATTING = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
         .expressionFunctionInfos()
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterTerminal)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
@@ -55,7 +57,12 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterTerminal)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
+        .aliasSet();
+
+    public final static ExpressionFunctionAliasSet TERMINAL = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
+        .expressionFunctionInfos()
         .aliasSet();
 
     public final static ExpressionFunctionAliasSet VALIDATION = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
@@ -64,6 +71,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
+        .deleteIf(SpreadsheetExpressionFunctionProviders::filterTerminal)
         .aliasSet();
 
     private static boolean filterCell(final ExpressionFunctionInfo info) {
@@ -111,6 +119,13 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
             .value()
             .toLowerCase();
         return name.contains("style");
+    }
+
+    private static boolean filterTerminal(final ExpressionFunctionInfo info) {
+        final String name = info.name()
+            .value()
+            .toLowerCase();
+        return name.contains("println");
     }
 
     private static boolean filterValidation(final ExpressionFunctionInfo info) {
@@ -281,6 +296,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.offset(),
                     SpreadsheetExpressionFunctions.or(),
                     SpreadsheetExpressionFunctions.pi(),
+                    SpreadsheetExpressionFunctions.println(),
                     SpreadsheetExpressionFunctions.product(),
                     SpreadsheetExpressionFunctions.proper(),
                     SpreadsheetExpressionFunctions.quotient(),

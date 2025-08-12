@@ -72,6 +72,10 @@ import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.StorageStores;
+import walkingkooka.terminal.TerminalContext;
+import walkingkooka.terminal.TerminalContexts;
+import walkingkooka.text.LineEnding;
+import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -2347,6 +2351,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluatePrintln() {
+        this.evaluateWithCheckPrinted(
+            "=println(\"Hello World\")",
+            "Hello World\n"
+        );
+    }
+
+    @Test
     public void testEvaluateProductWithNumbers() {
         this.evaluateAndValueCheck(
                 "=product(2, 5)",
@@ -3571,6 +3583,35 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // evaluateAndCheckValue............................................................................................
 
+    private SpreadsheetEngineContext evaluateWithCheckPrinted(final String formula,
+                                                              final String expected) {
+        final StringBuilder printed = new StringBuilder();
+
+        final SpreadsheetEngineContext context = this.evaluateAndCheck(
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formula)
+            ),
+            Maps.empty(), // preload nothing
+            this.metadata(),
+            null, // expectedValue
+            null, // formatted
+            TerminalContexts.printer(
+                Printers.stringBuilder(
+                    printed,
+                    LineEnding.NL
+                )
+            )
+        );
+
+        this.checkEquals(
+            expected + expected + expected,
+            printed.toString(),
+            () -> "function evaluated 3x\n" + formula
+        );
+
+        return context;
+    }
+
     private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
@@ -3754,6 +3795,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                       final SpreadsheetMetadata metadata,
                                                       final Optional<?> expectedValue,
                                                       final Optional<TextNode> formatted) {
+        return this.evaluateAndCheck(
+            save,
+            preload,
+            metadata,
+            expectedValue,
+            formatted,
+            TerminalContexts.fake()
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCell save,
+                                                      final Map<String, String> preload,
+                                                      final SpreadsheetMetadata metadata,
+                                                      final Optional<?> expectedValue,
+                                                      final Optional<TextNode> formatted,
+                                                      final TerminalContext terminalContext) {
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
@@ -3799,7 +3856,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 VALIDATOR_PROVIDER
             ),
             PROVIDER_CONTEXT,
-            TERMINAL_CONTEXT
+            terminalContext
         );
 
         // save all the preload cells, these will contain references in the test cell.
@@ -3881,6 +3938,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "offset":
                                 case "cell":
                                 case "info":
+                                case "println":
                                     pure = false;
                                     break;
                                 default:
