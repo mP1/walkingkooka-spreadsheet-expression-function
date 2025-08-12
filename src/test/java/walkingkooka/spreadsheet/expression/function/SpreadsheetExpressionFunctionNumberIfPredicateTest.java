@@ -325,8 +325,8 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             FormHandlerContexts.fake(),
             EXPRESSION_FUNCTION_PROVIDER,
             LOCALE_CONTEXT,
-            PROVIDER_CONTEXT
-
+            PROVIDER_CONTEXT,
+            TERMINAL_CONTEXT
         );
     }
 }
