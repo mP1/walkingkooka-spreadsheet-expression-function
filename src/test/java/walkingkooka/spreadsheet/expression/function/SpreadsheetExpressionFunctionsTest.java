@@ -23,16 +23,22 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.color.Color;
 import walkingkooka.color.RgbColorComponent;
+import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
+import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentContexts;
+import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.plugin.ProviderContext;
+import walkingkooka.plugin.ProviderContexts;
+import walkingkooka.plugin.store.PluginStores;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -1294,6 +1300,26 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 "=getBlue(color(\"#11223380\"))",
                 Color.parseRgb("#11223380")
                         .blue()
+        );
+    }
+
+    @Test
+    public void testEvaluateGetEnvAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.fake()
+        );
+
+        final String value = "Goodbye!";
+
+        environmentContext.setEnvironmentValue(
+            EnvironmentValueName.with("Hello"),
+            value
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(getEnv(\"Hello\"))",
+            environmentContext,
+            value
         );
     }
 
@@ -3607,9 +3633,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expected) {
         return this.evaluateAndPrintedCheck(
             formula,
-            (timeout) -> {
-                throw new UnsupportedOperationException();
-            },
+            EnvironmentContexts.fake(),
             expected
         );
     }
@@ -3617,10 +3641,40 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final Function<Long, Optional<String>> lineReader,
                                                              final String expected) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            lineReader,
+            EnvironmentContexts.fake(),
+            expected
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final EnvironmentContext environmentContext,
+                                                             final String expected) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            (timeout) -> {
+                throw new UnsupportedOperationException();
+            },
+            environmentContext,
+            expected
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final Function<Long, Optional<String>> lineReader,
+                                                             final EnvironmentContext environmentContext,
+                                                             final String expected) {
         final StringBuilder printed = new StringBuilder();
 
         final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
             this.metadata(),
+            ProviderContexts.basic(
+                ConverterContexts.fake(),
+                environmentContext,
+                PluginStores.fake()
+            ),
             TerminalContexts.basic(
                 lineReader,
                 Printers.stringBuilder(
@@ -3805,7 +3859,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                         // "has-style-to-style" must be before "text-to-text" otherwise value=TextNode & type=HasTextStyle will fail because TextNode also implements HasText
                         // TextStyleNode.text will produce invalid TextStyle text.
-                        ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-locale, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, text-to-color, number-to-color, general)")
+                    ConverterSelector.parse("collection(null-to-number, simple, number-to-number, has-style-to-style, text-to-text, error-to-number, error-throwing, text-to-color, text-to-error, text-to-expression, text-to-locale, text-to-selection, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-template-value-name, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-url, selection-to-selection, selection-to-text, to-styleable, text-to-color, number-to-color, text-to-environment-value-name, general)")
                 ).set(
                         SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                         EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
@@ -3856,6 +3910,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
             metadata,
+            PROVIDER_CONTEXT,
             terminalContext
         );
 
@@ -3907,6 +3962,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     private SpreadsheetEngineContext spreadsheetEngineContext(final SpreadsheetMetadata spreadsheetMetadata,
+                                                              final ProviderContext providerContext,
                                                               final TerminalContext terminalContext) {
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
         metadataStore.save(spreadsheetMetadata);
@@ -3950,7 +4006,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
             ),
-            PROVIDER_CONTEXT,
+            providerContext,
             terminalContext
         );
     }
@@ -3987,6 +4043,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "offset":
                                 case "cell":
                                 case "info":
+                                case "getenv":
                                 case "print":
                                 case "println":
                                 case "readline":

@@ -96,6 +96,7 @@ majority of these functions are formula expression functions.
 - formulatext
 - getAlpha
 - getBlue
+- getEnv
 - getFormatValue
 - getGreen
 - getRed

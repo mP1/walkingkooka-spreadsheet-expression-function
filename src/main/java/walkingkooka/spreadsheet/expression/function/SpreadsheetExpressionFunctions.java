@@ -26,6 +26,7 @@ import walkingkooka.color.RedRgbColorComponent;
 import walkingkooka.color.RgbColor;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -730,6 +731,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<BlueRgbColorComponent, SpreadsheetExpressionEvaluationContext> getBlue() {
         return fixName(
             ColorExpressionFunctions.getBlue()
+        );
+    }
+
+    /**
+     * {@see EnvironmentExpressionFunctions#getEnv}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getEnv() {
+        return fixName(
+            EnvironmentExpressionFunctions.getEnv()
         );
     }
 
