@@ -82,6 +82,7 @@ import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.StorageStores;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.printer.Printers;
@@ -1321,7 +1322,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndPrintedCheck(
             "=print(getEnv(\"Hello\"))",
             environmentContext,
-            value
+            value // printed
         );
     }
 
@@ -1389,6 +1390,23 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         TextStylePropertyName.COLOR,
                         Color.parse("#123456")
                 )
+        );
+    }
+
+    @Test
+    public void testEvaluateGetUser() {
+        final EmailAddress user = EmailAddress.parse("user123@example.com");
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.empty(
+            NOW,
+            Optional.of(user)
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getUser()",
+            environmentContext,
+            user,
+            "" // printed
         );
     }
 
@@ -3686,42 +3704,80 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // evaluateAndCheckValue............................................................................................
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
-                                                             final String expected) {
+                                                             final String expectedPrinted) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            (Object) null, // NO EXPECTED VALUE
+            expectedPrinted
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final Object expectedValue,
+                                                             final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
             EnvironmentContexts.fake(),
-            expected
+            expectedValue,
+            expectedPrinted
         );
     }
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final Function<Long, Optional<String>> lineReader,
-                                                             final String expected) {
+                                                             final String expectedPrinted) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            lineReader,
+            null, // NO EXPECTED VALUE
+            expectedPrinted
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final Function<Long, Optional<String>> lineReader,
+                                                             final Object expectedValue,
+                                                             final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
             lineReader,
             EnvironmentContexts.fake(),
-            expected
+            expectedValue,
+            expectedPrinted
         );
     }
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final EnvironmentContext environmentContext,
-                                                             final String expected) {
+                                                             final String expectedPrinted) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            environmentContext,
+            (Object) null, // no expected value
+            expectedPrinted
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final EnvironmentContext environmentContext,
+                                                             final Object expectedValue,
+                                                             final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
             (timeout) -> {
                 throw new UnsupportedOperationException();
             },
             environmentContext,
-            expected
+            expectedValue,
+            expectedPrinted
         );
     }
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final Function<Long, Optional<String>> lineReader,
                                                              final EnvironmentContext environmentContext,
-                                                             final String expected) {
+                                                             final Object expectedValue,
+                                                             final String expectedPrint) {
         final StringBuilder printed = new StringBuilder();
 
         final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
@@ -3746,7 +3802,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             )
         );
 
-        spreadsheetExpressionEvaluationContext.evaluateExpression(
+        final Object value = spreadsheetExpressionEvaluationContext.evaluateExpression(
             spreadsheetEngineContext.parseFormula(
                     TextCursors.charSequence(formula),
                     SpreadsheetExpressionEvaluationContext.NO_CELL
@@ -3754,11 +3810,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .orElseThrow(() -> new IllegalStateException("Unable to make Expression"))
         );
 
-        this.checkEquals(
-            expected,
-            printed.toString(),
-            formula
-        );
+        if (null != expectedValue) {
+            this.checkEquals(
+                expectedValue,
+                value,
+                () -> "Evaluated " + CharSequences.quoteAndEscape(formula) + " returned value"
+            );
+        }
+
+        if (null != printed) {
+            this.checkEquals(
+                expectedPrint,
+                printed.toString(),
+                () -> "Evaluated " + CharSequences.quoteAndEscape(formula) + " printed output"
+            );
+        }
 
         return spreadsheetEngineContext;
     }
@@ -4100,6 +4166,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "cell":
                                 case "info":
                                 case "getenv":
+                                case "getuser":
                                 case "print":
                                 case "println":
                                 case "readline":
