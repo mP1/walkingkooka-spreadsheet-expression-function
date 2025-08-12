@@ -2352,7 +2352,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluatePrint() {
-        this.evaluateWithCheckPrinted(
+        this.evaluateAndCheckPrinted(
             "=print(\"Hello World\")",
             "Hello World" // no EOL!!!
         );
@@ -2360,7 +2360,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluatePrintln() {
-        this.evaluateWithCheckPrinted(
+        this.evaluateAndCheckPrinted(
             "=println(\"Hello World\")",
             "Hello World\n"
         );
@@ -3591,8 +3591,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // evaluateAndCheckValue............................................................................................
 
-    private SpreadsheetEngineContext evaluateWithCheckPrinted(final String formula,
-                                                              final String expected) {
+    private SpreadsheetEngineContext evaluateAndCheckPrinted(final String formula,
+                                                             final String expected) {
         final StringBuilder printed = new StringBuilder();
 
         final SpreadsheetEngineContext context = this.evaluateAndCheck(
