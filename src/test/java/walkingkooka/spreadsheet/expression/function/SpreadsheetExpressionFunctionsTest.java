@@ -2054,17 +2054,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    // https://github.com/mP1/walkingkooka-spreadsheet/issues/5801
     @Test
-    @Disabled
     public void testEvaluateLocaleWithString() {
-        // formatting fails to convert Locale to String for formatting
         this.evaluateAndValueCheck(
-                "=locale(\"EN-AU\")",
-                SpreadsheetErrorKind.VALUE.setMessage("Cannot convert en_AU to String")
-                        .setValue(
-                                Optional.of(Locale.forLanguageTag("en-AU"))
-                        )
+            "=locale(\"en-AU\")",
+            Locale.forLanguageTag("en-AU")
         );
     }
 
