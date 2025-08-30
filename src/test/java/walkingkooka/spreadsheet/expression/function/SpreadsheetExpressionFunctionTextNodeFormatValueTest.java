@@ -97,7 +97,7 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                 ConverterSelector.parse("simple")
             ).set(
                 SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
-                ConverterSelector.parse("collection (text-to-spreadsheet-formatter-selector, general)")
+                ConverterSelector.parse("collection (text, number, basic, spreadsheet-value, error-throwing)")
             ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, 8)
             .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
