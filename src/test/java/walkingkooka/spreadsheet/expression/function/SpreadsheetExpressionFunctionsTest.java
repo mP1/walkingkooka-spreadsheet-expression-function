@@ -2311,7 +2311,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    @Disabled
+    @Disabled // https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/459
     public void testEvaluateNumberValueWithCustomDecimalSeparatorAndGroupSeparator() {
         this.evaluateAndValueCheck(
                 "=numberValue(\"1G234D5\", \"D\", \"G\")",

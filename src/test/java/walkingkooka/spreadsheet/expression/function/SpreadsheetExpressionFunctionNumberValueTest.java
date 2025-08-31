@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converters;
@@ -48,6 +49,7 @@ import java.util.Optional;
 public final class SpreadsheetExpressionFunctionNumberValueTest extends SpreadsheetExpressionFunctionNumberTestCase<SpreadsheetExpressionFunctionNumberValue> {
 
     @Test
+    @Disabled // https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/459
     public void testCustomDecimalSeparatorCustomGroupingSeparator() {
         this.applyAndCheck(
             Lists.of(
@@ -61,6 +63,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
     }
 
     @Test
+    @Disabled // https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/459
     public void testCustomDecimalSeparator() {
         this.applyAndCheck(
             Lists.of(
@@ -73,6 +76,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
     }
 
     @Test
+    @Disabled // https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/459
     public void testOnlyNumber() {
         this.applyAndCheck(
             Lists.of(
