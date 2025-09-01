@@ -462,10 +462,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return CONCAT;
     }
 
-    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> CONCAT = SpreadsheetExpressionFunctionUnformattedNumber.with(
-        StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>concat()
-            .filterParameterValues(SpreadsheetExpressionFunctions::filterNonNullAndNotMissingCell)
-    );
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> CONCAT = fixName(
+        StringExpressionFunctions.concat()
+    ).filterParameterValues(SpreadsheetExpressionFunctions::filterNonNullAndNotMissingCell);
 
     /**
      * {@see NumberTrigonomteryExpressionFunctions#cos}
@@ -1031,10 +1030,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return LEN;
     }
 
-    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> LEN = unformattedNumber(
-        StringExpressionFunctions.stringLength(),
-        "len"
-    );
+    private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> LEN = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>stringLength()
+        .setName(
+            functionName("len")
+        );
 
     /**
      * {@see SpreadsheetExpressionFunctionObjectLet}
@@ -1077,10 +1076,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return LOWER;
     }
 
-    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> LOWER = unformattedNumber(
-        StringExpressionFunctions.lowerCase(),
-        "lower"
-    );
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> LOWER = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>lowerCase()
+        .setName(
+            functionName("lower")
+        );
 
     /**
      * {@see StatExpressionFunctions#max}
@@ -1823,10 +1822,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return UPPER;
     }
 
-    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> UPPER = unformattedNumber(
-        StringExpressionFunctions.upperCase(),
-        "upper"
-    );
+    private final static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> UPPER = StringExpressionFunctions.<SpreadsheetExpressionEvaluationContext>upperCase()
+        .setName(
+            functionName("upper")
+        );
 
     /**
      * {@see SpreadsheetExpressionFunctionValidationError}
@@ -1878,15 +1877,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> xor() {
         return fixName(
             BooleanExpressionFunctions.xor()
-        );
-    }
-
-    private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> unformattedNumber(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function,
-                                                                                                       final String name) {
-        return SpreadsheetExpressionFunctionUnformattedNumber.with(
-            function.setName(
-                functionName(name)
-            )
         );
     }
 
