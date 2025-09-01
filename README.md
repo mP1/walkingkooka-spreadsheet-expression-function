@@ -101,6 +101,7 @@ majority of these functions are formula expression functions.
 - getGreen
 - getRed
 - getStyle
+- getUser
 - hex2bin
 - hex2dec
 - hex2oct
