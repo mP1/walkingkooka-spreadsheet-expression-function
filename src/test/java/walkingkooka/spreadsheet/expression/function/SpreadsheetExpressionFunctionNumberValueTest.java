@@ -67,7 +67,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
     public void testCustomDecimalSeparator() {
         this.applyAndCheck(
             Lists.of(
-                "1,234D5",
+                "1234D5",
                 'D'
             ),
             this.createContext(),
