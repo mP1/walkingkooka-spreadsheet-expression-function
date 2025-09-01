@@ -94,10 +94,10 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
             .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
             .set(
                 SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                ConverterSelector.parse("simple")
+                ConverterSelector.parse("collection (text, number, basic, spreadsheet-value, error-throwing)")
             ).set(
                 SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
-                ConverterSelector.parse("collection (text, number, basic, spreadsheet-value, error-throwing)")
+                ConverterSelector.parse("basic")
             ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, 8)
             .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
