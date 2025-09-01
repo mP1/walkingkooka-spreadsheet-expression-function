@@ -3316,11 +3316,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         SPREADSHEET_FORMATTER_PROVIDER,
                         SPREADSHEET_PARSER_PROVIDER,
                         p
-                    ),
-                    (ProviderContext p) -> metadata.generalConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
                     )
                 ),
                 EXPRESSION_FUNCTION_PROVIDER,
@@ -4125,11 +4120,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                     (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
-                    ),
-                    (ProviderContext p) -> spreadsheetMetadata.generalConverter(
                         SPREADSHEET_FORMATTER_PROVIDER,
                         SPREADSHEET_PARSER_PROVIDER,
                         p
