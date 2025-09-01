@@ -351,11 +351,6 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                         SPREADSHEET_FORMATTER_PROVIDER,
                         SPREADSHEET_PARSER_PROVIDER,
                         p
-                    ),
-                    (ProviderContext p) -> metadata.generalConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
                     )
                 ),
                 LOCALE_CONTEXT,
