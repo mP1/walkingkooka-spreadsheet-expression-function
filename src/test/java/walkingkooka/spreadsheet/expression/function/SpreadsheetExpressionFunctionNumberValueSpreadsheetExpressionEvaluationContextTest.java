@@ -263,6 +263,12 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     return this.localeContext.decimalNumberSymbolsForLocale(locale);
                 }
 
+                @Override
+                public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
+                    Objects.requireNonNull(locale, "locale");
+                    throw new UnsupportedOperationException();
+                }
+
                 private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
             }
         );
