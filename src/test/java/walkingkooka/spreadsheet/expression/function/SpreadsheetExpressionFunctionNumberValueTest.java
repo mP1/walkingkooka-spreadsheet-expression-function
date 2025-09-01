@@ -146,7 +146,6 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
             },
             FormHandlerContexts.fake(),
             EXPRESSION_FUNCTION_PROVIDER,
-            LOCALE_CONTEXT,
             PROVIDER_CONTEXT,
             TERMINAL_CONTEXT
         );
