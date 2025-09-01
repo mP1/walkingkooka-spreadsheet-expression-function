@@ -183,7 +183,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             },
             FormHandlerContexts.fake(),
             EXPRESSION_FUNCTION_PROVIDER,
-            LOCALE_CONTEXT,
             PROVIDER_CONTEXT,
             TERMINAL_CONTEXT
         );
