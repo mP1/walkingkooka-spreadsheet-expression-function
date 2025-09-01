@@ -162,6 +162,12 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
+        this.context.setLocale(locale);
+        return this;
+    }
+
+    @Override
     public SpreadsheetExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
         final SpreadsheetExpressionEvaluationContext before = this.context;
         final SpreadsheetExpressionEvaluationContext after = before.setPreProcessor(processor);
