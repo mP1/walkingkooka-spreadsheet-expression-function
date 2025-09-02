@@ -1309,9 +1309,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.fake()
-        );
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 
         final String value = "Goodbye!";
 
@@ -1399,6 +1397,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final EmailAddress user = EmailAddress.parse("user123@example.com");
 
         final EnvironmentContext environmentContext = EnvironmentContexts.empty(
+            LOCALE,
             NOW,
             Optional.of(user)
         );
@@ -2514,9 +2513,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateRemoveEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.fake()
-        );
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 
         final EnvironmentValueName name = EnvironmentValueName.with("Hello");
         final String value = "Goodbye!";
@@ -2739,9 +2736,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.fake()
-        );
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 
         final EnvironmentValueName name = EnvironmentValueName.with("Hello");
         final String value = "Goodbye!";
