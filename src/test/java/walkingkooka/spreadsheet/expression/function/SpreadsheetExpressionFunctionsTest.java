@@ -1335,6 +1335,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetLocaleWithString() {
+        this.evaluateAndValueCheck(
+            "=getLocale(\"en-AU\")",
+            Locale.forLanguageTag("en-AU")
+        );
+    }
+
+    @Test
     public void testEvaluateGetFormatValue() {
         this.evaluateAndValueCheck(
                 "=getFormatValue()",
@@ -2050,14 +2058,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
                 "=ln(\"2\")",
                 EXPRESSION_NUMBER_KIND.create(0.6931472)
-        );
-    }
-
-    @Test
-    public void testEvaluateLocaleWithString() {
-        this.evaluateAndValueCheck(
-            "=locale(\"en-AU\")",
-            Locale.forLanguageTag("en-AU")
         );
     }
 
@@ -4167,6 +4167,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "cell":
                                 case "info":
                                 case "getenv":
+                                case "getlocale":
                                 case "getuser":
                                 case "print":
                                 case "println":
