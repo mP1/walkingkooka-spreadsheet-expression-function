@@ -753,6 +753,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#getLocale}
+     */
+    public static ExpressionFunction<Locale, SpreadsheetExpressionEvaluationContext> getLocale() {
+        return fixName(
+            EnvironmentExpressionFunctions.getLocale()
+        );
+    }
+
+    /**
      * {@see ColorExpressionFunctions#getRed}
      */
     public static ExpressionFunction<RedRgbColorComponent, SpreadsheetExpressionEvaluationContext> getRed() {
@@ -1005,13 +1014,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> lambda() {
         return SpreadsheetExpressionFunctionLambda.INSTANCE;
-    }
-
-    /**
-     * {@see SpreadsheetExpressionFunctionLocale}
-     */
-    public static ExpressionFunction<Locale, SpreadsheetExpressionEvaluationContext> locale() {
-        return SpreadsheetExpressionFunctionLocale.INSTANCE;
     }
 
     /**
