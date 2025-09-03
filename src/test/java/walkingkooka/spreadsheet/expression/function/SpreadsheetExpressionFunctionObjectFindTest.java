@@ -121,6 +121,7 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                 private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+            ENVIRONMENT_CONTEXT,
             (Optional<SpreadsheetCell> cell) -> {
                 throw new UnsupportedOperationException();
             },
