@@ -323,9 +323,9 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
                 throw new UnsupportedOperationException();
             },
             FormHandlerContexts.fake(),
+            TERMINAL_CONTEXT,
             EXPRESSION_FUNCTION_PROVIDER,
-            PROVIDER_CONTEXT,
-            TERMINAL_CONTEXT
+            PROVIDER_CONTEXT
         );
     }
 }

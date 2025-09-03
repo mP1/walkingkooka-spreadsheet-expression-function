@@ -360,9 +360,9 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                 throw new UnsupportedOperationException();
             },
             FormHandlerContexts.fake(),
+            TERMINAL_CONTEXT,
             EXPRESSION_FUNCTION_PROVIDER,
-            PROVIDER_CONTEXT,
-            TERMINAL_CONTEXT
+            PROVIDER_CONTEXT
         );
     }
 
