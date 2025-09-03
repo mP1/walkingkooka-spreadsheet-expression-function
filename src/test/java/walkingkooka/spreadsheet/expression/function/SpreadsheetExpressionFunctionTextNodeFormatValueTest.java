@@ -140,9 +140,8 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                     throw new UnsupportedOperationException();
                 },
                 SPREADSHEET_LABEL_NAME_RESOLVER,
-                CONVERTER_PROVIDER,
-                SPREADSHEET_FORMATTER_PROVIDER,
                 LOCALE_CONTEXT,
+                SPREADSHEET_PROVIDER,
                 PROVIDER_CONTEXT
             ),
             FormHandlerContexts.fake(),
