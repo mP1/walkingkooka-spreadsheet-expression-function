@@ -145,9 +145,9 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                 PROVIDER_CONTEXT
             ),
             FormHandlerContexts.fake(),
+            TERMINAL_CONTEXT,
             EXPRESSION_FUNCTION_PROVIDER,
-            PROVIDER_CONTEXT,
-            TERMINAL_CONTEXT
+            PROVIDER_CONTEXT
         );
     }
 

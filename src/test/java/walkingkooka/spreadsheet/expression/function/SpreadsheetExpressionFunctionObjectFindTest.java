@@ -125,9 +125,9 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                 throw new UnsupportedOperationException();
             },
             FormHandlerContexts.fake(),
+            TERMINAL_CONTEXT,
             ExpressionFunctionProviders.fake(),
-            PROVIDER_CONTEXT,
-            TERMINAL_CONTEXT
+            PROVIDER_CONTEXT
         );
     }
 
