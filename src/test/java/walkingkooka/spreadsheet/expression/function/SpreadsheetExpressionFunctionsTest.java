@@ -3300,11 +3300,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
-                SERVER_URL,
-                metadata,
-                repo,
-                SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-                LOCALE_CONTEXT,
+            SERVER_URL,
+            metadata,
+            repo,
+            SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            LOCALE_CONTEXT,
+            TERMINAL_CONTEXT,
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                     (ProviderContext p) -> metadata.dateTimeConverter(
@@ -3322,8 +3323,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
             ),
-            PROVIDER_CONTEXT,
-            TERMINAL_CONTEXT
+            PROVIDER_CONTEXT
         );
 
         final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
@@ -4112,6 +4112,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             LOCALE_CONTEXT,
+            terminalContext,
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                     (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
@@ -4129,8 +4130,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
             ),
-            providerContext,
-            terminalContext
+            providerContext
         );
     }
 
