@@ -2769,6 +2769,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetLocaleAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
+
+        final EnvironmentValueName<Locale> name = EnvironmentValueName.LOCALE;
+
+        environmentContext.setEnvironmentValue(
+            name,
+            Locale.ENGLISH
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(setLocale(\"FR\"))",
+            environmentContext,
+            "null"
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            Locale.forLanguageTag("FR")
+        );
+    }
+
+    @Test
     public void testEvaluateSetRed() {
         this.evaluateAndValueCheck(
                 "=setRed(\"#123\", \"9\")",
@@ -4173,6 +4197,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 case "readline":
                                 case "removeenv":
                                 case "setenv":
+                                case "setlocale":
                                     pure = false;
                                     break;
                                 default:
