@@ -1505,6 +1505,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setLocale}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setLocale() {
+        return fixName(
+            EnvironmentExpressionFunctions.setLocale()
+        );
+    }
+
+    /**
      * {@see ColorExpressionFunctions.setRed()}
      */
     public static ExpressionFunction<RgbColor, SpreadsheetExpressionEvaluationContext> setRed() {
