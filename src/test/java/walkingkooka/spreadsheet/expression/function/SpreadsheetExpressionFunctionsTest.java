@@ -24,7 +24,6 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.color.Color;
 import walkingkooka.color.RgbColorComponent;
-import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -40,7 +39,6 @@ import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
-import walkingkooka.plugin.store.PluginStores;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
@@ -3304,6 +3302,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             metadata,
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            ENVIRONMENT_CONTEXT,
             LOCALE_CONTEXT,
             TERMINAL_CONTEXT,
             SpreadsheetProviders.basic(
@@ -3785,18 +3784,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
             this.metadata(),
-            ProviderContexts.basic(
-                ConverterContexts.fake(),
-                environmentContext,
-                PluginStores.fake()
-            ),
+            environmentContext,
             TerminalContexts.basic(
                 lineReader,
                 Printers.stringBuilder(
                     printed,
                     LineEnding.NL
                 )
-            )
+            ),
+            ProviderContexts.fake()
         );
         final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.spreadsheetExpressionEvaluationContext(
             SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
@@ -4033,8 +4029,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
             metadata,
-            PROVIDER_CONTEXT,
-            terminalContext
+            ENVIRONMENT_CONTEXT,
+            terminalContext,
+            PROVIDER_CONTEXT
         );
 
         // save all the preload cells, these will contain references in the test cell.
@@ -4085,8 +4082,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     private SpreadsheetEngineContext spreadsheetEngineContext(final SpreadsheetMetadata spreadsheetMetadata,
-                                                              final ProviderContext providerContext,
-                                                              final TerminalContext terminalContext) {
+                                                              final EnvironmentContext environmentContext,
+                                                              final TerminalContext terminalContext,
+                                                              final ProviderContext providerContext) {
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
         metadataStore.save(spreadsheetMetadata);
 
@@ -4111,6 +4109,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             spreadsheetMetadata,
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            environmentContext,
             LOCALE_CONTEXT,
             terminalContext,
             SpreadsheetProviders.basic(

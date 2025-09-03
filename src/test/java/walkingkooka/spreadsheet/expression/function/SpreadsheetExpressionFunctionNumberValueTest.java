@@ -141,6 +141,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
                 private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
+            ENVIRONMENT_CONTEXT,
             (Optional<SpreadsheetCell> cell) -> {
                 throw new UnsupportedOperationException();
             },

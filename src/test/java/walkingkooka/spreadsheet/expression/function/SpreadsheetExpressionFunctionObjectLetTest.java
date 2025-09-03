@@ -356,6 +356,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                 LOCALE_CONTEXT,
                 PROVIDER_CONTEXT
             ),
+            ENVIRONMENT_CONTEXT,
             (Optional<SpreadsheetCell> cell) -> {
                 throw new UnsupportedOperationException();
             },

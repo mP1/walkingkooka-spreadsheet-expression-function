@@ -134,6 +134,7 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                 LOCALE_CONTEXT,
                 PROVIDER_CONTEXT
             ),
+            ENVIRONMENT_CONTEXT,
             (Optional<SpreadsheetCell> cell) -> metadata.spreadsheetFormatterContext(
                 cell,
                 (Optional<Object> value) -> {
