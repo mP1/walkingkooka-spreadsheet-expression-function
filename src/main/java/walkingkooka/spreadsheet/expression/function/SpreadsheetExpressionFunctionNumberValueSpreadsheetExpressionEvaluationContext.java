@@ -367,6 +367,20 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     // EnvironmentContextDelegator......................................................................................
 
     @Override
+    public SpreadsheetExpressionEvaluationContext cloneEnvironment() {
+        final SpreadsheetExpressionEvaluationContext context = this.context;
+        final SpreadsheetExpressionEvaluationContext clone = context.cloneEnvironment();
+
+        return context.equals(clone) ?
+            this :
+            new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
+                this.decimalSeparator,
+                this.groupSeparator,
+                clone
+            );
+    }
+
+    @Override
     public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
                                                                           final T value) {
         this.context.setEnvironmentValue(
