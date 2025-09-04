@@ -3806,8 +3806,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expectedPrint) {
         final StringBuilder printed = new StringBuilder();
 
+        final SpreadsheetMetadata metadata = this.metadata();
+
         final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
-            this.metadata(),
+            metadata.set(
+                SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
+                metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER)
+            ).set(
+                SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS,
+                metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS)
+            ),
             environmentContext,
             TerminalContexts.basic(
                 lineReader,
@@ -3818,12 +3826,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ),
             ProviderContexts.fake()
         );
-        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.spreadsheetExpressionEvaluationContext(
-            SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
-            SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
-                spreadsheetEngineContext.storeRepository()
-            )
-        );
+
+        // only SCRIPTING allows updatable EnvironmentContext
+        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.spreadsheetEngineContext(SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS)
+            .spreadsheetExpressionEvaluationContext(
+                SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
+                SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
+                    spreadsheetEngineContext.storeRepository()
+                )
+            );
 
         final Object value = spreadsheetExpressionEvaluationContext.evaluateExpression(
             spreadsheetEngineContext.parseFormula(
