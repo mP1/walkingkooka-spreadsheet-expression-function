@@ -371,7 +371,8 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         final SpreadsheetExpressionEvaluationContext context = this.context;
         final SpreadsheetExpressionEvaluationContext clone = context.cloneEnvironment();
 
-        return context.equals(clone) ?
+        // Recreate only if different cloned EnvironmentContext, cloned environment should be equals
+        return context == clone ?
             this :
             new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
                 this.decimalSeparator,
