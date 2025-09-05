@@ -3317,7 +3317,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetCellRangeStores.treeMap(),
                 SpreadsheetCellRangeStores.treeMap(),
                 SpreadsheetRowStores.treeMap(),
-                StorageStores.tree(STORAGE_STORE_CONTEXT),
+            StorageStores.tree(STORAGE_CONTEXT),
                 SpreadsheetUserStores.treeMap()
         );
 
@@ -4135,7 +4135,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetCellRangeStores.treeMap(),
             SpreadsheetCellRangeStores.treeMap(),
             SpreadsheetRowStores.treeMap(),
-            StorageStores.tree(STORAGE_STORE_CONTEXT),
+            StorageStores.tree(STORAGE_CONTEXT),
             SpreadsheetUserStores.treeMap()
         );
 

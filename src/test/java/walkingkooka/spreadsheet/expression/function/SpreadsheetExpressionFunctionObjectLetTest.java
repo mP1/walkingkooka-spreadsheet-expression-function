@@ -339,7 +339,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                     return storage;
                 }
 
-                private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
+                private final StorageStore storage = StorageStores.tree(STORAGE_CONTEXT);
             },
             metadata.spreadsheetConverterContext(
                 SpreadsheetMetadata.NO_CELL,
