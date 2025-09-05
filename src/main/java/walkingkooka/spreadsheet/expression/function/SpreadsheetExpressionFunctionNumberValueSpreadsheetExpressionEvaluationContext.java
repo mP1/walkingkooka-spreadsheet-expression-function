@@ -45,7 +45,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetLabelName;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
-import walkingkooka.storage.StorageStore;
+import walkingkooka.storage.Storage;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
@@ -348,7 +348,7 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
-    public StorageStore storage() {
+    public Storage storage() {
         return this.context.storage();
     }
 

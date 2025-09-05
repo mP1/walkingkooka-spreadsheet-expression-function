@@ -45,8 +45,9 @@ import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.store.SpreadsheetCellStore;
 import walkingkooka.spreadsheet.store.SpreadsheetCellStores;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
+import walkingkooka.storage.Storage;
+import walkingkooka.storage.Storages;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
@@ -171,11 +172,11 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
 
                 @Override
-                public StorageStore storage() {
+                public Storage<StorageExpressionEvaluationContext> storage() {
                     return storage;
                 }
 
-                private final StorageStore storage = StorageStores.tree(STORAGE_CONTEXT);
+                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,

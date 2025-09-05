@@ -78,7 +78,7 @@ import walkingkooka.spreadsheet.store.SpreadsheetRowStores;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
-import walkingkooka.storage.StorageStores;
+import walkingkooka.storage.Storages;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
 import walkingkooka.text.CharSequences;
@@ -3317,7 +3317,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetCellRangeStores.treeMap(),
                 SpreadsheetCellRangeStores.treeMap(),
                 SpreadsheetRowStores.treeMap(),
-            StorageStores.tree(STORAGE_CONTEXT),
+            Storages.tree(),
                 SpreadsheetUserStores.treeMap()
         );
 
@@ -4135,7 +4135,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetCellRangeStores.treeMap(),
             SpreadsheetCellRangeStores.treeMap(),
             SpreadsheetRowStores.treeMap(),
-            StorageStores.tree(STORAGE_CONTEXT),
+            Storages.tree(),
             SpreadsheetUserStores.treeMap()
         );
 
