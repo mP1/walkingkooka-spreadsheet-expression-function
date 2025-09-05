@@ -118,7 +118,7 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                     return storage;
                 }
 
-                private final StorageStore storage = StorageStores.tree(STORAGE_STORE_CONTEXT);
+                private final StorageStore storage = StorageStores.tree(STORAGE_CONTEXT);
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,
