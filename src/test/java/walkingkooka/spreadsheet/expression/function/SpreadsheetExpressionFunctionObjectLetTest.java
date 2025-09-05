@@ -39,8 +39,9 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
+import walkingkooka.storage.Storage;
+import walkingkooka.storage.Storages;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -335,11 +336,11 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
-                public StorageStore storage() {
+                public Storage<StorageExpressionEvaluationContext> storage() {
                     return storage;
                 }
 
-                private final StorageStore storage = StorageStores.tree(STORAGE_CONTEXT);
+                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
             metadata.spreadsheetConverterContext(
                 SpreadsheetMetadata.NO_CELL,

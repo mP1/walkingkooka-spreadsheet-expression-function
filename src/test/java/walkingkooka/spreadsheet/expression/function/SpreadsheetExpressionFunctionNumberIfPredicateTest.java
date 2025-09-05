@@ -36,8 +36,9 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
+import walkingkooka.storage.Storage;
+import walkingkooka.storage.Storages;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.validation.form.FormHandlerContexts;
 
@@ -312,11 +313,11 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
-                public StorageStore storage() {
+                public Storage<StorageExpressionEvaluationContext> storage() {
                     return storage;
                 }
 
-                private final StorageStore storage = StorageStores.tree(STORAGE_CONTEXT);
+                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,

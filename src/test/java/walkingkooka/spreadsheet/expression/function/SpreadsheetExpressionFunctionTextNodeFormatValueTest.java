@@ -39,8 +39,9 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
+import walkingkooka.storage.Storage;
+import walkingkooka.storage.Storages;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.validation.form.FormHandlerContexts;
 
@@ -113,11 +114,11 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
-                public StorageStore storage() {
+                public Storage<StorageExpressionEvaluationContext> storage() {
                     return storage;
                 }
 
-                private final StorageStore storage = StorageStores.tree(STORAGE_CONTEXT);
+                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
             metadata.spreadsheetConverterContext(
                 SpreadsheetMetadata.NO_CELL,
