@@ -64,7 +64,6 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
     }
 
     @Test
-    @Disabled // https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/459
     public void testCustomDecimalSeparator() {
         this.applyAndCheck(
             Lists.of(
