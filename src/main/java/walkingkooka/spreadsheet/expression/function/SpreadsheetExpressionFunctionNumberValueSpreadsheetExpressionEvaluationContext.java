@@ -269,6 +269,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public char valueSeparator() {
+        return this.context.valueSeparator();
+    }
+
+    @Override
     public String currencySymbol() {
         return this.context.currencySymbol();
     }
