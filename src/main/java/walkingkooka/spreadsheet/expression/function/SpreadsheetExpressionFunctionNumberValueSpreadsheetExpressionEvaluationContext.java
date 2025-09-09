@@ -259,6 +259,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public boolean canNumbersHaveGroupSeparator() {
+        return true;
+    }
+
+    @Override
     public long dateOffset() {
         return this.context.dateOffset();
     }
