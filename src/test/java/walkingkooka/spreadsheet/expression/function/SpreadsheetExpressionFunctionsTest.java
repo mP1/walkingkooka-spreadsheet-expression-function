@@ -113,7 +113,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHelperTesting<SpreadsheetExpressionFunctions>,
-        SpreadsheetMetadataTesting,
+    SpreadsheetMetadataTesting,
     TreePrintableTesting,
     EnvironmentContextTesting {
 
@@ -126,19 +126,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testCellFindWizardHelperFunctionConstants() {
         this.checkEquals(
-                Sets.empty(),
-                Arrays.stream(
-                                SpreadsheetExpressionFunctions.class.getDeclaredFields()
-                        ).filter(m -> m.getType() == ExpressionFunctionName.class)
-                        .filter(m -> {
-                                    try {
-                                        return ExpressionFunctionName.class.cast(m.get(null))
-                                                .caseSensitivity() != walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY;
-                                    } catch (final Exception e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-                        ).collect(Collectors.toSet())
+            Sets.empty(),
+            Arrays.stream(
+                    SpreadsheetExpressionFunctions.class.getDeclaredFields()
+                ).filter(m -> m.getType() == ExpressionFunctionName.class)
+                .filter(m -> {
+                        try {
+                            return ExpressionFunctionName.class.cast(m.get(null))
+                                .caseSensitivity() != walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY;
+                        } catch (final Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                ).collect(Collectors.toSet())
         );
     }
 
@@ -147,24 +147,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testFunctionsHaveCaseInsensitiveNames() {
         this.checkEquals(
-                "",
-                Arrays.stream(
-                                SpreadsheetExpressionFunctions.class.getMethods()
-                        ).filter(m -> m.getReturnType() == ExpressionFunction.class)
-                        .filter(m -> {
-                                    try {
-                                        final ExpressionFunction<ExpressionFunctionName, ?> function = ExpressionFunction.class.cast(m.invoke(null));
-                                        final ExpressionFunctionName name = function.name()
-                                                .orElseThrow(() -> new IllegalStateException("Missing function name " + m.toGenericString()));
+            "",
+            Arrays.stream(
+                    SpreadsheetExpressionFunctions.class.getMethods()
+                ).filter(m -> m.getReturnType() == ExpressionFunction.class)
+                .filter(m -> {
+                        try {
+                            final ExpressionFunction<ExpressionFunctionName, ?> function = ExpressionFunction.class.cast(m.invoke(null));
+                            final ExpressionFunctionName name = function.name()
+                                .orElseThrow(() -> new IllegalStateException("Missing function name " + m.toGenericString()));
 
-                                        return name.caseSensitivity() != walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY;
-                                    } catch (final Exception e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-                        ).map(m -> m.getName())
-                        .sorted()
-                        .collect(Collectors.joining("\n"))
+                            return name.caseSensitivity() != walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY;
+                        } catch (final Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                ).map(m -> m.getName())
+                .sorted()
+                .collect(Collectors.joining("\n"))
         );
     }
 
@@ -173,46 +173,46 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateWithIncompleteExpression() {
         this.evaluateAndValueCheck(
-                "=1+",
-                SpreadsheetErrorKind.ERROR.setMessage(
-                    "End of text, expected LAMBDA_FUNCTION | NAMED_FUNCTION | \"TRUE\" | \"FALSE\" | LABEL | CELL_RANGE | CELL | GROUP | NEGATIVE | \"#.#E+#;#.#%;#.#;#%;#\" | TEXT | \"#NULL!\" | \"#DIV/0!\" | \"#VALUE!\" | \"#REF!\" | \"#NAME?\" | \"#NAME?\" | \"#NUM!\" | \"#N/A\" | \"#ERROR\" | \"#SPILL!\" | \"#CALC!\""
-                )
+            "=1+",
+            SpreadsheetErrorKind.ERROR.setMessage(
+                "End of text, expected LAMBDA_FUNCTION | NAMED_FUNCTION | \"TRUE\" | \"FALSE\" | LABEL | CELL_RANGE | CELL | GROUP | NEGATIVE | \"#.#E+#;#.#%;#.#;#%;#\" | TEXT | \"#NULL!\" | \"#DIV/0!\" | \"#VALUE!\" | \"#REF!\" | \"#NAME?\" | \"#NAME?\" | \"#NUM!\" | \"#N/A\" | \"#ERROR\" | \"#SPILL!\" | \"#CALC!\""
+            )
         );
     }
 
     @Test
     public void testEvaluateWithEqMissingCell() {
         this.evaluateAndValueCheck(
-                "=Z99",
-                null
+            "=Z99",
+            null
         );
     }
 
     @Test
     public void testEvaluateWithEqUnknownLabel() {
         this.evaluateAndValueCheck(
-                "=Label123",
-                SpreadsheetError.selectionNotFound(
-                        SpreadsheetSelection.labelName("Label123")
-                )
+            "=Label123",
+            SpreadsheetError.selectionNotFound(
+                SpreadsheetSelection.labelName("Label123")
+            )
         );
     }
 
     @Test
     public void testEvaluateWithEqUnknownFunction() {
         this.evaluateAndValueCheck(
-                "=UnknownFunction123()",
-                SpreadsheetError.functionNotFound(
-                        walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.name("UnknownFunction123")
-                )
+            "=UnknownFunction123()",
+            SpreadsheetError.functionNotFound(
+                walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.name("UnknownFunction123")
+            )
         );
     }
 
     @Test
     public void testEvaluateWithExpressionIncludesMissingCell() {
         this.evaluateAndValueCheck(
-                "=123+Z99",
-                EXPRESSION_NUMBER_KIND.create(123)
+            "=123+Z99",
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 
@@ -221,49 +221,49 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateWithMathExpression() {
         this.evaluateAndValueCheck(
-                "=1+2+3",
-                EXPRESSION_NUMBER_KIND.create(1 + 2 + 3)
+            "=1+2+3",
+            EXPRESSION_NUMBER_KIND.create(1 + 2 + 3)
         );
     }
 
     @Test
     public void testEvaluateWithExpressionIncludingReferences() {
         this.evaluateAndValueCheck(
-                "=1+A2+A3",
-                Maps.of(
-                        "A2", "=2",
-                        "A3", "=3"
-                ),
-                EXPRESSION_NUMBER_KIND.create(1 + 2 + 3)
+            "=1+A2+A3",
+            Maps.of(
+                "A2", "=2",
+                "A3", "=3"
+            ),
+            EXPRESSION_NUMBER_KIND.create(1 + 2 + 3)
         );
     }
 
     @Test
     public void testEvaluateWithDivideByZero() {
         this.evaluateAndValueCheck(
-                "=1/0",
-                SpreadsheetErrorKind.DIV0.setMessage("Division by zero")
+            "=1/0",
+            SpreadsheetErrorKind.DIV0.setMessage("Division by zero")
         );
     }
 
     @Test
     public void testEvaluateWithMathExpressionEvaluation() {
         this.evaluateAndValueCheck(
-                "=1+A2+A3",
-                Maps.of(
-                        "A2", "=2"
-                ),
-                EXPRESSION_NUMBER_KIND.create(
-                        1 + 2 + 0
-                )
+            "=1+A2+A3",
+            Maps.of(
+                "A2", "=2"
+            ),
+            EXPRESSION_NUMBER_KIND.create(
+                1 + 2 + 0
+            )
         );
     }
 
     @Test
     public void testEvaluateWithFunctionNameCaseInsensitive() {
         this.evaluateAndValueCheck(
-                "=TRUE()",
-                true
+            "=TRUE()",
+            true
         );
     }
 
@@ -272,138 +272,138 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateAbsInvalidParameterTypeFails() {
         this.evaluateAndValueCheck(
-                "=abs(\"Hello\")",
-                SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"Hello\" to ExpressionNumber")
+            "=abs(\"Hello\")",
+            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"Hello\" to ExpressionNumber")
         );
     }
 
     @Test
     public void testEvaluateAbs() {
         this.evaluateAndValueCheck(
-                "=abs(-1.5)+abs(0.5)",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=abs(-1.5)+abs(0.5)",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateAcosWithString() {
         this.evaluateAndValueCheck(
-                "=acos(\"0.5\")",
-                EXPRESSION_NUMBER_KIND.create(1.047198)
+            "=acos(\"0.5\")",
+            EXPRESSION_NUMBER_KIND.create(1.047198)
         );
     }
 
     @Test
     public void testEvaluateAcosWithNumber() {
         this.evaluateAndValueCheck(
-                "=acos(0.5)",
-                EXPRESSION_NUMBER_KIND.create(1.047198)
+            "=acos(0.5)",
+            EXPRESSION_NUMBER_KIND.create(1.047198)
         );
     }
 
     @Test
     public void testEvaluateAddress() {
         this.evaluateAndValueCheck(
-                "=address(1, 2)",
-                SpreadsheetSelection.parseCell("$B$1")
+            "=address(1, 2)",
+            SpreadsheetSelection.parseCell("$B$1")
         );
     }
 
     @Test
     public void testEvaluateAndTrueTrue() {
         this.evaluateAndValueCheck(
-                "=and(true(), true())",
-                Boolean.TRUE
+            "=and(true(), true())",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateAndTrue1() {
         this.evaluateAndValueCheck(
-                "=and(true(), 1)",
-                Boolean.TRUE
+            "=and(true(), 1)",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateAndTrue0() {
         this.evaluateAndValueCheck(
-                "=and(true(), 0)",
-                Boolean.FALSE
+            "=and(true(), 0)",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateAndTrueTrueTrue() {
         this.evaluateAndValueCheck(
-                "=and(true(), true(), true())",
-                Boolean.TRUE
+            "=and(true(), true(), true())",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateAndStringLiteralTrueStringLiteralTrue() {
         this.evaluateAndValueCheck(
-                "=and(\"true\", \"true\")",
-                Boolean.TRUE
+            "=and(\"true\", \"true\")",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateAsinWithNumber() {
         this.evaluateAndValueCheck(
-                "=asin(0.5)",
-                EXPRESSION_NUMBER_KIND.create(0.5235988)
+            "=asin(0.5)",
+            EXPRESSION_NUMBER_KIND.create(0.5235988)
         );
     }
 
     @Test
     public void testEvaluateAsinWithString() {
         this.evaluateAndValueCheck(
-                "=asin(\"0.5\")",
-                EXPRESSION_NUMBER_KIND.create(0.5235988)
+            "=asin(\"0.5\")",
+            EXPRESSION_NUMBER_KIND.create(0.5235988)
         );
     }
 
     @Test
     public void testEvaluateAtanWithNumber() {
         this.evaluateAndValueCheck(
-                "=atan(0.5)",
-                EXPRESSION_NUMBER_KIND.create(0.4636476)
+            "=atan(0.5)",
+            EXPRESSION_NUMBER_KIND.create(0.4636476)
         );
     }
 
     @Test
     public void testEvaluateAtanWithString() {
         this.evaluateAndValueCheck(
-                "=atan(\"0.5\")",
-                EXPRESSION_NUMBER_KIND.create(0.4636476)
+            "=atan(\"0.5\")",
+            EXPRESSION_NUMBER_KIND.create(0.4636476)
         );
     }
 
     @Test
     public void testEvaluateAverage() {
         this.evaluateAndValueCheck(
-                "=average(1,20,300,B1:D1)",
-                Maps.of(
-                        "B1", "1000",
-                        "C1", "2000",
-                        "D1", "3000"
-                ),
-                EXPRESSION_NUMBER_KIND.create(1053.5)
+            "=average(1,20,300,B1:D1)",
+            Maps.of(
+                "B1", "1000",
+                "C1", "2000",
+                "D1", "3000"
+            ),
+            EXPRESSION_NUMBER_KIND.create(1053.5)
         );
     }
 
     @Test
     public void testEvaluateAverageIfSomeValuesFiltered() {
         this.evaluateAndValueCheck(
-                "=averageIf(A2:A4, \">100\")",
-                Maps.of(
-                        "A2", "=1", //
-                        "A3", "=200", //
-                        "A4", "=\"400\"" // string with number converted
-                ),
-                EXPRESSION_NUMBER_KIND.create(600 / 2)
+            "=averageIf(A2:A4, \">100\")",
+            Maps.of(
+                "A2", "=1", //
+                "A3", "=200", //
+                "A4", "=\"400\"" // string with number converted
+            ),
+            EXPRESSION_NUMBER_KIND.create(600 / 2)
         );
     }
 
@@ -421,136 +421,136 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateBase() {
         this.evaluateAndValueCheck(
-                "=base(13, 2)",
-                "1101"
+            "=base(13, 2)",
+            "1101"
         );
     }
 
     @Test
     public void testEvaluateBin2Dec() {
         this.evaluateAndValueCheck(
-                "=bin2dec(\"1101\")",
-                "13"
+            "=bin2dec(\"1101\")",
+            "13"
         );
     }
 
     @Test
     public void testEvaluateBin2Hex() {
         this.evaluateAndValueCheck(
-                "=bin2hex(\"1101\")",
-                "d"
+            "=bin2hex(\"1101\")",
+            "d"
         );
     }
 
     @Test
     public void testEvaluateBin2Oct() {
         this.evaluateAndValueCheck(
-                "=bin2oct(\"1001\")",
-                "11"
+            "=bin2oct(\"1001\")",
+            "11"
         );
     }
 
     @Test
     public void testEvaluateBitAndWithNumbers() {
         this.evaluateAndValueCheck(
-                "=bitand(14, 7)",
-                EXPRESSION_NUMBER_KIND.create(6)
+            "=bitand(14, 7)",
+            EXPRESSION_NUMBER_KIND.create(6)
         );
     }
 
     @Test
     public void testEvaluateBitAndWithString() {
         this.evaluateAndValueCheck(
-                "=bitand(\"14\", \"7\")",
-                EXPRESSION_NUMBER_KIND.create(6)
+            "=bitand(\"14\", \"7\")",
+            EXPRESSION_NUMBER_KIND.create(6)
         );
     }
 
     @Test
     public void testEvaluateBitOrWithNumbers() {
         this.evaluateAndValueCheck(
-                "=bitor(3, 6)",
-                EXPRESSION_NUMBER_KIND.create(7)
+            "=bitor(3, 6)",
+            EXPRESSION_NUMBER_KIND.create(7)
         );
     }
 
     @Test
     public void testEvaluateBitOrWithStrings() {
         this.evaluateAndValueCheck(
-                "=bitor(\"3\", \"6\")",
-                EXPRESSION_NUMBER_KIND.create(7)
+            "=bitor(\"3\", \"6\")",
+            EXPRESSION_NUMBER_KIND.create(7)
         );
     }
 
     @Test
     public void testEvaluateBitXorWithNumbers() {
         this.evaluateAndValueCheck(
-                "=bitxor(7, 3)",
-                EXPRESSION_NUMBER_KIND.create(4)
+            "=bitxor(7, 3)",
+            EXPRESSION_NUMBER_KIND.create(4)
         );
     }
 
     @Test
     public void testEvaluateBitXorWithStrings() {
         this.evaluateAndValueCheck(
-                "=bitxor(\"7\", \"3\")",
-                EXPRESSION_NUMBER_KIND.create(4)
+            "=bitxor(\"7\", \"3\")",
+            EXPRESSION_NUMBER_KIND.create(4)
         );
     }
 
     @Test
     public void testEvaluateCeilWithNumber() {
         this.evaluateAndValueCheck(
-                "=ceil(1.75)",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=ceil(1.75)",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateCeilWithString() {
         this.evaluateAndValueCheck(
-                "=ceil(\"1.75\")",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=ceil(\"1.75\")",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateCell() {
         this.evaluateAndValueCheck(
-                "=cell(\"address\", B2)",
-                Maps.of("b2", "=1*2"),
-                SpreadsheetSelection.parseCell("B2")
+            "=cell(\"address\", B2)",
+            Maps.of("b2", "=1*2"),
+            SpreadsheetSelection.parseCell("B2")
         );
     }
 
     @Test
     public void testEvaluateCellDateTimeSymbols() {
         final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
-                new DateFormatSymbols(Locale.ENGLISH)
+            new DateFormatSymbols(Locale.ENGLISH)
         );
         this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText("=cellDateTimeSymbols()")
-                ).setDateTimeSymbols(
-                        Optional.of(dateTimeSymbols)
-                ),
-                dateTimeSymbols
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=cellDateTimeSymbols()")
+            ).setDateTimeSymbols(
+                Optional.of(dateTimeSymbols)
+            ),
+            dateTimeSymbols
         );
     }
 
     @Test
     public void testEvaluateCellDecimalNumberSymbols() {
         final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
-                '+',
-                new DecimalFormatSymbols(Locale.ENGLISH)
+            '+',
+            new DecimalFormatSymbols(Locale.ENGLISH)
         );
         this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText("=cellDecimalNumberSymbols()")
-                ).setDecimalNumberSymbols(
-                        Optional.of(decimalNumberSymbols)
-                ),
-                decimalNumberSymbols
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=cellDecimalNumberSymbols()")
+            ).setDecimalNumberSymbols(
+                Optional.of(decimalNumberSymbols)
+            ),
+            decimalNumberSymbols
         );
     }
 
@@ -558,12 +558,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateCellFormatter() {
         final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("text-format-pattern @");
         this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText("=cellFormatter()")
-                ).setFormatter(
-                        Optional.of(formatter)
-                ),
-                formatter
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=cellFormatter()")
+            ).setFormatter(
+                Optional.of(formatter)
+            ),
+            formatter
         );
     }
 
@@ -572,747 +572,747 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         // cellValue cannot be used within a regular formula because it tries to get the value from itself.
         // it is intended to be only used within find/highlighting queries.
         this.evaluateAndValueCheck(
-                "=cellValue()",
-                Maps.of("A1", "=1*2*3*4"),
-                null
+            "=cellValue()",
+            Maps.of("A1", "=1*2*3*4"),
+            null
         );
     }
 
     @Test
     public void testEvaluateCellValueType() {
         this.evaluateAndValueCheck(
-                "=cellValueType()",
-                Maps.of("A1", "=1*2*3*4"),
-                null
+            "=cellValueType()",
+            Maps.of("A1", "=1*2*3*4"),
+            null
         );
     }
 
     @Test
     public void testEvaluateCharWithNumber65() {
         this.evaluateAndValueCheck(
-                "=char(65)",
-                'A'
+            "=char(65)",
+            'A'
         );
     }
 
     @Test
     public void testEvaluateCharWithString65() {
         this.evaluateAndValueCheck(
-                "=char(\"65\")",
-                'A'
+            "=char(\"65\")",
+            'A'
         );
     }
 
     @Test
     public void testEvaluateChooseFirst() {
         this.evaluateAndValueCheck(
-                "=choose(1, 111, 222, 333)",
-                EXPRESSION_NUMBER_KIND.create(111)
+            "=choose(1, 111, 222, 333)",
+            EXPRESSION_NUMBER_KIND.create(111)
         );
     }
 
     @Test
     public void testEvaluateChooseSecond() {
         this.evaluateAndValueCheck(
-                "=choose(2, 111, 222, 333)",
-                EXPRESSION_NUMBER_KIND.create(222)
+            "=choose(2, 111, 222, 333)",
+            EXPRESSION_NUMBER_KIND.create(222)
         );
     }
 
     @Test
     public void testEvaluateChooseThird() {
         this.evaluateAndValueCheck(
-                "=choose(3, 111, true(), \"Third\")",
-                "Third"
+            "=choose(3, 111, true(), \"Third\")",
+            "Third"
         );
     }
 
     @Test
     public void testEvaluateClean() {
         this.evaluateAndValueCheck(
-                "=clean(\"\t\nNeeds cleaning \r\")",
-                "Needs cleaning "
+            "=clean(\"\t\nNeeds cleaning \r\")",
+            "Needs cleaning "
         );
     }
 
     @Test
     public void testEvaluateCodeCapitalA() {
         this.evaluateAndValueCheck(
-                "=code(\"A\")",
-                EXPRESSION_NUMBER_KIND.create(65)
+            "=code(\"A\")",
+            EXPRESSION_NUMBER_KIND.create(65)
         );
     }
 
     @Test
     public void testEvaluateColorWithString() {
         this.evaluateAndValueCheck(
-                "=color(\"#123456\")",
-                Color.parse("#123456")
+            "=color(\"#123456\")",
+            Color.parse("#123456")
         );
     }
 
     @Test
     public void testEvaluateColorWithStringStringString() {
         this.evaluateAndValueCheck(
-                "=color(\"1\",\"2\",\"3\")",
-                Color.parse("#010203")
+            "=color(\"1\",\"2\",\"3\")",
+            Color.parse("#010203")
         );
     }
 
     @Test
     public void testEvaluateColorWithNumberNumberNumber() {
         this.evaluateAndValueCheck(
-                "=color(1,2,3)",
-                Color.parse("#010203")
+            "=color(1,2,3)",
+            Color.parse("#010203")
         );
     }
 
     @Test
     public void testEvaluateColumnWithCell() {
         this.evaluateAndValueCheck(
-                "=column(C1)",
-                EXPRESSION_NUMBER_KIND.create(3)
+            "=column(C1)",
+            EXPRESSION_NUMBER_KIND.create(3)
         );
     }
 
     @Test
     public void testEvaluateColumnWithString() {
         this.evaluateAndValueCheck(
-                "=column(\"C1\")",
-                EXPRESSION_NUMBER_KIND.create(3)
+            "=column(\"C1\")",
+            EXPRESSION_NUMBER_KIND.create(3)
         );
     }
 
     @Test
     public void testEvaluateColumns() {
         this.evaluateAndValueCheck(
-                "=columns(Z99)",
-                EXPRESSION_NUMBER_KIND.create(1)
+            "=columns(Z99)",
+            EXPRESSION_NUMBER_KIND.create(1)
         );
     }
 
     @Test
     public void testEvaluateColumnsWithString() {
         this.evaluateAndValueCheck(
-                "=columns(\"Z99\")",
-                EXPRESSION_NUMBER_KIND.create(1)
+            "=columns(\"Z99\")",
+            EXPRESSION_NUMBER_KIND.create(1)
         );
     }
 
     @Test
     public void testEvaluateColumnsWithRange() {
         this.evaluateAndValueCheck(
-                "=columns(B1:D1)",
-                EXPRESSION_NUMBER_KIND.create(3)
+            "=columns(B1:D1)",
+            EXPRESSION_NUMBER_KIND.create(3)
         );
     }
 
     @Test
     public void testEvaluateConcatNumber() {
         this.evaluateAndValueCheck(
-                "=concat(1.25)",
-                this.metadataWithStrangeNumberFormatPattern(),
-                "1.25"
+            "=concat(1.25)",
+            this.metadataWithStrangeNumberFormatPattern(),
+            "1.25"
         );
     }
 
     @Test
     public void testEvaluateConcatString() {
         this.evaluateAndValueCheck(
-                "=concat(\"abc\")",
-                this.metadataWithStrangeNumberFormatPattern(),
-                "abc"
+            "=concat(\"abc\")",
+            this.metadataWithStrangeNumberFormatPattern(),
+            "abc"
         );
     }
 
     @Test
     public void testEvaluateConcatSingleValues() {
         this.evaluateAndValueCheck(
-                "=concat(A2,A3)",
-                Maps.of("A2", "'abc", "A3", "'123"),
-                this.metadataWithStrangeNumberFormatPattern(),
-                "abc123"
+            "=concat(A2,A3)",
+            Maps.of("A2", "'abc", "A3", "'123"),
+            this.metadataWithStrangeNumberFormatPattern(),
+            "abc123"
         );
     }
 
     @Test
     public void testEvaluateConcatRange() {
         this.evaluateAndValueCheck(
-                "=concat(A2:A3)",
-                Maps.of("A2", "'abc", "A3", "'123"),
-                this.metadataWithStrangeNumberFormatPattern(),
-                "abc123"
+            "=concat(A2:A3)",
+            Maps.of("A2", "'abc", "A3", "'123"),
+            this.metadataWithStrangeNumberFormatPattern(),
+            "abc123"
         );
     }
 
     @Test
     public void testEvaluateConcatRangeIncludesNumbers() {
         this.evaluateAndValueCheck(
-                "=concat(A2:A3)",
-                Maps.of("A2", "'abc", "A3", "=123"),
-                this.metadataWithStrangeNumberFormatPattern(),
-                "abc123"
+            "=concat(A2:A3)",
+            Maps.of("A2", "'abc", "A3", "=123"),
+            this.metadataWithStrangeNumberFormatPattern(),
+            "abc123"
         );
     }
 
     @Test
     public void testEvaluateConcatRangeMissingCell() {
         this.evaluateAndValueCheck(
-                "=concat(A2:A5)",
-                Maps.of("A2", "'abc", "A4", "'123"),
-                this.metadataWithStrangeNumberFormatPattern(),
-                "abc123"
+            "=concat(A2:A5)",
+            Maps.of("A2", "'abc", "A4", "'123"),
+            this.metadataWithStrangeNumberFormatPattern(),
+            "abc123"
         );
     }
 
     @Test
     public void testEvaluateConcatSingleValuesAndRange() {
         this.evaluateAndValueCheck(
-                "=concat(\"First\",A2:A3,\"!!!\",B1:B2)",
-                Maps.of(
-                        "A2", "'abc",
-                        "A3", "'123",
-                        "B1", "'SecondLast",
-                        "B2", "'Last"
-                ),
-                this.metadataWithStrangeNumberFormatPattern(),
-                "Firstabc123!!!SecondLastLast"
+            "=concat(\"First\",A2:A3,\"!!!\",B1:B2)",
+            Maps.of(
+                "A2", "'abc",
+                "A3", "'123",
+                "B1", "'SecondLast",
+                "B2", "'Last"
+            ),
+            this.metadataWithStrangeNumberFormatPattern(),
+            "Firstabc123!!!SecondLastLast"
         );
     }
 
     @Test
     public void testEvaluateCosWithString() {
         this.evaluateAndValueCheck(
-                "=cos(\"1\")",
-                EXPRESSION_NUMBER_KIND.create(0.5403023)
+            "=cos(\"1\")",
+            EXPRESSION_NUMBER_KIND.create(0.5403023)
         );
     }
 
     @Test
     public void testEvaluateCosWithNumber() {
         this.evaluateAndValueCheck(
-                "=cos(1)",
-                EXPRESSION_NUMBER_KIND.create(0.5403023)
+            "=cos(1)",
+            EXPRESSION_NUMBER_KIND.create(0.5403023)
         );
     }
 
     @Test
     public void testEvaluateCountWithDate() {
         this.evaluateAndValueCheck(
-                "=count(date(1999, 12, 31))",
-                EXPRESSION_NUMBER_KIND.one()
+            "=count(date(1999, 12, 31))",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountWithDateTime() {
         this.evaluateAndValueCheck(
-                "=count(now())",
-                EXPRESSION_NUMBER_KIND.one()
+            "=count(now())",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountWithNumber() {
         this.evaluateAndValueCheck(
-                "=count(1)",
-                EXPRESSION_NUMBER_KIND.one()
+            "=count(1)",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountWithString() {
         this.evaluateAndValueCheck(
-                "=count(\"abc\")",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=count(\"abc\")",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateCountWithStringConvertible() {
         this.evaluateAndValueCheck(
-                "=count(\"123\")",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=count(\"123\")",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateCountWithTime() {
         this.evaluateAndValueCheck(
-                "=count(time(12, 58, 59))",
-                EXPRESSION_NUMBER_KIND.one()
+            "=count(time(12, 58, 59))",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountWithRangeOfNumbers() {
         this.evaluateAndValueCheck(
-                "=count(A2:A4)",
-                Maps.of(
-                        "A2", "=1",
-                        "A3", "=20",
-                        "A4", "=300"
-                ),
-                EXPRESSION_NUMBER_KIND.create(3)
+            "=count(A2:A4)",
+            Maps.of(
+                "A2", "=1",
+                "A3", "=20",
+                "A4", "=300"
+            ),
+            EXPRESSION_NUMBER_KIND.create(3)
         );
     }
 
     @Test
     public void testEvaluateCountWithRangeIncludesEmptyCells() {
         this.evaluateAndValueCheck(
-                "=count(A2:A4)",
-                Maps.of(
-                        "A2", "=1",
-                        "A4", "=300"
-                ),
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=count(A2:A4)",
+            Maps.of(
+                "A2", "=1",
+                "A4", "=300"
+            ),
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateCountWithRangeIncludesStrings() {
         this.evaluateAndValueCheck(
-                "=count(A2:A4)",
-                Maps.of(
-                        "A2", "=1",
-                        "A3", "=\"2\"", // string not converted
-                        "A4", "=\"abc\""
-                ),
-                EXPRESSION_NUMBER_KIND.one()
+            "=count(A2:A4)",
+            Maps.of(
+                "A2", "=1",
+                "A3", "=\"2\"", // string not converted
+                "A4", "=\"abc\""
+            ),
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountWithRangeMixed() {
         this.evaluateAndValueCheck(
-                "=count(A2:A7)",
-                Maps.of(
-                        "A2", "=1", // 1
-                        "A3", "=today()", // 2 LocalDate
-                        "A4", "=now()", // 3 LocalDateTime
-                        "A5", "=\"2\"", // string with number - doesnt count
-                        "A6", "=\"abc\""
-                ),
-                EXPRESSION_NUMBER_KIND.create(3)
+            "=count(A2:A7)",
+            Maps.of(
+                "A2", "=1", // 1
+                "A3", "=today()", // 2 LocalDate
+                "A4", "=now()", // 3 LocalDateTime
+                "A5", "=\"2\"", // string with number - doesnt count
+                "A6", "=\"abc\""
+            ),
+            EXPRESSION_NUMBER_KIND.create(3)
         );
     }
 
     @Test
     public void testEvaluateCountAEmptyString() {
         this.evaluateAndValueCheck(
-                "=countA(\"\")",
-                EXPRESSION_NUMBER_KIND.one()
+            "=countA(\"\")",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountAMissingCell() {
         this.evaluateAndValueCheck(
-                "=countA(Z99)", // becomes a #NAME which is ignored
-                EXPRESSION_NUMBER_KIND.zero()
+            "=countA(Z99)", // becomes a #NAME which is ignored
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateCountARangeOfMixedValues() {
         this.evaluateAndValueCheck(
-                "=countA(A2:A8)",
-                Maps.of(
-                        "A2", "=1", // 1
-                        "A3", "=today()", // 2 LocalDate
-                        "A4", "=now()", // 3 LocalDateTime
-                        "A5", "=\"2\"", // 4 string with number
-                        "A6", "=\"abc\"", // 5
-                        "A7", "\"\"" // 6
-                ),
-                EXPRESSION_NUMBER_KIND.create(6)
+            "=countA(A2:A8)",
+            Maps.of(
+                "A2", "=1", // 1
+                "A3", "=today()", // 2 LocalDate
+                "A4", "=now()", // 3 LocalDateTime
+                "A5", "=\"2\"", // 4 string with number
+                "A6", "=\"abc\"", // 5
+                "A7", "\"\"" // 6
+            ),
+            EXPRESSION_NUMBER_KIND.create(6)
         );
     }
 
     @Test
     public void testEvaluateCountBlankEmptyString() {
         this.evaluateAndValueCheck(
-                "=countBlank(\"\")",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=countBlank(\"\")",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateCountBlankNotEmptyString() {
         this.evaluateAndValueCheck(
-                "=countBlank(\"not-empty\")",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=countBlank(\"not-empty\")",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateCountBlankMissingCell() {
         this.evaluateAndValueCheck(
-                "=countBlank(Z99)", // becomes a #REF which counts as a non empty cell
-                EXPRESSION_NUMBER_KIND.one()
+            "=countBlank(Z99)", // becomes a #REF which counts as a non empty cell
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountBlankRangeOfMixedValues() {
         this.evaluateAndValueCheck(
-                "=countBlank(A2:A8)",
-                Maps.of(
-                        "A2", "=1", //
-                        "A3", "=today()", // LocalDate
-                        "A4", "=now()", // LocalDateTime
-                        "A5", "=\"2\"", // string with number
-                        "A6", "=\"abc\"", //
-                        "A8", "=\"\"" // not blank
-                ),
-                EXPRESSION_NUMBER_KIND.one()
+            "=countBlank(A2:A8)",
+            Maps.of(
+                "A2", "=1", //
+                "A3", "=today()", // LocalDate
+                "A4", "=now()", // LocalDateTime
+                "A5", "=\"2\"", // string with number
+                "A6", "=\"abc\"", //
+                "A8", "=\"\"" // not blank
+            ),
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountIfOne() {
         this.evaluateAndValueCheck(
-                "=countIf(123, 123)",
-                EXPRESSION_NUMBER_KIND.one()
+            "=countIf(123, 123)",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateCountIfZero() {
         this.evaluateAndValueCheck(
-                "=countIf(123, 456)",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=countIf(123, 456)",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateCountIfSomeValuesFiltered() {
         this.evaluateAndValueCheck(
-                "=countIf(A2:A5, \">99+1\")",
-                Maps.of(
-                        "A2", "=1", //
-                        "A3", "=2", //
-                        "A4", "=now()", // will be > 100
-                        "A5", "=\"200\"" // string are ignored
-                ),
-                EXPRESSION_NUMBER_KIND.one()
+            "=countIf(A2:A5, \">99+1\")",
+            Maps.of(
+                "A2", "=1", //
+                "A3", "=2", //
+                "A4", "=now()", // will be > 100
+                "A5", "=\"200\"" // string are ignored
+            ),
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateDate() {
         this.evaluateAndValueCheck(
-                "=date(1999, 12, 31)",
-                LocalDate.of(1999, 12, 31)
+            "=date(1999, 12, 31)",
+            LocalDate.of(1999, 12, 31)
         );
     }
 
     @Test
     public void testEvaluateDay() {
         this.evaluateAndValueCheck(
-                "=day(date(1999, 12, 31))",
-                EXPRESSION_NUMBER_KIND.create(31)
+            "=day(date(1999, 12, 31))",
+            EXPRESSION_NUMBER_KIND.create(31)
         );
     }
 
     @Test
     public void testEvaluateDays() {
         this.evaluateAndValueCheck(
-                "=days(date(2000, 1, 28), date(1999, 12, 31))",
-                EXPRESSION_NUMBER_KIND.create(28)
+            "=days(date(2000, 1, 28), date(1999, 12, 31))",
+            EXPRESSION_NUMBER_KIND.create(28)
         );
     }
 
     @Test
     public void testEvaluateDec2BinFromString() {
         this.evaluateAndValueCheck(
-                "=dec2bin(\"14\")",
-                "1110"
+            "=dec2bin(\"14\")",
+            "1110"
         );
     }
 
     @Test
     public void testEvaluateDec2BinWithNumber() {
         this.evaluateAndValueCheck(
-                "=dec2bin(14)",
-                "1110"
+            "=dec2bin(14)",
+            "1110"
         );
     }
 
     @Test
     public void testEvaluateDec2BinWithString() {
         this.evaluateAndValueCheck(
-                "=dec2bin(\"14\")",
-                "1110"
+            "=dec2bin(\"14\")",
+            "1110"
         );
     }
 
     @Test
     public void testEvaluateDec2HexWithNumber() {
         this.evaluateAndValueCheck(
-                "=dec2hex(255)",
-                "ff"
+            "=dec2hex(255)",
+            "ff"
         );
     }
 
     @Test
     public void testEvaluateDec2HexWithString() {
         this.evaluateAndValueCheck(
-                "=dec2hex(\"255\")",
-                "ff"
+            "=dec2hex(\"255\")",
+            "ff"
         );
     }
 
     @Test
     public void testEvaluateDec2OctWithString() {
         this.evaluateAndValueCheck(
-                "=dec2oct(255)",
-                "377"
+            "=dec2oct(255)",
+            "377"
         );
     }
 
     @Test
     public void testEvaluateDec2OctWithNumber() {
         this.evaluateAndValueCheck(
-                "=dec2oct(255)",
-                "377"
+            "=dec2oct(255)",
+            "377"
         );
     }
 
     @Test
     public void testEvaluateDegreesWithNumber() {
         this.evaluateAndValueCheck(
-                "=degrees(1.5)",
-                EXPRESSION_NUMBER_KIND.create(85.943655)
+            "=degrees(1.5)",
+            EXPRESSION_NUMBER_KIND.create(85.943655)
         );
     }
 
     @Test
     public void testEvaluateDegreesWithString() {
         this.evaluateAndValueCheck(
-                "=degrees(\"1.5\")",
-                EXPRESSION_NUMBER_KIND.create(85.943655)
+            "=degrees(\"1.5\")",
+            EXPRESSION_NUMBER_KIND.create(85.943655)
         );
     }
 
     @Test
     public void testEvaluateDecimal() {
         this.evaluateAndValueCheck(
-                "=decimal(\"11\", 2)",
-                EXPRESSION_NUMBER_KIND.create(3)
+            "=decimal(\"11\", 2)",
+            EXPRESSION_NUMBER_KIND.create(3)
         );
     }
 
     @Test
     public void testEvaluateDeltaNumbersEquals() {
         this.evaluateAndValueCheck(
-                "=delta(1.25, \"1.25\")",
-                true
+            "=delta(1.25, \"1.25\")",
+            true
         );
     }
 
     @Test
     public void testEvaluateDollarWithNumberAndMissingDecimals() {
         this.evaluateAndValueCheck(
-                "=dollar(123.4567)",
-                "$123.46"
+            "=dollar(123.4567)",
+            "$123.46"
         );
     }
 
     @Test
     public void testEvaluateDollarWithStringAndMissingDecimals() {
         this.evaluateAndValueCheck(
-                "=dollar(\"123.4567\")",
-                "$123.46"
+            "=dollar(\"123.4567\")",
+            "$123.46"
         );
     }
 
     @Test
     public void testEvaluateDollarWithNumberAndPlus2Decimals() {
         this.evaluateAndValueCheck(
-                "=dollar(123.4567, 2)",
-                "$123.46"
+            "=dollar(123.4567, 2)",
+            "$123.46"
         );
     }
 
     @Test
     public void testEvaluateDollarWithNumberAndMinus2Decimals() {
         this.evaluateAndValueCheck(
-                "=dollar(123.4567, -2)",
-                "$100"
+            "=dollar(123.4567, -2)",
+            "$100"
         );
     }
 
     @Test
     public void testEvaluateE() {
         this.evaluateAndValueCheck(
-                "=e()",
-                EXPRESSION_NUMBER_KIND.create(2.718282)
+            "=e()",
+            EXPRESSION_NUMBER_KIND.create(2.718282)
         );
     }
 
     @Test
     public void testEvaluateEval() {
         this.evaluateAndValueCheck(
-                "=eval(\"11+22\")",
-                EXPRESSION_NUMBER_KIND.create(
-                        11 + 22
-                )
+            "=eval(\"11+22\")",
+            EXPRESSION_NUMBER_KIND.create(
+                11 + 22
+            )
         );
     }
 
     @Test
     public void testEvaluateEven() {
         this.evaluateAndValueCheck(
-                "=even(1.7)",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=even(1.7)",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateExactDifferentCaseStrings() {
         this.evaluateAndValueCheck(
-                "=exact(\"ABC\", \"abc\")",
-                false
+            "=exact(\"ABC\", \"abc\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateExactSameStrings() {
         this.evaluateAndValueCheck(
-                "=exact(\"ABC\", \"ABC\")",
-                true
+            "=exact(\"ABC\", \"ABC\")",
+            true
         );
     }
 
     @Test
     public void testEvaluateExactSameString2() {
         this.evaluateAndValueCheck(
-                "=exact(\"12.5\",12.5)",
-                true
+            "=exact(\"12.5\",12.5)",
+            true
         );
     }
 
     @Test
     public void testEvaluateExpWithNumber() {
         this.evaluateAndValueCheck(
-                "=exp(1)",
-                EXPRESSION_NUMBER_KIND.create(2.718282)
+            "=exp(1)",
+            EXPRESSION_NUMBER_KIND.create(2.718282)
         );
     }
 
     @Test
     public void testEvaluateExpWithString() {
         this.evaluateAndValueCheck(
-                "=exp(\"1\")",
-                EXPRESSION_NUMBER_KIND.create(2.718282)
+            "=exp(\"1\")",
+            EXPRESSION_NUMBER_KIND.create(2.718282)
         );
     }
 
     @Test
     public void testEvaluateFalse() {
         this.evaluateAndValueCheck(
-                "=false()",
-                Boolean.FALSE
+            "=false()",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateFindFound() {
         this.evaluateAndValueCheck(
-                "=find(\"abc\", \"before abc\")",
-                EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
+            "=find(\"abc\", \"before abc\")",
+            EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
         );
     }
 
     @Test
     public void testEvaluateFindNotFound() {
         this.evaluateAndValueCheck(
-                "=find(\"Not found\", \"123\")",
-                SpreadsheetErrorKind.VALUE.setMessage("\"Not found\" not found in \"123\"")
+            "=find(\"Not found\", \"123\")",
+            SpreadsheetErrorKind.VALUE.setMessage("\"Not found\" not found in \"123\"")
         );
     }
 
     @Test
     public void testEvaluateFixedWithNumber() {
         this.evaluateAndValueCheck(
-                "=fixed(123.456)",
-                "123.46"
+            "=fixed(123.456)",
+            "123.46"
         );
     }
 
     @Test
     public void testEvaluateFixedWithNumberAndDecimals() {
         this.evaluateAndValueCheck(
-                "=fixed(123.567, 1)",
-                "123.6"
+            "=fixed(123.567, 1)",
+            "123.6"
         );
     }
 
     @Test
     public void testEvaluateFixedWithNumberAndDecimalsAndCommas() {
         this.evaluateAndValueCheck(
-                "=fixed(1234.567, 1, false())",
-                "1,234.6"
+            "=fixed(1234.567, 1, false())",
+            "1,234.6"
         );
     }
 
     @Test
     public void testEvaluateFixedWithString() {
         this.evaluateAndValueCheck(
-                "=fixed(\"123.456\")",
-                "123.46"
+            "=fixed(\"123.456\")",
+            "123.46"
         );
     }
 
     @Test
     public void testEvaluateFloorWithNumber() {
         this.evaluateAndValueCheck(
-                "=floor(1.8)",
-                EXPRESSION_NUMBER_KIND.one()
+            "=floor(1.8)",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateFloorWithString() {
         this.evaluateAndValueCheck(
-                "=floor(\"1.8\")",
-                EXPRESSION_NUMBER_KIND.one()
+            "=floor(\"1.8\")",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateFormatValue() {
         this.evaluateAndValueCheck(
-                "=formatValue(\"text-format-pattern @@\", \"Hello\")",
-                TextNode.text("HelloHello")
+            "=formatValue(\"text-format-pattern @@\", \"Hello\")",
+            TextNode.text("HelloHello")
         );
     }
 
     @Test
     public void testEvaluateFormulaText() {
         this.evaluateAndValueCheck(
-                "=formulatext(A2)",
-                Maps.of("A2", "=1+2+3"),
-                "=1+2+3"
+            "=formulatext(A2)",
+            Maps.of("A2", "=1+2+3"),
+            "=1+2+3"
         );
     }
 
     @Test
     public void testEvaluateGetAlpha() {
         this.evaluateAndValueCheck(
-                "=getAlpha(color(\"#11223380\"))",
-                Color.parseRgb("#11223380")
-                        .alpha()
+            "=getAlpha(color(\"#11223380\"))",
+            Color.parseRgb("#11223380")
+                .alpha()
         );
     }
 
     @Test
     public void testEvaluateGetBlue() {
         this.evaluateAndValueCheck(
-                "=getBlue(color(\"#11223380\"))",
-                Color.parseRgb("#11223380")
-                        .blue()
+            "=getBlue(color(\"#11223380\"))",
+            Color.parseRgb("#11223380")
+                .blue()
         );
     }
 
@@ -1337,9 +1337,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateGetGreen() {
         this.evaluateAndValueCheck(
-                "=getGreen(color(\"#11223380\"))",
-                Color.parseRgb("#11223380")
-                        .green()
+            "=getGreen(color(\"#11223380\"))",
+            Color.parseRgb("#11223380")
+                .green()
         );
     }
 
@@ -1354,58 +1354,58 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateGetFormatValue() {
         this.evaluateAndValueCheck(
-                "=getFormatValue()",
-                SpreadsheetError.referenceNotFound(SpreadsheetExpressionEvaluationContext.FORMAT_VALUE)
+            "=getFormatValue()",
+            SpreadsheetError.referenceNotFound(SpreadsheetExpressionEvaluationContext.FORMAT_VALUE)
         );
     }
 
     @Test
     public void testEvaluateGetRed() {
         this.evaluateAndValueCheck(
-                "=getRed(color(\"#11223380\"))",
-                Color.parseRgb("#11223380")
-                        .red()
+            "=getRed(color(\"#11223380\"))",
+            Color.parseRgb("#11223380")
+                .red()
         );
     }
 
     @Test
     public void testEvaluateGetStyleWithString() {
         this.evaluateAndValueCheck(
-                "=getStyle(\"color: #123456\")",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.COLOR,
-                        Color.parse("#123456")
-                )
+            "=getStyle(\"color: #123456\")",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.COLOR,
+                Color.parse("#123456")
+            )
         );
     }
 
     @Test
     public void testEvaluateGetStyleWithHyperlink() {
         this.evaluateAndValueCheck(
-                "=getStyle(hyperlink(\"https://example.com\"))",
-                TextStyle.EMPTY
+            "=getStyle(hyperlink(\"https://example.com\"))",
+            TextStyle.EMPTY
         );
     }
 
     @Test
     public void testEvaluateGetStyleWithSetStyleWithHyperlink() {
         this.evaluateAndValueCheck(
-                "=getStyle(setStyle(hyperlink(\"https://example.com\"),\"color: #123456\"))",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.COLOR,
-                        Color.parse("#123456")
-                )
+            "=getStyle(setStyle(hyperlink(\"https://example.com\"),\"color: #123456\"))",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.COLOR,
+                Color.parse("#123456")
+            )
         );
     }
 
     @Test
     public void testEvaluateGetStyleWithStyledText() {
         this.evaluateAndValueCheck(
-                "=getStyle(styledText(\"Hello\",\"color: #123456\"))",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.COLOR,
-                        Color.parse("#123456")
-                )
+            "=getStyle(styledText(\"Hello\",\"color: #123456\"))",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.COLOR,
+                Color.parse("#123456")
+            )
         );
     }
 
@@ -1430,80 +1430,80 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateHex2Bin() {
         this.evaluateAndValueCheck(
-                "=hex2bin(\"f\")",
-                "1111"
+            "=hex2bin(\"f\")",
+            "1111"
         );
     }
 
     @Test
     public void testEvaluateHex2Dec() {
         this.evaluateAndValueCheck(
-                "=hex2dec(\"ff\")",
-                "255"
+            "=hex2dec(\"ff\")",
+            "255"
         );
     }
 
     @Test
     public void testEvaluateHex2Oct() {
         this.evaluateAndValueCheck(
-                "=hex2oct(\"ff\")",
-                "377"
+            "=hex2oct(\"ff\")",
+            "377"
         );
     }
 
     @Test
     public void testEvaluateHour() {
         this.evaluateAndValueCheck(
-                "=hour(time(12, 58, 59))",
-                EXPRESSION_NUMBER_KIND.create(12)
+            "=hour(time(12, 58, 59))",
+            EXPRESSION_NUMBER_KIND.create(12)
         );
     }
 
     @Test
     public void testEvaluateIfTrue() {
         this.evaluateAndValueCheck(
-                "=if(true(), 111, 222)",
-                EXPRESSION_NUMBER_KIND.create(111)
+            "=if(true(), 111, 222)",
+            EXPRESSION_NUMBER_KIND.create(111)
         );
     }
 
     @Test
     public void testEvaluateIfTrueCaseInsensitiveStringCompare() {
         this.evaluateAndValueCheck(
-                "=if(\"abc\" = \"ABC\", 111, 222)",
-                EXPRESSION_NUMBER_KIND.create(111)
+            "=if(\"abc\" = \"ABC\", 111, 222)",
+            EXPRESSION_NUMBER_KIND.create(111)
         );
     }
 
     @Test
     public void testEvaluateIfTrueCaseInsensitiveStringCompareDifferent() {
         this.evaluateAndValueCheck(
-                "=if(\"abc\" = \"different\", 111, 222)",
-                EXPRESSION_NUMBER_KIND.create(222)
+            "=if(\"abc\" = \"different\", 111, 222)",
+            EXPRESSION_NUMBER_KIND.create(222)
         );
     }
 
     @Test
     public void testEvaluateIfFalse() {
         this.evaluateAndValueCheck(
-                "=if(false(), 111, 222)",
-                EXPRESSION_NUMBER_KIND.create(222)
+            "=if(false(), 111, 222)",
+            EXPRESSION_NUMBER_KIND.create(222)
         );
     }
 
     @Test
     public void testEvaluateIfFalseWithStringLiteralFalse() {
         this.evaluateAndValueCheck(
-                "=if(\"false\", 111, 222)",
-                EXPRESSION_NUMBER_KIND.create(222)
+            "=if(\"false\", 111, 222)",
+            EXPRESSION_NUMBER_KIND.create(222)
         );
     }
 
     @Test
     public void testEvaluateIfsFirst() {
         this.evaluateAndValueCheck(
-                "=ifs(true(), 111, false(), 222)",
-                EXPRESSION_NUMBER_KIND.create(111)
+            "=ifs(true(), 111, false(), 222)",
+            EXPRESSION_NUMBER_KIND.create(111)
         );
     }
 
@@ -1518,75 +1518,75 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIfsSecond() {
         this.evaluateAndValueCheck(
-                "=ifs(\"abc\"=\"different\", 111, true(), 222)",
-                EXPRESSION_NUMBER_KIND.create(222)
+            "=ifs(\"abc\"=\"different\", 111, true(), 222)",
+            EXPRESSION_NUMBER_KIND.create(222)
         );
     }
 
     @Test
     public void testEvaluateIfsSecondStringCaseInsensitiveEquals() {
         this.evaluateAndValueCheck(
-                "=ifs(\"abc\"=\"different\", 111, \"same\"=\"SAME\", 222)",
-                EXPRESSION_NUMBER_KIND.create(222)
+            "=ifs(\"abc\"=\"different\", 111, \"same\"=\"SAME\", 222)",
+            EXPRESSION_NUMBER_KIND.create(222)
         );
     }
 
     @Test
     public void testEvaluateIndirect() {
         this.evaluateAndValueCheck(
-                "=indirect(\"Z99\")",
-                SpreadsheetSelection.parseCell("Z99")
+            "=indirect(\"Z99\")",
+            SpreadsheetSelection.parseCell("Z99")
         );
     }
 
     @Test
     public void testEvaluateIntWithNumber() {
         this.evaluateAndValueCheck(
-                "=int(1.8)",
-                EXPRESSION_NUMBER_KIND.one()
+            "=int(1.8)",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateIntWithString() {
         this.evaluateAndValueCheck(
-                "=int(\"1.8\")",
-                EXPRESSION_NUMBER_KIND.one()
+            "=int(\"1.8\")",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateInvertColorWithColor() {
         this.evaluateAndValueCheck(
-                "=invertColor(color(\"#123456\"))",
-                Color.parse("#123456")
-                        .invert()
+            "=invertColor(color(\"#123456\"))",
+            Color.parse("#123456")
+                .invert()
         );
     }
 
     @Test
     public void testEvaluateInvertColorWithString() {
         this.evaluateAndValueCheck(
-                "=invertColor(\"#123456\")",
-                Color.parse("#123456")
-                        .invert()
+            "=invertColor(\"#123456\")",
+            Color.parse("#123456")
+                .invert()
         );
     }
 
     @Test
     public void testEvaluateIsBlankNoCell() {
         this.evaluateAndValueCheck(
-                "=isBlank(B2)",
-                true
+            "=isBlank(B2)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsBlankCell() {
         this.evaluateAndValueCheck(
-                "=isBlank(B2)",
-                Maps.of("B2", "'NotBlank"),
-                false
+            "=isBlank(B2)",
+            Maps.of("B2", "'NotBlank"),
+            false
         );
     }
 
@@ -1595,15 +1595,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIsDateWithDate() {
         this.evaluateAndValueCheck(
-                "=isDate(today())",
-                true
+            "=isDate(today())",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsDateWithNumber() {
         this.evaluateAndValueCheck(
-                "=isDate(1)",
+            "=isDate(1)",
             false
         );
     }
@@ -1611,7 +1611,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIsDateWithString() {
         this.evaluateAndValueCheck(
-                "=isDate(\"31/12/2000\")",
+            "=isDate(\"31/12/2000\")",
             false
         );
     }
@@ -1619,7 +1619,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIsDateWithTime() {
         this.evaluateAndValueCheck(
-                "=isDate(time(1,1,1))",
+            "=isDate(time(1,1,1))",
             false
         );
     }
@@ -1627,346 +1627,346 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateIsErrWithError() {
         this.evaluateAndValueCheck(
-                "=isErr(1/0)",
-                true
+            "=isErr(1/0)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsErrWithErrorRef() {
         this.evaluateAndValueCheck(
-                "=isErr(#REF!)",
-                true
+            "=isErr(#REF!)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsErrWithNumber() {
         this.evaluateAndValueCheck(
-                "=isErr(123)",
-                false
+            "=isErr(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsErrorWithErroror() {
         this.evaluateAndValueCheck(
-                "=isError(1/0)",
-                true
+            "=isError(1/0)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsErrorWithNumber() {
         this.evaluateAndValueCheck(
-                "=isError(123)",
-                false
+            "=isError(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsEvenWithEvenNumber() {
         this.evaluateAndValueCheck(
-                "=isEven(2)",
-                true
+            "=isEven(2)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsEvenWithOddNumber() {
         this.evaluateAndValueCheck(
-                "=isEven(1)",
-                false
+            "=isEven(1)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsEvenWithOddNumberStringLiteral() {
         this.evaluateAndValueCheck(
-                "=isEven(\"1\")",
-                false
+            "=isEven(\"1\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsFormulaWithCellWithFormula() {
         this.evaluateAndValueCheck(
-                "=isFormula(B2)",
-                Maps.of("B2", "=1"),
-                true
+            "=isFormula(B2)",
+            Maps.of("B2", "=1"),
+            true
         );
     }
 
     @Test
     public void testEvaluateIsFormulaWithMissingCell() {
         this.evaluateAndValueCheck(
-                "=isFormula(B2)",
-                false
+            "=isFormula(B2)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsLogicalWithBooleanTrue() {
         this.evaluateAndValueCheck(
-                "=isLogical(true())",
-                true
+            "=isLogical(true())",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsLogicalWithBooleanFalse() {
         this.evaluateAndValueCheck(
-                "=isLogical(false())",
-                true
+            "=isLogical(false())",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsLogicalWithMissingCell() {
         this.evaluateAndValueCheck(
-                "=isLogical(B2)",
-                false
+            "=isLogical(B2)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsLogicalWithNumber() {
         this.evaluateAndValueCheck(
-                "=isLogical(123)",
-                false
+            "=isLogical(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsLogicalWithString() {
         this.evaluateAndValueCheck(
-                "=isLogical(\"abc\")",
-                false
+            "=isLogical(\"abc\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNaWithError() {
         this.evaluateAndValueCheck(
-                "=isNa(1/0)",
-                false
+            "=isNa(1/0)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNaWithNumber() {
         this.evaluateAndValueCheck(
-                "=isNa(123)",
-                false
+            "=isNa(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNonTextWithEmptyCell() {
         this.evaluateAndValueCheck(
-                "=isNonText(Z99)",
-                true
+            "=isNonText(Z99)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsNonTextWithError() {
         this.evaluateAndValueCheck(
-                "=isNonText(1/0)",
-                true
+            "=isNonText(1/0)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsNonTextWithString() {
         this.evaluateAndValueCheck(
-                "=isNonText(\"abc\")",
-                false
+            "=isNonText(\"abc\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNullWithBoolean() {
         this.evaluateAndValueCheck(
-                "=isNull(true)",
-                false
+            "=isNull(true)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNullWithErrorDivideByZero() {
         this.evaluateAndValueCheck(
-                "=isNull(1/0)",
-                false
+            "=isNull(1/0)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNullWithNullValue() {
         this.evaluateAndValueCheck(
-                "=isNull(null())",
-                true
+            "=isNull(null())",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsNullWithNumber() {
         this.evaluateAndValueCheck(
-                "=isNull(123)",
-                false
+            "=isNull(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNullWithReference() {
         this.evaluateAndValueCheck(
-                "=isNull(A2)",
-                false
+            "=isNull(A2)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNullWithText() {
         this.evaluateAndValueCheck(
-                "=isNull(\"Abc\")",
-                false
+            "=isNull(\"Abc\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNumberWithNonNumberString() {
         this.evaluateAndValueCheck(
-                "=isNumber(\"ABC\")",
-                false
+            "=isNumber(\"ABC\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsNumberWithNumber() {
         this.evaluateAndValueCheck(
-                "=isNumber(2)",
-                true
+            "=isNumber(2)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsOddWithEvenNumber() {
         this.evaluateAndValueCheck(
-                "=isOdd(2)",
-                false
+            "=isOdd(2)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsOddWithOddNumber() {
         this.evaluateAndValueCheck(
-                "=isOdd(1)",
-                true
+            "=isOdd(1)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsoWeekNum() {
         this.evaluateAndValueCheck(
-                "=isoWeekNum(date(1999,12,31))",
-                EXPRESSION_NUMBER_KIND.create(52)
+            "=isoWeekNum(date(1999,12,31))",
+            EXPRESSION_NUMBER_KIND.create(52)
         );
     }
 
     @Test
     public void testEvaluateIsRefWithNull() {
         this.evaluateAndValueCheck(
-                "=isRef(nullValue())",
-                false
+            "=isRef(nullValue())",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsRefWithNumber() {
         this.evaluateAndValueCheck(
-                "=isRef(123)",
-                false
+            "=isRef(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsRefWithCellReference() {
         this.evaluateAndValueCheck(
-                "=isRef(A2)",
-                true
+            "=isRef(A2)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsRefWithStringWithCellReference() {
         this.evaluateAndValueCheck(
-                "=isRef(\"A1\")",
-                false
+            "=isRef(\"A1\")",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsRefWithCellUnknownLabel() {
         this.evaluateAndValueCheck(
-                "=isRef(UnknownLabel)",
-                true
+            "=isRef(UnknownLabel)",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsTextWithError() {
         this.evaluateAndValueCheck(
-                "=isText(1/0)",
-                false
+            "=isText(1/0)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsTextWithNumber() {
         this.evaluateAndValueCheck(
-                "=isText(123)",
-                false
+            "=isText(123)",
+            false
         );
     }
 
     @Test
     public void testEvaluateIsTextWithEmptyString() {
         this.evaluateAndValueCheck(
-                "=isText(\"\")",
-                true
+            "=isText(\"\")",
+            true
         );
     }
 
     @Test
     public void testEvaluateIsTextWithString() {
         this.evaluateAndValueCheck(
-                "=isText(\"abc\")",
-                true
+            "=isText(\"abc\")",
+            true
         );
     }
 
     @Test
     public void testEvaluateLambdaWithParameters() {
         this.evaluateAndValueCheck(
-                "=lambda(x,y,x*y)(10,20)",
-                EXPRESSION_NUMBER_KIND.create(10 * 20)
+            "=lambda(x,y,x*y)(10,20)",
+            EXPRESSION_NUMBER_KIND.create(10 * 20)
         );
     }
 
     @Test
     public void testEvaluateLAMBDAWithParameters() {
         this.evaluateAndValueCheck(
-                "=LAMBDA(x,y,z,x*y*z)(20,30, 40)",
-                EXPRESSION_NUMBER_KIND.create(20 * 30 * 40)
+            "=LAMBDA(x,y,z,x*y*z)(20,30, 40)",
+            EXPRESSION_NUMBER_KIND.create(20 * 30 * 40)
         );
     }
 
     @Test
     public void testEvaluateLambdaWithParametersAndCellReference() {
         this.evaluateAndValueCheck(
-                "=lambda(x,y,x*y*b2)(10,20)",
-                Maps.of("b2", "30"),
-                EXPRESSION_NUMBER_KIND.create(10 * 20 * 30)
+            "=lambda(x,y,x*y*b2)(10,20)",
+            Maps.of("b2", "30"),
+            EXPRESSION_NUMBER_KIND.create(10 * 20 * 30)
         );
     }
 
@@ -1975,338 +1975,338 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateLambdaWithParametersLet() {
         this.evaluateAndValueCheck(
-                "=lambda(x,y,    Let(xs, x*x, ys, y*y, xs+ys))(3, 4)",
-                EXPRESSION_NUMBER_KIND.create(25)
+            "=lambda(x,y,    Let(xs, x*x, ys, y*y, xs+ys))(3, 4)",
+            EXPRESSION_NUMBER_KIND.create(25)
         );
     }
 
     @Test
     public void testEvaluateLambdaWithParametersLet2() {
         this.evaluateAndValueCheck(
-                "=lambda(x,y,    Let(xs, x*x, ys, y*y, sqrt(xs+ys)))(3, 4)",
-                EXPRESSION_NUMBER_KIND.create(5)
+            "=lambda(x,y,    Let(xs, x*x, ys, y*y, sqrt(xs+ys)))(3, 4)",
+            EXPRESSION_NUMBER_KIND.create(5)
         );
     }
 
     @Test
     public void testEvaluateLeftMissingCellReference() {
         this.evaluateAndValueCheck(
-                "=left(Z99)",
-                SpreadsheetErrorKind.VALUE.toError()
+            "=left(Z99)",
+            SpreadsheetErrorKind.VALUE.toError()
         );
     }
 
     @Test
     public void testEvaluateLeft() {
         this.evaluateAndValueCheck(
-                "=left(\"abc\")",
-                "a"
+            "=left(\"abc\")",
+            "a"
         );
     }
 
     @Test
     public void testEvaluateLeft2() {
         this.evaluateAndValueCheck(
-                "=left(\"abc\", 2)",
-                "ab"
+            "=left(\"abc\", 2)",
+            "ab"
         );
     }
 
     @Test
     public void testEvaluateLenWithNumber() {
         this.evaluateAndValueCheck(
-                "=len(1.23)",
-                this.metadataWithStrangeNumberFormatPattern(),
-                EXPRESSION_NUMBER_KIND.create(4)
+            "=len(1.23)",
+            this.metadataWithStrangeNumberFormatPattern(),
+            EXPRESSION_NUMBER_KIND.create(4)
         );
     }
 
     @Test
     public void testEvaluateLenWithString() {
         this.evaluateAndValueCheck(
-                "=len(\"hello\")",
-                this.metadataWithStrangeNumberFormatPattern(),
-                EXPRESSION_NUMBER_KIND.create(5)
+            "=len(\"hello\")",
+            this.metadataWithStrangeNumberFormatPattern(),
+            EXPRESSION_NUMBER_KIND.create(5)
         );
     }
 
     @Test
     public void testEvaluateLetOnlyStringLiteral() {
         this.evaluateAndValueCheck(
-                "=let(\"hello\")",
-                "hello"
+            "=let(\"hello\")",
+            "hello"
         );
     }
 
     @Test
     public void testEvaluateLetWithBackReferences() {
         this.evaluateAndValueCheck(
-                "=let(x, 2, x * 3)",
-                EXPRESSION_NUMBER_KIND.create(2 * 3)
+            "=let(x, 2, x * 3)",
+            EXPRESSION_NUMBER_KIND.create(2 * 3)
         );
     }
 
     @Test
     public void testEvaluateLetWithBackReferences2() {
         this.evaluateAndValueCheck(
-                "=let(x, 2, y, 3, x * y * x * y)",
-                EXPRESSION_NUMBER_KIND.create(2 * 3 * 2 * 3)
+            "=let(x, 2, y, 3, x * y * x * y)",
+            EXPRESSION_NUMBER_KIND.create(2 * 3 * 2 * 3)
         );
     }
 
     @Test
     public void testEvaluateLnWithNumber() {
         this.evaluateAndValueCheck(
-                "=ln(2)",
-                EXPRESSION_NUMBER_KIND.create(0.6931472)
+            "=ln(2)",
+            EXPRESSION_NUMBER_KIND.create(0.6931472)
         );
     }
 
     @Test
     public void testEvaluateLnWithString() {
         this.evaluateAndValueCheck(
-                "=ln(\"2\")",
-                EXPRESSION_NUMBER_KIND.create(0.6931472)
+            "=ln(\"2\")",
+            EXPRESSION_NUMBER_KIND.create(0.6931472)
         );
     }
 
     @Test
     public void testEvaluateLogWIthNumbers() {
         this.evaluateAndValueCheck(
-                "=log(3, 2)",
-                EXPRESSION_NUMBER_KIND.create(1.584962)
+            "=log(3, 2)",
+            EXPRESSION_NUMBER_KIND.create(1.584962)
         );
     }
 
     @Test
     public void testEvaluateLogWithStrings() {
         this.evaluateAndValueCheck(
-                "=log(\"3\", \"2\")",
-                EXPRESSION_NUMBER_KIND.create(1.584962)
+            "=log(\"3\", \"2\")",
+            EXPRESSION_NUMBER_KIND.create(1.584962)
         );
     }
 
     @Test
     public void testEvaluateLog10WithNumber() {
         this.evaluateAndValueCheck(
-                "=log10(100)",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=log10(100)",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateLog10WithStrings() {
         this.evaluateAndValueCheck(
-                "=log10(\"100\")",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=log10(\"100\")",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateLowerWithNumber() {
         this.evaluateAndValueCheck(
-                "=lower(1.25)",
-                this.metadataWithStrangeNumberFormatPattern(),
-                "1.25"
+            "=lower(1.25)",
+            this.metadataWithStrangeNumberFormatPattern(),
+            "1.25"
         );
     }
 
     @Test
     public void testEvaluateLowerWithString() {
         this.evaluateAndValueCheck(
-                "=lower(\"ABCxyz\")",
-                this.metadataWithStrangeNumberFormatPattern(),
-                "abcxyz"
+            "=lower(\"ABCxyz\")",
+            this.metadataWithStrangeNumberFormatPattern(),
+            "abcxyz"
         );
     }
 
     @Test
     public void testEvaluateMax() {
         this.evaluateAndValueCheck(
-                "=max(1,20,300,B1:D1)",
-                Maps.of(
-                        "B1", "1000",
-                        "C1", "2000",
-                        "D1", "9999"
-                ),
-                EXPRESSION_NUMBER_KIND.create(9999)
+            "=max(1,20,300,B1:D1)",
+            Maps.of(
+                "B1", "1000",
+                "C1", "2000",
+                "D1", "9999"
+            ),
+            EXPRESSION_NUMBER_KIND.create(9999)
         );
     }
 
     @Test
     public void testEvaluateMaxIf() {
         this.evaluateAndValueCheck(
-                "=maxIf(A2:A4, \">=19\")",
-                Maps.of(
-                        "A2", "=1",
-                        "A3", "=20",
-                        "A4", "=\"400\""
-                ),
-                EXPRESSION_NUMBER_KIND.create(400)
+            "=maxIf(A2:A4, \">=19\")",
+            Maps.of(
+                "A2", "=1",
+                "A3", "=20",
+                "A4", "=\"400\""
+            ),
+            EXPRESSION_NUMBER_KIND.create(400)
         );
     }
 
     @Test
     public void testEvaluateMergeStyleWithStringAndString() {
         this.evaluateAndValueCheck(
-                "=mergeStyle(\"background-color:#111;\",\"color:#222;\")",
-                TextStyle.parse("background-color: #111; color: #222;")
+            "=mergeStyle(\"background-color:#111;\",\"color:#222;\")",
+            TextStyle.parse("background-color: #111; color: #222;")
         );
     }
 
     @Test
     public void testEvaluateMergeStyleWithTextNodeAndString() {
         this.evaluateAndValueCheck(
-                "=mergeStyle(styledText(\"HelloText123\",\"background-color:#111;\"),\"color:#222;\")",
-                TextNode.text("HelloText123")
-                        .setTextStyle(
-                                TextStyle.parse("background-color: #111; color: #222;")
-                        )
+            "=mergeStyle(styledText(\"HelloText123\",\"background-color:#111;\"),\"color:#222;\")",
+            TextNode.text("HelloText123")
+                .setTextStyle(
+                    TextStyle.parse("background-color: #111; color: #222;")
+                )
         );
     }
 
     @Test
     public void testEvaluateMergeStyleAndStyledText() {
         this.evaluateAndValueCheck(
-                "=styledText(\"HelloText123\", mergeStyle(\"color:#111;\",\"text-align:left\"))",
-                TextNode.text("HelloText123")
-                        .setTextStyle(
-                                TextStyle.parse("color: #111; text-align: left;")
-                        )
+            "=styledText(\"HelloText123\", mergeStyle(\"color:#111;\",\"text-align:left\"))",
+            TextNode.text("HelloText123")
+                .setTextStyle(
+                    TextStyle.parse("color: #111; text-align: left;")
+                )
         );
     }
 
     @Test
     public void testEvaluateMid() {
         this.evaluateAndValueCheck(
-                "=mid(\"apple\", 2, 3)",
-                "ppl"
+            "=mid(\"apple\", 2, 3)",
+            "ppl"
         );
     }
 
     @Test
     public void testEvaluateMin() {
         this.evaluateAndValueCheck(
-                "=min(1,20,300,B1:D1)",
-                Maps.of(
-                        "B1", "1000",
-                        "C1", "2000",
-                        "D1", "-999"
-                ),
-                EXPRESSION_NUMBER_KIND.create(-999)
+            "=min(1,20,300,B1:D1)",
+            Maps.of(
+                "B1", "1000",
+                "C1", "2000",
+                "D1", "-999"
+            ),
+            EXPRESSION_NUMBER_KIND.create(-999)
         );
     }
 
     @Test
     public void testEvaluateMinIf() {
         this.evaluateAndValueCheck(
-                "=minIf(A2:A4, \">=19\")",
-                Maps.of(
-                        "A2", "=1",
-                        "A3", "=20",
-                        "A4", "=\"400\""
-                ),
-                EXPRESSION_NUMBER_KIND.create(20)
+            "=minIf(A2:A4, \">=19\")",
+            Maps.of(
+                "A2", "=1",
+                "A3", "=20",
+                "A4", "=\"400\""
+            ),
+            EXPRESSION_NUMBER_KIND.create(20)
         );
     }
 
     @Test
     public void testEvaluateMinute() {
         this.evaluateAndValueCheck(
-                "=minute(time(12, 58, 59))",
-                EXPRESSION_NUMBER_KIND.create(58)
+            "=minute(time(12, 58, 59))",
+            EXPRESSION_NUMBER_KIND.create(58)
         );
     }
 
     @Test
     public void testEvaluateMixColorWithColorColorNumber() {
         this.evaluateAndValueCheck(
-                "=mixColor(color(\"#111\"), color(\"#222\"), 0.5)",
-                Color.parse("#111")
-                        .mix(
-                                Color.parse("#222"),
-                                0.5f
-                        )
+            "=mixColor(color(\"#111\"), color(\"#222\"), 0.5)",
+            Color.parse("#111")
+                .mix(
+                    Color.parse("#222"),
+                    0.5f
+                )
         );
     }
 
     @Test
     public void testEvaluateModWithNumbers() {
         this.evaluateAndValueCheck(
-                "=mod(5, 3)",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=mod(5, 3)",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateModWithStrings() {
         this.evaluateAndValueCheck(
-                "=mod(\"5\", \"3\")",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=mod(\"5\", \"3\")",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateMonth() {
         this.evaluateAndValueCheck(
-                "=month(date(1999, 12, 31))",
-                EXPRESSION_NUMBER_KIND.create(12)
+            "=month(date(1999, 12, 31))",
+            EXPRESSION_NUMBER_KIND.create(12)
         );
     }
 
     @Test
     public void testEvaluateNextEmptyColumn() {
         this.evaluateAndValueCheck(
-                "=nextEmptyColumn(\"2\")",
-                SpreadsheetSelection.parseColumn("A")
+            "=nextEmptyColumn(\"2\")",
+            SpreadsheetSelection.parseColumn("A")
         );
     }
 
     @Test
     public void testEvaluateNextEmptyRow() {
         this.evaluateAndValueCheck(
-                "=nextEmptyRow(\"A\")",
-                SpreadsheetSelection.parseRow("2")
+            "=nextEmptyRow(\"A\")",
+            SpreadsheetSelection.parseRow("2")
         );
     }
 
     @Test
     public void testEvaluateNotFalse() {
         this.evaluateAndValueCheck(
-                "=not(false())",
-                Boolean.TRUE
+            "=not(false())",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateNotTrue() {
         this.evaluateAndValueCheck(
-                "=not(true())",
-                Boolean.FALSE
+            "=not(true())",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateNotZero() {
         this.evaluateAndValueCheck(
-                "=not(0)",
-                Boolean.TRUE
+            "=not(0)",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateNotZeroWithString() {
         this.evaluateAndValueCheck(
-                "=not(\"0\")",
-                Boolean.TRUE
+            "=not(\"0\")",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateNow() {
         this.evaluateAndValueCheck(
-                "=now()",
-                NOW.now()
+            "=now()",
+            NOW.now()
         );
     }
 
@@ -2322,96 +2322,96 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Disabled // https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/459
     public void testEvaluateNumberValueWithCustomDecimalSeparatorAndGroupSeparator() {
         this.evaluateAndValueCheck(
-                "=numberValue(\"1G234D5\", \"D\", \"G\")",
-                EXPRESSION_NUMBER_KIND.create(1234.5)
+            "=numberValue(\"1G234D5\", \"D\", \"G\")",
+            EXPRESSION_NUMBER_KIND.create(1234.5)
         );
     }
 
     @Test
     public void testEvaluateOct2Bin() {
         this.evaluateAndValueCheck(
-                "=oct2bin(\"34\")",
-                "11100"
+            "=oct2bin(\"34\")",
+            "11100"
         );
     }
 
     @Test
     public void testEvaluateOct2Dec() {
         this.evaluateAndValueCheck(
-                "=oct2dec(\"34\")",
-                "28"
+            "=oct2dec(\"34\")",
+            "28"
         );
     }
 
     @Test
     public void testEvaluateOct2Hex() {
         this.evaluateAndValueCheck(
-                "=oct2hex(\"34\")",
-                "1c"
+            "=oct2hex(\"34\")",
+            "1c"
         );
     }
 
     @Test
     public void testEvaluateOddWithNumber() {
         this.evaluateAndValueCheck(
-                "=odd(12.3)",
-                EXPRESSION_NUMBER_KIND.create(13)
+            "=odd(12.3)",
+            EXPRESSION_NUMBER_KIND.create(13)
         );
     }
 
     @Test
     public void testEvaluateOddWithString() {
         this.evaluateAndValueCheck(
-                "=odd(\"12.3\")",
-                EXPRESSION_NUMBER_KIND.create(13)
+            "=odd(\"12.3\")",
+            EXPRESSION_NUMBER_KIND.create(13)
         );
     }
 
     @Test
     public void testEvaluateOffset() {
         this.evaluateAndValueCheck(
-                "=offset(B2,1,2,3,3)",
-                SpreadsheetSelection.parseCellRange("D3:F5")
+            "=offset(B2,1,2,3,3)",
+            SpreadsheetSelection.parseCellRange("D3:F5")
         );
     }
 
     @Test
     public void testEvaluateOrTrueTrueTrue() {
         this.evaluateAndValueCheck(
-                "=or(true(), true(), true())",
-                Boolean.TRUE
+            "=or(true(), true(), true())",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateOrFalseFalseTrue() {
         this.evaluateAndValueCheck(
-                "=or(false(), false(), true())",
-                Boolean.TRUE
+            "=or(false(), false(), true())",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateOrFalseFalseFalseFalse() {
         this.evaluateAndValueCheck(
-                "=or(false(), false(), false(), false())",
-                Boolean.FALSE
+            "=or(false(), false(), false(), false())",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateOrFalseFalseFalseFalseStringLiterals() {
         this.evaluateAndValueCheck(
-                "=or(\"false\", \"false\", \"false\", \"false\")",
-                Boolean.FALSE
+            "=or(\"false\", \"false\", \"false\", \"false\")",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluatePi() {
         this.evaluateAndValueCheck(
-                "=pi()",
-                EXPRESSION_NUMBER_KIND.create(3.141593)
+            "=pi()",
+            EXPRESSION_NUMBER_KIND.create(3.141593)
         );
     }
 
@@ -2434,80 +2434,80 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateProductWithNumbers() {
         this.evaluateAndValueCheck(
-                "=product(2, 5)",
-                EXPRESSION_NUMBER_KIND.create(10)
+            "=product(2, 5)",
+            EXPRESSION_NUMBER_KIND.create(10)
         );
     }
 
     @Test
     public void testEvaluateProductWithStrings() {
         this.evaluateAndValueCheck(
-                "=product(\"2\", \"5\")",
-                EXPRESSION_NUMBER_KIND.create(10)
+            "=product(\"2\", \"5\")",
+            EXPRESSION_NUMBER_KIND.create(10)
         );
     }
 
     @Test
     public void testEvaluateProper() {
         this.evaluateAndValueCheck(
-                "=proper(\"apple\")",
-                "Apple"
+            "=proper(\"apple\")",
+            "Apple"
         );
     }
 
     @Test
     public void testEvaluateProper2() {
         this.evaluateAndValueCheck(
-                "=proper(\"apple, pears\")",
-                "Apple, Pears"
+            "=proper(\"apple, pears\")",
+            "Apple, Pears"
         );
     }
 
     @Test
     public void testEvaluateQuotientWithNumbers() {
         this.evaluateAndValueCheck(
-                "=quotient(12, 3)",
-                EXPRESSION_NUMBER_KIND.create(4)
+            "=quotient(12, 3)",
+            EXPRESSION_NUMBER_KIND.create(4)
         );
     }
 
     @Test
     public void testEvaluateQuotientWithStrings() {
         this.evaluateAndValueCheck(
-                "=quotient(\"12\", \"3\")",
-                EXPRESSION_NUMBER_KIND.create(4)
+            "=quotient(\"12\", \"3\")",
+            EXPRESSION_NUMBER_KIND.create(4)
         );
     }
 
     @Test
     public void testEvaluateRadiansWithNumber() {
         this.evaluateAndValueCheck(
-                "=radians(90)",
-                EXPRESSION_NUMBER_KIND.create(1.5707961)
+            "=radians(90)",
+            EXPRESSION_NUMBER_KIND.create(1.5707961)
         );
     }
 
     @Test
     public void testEvaluateRadiansWithString() {
         this.evaluateAndValueCheck(
-                "=radians(\"90\")",
-                EXPRESSION_NUMBER_KIND.create(1.5707961)
+            "=radians(\"90\")",
+            EXPRESSION_NUMBER_KIND.create(1.5707961)
         );
     }
 
     @Test
     public void testEvaluateRand() {
         this.evaluateAndValueCheck(
-                "=rand() > 0",
-                true
+            "=rand() > 0",
+            true
         );
     }
 
     @Test
     public void testEvaluateRandBetween() {
         this.evaluateAndValueCheck(
-                "=randBetween(2, 34) >= 2",
-                true
+            "=randBetween(2, 34) >= 2",
+            true
         );
     }
 
@@ -2548,198 +2548,198 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateReplace() {
         this.evaluateAndValueCheck(
-                "=replace(\"XYZ123\",4,3,\"456\")",
-                "XYZ456"
+            "=replace(\"XYZ123\",4,3,\"456\")",
+            "XYZ456"
         );
     }
 
     @Test
     public void testEvaluateRept() {
         this.evaluateAndValueCheck(
-                "=rept(\"abc\", 3)",
-                "abcabcabc"
+            "=rept(\"abc\", 3)",
+            "abcabcabc"
         );
     }
 
     @Test
     public void testEvaluateReptWithStringNumberLiteral() {
         this.evaluateAndValueCheck(
-                "=rept(\"abc\", \"3\")",
-                "abcabcabc"
+            "=rept(\"abc\", \"3\")",
+            "abcabcabc"
         );
     }
 
     @Test
     public void testEvaluateRight() {
         this.evaluateAndValueCheck(
-                "=right(\"abc\")",
-                "c"
+            "=right(\"abc\")",
+            "c"
         );
     }
 
     @Test
     public void testEvaluateRight2() {
         this.evaluateAndValueCheck(
-                "=right(\"abc\", 2)",
-                "bc"
+            "=right(\"abc\", 2)",
+            "bc"
         );
     }
 
     @Test
     public void testEvaluateRomanWithNumber() {
         this.evaluateAndValueCheck(
-                "=roman(123)",
-                "CXXIII"
+            "=roman(123)",
+            "CXXIII"
         );
     }
 
     @Test
     public void testEvaluateRomanWithStringNumberLiteral() {
         this.evaluateAndValueCheck(
-                "=roman(\"123\")",
-                "CXXIII"
+            "=roman(\"123\")",
+            "CXXIII"
         );
     }
 
     @Test
     public void testEvaluateRound() {
         this.evaluateAndValueCheck(
-                "=round(5.7845, 1)",
-                EXPRESSION_NUMBER_KIND.create(5.8)
+            "=round(5.7845, 1)",
+            EXPRESSION_NUMBER_KIND.create(5.8)
         );
     }
 
     @Test
     public void testEvaluateRoundDown() {
         this.evaluateAndValueCheck(
-                "=roundDown(1.25, 1)",
-                EXPRESSION_NUMBER_KIND.create(1.2)
+            "=roundDown(1.25, 1)",
+            EXPRESSION_NUMBER_KIND.create(1.2)
         );
     }
 
     @Test
     public void testEvaluateRoundUp() {
         this.evaluateAndValueCheck(
-                "=roundUp(1.25, 1)",
-                EXPRESSION_NUMBER_KIND.create(1.3)
+            "=roundUp(1.25, 1)",
+            EXPRESSION_NUMBER_KIND.create(1.3)
         );
     }
 
     @Test
     public void testEvaluateRoundWithStringNumberLiteral() {
         this.evaluateAndValueCheck(
-                "=round(\"5.7845\", \"1\")",
-                EXPRESSION_NUMBER_KIND.create(5.8)
+            "=round(\"5.7845\", \"1\")",
+            EXPRESSION_NUMBER_KIND.create(5.8)
         );
     }
 
     @Test
     public void testEvaluateRow() {
         this.evaluateAndValueCheck(
-                "=row(A99)",
-                EXPRESSION_NUMBER_KIND.create(99)
+            "=row(A99)",
+            EXPRESSION_NUMBER_KIND.create(99)
         );
     }
 
     @Test
     public void testEvaluateRowsWithCell() {
         this.evaluateAndValueCheck(
-                "=rows(Z99)",
-                EXPRESSION_NUMBER_KIND.create(1)
+            "=rows(Z99)",
+            EXPRESSION_NUMBER_KIND.create(1)
         );
     }
 
     @Test
     public void testEvaluateRowsWithRange() {
         this.evaluateAndValueCheck(
-                "=rows(B1:D1)",
-                EXPRESSION_NUMBER_KIND.create(1)
+            "=rows(B1:D1)",
+            EXPRESSION_NUMBER_KIND.create(1)
         );
     }
 
     @Test
     public void testEvaluateRowsWithRange2() {
         this.evaluateAndValueCheck(
-                "=rows(B3:D6)",
-                EXPRESSION_NUMBER_KIND.create(4)
+            "=rows(B3:D6)",
+            EXPRESSION_NUMBER_KIND.create(4)
         );
     }
 
     @Test
     public void testEvaluateSearchCaseWithInsensitiveFound() {
         this.evaluateAndValueCheck(
-                "=search(\"bc\", \"ABCDE\")",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=search(\"bc\", \"ABCDE\")",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateSearchCaseWithSensitiveFound() {
         this.evaluateAndValueCheck(
-                "=search(\"bc\", \"abcde\")",
-                EXPRESSION_NUMBER_KIND.create(2)
+            "=search(\"bc\", \"abcde\")",
+            EXPRESSION_NUMBER_KIND.create(2)
         );
     }
 
     @Test
     public void testEvaluateSearchCaseWithQuestionMark() {
         this.evaluateAndValueCheck(
-                "=search(\"1?3\", \"before 123 after\")",
-                EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
+            "=search(\"1?3\", \"before 123 after\")",
+            EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
         );
     }
 
     @Test
     public void testEvaluateSearchCaseWithQuestionMark2() {
         this.evaluateAndValueCheck(
-                "=search(\"1?3\", \"before 111 123 after\")",
-                EXPRESSION_NUMBER_KIND.create(1 + "before 111 ".length())
+            "=search(\"1?3\", \"before 111 123 after\")",
+            EXPRESSION_NUMBER_KIND.create(1 + "before 111 ".length())
         );
     }
 
     @Test
     public void testEvaluateSearchCaseWithWildcard() {
         this.evaluateAndValueCheck(
-                "=search(\"1*4\", \"before 1234 after\")",
-                EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
+            "=search(\"1*4\", \"before 1234 after\")",
+            EXPRESSION_NUMBER_KIND.create(1 + "before ".length())
         );
     }
 
     @Test
     public void testEvaluateSearchNotFound() {
         this.evaluateAndValueCheck(
-                "=search(\"!\", \"abcde\")",
-                EXPRESSION_NUMBER_KIND.create(0)
+            "=search(\"!\", \"abcde\")",
+            EXPRESSION_NUMBER_KIND.create(0)
         );
     }
 
     @Test
     public void testEvaluateSecond() {
         this.evaluateAndValueCheck(
-                "=second(time(12, 58, 59))",
-                EXPRESSION_NUMBER_KIND.create(59)
+            "=second(time(12, 58, 59))",
+            EXPRESSION_NUMBER_KIND.create(59)
         );
     }
 
     @Test
     public void testEvaluateSetAlpha() {
         this.evaluateAndValueCheck(
-                "=setAlpha(\"#112233\", \"64\")",
-                Color.parseRgb("#112233")
-                        .set(
-                                RgbColorComponent.alpha((byte) 64)
-                        )
+            "=setAlpha(\"#112233\", \"64\")",
+            Color.parseRgb("#112233")
+                .set(
+                    RgbColorComponent.alpha((byte) 64)
+                )
         );
     }
 
     @Test
     public void testEvaluateSetBlue() {
         this.evaluateAndValueCheck(
-                "=setBlue(\"#112233\", \"255\")",
-                Color.parseRgb("#112233")
-                        .set(
-                                RgbColorComponent.blue((byte) 255)
-                        )
+            "=setBlue(\"#112233\", \"255\")",
+            Color.parseRgb("#112233")
+                .set(
+                    RgbColorComponent.blue((byte) 255)
+                )
         );
     }
 
@@ -2771,11 +2771,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateSetGreen() {
         this.evaluateAndValueCheck(
-                "=setGreen(\"#112233\", \"255\")",
-                Color.parseRgb("#112233")
-                        .set(
-                                RgbColorComponent.green((byte) 255)
-                        )
+            "=setGreen(\"#112233\", \"255\")",
+            Color.parseRgb("#112233")
+                .set(
+                    RgbColorComponent.green((byte) 255)
+                )
         );
     }
 
@@ -2806,118 +2806,118 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateSetRed() {
         this.evaluateAndValueCheck(
-                "=setRed(\"#123\", \"9\")",
-                Color.parseRgb("#123")
-                        .set(
-                                RgbColorComponent.red((byte) 9)
-                        )
+            "=setRed(\"#123\", \"9\")",
+            Color.parseRgb("#123")
+                .set(
+                    RgbColorComponent.red((byte) 9)
+                )
         );
     }
 
     @Test
     public void testEvaluateSetStyle() {
         this.evaluateAndValueCheck(
-                "=setStyle(hyperlink(\"https://example.com\"),\"color: #123456\")",
-                TextNode.hyperlink(
-                        Url.parseAbsolute("https://example.com")
-                ).setTextStyle(
-                        TextStyle.EMPTY.set(
-                                TextStylePropertyName.COLOR,
-                                Color.parse("#123456")
-                        )
+            "=setStyle(hyperlink(\"https://example.com\"),\"color: #123456\")",
+            TextNode.hyperlink(
+                Url.parseAbsolute("https://example.com")
+            ).setTextStyle(
+                TextStyle.EMPTY.set(
+                    TextStylePropertyName.COLOR,
+                    Color.parse("#123456")
                 )
+            )
         );
     }
 
     @Test
     public void testEvaluateSetTextWithHyperlink() {
         this.evaluateAndValueCheck(
-                "=setText(hyperlink(\"https://example.com\"),\"Text123\")",
-                TextNode.hyperlink(
-                        Url.parseAbsolute("https://example.com")
-                ).setText("Text123")
+            "=setText(hyperlink(\"https://example.com\"),\"Text123\")",
+            TextNode.hyperlink(
+                Url.parseAbsolute("https://example.com")
+            ).setText("Text123")
         );
     }
 
     @Test
     public void testEvaluateSetTextWithStringAndString() {
         this.evaluateAndValueCheck(
-                "=setText(\"LostText111\",\"Text222\")",
-                TextNode.text(
-                        "LostText111"
-                ).setText("Text222")
+            "=setText(\"LostText111\",\"Text222\")",
+            TextNode.text(
+                "LostText111"
+            ).setText("Text222")
         );
     }
 
     @Test
     public void testEvaluateSignWithNegativeNumber() {
         this.evaluateAndValueCheck(
-                "=sign(-123)",
-                EXPRESSION_NUMBER_KIND.create(-1)
+            "=sign(-123)",
+            EXPRESSION_NUMBER_KIND.create(-1)
         );
     }
 
     @Test
     public void testEvaluateSignWithZero() {
         this.evaluateAndValueCheck(
-                "=sign(0)",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=sign(0)",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateSignWithPositiveNumber() {
         this.evaluateAndValueCheck(
-                "=sign(+123)",
-                EXPRESSION_NUMBER_KIND.one()
+            "=sign(+123)",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateSignWithPositiveNumberStringLiteral() {
         this.evaluateAndValueCheck(
-                "=sign(\"+123\")",
-                EXPRESSION_NUMBER_KIND.one()
+            "=sign(\"+123\")",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateSinWithNumber() {
         this.evaluateAndValueCheck(
-                "=sin(1)",
-                EXPRESSION_NUMBER_KIND.create(0.841471)
+            "=sin(1)",
+            EXPRESSION_NUMBER_KIND.create(0.841471)
         );
     }
 
     @Test
     public void testEvaluateSinWithString() {
         this.evaluateAndValueCheck(
-                "=sin(\"1\")",
-                EXPRESSION_NUMBER_KIND.create(0.841471)
+            "=sin(\"1\")",
+            EXPRESSION_NUMBER_KIND.create(0.841471)
         );
     }
 
     @Test
     public void testEvaluateSinhWithNumber() {
         this.evaluateAndValueCheck(
-                "=sinh(1)",
-                EXPRESSION_NUMBER_KIND.create(1.175201)
+            "=sinh(1)",
+            EXPRESSION_NUMBER_KIND.create(1.175201)
         );
     }
 
     @Test
     public void testEvaluateSinhWithString() {
         this.evaluateAndValueCheck(
-                "=sinh(\"1\")",
-                EXPRESSION_NUMBER_KIND.create(1.175201)
+            "=sinh(\"1\")",
+            EXPRESSION_NUMBER_KIND.create(1.175201)
         );
     }
 
     @Test
     public void testEvaluateSpreadsheetMetadataGet() {
         this.evaluateAndValueCheck(
-                "=spreadsheetMetadataGet(\"spreadsheetName\", \"missing!!!\")",
-                SpreadsheetName.with("Untitled5678")
+            "=spreadsheetMetadataGet(\"spreadsheetName\", \"missing!!!\")",
+            SpreadsheetName.with("Untitled5678")
         );
     }
 
@@ -2926,371 +2926,371 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetName expected = SpreadsheetName.with("NewName222");
 
         final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
-                "=spreadsheetMetadataSet(\"spreadsheetName\", \"NewName222\")",
-                expected
+            "=spreadsheetMetadataSet(\"spreadsheetName\", \"NewName222\")",
+            expected
         );
 
         // must load SpreadsheetMetadata because BasicSpreadsheetEngineContext#spreadsheetMetadata is not refreshed after spreadsheet save.
         final SpreadsheetId id = context.spreadsheetMetadata()
-                .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
+            .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
 
         this.checkEquals(
-                expected,
-                context.storeRepository()
-                        .metadatas()
-                        .loadOrFail(id)
-                        .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
-                "spreadsheetMetadata"
+            expected,
+            context.storeRepository()
+                .metadatas()
+                .loadOrFail(id)
+                .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
+            "spreadsheetMetadata"
         );
     }
 
     @Test
     public void testEvaluateSqrtWithNegativeNumber() {
         this.evaluateAndValueCheck(
-                "=sqrt(-1)",
-                SpreadsheetErrorKind.VALUE.setMessage("Illegal sqrt(x) for x < 0: x = -1")
+            "=sqrt(-1)",
+            SpreadsheetErrorKind.VALUE.setMessage("Illegal sqrt(x) for x < 0: x = -1")
         );
     }
 
     @Test
     public void testEvaluateSqrtWithPositiveNumber() {
         this.evaluateAndValueCheck(
-                "=sqrt(100)",
-                EXPRESSION_NUMBER_KIND.create(10)
+            "=sqrt(100)",
+            EXPRESSION_NUMBER_KIND.create(10)
         );
     }
 
     @Test
     public void testEvaluateSqrtWithStringPositiveNumber() {
         this.evaluateAndValueCheck(
-                "=sqrt(\"100\")",
-                EXPRESSION_NUMBER_KIND.create(10)
+            "=sqrt(\"100\")",
+            EXPRESSION_NUMBER_KIND.create(10)
         );
     }
 
     @Test
     public void testEvaluateStyle() {
         this.evaluateAndValueCheck(
-                "=style(\"text-align: left;\")",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.TEXT_ALIGN,
-                        TextAlign.LEFT
-                )
+            "=style(\"text-align: left;\")",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.TEXT_ALIGN,
+                TextAlign.LEFT
+            )
         );
     }
 
     @Test
     public void testEvaluateStyleGet() {
         this.evaluateAndValueCheck(
-                "=styleGet(hyperlink(\"https://example.com\"), \"color\")",
-                TextNode.hyperlink(
-                                Url.parseAbsolute("https://example.com")
-                        ).textStyle()
-                        .get(TextStylePropertyName.COLOR)
-                        .orElse(null)
+            "=styleGet(hyperlink(\"https://example.com\"), \"color\")",
+            TextNode.hyperlink(
+                    Url.parseAbsolute("https://example.com")
+                ).textStyle()
+                .get(TextStylePropertyName.COLOR)
+                .orElse(null)
         );
     }
 
     @Test
     public void testEvaluateStyleGet2() {
         this.evaluateAndValueCheck(
-                "=styleGet(styleSet(hyperlink(\"https://example.com\"),\"color\",\"#123456\"),\"color\")",
-                TextNode.hyperlink(
-                                Url.parseAbsolute("https://example.com")
-                        ).setTextStyle(
-                                TextStyle.EMPTY.set(
-                                        TextStylePropertyName.COLOR,
-                                        Color.parse("#123456")
-                                )
-                        ).textStyle()
-                        .get(TextStylePropertyName.COLOR)
-                        .orElse(null)
+            "=styleGet(styleSet(hyperlink(\"https://example.com\"),\"color\",\"#123456\"),\"color\")",
+            TextNode.hyperlink(
+                    Url.parseAbsolute("https://example.com")
+                ).setTextStyle(
+                    TextStyle.EMPTY.set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#123456")
+                    )
+                ).textStyle()
+                .get(TextStylePropertyName.COLOR)
+                .orElse(null)
         );
     }
 
     @Test
     public void testEvaluateStyleRemoveWithTextStyleAndString() {
         this.evaluateAndValueCheck(
-                "=styleRemove(\"background-color: #111111; color: #222222\",\"color\")",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.BACKGROUND_COLOR,
-                        Color.parse("#111111")
-                )
+            "=styleRemove(\"background-color: #111111; color: #222222\",\"color\")",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.BACKGROUND_COLOR,
+                Color.parse("#111111")
+            )
         );
     }
 
     @Test
     public void testEvaluateStyleRemoveWithTextNodeAndString() {
         this.evaluateAndValueCheck(
-                "=styleRemove(styledText(\"HelloText\",\"background-color: #111111; color: #222222\"),\"color\")",
-                TextNode.text("HelloText")
-                        .setTextStyle(
-                                TextStyle.EMPTY.set(
-                                        TextStylePropertyName.BACKGROUND_COLOR,
-                                        Color.parse("#111111")
-                                )
-                        )
+            "=styleRemove(styledText(\"HelloText\",\"background-color: #111111; color: #222222\"),\"color\")",
+            TextNode.text("HelloText")
+                .setTextStyle(
+                    TextStyle.EMPTY.set(
+                        TextStylePropertyName.BACKGROUND_COLOR,
+                        Color.parse("#111111")
+                    )
+                )
         );
     }
 
     @Test
     public void testEvaluateStyleSetWithStringAndStringAndString() {
         this.evaluateAndValueCheck(
-                "=styleSet(\"background-color: #111111\",\"color\",\"#222222\")",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.BACKGROUND_COLOR,
-                        Color.parse("#111111")
-                ).set(
-                        TextStylePropertyName.COLOR,
-                        Color.parse("#222222")
-                )
+            "=styleSet(\"background-color: #111111\",\"color\",\"#222222\")",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.BACKGROUND_COLOR,
+                Color.parse("#111111")
+            ).set(
+                TextStylePropertyName.COLOR,
+                Color.parse("#222222")
+            )
         );
     }
 
     @Test
     public void testEvaluateStyleSetWithTextStyleAndStringAndString() {
         this.evaluateAndValueCheck(
-                "=styleSet(style(\"background-color: #111111\"),\"color\",\"#222222\")",
-                TextStyle.EMPTY.set(
-                        TextStylePropertyName.BACKGROUND_COLOR,
-                        Color.parse("#111111")
-                ).set(
-                        TextStylePropertyName.COLOR,
-                        Color.parse("#222222")
-                )
+            "=styleSet(style(\"background-color: #111111\"),\"color\",\"#222222\")",
+            TextStyle.EMPTY.set(
+                TextStylePropertyName.BACKGROUND_COLOR,
+                Color.parse("#111111")
+            ).set(
+                TextStylePropertyName.COLOR,
+                Color.parse("#222222")
+            )
         );
     }
 
     @Test
     public void testEvaluateStyleSetWithTextNodeAndStringAndString() {
         this.evaluateAndValueCheck(
-                "=styleSet(styledText(\"HelloText123\",\"background-color: #111111\"),\"color\",\"#222222\")",
-                TextNode.text("HelloText123")
-                        .setTextStyle(
-                                TextStyle.EMPTY.set(
-                                        TextStylePropertyName.BACKGROUND_COLOR,
-                                        Color.parse("#111111")
-                                ).set(
-                                        TextStylePropertyName.COLOR,
-                                        Color.parse("#222222")
-                                )
-                        )
+            "=styleSet(styledText(\"HelloText123\",\"background-color: #111111\"),\"color\",\"#222222\")",
+            TextNode.text("HelloText123")
+                .setTextStyle(
+                    TextStyle.EMPTY.set(
+                        TextStylePropertyName.BACKGROUND_COLOR,
+                        Color.parse("#111111")
+                    ).set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#222222")
+                    )
+                )
         );
     }
 
     @Test
     public void testEvaluateStyleSetWithTextNodeAndStringAndString2() {
         this.evaluateAndValueCheck(
-                "=styleSet(styledText(\"HelloText123\",style(\"background-color: #111111\")),\"color\",\"#222222\")",
-                TextNode.text("HelloText123")
-                        .setTextStyle(
-                                TextStyle.EMPTY.set(
-                                        TextStylePropertyName.BACKGROUND_COLOR,
-                                        Color.parse("#111111")
-                                ).set(
-                                        TextStylePropertyName.COLOR,
-                                        Color.parse("#222222")
-                                )
-                        )
+            "=styleSet(styledText(\"HelloText123\",style(\"background-color: #111111\")),\"color\",\"#222222\")",
+            TextNode.text("HelloText123")
+                .setTextStyle(
+                    TextStyle.EMPTY.set(
+                        TextStylePropertyName.BACKGROUND_COLOR,
+                        Color.parse("#111111")
+                    ).set(
+                        TextStylePropertyName.COLOR,
+                        Color.parse("#222222")
+                    )
+                )
         );
     }
 
     @Test
     public void testEvaluateStyledText() {
         this.evaluateAndValueCheck(
-                "=styledText(\"Text123\",\"{color:#123456\")",
-                TextNode.text("Text123")
-                        .setTextStyle(
-                                TextStyle.parse("{color:#123456}")
-                        )
+            "=styledText(\"Text123\",\"{color:#123456\")",
+            TextNode.text("Text123")
+                .setTextStyle(
+                    TextStyle.parse("{color:#123456}")
+                )
         );
     }
 
     @Test
     public void testEvaluateSubstitute() {
         this.evaluateAndValueCheck(
-                "=substitute(\"123-456-7890\",\"-\",\"\") ",
-                "1234567890"
+            "=substitute(\"123-456-7890\",\"-\",\"\") ",
+            "1234567890"
         );
     }
 
     @Test
     public void testEvaluateSum() {
         this.evaluateAndValueCheck(
-                "=sum(1,20,300,B1:D1)",
-                Maps.of(
-                        "B1", "1000",
-                        "C1", "2000",
-                        "D1", "9999"
-                ),
-                EXPRESSION_NUMBER_KIND.create(13320)
+            "=sum(1,20,300,B1:D1)",
+            Maps.of(
+                "B1", "1000",
+                "C1", "2000",
+                "D1", "9999"
+            ),
+            EXPRESSION_NUMBER_KIND.create(13320)
         );
     }
 
     @Test
     public void testEvaluateSumMissingCell() {
         this.evaluateAndValueCheck(
-                "=sum(B2)",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=sum(B2)",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateSumMissingCell2() {
         this.evaluateAndValueCheck(
-                "=sum(123+B2)",
-                EXPRESSION_NUMBER_KIND.create(123)
+            "=sum(123+B2)",
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 
     @Test
     public void testEvaluateSumMissingCellRange() {
         this.evaluateAndValueCheck(
-                "=sum(B2:B3)",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=sum(B2:B3)",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateSumMissingCellRange2() {
         this.evaluateAndValueCheck(
-                "=sum(B2:B3,123)",
-                EXPRESSION_NUMBER_KIND.create(123)
+            "=sum(B2:B3,123)",
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 
     @Test
     public void testEvaluateSumMissingCellRange3() {
         this.evaluateAndValueCheck(
-                "=sum(123,B2:B3)",
-                Maps.of(
-                        "B2", "1000"
-                ),
-                EXPRESSION_NUMBER_KIND.create(123 + 1000)
+            "=sum(123,B2:B3)",
+            Maps.of(
+                "B2", "1000"
+            ),
+            EXPRESSION_NUMBER_KIND.create(123 + 1000)
         );
     }
 
     @Test
     public void testEvaluateSumIfOne() {
         this.evaluateAndValueCheck(
-                "=sumIf(123, 123)",
-                EXPRESSION_NUMBER_KIND.create(123)
+            "=sumIf(123, 123)",
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 
     @Test
     public void testEvaluateSumIfZero() {
         this.evaluateAndValueCheck(
-                "=sumIf(123, 456)",
-                EXPRESSION_NUMBER_KIND.zero()
+            "=sumIf(123, 456)",
+            EXPRESSION_NUMBER_KIND.zero()
         );
     }
 
     @Test
     public void testEvaluateSumIfSomeValuesFiltered() {
         this.evaluateAndValueCheck(
-                "=sumIf(A2:A4, \">100\")",
-                Maps.of(
-                        "A2", "=1", //
-                        "A3", "=200", //
-                        "A4", "=\"400\"" // string with number converted
-                ),
-                EXPRESSION_NUMBER_KIND.create(600)
+            "=sumIf(A2:A4, \">100\")",
+            Maps.of(
+                "A2", "=1", //
+                "A3", "=200", //
+                "A4", "=\"400\"" // string with number converted
+            ),
+            EXPRESSION_NUMBER_KIND.create(600)
         );
     }
 
     @Test
     public void testEvaluateSwitchFirst() {
         this.evaluateAndValueCheck(
-                "=switch(1, 1, \"One\", 2, \"Two\", 3, 333)",
-                "One"
+            "=switch(1, 1, \"One\", 2, \"Two\", 3, 333)",
+            "One"
         );
     }
 
     @Test
     public void testEvaluateSwitchFirstString() {
         this.evaluateAndValueCheck(
-                "=switch(\"1\", \"1\", \"One\", 2, \"Two\", 3, 333)",
-                "One"
+            "=switch(\"1\", \"1\", \"One\", 2, \"Two\", 3, 333)",
+            "One"
         );
     }
 
     @Test
     public void testEvaluateSwitchSecond() {
         this.evaluateAndValueCheck(
-                "=switch(\"TWO22\", 1, \"One\", \"Two22\", \"Two\", 3, 333, \"switch-default\")",
-                "Two"
+            "=switch(\"TWO22\", 1, \"One\", \"Two22\", \"Two\", 3, 333, \"switch-default\")",
+            "Two"
         );
     }
 
     @Test
     public void testEvaluateSwitchDefaults() {
         this.evaluateAndValueCheck(
-                "=switch(999, 1, \"One\", 22, \"Two\", 3, 333, \"switch-default\")",
-                "switch-default"
+            "=switch(999, 1, \"One\", 22, \"Two\", 3, 333, \"switch-default\")",
+            "switch-default"
         );
     }
 
     @Test
     public void testEvaluateTanWithNumber() {
         this.evaluateAndValueCheck(
-                "=tan(2)",
-                EXPRESSION_NUMBER_KIND.create(-2.18504)
+            "=tan(2)",
+            EXPRESSION_NUMBER_KIND.create(-2.18504)
         );
     }
 
     @Test
     public void testEvaluateTanWithString() {
         this.evaluateAndValueCheck(
-                "=tan(\"2\")",
-                EXPRESSION_NUMBER_KIND.create(-2.18504)
+            "=tan(\"2\")",
+            EXPRESSION_NUMBER_KIND.create(-2.18504)
         );
     }
 
     @Test
     public void testEvaluateTanhWithNumber() {
         this.evaluateAndValueCheck(
-                "=tanh(2)",
-                EXPRESSION_NUMBER_KIND.create(0.9640276)
+            "=tanh(2)",
+            EXPRESSION_NUMBER_KIND.create(0.9640276)
         );
     }
 
     @Test
     public void testEvaluateTanhWithString() {
         this.evaluateAndValueCheck(
-                "=tanh(\"2\")",
-                EXPRESSION_NUMBER_KIND.create(0.9640276)
+            "=tanh(\"2\")",
+            EXPRESSION_NUMBER_KIND.create(0.9640276)
         );
     }
 
     @Test
     public void testEvaluateTemplateWithPlainTextString() {
         this.evaluateAndValueCheck(
-                "=template(\"Hello World 123\")",
-                "Hello World 123"
+            "=template(\"Hello World 123\")",
+            "Hello World 123"
         );
     }
 
     @Test
     public void testEvaluateTemplateWithNamedParameter() {
         this.evaluateAndValueCheck(
-                "=template(\"Hello ${hello} !!!\", \"hello\", \"WORLD\")",
-                "Hello WORLD !!!"
+            "=template(\"Hello ${hello} !!!\", \"hello\", \"WORLD\")",
+            "Hello WORLD !!!"
         );
     }
 
     @Test
     public void testEvaluateTemplateWithNamedParameter2() {
         this.evaluateAndValueCheck(
-                "=template(\"Hello ${hello1} and ${hello2} !!!\", \"hello1\", \"WORLD\", \"hello2\", \"WORLD2\")",
-                "Hello WORLD and WORLD2 !!!"
+            "=template(\"Hello ${hello1} and ${hello2} !!!\", \"hello1\", \"WORLD\", \"hello2\", \"WORLD2\")",
+            "Hello WORLD and WORLD2 !!!"
         );
     }
 
     @Test
     public void testEvaluateTemplateWithExpression() {
         this.evaluateAndValueCheck(
-                "=template(\"Before ${sum(1,2,3)} After\")",
+            "=template(\"Before ${sum(1,2,3)} After\")",
             "Before 6 After"
         );
     }
@@ -3298,8 +3298,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateTemplateWithUnknownLabel() {
         this.evaluateAndValueCheck(
-                "=template(\"${Hello} 123\")",
-                "#NAME? 123"
+            "=template(\"${Hello} 123\")",
+            "#NAME? 123"
         );
     }
 
@@ -3308,28 +3308,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
         final SpreadsheetMetadata metadata = this.metadata()
-                .set(
-                        SpreadsheetMetadataPropertyName.TEXT_FORMATTER,
-                        SpreadsheetPattern.DEFAULT_TEXT_FORMAT_PATTERN.spreadsheetFormatterSelector()
-                );
+            .set(
+                SpreadsheetMetadataPropertyName.TEXT_FORMATTER,
+                SpreadsheetPattern.DEFAULT_TEXT_FORMAT_PATTERN.spreadsheetFormatterSelector()
+            );
 
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
         metadataStore.save(metadata);
 
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
-                SpreadsheetCellStores.treeMap(),
-                SpreadsheetCellReferencesStores.treeMap(),
-                SpreadsheetColumnStores.treeMap(),
-                SpreadsheetFormStores.treeMap(),
-                SpreadsheetGroupStores.treeMap(),
-                SpreadsheetLabelStores.treeMap(),
-                SpreadsheetLabelReferencesStores.treeMap(),
-                metadataStore,
-                SpreadsheetCellRangeStores.treeMap(),
-                SpreadsheetCellRangeStores.treeMap(),
-                SpreadsheetRowStores.treeMap(),
+            SpreadsheetCellStores.treeMap(),
+            SpreadsheetCellReferencesStores.treeMap(),
+            SpreadsheetColumnStores.treeMap(),
+            SpreadsheetFormStores.treeMap(),
+            SpreadsheetGroupStores.treeMap(),
+            SpreadsheetLabelStores.treeMap(),
+            SpreadsheetLabelReferencesStores.treeMap(),
+            metadataStore,
+            SpreadsheetCellRangeStores.treeMap(),
+            SpreadsheetCellRangeStores.treeMap(),
+            SpreadsheetRowStores.treeMap(),
             Storages.tree(),
-                SpreadsheetUserStores.treeMap()
+            SpreadsheetUserStores.treeMap()
         );
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
@@ -3363,252 +3363,252 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
 
         engine.saveLabel(
-                SpreadsheetSelection.labelName("Hello")
-                        .setLabelMappingReference(labelTarget),
-                context
+            SpreadsheetSelection.labelName("Hello")
+                .setLabelMappingReference(labelTarget),
+            context
         );
 
         engine.saveCell(
-                labelTarget.setFormula(
-                        SpreadsheetFormula.EMPTY.setValue(
-                                Optional.of("WORLD")
-                        )
-                ),
-                context
+            labelTarget.setFormula(
+                SpreadsheetFormula.EMPTY.setValue(
+                    Optional.of("WORLD")
+                )
+            ),
+            context
         );
 
         final SpreadsheetCell cell = SpreadsheetSelection.A1.setFormula(
-                SpreadsheetFormula.EMPTY.setText("=template(\"${Hello} 123\")")
+            SpreadsheetFormula.EMPTY.setText("=template(\"${Hello} 123\")")
         );
 
         final SpreadsheetCell saved = engine.saveCell(
-                        cell,
-                        context
-                ).cell(cell.reference())
-                .get();
+                cell,
+                context
+            ).cell(cell.reference())
+            .get();
 
         this.checkEquals(
-                TextNode.text("WORLD 123"),
-                saved.formattedValue()
-                        .orElse(null)
+            TextNode.text("WORLD 123"),
+            saved.formattedValue()
+                .orElse(null)
         );
     }
 
     @Test
     public void testEvaluateTextWithDate() {
         this.evaluateAndValueCheck(
-                "=text(date(1999,12,31), \"yyyy mm dd\")",
-                "1999 12 31"
+            "=text(date(1999,12,31), \"yyyy mm dd\")",
+            "1999 12 31"
         );
     }
 
     @Test
     public void testEvaluateTextWithDateTime() {
         this.evaluateAndValueCheck(
-                "=text(now(), \"yyyy mm dd hh mm ss\")",
-                "1999 12 31 12 58 00"
+            "=text(now(), \"yyyy mm dd hh mm ss\")",
+            "1999 12 31 12 58 00"
         );
     }
 
     @Test
     public void testEvaluateTextWithNumber() {
         this.evaluateAndValueCheck(
-                "=text(123.5, \"$0000.0000$\")",
-                "$0123.5000$"
+            "=text(123.5, \"$0000.0000$\")",
+            "$0123.5000$"
         );
     }
 
     @Test
     public void testEvaluateTextWithString() {
         this.evaluateAndValueCheck(
-                "=text(\"abc\", \"Ignored-pattern\")",
-                "abc"
+            "=text(\"abc\", \"Ignored-pattern\")",
+            "abc"
         );
     }
 
     @Test
     public void testEvaluateTextWithTime() {
         this.evaluateAndValueCheck(
-                "=text(time(12,58,59), \"ss hh mm\")",
-                "59 12 58"
+            "=text(time(12,58,59), \"ss hh mm\")",
+            "59 12 58"
         );
     }
 
     @Test
     public void testEvaluateTextJoin() {
         this.evaluateAndFormattedCheck(
-                "=textJoin(\",\", true(), \"a\", \"b\", \"\", \"d\")",
-                TextNode.text("a,b,da,b,d")
+            "=textJoin(\",\", true(), \"a\", \"b\", \"\", \"d\")",
+            TextNode.text("a,b,da,b,d")
         );
     }
 
     @Test
     public void testEvaluateTextMatchWithStringLiteral() {
         this.evaluateAndValueCheck(
-                "=textMatch(\"*e*\", \"Hello\")",
-                true
+            "=textMatch(\"*e*\", \"Hello\")",
+            true
         );
     }
 
     @Test
     public void testEvaluateTime() {
         this.evaluateAndValueCheck(
-                "=time(12, 58, 59)",
-                LocalTime.of(12, 58, 59)
+            "=time(12, 58, 59)",
+            LocalTime.of(12, 58, 59)
         );
     }
 
     @Test
     public void testEvaluateTWithText() {
         this.evaluateAndValueCheck(
-                "=t(\"abc123\")",
-                "abc123"
+            "=t(\"abc123\")",
+            "abc123"
         );
     }
 
     @Test
     public void testEvaluateToday() {
         this.evaluateAndValueCheck(
-                "=today()",
-                NOW.now()
-                        .toLocalDate()
+            "=today()",
+            NOW.now()
+                .toLocalDate()
         );
     }
 
     @Test
     public void testEvaluateToGrayWithColor() {
         this.evaluateAndValueCheck(
-                "=toGray(color(\"#123\"))",
-                Color.parse("#123")
-                        .toRgb()
-                        .toGray()
+            "=toGray(color(\"#123\"))",
+            Color.parse("#123")
+                .toRgb()
+                .toGray()
         );
     }
 
     @Test
     public void testEvaluateToGrayWithStringRgb() {
         this.evaluateAndValueCheck(
-                "=toGray(\"#123\")",
-                Color.parse("#123")
-                        .toRgb()
-                        .toGray()
+            "=toGray(\"#123\")",
+            Color.parse("#123")
+                .toRgb()
+                .toGray()
         );
     }
 
     @Test
     public void testEvaluateToRgbHexStringWithColor() {
         this.evaluateAndValueCheck(
-                "=toRgbHexString(color(\"#123456\"))",
-                Color.parse("#123456")
-                        .toRgb()
-                        .toHexString()
+            "=toRgbHexString(color(\"#123456\"))",
+            Color.parse("#123456")
+                .toRgb()
+                .toHexString()
         );
     }
 
     @Test
     public void testEvaluateToRgbHexStringWithString() {
         this.evaluateAndValueCheck(
-                "=toRgbHexString(\"#123456\")",
-                Color.parse("#123456")
-                        .toRgb()
-                        .toHexString()
+            "=toRgbHexString(\"#123456\")",
+            Color.parse("#123456")
+                .toRgb()
+                .toHexString()
         );
     }
 
     @Test
     public void testEvaluateTrim() {
         this.evaluateAndValueCheck(
-                "=trim(\"  a  b  c  \")",
-                "a b c"
+            "=trim(\"  a  b  c  \")",
+            "a b c"
         );
     }
 
     @Test
     public void testEvaluateTrue() {
         this.evaluateAndValueCheck(
-                "=true()",
-                Boolean.TRUE
+            "=true()",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateTrue2() {
         this.evaluateAndValueCheck(
-                "=true()",
-                Maps.of("A2", "=true()"),
-                Boolean.TRUE
+            "=true()",
+            Maps.of("A2", "=true()"),
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateTrunc() {
         this.evaluateAndValueCheck(
-                "=trunc(999.999,1)",
-                EXPRESSION_NUMBER_KIND.create(999.9)
+            "=trunc(999.999,1)",
+            EXPRESSION_NUMBER_KIND.create(999.9)
         );
     }
 
     @Test
     public void testEvaluateTruncWithNegativePlaces() {
         this.evaluateAndValueCheck(
-                "=trunc(999.999,-2)",
-                EXPRESSION_NUMBER_KIND.create(900)
+            "=trunc(999.999,-2)",
+            EXPRESSION_NUMBER_KIND.create(900)
         );
     }
 
     @Test
     public void testEvaluateTruncWithNegativePlacesStrings() {
         this.evaluateAndValueCheck(
-                "=trunc(\"999.999\",\"-2\")",
-                EXPRESSION_NUMBER_KIND.create(900)
+            "=trunc(\"999.999\",\"-2\")",
+            EXPRESSION_NUMBER_KIND.create(900)
         );
     }
 
     @Test
     public void testEvaluateTypeWithNumber() {
         this.evaluateAndValueCheck(
-                "=type(123)",
-                EXPRESSION_NUMBER_KIND.one()
+            "=type(123)",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateTypeWithDate() {
         this.evaluateAndValueCheck(
-                "=type(date(2000, 1, 1))",
-                EXPRESSION_NUMBER_KIND.one()
+            "=type(date(2000, 1, 1))",
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
     @Test
     public void testEvaluateTypeWithErrorDivByZero() {
         this.evaluateAndValueCheck(
-                "=type(1/0)",
-                EXPRESSION_NUMBER_KIND.create(16)
+            "=type(1/0)",
+            EXPRESSION_NUMBER_KIND.create(16)
         );
     }
 
     @Test
     public void testEvaluateUnichar97() {
         this.evaluateAndValueCheck(
-                "=unichar(97)",
-                'a'
+            "=unichar(97)",
+            'a'
         );
     }
 
     @Test
     public void testEvaluateUnichar1000() {
         this.evaluateAndValueCheck(
-                "=unichar(1000)",
-                Character.valueOf((char) 1000)
+            "=unichar(1000)",
+            Character.valueOf((char) 1000)
         );
     }
 
     @Test
     public void testEvaluateUnicodeA() {
         this.evaluateAndValueCheck(
-                "=unicode(\"A\")",
-                EXPRESSION_NUMBER_KIND.create((int) 'A')
+            "=unicode(\"A\")",
+            EXPRESSION_NUMBER_KIND.create((int) 'A')
         );
     }
 
@@ -3616,125 +3616,125 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateUnicodeChar1000() {
         final char c = 1000;
         this.evaluateAndValueCheck(
-                "=unicode(\"" + c + "\")",
-                EXPRESSION_NUMBER_KIND.create((int) c)
+            "=unicode(\"" + c + "\")",
+            EXPRESSION_NUMBER_KIND.create((int) c)
         );
     }
 
     @Test
     public void testEvaluateUpperWithNumber() {
         this.evaluateAndValueCheck(
-                "=upper(1.25)",
-                this.metadataWithStrangeNumberFormatPattern(),
-                "1.25"
+            "=upper(1.25)",
+            this.metadataWithStrangeNumberFormatPattern(),
+            "1.25"
         );
     }
 
     @Test
     public void testEvaluateUpperWithString() {
         this.evaluateAndValueCheck(
-                "=upper(\"ABCxyz\")",
-                this.metadataWithStrangeNumberFormatPattern(),
-                "ABCXYZ"
+            "=upper(\"ABCxyz\")",
+            this.metadataWithStrangeNumberFormatPattern(),
+            "ABCXYZ"
         );
     }
 
     @Test
     public void testEvaluateValueWithNumber() {
         this.evaluateAndValueCheck(
-                "=value(123)",
-                EXPRESSION_NUMBER_KIND.create(123)
+            "=value(123)",
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 
     @Test
     public void testEvaluateValidationError() {
         this.evaluateAndValueCheck(
-                "=ValidationError(\"#N/A Hello message 123\")",
-                ValidationError.with(
-                        SpreadsheetSelection.A1,
-                        "Hello message 123"
-                )
+            "=ValidationError(\"#N/A Hello message 123\")",
+            ValidationError.with(
+                SpreadsheetSelection.A1,
+                "Hello message 123"
+            )
         );
     }
 
     @Test
     public void testEvaluateValueWithString() {
         this.evaluateAndValueCheck(
-                "=value(\"123\")",
-                EXPRESSION_NUMBER_KIND.create(123)
+            "=value(\"123\")",
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 
     @Test
     public void testEvaluateValueWithInvalidString() {
         this.evaluateAndValueCheck(
-                "=value(\"abc\")",
-                SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"abc\" to ExpressionNumber")
+            "=value(\"abc\")",
+            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"abc\" to ExpressionNumber")
         );
     }
 
     @Test
     public void testEvaluateWeekday() {
         this.evaluateAndValueCheck(
-                "=weekday(date(2022, 5, 12))",
-                EXPRESSION_NUMBER_KIND.create(5)
+            "=weekday(date(2022, 5, 12))",
+            EXPRESSION_NUMBER_KIND.create(5)
         );
     }
 
     @Test
     public void testEvaluateWeeknum() {
         this.evaluateAndValueCheck(
-                "=weeknum(date(2000, 2, 1))",
-                EXPRESSION_NUMBER_KIND.create(6)
+            "=weeknum(date(2000, 2, 1))",
+            EXPRESSION_NUMBER_KIND.create(6)
         );
     }
 
     @Test
     public void testEvaluateYear() {
         this.evaluateAndValueCheck(
-                "=year(date(1999, 12, 31))",
-                EXPRESSION_NUMBER_KIND.create(1999)
+            "=year(date(1999, 12, 31))",
+            EXPRESSION_NUMBER_KIND.create(1999)
         );
     }
 
     @Test
     public void testEvaluateXorTrueTrueTrue() {
         this.evaluateAndValueCheck(
-                "=xor(true(), true(), true())",
-                Boolean.TRUE
+            "=xor(true(), true(), true())",
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testEvaluateXorFalseFalseTrue() {
         this.evaluateAndValueCheck(
-                "=xor(true(), false(), true())",
-                Boolean.FALSE
+            "=xor(true(), false(), true())",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateXorFalseFalseFalseFalse() {
         this.evaluateAndValueCheck(
-                "=xor(false(), false(), false(), false())",
-                Boolean.FALSE
+            "=xor(false(), false(), false(), false())",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateXorFalseFalseFalseFalseStringLiterals() {
         this.evaluateAndValueCheck(
-                "=xor(\"false\", \"false\", \"false\", \"false\")",
-                Boolean.FALSE
+            "=xor(\"false\", \"false\", \"false\", \"false\")",
+            Boolean.FALSE
         );
     }
 
     @Test
     public void testEvaluateXorTrueFalseStringLiterals() {
         this.evaluateAndValueCheck(
-                "=xor(\"true\", \"false\")",
-                Boolean.TRUE
+            "=xor(\"true\", \"false\")",
+            Boolean.TRUE
         );
     }
 
@@ -3877,19 +3877,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private SpreadsheetEngineContext evaluateAndValueCheck(final String formula,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText(formula)
-                ),
-                expectedValue
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formula)
+            ),
+            expectedValue
         );
     }
 
     private SpreadsheetEngineContext evaluateAndValueCheck(final SpreadsheetCell save,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                save,
-                Maps.empty(),
-                expectedValue
+            save,
+            Maps.empty(),
+            expectedValue
         );
     }
 
@@ -3897,11 +3897,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                            final SpreadsheetMetadata metadata,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText(formula)
-                ),
-                metadata,
-                expectedValue
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formula)
+            ),
+            metadata,
+            expectedValue
         );
     }
 
@@ -3909,10 +3909,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                            final SpreadsheetMetadata metadata,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                save,
-                Maps.empty(),
-                metadata,
-                expectedValue
+            save,
+            Maps.empty(),
+            metadata,
+            expectedValue
         );
     }
 
@@ -3920,12 +3920,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                            final Map<String, String> preload,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText(formula)
-                ),
-                preload,
-                this.metadata(),
-                expectedValue
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formula)
+            ),
+            preload,
+            this.metadata(),
+            expectedValue
         );
     }
 
@@ -3933,10 +3933,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                            final Map<String, String> preload,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                save,
-                preload,
-                this.metadata(),
-                expectedValue
+            save,
+            preload,
+            this.metadata(),
+            expectedValue
         );
     }
 
@@ -3945,12 +3945,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                            final SpreadsheetMetadata metadata,
                                                            final Object expectedValue) {
         return this.evaluateAndValueCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText(formula)
-                ),
-                preload,
-                metadata,
-                expectedValue
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formula)
+            ),
+            preload,
+            metadata,
+            expectedValue
         );
     }
 
@@ -3959,22 +3959,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                            final SpreadsheetMetadata metadata,
                                                            final Object expectedValue) {
         return this.evaluateAndCheck(
-                save,
-                preload,
-                metadata,
-                Optional.ofNullable(expectedValue),
-                null // not checking formatted
+            save,
+            preload,
+            metadata,
+            Optional.ofNullable(expectedValue),
+            null // not checking formatted
         );
     }
 
     private void evaluateAndFormattedCheck(final String formula,
                                            final TextNode expectedValue) {
         this.evaluateAndFormattedCheck(
-                SpreadsheetSelection.A1.setFormula(
-                        SpreadsheetFormula.EMPTY.setText(formula)
-                ),
-                Maps.empty(),
-                expectedValue
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formula)
+            ),
+            Maps.empty(),
+            expectedValue
         );
     }
 
@@ -3982,10 +3982,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                                final Map<String, String> preload,
                                                                final TextNode expectedFormatted) {
         return this.evaluateAndCheck(
-                save,
-                preload,
-                null, // no value
-                Optional.ofNullable(expectedFormatted)
+            save,
+            preload,
+            null, // no value
+            Optional.ofNullable(expectedFormatted)
         );
     }
 
@@ -3994,60 +3994,60 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                       final Optional<?> expectedValue,
                                                       final Optional<TextNode> formatted) {
         return this.evaluateAndCheck(
-                save,
-                preload,
-                this.metadata(),
-                expectedValue,
-                formatted
+            save,
+            preload,
+            this.metadata(),
+            expectedValue,
+            formatted
         );
     }
 
     private SpreadsheetMetadata metadata() {
         return SpreadsheetMetadata.EMPTY
-                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
-                .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-                .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
-                .loadFromLocale(
-                        LocaleContexts.jre(LOCALE)
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
+            .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
+            .loadFromLocale(
+                LocaleContexts.jre(LOCALE)
+            )
+            .set(
+                SpreadsheetMetadataPropertyName.AUDIT_INFO,
+                AuditInfo.with(
+                    EmailAddress.parse("creator@example.com"),
+                    LocalDateTime.of(1999, 12, 31, 12, 58, 59),
+                    EmailAddress.parse("modified@example.com"),
+                    LocalDateTime.of(2000, 1, 2, 3, 4, 5)
                 )
-                .set(
-                        SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                        AuditInfo.with(
-                                EmailAddress.parse("creator@example.com"),
-                                LocalDateTime.of(1999, 12, 31, 12, 58, 59),
-                                EmailAddress.parse("modified@example.com"),
-                                LocalDateTime.of(2000, 1, 2, 3, 4, 5)
-                        )
-                ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-                .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
-                .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
-                .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
-                .set(
-                        SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                    ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, url)")
-                ).set(
-                        SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-                        EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
-                                .aliasSet()
-                ).set(
-                        SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
+            ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
+            .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+            .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
+            .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
+            .set(
+                SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                 ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, url)")
-                ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
-                .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
-                .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
-                .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
-                .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
-                .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
-                .set(
-                        SpreadsheetMetadataPropertyName.STYLE,
-                        TextStyle.EMPTY.set(TextStylePropertyName.WIDTH, Length.pixel(50.0))
-                                .set(TextStylePropertyName.HEIGHT, Length.pixel(50.0))
-                );
+            ).set(
+                SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+                EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
+                    .aliasSet()
+            ).set(
+                SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
+                ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, url)")
+            ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
+            .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
+            .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
+            .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
+            .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
+            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
+            .set(
+                SpreadsheetMetadataPropertyName.STYLE,
+                TextStyle.EMPTY.set(TextStylePropertyName.WIDTH, Length.pixel(50.0))
+                    .set(TextStylePropertyName.HEIGHT, Length.pixel(50.0))
+            );
     }
 
     private SpreadsheetMetadata metadataWithStrangeNumberFormatPattern() {
         return this.metadata()
-                .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("\"Number:\"#.###").spreadsheetFormatterSelector());
+            .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("\"Number:\"#.###").spreadsheetFormatterSelector());
     }
 
     private SpreadsheetEngineContext evaluateAndCheck(final SpreadsheetCell save,
@@ -4086,9 +4086,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             final String formula = referenceToExpression.getValue();
 
             engine.saveCell(
-                    SpreadsheetSelection.parseCell(reference)
-                            .setFormula(SpreadsheetFormula.EMPTY.setText(formula)),
-                    context
+                SpreadsheetSelection.parseCell(reference)
+                    .setFormula(SpreadsheetFormula.EMPTY.setText(formula)),
+                context
             );
         }
 
@@ -4096,31 +4096,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetFormula cellFormula = save.formula();
 
         final SpreadsheetCell saved = engine.saveCell(
-                        save,
-                        context
-                ).cell(cellReference)
-                .orElseThrow(() -> new AssertionError("Missing " + cellReference + " after saving " + cellFormula));
+                save,
+                context
+            ).cell(cellReference)
+            .orElseThrow(() -> new AssertionError("Missing " + cellReference + " after saving " + cellFormula));
 
         if (null != formatted) {
             this.checkEquals(
-                    formatted,
-                    saved.formattedValue(),
-                    cellReference + "=" + cellFormula + "\n" +
-                            preload.entrySet().stream()
-                                    .map(e -> e.getKey() + "=" + e.getValue())
-                                    .collect(Collectors.joining("\n"))
+                formatted,
+                saved.formattedValue(),
+                cellReference + "=" + cellFormula + "\n" +
+                    preload.entrySet().stream()
+                        .map(e -> e.getKey() + "=" + e.getValue())
+                        .collect(Collectors.joining("\n"))
             );
         }
 
         if (null != expectedValue) {
             this.checkEquals(
-                    expectedValue,
-                    saved.formula()
-                            .errorOrValue(),
-                    cellReference + "=" + cellFormula + "\n" +
-                            preload.entrySet().stream()
-                                    .map(e -> e.getKey() + "=" + e.getValue())
-                                    .collect(Collectors.joining("\n"))
+                expectedValue,
+                saved.formula()
+                    .errorOrValue(),
+                cellReference + "=" + cellFormula + "\n" +
+                    preload.entrySet().stream()
+                        .map(e -> e.getKey() + "=" + e.getValue())
+                        .collect(Collectors.joining("\n"))
             );
         }
 
@@ -4197,50 +4197,50 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> provider = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
         provider.expressionFunctionInfos()
-                .forEach(
-                        i -> {
-                            final boolean pure;
+            .forEach(
+                i -> {
+                    final boolean pure;
 
-                            final ExpressionFunctionName name = i.name();
+                    final ExpressionFunctionName name = i.name();
 
-                            switch (name.value().toLowerCase()) {
-                                case "now":
-                                case "today":
-                                case "rand":
-                                case "randbetween":
-                                case "offset":
-                                case "cell":
-                                case "info":
-                                case "getenv":
-                                case "getlocale":
-                                case "getuser":
-                                case "print":
-                                case "println":
-                                case "readline":
-                                case "removeenv":
-                                case "setenv":
-                                case "setlocale":
-                                    pure = false;
-                                    break;
-                                default:
-                                    pure = true;
-                                    break;
-                            }
+                    switch (name.value().toLowerCase()) {
+                        case "now":
+                        case "today":
+                        case "rand":
+                        case "randbetween":
+                        case "offset":
+                        case "cell":
+                        case "info":
+                        case "getenv":
+                        case "getlocale":
+                        case "getuser":
+                        case "print":
+                        case "println":
+                        case "readline":
+                        case "removeenv":
+                        case "setenv":
+                        case "setlocale":
+                            pure = false;
+                            break;
+                        default:
+                            pure = true;
+                            break;
+                    }
 
-                            final ExpressionFunction<?, SpreadsheetExpressionEvaluationContext> function = provider.expressionFunction(
-                                    name,
-                                    Lists.empty(),
-                                    PROVIDER_CONTEXT
-                            );
-                            if (function.isPure(context) != pure) {
-                                pureFunctions.add(function);
-                            }
-                        });
+                    final ExpressionFunction<?, SpreadsheetExpressionEvaluationContext> function = provider.expressionFunction(
+                        name,
+                        Lists.empty(),
+                        PROVIDER_CONTEXT
+                    );
+                    if (function.isPure(context) != pure) {
+                        pureFunctions.add(function);
+                    }
+                });
 
         this.checkEquals(
-                Lists.empty(),
-                pureFunctions,
-                () -> "functions"
+            Lists.empty(),
+            pureFunctions,
+            () -> "functions"
         );
     }
 
@@ -4250,11 +4250,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testReadmePrintFunctionList() {
         SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-                .expressionFunctionInfos()
-                .forEach(
-                        i ->
-                                System.out.println("  - " + i.name())
-                );
+            .expressionFunctionInfos()
+            .forEach(
+                i ->
+                    System.out.println("  - " + i.name())
+            );
     }
 
     // PublicStaticHelperTesting........................................................................................
