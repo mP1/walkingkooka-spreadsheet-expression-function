@@ -39,6 +39,7 @@ majority of these functions are formula expression functions.
 - atan
 - average
 - averageIf
+- badge
 - base
 - bin2dec
 - bin2hex

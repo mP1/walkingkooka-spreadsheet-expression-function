@@ -180,6 +180,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.atan(),
                     SpreadsheetExpressionFunctions.average(),
                     SpreadsheetExpressionFunctions.averageIf(),
+                    SpreadsheetExpressionFunctions.badge(),
                     SpreadsheetExpressionFunctions.base(),
                     SpreadsheetExpressionFunctions.bin2dec(),
                     SpreadsheetExpressionFunctions.bin2hex(),

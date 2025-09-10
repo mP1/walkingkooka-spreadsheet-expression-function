@@ -52,6 +52,7 @@ import walkingkooka.tree.expression.function.number.NumberExpressionFunctions;
 import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomteryExpressionFunctions;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
+import walkingkooka.tree.text.Badge;
 import walkingkooka.tree.text.Hyperlink;
 import walkingkooka.tree.text.Image;
 import walkingkooka.tree.text.Styleable;
@@ -230,6 +231,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> averageIf() {
         return SpreadsheetExpressionFunctionNumberIf.averageIf();
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions.badge}
+     */
+    public static ExpressionFunction<Badge, SpreadsheetExpressionEvaluationContext> badge() {
+        return fixName(
+            TreeTextExpressionFunctions.badge()
+        );
     }
 
     /**
