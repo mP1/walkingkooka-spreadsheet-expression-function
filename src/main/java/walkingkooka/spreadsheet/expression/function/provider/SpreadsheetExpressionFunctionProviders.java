@@ -274,6 +274,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.left(),
                     SpreadsheetExpressionFunctions.len(),
                     SpreadsheetExpressionFunctions.let(),
+                    SpreadsheetExpressionFunctions.list(),
                     SpreadsheetExpressionFunctions.ln(),
                     SpreadsheetExpressionFunctions.log(),
                     SpreadsheetExpressionFunctions.log10(),

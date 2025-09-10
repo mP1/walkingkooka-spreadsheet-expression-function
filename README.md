@@ -133,6 +133,7 @@ majority of these functions are formula expression functions.
 - left
 - len
 - let
+- list
 - ln
 - log
 - log10

@@ -64,6 +64,7 @@ import walkingkooka.validation.provider.ValidatorSelector;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -1042,6 +1043,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> let() {
         return SpreadsheetExpressionFunctionObjectLet.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionList}
+     */
+    public static ExpressionFunction<List<?>, SpreadsheetExpressionEvaluationContext> list() {
+        return SpreadsheetExpressionFunctionList.INSTANCE;
     }
 
     /**
