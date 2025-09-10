@@ -36,21 +36,21 @@ import java.util.Optional;
 abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> {
 
     final static ExpressionFunctionParameter<SpreadsheetCellReference> REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetCellReference.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(SpreadsheetCellReference.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE = ExpressionFunctionParameterName.with("reference")
-            .required(SpreadsheetExpressionReference.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(SpreadsheetExpressionReference.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static ExpressionFunctionParameter<SpreadsheetExpressionReference> CELL_OR_RANGE_REFERENCE_OPTIONAL = ExpressionFunctionParameterName.with("reference")
-            .optional(SpreadsheetExpressionReference.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .optional(SpreadsheetExpressionReference.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     SpreadsheetExpressionFunction(final String name) {
         super();
         this.name = Optional.of(
-                SpreadsheetExpressionFunctions.name(name)
+            SpreadsheetExpressionFunctions.name(name)
         );
     }
 
@@ -67,15 +67,15 @@ abstract class SpreadsheetExpressionFunction<T> implements ExpressionFunction<T,
     @Override
     public final boolean isPure(final ExpressionPurityContext context) {
         return !(
-                this instanceof SpreadsheetExpressionFunctionObjectCell ||
-                        this instanceof SpreadsheetExpressionFunctionOffset
+            this instanceof SpreadsheetExpressionFunctionObjectCell ||
+                this instanceof SpreadsheetExpressionFunctionOffset
         );
     }
 
     @Override
     public final String toString() {
         return this.name()
-                .get()
-                .toString();
+            .get()
+            .toString();
     }
 }

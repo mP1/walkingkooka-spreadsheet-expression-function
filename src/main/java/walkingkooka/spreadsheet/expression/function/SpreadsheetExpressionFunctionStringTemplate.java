@@ -53,12 +53,12 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
      * A {@link String} or text that holds the template.
      */
     final static ExpressionFunctionParameter<String> TEMPLATE = ExpressionFunctionParameter.with(
-            ExpressionFunctionParameterName.with("template"),
-            String.class,
-            ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
-            ExpressionFunctionParameterCardinality.REQUIRED,
+        ExpressionFunctionParameterName.with("template"),
+        String.class,
+        ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
+        ExpressionFunctionParameterCardinality.REQUIRED,
         Optional.empty(), // defaultValue
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
     @Override
@@ -73,12 +73,12 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
         for (int i = 1; i < count; i++) {
             if (-1 == missingParameterValue) {
                 parameters.add(
-                        parameterName(parameterCounter)
+                    parameterName(parameterCounter)
                 );
                 missingParameterValue = parameterCounter;
             } else {
                 parameters.add(
-                        parameterValue(parameterCounter)
+                    parameterValue(parameterCounter)
                 );
                 parameterCounter++;
                 missingParameterValue = -1;
@@ -94,7 +94,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
 
     private static ExpressionFunctionParameter<TemplateValueName> parameterName(final int parameter) {
         return TEMPLATE_VALUE_NAME_PARAMETER.setName(
-                ExpressionFunctionParameterName.with("templateValueName" + parameter)
+            ExpressionFunctionParameterName.with("templateValueName" + parameter)
         );
     }
 
@@ -102,17 +102,17 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
      * The name will be replaced when the parameter list is built.
      */
     final static ExpressionFunctionParameter<TemplateValueName> TEMPLATE_VALUE_NAME_PARAMETER = ExpressionFunctionParameter.with(
-            ExpressionFunctionParameterName.with("templateValueName1"),
-            TemplateValueName.class,
-            ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
-            ExpressionFunctionParameterCardinality.REQUIRED,
+        ExpressionFunctionParameterName.with("templateValueName1"),
+        TemplateValueName.class,
+        ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
+        ExpressionFunctionParameterCardinality.REQUIRED,
         Optional.empty(), // defaultValue
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
     private static ExpressionFunctionParameter<Object> parameterValue(final int parameter) {
         return TEMPLATE_VALUE_PARAMETER.setName(
-                ExpressionFunctionParameterName.with("templateValue" + parameter)
+            ExpressionFunctionParameterName.with("templateValue" + parameter)
         );
     }
 
@@ -120,12 +120,12 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
      * The name will be replaced when the parameter list is built.
      */
     final static ExpressionFunctionParameter<Object> TEMPLATE_VALUE_PARAMETER = ExpressionFunctionParameter.with(
-            ExpressionFunctionParameterName.with("templateValue1"),
-            Object.class,
-            ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
-            ExpressionFunctionParameterCardinality.REQUIRED,
+        ExpressionFunctionParameterName.with("templateValue1"),
+        Object.class,
+        ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
+        ExpressionFunctionParameterCardinality.REQUIRED,
         Optional.empty(), // defaultValue
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+        ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
     @Override
@@ -137,42 +137,42 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
 
         // TODO would be good to be able to pass templates as values.
         return SpreadsheetTemplateContexts.spreadsheet(
-                context.spreadsheetMetadata()
-                        .spreadsheetParserContext(
-                                context.cell(),
-                                LocaleContexts.jre(
-                                        context.locale() // TODO
-                                ), // LocaleContext
-                                context::now
-                        ), // SpreadsheetParserContext
-                context, // SpreadsheetExpressionEvaluationContext
-                (final TemplateValueName name) -> {
-                    Expression value = null;
+            context.spreadsheetMetadata()
+                .spreadsheetParserContext(
+                    context.cell(),
+                    LocaleContexts.jre(
+                        context.locale() // TODO
+                    ), // LocaleContext
+                    context::now
+                ), // SpreadsheetParserContext
+            context, // SpreadsheetExpressionEvaluationContext
+            (final TemplateValueName name) -> {
+                Expression value = null;
 
-                    // $name might be a parameter to this function search that first.
-                    for (int i = 1; i < parameters.size(); i = i + 2) {
-                        final TemplateValueName parameterName = TEMPLATE_VALUE_NAME_PARAMETER.getOrFail(parameters, i);
+                // $name might be a parameter to this function search that first.
+                for (int i = 1; i < parameters.size(); i = i + 2) {
+                    final TemplateValueName parameterName = TEMPLATE_VALUE_NAME_PARAMETER.getOrFail(parameters, i);
 
-                        if (name.equals(parameterName)) {
-                            value = Expression.value(
-                                    TEMPLATE_VALUE_PARAMETER.getOrFail(parameters, i + 1)
-                            );
-                            break;
-                        }
-                    }
-
-                    // not a named parameter, try as a label
-                    if (null == value) {
-                        value = Expression.reference(
-                                SpreadsheetSelection.labelName(name.text())
+                    if (name.equals(parameterName)) {
+                        value = Expression.value(
+                            TEMPLATE_VALUE_PARAMETER.getOrFail(parameters, i + 1)
                         );
+                        break;
                     }
-
-                    return value; // Function<TemplateValueName, Expression> templateValueNameToExpression
                 }
+
+                // not a named parameter, try as a label
+                if (null == value) {
+                    value = Expression.reference(
+                        SpreadsheetSelection.labelName(name.text())
+                    );
+                }
+
+                return value; // Function<TemplateValueName, Expression> templateValueNameToExpression
+            }
         ).parseTemplateAndRenderToString(
-                template,
-                LineEnding.NL // TODO parameterise, maybe store in SpreadsheetMetadata.DEFAULT_LINE_ENDING
+            template,
+            LineEnding.NL // TODO parameterise, maybe store in SpreadsheetMetadata.DEFAULT_LINE_ENDING
         );
     }
 }

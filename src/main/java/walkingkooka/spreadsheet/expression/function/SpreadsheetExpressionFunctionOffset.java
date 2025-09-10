@@ -52,13 +52,13 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
         this.checkParameterCount(parameters);
 
         final SpreadsheetCellReference start = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0)
-                .toCell();
+            .toCell();
 
         final int rows = ROWS.getOrFail(parameters, 1)
-                .intValue();
+            .intValue();
 
         final int columns = COLUMNS.getOrFail(parameters, 2)
-                .intValue();
+            .intValue();
 
         final int height = HEIGHT.get(parameters, 3)
             .orElseGet(
@@ -73,36 +73,36 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
             ).intValue();
 
         final SpreadsheetCellReference topLeft = start.add(
-                columns,
-                rows
+            columns,
+            rows
         );
         final SpreadsheetCellReference bottomRight = topLeft.add(
-                width - BIAS,
-                height - BIAS
+            width - BIAS,
+            height - BIAS
         );
 
         final SpreadsheetCellRangeReference range = topLeft.cellRange(bottomRight);
 
         return range.width() == 1 && range.height() == 1 ?
-                range.toCell() :
-                range;
+            range.toCell() :
+            range;
     }
 
     private final static ExpressionFunctionParameter<ExpressionNumber> ROWS = ExpressionFunctionParameterName.with("rows")
-            .required(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> COLUMNS = ExpressionFunctionParameterName.with("columns")
-            .required(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .required(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> WIDTH = ExpressionFunctionParameterName.with("width")
-            .optional(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .optional(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> HEIGHT = ExpressionFunctionParameterName.with("height")
-            .optional(ExpressionNumber.class)
-            .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .optional(ExpressionNumber.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     // only width and height have a bias of 1
     private final static int BIAS = 1;
@@ -113,10 +113,10 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
     }
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-            CELL_OR_RANGE_REFERENCE,
-            ROWS,
-            COLUMNS,
-            WIDTH,
-            HEIGHT
+        CELL_OR_RANGE_REFERENCE,
+        ROWS,
+        COLUMNS,
+        WIDTH,
+        HEIGHT
     );
 }
