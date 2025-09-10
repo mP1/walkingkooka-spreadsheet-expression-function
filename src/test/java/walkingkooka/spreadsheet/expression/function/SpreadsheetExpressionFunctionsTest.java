@@ -408,6 +408,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateBadge() {
+        this.evaluateAndValueCheck(
+            "=badge(\"BadgeText111\", \"ChildTextNode222\")",
+            TextNode.badge("BadgeText111")
+                .appendChild(
+                    TextNode.text("ChildTextNode222")
+                )
+        );
+    }
+
+    @Test
     public void testEvaluateBase() {
         this.evaluateAndValueCheck(
                 "=base(13, 2)",
