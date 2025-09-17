@@ -30,7 +30,7 @@ import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.convert.SpreadsheetConverterContexts;
-import walkingkooka.spreadsheet.convert.SpreadsheetConvertersConverterProviders;
+import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector;
