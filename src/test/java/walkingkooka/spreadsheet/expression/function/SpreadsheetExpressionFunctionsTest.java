@@ -4043,7 +4043,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
             .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
-            .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
+            .set(
+                SpreadsheetMetadataPropertyName.ERROR_FORMATTER,
+                SpreadsheetFormatterSelector.parse("badge-error default-text")
+            ).set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
             .set(
                 SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
                 ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, url)")
