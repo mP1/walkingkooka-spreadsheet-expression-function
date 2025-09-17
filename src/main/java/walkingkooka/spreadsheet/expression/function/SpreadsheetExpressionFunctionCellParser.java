@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.spreadsheet.parser.SpreadsheetParserSelector;
+import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserSelector;
 
 /**
  * A custom function that retrieves the {@link SpreadsheetParserSelector} for the current cell.
