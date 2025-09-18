@@ -33,7 +33,7 @@ import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector;
+import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserSelector;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;

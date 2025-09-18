@@ -20,7 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatter;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
-import walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector;
+import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
