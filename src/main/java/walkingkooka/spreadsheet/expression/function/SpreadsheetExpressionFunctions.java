@@ -747,6 +747,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionGetDateTimeSymbols}
+     */
+    public static ExpressionFunction<DateTimeSymbols, SpreadsheetExpressionEvaluationContext> getDateTimeSymbols() {
+        return SpreadsheetExpressionFunctionGetDateTimeSymbols.INSTANCE;
+    }
+    
+    /**
      * {@see SpreadsheetExpressionFunctionGetDecimalNumberSymbols}
      */
     public static ExpressionFunction<DecimalNumberSymbols, SpreadsheetExpressionEvaluationContext> getDecimalNumberSymbols() {
