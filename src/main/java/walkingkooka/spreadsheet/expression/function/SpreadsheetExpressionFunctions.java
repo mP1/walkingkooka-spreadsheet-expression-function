@@ -756,6 +756,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionGetFormatter}
+     */
+    public static ExpressionFunction<SpreadsheetFormatterSelector, SpreadsheetExpressionEvaluationContext> getFormatter() {
+        return SpreadsheetExpressionFunctionGetFormatter.INSTANCE;
+    }
+
+    /**
      * {@see ColorExpressionFunctions#getGreen}
      */
     public static ExpressionFunction<GreenRgbColorComponent, SpreadsheetExpressionEvaluationContext> getGreen() {

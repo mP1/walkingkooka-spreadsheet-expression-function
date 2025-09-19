@@ -240,6 +240,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.getBlue(),
                     SpreadsheetExpressionFunctions.getEnv(),
                     SpreadsheetExpressionFunctions.getGreen(),
+                    SpreadsheetExpressionFunctions.getFormatter(),
                     SpreadsheetExpressionFunctions.getFormatValue(),
                     SpreadsheetExpressionFunctions.getLocale(),
                     SpreadsheetExpressionFunctions.getRed(),

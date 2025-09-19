@@ -1380,6 +1380,33 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetFormatterWithSpreadsheetCell() {
+        final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("hello-formatter");
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("SpreadsheetCell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            ).setFormatter(
+                Optional.of(formatter)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getFormatter(getEnv(\"SpreadsheetCell\"))",
+            environmentContext,
+            formatter,
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateGetFormatValue() {
         this.evaluateAndValueCheck(
             "=getFormatValue()",

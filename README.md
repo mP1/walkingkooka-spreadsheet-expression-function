@@ -98,6 +98,7 @@ majority of these functions are formula expression functions.
 - getAlpha
 - getBlue
 - getEnv
+- getFormatter
 - getFormatValue
 - getGreen
 - getLocale
