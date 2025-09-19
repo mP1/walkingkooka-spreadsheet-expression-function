@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A {@link ExpressionFunction} which accepts a {@link walkingkooka.spreadsheet.format.SpreadsheetFormatterSelector} and value
- * and proceeds to format it returning the {@link walkingkooka.tree.text.TextNode}.
+ * A {@link ExpressionFunction} which accepts a {@link SpreadsheetFormatterSelector} and value
+ * and proceeds to format it returning the {@link TextNode}.
  */
 final class SpreadsheetExpressionFunctionTextNodeFormatValue extends SpreadsheetExpressionFunctionTextNode {
 
