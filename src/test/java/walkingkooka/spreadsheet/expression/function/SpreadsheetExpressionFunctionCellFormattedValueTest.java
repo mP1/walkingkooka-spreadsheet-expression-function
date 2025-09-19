@@ -39,7 +39,7 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
                 Optional.of(
                     Color.parse("#123456")
                 )
-            ).toTextNode();
+            ).textNode();
     }
 
     @Override
