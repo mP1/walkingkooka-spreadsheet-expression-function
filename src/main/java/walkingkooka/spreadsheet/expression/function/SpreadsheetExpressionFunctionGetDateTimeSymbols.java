@@ -45,14 +45,14 @@ final class SpreadsheetExpressionFunctionGetDateTimeSymbols extends SpreadsheetE
         return PARAMETERS;
     }
 
-    private final static ExpressionFunctionParameter<DateTimeSymbols> FORMATTER = ExpressionFunctionParameterName.with("dateTimeSymbols")
+    private final static ExpressionFunctionParameter<DateTimeSymbols> DATE_TIME_SYMBOLS = ExpressionFunctionParameterName.with("dateTimeSymbols")
         .required(DateTimeSymbols.class)
         .setKinds(
             ExpressionFunctionParameterKind.CONVERT_EVALUATE
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-        FORMATTER
+        DATE_TIME_SYMBOLS
     );
 
     @Override
@@ -63,7 +63,7 @@ final class SpreadsheetExpressionFunctionGetDateTimeSymbols extends SpreadsheetE
     @Override
     public DateTimeSymbols apply(final List<Object> parameters,
                                  final SpreadsheetExpressionEvaluationContext context) {
-        return FORMATTER.getOrFail(parameters, 0);
+        return DATE_TIME_SYMBOLS.getOrFail(parameters, 0);
 
     }
 }
