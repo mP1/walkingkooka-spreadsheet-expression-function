@@ -791,6 +791,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#getTextNode}
+     */
+    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> getTextNode() {
+        return fixName(
+            TreeTextExpressionFunctions.getTextNode()
+        );
+    }
+
+    /**
      * {@see EnvironmentExpressionFunctions#getUser}
      */
     public static ExpressionFunction<EmailAddress, SpreadsheetExpressionEvaluationContext> getUser() {
