@@ -781,6 +781,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionGetParser}
+     */
+    public static ExpressionFunction<SpreadsheetParserSelector, SpreadsheetExpressionEvaluationContext> getParser() {
+        return SpreadsheetExpressionFunctionGetParser.INSTANCE;
+    }
+
+    /**
      * {@see ColorExpressionFunctions#getRed}
      */
     public static ExpressionFunction<RedRgbColorComponent, SpreadsheetExpressionEvaluationContext> getRed() {
