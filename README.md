@@ -102,6 +102,7 @@ majority of these functions are formula expression functions.
 - getFormatValue
 - getGreen
 - getLocale
+- getParser
 - getRed
 - getStyle
 - getTextNode
