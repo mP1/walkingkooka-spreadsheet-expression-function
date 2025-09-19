@@ -747,6 +747,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionGetDecimalNumberSymbols}
+     */
+    public static ExpressionFunction<DecimalNumberSymbols, SpreadsheetExpressionEvaluationContext> getDecimalNumberSymbols() {
+        return SpreadsheetExpressionFunctionGetDecimalNumberSymbols.INSTANCE;
+    }
+
+    /**
      * {@see EnvironmentExpressionFunctions#getEnv}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getEnv() {
