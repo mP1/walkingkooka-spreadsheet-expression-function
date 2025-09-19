@@ -1410,6 +1410,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetTextNodeWithHyperlink() {
+        this.evaluateAndValueCheck(
+            "=getTextNode(hyperlink(\"https://example.com/123\"))",
+            TextNode.hyperlink(Url.parseAbsolute("https://example.com/123"))
+        );
+    }
+
+    @Test
+    public void testEvaluateGetTextNodeWithString() {
+        this.evaluateAndValueCheck(
+            "=getTextNode(\"Hello123\")",
+            TextNode.text("Hello123")
+        );
+    }
+
+    @Test
     public void testEvaluateGetUser() {
         final EmailAddress user = EmailAddress.parse("user123@example.com");
 
