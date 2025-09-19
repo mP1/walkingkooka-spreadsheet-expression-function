@@ -1345,41 +1345,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateGetLocaleWithStringWithLanguageTag() {
-        this.evaluateAndValueCheck(
-            "=getLocale(\"en-AU\")",
-            Locale.forLanguageTag("en-AU")
-        );
-    }
-
-    @Test
-    public void testEvaluateGetLocaleWithSpreadsheetCell() {
-        final Locale locale = Locale.FRENCH;
-
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                LOCALE,
-                NOW,
-                Optional.empty()
-            )
-        ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
-            SpreadsheetSelection.A1.setFormula(
-                SpreadsheetFormula.EMPTY
-            ).setLocale(
-                Optional.of(locale)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=getLocale(getEnv(\"SpreadsheetCell\"))",
-            environmentContext,
-            locale,
-            "" // printed
-        );
-    }
-
-    @Test
     public void testEvaluateGetFormatterWithSpreadsheetCell() {
         final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("hello-formatter");
 
@@ -1411,6 +1376,41 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=getFormatValue()",
             SpreadsheetError.referenceNotFound(SpreadsheetExpressionEvaluationContext.FORMAT_VALUE)
+        );
+    }
+
+    @Test
+    public void testEvaluateGetLocaleWithStringWithLanguageTag() {
+        this.evaluateAndValueCheck(
+            "=getLocale(\"en-AU\")",
+            Locale.forLanguageTag("en-AU")
+        );
+    }
+
+    @Test
+    public void testEvaluateGetLocaleWithSpreadsheetCell() {
+        final Locale locale = Locale.FRENCH;
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("SpreadsheetCell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            ).setLocale(
+                Optional.of(locale)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getLocale(getEnv(\"SpreadsheetCell\"))",
+            environmentContext,
+            locale,
+            "" // printed
         );
     }
 
