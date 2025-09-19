@@ -60,6 +60,7 @@ import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.expression.function.TreeTextExpressionFunctions;
 import walkingkooka.validation.ValidationError;
+import walkingkooka.validation.expression.function.ValidatorExpressionFunctions;
 import walkingkooka.validation.provider.ValidatorSelector;
 
 import java.time.LocalDate;
@@ -805,6 +806,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<EmailAddress, SpreadsheetExpressionEvaluationContext> getUser() {
         return fixName(
             EnvironmentExpressionFunctions.getUser()
+        );
+    }
+
+    /**
+     * {@link ValidatorExpressionFunctions#getValidator}
+     */
+    public static ExpressionFunction<ValidatorSelector, SpreadsheetExpressionEvaluationContext> getValidator() {
+        return fixName(
+            ValidatorExpressionFunctions.getValidator()
         );
     }
 
