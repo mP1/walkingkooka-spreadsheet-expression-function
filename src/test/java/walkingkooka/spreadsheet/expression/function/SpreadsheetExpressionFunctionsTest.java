@@ -1318,6 +1318,58 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCell() {
+        final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
+            DateFormatSymbols.getInstance(Locale.FRENCH)
+        );
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("SpreadsheetCell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            ).setDateTimeSymbols(
+                Optional.of(dateTimeSymbols)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getDateTimeSymbols(getEnv(\"SpreadsheetCell\"))",
+            environmentContext,
+            dateTimeSymbols,
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCellMissingDateTimeSymbols() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("SpreadsheetCell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getDateTimeSymbols(getEnv(\"SpreadsheetCell\"))",
+            environmentContext,
+            null,
+            "" // printed
+        );
+    }
+    
+    @Test
     public void testEvaluateGetDecimalNumberSymbolsWithSpreadsheetCell() {
         final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
             '+',
