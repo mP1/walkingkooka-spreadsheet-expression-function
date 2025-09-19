@@ -95,6 +95,7 @@ import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.TextStylePropertyName;
 import walkingkooka.validation.ValidationError;
+import walkingkooka.validation.provider.ValidatorSelector;
 
 import java.lang.reflect.Method;
 import java.math.MathContext;
@@ -1439,6 +1440,33 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=getUser()",
             environmentContext,
             user,
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateGetValidator() {
+        final ValidatorSelector validator = ValidatorSelector.parse("Hello-validator-123");
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("cell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=1")
+            ).setValidator(
+                Optional.of(validator)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getValidator(getEnv(\"cell\"))",
+            environmentContext,
+            validator,
             "" // printed
         );
     }

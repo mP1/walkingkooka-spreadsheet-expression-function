@@ -105,6 +105,7 @@ majority of these functions are formula expression functions.
 - getStyle
 - getTextNode
 - getUser
+- getValidator
 - hex2bin
 - hex2dec
 - hex2oct
