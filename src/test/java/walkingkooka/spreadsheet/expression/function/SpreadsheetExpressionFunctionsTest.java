@@ -1318,6 +1318,36 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetDecimalNumberSymbolsWithSpreadsheetCell() {
+        final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
+            '+',
+            DecimalFormatSymbols.getInstance(Locale.FRENCH)
+        );
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("SpreadsheetCell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            ).setDecimalNumberSymbols(
+                Optional.of(decimalNumberSymbols)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getDecimalNumberSymbols(getEnv(\"SpreadsheetCell\"))",
+            environmentContext,
+            decimalNumberSymbols,
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateGetEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 
