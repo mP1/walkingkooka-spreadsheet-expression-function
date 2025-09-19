@@ -45,14 +45,14 @@ final class SpreadsheetExpressionFunctionGetDecimalNumberSymbols extends Spreads
         return PARAMETERS;
     }
 
-    private final static ExpressionFunctionParameter<DecimalNumberSymbols> FORMATTER = ExpressionFunctionParameterName.with("formatter")
+    private final static ExpressionFunctionParameter<DecimalNumberSymbols> DECIMAL_NUMBER_SYMBOLS = ExpressionFunctionParameterName.with("decimalNumberSymbols")
         .required(DecimalNumberSymbols.class)
         .setKinds(
             ExpressionFunctionParameterKind.CONVERT_EVALUATE
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-        FORMATTER
+        DECIMAL_NUMBER_SYMBOLS
     );
 
     @Override
@@ -63,7 +63,7 @@ final class SpreadsheetExpressionFunctionGetDecimalNumberSymbols extends Spreads
     @Override
     public DecimalNumberSymbols apply(final List<Object> parameters,
                                       final SpreadsheetExpressionEvaluationContext context) {
-        return FORMATTER.getOrFail(parameters, 0);
+        return DECIMAL_NUMBER_SYMBOLS.getOrFail(parameters, 0);
 
     }
 }
