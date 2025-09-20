@@ -3853,10 +3853,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateValidationError() {
         this.evaluateAndValueCheck(
             "=ValidationError(\"#N/A Hello message 123\")",
-            ValidationError.with(
-                SpreadsheetSelection.A1,
-                "Hello message 123"
-            )
+            ValidationError.with(SpreadsheetSelection.A1)
+                .setMessage("Hello message 123")
         );
     }
 

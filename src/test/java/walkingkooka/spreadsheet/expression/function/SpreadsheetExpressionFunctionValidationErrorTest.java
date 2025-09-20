@@ -33,9 +33,8 @@ public final class SpreadsheetExpressionFunctionValidationErrorTest extends Spre
                 SpreadsheetError.parse("#N/A Hello message 123")
             ),
             ValidationError.with(
-                CELL.reference(),
-                "Hello message 123"
-            )
+                CELL.reference()
+            ).setMessage("Hello message 123")
         );
     }
 
