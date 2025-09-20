@@ -1906,7 +1906,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see SpreadsheetExpressionFunctionValidationError}
      */
-    public static ExpressionFunction<ValidationError<SpreadsheetCellReference>, SpreadsheetExpressionEvaluationContext> validationError() {
+    public static ExpressionFunction<ValidationError<SpreadsheetExpressionReference>, SpreadsheetExpressionEvaluationContext> validationError() {
         return SpreadsheetExpressionFunctionValidationError.INSTANCE;
     }
 

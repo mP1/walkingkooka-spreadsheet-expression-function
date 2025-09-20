@@ -21,7 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
@@ -35,7 +35,7 @@ import java.util.List;
  * ValidationError("#N/A HelloError")
  * </pre>
  */
-final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpressionFunction<ValidationError<SpreadsheetCellReference>> {
+final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpressionFunction<ValidationError<SpreadsheetExpressionReference>> {
 
     /**
      * Singleton
@@ -62,13 +62,13 @@ final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpr
     );
 
     @Override
-    public Class<ValidationError<SpreadsheetCellReference>> returnType() {
+    public Class<ValidationError<SpreadsheetExpressionReference>> returnType() {
         return Cast.to(ValidationError.class);
     }
 
     @Override
-    public ValidationError<SpreadsheetCellReference> apply(final List<Object> parameters,
-                                                           final SpreadsheetExpressionEvaluationContext context) {
+    public ValidationError<SpreadsheetExpressionReference> apply(final List<Object> parameters,
+                                                                 final SpreadsheetExpressionEvaluationContext context) {
         final SpreadsheetError spreadsheetError = ERROR.getOrFail(parameters, 0);
 
         return spreadsheetError.toValidationError(

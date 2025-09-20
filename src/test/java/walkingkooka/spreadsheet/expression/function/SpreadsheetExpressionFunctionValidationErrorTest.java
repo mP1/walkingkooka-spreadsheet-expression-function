@@ -21,10 +21,11 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
+import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
 import walkingkooka.validation.ValidationError;
 
-public final class SpreadsheetExpressionFunctionValidationErrorTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionValidationError, ValidationError<SpreadsheetCellReference>> {
+public final class SpreadsheetExpressionFunctionValidationErrorTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionValidationError, ValidationError<SpreadsheetExpressionReference>> {
 
     @Test
     public void testApply() {
@@ -32,7 +33,7 @@ public final class SpreadsheetExpressionFunctionValidationErrorTest extends Spre
             Lists.of(
                 SpreadsheetError.parse("#N/A Hello message 123")
             ),
-            ValidationError.with(
+            SpreadsheetForms.error(
                 CELL.reference()
             ).setMessage("Hello message 123")
         );
