@@ -77,6 +77,7 @@ import walkingkooka.spreadsheet.store.SpreadsheetLabelStores;
 import walkingkooka.spreadsheet.store.SpreadsheetRowStores;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
+import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
 import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.Storages;
 import walkingkooka.terminal.TerminalContext;
@@ -94,7 +95,6 @@ import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.TextStylePropertyName;
-import walkingkooka.validation.ValidationError;
 import walkingkooka.validation.provider.ValidatorSelector;
 
 import java.lang.reflect.Method;
@@ -3853,7 +3853,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateValidationError() {
         this.evaluateAndValueCheck(
             "=ValidationError(\"#N/A Hello message 123\")",
-            ValidationError.with(SpreadsheetSelection.A1)
+            SpreadsheetForms.error(SpreadsheetSelection.A1)
                 .setMessage("Hello message 123")
         );
     }
