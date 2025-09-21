@@ -50,7 +50,7 @@ public final class SpreadsheetExpressionFunctionNextEmptyRowTest extends Spreads
 
     @Override
     public int minimumParameterCount() {
-        return 3;
+        return 1;
     }
 
     @Override
