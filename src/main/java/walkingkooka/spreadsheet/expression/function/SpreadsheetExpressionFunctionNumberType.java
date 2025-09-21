@@ -44,34 +44,30 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
                                   final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
+        final Object value = VALUE.getOrFail(parameters, 0);
         int type = 0;
 
-        do {
-            final Object value = VALUE.getOrFail(parameters, 0);
-
-            if (null == value || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
-                type = 1;
-                break;
-            }
+        if (null == value || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
+            type = 1;
+        } else {
             if (context.isText(value)) {
                 type = 2;
-                break;
+            } else {
+                if (value instanceof Boolean) {
+                    type = 4;
+                } else {
+                    if (value instanceof HasSpreadsheetErrorKind) {
+                        type = 16;
+                    } else {
+                        if (value instanceof Collection || value instanceof SpreadsheetCellRangeReference) {
+                            type = 64;
+                        } else {
+                            type = 128;
+                        }
+                    }
+                }
             }
-            if (value instanceof Boolean) {
-                type = 4;
-                break;
-            }
-            if (value instanceof HasSpreadsheetErrorKind) {
-                type = 16;
-                break;
-            }
-            if (value instanceof Collection || value instanceof SpreadsheetCellRangeReference) {
-                type = 64;
-                break;
-            }
-            type = 128;
-            break;
-        } while (false);
+        }
 
         return context.expressionNumberKind()
             .create(type);
