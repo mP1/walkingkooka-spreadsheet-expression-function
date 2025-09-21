@@ -102,6 +102,7 @@ majority of these functions are formula expression functions.
 - getEnv
 - getFormatter
 - getFormatValue
+- getFormulaText
 - getGreen
 - getLocale
 - getParser
