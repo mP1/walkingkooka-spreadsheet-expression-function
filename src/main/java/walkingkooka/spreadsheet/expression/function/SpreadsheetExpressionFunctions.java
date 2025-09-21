@@ -847,6 +847,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionGetValue}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getValue() {
+        return SpreadsheetExpressionFunctionGetValue.INSTANCE;
+    }
+
+    /**
      * {@see EngineeringExpressionFunctions#hex2bin}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> hex2bin() {

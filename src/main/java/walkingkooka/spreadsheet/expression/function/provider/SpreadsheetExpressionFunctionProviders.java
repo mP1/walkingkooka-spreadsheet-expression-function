@@ -251,6 +251,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.getTextNode(),
                     SpreadsheetExpressionFunctions.getUser(),
                     SpreadsheetExpressionFunctions.getValidator(),
+                    SpreadsheetExpressionFunctions.getValue(),
                     SpreadsheetExpressionFunctions.hex2bin(),
                     SpreadsheetExpressionFunctions.hex2dec(),
                     SpreadsheetExpressionFunctions.hex2oct(),
