@@ -54,7 +54,7 @@ public final class SpreadsheetExpressionFunctionValidationErrorTest extends Spre
 
     @Override
     public int minimumParameterCount() {
-        return 3;
+        return 1;
     }
 
     @Override

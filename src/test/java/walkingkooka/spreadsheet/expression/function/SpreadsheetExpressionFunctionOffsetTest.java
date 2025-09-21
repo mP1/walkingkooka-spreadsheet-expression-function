@@ -276,7 +276,7 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
 
     @Override
     public int minimumParameterCount() {
-        return 3;
+        return 4;
     }
 
     @Override
