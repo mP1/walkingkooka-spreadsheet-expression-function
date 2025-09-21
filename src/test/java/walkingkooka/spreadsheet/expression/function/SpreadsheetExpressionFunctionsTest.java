@@ -1462,6 +1462,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetFormulaTextWithSpreadsheetCell() {
+        final String formulaText = "=1+2";
+
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("SpreadsheetCell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formulaText)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getFormulaText(getEnv(\"SpreadsheetCell\"))",
+            environmentContext,
+            formulaText,
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateGetLocaleWithStringWithLanguageTag() {
         this.evaluateAndValueCheck(
             "=getLocale(\"en-AU\")",

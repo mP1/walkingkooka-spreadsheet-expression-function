@@ -777,6 +777,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionGetFormulaText}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> getFormulaText() {
+        return SpreadsheetExpressionFunctionGetFormulaText.INSTANCE;
+    }
+
+    /**
      * {@see ColorExpressionFunctions#getGreen}
      */
     public static ExpressionFunction<GreenRgbColorComponent, SpreadsheetExpressionEvaluationContext> getGreen() {
