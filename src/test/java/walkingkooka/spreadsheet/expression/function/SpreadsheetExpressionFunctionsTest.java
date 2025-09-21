@@ -2791,7 +2791,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateRemoveEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 
-        final EnvironmentValueName name = EnvironmentValueName.with("Hello");
+        final EnvironmentValueName<String> name = EnvironmentValueName.with("Hello");
         final String value = "Goodbye!";
 
         environmentContext.setEnvironmentValue(
@@ -3014,7 +3014,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateSetEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 
-        final EnvironmentValueName name = EnvironmentValueName.with("Hello");
+        final EnvironmentValueName<String> name = EnvironmentValueName.with("Hello");
         final String value = "Goodbye!";
 
         environmentContext.setEnvironmentValue(
