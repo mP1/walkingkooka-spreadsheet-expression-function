@@ -1608,6 +1608,46 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetValue() {
+        this.evaluateGetValueAndCheck("Hello World 123");
+    }
+
+    @Test
+    public void testEvaluateGetValue2() {
+        this.evaluateGetValueAndCheck(this);
+    }
+
+    @Test
+    public void testEvaluateGetValueWhenAbsent() {
+        this.evaluateGetValueAndCheck(null);
+    }
+
+    private void evaluateGetValueAndCheck(final Object value) {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.empty()
+            )
+        ).setEnvironmentValue(
+            EnvironmentValueName.with("cell"),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=1")
+                    .setValue(
+                        Optional.ofNullable(value)
+                    )
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getValue(getEnv(\"cell\"))",
+            environmentContext,
+            value,
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateHex2Bin() {
         this.evaluateAndValueCheck(
             "=hex2bin(\"f\")",
