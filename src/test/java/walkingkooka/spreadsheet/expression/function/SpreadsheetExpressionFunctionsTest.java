@@ -58,7 +58,7 @@ import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
-import walkingkooka.spreadsheet.meta.SpreadsheetContexts;
+import walkingkooka.spreadsheet.meta.FakeSpreadsheetContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
@@ -3607,7 +3607,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             ENVIRONMENT_CONTEXT,
             LOCALE_CONTEXT,
-            SpreadsheetContexts.fake(),
+            new FakeSpreadsheetContext() {
+                @Override
+                public ProviderContext providerContext() {
+                    return PROVIDER_CONTEXT;
+                }
+            },
             TERMINAL_CONTEXT,
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -3625,8 +3630,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_IMPORTER_PROVIDER,
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
-            ),
-            PROVIDER_CONTEXT
+            )
         );
 
         final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
@@ -4427,7 +4431,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             environmentContext,
             LOCALE_CONTEXT,
-            SpreadsheetContexts.fake(),
+            new FakeSpreadsheetContext() {
+                @Override
+                public ProviderContext providerContext() {
+                    return providerContext;
+                }
+            },
             terminalContext,
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -4445,8 +4454,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_IMPORTER_PROVIDER,
                 SPREADSHEET_PARSER_PROVIDER,
                 VALIDATOR_PROVIDER
-            ),
-            providerContext
+            )
         );
     }
 
