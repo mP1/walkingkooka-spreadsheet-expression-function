@@ -58,6 +58,7 @@ import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
+import walkingkooka.spreadsheet.meta.SpreadsheetContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
@@ -3606,6 +3607,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             ENVIRONMENT_CONTEXT,
             LOCALE_CONTEXT,
+            SpreadsheetContexts.fake(),
             TERMINAL_CONTEXT,
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -4425,6 +4427,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             environmentContext,
             LOCALE_CONTEXT,
+            SpreadsheetContexts.fake(),
             terminalContext,
             SpreadsheetProviders.basic(
                 SpreadsheetConvertersConverterProviders.spreadsheetConverters(
