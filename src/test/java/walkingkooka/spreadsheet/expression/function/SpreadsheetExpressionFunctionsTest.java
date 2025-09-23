@@ -32,6 +32,7 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
@@ -59,6 +60,7 @@ import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 import walkingkooka.spreadsheet.meta.FakeSpreadsheetContext;
+import walkingkooka.spreadsheet.meta.SpreadsheetContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
@@ -3606,8 +3608,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             ENVIRONMENT_CONTEXT,
-            LOCALE_CONTEXT,
             new FakeSpreadsheetContext() {
+
+                @Override
+                public SpreadsheetContext setLocale(final Locale locale) {
+                    this.localeContext = this.localeContext.setLocale(locale);
+                    return this;
+                }
+
+                private LocaleContext localeContext = LOCALE_CONTEXT;
+
                 @Override
                 public ProviderContext providerContext() {
                     return PROVIDER_CONTEXT;
@@ -4430,8 +4440,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             environmentContext,
-            LOCALE_CONTEXT,
             new FakeSpreadsheetContext() {
+
+                @Override
+                public SpreadsheetContext setLocale(final Locale locale) {
+                    this.localeContext = this.localeContext.setLocale(locale);
+                    return this;
+                }
+
+                private LocaleContext localeContext = LOCALE_CONTEXT;
+
                 @Override
                 public ProviderContext providerContext() {
                     return providerContext;
