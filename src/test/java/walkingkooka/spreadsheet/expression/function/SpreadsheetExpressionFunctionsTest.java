@@ -65,6 +65,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
+import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.provider.SpreadsheetProviders;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
@@ -3583,7 +3584,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetPattern.DEFAULT_TEXT_FORMAT_PATTERN.spreadsheetFormatterSelector()
             );
 
-        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         metadataStore.save(metadata);
 
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
@@ -4415,7 +4416,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                               final EnvironmentContext environmentContext,
                                                               final TerminalContext terminalContext,
                                                               final ProviderContext providerContext) {
-        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataTesting.spreadsheetMetadataStore();
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         metadataStore.save(spreadsheetMetadata);
 
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
