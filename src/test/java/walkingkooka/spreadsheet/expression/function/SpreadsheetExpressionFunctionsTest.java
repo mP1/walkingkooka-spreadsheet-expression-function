@@ -42,9 +42,11 @@ import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
+import walkingkooka.spreadsheet.FakeSpreadsheetGlobalContext;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
+import walkingkooka.spreadsheet.SpreadsheetGlobalContext;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
@@ -59,8 +61,6 @@ import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
-import walkingkooka.spreadsheet.meta.FakeSpreadsheetContext;
-import walkingkooka.spreadsheet.meta.SpreadsheetContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
@@ -3609,10 +3609,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             ENVIRONMENT_CONTEXT,
-            new FakeSpreadsheetContext() {
+            new FakeSpreadsheetGlobalContext() {
 
                 @Override
-                public SpreadsheetContext setLocale(final Locale locale) {
+                public SpreadsheetGlobalContext setLocale(final Locale locale) {
                     this.localeContext = this.localeContext.setLocale(locale);
                     return this;
                 }
@@ -4441,10 +4441,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             environmentContext,
-            new FakeSpreadsheetContext() {
+            new FakeSpreadsheetGlobalContext() {
 
                 @Override
-                public SpreadsheetContext setLocale(final Locale locale) {
+                public SpreadsheetGlobalContext setLocale(final Locale locale) {
                     this.localeContext = this.localeContext.setLocale(locale);
                     return this;
                 }
