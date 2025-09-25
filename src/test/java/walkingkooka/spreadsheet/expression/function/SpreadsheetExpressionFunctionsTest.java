@@ -3591,6 +3591,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             metadata,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             SpreadsheetContexts.basic(
+                metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
                 (u, l) -> {
                     throw new UnsupportedOperationException();
                 },
@@ -4413,6 +4414,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             spreadsheetMetadata,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             SpreadsheetContexts.basic(
+                spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
                 (u, l) -> {
                     throw new UnsupportedOperationException();
                 },
