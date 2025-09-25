@@ -32,7 +32,6 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
@@ -42,11 +41,10 @@ import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
-import walkingkooka.spreadsheet.FakeSpreadsheetGlobalContext;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
-import walkingkooka.spreadsheet.SpreadsheetGlobalContext;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
@@ -80,7 +78,6 @@ import walkingkooka.spreadsheet.store.SpreadsheetLabelReferencesStores;
 import walkingkooka.spreadsheet.store.SpreadsheetLabelStores;
 import walkingkooka.spreadsheet.store.SpreadsheetRowStores;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
-import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
 import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.Storages;
@@ -1595,10 +1592,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetUser() {
         final EmailAddress user = EmailAddress.parse("user123@example.com");
 
-        final EnvironmentContext environmentContext = EnvironmentContexts.empty(
-            LOCALE,
-            NOW,
-            Optional.of(user)
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LOCALE,
+                NOW,
+                Optional.of(user)
+            )
         );
 
         this.evaluateAndPrintedCheck(
@@ -3587,61 +3586,51 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         metadataStore.save(metadata);
 
-        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
-            SpreadsheetCellStores.treeMap(),
-            SpreadsheetCellReferencesStores.treeMap(),
-            SpreadsheetColumnStores.treeMap(),
-            SpreadsheetFormStores.treeMap(),
-            SpreadsheetGroupStores.treeMap(),
-            SpreadsheetLabelStores.treeMap(),
-            SpreadsheetLabelReferencesStores.treeMap(),
-            metadataStore,
-            SpreadsheetCellRangeStores.treeMap(),
-            SpreadsheetCellRangeStores.treeMap(),
-            SpreadsheetRowStores.treeMap(),
-            Storages.tree(),
-            SpreadsheetUserStores.treeMap()
-        );
-
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
             SERVER_URL,
             metadata,
-            repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-            ENVIRONMENT_CONTEXT,
-            new FakeSpreadsheetGlobalContext() {
-
-                @Override
-                public SpreadsheetGlobalContext setLocale(final Locale locale) {
-                    this.localeContext = this.localeContext.setLocale(locale);
-                    return this;
-                }
-
-                private LocaleContext localeContext = LOCALE_CONTEXT;
-
-                @Override
-                public ProviderContext providerContext() {
-                    return PROVIDER_CONTEXT;
-                }
-            },
-            TERMINAL_CONTEXT,
-            SpreadsheetProviders.basic(
-                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                    (ProviderContext p) -> metadata.dateTimeConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
-                    )
+            SpreadsheetContexts.basic(
+                (u, l) -> {
+                    throw new UnsupportedOperationException();
+                },
+                SpreadsheetStoreRepositories.basic(
+                    SpreadsheetCellStores.treeMap(),
+                    SpreadsheetCellReferencesStores.treeMap(),
+                    SpreadsheetColumnStores.treeMap(),
+                    SpreadsheetFormStores.treeMap(),
+                    SpreadsheetGroupStores.treeMap(),
+                    SpreadsheetLabelStores.treeMap(),
+                    SpreadsheetLabelReferencesStores.treeMap(),
+                    metadataStore,
+                    SpreadsheetCellRangeStores.treeMap(),
+                    SpreadsheetCellRangeStores.treeMap(),
+                    SpreadsheetRowStores.treeMap(),
+                    Storages.tree(),
+                    SpreadsheetUserStores.treeMap()
                 ),
-                EXPRESSION_FUNCTION_PROVIDER,
-                SPREADSHEET_COMPARATOR_PROVIDER,
-                SPREADSHEET_EXPORTER_PROVIDER,
-                SPREADSHEET_FORMATTER_PROVIDER,
-                FORM_HANDLER_PROVIDER,
-                SPREADSHEET_IMPORTER_PROVIDER,
-                SPREADSHEET_PARSER_PROVIDER,
-                VALIDATOR_PROVIDER
-            )
+                SpreadsheetProviders.basic(
+                    SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                        (ProviderContext p) -> metadata.dateTimeConverter(
+                            SPREADSHEET_FORMATTER_PROVIDER,
+                            SPREADSHEET_PARSER_PROVIDER,
+                            p
+                        )
+                    ),
+                    EXPRESSION_FUNCTION_PROVIDER,
+                    SPREADSHEET_COMPARATOR_PROVIDER,
+                    SPREADSHEET_EXPORTER_PROVIDER,
+                    SPREADSHEET_FORMATTER_PROVIDER,
+                    FORM_HANDLER_PROVIDER,
+                    SPREADSHEET_IMPORTER_PROVIDER,
+                    SPREADSHEET_PARSER_PROVIDER,
+                    VALIDATOR_PROVIDER
+                ),
+                EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
+                LocaleContexts.jre(LOCALE),
+                PROVIDER_CONTEXT
+            ),
+            TERMINAL_CONTEXT
         );
 
         final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
@@ -4036,7 +4025,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
-            EnvironmentContexts.fake(),
+            EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
             expectedValue,
             expectedPrinted
         );
@@ -4060,7 +4049,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         return this.evaluateAndPrintedCheck(
             formula,
             lineReader,
-            EnvironmentContexts.fake(),
+            EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
             expectedValue,
             expectedPrinted
         );
@@ -4360,7 +4349,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
             metadata,
-            ENVIRONMENT_CONTEXT,
+            EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
             terminalContext,
             PROVIDER_CONTEXT
         );
@@ -4419,61 +4408,51 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         metadataStore.save(spreadsheetMetadata);
 
-        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.basic(
-            SpreadsheetCellStores.treeMap(),
-            SpreadsheetCellReferencesStores.treeMap(),
-            SpreadsheetColumnStores.treeMap(),
-            SpreadsheetFormStores.treeMap(),
-            SpreadsheetGroupStores.treeMap(),
-            SpreadsheetLabelStores.treeMap(),
-            SpreadsheetLabelReferencesStores.treeMap(),
-            metadataStore,
-            SpreadsheetCellRangeStores.treeMap(),
-            SpreadsheetCellRangeStores.treeMap(),
-            SpreadsheetRowStores.treeMap(),
-            Storages.tree(),
-            SpreadsheetUserStores.treeMap()
-        );
-
         return SpreadsheetEngineContexts.basic(
             SERVER_URL,
             spreadsheetMetadata,
-            repo,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
-            environmentContext,
-            new FakeSpreadsheetGlobalContext() {
-
-                @Override
-                public SpreadsheetGlobalContext setLocale(final Locale locale) {
-                    this.localeContext = this.localeContext.setLocale(locale);
-                    return this;
-                }
-
-                private LocaleContext localeContext = LOCALE_CONTEXT;
-
-                @Override
-                public ProviderContext providerContext() {
-                    return providerContext;
-                }
-            },
-            terminalContext,
-            SpreadsheetProviders.basic(
-                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                    (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
-                    )
+            SpreadsheetContexts.basic(
+                (u, l) -> {
+                    throw new UnsupportedOperationException();
+                },
+                SpreadsheetStoreRepositories.basic(
+                    SpreadsheetCellStores.treeMap(),
+                    SpreadsheetCellReferencesStores.treeMap(),
+                    SpreadsheetColumnStores.treeMap(),
+                    SpreadsheetFormStores.treeMap(),
+                    SpreadsheetGroupStores.treeMap(),
+                    SpreadsheetLabelStores.treeMap(),
+                    SpreadsheetLabelReferencesStores.treeMap(),
+                    metadataStore,
+                    SpreadsheetCellRangeStores.treeMap(),
+                    SpreadsheetCellRangeStores.treeMap(),
+                    SpreadsheetRowStores.treeMap(),
+                    Storages.tree(),
+                    SpreadsheetUserStores.treeMap()
                 ),
-                EXPRESSION_FUNCTION_PROVIDER,
-                SPREADSHEET_COMPARATOR_PROVIDER,
-                SPREADSHEET_EXPORTER_PROVIDER,
-                SPREADSHEET_FORMATTER_PROVIDER,
-                FORM_HANDLER_PROVIDER,
-                SPREADSHEET_IMPORTER_PROVIDER,
-                SPREADSHEET_PARSER_PROVIDER,
-                VALIDATOR_PROVIDER
-            )
+                SpreadsheetProviders.basic(
+                    SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                        (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
+                            SPREADSHEET_FORMATTER_PROVIDER,
+                            SPREADSHEET_PARSER_PROVIDER,
+                            p
+                        )
+                    ),
+                    EXPRESSION_FUNCTION_PROVIDER,
+                    SPREADSHEET_COMPARATOR_PROVIDER,
+                    SPREADSHEET_EXPORTER_PROVIDER,
+                    SPREADSHEET_FORMATTER_PROVIDER,
+                    FORM_HANDLER_PROVIDER,
+                    SPREADSHEET_IMPORTER_PROVIDER,
+                    SPREADSHEET_PARSER_PROVIDER,
+                    VALIDATOR_PROVIDER
+                ),
+                environmentContext,
+                LOCALE_CONTEXT,
+                providerContext
+            ),
+            terminalContext
         );
     }
 
