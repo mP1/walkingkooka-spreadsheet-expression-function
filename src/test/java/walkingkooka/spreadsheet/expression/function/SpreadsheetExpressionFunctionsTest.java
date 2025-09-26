@@ -47,23 +47,28 @@ import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
+import walkingkooka.spreadsheet.compare.provider.SpreadsheetComparatorAliasSet;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngine;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContext;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngines;
+import walkingkooka.spreadsheet.export.provider.SpreadsheetExporterAliasSet;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.expression.function.provider.SpreadsheetExpressionFunctionProviders;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
+import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterAliasSet;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
+import walkingkooka.spreadsheet.importer.provider.SpreadsheetImporterAliasSet;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
+import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserAliasSet;
 import walkingkooka.spreadsheet.provider.SpreadsheetProviders;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
@@ -96,6 +101,8 @@ import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.TextStylePropertyName;
+import walkingkooka.validation.form.provider.FormHandlerAliasSet;
+import walkingkooka.validation.provider.ValidatorAliasSet;
 import walkingkooka.validation.provider.ValidatorSelector;
 
 import java.lang.reflect.Method;
@@ -4314,6 +4321,33 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetMetadataPropertyName.STYLE,
                 TextStyle.EMPTY.set(TextStylePropertyName.WIDTH, Length.pixel(50.0))
                     .set(TextStylePropertyName.HEIGHT, Length.pixel(50.0))
+            ).set(
+                SpreadsheetMetadataPropertyName.COMPARATORS,
+                SpreadsheetComparatorAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.CONVERTERS,
+                SpreadsheetConvertersConverterProviders.ALL.aliasSet()
+            ).set(
+                SpreadsheetMetadataPropertyName.EXPORTERS,
+                SpreadsheetExporterAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.FORM_HANDLERS,
+                FormHandlerAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.FORMATTERS,
+                SpreadsheetFormatterAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.FUNCTIONS,
+                SpreadsheetExpressionFunctionProviders.ALL.aliasSet()
+            ).set(
+                SpreadsheetMetadataPropertyName.IMPORTERS,
+                SpreadsheetImporterAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.PARSERS,
+                SpreadsheetParserAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.VALIDATORS,
+                ValidatorAliasSet.EMPTY
             );
     }
 

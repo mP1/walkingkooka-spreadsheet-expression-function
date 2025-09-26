@@ -26,6 +26,7 @@ import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctio
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionAliasSet;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionInfo;
+import walkingkooka.tree.expression.function.provider.ExpressionFunctionInfoSet;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
 
@@ -34,9 +35,10 @@ import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider
  */
 public final class SpreadsheetExpressionFunctionProviders implements PublicStaticHelper {
 
-    public final static ExpressionFunctionAliasSet FIND = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-        .expressionFunctionInfos()
-        .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
+    public final static ExpressionFunctionInfoSet ALL = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
+        .expressionFunctionInfos();
+
+    public final static ExpressionFunctionAliasSet FIND = ALL.deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
@@ -44,16 +46,12 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
-    public final static ExpressionFunctionAliasSet FORMATTING = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-        .expressionFunctionInfos()
-        .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
+    public final static ExpressionFunctionAliasSet FORMATTING = ALL.deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterTerminal)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
-    public final static ExpressionFunctionAliasSet FORMULA = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-        .expressionFunctionInfos()
-        .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
+    public final static ExpressionFunctionAliasSet FORMULA = ALL.deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
@@ -61,13 +59,9 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterValidation)
         .aliasSet();
 
-    public final static ExpressionFunctionAliasSet TERMINAL = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-        .expressionFunctionInfos()
-        .aliasSet();
+    public final static ExpressionFunctionAliasSet TERMINAL = ALL.aliasSet();
 
-    public final static ExpressionFunctionAliasSet VALIDATION = expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-        .expressionFunctionInfos()
-        .deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
+    public final static ExpressionFunctionAliasSet VALIDATION = ALL.deleteIf(SpreadsheetExpressionFunctionProviders::filterColor)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterFormatting)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterMetadata)
         .deleteIf(SpreadsheetExpressionFunctionProviders::filterStyle)
