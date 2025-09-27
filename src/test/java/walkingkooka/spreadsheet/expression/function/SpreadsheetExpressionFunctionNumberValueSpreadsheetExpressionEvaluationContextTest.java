@@ -247,6 +247,12 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
+                public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+                    Objects.requireNonNull(user, "user");
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
                 public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
                     Objects.requireNonNull(reference, "reference");
 
