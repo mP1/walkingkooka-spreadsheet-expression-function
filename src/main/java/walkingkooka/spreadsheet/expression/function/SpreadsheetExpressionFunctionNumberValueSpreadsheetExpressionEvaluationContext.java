@@ -59,6 +59,7 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.ExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
@@ -173,6 +174,20 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
         this.context.setUser(user);
         return this;
+    }
+
+    @Override
+    public SpreadsheetExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+        final SpreadsheetExpressionEvaluationContext before = this.context;
+        final SpreadsheetExpressionEvaluationContext after = before.setObjectPostProcessor(processor);
+
+        return before.equals(after) ?
+            this :
+            new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
+                this.decimalSeparator,
+                this.groupSeparator,
+                after
+            );
     }
 
     @Override
