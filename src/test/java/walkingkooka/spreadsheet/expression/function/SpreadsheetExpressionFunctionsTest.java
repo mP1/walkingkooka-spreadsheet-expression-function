@@ -3598,6 +3598,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             metadata,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             SpreadsheetContexts.basic(
+                SERVER_URL,
                 metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
                 SpreadsheetStoreRepositories.basic(
                     SpreadsheetCellStores.treeMap(),
@@ -4445,6 +4446,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             spreadsheetMetadata,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             SpreadsheetContexts.basic(
+                SERVER_URL,
                 spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
                 SpreadsheetStoreRepositories.basic(
                     SpreadsheetCellStores.treeMap(),
