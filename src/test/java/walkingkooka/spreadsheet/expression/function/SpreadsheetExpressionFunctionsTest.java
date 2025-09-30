@@ -51,6 +51,7 @@ import walkingkooka.spreadsheet.compare.provider.SpreadsheetComparatorAliasSet;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngine;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContext;
+import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngines;
 import walkingkooka.spreadsheet.export.provider.SpreadsheetExporterAliasSet;
@@ -3595,7 +3596,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
             metadata,
-            SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            SpreadsheetEngineContextMode.FORMULA,
             SpreadsheetContexts.basic(
                 SERVER_URL,
                 metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
@@ -4115,7 +4116,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         // only SCRIPTING allows updatable EnvironmentContext
-        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.spreadsheetEngineContext(SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS)
+        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.setSpreadsheetEngineContextMode(SpreadsheetEngineContextMode.SCRIPTING)
             .spreadsheetExpressionEvaluationContext(
                 SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
                 SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
@@ -4442,7 +4443,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         return SpreadsheetEngineContexts.basic(
             spreadsheetMetadata,
-            SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
+            SpreadsheetEngineContextMode.FORMULA,
             SpreadsheetContexts.basic(
                 SERVER_URL,
                 spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
