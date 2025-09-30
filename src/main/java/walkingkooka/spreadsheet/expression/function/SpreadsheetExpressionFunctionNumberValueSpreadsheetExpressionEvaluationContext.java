@@ -178,29 +178,25 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
 
     @Override
     public SpreadsheetExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
-        final SpreadsheetExpressionEvaluationContext before = this.context;
-        final SpreadsheetExpressionEvaluationContext after = before.setObjectPostProcessor(processor);
-
-        return before.equals(after) ?
-            this :
-            new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
-                this.decimalSeparator,
-                this.groupSeparator,
-                after
-            );
+        return this.setSpreadsheetExpressionEvaluationContext(
+            this.context.setObjectPostProcessor(processor)
+        );
     }
 
     @Override
     public SpreadsheetExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
-        final SpreadsheetExpressionEvaluationContext before = this.context;
-        final SpreadsheetExpressionEvaluationContext after = before.setPreProcessor(processor);
+        return this.setSpreadsheetExpressionEvaluationContext(
+            this.context.setPreProcessor(processor)
+        );
+    }
 
-        return before.equals(after) ?
+    private SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext setSpreadsheetExpressionEvaluationContext(final SpreadsheetExpressionEvaluationContext context) {
+        return this.context.equals(context) ?
             this :
             new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
                 this.decimalSeparator,
                 this.groupSeparator,
-                after
+                context
             );
     }
 
