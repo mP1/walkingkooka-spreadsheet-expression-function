@@ -3594,7 +3594,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         metadataStore.save(metadata);
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
-            SERVER_URL,
             metadata,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             SpreadsheetContexts.basic(
@@ -4442,7 +4441,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         metadataStore.save(spreadsheetMetadata);
 
         return SpreadsheetEngineContexts.basic(
-            SERVER_URL,
             spreadsheetMetadata,
             SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
             SpreadsheetContexts.basic(
