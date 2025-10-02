@@ -42,6 +42,7 @@ import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.SpreadsheetContext;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.SpreadsheetError;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
@@ -130,6 +131,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
+
+    private final static Function<SpreadsheetContext, SpreadsheetEngineContext> SPREADSHEET_ENGINE_CONTEXT_FACTORY = (c) -> SpreadsheetEngineContexts.basic(
+        SpreadsheetEngineContextMode.FORMULA,
+        c,
+        TERMINAL_CONTEXT
+    );
 
     // wizard function names are all case-insensitive...................................................................
 
@@ -3631,6 +3638,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     SPREADSHEET_PARSER_PROVIDER,
                     VALIDATOR_PROVIDER
                 ),
+                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
                 LocaleContexts.jre(LOCALE),
                 PROVIDER_CONTEXT
@@ -4477,6 +4485,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     SPREADSHEET_PARSER_PROVIDER,
                     VALIDATOR_PROVIDER
                 ),
+                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 environmentContext,
                 LOCALE_CONTEXT,
                 providerContext
