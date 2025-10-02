@@ -28,7 +28,9 @@ import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.net.HostAddress;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.net.expression.function.NetExpressionFunctions;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetError;
@@ -789,6 +791,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<GreenRgbColorComponent, SpreadsheetExpressionEvaluationContext> getGreen() {
         return fixName(
             ColorExpressionFunctions.getGreen()
+        );
+    }
+
+    /**
+     * {@see NetExpressionFunctions#getHost}
+     */
+    public static ExpressionFunction<HostAddress, SpreadsheetExpressionEvaluationContext> getHost() {
+        return fixName(
+            NetExpressionFunctions.getHost()
         );
     }
 

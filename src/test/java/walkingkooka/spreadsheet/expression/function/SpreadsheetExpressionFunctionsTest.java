@@ -35,6 +35,7 @@ import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
+import walkingkooka.net.HostAddress;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.plugin.ProviderContext;
@@ -1499,6 +1500,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             environmentContext,
             formulaText,
             "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateGetHostWithString() {
+        this.evaluateAndValueCheck(
+            "=getHost(\"https://example.com/path1\")",
+            HostAddress.with("example.com")
         );
     }
 
