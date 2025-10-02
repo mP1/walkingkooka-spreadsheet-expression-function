@@ -180,7 +180,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                             throw new RuntimeException(e);
                         }
                     }
-                ).map(m -> m.getName())
+                ).map(Method::getName)
                 .sorted()
                 .collect(Collectors.joining("\n"))
         );
