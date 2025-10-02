@@ -634,6 +634,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see NetExpressionFunctions.emailAddress}
+     */
+    public static ExpressionFunction<EmailAddress, SpreadsheetExpressionEvaluationContext> emailAddress() {
+        return fixName(
+            NetExpressionFunctions.emailAddress()
+        );
+    }
+
+    /**
      * {@see walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions#error}
      */
     public static ExpressionFunction<SpreadsheetError, SpreadsheetExpressionEvaluationContext> error() {

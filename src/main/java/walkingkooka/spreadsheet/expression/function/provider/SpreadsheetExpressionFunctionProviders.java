@@ -219,6 +219,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.delta(),
                     SpreadsheetExpressionFunctions.dollar(),
                     SpreadsheetExpressionFunctions.e(),
+                    SpreadsheetExpressionFunctions.emailAddress(),
                     SpreadsheetExpressionFunctions.error(),
                     SpreadsheetExpressionFunctions.eval(),
                     SpreadsheetExpressionFunctions.even(),
