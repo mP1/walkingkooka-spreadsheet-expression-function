@@ -331,6 +331,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setBlue(),
                     SpreadsheetExpressionFunctions.setEnv(),
                     SpreadsheetExpressionFunctions.setGreen(),
+                    SpreadsheetExpressionFunctions.setHost(),
                     SpreadsheetExpressionFunctions.setLocale(),
                     SpreadsheetExpressionFunctions.setRed(),
                     SpreadsheetExpressionFunctions.setStyle(),
