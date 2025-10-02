@@ -3074,6 +3074,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetHostWithAbsoluteUrlAndString() {
+        this.evaluateAndValueCheck(
+            "=setHost(\"https://example.com/path1\", \"DIFFERENT.EXAMPLE.COM\")",
+            Url.parseAbsolute("https://DIFFERENT.EXAMPLE.COM/path1")
+        );
+    }
+
+    @Test
+    public void testEvaluateSetHostWithEmailAddressAndString() {
+        this.evaluateAndValueCheck(
+            "=setHost(\"user@example.com\", \"DIFFERENT.EXAMPLE.COM\")",
+            EmailAddress.parse("user@DIFFERENT.EXAMPLE.COM")
+        );
+    }
+
+    @Test
+    public void testEvaluateSetHostWithMailToUrlAndString() {
+        this.evaluateAndValueCheck(
+            "=setHost(\"mailto:user@example.com\", \"DIFFERENT.EXAMPLE.COM\")",
+            Url.parseMailTo("mailto:user@DIFFERENT.EXAMPLE.COM")
+        );
+    }
+
+    @Test
     public void testEvaluateSetLocaleAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
 

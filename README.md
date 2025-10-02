@@ -196,6 +196,7 @@ majority of these functions are formula expression functions.
 - setBlue
 - setEnv
 - setGreen
+- setHost
 - setLocale
 - setRed
 - setStyle
