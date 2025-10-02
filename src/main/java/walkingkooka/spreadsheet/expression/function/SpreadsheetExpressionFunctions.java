@@ -30,6 +30,7 @@ import walkingkooka.environment.expression.function.EnvironmentExpressionFunctio
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.HasHostAddress;
 import walkingkooka.net.HostAddress;
+import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.net.expression.function.NetExpressionFunctions;
 import walkingkooka.reflect.PublicStaticHelper;
@@ -1937,6 +1938,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         .setName(
             functionName("upper")
         );
+
+    /**
+     * {@see NetExpressionFunctions.url}
+     */
+    public static ExpressionFunction<Url, SpreadsheetExpressionEvaluationContext> url() {
+        return fixName(
+            NetExpressionFunctions.url()
+        );
+    }
 
     /**
      * {@see SpreadsheetExpressionFunctionValidationError}

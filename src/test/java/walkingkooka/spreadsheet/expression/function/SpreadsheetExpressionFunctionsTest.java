@@ -3959,6 +3959,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateUrlWithStringAbsoluteUrl() {
+        this.evaluateAndValueCheck(
+            "=url(\"https://example.com/path1\")",
+            Url.parseAbsolute("https://example.com/path1")
+        );
+    }
+
+    @Test
+    public void testEvaluateUrlWithStringDataUrl() {
+        this.evaluateAndValueCheck(
+            "=url(\"data:,Hello%2C%20World%21\")",
+            Url.parseData("data:,Hello%2C%20World%21")
+        );
+    }
+
+    @Test
+    public void testEvaluateUrlWithStringRelativeUrl() {
+        this.evaluateAndValueCheck(
+            "=url(\"/path1?k1=v1#fragment111\")",
+            Url.parseRelative("/path1?k1=v1#fragment111")
+        );
+    }
+
+    @Test
     public void testEvaluateValueWithNumber() {
         this.evaluateAndValueCheck(
             "=value(123)",

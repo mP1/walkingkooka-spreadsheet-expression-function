@@ -370,6 +370,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.unichar(),
                     SpreadsheetExpressionFunctions.unicode(),
                     SpreadsheetExpressionFunctions.upper(),
+                    SpreadsheetExpressionFunctions.url(),
                     SpreadsheetExpressionFunctions.validationError(),
                     SpreadsheetExpressionFunctions.value(),
                     SpreadsheetExpressionFunctions.weekDay(),
