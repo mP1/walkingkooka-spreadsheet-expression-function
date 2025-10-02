@@ -1170,6 +1170,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateEmailAddress() {
+        this.evaluateAndValueCheck(
+            "=emailAddress(\"user@example.com\")",
+            EmailAddress.parse("user@example.com")
+        );
+    }
+
+    @Test
     public void testEvaluateEval() {
         this.evaluateAndValueCheck(
             "=eval(\"11+22\")",

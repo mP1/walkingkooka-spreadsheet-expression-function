@@ -84,6 +84,7 @@ majority of these functions are formula expression functions.
 - delta
 - dollar
 - e
+- emailAddress
 - error
 - eval
 - even
