@@ -91,6 +91,7 @@ import walkingkooka.spreadsheet.validation.form.store.SpreadsheetFormStores;
 import walkingkooka.storage.Storages;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
+import walkingkooka.terminal.TerminalId;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.cursor.TextCursors;
@@ -4178,6 +4179,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ),
             environmentContext,
             TerminalContexts.basic(
+                TerminalId.with(1),
                 lineReader,
                 Printers.stringBuilder(
                     printed,
