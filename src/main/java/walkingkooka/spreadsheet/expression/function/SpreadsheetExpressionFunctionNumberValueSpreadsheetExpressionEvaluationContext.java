@@ -492,6 +492,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     // TerminalContextDelegator.........................................................................................
 
     @Override
+    public SpreadsheetExpressionEvaluationContext quitTerminal() {
+        return this.context.quitTerminal();
+    }
+
+    @Override
     public TerminalContext terminalContext() {
         return this.context;
     }
