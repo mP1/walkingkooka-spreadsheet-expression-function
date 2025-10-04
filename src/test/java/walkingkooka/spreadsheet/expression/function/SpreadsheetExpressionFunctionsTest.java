@@ -38,10 +38,13 @@ import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.HostAddress;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.net.http.server.HttpHandler;
+import walkingkooka.net.http.server.HttpRequestAttribute;
 import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
+import walkingkooka.route.Router;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetContext;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
@@ -139,6 +142,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         c,
         TERMINAL_CONTEXT
     );
+
+    private final static Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> HATEOS_ROUTER_FACTORY = (SpreadsheetEngineContext c) ->
+        new Router<>() {
+            @Override
+            public Optional<HttpHandler> route(final Map<HttpRequestAttribute<?>, Object> parameters) {
+                throw new UnsupportedOperationException();
+            }
+        };
 
     // wizard function names are all case-insensitive...................................................................
 
@@ -3681,6 +3692,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     VALIDATOR_PROVIDER
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
+                HATEOS_ROUTER_FACTORY,
                 EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
                 LocaleContexts.jre(LOCALE),
                 PROVIDER_CONTEXT
@@ -4553,6 +4565,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     VALIDATOR_PROVIDER
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
+                HATEOS_ROUTER_FACTORY,
                 environmentContext,
                 LOCALE_CONTEXT,
                 providerContext
