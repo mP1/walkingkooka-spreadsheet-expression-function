@@ -3669,7 +3669,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     SpreadsheetLabelReferencesStores.treeMap(),
                     metadataStore,
                     SpreadsheetCellRangeStores.treeMap(),
-                    SpreadsheetCellRangeStores.treeMap(),
                     SpreadsheetRowStores.treeMap(),
                     Storages.tree(),
                     SpreadsheetUserStores.treeMap()
@@ -4541,7 +4540,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     SpreadsheetLabelStores.treeMap(),
                     SpreadsheetLabelReferencesStores.treeMap(),
                     metadataStore,
-                    SpreadsheetCellRangeStores.treeMap(),
                     SpreadsheetCellRangeStores.treeMap(),
                     SpreadsheetRowStores.treeMap(),
                     Storages.tree(),
