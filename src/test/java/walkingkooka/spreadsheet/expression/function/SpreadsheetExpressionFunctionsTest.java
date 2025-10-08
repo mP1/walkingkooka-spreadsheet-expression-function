@@ -4434,6 +4434,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ).set(
                 SpreadsheetMetadataPropertyName.VALIDATORS,
                 ValidatorAliasSet.EMPTY
+            ).set(
+                SpreadsheetMetadataPropertyName.VALIDATION_CONVERTER,
+                ConverterSelector.parse("basic")
             );
     }
 
