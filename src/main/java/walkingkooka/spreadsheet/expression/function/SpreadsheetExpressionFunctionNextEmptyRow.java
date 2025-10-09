@@ -71,6 +71,9 @@ final class SpreadsheetExpressionFunctionNextEmptyRow extends SpreadsheetExpress
         final SpreadsheetColumnReference column = COLUMN.getOrFail(parameters, 0);
 
         return context.nextEmptyRow(column)
-            .orElseThrow(() -> SpreadsheetErrorKind.VALUE.setMessage("Column full").exception());
+            .orElseThrow(
+                () -> SpreadsheetErrorKind.VALUE.setMessage("Column " + column + " full")
+                    .exception()
+            );
     }
 }
