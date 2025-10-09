@@ -4616,6 +4616,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "removeenv":
                         case "setenv":
                         case "setlocale":
+                        case "getvalidator":
                             pure = false;
                             break;
                         default:
