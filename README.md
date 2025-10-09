@@ -240,6 +240,7 @@ majority of these functions are formula expression functions.
 - validationChoiceList
 - validationError
 - validationErrorIf
+- validationValue
 - value
 - weekday
 - weeknum

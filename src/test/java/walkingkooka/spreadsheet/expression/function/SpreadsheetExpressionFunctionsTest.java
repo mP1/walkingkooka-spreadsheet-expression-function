@@ -4060,6 +4060,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateValidationValue() {
+        this.evaluateAndValueCheck(
+            "=ValidationValue()",
+            SpreadsheetError.selectionNotFound(
+                SpreadsheetSelection.labelName("value")
+            )
+        );
+    }
+
+    @Test
     public void testEvaluateValueWithString() {
         this.evaluateAndValueCheck(
             "=value(\"123\")",
@@ -4659,6 +4669,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlocale":
                         case "getvalidator":
                         case "validationerrorif":
+                        case "validationvalue":
                             pure = false;
                             break;
                         default:
