@@ -108,6 +108,8 @@ import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.TextStylePropertyName;
+import walkingkooka.validation.ValidationChoice;
+import walkingkooka.validation.ValidationChoiceList;
 import walkingkooka.validation.form.provider.FormHandlerAliasSet;
 import walkingkooka.validation.provider.ValidatorAliasSet;
 import walkingkooka.validation.provider.ValidatorSelector;
@@ -4007,6 +4009,25 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=value(123)",
             EXPRESSION_NUMBER_KIND.create(123)
+        );
+    }
+
+    @Test
+    public void testEvaluateValidationChoiceList() {
+        // SpreadsheetCell#SpreadsheetFormula will wrap any Collection with a SpreadsheetError#VALUE
+        this.evaluateAndValueCheck(
+            "=ValidationChoiceList(list(\"Label1\"))",
+            SpreadsheetErrorKind.VALUE.toError()
+                .setValue(
+                    Optional.of(
+                        ValidationChoiceList.EMPTY.concat(
+                            ValidationChoice.with(
+                                "Label1",
+                                Optional.of("Label1")
+                            )
+                        )
+                    )
+                )
         );
     }
 

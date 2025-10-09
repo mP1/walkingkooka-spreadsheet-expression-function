@@ -63,6 +63,7 @@ import walkingkooka.tree.text.Styleable;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.expression.function.TreeTextExpressionFunctions;
+import walkingkooka.validation.ValidationChoiceList;
 import walkingkooka.validation.ValidationError;
 import walkingkooka.validation.expression.function.ValidatorExpressionFunctions;
 import walkingkooka.validation.provider.ValidatorSelector;
@@ -1954,6 +1955,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Url, SpreadsheetExpressionEvaluationContext> url() {
         return fixName(
             NetExpressionFunctions.url()
+        );
+    }
+
+    /**
+     * {@see ValidatorExpressionFunctions#validationChoiceList}
+     */
+    public static ExpressionFunction<ValidationChoiceList, SpreadsheetExpressionEvaluationContext> validationChoiceList() {
+        return fixName(
+            ValidatorExpressionFunctions.validationChoiceList()
         );
     }
 
