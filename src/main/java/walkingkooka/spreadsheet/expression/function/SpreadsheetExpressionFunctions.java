@@ -1975,6 +1975,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ValidatorExpressionFunctions#validationErrorIf}
+     */
+    public static ExpressionFunction<ValidationError<SpreadsheetExpressionReference>, SpreadsheetExpressionEvaluationContext> validationErrorIf() {
+        return fixName(
+            ValidatorExpressionFunctions.validationErrorIf()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#number}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> value() {
