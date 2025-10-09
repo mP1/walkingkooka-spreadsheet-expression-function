@@ -237,6 +237,7 @@ majority of these functions are formula expression functions.
 - unicode
 - upper
 - url
+- validationChoiceList
 - validationError
 - value
 - weekday

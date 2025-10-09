@@ -129,7 +129,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         final String name = info.name()
             .value()
             .toLowerCase();
-        return name.startsWith("nextempty");
+        return name.startsWith("nextempty") ||
+            name.equals("validationchoicelist");
     }
 
     /**
@@ -372,6 +373,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.unicode(),
                     SpreadsheetExpressionFunctions.upper(),
                     SpreadsheetExpressionFunctions.url(),
+                    SpreadsheetExpressionFunctions.validationChoiceList(),
                     SpreadsheetExpressionFunctions.validationError(),
                     SpreadsheetExpressionFunctions.value(),
                     SpreadsheetExpressionFunctions.weekDay(),
