@@ -4040,13 +4040,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    // TODO Converter String -> ValidationError required.
-    // https://github.com/mP1/walkingkooka-validation/issues/365
+    // Converting String  "#N/A Hello message 456" will fail because the Context#validationReference will be absent
+    // because MODE=FORMULA and not MODE=VALIDATION
     @Test
     public void testEvaluateValidationErrorIfTrueAndString() {
         this.evaluateAndValueCheck(
-            "=ValidationErrorIf(true(), \"#N/A Hello message 123\")",
-            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"validationError\": Cannot convert \"#N/A Hello message 123\" to ValidationError")
+            "=ValidationErrorIf(true(), \"#N/A Hello message 456\")",
+            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"validationError\": Cannot convert \"#N/A Hello message 456\" to ValidationError")
         );
     }
 
@@ -4404,6 +4404,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
@@ -4429,7 +4430,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ).set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
             .set(
                 SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net)")
+                ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation)")
             ).set(
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                 EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
