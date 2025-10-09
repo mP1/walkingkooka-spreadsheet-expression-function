@@ -4040,6 +4040,25 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    // TODO Converter String -> ValidationError required.
+    // https://github.com/mP1/walkingkooka-validation/issues/365
+    @Test
+    public void testEvaluateValidationErrorIfTrueAndString() {
+        this.evaluateAndValueCheck(
+            "=ValidationErrorIf(true(), \"#N/A Hello message 123\")",
+            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"validationError\": Cannot convert \"#N/A Hello message 123\" to ValidationError")
+        );
+    }
+
+    @Test
+    public void testEvaluateValidationErrorIfTrueAndValidationError() {
+        this.evaluateAndValueCheck(
+            "=ValidationErrorIf(true(), ValidationError(\"#N/A Hello message 123\"))",
+            SpreadsheetForms.error(SpreadsheetSelection.A1)
+                .setMessage("Hello message 123")
+        );
+    }
+
     @Test
     public void testEvaluateValueWithString() {
         this.evaluateAndValueCheck(
@@ -4638,6 +4657,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setenv":
                         case "setlocale":
                         case "getvalidator":
+                        case "validationerrorif":
                             pure = false;
                             break;
                         default:

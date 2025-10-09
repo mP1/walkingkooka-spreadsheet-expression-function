@@ -239,6 +239,7 @@ majority of these functions are formula expression functions.
 - url
 - validationChoiceList
 - validationError
+- validationErrorIf
 - value
 - weekday
 - weeknum
