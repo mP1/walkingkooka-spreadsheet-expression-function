@@ -131,7 +131,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
             .toLowerCase();
         return name.startsWith("nextempty") ||
             name.equals("validationchoicelist") ||
-            name.startsWith("validationerror"); // validationError | validationErrorIf
+            name.startsWith("validationerror") || // validationError | validationErrorIf
+            name.equals("validationvalue");
     }
 
     /**
@@ -377,6 +378,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.validationChoiceList(),
                     SpreadsheetExpressionFunctions.validationError(),
                     SpreadsheetExpressionFunctions.validationErrorIf(),
+                    SpreadsheetExpressionFunctions.validationValue(),
                     SpreadsheetExpressionFunctions.value(),
                     SpreadsheetExpressionFunctions.weekDay(),
                     SpreadsheetExpressionFunctions.weekNum(),
