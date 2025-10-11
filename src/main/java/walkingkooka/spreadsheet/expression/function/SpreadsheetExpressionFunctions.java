@@ -26,6 +26,7 @@ import walkingkooka.color.HslColor;
 import walkingkooka.color.HsvColor;
 import walkingkooka.color.RedRgbColorComponent;
 import walkingkooka.color.RgbColor;
+import walkingkooka.color.WebColorName;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
@@ -1908,6 +1909,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> toRgbHexString() {
         return fixName(
             ColorExpressionFunctions.toRgbHexString()
+        );
+    }
+
+    /**
+     * {@see ColorExpressionFunctions#toWebColorName}
+     */
+    public static ExpressionFunction<WebColorName, SpreadsheetExpressionEvaluationContext> toWebColorName() {
+        return fixName(
+            ColorExpressionFunctions.toWebColorName()
         );
     }
 
