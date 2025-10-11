@@ -367,6 +367,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.today(),
                     SpreadsheetExpressionFunctions.toGray(),
                     SpreadsheetExpressionFunctions.toHslColor(),
+                    SpreadsheetExpressionFunctions.toHsvColor(),
                     SpreadsheetExpressionFunctions.toRgbColor(),
                     SpreadsheetExpressionFunctions.toRgbHexString(),
                     SpreadsheetExpressionFunctions.trim(),
