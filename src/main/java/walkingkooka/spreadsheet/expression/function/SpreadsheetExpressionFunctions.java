@@ -23,6 +23,7 @@ import walkingkooka.color.BlueRgbColorComponent;
 import walkingkooka.color.Color;
 import walkingkooka.color.GreenRgbColorComponent;
 import walkingkooka.color.HslColor;
+import walkingkooka.color.HsvColor;
 import walkingkooka.color.RedRgbColorComponent;
 import walkingkooka.color.RgbColor;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
@@ -1880,6 +1881,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<HslColor, SpreadsheetExpressionEvaluationContext> toHslColor() {
         return fixName(
             ColorExpressionFunctions.toHslColor()
+        );
+    }
+
+    /**
+     * {@see ColorExpressionFunctions#toHsvColor}
+     */
+    public static ExpressionFunction<HsvColor, SpreadsheetExpressionEvaluationContext> toHsvColor() {
+        return fixName(
+            ColorExpressionFunctions.toHsvColor()
         );
     }
 

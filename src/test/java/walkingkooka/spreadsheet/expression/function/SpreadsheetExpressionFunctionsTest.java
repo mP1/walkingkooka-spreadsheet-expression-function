@@ -3853,6 +3853,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .toHsl()
         );
     }
+
+    @Test
+    public void testEvaluateToHsvColorWithColor() {
+        this.evaluateAndValueCheck(
+            "=toHsvColor(color(\"#123456\"))",
+            Color.parse("#123456")
+                .toHsv()
+        );
+    }
+
+    @Test
+    public void testEvaluateToHsvColorWithString() {
+        this.evaluateAndValueCheck(
+            "=toHsvColor(\"#123456\")",
+            Color.parse("#123456")
+                .toHsv()
+        );
+    }
     
     @Test
     public void testEvaluateToRgbColorWithColor() {
