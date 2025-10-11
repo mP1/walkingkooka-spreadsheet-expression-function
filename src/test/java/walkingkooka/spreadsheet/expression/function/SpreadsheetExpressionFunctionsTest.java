@@ -24,6 +24,7 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.color.Color;
 import walkingkooka.color.RgbColorComponent;
+import walkingkooka.color.WebColorName;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -3907,6 +3908,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             Color.parse("#123456")
                 .toRgb()
                 .toHexString()
+        );
+    }
+
+    @Test
+    public void testEvaluateToWebColorNameWithColor() {
+        this.evaluateAndValueCheck(
+            "=toWebColorName(color(\"blue\"))",
+            WebColorName.BLUE
+        );
+    }
+
+    @Test
+    public void testEvaluateToWebColorNameWithString() {
+        this.evaluateAndValueCheck(
+            "=toWebColorName(\"blue\")",
+            WebColorName.BLUE
         );
     }
 

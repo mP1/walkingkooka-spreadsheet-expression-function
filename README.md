@@ -232,6 +232,7 @@ majority of these functions are formula expression functions.
 - toHsvColor
 - toRgbColor
 - toRgbHexString
+- toWebColorName
 - trim
 - true
 - trunc
@@ -306,6 +307,7 @@ an [Expression](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/ja
 - [toHsvColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToHsvColor.java)
 - [toRgbColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToRgbColor.java)
 - [toRgbHexString](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToRgbHexString.java)
+- [toWebColorName](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToWebColorName)
 
 # SpreadsheetForm function
 
