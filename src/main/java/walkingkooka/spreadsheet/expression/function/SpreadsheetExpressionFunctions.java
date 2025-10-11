@@ -1874,6 +1874,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ColorExpressionFunctions#toRgbColor}
+     */
+    public static ExpressionFunction<RgbColor, SpreadsheetExpressionEvaluationContext> toRgbColor() {
+        return fixName(
+            ColorExpressionFunctions.toRgbColor()
+        );
+    }
+
+    /**
      * {@see ColorExpressionFunctions#toRgbHexString}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> toRgbHexString() {
