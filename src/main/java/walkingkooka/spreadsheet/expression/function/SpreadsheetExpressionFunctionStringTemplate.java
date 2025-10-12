@@ -55,7 +55,6 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
     final static ExpressionFunctionParameter<String> TEMPLATE = ExpressionFunctionParameter.with(
         ExpressionFunctionParameterName.with("template"),
         String.class,
-        ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
         ExpressionFunctionParameterCardinality.REQUIRED,
         Optional.empty(), // defaultValue
         ExpressionFunctionParameterKind.CONVERT_EVALUATE
@@ -104,7 +103,6 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
     final static ExpressionFunctionParameter<TemplateValueName> TEMPLATE_VALUE_NAME_PARAMETER = ExpressionFunctionParameter.with(
         ExpressionFunctionParameterName.with("templateValueName1"),
         TemplateValueName.class,
-        ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
         ExpressionFunctionParameterCardinality.REQUIRED,
         Optional.empty(), // defaultValue
         ExpressionFunctionParameterKind.CONVERT_EVALUATE
@@ -122,7 +120,6 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
     final static ExpressionFunctionParameter<Object> TEMPLATE_VALUE_PARAMETER = ExpressionFunctionParameter.with(
         ExpressionFunctionParameterName.with("templateValue1"),
         Object.class,
-        ExpressionFunctionParameter.NO_TYPE_PARAMETERS,
         ExpressionFunctionParameterCardinality.REQUIRED,
         Optional.empty(), // defaultValue
         ExpressionFunctionParameterKind.CONVERT_EVALUATE
