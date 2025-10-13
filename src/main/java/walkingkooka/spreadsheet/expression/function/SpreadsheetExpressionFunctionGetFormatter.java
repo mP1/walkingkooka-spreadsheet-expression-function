@@ -27,7 +27,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import java.util.List;
 
 /**
- * A function that may be used to get a {@link walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector}.
+ * A function that may be used to get a {@link SpreadsheetFormatterSelector}.
  */
 final class SpreadsheetExpressionFunctionGetFormatter extends SpreadsheetExpressionFunction<SpreadsheetFormatterSelector> {
 
