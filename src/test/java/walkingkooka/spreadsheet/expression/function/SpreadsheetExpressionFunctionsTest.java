@@ -4084,7 +4084,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateValidationChoiceList() {
+    public void testEvaluateValidationChoiceListWithListOfString() {
         // SpreadsheetCell#SpreadsheetFormula will wrap any Collection with a SpreadsheetError#VALUE
         this.evaluateAndValueCheck(
             "=ValidationChoiceList(list(\"Label1\"))",
@@ -4097,6 +4097,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                 Optional.of("Label1")
                             )
                         )
+                    )
+                )
+        );
+    }
+
+    @Test
+    public void testEvaluateValidationChoiceListWithCsvStringFails() {
+        // SpreadsheetCell#SpreadsheetFormula will wrap any Collection with a SpreadsheetError#VALUE
+        this.evaluateAndValueCheck(
+            "=ValidationChoiceList(\"Label1,Label2,Label3\")",
+            SpreadsheetErrorKind.VALUE.toError()
+                .setValue(
+                    Optional.of(
+                        "validationChoiceList: values: Cannot convert \"Label1,Label2,Label3\" to List"
                     )
                 )
         );
