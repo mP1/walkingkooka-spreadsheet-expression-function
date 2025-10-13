@@ -48,7 +48,7 @@ final class SpreadsheetExpressionFunctionGetDateTimeSymbols extends SpreadsheetE
     private final static ExpressionFunctionParameter<DateTimeSymbols> DATE_TIME_SYMBOLS = ExpressionFunctionParameterName.with("dateTimeSymbols")
         .required(DateTimeSymbols.class)
         .setKinds(
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(

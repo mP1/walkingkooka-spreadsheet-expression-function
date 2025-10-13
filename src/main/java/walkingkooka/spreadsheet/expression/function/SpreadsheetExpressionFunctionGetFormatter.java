@@ -48,7 +48,7 @@ final class SpreadsheetExpressionFunctionGetFormatter extends SpreadsheetExpress
     private final static ExpressionFunctionParameter<SpreadsheetFormatterSelector> FORMATTER = ExpressionFunctionParameterName.with("formatter")
         .required(SpreadsheetFormatterSelector.class)
         .setKinds(
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(

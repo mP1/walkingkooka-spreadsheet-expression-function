@@ -48,7 +48,7 @@ final class SpreadsheetExpressionFunctionGetDecimalNumberSymbols extends Spreads
     private final static ExpressionFunctionParameter<DecimalNumberSymbols> DECIMAL_NUMBER_SYMBOLS = ExpressionFunctionParameterName.with("decimalNumberSymbols")
         .required(DecimalNumberSymbols.class)
         .setKinds(
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(

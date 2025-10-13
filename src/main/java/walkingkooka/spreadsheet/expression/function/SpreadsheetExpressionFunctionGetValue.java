@@ -48,7 +48,7 @@ final class SpreadsheetExpressionFunctionGetValue extends SpreadsheetExpressionF
     private final static ExpressionFunctionParameter<SpreadsheetCell> CELL = ExpressionFunctionParameterName.with("cell")
         .required(SpreadsheetCell.class)
         .setKinds(
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(CELL);
