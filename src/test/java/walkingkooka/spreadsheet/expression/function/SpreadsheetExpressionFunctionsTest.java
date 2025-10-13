@@ -306,7 +306,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateAbsInvalidParameterTypeFails() {
         this.evaluateAndValueCheck(
             "=abs(\"Hello\")",
-            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"Hello\" to ExpressionNumber")
+            SpreadsheetErrorKind.VALUE.setMessage("abs: number: Cannot convert \"Hello\" to ExpressionNumber")
         );
     }
 
@@ -4117,7 +4117,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateValidationErrorIfTrueAndString() {
         this.evaluateAndValueCheck(
             "=ValidationErrorIf(true(), \"#N/A Hello message 456\")",
-            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"validationError\": Cannot convert \"#N/A Hello message 456\" to ValidationError")
+            SpreadsheetErrorKind.VALUE.setMessage("validationErrorIf: validationError: Cannot convert \"#N/A Hello message 456\" to ValidationError")
         );
     }
 
@@ -4152,7 +4152,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateValueWithInvalidString() {
         this.evaluateAndValueCheck(
             "=value(\"abc\")",
-            SpreadsheetErrorKind.VALUE.setMessage("Parameter \"number\": Cannot convert \"abc\" to ExpressionNumber")
+            SpreadsheetErrorKind.VALUE.setMessage("value: number: Cannot convert \"abc\" to ExpressionNumber")
         );
     }
 
