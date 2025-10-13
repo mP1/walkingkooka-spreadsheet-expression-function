@@ -48,7 +48,7 @@ final class SpreadsheetExpressionFunctionGetParser extends SpreadsheetExpression
     private final static ExpressionFunctionParameter<SpreadsheetParserSelector> PARSER = ExpressionFunctionParameterName.with("parser")
         .required(SpreadsheetParserSelector.class)
         .setKinds(
-            ExpressionFunctionParameterKind.CONVERT_EVALUATE
+            ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES
         );
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
