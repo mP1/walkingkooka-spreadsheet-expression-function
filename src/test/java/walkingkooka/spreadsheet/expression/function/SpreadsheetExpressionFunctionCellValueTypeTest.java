@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.spreadsheet.SpreadsheetCell;
-import walkingkooka.validation.ValidationValueTypeName;
+import walkingkooka.validation.ValueTypeName;
 
 import java.util.Optional;
 
@@ -32,7 +32,7 @@ public final class SpreadsheetExpressionFunctionCellValueTypeTest extends Spread
 
     @Override
     Object valuePresent() {
-        return ValidationValueTypeName.DATE;
+        return ValueTypeName.DATE;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class SpreadsheetExpressionFunctionCellValueTypeTest extends Spread
             cell.formula()
                 .setValueType(
                     Optional.ofNullable(
-                        (ValidationValueTypeName) value
+                        (ValueTypeName) value
                     )
                 )
         );
