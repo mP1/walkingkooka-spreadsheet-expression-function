@@ -1657,7 +1657,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetValidator() {
-        final ValidatorSelector validator = ValidatorSelector.parse("Hello-validator-123");
+        final ValidatorSelector validator = ValidatorSelector.parse("hello-validator-123");
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
