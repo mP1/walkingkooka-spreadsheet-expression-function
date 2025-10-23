@@ -589,7 +589,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateCellFormatter() {
-        final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("text-format-pattern @");
+        final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("text @");
         this.evaluateAndValueCheck(
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=cellFormatter()")
@@ -1325,7 +1325,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateFormatValue() {
         this.evaluateAndValueCheck(
-            "=formatValue(\"text-format-pattern @@\", \"Hello\")",
+            "=formatValue(\"text @@\", \"Hello\")",
             TextNode.text("HelloHello")
         );
     }
