@@ -682,6 +682,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         .setName(functionName("exact"));
 
     /**
+     * {@see TerminalExpressionFunctions#exit}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> exit() {
+        return fixName(
+            TerminalExpressionFunctions.exit()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#exp}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> exp() {

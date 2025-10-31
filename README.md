@@ -89,6 +89,7 @@ majority of these functions are formula expression functions.
 - eval
 - even
 - exact
+- exit
 - exp
 - false
 - find
