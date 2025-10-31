@@ -122,7 +122,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
         return name.equals("print") ||
             name.equals("println") ||
             name.equals("readline") ||
-            name.equals("getenv");
+            name.equals("getenv") ||
+            name.equals("exit");
     }
 
     private static boolean filterValidation(final ExpressionFunctionInfo info) {
@@ -227,6 +228,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.eval(),
                     SpreadsheetExpressionFunctions.even(),
                     SpreadsheetExpressionFunctions.exact(),
+                    SpreadsheetExpressionFunctions.exit(),
                     SpreadsheetExpressionFunctions.exp(),
                     SpreadsheetExpressionFunctions.falseFunction(),
                     SpreadsheetExpressionFunctions.find(),
