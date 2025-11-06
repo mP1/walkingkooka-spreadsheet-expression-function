@@ -18,9 +18,9 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.collect.list.Lists;
-import walkingkooka.collect.map.Maps;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelName;
+import walkingkooka.spreadsheet.reference.SpreadsheetSelectionMaps;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
@@ -82,7 +82,7 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
                           final SpreadsheetExpressionEvaluationContext context) {
         final int count = values.size();
         final int labelAndValuePairCount = count / 2;
-        final Map<SpreadsheetLabelName, Object> nameAndValues = Maps.sorted();
+        final Map<SpreadsheetLabelName, Object> nameAndValues = SpreadsheetSelectionMaps.label();
 
         int valueIndex = 0;
 
