@@ -18,6 +18,8 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
@@ -39,7 +41,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext> {
+public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext>,
+    SpreadsheetMetadataTesting {
 
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL128;
 
@@ -203,21 +206,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     return ZERO_DIGIT;
                 }
 
-
-                // FormHandlerContext...............................................................................
-
-                @Override
-                public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
-                    Objects.requireNonNull(name, "name");
-
-                    throw new UnsupportedOperationException();
-                }
-
-                @Override
-                public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
-                    Objects.requireNonNull(name, "name");
-                    return super.removeEnvironmentValue(name);
-                }
+                // FormHandlerContext...................................................................................
 
                 @Override
                 public Optional<Object> loadFormFieldValue(final SpreadsheetExpressionReference reference) {
@@ -230,25 +219,6 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
                     Objects.requireNonNull(fields, "fields");
 
-                    throw new UnsupportedOperationException();
-                }
-
-                @Override
-                public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                                                      final T value) {
-                    Objects.requireNonNull(name, "name");
-                    Objects.requireNonNull(value, "value");
-                    throw new UnsupportedOperationException();
-                }
-
-                @Override
-                public Optional<EmailAddress> user() {
-                    return Optional.of(SpreadsheetMetadataTesting.USER);
-                }
-
-                @Override
-                public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
-                    Objects.requireNonNull(user, "user");
                     throw new UnsupportedOperationException();
                 }
 
@@ -269,11 +239,54 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     return this.localeContext.decimalNumberSymbolsForLocale(locale);
                 }
 
+                // EnvironmentContext...................................................................................
+
+                @Override
+                public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
+                    return this.environmentContext.environmentValue(name);
+                }
+
+                @Override
+                public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+                    this.environmentContext.removeEnvironmentValue(name);
+                    return this;
+                }
+
+                @Override
+                public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                                                      final T value) {
+                    this.environmentContext.setEnvironmentValue(
+                        name,
+                        value
+                    );
+                    return this;
+                }
+
+                @Override
+                public Optional<EmailAddress> user() {
+                    return this.environmentContext.user();
+                }
+
+                @Override
+                public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+                    this.environmentContext.setUser(user);
+                    return this;
+                }
+
+                @Override
+                public Locale locale() {
+                    return this.environmentContext.locale();
+                }
+
                 @Override
                 public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
-                    Objects.requireNonNull(locale, "locale");
-                    throw new UnsupportedOperationException();
+                    this.environmentContext.setLocale(locale);
+                    return this;
                 }
+
+                private final EnvironmentContext environmentContext = EnvironmentContexts.map(
+                    ENVIRONMENT_CONTEXT
+                );
 
                 private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
             }
