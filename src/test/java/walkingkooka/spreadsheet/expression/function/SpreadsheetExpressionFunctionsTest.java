@@ -4329,6 +4329,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             environmentContext,
             TerminalContexts.basic(
                 TerminalId.with(1),
+                environmentContext, // HasUser
                 lineReader,
                 Printers.stringBuilder(
                     printed,
