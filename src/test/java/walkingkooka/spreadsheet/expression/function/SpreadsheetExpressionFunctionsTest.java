@@ -3700,7 +3700,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HATEOS_ROUTER_FACTORY,
                 EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
                 LocaleContexts.jre(LOCALE),
-                PROVIDER_CONTEXT
+                PROVIDER_CONTEXT,
+                TERMINAL_SERVER_CONTEXT
             ),
             TERMINAL_CONTEXT
         );
@@ -4709,7 +4710,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HATEOS_ROUTER_FACTORY,
                 environmentContext,
                 LOCALE_CONTEXT,
-                providerContext
+                providerContext,
+                TERMINAL_SERVER_CONTEXT
             ),
             terminalContext
         );
