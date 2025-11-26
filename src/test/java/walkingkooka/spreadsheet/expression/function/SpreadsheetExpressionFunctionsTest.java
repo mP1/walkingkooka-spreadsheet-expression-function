@@ -4311,7 +4311,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 Printers.stringBuilder(
                     printed,
                     LineEnding.NL
-                )
+                ),
+                Printers.fake()
             ),
             ProviderContexts.fake()
         );
