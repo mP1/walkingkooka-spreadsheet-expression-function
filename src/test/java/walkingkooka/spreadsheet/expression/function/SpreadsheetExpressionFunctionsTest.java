@@ -33,6 +33,9 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.io.FakeTextReader;
+import walkingkooka.io.TextReader;
+import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
@@ -2822,7 +2825,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateReadLine() {
         this.evaluateAndPrintedCheck(
             "=println(readLine())",
-            (timeout) -> Optional.of("Hello World"),
+            new FakeTextReader() {
+                @Override
+                public Optional<String> readLine(final long timeout) {
+                    return Optional.of("Hello World");
+                }
+            },
             "Hello World\n"
         );
     }
@@ -4237,23 +4245,23 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
-                                                             final Function<Long, Optional<String>> lineReader,
+                                                             final TextReader terminalInput,
                                                              final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
-            lineReader,
+            terminalInput,
             null, // NO EXPECTED VALUE
             expectedPrinted
         );
     }
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
-                                                             final Function<Long, Optional<String>> lineReader,
+                                                             final TextReader terminalInput,
                                                              final Object expectedValue,
                                                              final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
-            lineReader,
+            terminalInput,
             EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
             expectedValue,
             expectedPrinted
@@ -4277,9 +4285,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
-            (timeout) -> {
-                throw new UnsupportedOperationException();
-            },
+            TextReaders.fake(),
             environmentContext,
             expectedValue,
             expectedPrinted
@@ -4287,7 +4293,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
-                                                             final Function<Long, Optional<String>> lineReader,
+                                                             final TextReader terminalInput,
                                                              final EnvironmentContext environmentContext,
                                                              final Object expectedValue,
                                                              final String expectedPrint) {
@@ -4307,7 +4313,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             TerminalContexts.basic(
                 TerminalId.with(1),
                 environmentContext, // HasUser
-                lineReader,
+                terminalInput,
                 Printers.stringBuilder(
                     printed,
                     LineEnding.NL
