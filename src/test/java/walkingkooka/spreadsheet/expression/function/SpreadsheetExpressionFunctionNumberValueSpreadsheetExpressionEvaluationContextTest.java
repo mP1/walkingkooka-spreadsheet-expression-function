@@ -33,6 +33,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
+import walkingkooka.text.LineEnding;
 import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
@@ -273,6 +274,17 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     return this;
                 }
 
+                @Override
+                public LineEnding lineEnding() {
+                    return this.environmentContext.lineEnding();
+                }
+
+                @Override
+                public SpreadsheetExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+                    this.environmentContext.setLineEnding(lineEnding);
+                    return this;
+                }
+                
                 @Override
                 public Locale locale() {
                     return this.environmentContext.locale();

@@ -51,6 +51,7 @@ import walkingkooka.storage.expression.function.StorageExpressionEvaluationConte
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.LineEnding;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -164,6 +165,12 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         this.context.setSpreadsheetMetadata(metadata);
     }
 
+    @Override
+    public SpreadsheetExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+        this.context.setLineEnding(lineEnding);
+        return this;
+    }
+    
     @Override
     public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
         this.context.setLocale(locale);
