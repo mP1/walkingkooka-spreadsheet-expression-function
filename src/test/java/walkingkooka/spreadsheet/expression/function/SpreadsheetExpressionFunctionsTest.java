@@ -1358,6 +1358,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1383,6 +1384,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCellMissingDateTimeSymbols() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1411,6 +1413,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1465,6 +1468,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1500,6 +1504,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1541,6 +1546,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1634,6 +1640,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.of(user)
@@ -1654,6 +1661,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
@@ -1693,6 +1701,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private void evaluateGetValueAndCheck(final Object value) {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                LINE_ENDING,
                 LOCALE,
                 NOW,
                 Optional.empty()
