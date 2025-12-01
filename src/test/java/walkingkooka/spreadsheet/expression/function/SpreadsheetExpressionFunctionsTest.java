@@ -4732,6 +4732,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "getlocale":
                         case "getuser":
                         case "print":
+                        case "printenv":
                         case "println":
                         case "readline":
                         case "removeenv":

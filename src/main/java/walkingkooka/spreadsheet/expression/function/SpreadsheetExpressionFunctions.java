@@ -1402,6 +1402,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TerminalExpressionFunctions#printEnv}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> printEnv() {
+        return fixName(
+            TerminalExpressionFunctions.printEnv()
+        );
+    }
+
+    /**
      * {@see TerminalExpressionFunctions#println}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> println() {
