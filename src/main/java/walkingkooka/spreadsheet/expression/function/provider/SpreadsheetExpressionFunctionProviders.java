@@ -120,6 +120,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
             .value()
             .toLowerCase();
         return name.equals("print") ||
+            name.equalsIgnoreCase("printEnv") ||
             name.equals("println") ||
             name.equals("readline") ||
             name.equals("getenv") ||
@@ -313,6 +314,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.or(),
                     SpreadsheetExpressionFunctions.pi(),
                     SpreadsheetExpressionFunctions.print(),
+                    SpreadsheetExpressionFunctions.printEnv(),
                     SpreadsheetExpressionFunctions.println(),
                     SpreadsheetExpressionFunctions.product(),
                     SpreadsheetExpressionFunctions.proper(),

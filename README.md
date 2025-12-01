@@ -174,6 +174,7 @@ majority of these functions are formula expression functions.
 - or
 - pi
 - print
+- printEnv
 - println
 - product
 - proper
