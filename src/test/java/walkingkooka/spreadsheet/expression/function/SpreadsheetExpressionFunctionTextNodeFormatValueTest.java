@@ -83,11 +83,9 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                 LocaleContexts.jre(locale)
             ).set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                AuditInfo.with(
+                AuditInfo.create(
                     EmailAddress.parse("creator@example.com"),
-                    LocalDateTime.of(1999, 12, 31, 12, 58, 59),
-                    EmailAddress.parse("modified@example.com"),
-                    LocalDateTime.of(2000, 1, 2, 3, 4, 5)
+                    LocalDateTime.of(1999, 12, 31, 12, 58, 59)
                 )
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
