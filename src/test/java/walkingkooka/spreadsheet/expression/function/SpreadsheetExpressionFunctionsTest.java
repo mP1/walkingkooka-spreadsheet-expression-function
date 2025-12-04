@@ -1360,7 +1360,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1386,7 +1386,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1415,7 +1415,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1470,7 +1470,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1506,7 +1506,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1548,7 +1548,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1642,7 +1642,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.of(user)
             )
         );
@@ -1663,7 +1663,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -1703,7 +1703,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             EnvironmentContexts.empty(
                 LINE_ENDING,
                 LOCALE,
-                NOW,
+                HAS_NOW,
                 Optional.empty()
             )
         ).setEnvironmentValue(
@@ -2625,7 +2625,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateNow() {
         this.evaluateAndValueCheck(
             "=now()",
-            NOW.now()
+            HAS_NOW.now()
         );
     }
 
@@ -3809,7 +3809,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateToday() {
         this.evaluateAndValueCheck(
             "=today()",
-            NOW.now()
+            HAS_NOW.now()
                 .toLocalDate()
         );
     }
@@ -4696,7 +4696,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // isPure..........................................................................................................
 
-    // NOW()
+    // HAS_NOW()
     // TODAY()
     // RAND()
     // RANDBETWEEN()
