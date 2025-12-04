@@ -30,6 +30,7 @@ import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
@@ -245,7 +246,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public SpreadsheetExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
                     Objects.requireNonNull(environmentContext, "environmentContext");
-                    throw new UnsupportedOperationException();
+                    return SpreadsheetExpressionEvaluationContexts.fake();
                 }
 
                 @Override
