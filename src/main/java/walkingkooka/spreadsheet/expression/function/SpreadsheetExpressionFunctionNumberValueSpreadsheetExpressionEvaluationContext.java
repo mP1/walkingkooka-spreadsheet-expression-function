@@ -423,6 +423,20 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public SpreadsheetExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
+        final SpreadsheetExpressionEvaluationContext before = this.context;
+        final SpreadsheetExpressionEvaluationContext after = before.setEnvironmentContext(environmentContext);
+
+        return before.equals(after) ?
+            this :
+            new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
+                this.decimalSeparator,
+                this.groupSeparator,
+                after
+            );
+    }
+
+    @Override
     public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
                                                                           final T value) {
         this.context.setEnvironmentValue(

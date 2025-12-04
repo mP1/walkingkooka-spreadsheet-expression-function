@@ -243,6 +243,12 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 // EnvironmentContext...................................................................................
 
                 @Override
+                public SpreadsheetExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
+                    Objects.requireNonNull(environmentContext, "environmentContext");
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
                 public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
                     return this.environmentContext.environmentValue(name);
                 }
