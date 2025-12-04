@@ -1361,7 +1361,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("SpreadsheetCell"),
@@ -1387,7 +1387,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("SpreadsheetCell"),
@@ -1416,7 +1416,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("SpreadsheetCell"),
@@ -1471,7 +1471,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("SpreadsheetCell"),
@@ -1507,7 +1507,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("SpreadsheetCell"),
@@ -1549,7 +1549,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("SpreadsheetCell"),
@@ -1664,7 +1664,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("cell"),
@@ -1704,7 +1704,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.empty()
+                EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
             EnvironmentValueName.with("cell"),
