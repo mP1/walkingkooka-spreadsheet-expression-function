@@ -427,7 +427,7 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         final SpreadsheetExpressionEvaluationContext before = this.context;
         final SpreadsheetExpressionEvaluationContext after = before.setEnvironmentContext(environmentContext);
 
-        return before.equals(after) ?
+        return before == after ?
             this :
             new SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext(
                 this.decimalSeparator,
