@@ -108,8 +108,6 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-            Optional.empty(),
-            SpreadsheetExpressionReferenceLoaders.fake(),
             Url.parseAbsolute("https://example.com/server"),
             metadata,
             new FakeSpreadsheetStoreRepository() {
@@ -137,6 +135,8 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
                 PROVIDER_CONTEXT
             ),
             ENVIRONMENT_CONTEXT,
+            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetExpressionReferenceLoaders.fake(),
             (Optional<SpreadsheetCell> cell) -> metadata.spreadsheetFormatterContext(
                 cell,
                 (Optional<Object> value) -> {
