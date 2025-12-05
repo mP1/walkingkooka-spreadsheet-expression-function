@@ -144,20 +144,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-            Optional.of(CELL),
-            new FakeSpreadsheetExpressionReferenceLoader() {
-                @Override
-                public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell,
-                                                          final SpreadsheetExpressionEvaluationContext context) {
-                    if (LOAD_CELL_REFERENCE.equals(cell)) {
-                        return Optional.of(LOAD_CELL);
-                    }
-                    if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
-                        return Optional.of(CELL_EMPTY_FORMULA);
-                    }
-                    return Optional.empty();
-                }
-            },
             SERVER_URL,
             metadata,
             new FakeSpreadsheetStoreRepository() {
@@ -178,6 +164,20 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,
+            Optional.of(CELL),
+            new FakeSpreadsheetExpressionReferenceLoader() {
+                @Override
+                public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell,
+                                                          final SpreadsheetExpressionEvaluationContext context) {
+                    if (LOAD_CELL_REFERENCE.equals(cell)) {
+                        return Optional.of(LOAD_CELL);
+                    }
+                    if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
+                        return Optional.of(CELL_EMPTY_FORMULA);
+                    }
+                    return Optional.empty();
+                }
+            },
             (Optional<SpreadsheetCell> cell) -> {
                 throw new UnsupportedOperationException();
             },

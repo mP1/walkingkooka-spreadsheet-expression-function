@@ -86,8 +86,6 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
         final Locale locale = Locale.ENGLISH;
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-            Optional.empty(), // cell
-            SpreadsheetExpressionReferenceLoaders.fake(),
             Url.parseAbsolute("https://example.com/server"),
             SpreadsheetMetadata.EMPTY
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
@@ -121,6 +119,8 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
             },
             SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,
+            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetExpressionReferenceLoaders.fake(),
             (Optional<SpreadsheetCell> cell) -> {
                 throw new UnsupportedOperationException();
             },
