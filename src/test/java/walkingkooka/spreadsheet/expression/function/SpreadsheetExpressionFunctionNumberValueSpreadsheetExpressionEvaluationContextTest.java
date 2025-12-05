@@ -26,6 +26,7 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.SpreadsheetStrings;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
@@ -34,6 +35,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.LineEnding;
 import walkingkooka.validation.form.FormField;
 
@@ -239,6 +241,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
                     return this.localeContext.decimalNumberSymbolsForLocale(locale);
+                }
+
+                @Override
+                public CaseSensitivity stringEqualsCaseSensitivity() {
+                    return SpreadsheetStrings.CASE_SENSITIVITY;
                 }
 
                 // EnvironmentContext...................................................................................
