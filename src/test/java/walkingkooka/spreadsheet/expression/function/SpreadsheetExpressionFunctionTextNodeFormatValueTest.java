@@ -25,12 +25,9 @@ import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.plugin.ProviderContext;
-import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
-import walkingkooka.spreadsheet.convert.SpreadsheetConverterContexts;
-import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
+import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -43,13 +40,11 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.tree.text.TextNode;
-import walkingkooka.validation.form.FormHandlerContexts;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Locale;
-import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends SpreadsheetExpressionFunctionTextNodeTestCase<SpreadsheetExpressionFunctionTextNodeFormatValue> {
 
@@ -110,6 +105,7 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
         return SpreadsheetExpressionEvaluationContexts.basic(
             Url.parseAbsolute("https://example.com/server"),
             metadata,
+            SpreadsheetEngineContextMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
@@ -119,37 +115,13 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-            metadata.spreadsheetConverterContext(
-                SpreadsheetMetadata.NO_CELL,
-                SpreadsheetConverterContexts.NO_VALIDATION_REFERENCE,
-                SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                SPREADSHEET_LABEL_NAME_RESOLVER,
-                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                    (ProviderContext p) -> metadata.dateTimeConverter(
-                        SPREADSHEET_FORMATTER_PROVIDER,
-                        SPREADSHEET_PARSER_PROVIDER,
-                        p
-                    )
-                ),
-                LOCALE_CONTEXT,
-                PROVIDER_CONTEXT
-            ),
             ENVIRONMENT_CONTEXT,
             SpreadsheetExpressionEvaluationContext.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
-            (Optional<SpreadsheetCell> cell) -> metadata.spreadsheetFormatterContext(
-                cell,
-                (Optional<Object> value) -> {
-                    throw new UnsupportedOperationException();
-                },
-                SPREADSHEET_LABEL_NAME_RESOLVER,
-                LOCALE_CONTEXT,
-                SPREADSHEET_PROVIDER,
-                PROVIDER_CONTEXT
-            ),
-            FormHandlerContexts.fake(),
+            SPREADSHEET_LABEL_NAME_RESOLVER,
+            LOCALE_CONTEXT,
             TERMINAL_CONTEXT,
-            EXPRESSION_FUNCTION_PROVIDER,
+            SPREADSHEET_PROVIDER,
             PROVIDER_CONTEXT
         );
     }

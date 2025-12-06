@@ -25,11 +25,12 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.predicate.PredicateTesting;
-import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
+import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
+import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
@@ -40,13 +41,11 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.validation.form.FormHandlerContexts;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Locale;
-import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements PredicateTesting,
     SpreadsheetMetadataTesting {
@@ -297,6 +296,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
             .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, ExpressionNumberKind.BIG_DECIMAL)
             .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("collection(text, number, basic, spreadsheet-value)"))
+            .set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, SpreadsheetFormatterContext.DEFAULT_GENERAL_FORMAT_NUMBER_DIGIT_COUNT)
             .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
@@ -306,6 +306,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
         return SpreadsheetExpressionEvaluationContexts.basic(
             Url.parseAbsolute("https://example.com/server"),
             metadata,
+            SpreadsheetEngineContextMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
@@ -315,16 +316,13 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-            SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,
             SpreadsheetExpressionEvaluationContext.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
-            (Optional<SpreadsheetCell> cell) -> {
-                throw new UnsupportedOperationException();
-            },
-            FormHandlerContexts.fake(),
+            SPREADSHEET_LABEL_NAME_RESOLVER,
+            LOCALE_CONTEXT,
             TERMINAL_CONTEXT,
-            EXPRESSION_FUNCTION_PROVIDER,
+            SPREADSHEET_PROVIDER,
             PROVIDER_CONTEXT
         );
     }
