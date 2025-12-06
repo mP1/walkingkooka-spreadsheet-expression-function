@@ -32,6 +32,7 @@ import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
+import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -51,7 +52,6 @@ import walkingkooka.storage.expression.function.StorageExpressionEvaluationConte
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
-import walkingkooka.validation.form.FormHandlerContexts;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -146,6 +146,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         return SpreadsheetExpressionEvaluationContexts.basic(
             SERVER_URL,
             metadata,
+            SpreadsheetEngineContextMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
@@ -162,7 +163,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-            SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,
             Optional.of(CELL),
             new FakeSpreadsheetExpressionReferenceLoader() {
@@ -178,12 +178,10 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                     return Optional.empty();
                 }
             },
-            (Optional<SpreadsheetCell> cell) -> {
-                throw new UnsupportedOperationException();
-            },
-            FormHandlerContexts.fake(),
+            SPREADSHEET_LABEL_NAME_RESOLVER,
+            LOCALE_CONTEXT,
             TERMINAL_CONTEXT,
-            EXPRESSION_FUNCTION_PROVIDER,
+            SPREADSHEET_PROVIDER,
             PROVIDER_CONTEXT
         );
     }

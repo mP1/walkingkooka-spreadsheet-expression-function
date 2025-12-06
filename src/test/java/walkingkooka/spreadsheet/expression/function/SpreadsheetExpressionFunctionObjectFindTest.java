@@ -20,14 +20,15 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converters;
+import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
+import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -38,14 +39,11 @@ import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
-import walkingkooka.tree.expression.function.provider.ExpressionFunctionProviders;
-import walkingkooka.validation.form.FormHandlerContexts;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Locale;
-import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionObjectFindTest extends SpreadsheetExpressionFunctionObjectTestCase<SpreadsheetExpressionFunctionObjectFind> {
 
@@ -103,11 +101,13 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                 .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
                 .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
                 .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
+                .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("text"))
                 .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
                 .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
                 .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
                 .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
                 .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20),
+            SpreadsheetEngineContextMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
@@ -117,16 +117,13 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-            SPREADSHEET_FORMULA_CONVERTER_CONTEXT,
             ENVIRONMENT_CONTEXT,
             SpreadsheetExpressionEvaluationContext.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
-            (Optional<SpreadsheetCell> cell) -> {
-                throw new UnsupportedOperationException();
-            },
-            FormHandlerContexts.fake(),
+            SPREADSHEET_LABEL_NAME_RESOLVER,
+            LOCALE_CONTEXT,
             TERMINAL_CONTEXT,
-            ExpressionFunctionProviders.fake(),
+            SPREADSHEET_PROVIDER,
             PROVIDER_CONTEXT
         );
     }
