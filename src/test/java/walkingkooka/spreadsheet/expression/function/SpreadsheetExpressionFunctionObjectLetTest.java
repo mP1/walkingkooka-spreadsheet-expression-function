@@ -334,21 +334,6 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-//            metadata.spreadsheetConverterContext(
-//                SpreadsheetMetadata.NO_CELL,
-//                SpreadsheetConverterContexts.NO_VALIDATION_REFERENCE,
-//                SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-//                SPREADSHEET_LABEL_NAME_RESOLVER,
-//                SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-//                    (ProviderContext p) -> metadata.dateTimeConverter(
-//                        SPREADSHEET_FORMATTER_PROVIDER,
-//                        SPREADSHEET_PARSER_PROVIDER,
-//                        p
-//                    )
-//                ),
-//                LOCALE_CONTEXT,
-//                PROVIDER_CONTEXT
-//            ),
             ENVIRONMENT_CONTEXT,
             SpreadsheetExpressionEvaluationContext.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
