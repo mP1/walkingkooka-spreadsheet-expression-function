@@ -32,7 +32,7 @@ import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
-import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
+import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -146,7 +146,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         return SpreadsheetExpressionEvaluationContexts.basic(
             SERVER_URL,
             metadata,
-            SpreadsheetEngineContextMode.FORMULA,
+            SpreadsheetMetadataMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
