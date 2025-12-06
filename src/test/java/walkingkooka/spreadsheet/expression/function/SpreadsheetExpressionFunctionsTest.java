@@ -60,9 +60,9 @@ import walkingkooka.spreadsheet.compare.provider.SpreadsheetComparatorAliasSet;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngine;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContext;
-import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngines;
+import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
 import walkingkooka.spreadsheet.export.provider.SpreadsheetExporterAliasSet;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
@@ -134,7 +134,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
     private final static Function<SpreadsheetContext, SpreadsheetEngineContext> SPREADSHEET_ENGINE_CONTEXT_FACTORY = (c) -> SpreadsheetEngineContexts.basic(
-        SpreadsheetEngineContextMode.FORMULA,
+        SpreadsheetMetadataMode.FORMULA,
         c,
         TERMINAL_CONTEXT
     );
@@ -3667,7 +3667,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(metadataStore);
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
-            SpreadsheetEngineContextMode.FORMULA,
+            SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.basic(
                 SERVER_URL,
                 metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
@@ -4333,7 +4333,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         // only SCRIPTING allows updatable EnvironmentContext
-        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.setSpreadsheetEngineContextMode(SpreadsheetEngineContextMode.SCRIPTING)
+        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.setSpreadsheetMetadataMode(SpreadsheetMetadataMode.SCRIPTING)
             .spreadsheetExpressionEvaluationContext(
                 SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
                 SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
@@ -4661,7 +4661,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         metadataStore.save(spreadsheetMetadata);
 
         return SpreadsheetEngineContexts.basic(
-            SpreadsheetEngineContextMode.FORMULA,
+            SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.basic(
                 SERVER_URL,
                 spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),

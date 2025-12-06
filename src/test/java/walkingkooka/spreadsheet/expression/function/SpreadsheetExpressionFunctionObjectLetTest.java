@@ -27,7 +27,7 @@ import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
-import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextMode;
+import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -324,7 +324,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
         return SpreadsheetExpressionEvaluationContexts.basic(
             Url.parseAbsolute("https://example.com/server"),
             metadata,
-            SpreadsheetEngineContextMode.FORMULA,
+            SpreadsheetMetadataMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {
 
                 @Override
