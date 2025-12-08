@@ -38,7 +38,6 @@ import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
-import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.HostAddress;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
@@ -63,6 +62,8 @@ import walkingkooka.spreadsheet.engine.SpreadsheetEngineContext;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngines;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContexts;
 import walkingkooka.spreadsheet.export.provider.SpreadsheetExporterAliasSet;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
@@ -130,7 +131,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     EnvironmentContextTesting {
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
-    private final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://server.example.com");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
     private final static Function<SpreadsheetContext, SpreadsheetEngineContext> SPREADSHEET_ENGINE_CONTEXT_FACTORY = (c) -> SpreadsheetEngineContexts.basic(
@@ -3662,15 +3662,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             );
 
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
-        metadataStore.save(metadata);
+        final SpreadsheetMetadata saved = metadataStore.save(metadata);
 
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(metadataStore);
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.basic(
-                SERVER_URL,
-                metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
                 (id) -> repo,
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -3691,7 +3689,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
+                SpreadsheetEnvironmentContexts.with(
+                    EnvironmentContexts.map(ENVIRONMENT_CONTEXT)
+                        .setEnvironmentValue(
+                            SpreadsheetEnvironmentContext.SERVER_URL,
+                            Url.parseAbsolute("https://example.com")
+                        ).setEnvironmentValue(
+                            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+                            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+                        )
+                ),
                 LocaleContexts.jre(LOCALE),
                 PROVIDER_CONTEXT,
                 TERMINAL_SERVER_CONTEXT
@@ -3720,7 +3727,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetFormula.EMPTY.setText("=template(\"${Hello} 123\")")
         );
 
-        final SpreadsheetCell saved = engine.saveCell(
+        final SpreadsheetCell savedCell = engine.saveCell(
                 cell,
                 context
             ).cell(cell.reference())
@@ -3728,7 +3735,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         this.checkEquals(
             TextNode.text("WORLD 123"),
-            saved.formattedValue()
+            savedCell.formattedValue()
                 .orElse(null)
         );
     }
@@ -4658,13 +4665,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                               final TerminalContext terminalContext,
                                                               final ProviderContext providerContext) {
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
-        metadataStore.save(spreadsheetMetadata);
+        final SpreadsheetMetadata saved = metadataStore.save(spreadsheetMetadata);
 
         return SpreadsheetEngineContexts.basic(
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.basic(
-                SERVER_URL,
-                spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
                 (id) -> SpreadsheetStoreRepositories.treeMap(metadataStore),
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -4685,7 +4690,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                environmentContext,
+                SpreadsheetEnvironmentContexts.with(
+                    environmentContext.setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SERVER_URL,
+                        Url.parseAbsolute("https://example.com")
+                    ).setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+                        saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+                    )
+                ),
                 LOCALE_CONTEXT,
                 providerContext,
                 TERMINAL_SERVER_CONTEXT
