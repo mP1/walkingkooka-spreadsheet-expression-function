@@ -23,7 +23,6 @@ import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
-import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
@@ -133,7 +132,6 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-            Url.parseAbsolute("https://example.com/server"),
             metadata,
             SpreadsheetMetadataMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {

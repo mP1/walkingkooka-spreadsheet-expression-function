@@ -23,8 +23,6 @@ import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
-import walkingkooka.net.AbsoluteUrl;
-import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
@@ -95,8 +93,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     final static SpreadsheetName NAME = SpreadsheetName.with("spreadsheet-name-456");
 
-    final static AbsoluteUrl SERVER_URL = Url.parseAbsolute("https://example.com/path789");
-
     SpreadsheetExpressionFunctionTestCase() {
         super();
     }
@@ -144,7 +140,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-            SERVER_URL,
             metadata,
             SpreadsheetMetadataMode.FORMULA,
             new FakeSpreadsheetStoreRepository() {

@@ -22,7 +22,6 @@ import walkingkooka.convert.Converter;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentContextDelegator;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
@@ -32,6 +31,8 @@ import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContextDelegator;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
@@ -81,7 +82,7 @@ import java.util.Set;
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
     DateTimeContextDelegator,
-    EnvironmentContextDelegator,
+    SpreadsheetEnvironmentContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
     LocaleContextDelegator,
     TerminalContextDelegator {
@@ -453,13 +454,13 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
-    public EnvironmentContext environmentContext() {
-        return this.context;
+    public LocalDateTime now() {
+        return this.context.now();
     }
 
     @Override
-    public LocalDateTime now() {
-        return this.context.now();
+    public SpreadsheetEnvironmentContext spreadsheetEnvironmentContext() {
+        return this.context;
     }
 
     // FormHandlerContext...............................................................................................
