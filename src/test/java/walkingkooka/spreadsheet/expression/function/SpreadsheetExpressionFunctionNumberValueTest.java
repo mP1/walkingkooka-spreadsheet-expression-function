@@ -145,7 +145,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-            ENVIRONMENT_CONTEXT,
+            SPREADSHEET_ENVIRONMENT_CONTEXT,
             SpreadsheetExpressionEvaluationContext.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
