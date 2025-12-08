@@ -163,7 +163,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
                 private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
             },
-            ENVIRONMENT_CONTEXT,
+            SPREADSHEET_ENVIRONMENT_CONTEXT,
             Optional.of(CELL),
             new FakeSpreadsheetExpressionReferenceLoader() {
                 @Override

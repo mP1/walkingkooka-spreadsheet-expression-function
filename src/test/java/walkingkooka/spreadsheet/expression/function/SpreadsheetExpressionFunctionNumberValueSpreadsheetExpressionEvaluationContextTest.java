@@ -311,7 +311,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 private final EnvironmentContext environmentContext = EnvironmentContexts.map(
-                    ENVIRONMENT_CONTEXT
+                    SPREADSHEET_ENVIRONMENT_CONTEXT
                 );
 
                 private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);

@@ -1437,7 +1437,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
         final String value = "Goodbye!";
 
@@ -2846,7 +2846,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateRemoveEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
         final EnvironmentValueName<String> name = EnvironmentValueName.with("Hello");
         final String value = "Goodbye!";
@@ -3069,7 +3069,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
         final EnvironmentValueName<String> name = EnvironmentValueName.with("Hello");
         final String value = "Goodbye!";
@@ -3129,7 +3129,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetLocaleAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
         final EnvironmentValueName<Locale> name = EnvironmentValueName.LOCALE;
 
@@ -3690,11 +3690,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
                 SpreadsheetEnvironmentContexts.with(
-                    EnvironmentContexts.map(ENVIRONMENT_CONTEXT)
+                    EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT)
                         .setEnvironmentValue(
-                            SpreadsheetEnvironmentContext.SERVER_URL,
-                            Url.parseAbsolute("https://example.com")
-                        ).setEnvironmentValue(
                             SpreadsheetEnvironmentContext.SPREADSHEET_ID,
                             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
                         )
@@ -4254,7 +4251,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
-            EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
+            EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
             expectedValue,
             expectedPrinted
         );
@@ -4278,7 +4275,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         return this.evaluateAndPrintedCheck(
             formula,
             terminalInput,
-            EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
+            EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
             expectedValue,
             expectedPrinted
         );
@@ -4608,7 +4605,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
             metadata,
-            EnvironmentContexts.map(ENVIRONMENT_CONTEXT),
+            EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
             terminalContext,
             PROVIDER_CONTEXT
         );
@@ -4693,7 +4690,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetEnvironmentContexts.with(
                     environmentContext.setEnvironmentValue(
                         SpreadsheetEnvironmentContext.SERVER_URL,
-                        Url.parseAbsolute("https://example.com")
+                        SERVER_URL
                     ).setEnvironmentValue(
                         SpreadsheetEnvironmentContext.SPREADSHEET_ID,
                         saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
