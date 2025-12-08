@@ -3689,7 +3689,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.with(
+                SpreadsheetEnvironmentContexts.basic(
                     EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT)
                         .setEnvironmentValue(
                             SpreadsheetEnvironmentContext.SPREADSHEET_ID,
@@ -4687,7 +4687,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.with(
+                SpreadsheetEnvironmentContexts.basic(
                     environmentContext.setEnvironmentValue(
                         SpreadsheetEnvironmentContext.SERVER_URL,
                         SERVER_URL
