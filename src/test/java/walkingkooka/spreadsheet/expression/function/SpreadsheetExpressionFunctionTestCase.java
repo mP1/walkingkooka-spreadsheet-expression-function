@@ -89,10 +89,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     final static ExpressionNumberKind KIND = SpreadsheetMetadataTesting.EXPRESSION_NUMBER_KIND;
 
-    final static SpreadsheetId ID = SpreadsheetId.with(0x123);
-
-    final static SpreadsheetName NAME = SpreadsheetName.with("spreadsheet-name-456");
-
     SpreadsheetExpressionFunctionTestCase() {
         super();
     }
