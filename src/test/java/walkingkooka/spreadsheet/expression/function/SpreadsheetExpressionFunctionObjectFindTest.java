@@ -23,7 +23,6 @@ import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
-import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.SpreadsheetId;
@@ -84,7 +83,6 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
         final Locale locale = Locale.ENGLISH;
 
         return SpreadsheetExpressionEvaluationContexts.basic(
-            Url.parseAbsolute("https://example.com/server"),
             SpreadsheetMetadata.EMPTY
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
                 .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))

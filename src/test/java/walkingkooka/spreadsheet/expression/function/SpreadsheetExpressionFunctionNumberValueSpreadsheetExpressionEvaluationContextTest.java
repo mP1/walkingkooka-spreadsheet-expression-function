@@ -19,13 +19,14 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetStrings;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
@@ -119,6 +120,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testSetLocaleWithDifferent() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testParseFormulaNullFails() {
         throw new UnsupportedOperationException();
     }
@@ -130,6 +136,16 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
     @Override
     public void testSpreadsheetFormatterContextWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetSpreadsheetIdWithSame() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testEnvironmentValueNameWithSpreadsheetId() {
         throw new UnsupportedOperationException();
     }
 
@@ -258,19 +274,19 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
-                    return this.environmentContext.environmentValue(name);
+                    return SPREADSHEET_ENVIRONMENT_CONTEXT.environmentValue(name);
                 }
 
                 @Override
                 public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
-                    this.environmentContext.removeEnvironmentValue(name);
+                    SPREADSHEET_ENVIRONMENT_CONTEXT.removeEnvironmentValue(name);
                     return this;
                 }
 
                 @Override
                 public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
                                                                                       final T value) {
-                    this.environmentContext.setEnvironmentValue(
+                    SPREADSHEET_ENVIRONMENT_CONTEXT.setEnvironmentValue(
                         name,
                         value
                     );
@@ -279,40 +295,52 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public Optional<EmailAddress> user() {
-                    return this.environmentContext.user();
+                    return SPREADSHEET_ENVIRONMENT_CONTEXT.user();
                 }
 
                 @Override
                 public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
-                    this.environmentContext.setUser(user);
+                    SPREADSHEET_ENVIRONMENT_CONTEXT.setUser(user);
                     return this;
                 }
 
                 @Override
                 public LineEnding lineEnding() {
-                    return this.environmentContext.lineEnding();
+                    return SPREADSHEET_ENVIRONMENT_CONTEXT.lineEnding();
                 }
 
                 @Override
                 public SpreadsheetExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
-                    this.environmentContext.setLineEnding(lineEnding);
+                    SPREADSHEET_ENVIRONMENT_CONTEXT.setLineEnding(lineEnding);
                     return this;
                 }
                 
                 @Override
                 public Locale locale() {
-                    return this.environmentContext.locale();
+                    return SPREADSHEET_ENVIRONMENT_CONTEXT.locale();
                 }
 
                 @Override
                 public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
-                    this.environmentContext.setLocale(locale);
+                    SPREADSHEET_ENVIRONMENT_CONTEXT.setLocale(locale);
                     return this;
                 }
 
-                private final EnvironmentContext environmentContext = EnvironmentContexts.map(
-                    SPREADSHEET_ENVIRONMENT_CONTEXT
-                );
+                @Override
+                public AbsoluteUrl serverUrl() {
+                    return SPREADSHEET_ENVIRONMENT_CONTEXT.serverUrl();
+                }
+
+                @Override
+                public SpreadsheetId spreadsheetId() {
+                    return SpreadsheetId.with(1);
+                }
+
+                @Override
+                public SpreadsheetExpressionEvaluationContext setSpreadsheetId(final SpreadsheetId spreadsheetId) {
+                    SPREADSHEET_ENVIRONMENT_CONTEXT.setSpreadsheetId(spreadsheetId);
+                    return this;
+                }
 
                 private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
             }
