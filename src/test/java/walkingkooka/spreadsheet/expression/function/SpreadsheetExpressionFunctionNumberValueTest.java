@@ -19,29 +19,19 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.convert.Converters;
-import walkingkooka.convert.provider.ConverterSelector;
-import walkingkooka.environment.AuditInfo;
-import walkingkooka.locale.LocaleContexts;
-import walkingkooka.net.email.EmailAddress;
+import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.SpreadsheetId;
-import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
-import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
+import walkingkooka.spreadsheet.meta.store.FakeSpreadsheetMetadataStore;
+import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
-import walkingkooka.storage.Storage;
-import walkingkooka.storage.Storages;
-import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.time.LocalDateTime;
-import java.util.Locale;
+import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberValueTest extends SpreadsheetExpressionFunctionNumberTestCase<SpreadsheetExpressionFunctionNumberValue> {
 
@@ -106,51 +96,53 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
 
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
-        final Locale locale = Locale.ENGLISH;
+        final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
 
-        final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-            .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
-            .loadFromLocale(
-                LocaleContexts.jre(locale)
-            ).set(
-                SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                AuditInfo.create(
-                    EmailAddress.parse("creator@example.com"),
-                    LocalDateTime.of(1999, 12, 31, 12, 58, 59)
-                )
-            ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-            .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
-            .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
-            .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
-            .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("collection(text, number, basic, spreadsheet-value)"))
-            .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
-            .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
-            .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
-            .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
-            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
+        final SpreadsheetMetadata metadata = METADATA_EN_AU.set(
+            SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
+            spreadsheetId
+        );
 
-        return SpreadsheetExpressionEvaluationContexts.basic(
-            metadata,
+        return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
-            new FakeSpreadsheetStoreRepository() {
-
-                @Override
-                public Storage<StorageExpressionEvaluationContext> storage() {
-                    return storage;
-                }
-
-                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-            },
-            SPREADSHEET_ENVIRONMENT_CONTEXT,
-            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetMetadata.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
-            LOCALE_CONTEXT,
-            TERMINAL_CONTEXT,
-            SPREADSHEET_PROVIDER,
-            PROVIDER_CONTEXT
+            SpreadsheetContexts.basic(
+                (id) -> {
+                    if (spreadsheetId.equals(id)) {
+                        return new FakeSpreadsheetStoreRepository() {
+                            @Override
+                            public SpreadsheetMetadataStore metadatas() {
+                                return new FakeSpreadsheetMetadataStore() {
+                                    @Override
+                                    public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
+                                        return Optional.ofNullable(
+                                            id.equals(spreadsheetId) ?
+                                                metadata :
+                                                null
+                                        );
+                                    }
+                                };
+                            }
+                        };
+                    }
+                    throw new IllegalArgumentException("Unknown SpreadsheetId: " + id);
+                },
+                SPREADSHEET_PROVIDER,
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                }, // Function<SpreadsheetContext, SpreadsheetEngineContext> spreadsheetEngineContextFactory
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
+                SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+                    .setSpreadsheetId(spreadsheetId),
+                LOCALE_CONTEXT,
+                PROVIDER_CONTEXT,
+                TERMINAL_SERVER_CONTEXT
+            ),
+            TERMINAL_CONTEXT
         );
     }
 

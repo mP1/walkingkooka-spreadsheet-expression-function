@@ -4315,6 +4315,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadata metadata = this.metadata();
 
         final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
+            SpreadsheetMetadataMode.SCRIPTING,
             metadata.set(
                 SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
                 metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER)
@@ -4502,6 +4503,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
+        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation)");
+
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
@@ -4524,7 +4527,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ).set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
             .set(
                 SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation)")
+                formulaConverter
             ).set(
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                 EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
@@ -4536,7 +4539,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
-            .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
+            .set(
+                SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
+                formulaConverter
+            ).set(
+                SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS,
+                EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
+                    .aliasSet() // spreadsheetMetadataSet
+            ).set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
             .set(
                 SpreadsheetMetadataPropertyName.STYLE,
@@ -4604,6 +4614,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
         final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
+            save.formula()
+                .text()
+                .contains("spreadsheetMetadataSet") ? // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
+                SpreadsheetMetadataMode.SCRIPTING :
+                SpreadsheetMetadataMode.FORMULA,
             metadata,
             EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
             terminalContext,
@@ -4657,7 +4672,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         return context;
     }
 
-    private SpreadsheetEngineContext spreadsheetEngineContext(final SpreadsheetMetadata spreadsheetMetadata,
+    private SpreadsheetEngineContext spreadsheetEngineContext(final SpreadsheetMetadataMode mode,
+                                                              final SpreadsheetMetadata spreadsheetMetadata,
                                                               final EnvironmentContext environmentContext,
                                                               final TerminalContext terminalContext,
                                                               final ProviderContext providerContext) {
@@ -4665,7 +4681,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadata saved = metadataStore.save(spreadsheetMetadata);
 
         return SpreadsheetEngineContexts.basic(
-            SpreadsheetMetadataMode.FORMULA,
+            mode,
             SpreadsheetContexts.basic(
                 (id) -> SpreadsheetStoreRepositories.treeMap(metadataStore),
                 SpreadsheetProviders.basic(

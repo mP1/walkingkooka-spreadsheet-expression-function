@@ -24,6 +24,7 @@ import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.predicate.PredicateTesting;
+import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
@@ -34,17 +35,17 @@ import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+import walkingkooka.spreadsheet.meta.store.FakeSpreadsheetMetadataStore;
+import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
-import walkingkooka.storage.Storage;
-import walkingkooka.storage.Storages;
-import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Locale;
+import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements PredicateTesting,
     SpreadsheetMetadataTesting {
@@ -278,8 +279,10 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
     private SpreadsheetExpressionEvaluationContext context() {
         final Locale locale = Locale.ENGLISH;
 
+        final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
+
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, spreadsheetId)
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
             .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
             .loadFromLocale(
@@ -300,28 +303,71 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
             .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
-            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
+            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
+            .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
-        return SpreadsheetExpressionEvaluationContexts.basic(
-            metadata,
+        return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
-            new FakeSpreadsheetStoreRepository() {
-
-                @Override
-                public Storage<StorageExpressionEvaluationContext> storage() {
-                    return storage;
-                }
-
-                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-            },
-            SPREADSHEET_ENVIRONMENT_CONTEXT,
-            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetMetadata.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
-            LOCALE_CONTEXT,
-            TERMINAL_CONTEXT,
-            SPREADSHEET_PROVIDER,
-            PROVIDER_CONTEXT
+            SpreadsheetContexts.basic(
+                (id) -> {
+                    if (spreadsheetId.equals(id)) {
+                        return new FakeSpreadsheetStoreRepository() {
+                            @Override
+                            public SpreadsheetMetadataStore metadatas() {
+                                return new FakeSpreadsheetMetadataStore() {
+                                    @Override
+                                    public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
+                                        return Optional.ofNullable(
+                                            id.equals(spreadsheetId) ?
+                                                metadata :
+                                                null
+                                        );
+                                    }
+                                };
+                            }
+                        };
+                    }
+                    throw new IllegalArgumentException("Unknown SpreadsheetId: " + id);
+                },
+                SPREADSHEET_PROVIDER,
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                }, // Function<SpreadsheetContext, SpreadsheetEngineContext> spreadsheetEngineContextFactory
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
+                SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+                    .setSpreadsheetId(spreadsheetId),
+                LOCALE_CONTEXT,
+                PROVIDER_CONTEXT,
+                TERMINAL_SERVER_CONTEXT
+            ),
+            TERMINAL_CONTEXT
         );
+
+//        return SpreadsheetExpressionEvaluationContexts.basic(
+//            metadata,
+//            SpreadsheetMetadataMode.FORMULA,
+//            new FakeSpreadsheetStoreRepository() {
+//
+//                @Override
+//                public Storage<StorageExpressionEvaluationContext> storage() {
+//                    return storage;
+//                }
+//
+//                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+//            },
+//            SPREADSHEET_ENVIRONMENT_CONTEXT,
+//            SpreadsheetExpressionEvaluationContext.NO_CELL,
+//            SpreadsheetExpressionReferenceLoaders.fake(),
+//            SPREADSHEET_LABEL_NAME_RESOLVER,
+//            LOCALE_CONTEXT,
+//            TERMINAL_CONTEXT,
+//            SPREADSHEET_PROVIDER,
+//            PROVIDER_CONTEXT
+//        );
     }
 }

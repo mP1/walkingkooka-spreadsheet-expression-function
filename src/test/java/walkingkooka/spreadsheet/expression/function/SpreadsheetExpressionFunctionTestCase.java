@@ -28,6 +28,7 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.SpreadsheetId;
 import walkingkooka.spreadsheet.SpreadsheetName;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
@@ -38,6 +39,8 @@ import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+import walkingkooka.spreadsheet.meta.store.FakeSpreadsheetMetadataStore;
+import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.FakeSpreadsheetExpressionReferenceLoader;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
@@ -111,8 +114,10 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     final SpreadsheetExpressionEvaluationContext createContext0() {
         final Locale locale = Locale.ENGLISH;
 
+        final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
+
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, spreadsheetId)
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
             .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
             .loadFromLocale(
@@ -133,28 +138,51 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
             .set(SpreadsheetMetadataPropertyName.TEXT_FORMATTER, SpreadsheetPattern.parseTextFormatPattern("@@").spreadsheetFormatterSelector())
-            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20);
+            .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
+            .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
-        return SpreadsheetExpressionEvaluationContexts.basic(
-            metadata,
+//        return SpreadsheetExpressionEvaluationContexts.basic(
+//            metadata,
+//            SpreadsheetMetadataMode.FORMULA,
+//            new FakeSpreadsheetStoreRepository() {
+//
+//                @Override
+//                public SpreadsheetCellStore cells() {
+//                    return this.cells;
+//                }
+//
+//                private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
+//
+//                @Override
+//                public Storage<StorageExpressionEvaluationContext> storage() {
+//                    return storage;
+//                }
+//
+//                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+//            },
+//            SPREADSHEET_ENVIRONMENT_CONTEXT,
+//            Optional.of(CELL),
+//            new FakeSpreadsheetExpressionReferenceLoader() {
+//                @Override
+//                public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell,
+//                                                          final SpreadsheetExpressionEvaluationContext context) {
+//                    if (LOAD_CELL_REFERENCE.equals(cell)) {
+//                        return Optional.of(LOAD_CELL);
+//                    }
+//                    if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
+//                        return Optional.of(CELL_EMPTY_FORMULA);
+//                    }
+//                    return Optional.empty();
+//                }
+//            },
+//            SPREADSHEET_LABEL_NAME_RESOLVER,
+//            LOCALE_CONTEXT,
+//            TERMINAL_CONTEXT,
+//            SPREADSHEET_PROVIDER,
+//            PROVIDER_CONTEXT
+//        );
+        return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
-            new FakeSpreadsheetStoreRepository() {
-
-                @Override
-                public SpreadsheetCellStore cells() {
-                    return this.cells;
-                }
-
-                private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
-
-                @Override
-                public Storage<StorageExpressionEvaluationContext> storage() {
-                    return storage;
-                }
-
-                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-            },
-            SPREADSHEET_ENVIRONMENT_CONTEXT,
             Optional.of(CELL),
             new FakeSpreadsheetExpressionReferenceLoader() {
                 @Override
@@ -170,10 +198,56 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 }
             },
             SPREADSHEET_LABEL_NAME_RESOLVER,
-            LOCALE_CONTEXT,
-            TERMINAL_CONTEXT,
-            SPREADSHEET_PROVIDER,
-            PROVIDER_CONTEXT
+            SpreadsheetContexts.basic(
+                (id) -> {
+                    if (spreadsheetId.equals(id)) {
+                        return new FakeSpreadsheetStoreRepository() {
+
+                            @Override
+                            public SpreadsheetCellStore cells() {
+                                return this.cells;
+                            }
+
+                            private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
+
+                            @Override
+                            public SpreadsheetMetadataStore metadatas() {
+                                return new FakeSpreadsheetMetadataStore() {
+                                    @Override
+                                    public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
+                                        return Optional.ofNullable(
+                                            id.equals(spreadsheetId) ?
+                                                metadata :
+                                                null
+                                        );
+                                    }
+                                };
+                            }
+
+                            @Override
+                            public Storage<StorageExpressionEvaluationContext> storage() {
+                                return storage;
+                            }
+
+                            private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+                        };
+                    }
+                    throw new IllegalArgumentException("Unknown SpreadsheetId: " + id);
+                },
+                SPREADSHEET_PROVIDER,
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                }, // Function<SpreadsheetContext, SpreadsheetEngineContext> spreadsheetEngineContextFactory
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
+                SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+                    .setSpreadsheetId(spreadsheetId),
+                LOCALE_CONTEXT,
+                PROVIDER_CONTEXT,
+                TERMINAL_SERVER_CONTEXT
+            ),
+            TERMINAL_CONTEXT
         );
     }
 
