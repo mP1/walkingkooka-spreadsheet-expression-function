@@ -4520,7 +4520,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 )
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
-            .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
+            .set(
+                SpreadsheetMetadataPropertyName.DECIMAL_NUMBER_DIGIT_COUNT,
+                DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT
+            ).set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
             .set(
                 SpreadsheetMetadataPropertyName.ERROR_FORMATTER,
                 SpreadsheetFormatterSelector.parse("badge-error default-text")
@@ -4535,8 +4538,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ).set(
                 SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
                 ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net)")
-            ).set(SpreadsheetMetadataPropertyName.GENERAL_NUMBER_FORMAT_DIGIT_COUNT, DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT)
-            .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
+            ).set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
             .set(
