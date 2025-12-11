@@ -296,6 +296,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public int decimalNumberDigitCount() {
+        return this.context.decimalNumberDigitCount();
+    }
+
+    @Override
     public long dateOffset() {
         return this.context.dateOffset();
     }

@@ -23,6 +23,7 @@ import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
+import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
@@ -180,6 +181,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public String currencySymbol() {
                     return CURRENCY_SYMBOL;
+                }
+
+                @Override
+                public int decimalNumberDigitCount() {
+                    return DEFAULT_NUMBER_DIGIT_COUNT;
                 }
 
                 @Override
@@ -383,6 +389,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     @Override
     public char decimalSeparator() {
         return DECIMAL_SEPARATOR;
+    }
+
+    @Override
+    public int decimalNumberDigitCount() {
+        return DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT;
     }
 
     @Override
