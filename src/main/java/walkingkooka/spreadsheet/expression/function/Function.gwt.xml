@@ -17,6 +17,7 @@
   -->
 
 <module>
+    <inherits name="walkingkooka.environment.expression.function.EnvironmentExpressionFunction"/>
     <inherits name="walkingkooka.spreadsheet.Spreadsheet"/>
     <inherits name="walkingkooka.tree.expression.function.booleann.Boolean"/>
     <inherits name="walkingkooka.tree.expression.function.datetime.DateTime"/>
