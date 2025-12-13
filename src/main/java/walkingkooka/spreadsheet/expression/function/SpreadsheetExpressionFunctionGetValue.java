@@ -61,7 +61,7 @@ final class SpreadsheetExpressionFunctionGetValue extends SpreadsheetExpressionF
     @Override
     public Object apply(final List<Object> parameters,
                         final SpreadsheetExpressionEvaluationContext context) {
-        return CELL.getOrFail(parameters, 0)
+        return CELL.getOrFail(parameters, 0, context)
             .formula()
             .errorOrValue()
             .orElse(null);

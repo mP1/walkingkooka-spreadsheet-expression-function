@@ -46,12 +46,12 @@ final class SpreadsheetExpressionFunctionStringText extends SpreadsheetExpressio
 
         final Object value = context.prepareParameter(
             VALUE,
-            VALUE.getOrFail(parameters, 0)
+            VALUE.getOrFail(parameters, 0, context)
         );
 
         final String pattern = context.prepareParameter(
             PATTERN,
-            PATTERN.getOrFail(parameters, 1)
+            PATTERN.getOrFail(parameters, 1, context)
         );
 
         return SpreadsheetConverters.formatPatternToString(pattern)

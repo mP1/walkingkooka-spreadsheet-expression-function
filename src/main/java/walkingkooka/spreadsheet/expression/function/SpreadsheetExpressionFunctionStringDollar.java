@@ -27,6 +27,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The excel dollar function.
@@ -58,13 +59,9 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
 
     private String apply0(final List<Object> parameters,
                           final SpreadsheetExpressionEvaluationContext context) {
-        ExpressionNumber value = NUMBER.getOrFail(parameters, 0); // needs to convert...
-        final int decimals = (DECIMALS.get(parameters, 1)
-            .orElseGet(
-                () -> context.expressionNumberKind()
-                    .create(2)
-            )
-        ).intValueExact();
+        ExpressionNumber value = NUMBER.getOrFail(parameters, 0, context); // needs to convert...
+        final int decimals = DECIMALS.getOrFail(parameters, 1, context)
+            .intValueExact();
 
         final String pattern;
         if (decimals >= 0) {
@@ -101,7 +98,13 @@ final class SpreadsheetExpressionFunctionStringDollar extends SpreadsheetExpress
 
     private final static ExpressionFunctionParameter<ExpressionNumber> DECIMALS = ExpressionFunctionParameterName.with("decimals")
         .optional(ExpressionNumber.class)
-        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES)
+        .setDefaultValue(
+            (c) -> Optional.of(
+                c.expressionNumberKind()
+                    .create(2)
+            )
+        );
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {

@@ -65,7 +65,8 @@ final class SpreadsheetExpressionFunctionLambda extends SpreadsheetExpressionFun
             final SpreadsheetLabelName label = this.parameter(i, SpreadsheetLabelName.class)
                 .getOrFail(
                     values,
-                    i
+                    i,
+                    context
                 );
 
             // create a ExpressionFunctionParameterName with the label (parameter name) and type of object.
@@ -78,7 +79,11 @@ final class SpreadsheetExpressionFunctionLambda extends SpreadsheetExpressionFun
         return context.lambdaFunction(
             Lists.of(parameters),
             Object.class,
-            EXPRESSION.getOrFail(values, count - 1)
+            EXPRESSION.getOrFail(
+                values,
+                count - 1,
+                context
+            )
         );
     }
 

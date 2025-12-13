@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionNumberColumnsOrRows extends Spreadsheet
                                   final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final SpreadsheetSelection reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0);
+        final SpreadsheetSelection reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0, context);
 
         return context.expressionNumberKind()
             .create(

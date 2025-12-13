@@ -63,7 +63,7 @@ final class SpreadsheetExpressionFunctionGetDateTimeSymbols extends SpreadsheetE
     @Override
     public DateTimeSymbols apply(final List<Object> parameters,
                                  final SpreadsheetExpressionEvaluationContext context) {
-        return DATE_TIME_SYMBOLS.getOrFail(parameters, 0);
+        return DATE_TIME_SYMBOLS.getOrFail(parameters, 0, context);
 
     }
 }

@@ -75,13 +75,15 @@ final class SpreadsheetExpressionFunctionTextNodeFormatValue extends Spreadsheet
         final SpreadsheetFormatter formatter = formatterContext.spreadsheetFormatter(
             FORMATTER.getOrFail(
                 parameters,
-                0
+                0,
+                context
             )
         );
 
         final Object value = VALUE.getOrFail(
             parameters,
-            1
+            1,
+            context
         );
 
         return formatter.format(

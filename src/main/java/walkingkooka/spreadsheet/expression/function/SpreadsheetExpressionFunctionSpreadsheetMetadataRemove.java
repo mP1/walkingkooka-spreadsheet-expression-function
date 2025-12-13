@@ -65,7 +65,8 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemove extends Sprea
 
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
             parameters,
-            0
+            0,
+            context
         );
 
         final SpreadsheetMetadata metadata = context.spreadsheetMetadata();

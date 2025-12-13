@@ -61,7 +61,7 @@ final class SpreadsheetExpressionFunctionGetFormulaText extends SpreadsheetExpre
     @Override
     public String apply(final List<Object> parameters,
                         final SpreadsheetExpressionEvaluationContext context) {
-        return CELL.getOrFail(parameters, 0)
+        return CELL.getOrFail(parameters, 0, context)
             .formula()
             .text();
     }
