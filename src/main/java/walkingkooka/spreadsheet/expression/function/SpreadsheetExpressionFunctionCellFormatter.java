@@ -17,8 +17,8 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
+import walkingkooka.spreadsheet.value.SpreadsheetCell;
 
 /**
  * A custom function that retrieves the {@link SpreadsheetFormatterSelector} for the current cell.

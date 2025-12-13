@@ -19,7 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.math.DecimalNumberSymbols;
-import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.value.SpreadsheetCell;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;

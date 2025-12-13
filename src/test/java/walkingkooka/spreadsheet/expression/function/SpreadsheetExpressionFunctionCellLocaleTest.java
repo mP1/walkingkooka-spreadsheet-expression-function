@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.value.SpreadsheetCell;
 
 import java.util.Locale;
 import java.util.Optional;
