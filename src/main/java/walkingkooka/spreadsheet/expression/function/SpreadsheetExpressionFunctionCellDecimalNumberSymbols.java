@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.math.DecimalNumberSymbols;
-import walkingkooka.spreadsheet.SpreadsheetCell;
+import walkingkooka.spreadsheet.value.SpreadsheetCell;
 
 /**
  * A custom function that retrieves the {@link walkingkooka.math.DecimalNumberSymbols} for the current cell. This function exists primarily to support

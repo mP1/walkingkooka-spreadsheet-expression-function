@@ -20,9 +20,9 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
 import walkingkooka.predicate.Predicates;
-import walkingkooka.spreadsheet.HasSpreadsheetErrorKind;
-import walkingkooka.spreadsheet.SpreadsheetErrorKind;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.value.HasSpreadsheetErrorKind;
+import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 

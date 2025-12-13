@@ -19,8 +19,8 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.color.Color;
-import walkingkooka.spreadsheet.SpreadsheetCell;
 import walkingkooka.spreadsheet.format.SpreadsheetText;
+import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.tree.text.TextNode;
 
 import java.util.Optional;
