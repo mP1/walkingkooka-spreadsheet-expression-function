@@ -63,7 +63,7 @@ final class SpreadsheetExpressionFunctionGetDecimalNumberSymbols extends Spreads
     @Override
     public DecimalNumberSymbols apply(final List<Object> parameters,
                                       final SpreadsheetExpressionEvaluationContext context) {
-        return DECIMAL_NUMBER_SYMBOLS.getOrFail(parameters, 0, context);
+        return DECIMAL_NUMBER_SYMBOLS.getOrFail(parameters, 0);
 
     }
 }

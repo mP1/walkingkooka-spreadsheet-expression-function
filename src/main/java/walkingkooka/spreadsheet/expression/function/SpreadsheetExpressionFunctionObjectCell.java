@@ -59,8 +59,8 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
 
         final SpreadsheetCell cell = context.cellOrFail();
 
-        final String typeInfo = TYPE_INFO.getOrFail(parameters, 0, context);
-        final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1, context)
+        final String typeInfo = TYPE_INFO.getOrFail(parameters, 0);
+        final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1)
             .orElseGet(
                 cell::reference
             );

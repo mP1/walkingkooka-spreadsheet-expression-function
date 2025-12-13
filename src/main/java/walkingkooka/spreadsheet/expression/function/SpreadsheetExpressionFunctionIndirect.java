@@ -46,7 +46,7 @@ final class SpreadsheetExpressionFunctionIndirect extends SpreadsheetExpressionF
                                           final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        return REFERENCE.getOrFail(parameters, 0, context); // parameter will be converted during get to SpreadsheetCellReference
+        return REFERENCE.getOrFail(parameters, 0); // parameter will be converted during get to SpreadsheetCellReference
     }
 
     @Override

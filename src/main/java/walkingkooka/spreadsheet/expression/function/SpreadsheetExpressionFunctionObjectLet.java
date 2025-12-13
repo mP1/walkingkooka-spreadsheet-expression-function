@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
             case 0:
                 throw new IllegalArgumentException(MISSING_EXPRESSION);
             case 1:
-                value = EXPRESSION.getOrFail(values, 0, context);
+                value = EXPRESSION.getOrFail(values, 0);
                 break;
             default:
                 if (count % 2 == 0) {
@@ -87,16 +87,12 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
         int valueIndex = 0;
 
         for (int labelAndValueIndex = 0; labelAndValueIndex < labelAndValuePairCount; labelAndValueIndex++) {
-            final SpreadsheetLabelName name = LABEL_NAME.getOrFail(
-                values,
-                valueIndex++,
-                context
-            );
+            final SpreadsheetLabelName name = LABEL_NAME.getOrFail(values, valueIndex++);
             if (name.value().indexOf('.') >= 0) {
                 throw new IllegalArgumentException("Illegal name \"" + name + "\" contains dot.");
             }
 
-            if (null != nameAndValues.put(name, LABEL_VALUE.getOrFail(values, valueIndex, context))) {
+            if (null != nameAndValues.put(name, LABEL_VALUE.getOrFail(values, valueIndex))) {
                 throw new IllegalArgumentException("Duplicate name \"" + name + "\" in value " + valueIndex); // first parameter is called 1
             }
 
@@ -122,8 +118,7 @@ final class SpreadsheetExpressionFunctionObjectLet extends SpreadsheetExpression
                     this,
                     values
                 ),
-                count - 1,
-                context
+                count - 1
             )
         );
     }

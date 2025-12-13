@@ -89,7 +89,7 @@ final class SpreadsheetExpressionFunctionBooleanIsErrErrorNa extends Spreadsheet
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final Object value = VALUE.getOrFail(parameters, 0, context);
+        final Object value = VALUE.getOrFail(parameters, 0);
         boolean is = false;
 
         if (value instanceof HasSpreadsheetErrorKind) {

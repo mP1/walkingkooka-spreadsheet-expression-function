@@ -52,9 +52,9 @@ final class SpreadsheetExpressionFunctionNumberValue extends SpreadsheetExpressi
         return this.apply0(
             parameters.subList(0, 1),
             SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
-                DECIMAL_SEPARATOR.get(parameters, 1, context)
+                DECIMAL_SEPARATOR.get(parameters, 1)
                     .orElse(context.decimalSeparator()),
-                GROUP_SEPARATOR.get(parameters, 2, context)
+                GROUP_SEPARATOR.get(parameters, 2)
                     .orElse(context.groupSeparator()),
                 context
             )

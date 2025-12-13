@@ -64,7 +64,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
                 throw new IllegalArgumentException("Expected only optional cell reference but got " + count);
         }
 
-        final SpreadsheetCellReference reference = REFERENCE_OPTIONAL.get(parameters, 0, context)
+        final SpreadsheetCellReference reference = REFERENCE_OPTIONAL.get(parameters, 0)
             .orElseGet(
                 () -> context.cellOrFail()
                     .reference()
