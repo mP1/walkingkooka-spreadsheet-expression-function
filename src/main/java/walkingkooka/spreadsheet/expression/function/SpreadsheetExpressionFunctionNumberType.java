@@ -44,7 +44,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
                                   final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final Object value = VALUE.getOrFail(parameters, 0);
+        final Object value = VALUE.getOrFail(parameters, 0, context);
         int type = 0;
 
         if (null == value || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {

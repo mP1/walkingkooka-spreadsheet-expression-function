@@ -40,7 +40,7 @@ final class SpreadsheetExpressionFunctionStringFormulaText extends SpreadsheetEx
                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final SpreadsheetCellReference cell = REFERENCE.getOrFail(parameters, 0);
+        final SpreadsheetCellReference cell = REFERENCE.getOrFail(parameters, 0, context);
         return context.loadCell(cell)
             .orElseThrow(() -> new IllegalArgumentException("Formula missing from " + cell))
             .formula()

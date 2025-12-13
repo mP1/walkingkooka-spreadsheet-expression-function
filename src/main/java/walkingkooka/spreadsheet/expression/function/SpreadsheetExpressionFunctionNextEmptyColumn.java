@@ -68,7 +68,7 @@ final class SpreadsheetExpressionFunctionNextEmptyColumn extends SpreadsheetExpr
     @Override
     public SpreadsheetColumnReference apply(final List<Object> parameters,
                                             final SpreadsheetExpressionEvaluationContext context) {
-        final SpreadsheetRowReference row = ROW.getOrFail(parameters, 0);
+        final SpreadsheetRowReference row = ROW.getOrFail(parameters, 0, context);
 
         return context.nextEmptyColumn(row)
             .orElseThrow(

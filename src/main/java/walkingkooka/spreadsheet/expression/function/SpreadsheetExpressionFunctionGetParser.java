@@ -63,7 +63,7 @@ final class SpreadsheetExpressionFunctionGetParser extends SpreadsheetExpression
     @Override
     public SpreadsheetParserSelector apply(final List<Object> parameters,
                                            final SpreadsheetExpressionEvaluationContext context) {
-        return PARSER.getOrFail(parameters, 0);
+        return PARSER.getOrFail(parameters, 0, context);
 
     }
 }

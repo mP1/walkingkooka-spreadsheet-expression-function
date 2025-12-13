@@ -80,10 +80,10 @@ final class SpreadsheetExpressionFunctionNumberIf extends SpreadsheetExpressionF
     @Override
     public ExpressionNumber apply(final List<Object> parameters,
                                   final SpreadsheetExpressionEvaluationContext context) {
-        final Object value = ExpressionFunctionParameter.VALUE.getOrFail(parameters, 0);
+        final Object value = ExpressionFunctionParameter.VALUE.getOrFail(parameters, 0, context);
 
         final Predicate<Object> criteria = SpreadsheetExpressionFunctionNumberIfPredicate.with(
-            CRITERIA.getOrFail(parameters, 1),
+            CRITERIA.getOrFail(parameters, 1, context),
             context
         );
 

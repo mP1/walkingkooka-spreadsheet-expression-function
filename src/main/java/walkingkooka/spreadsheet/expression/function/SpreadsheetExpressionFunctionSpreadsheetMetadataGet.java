@@ -75,11 +75,13 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataGet extends Spreadsh
 
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
             parameters,
-            0
+            0,
+            context
         );
         final Object defaultValue = DEFAULT_VALUE.getOrFail(
             parameters,
-            1
+            1,
+            context
         );
         return context.spreadsheetMetadata()
             .get(propertyName)
