@@ -52,8 +52,7 @@ final class SpreadsheetExpressionFunctionObjectEval extends SpreadsheetExpressio
         return context.evaluateExpression(
             EXPRESSION.getOrFail(
                 parameters,
-                0,
-                context
+                0
             )
         );
     }

@@ -56,22 +56,22 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
 
         switch (count) {
             case 2:
-                row = ROW_NUM.getOrFail(parameters, 0, context).intValue();
-                column = COLUMN_NUM.getOrFail(parameters, 1, context).intValue();
+                row = ROW_NUM.getOrFail(parameters, 0).intValue();
+                column = COLUMN_NUM.getOrFail(parameters, 1).intValue();
                 absNum = 1;
                 a1Style = true;
                 break;
             case 3:
-                row = ROW_NUM.getOrFail(parameters, 0, context).intValue();
-                column = COLUMN_NUM.getOrFail(parameters, 1, context).intValue();
-                absNum = ABS_NUM.getOrFail(parameters, 2, context).intValue();
+                row = ROW_NUM.getOrFail(parameters, 0).intValue();
+                column = COLUMN_NUM.getOrFail(parameters, 1).intValue();
+                absNum = ABS_NUM.getOrFail(parameters, 2).intValue();
                 a1Style = true;
                 break;
             case 4:
-                row = ROW_NUM.getOrFail(parameters, 0, context).intValue();
-                column = COLUMN_NUM.getOrFail(parameters, 1, context).intValue();
-                absNum = ABS_NUM.getOrFail(parameters, 2, context).intValue();
-                a1Style = A1_STYLE.getOrFail(parameters, 3, context);
+                row = ROW_NUM.getOrFail(parameters, 0).intValue();
+                column = COLUMN_NUM.getOrFail(parameters, 1).intValue();
+                absNum = ABS_NUM.getOrFail(parameters, 2).intValue();
+                a1Style = A1_STYLE.getOrFail(parameters, 3);
                 break;
             default:
                 throw new IllegalArgumentException("Expected " + ROW_NUM + ", " + COLUMN_NUM + ", " + ABS_NUM + ", " + A1_STYLE + " but got " + count);

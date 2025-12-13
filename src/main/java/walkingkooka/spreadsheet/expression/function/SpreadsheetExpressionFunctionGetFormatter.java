@@ -63,7 +63,7 @@ final class SpreadsheetExpressionFunctionGetFormatter extends SpreadsheetExpress
     @Override
     public SpreadsheetFormatterSelector apply(final List<Object> parameters,
                                               final SpreadsheetExpressionEvaluationContext context) {
-        return FORMATTER.getOrFail(parameters, 0, context);
+        return FORMATTER.getOrFail(parameters, 0);
 
     }
 }

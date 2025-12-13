@@ -44,7 +44,7 @@ final class SpreadsheetExpressionFunctionObjectErrorType extends SpreadsheetExpr
                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final Object value = VALUE.getOrFail(parameters, 0, context);
+        final Object value = VALUE.getOrFail(parameters, 0);
 
         Object result;
 

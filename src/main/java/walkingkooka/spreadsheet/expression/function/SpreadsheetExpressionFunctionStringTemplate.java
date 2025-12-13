@@ -31,6 +31,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A function that accepts a single parameter holding the template. Following the template are pairs with the
@@ -55,7 +56,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
         ExpressionFunctionParameterName.with("template"),
         String.class,
         ExpressionFunctionParameterCardinality.REQUIRED,
-        ExpressionFunctionParameter.withoutDefaultValue(),
+        Optional.empty(), // defaultValue
         ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
@@ -103,7 +104,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
         ExpressionFunctionParameterName.with("templateValueName1"),
         TemplateValueName.class,
         ExpressionFunctionParameterCardinality.REQUIRED,
-        ExpressionFunctionParameter.withoutDefaultValue(),
+        Optional.empty(), // defaultValue
         ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
@@ -120,7 +121,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
         ExpressionFunctionParameterName.with("templateValue1"),
         Object.class,
         ExpressionFunctionParameterCardinality.REQUIRED,
-        ExpressionFunctionParameter.withoutDefaultValue(),
+        Optional.empty(), // defaultValue
         ExpressionFunctionParameterKind.CONVERT_EVALUATE
     );
 
@@ -129,7 +130,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final String template = TEMPLATE.getOrFail(parameters, 0, context);
+        final String template = TEMPLATE.getOrFail(parameters, 0);
 
         // TODO would be good to be able to pass templates as values.
         return SpreadsheetTemplateContexts.spreadsheet(
@@ -147,19 +148,11 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
 
                 // $name might be a parameter to this function search that first.
                 for (int i = 1; i < parameters.size(); i = i + 2) {
-                    final TemplateValueName parameterName = TEMPLATE_VALUE_NAME_PARAMETER.getOrFail(
-                        parameters,
-                        i,
-                        context
-                    );
+                    final TemplateValueName parameterName = TEMPLATE_VALUE_NAME_PARAMETER.getOrFail(parameters, i);
 
                     if (name.equals(parameterName)) {
                         value = Expression.value(
-                            TEMPLATE_VALUE_PARAMETER.getOrFail(
-                                parameters,
-                                i + 1,
-                                context
-                            )
+                            TEMPLATE_VALUE_PARAMETER.getOrFail(parameters, i + 1)
                         );
                         break;
                     }

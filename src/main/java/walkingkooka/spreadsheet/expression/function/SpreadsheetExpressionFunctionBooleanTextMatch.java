@@ -46,9 +46,9 @@ final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExp
         this.checkParameterCount(parameters);
 
         return TextMatch.parse(
-            PATTERN.getOrFail(parameters, 0, context)
+            PATTERN.getOrFail(parameters, 0)
         ).test(
-            VALUE.getOrFail(parameters, 1, context)
+            VALUE.getOrFail(parameters, 1)
         );
     }
 

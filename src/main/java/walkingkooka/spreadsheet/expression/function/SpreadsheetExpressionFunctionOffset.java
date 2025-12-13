@@ -28,7 +28,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
-import java.util.Optional;
 
 // https://exceljet.net/excel-functions/excel-offset-function
 final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFunction<SpreadsheetExpressionReference> {
@@ -52,20 +51,26 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
                                                 final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final SpreadsheetCellReference start = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0, context)
+        final SpreadsheetCellReference start = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0)
             .toCell();
 
-        final int rows = ROWS.getOrFail(parameters, 1, context)
+        final int rows = ROWS.getOrFail(parameters, 1)
             .intValue();
 
-        final int columns = COLUMNS.getOrFail(parameters, 2, context)
+        final int columns = COLUMNS.getOrFail(parameters, 2)
             .intValue();
 
-        final int height = HEIGHT.getOrFail(parameters, 3, context)
-            .intValue();
+        final int height = HEIGHT.get(parameters, 3)
+            .orElseGet(
+                () -> context.expressionNumberKind()
+                    .one()
+            ).intValue();
 
-        final int width = WIDTH.getOrFail(parameters, 4, context)
-            .intValue();
+        final int width = WIDTH.get(parameters, 4)
+            .orElseGet(
+                () -> context.expressionNumberKind()
+                    .one()
+            ).intValue();
 
         final SpreadsheetCellReference topLeft = start.add(
             columns,
@@ -93,23 +98,11 @@ final class SpreadsheetExpressionFunctionOffset extends SpreadsheetExpressionFun
 
     private final static ExpressionFunctionParameter<ExpressionNumber> WIDTH = ExpressionFunctionParameterName.with("width")
         .optional(ExpressionNumber.class)
-        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE)
-        .setDefaultValue(
-            (c) -> Optional.of(
-                c.expressionNumberKind()
-                    .one()
-            )
-        );
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     private final static ExpressionFunctionParameter<ExpressionNumber> HEIGHT = ExpressionFunctionParameterName.with("height")
         .optional(ExpressionNumber.class)
-        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE)
-        .setDefaultValue(
-            (c) -> Optional.of(
-                c.expressionNumberKind()
-                    .one()
-            )
-        );
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     // only width and height have a bias of 1
     private final static int BIAS = 1;

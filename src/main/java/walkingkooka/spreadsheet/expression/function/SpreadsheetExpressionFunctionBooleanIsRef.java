@@ -44,7 +44,7 @@ final class SpreadsheetExpressionFunctionBooleanIsRef extends SpreadsheetExpress
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        return REFERENCE.getOrFail(parameters, 0, context) instanceof SpreadsheetSelection; // lgtm [java/useless-type-test]
+        return REFERENCE.getOrFail(parameters, 0) instanceof SpreadsheetSelection; // lgtm [java/useless-type-test]
     }
 
     final static ExpressionFunctionParameter<Object> REFERENCE = ExpressionFunctionParameterName.with("reference")

@@ -46,7 +46,7 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final Object maybeReference = REFERENCE.getOrFail(parameters, 0, context);
+        final Object maybeReference = REFERENCE.getOrFail(parameters, 0);
         boolean blank = false;
 
         if (maybeReference instanceof SpreadsheetCellReference) {

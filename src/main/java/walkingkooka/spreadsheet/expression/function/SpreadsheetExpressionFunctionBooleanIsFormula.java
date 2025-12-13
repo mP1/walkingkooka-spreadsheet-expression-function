@@ -47,7 +47,7 @@ final class SpreadsheetExpressionFunctionBooleanIsFormula extends SpreadsheetExp
                          final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final SpreadsheetExpressionReference reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0, context);
+        final SpreadsheetExpressionReference reference = CELL_OR_RANGE_REFERENCE.getOrFail(parameters, 0);
         final Optional<SpreadsheetCell> cell = context.loadCell(reference.toCell());
         return cell.isPresent() &&
             cell.get()

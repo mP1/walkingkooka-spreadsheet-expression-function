@@ -69,7 +69,7 @@ final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpr
     @Override
     public ValidationError<SpreadsheetExpressionReference> apply(final List<Object> parameters,
                                                                  final SpreadsheetExpressionEvaluationContext context) {
-        final SpreadsheetError spreadsheetError = ERROR.getOrFail(parameters, 0, context);
+        final SpreadsheetError spreadsheetError = ERROR.getOrFail(parameters, 0);
 
         return spreadsheetError.toValidationError(
             context.cellOrFail()
