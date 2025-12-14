@@ -145,7 +145,7 @@ final class SpreadsheetExpressionFunctionNumberIfPredicate implements StaticHelp
         return (v) -> (Boolean) context.evaluateExpression(
             condition.apply(
                 Expression.value(v),
-                context.parseFormula(
+                context.parseExpression(
                         TextCursors.charSequence(value)
                     ).toExpression(context)
                     .orElse(null)

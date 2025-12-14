@@ -146,8 +146,8 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
-    public SpreadsheetFormulaParserToken parseFormula(final TextCursor expression) {
-        return this.context.parseFormula(expression);
+    public SpreadsheetFormulaParserToken parseExpression(final TextCursor expression) {
+        return this.context.parseExpression(expression);
     }
 
     @Override
