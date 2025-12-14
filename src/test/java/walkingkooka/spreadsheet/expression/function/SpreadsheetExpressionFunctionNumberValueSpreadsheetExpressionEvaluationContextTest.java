@@ -132,6 +132,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testParseValueOrExpressionNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testResolveLabelWithNullFails() {
         throw new UnsupportedOperationException();
     }

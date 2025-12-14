@@ -151,6 +151,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public SpreadsheetFormulaParserToken parseValueOrExpression(final TextCursor expression) {
+        return this.context.parseValueOrExpression(expression);
+    }
+
+    @Override
     public Optional<SpreadsheetSelection> resolveLabel(final SpreadsheetLabelName labelName) {
         return this.context.resolveLabel(labelName);
     }
