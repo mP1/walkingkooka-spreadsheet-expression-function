@@ -127,7 +127,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
-    public void testParseFormulaNullFails() {
+    public void testParseExpressionNullFails() {
         throw new UnsupportedOperationException();
     }
 
