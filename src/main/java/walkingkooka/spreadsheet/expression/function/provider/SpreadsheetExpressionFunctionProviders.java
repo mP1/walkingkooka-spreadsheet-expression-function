@@ -124,7 +124,8 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
             name.equals("println") ||
             name.equals("readline") ||
             name.equals("getenv") ||
-            name.equals("exit");
+            name.equals("exit") ||
+            name.equals("shell");
     }
 
     private static boolean filterValidation(final ExpressionFunctionInfo info) {
@@ -344,6 +345,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setRed(),
                     SpreadsheetExpressionFunctions.setStyle(),
                     SpreadsheetExpressionFunctions.setText(),
+                    SpreadsheetExpressionFunctions.shell(),
                     SpreadsheetExpressionFunctions.sign(),
                     SpreadsheetExpressionFunctions.sin(),
                     SpreadsheetExpressionFunctions.sinh(),
