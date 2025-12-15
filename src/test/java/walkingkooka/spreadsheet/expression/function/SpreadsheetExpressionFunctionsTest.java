@@ -4771,6 +4771,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "validationerrorif":
                         case "validationvalue":
                         case "exit":
+                        case "shell":
                             pure = false;
                             break;
                         default:

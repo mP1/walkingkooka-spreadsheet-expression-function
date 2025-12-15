@@ -1673,6 +1673,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TerminalExpressionFunctions#shell}
+     */
+    public static ExpressionFunction<Integer, SpreadsheetExpressionEvaluationContext> shell() {
+        return fixName(
+            TerminalExpressionFunctions.shell()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#sign}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sign() {
