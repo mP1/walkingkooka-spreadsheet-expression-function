@@ -215,7 +215,7 @@ public final class SpreadsheetExpressionFunctionStringDollarTest extends Spreads
 
             @Override
             public ExpressionNumberKind expressionNumberKind() {
-                return EXPRESSION_NUMBER_KIND;
+                return SpreadsheetExpressionFunctionStringDollarTest.EXPRESSION_NUMBER_KIND;
             }
 
             @Override
