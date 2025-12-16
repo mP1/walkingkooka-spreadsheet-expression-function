@@ -91,7 +91,7 @@ public final class SpreadsheetExpressionFunctionStringTextTest extends Spreadshe
 
             @Override
             public ExpressionNumberKind expressionNumberKind() {
-                return EXPRESSION_NUMBER_KIND;
+                return SpreadsheetExpressionFunctionStringTextTest.EXPRESSION_NUMBER_KIND;
             }
 
             @Override
