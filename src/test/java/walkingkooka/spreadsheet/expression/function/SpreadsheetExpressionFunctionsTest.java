@@ -133,7 +133,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
-    private final static Function<SpreadsheetContext, SpreadsheetEngineContext> SPREADSHEET_ENGINE_CONTEXT_FACTORY = (c) -> SpreadsheetEngineContexts.basic(
+    private final static Function<SpreadsheetContext, SpreadsheetEngineContext> SPREADSHEET_ENGINE_CONTEXT_FACTORY = (c) -> SpreadsheetEngineContexts.spreadsheetContext(
         SpreadsheetMetadataMode.FORMULA,
         c,
         TERMINAL_CONTEXT
@@ -3666,7 +3666,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(metadataStore);
 
-        final SpreadsheetEngineContext context = SpreadsheetEngineContexts.basic(
+        final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.basic(
                 (id) -> repo,
@@ -4685,7 +4685,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         final SpreadsheetMetadata saved = metadataStore.save(spreadsheetMetadata);
 
-        return SpreadsheetEngineContexts.basic(
+        return SpreadsheetEngineContexts.spreadsheetContext(
             mode,
             SpreadsheetContexts.basic(
                 (id) -> SpreadsheetStoreRepositories.treeMap(metadataStore),
