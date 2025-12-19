@@ -4333,6 +4333,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     LineEnding.NL
                 ),
                 Printers.fake(),
+                (e, c) -> {
+                    throw new UnsupportedOperationException();
+                },
                 (t) -> {
                     throw new UnsupportedOperationException();
                 }
