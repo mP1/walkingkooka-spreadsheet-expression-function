@@ -4335,9 +4335,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 (e, c) -> {
                     throw new UnsupportedOperationException();
                 },
-                (t) -> {
-                    throw new UnsupportedOperationException();
-                },
                 environmentContext
             ),
             ProviderContexts.fake()
