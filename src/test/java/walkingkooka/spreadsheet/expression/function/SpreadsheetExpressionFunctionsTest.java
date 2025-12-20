@@ -4326,7 +4326,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             environmentContext,
             TerminalContexts.basic(
                 TerminalId.with(1),
-                environmentContext, // HasUser
                 terminalInput,
                 Printers.stringBuilder(
                     printed,
@@ -4338,7 +4337,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 },
                 (t) -> {
                     throw new UnsupportedOperationException();
-                }
+                },
+                environmentContext
             ),
             ProviderContexts.fake()
         );

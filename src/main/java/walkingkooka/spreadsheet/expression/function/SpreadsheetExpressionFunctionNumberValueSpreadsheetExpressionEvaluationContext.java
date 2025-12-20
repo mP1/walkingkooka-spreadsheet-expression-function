@@ -469,6 +469,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public EnvironmentContext environmentContext() {
+        return this.context;
+    }
+
+    @Override
     public SpreadsheetEnvironmentContext spreadsheetEnvironmentContext() {
         return this.context;
     }
