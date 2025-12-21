@@ -295,28 +295,22 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
             SpreadsheetMetadata.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
-            SpreadsheetContexts.basic(
-                (id) -> {
-                    if (spreadsheetId.equals(id)) {
-                        return new FakeSpreadsheetStoreRepository() {
+            SpreadsheetContexts.fixedSpreadsheetId(
+                new FakeSpreadsheetStoreRepository() {
+                    @Override
+                    public SpreadsheetMetadataStore metadatas() {
+                        return new FakeSpreadsheetMetadataStore() {
                             @Override
-                            public SpreadsheetMetadataStore metadatas() {
-                                return new FakeSpreadsheetMetadataStore() {
-                                    @Override
-                                    public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
-                                        return Optional.ofNullable(
-                                            id.equals(spreadsheetId) ?
-                                                metadata :
-                                                null
-                                        );
-                                    }
-                                };
+                            public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
+                                return Optional.ofNullable(
+                                    id.equals(spreadsheetId) ?
+                                        metadata :
+                                        null
+                                );
                             }
                         };
                     }
-                    throw new IllegalArgumentException("Unknown SpreadsheetId: " + id);
                 },
-                SPREADSHEET_PROVIDER,
                 (c) -> {
                     throw new UnsupportedOperationException();
                 }, // Function<SpreadsheetContext, SpreadsheetEngineContext> spreadsheetEngineContextFactory
@@ -326,8 +320,8 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                 SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
                     .setSpreadsheetId(spreadsheetId),
                 LOCALE_CONTEXT,
-                PROVIDER_CONTEXT,
-                TERMINAL_SERVER_CONTEXT
+                SPREADSHEET_PROVIDER,
+                PROVIDER_CONTEXT
             ),
             TERMINAL_CONTEXT
         );

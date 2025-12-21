@@ -3668,8 +3668,18 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
-            SpreadsheetContexts.basic(
-                (id) -> repo,
+            SpreadsheetContexts.fixedSpreadsheetId(
+                repo,
+                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
+                HATEOS_ROUTER_FACTORY,
+                SpreadsheetEnvironmentContexts.basic(
+                    EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT)
+                        .setEnvironmentValue(
+                            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+                            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+                        )
+                ),
+                LocaleContexts.jre(LOCALE),
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                         (ProviderContext p) -> metadata.dateTimeConverter(
@@ -3687,18 +3697,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     SPREADSHEET_PARSER_PROVIDER,
                     VALIDATOR_PROVIDER
                 ),
-                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
-                HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(
-                    EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT)
-                        .setEnvironmentValue(
-                            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-                            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-                        )
-                ),
-                LocaleContexts.jre(LOCALE),
-                PROVIDER_CONTEXT,
-                TERMINAL_SERVER_CONTEXT
+                PROVIDER_CONTEXT
             ),
             TERMINAL_CONTEXT
         );
@@ -4687,8 +4686,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         return SpreadsheetEngineContexts.spreadsheetContext(
             mode,
-            SpreadsheetContexts.basic(
-                (id) -> SpreadsheetStoreRepositories.treeMap(metadataStore),
+            SpreadsheetContexts.fixedSpreadsheetId(
+                SpreadsheetStoreRepositories.treeMap(metadataStore),
+                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
+                HATEOS_ROUTER_FACTORY,
+                SpreadsheetEnvironmentContexts.basic(
+                    environmentContext.setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SERVER_URL,
+                        SERVER_URL
+                    ).setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+                        saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+                    )
+                ),
+                LOCALE_CONTEXT,
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                         (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
@@ -4706,20 +4717,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     SPREADSHEET_PARSER_PROVIDER,
                     VALIDATOR_PROVIDER
                 ),
-                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
-                HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(
-                    environmentContext.setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SERVER_URL,
-                        SERVER_URL
-                    ).setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-                        saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-                    )
-                ),
-                LOCALE_CONTEXT,
-                providerContext,
-                TERMINAL_SERVER_CONTEXT
+                providerContext
             ),
             terminalContext
         );
