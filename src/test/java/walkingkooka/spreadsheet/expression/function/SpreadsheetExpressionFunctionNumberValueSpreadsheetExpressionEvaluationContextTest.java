@@ -172,6 +172,46 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testEvaluateWithEmptyStringReturnsError() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testEvaluateWithWhitespaceStringReturnsError() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testParseExpressionWithEmptyStringFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testParseExpressionWithOnlyWhitespaceStringFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testParseExpressionWithOnlyWhitespaceStringFails2() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testParseValueOrExpressionWithEmptyStringFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testParseValueOrExpressionWithOnlyWhitespaceStringFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testParseValueOrExpressionWithOnlyWhitespaceStringFails2() {
+        throw new UnsupportedOperationException();
+    }
+    
+    @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
             DECIMAL_SEPARATOR,
