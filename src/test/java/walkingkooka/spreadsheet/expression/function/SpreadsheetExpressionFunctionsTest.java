@@ -1364,7 +1364,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setDateTimeSymbols(
@@ -1390,7 +1393,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             )
@@ -1419,7 +1425,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setDecimalNumberSymbols(
@@ -1442,7 +1451,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final String value = "Goodbye!";
 
         environmentContext.setEnvironmentValue(
-            EnvironmentValueName.with("Hello"),
+            EnvironmentValueName.with(
+                "Hello",
+                String.class
+            ),
             value
         );
 
@@ -1474,7 +1486,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setFormatter(
@@ -1510,7 +1525,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText(formulaText)
             )
@@ -1552,7 +1570,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("SpreadsheetCell"),
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setLocale(
@@ -1667,7 +1688,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("cell"),
+            EnvironmentValueName.with(
+                "cell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=1")
             ).setValidator(
@@ -1707,7 +1731,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 EnvironmentContext.ANONYMOUS
             )
         ).setEnvironmentValue(
-            EnvironmentValueName.with("cell"),
+            EnvironmentValueName.with(
+                "cell",
+                SpreadsheetCell.class
+            ),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=1")
                     .setValue(
@@ -2848,7 +2875,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateRemoveEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
-        final EnvironmentValueName<String> name = EnvironmentValueName.with("Hello");
+        final EnvironmentValueName<String> name = EnvironmentValueName.with(
+            "Hello",
+            String.class
+        );
         final String value = "Goodbye!";
 
         environmentContext.setEnvironmentValue(
@@ -3071,7 +3101,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateSetEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
-        final EnvironmentValueName<String> name = EnvironmentValueName.with("Hello");
+        final EnvironmentValueName<String> name = EnvironmentValueName.with(
+            "Hello",
+            String.class
+        );
         final String value = "Goodbye!";
 
         environmentContext.setEnvironmentValue(
