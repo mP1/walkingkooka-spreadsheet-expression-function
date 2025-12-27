@@ -71,12 +71,14 @@ import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 import walkingkooka.spreadsheet.importer.provider.SpreadsheetImporterAliasSet;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetName;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserAliasSet;
+import walkingkooka.spreadsheet.provider.SpreadsheetProvider;
 import walkingkooka.spreadsheet.provider.SpreadsheetProviders;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
@@ -4346,33 +4348,82 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetMetadata metadata = this.metadata();
 
-        final SpreadsheetEngineContext spreadsheetEngineContext = this.spreadsheetEngineContext(
+        final SpreadsheetMetadata spreadsheetMetadata = metadata.set(
+            SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
+            metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER)
+        ).set(
+            SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS,
+            metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS)
+        );
+        final TerminalContext terminalContext = TerminalContexts.basic(
+            TerminalId.with(1),
+            () -> true,
+            () -> {
+            },
+            terminalInput,
+            Printers.stringBuilder(
+                printed,
+                LineEnding.NL
+            ),
+            Printers.fake(),
+            (e, c) -> {
+                throw new UnsupportedOperationException();
+            },
+            environmentContext
+        );
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
+
+        final SpreadsheetMetadata saved = metadataStore.save(spreadsheetMetadata);
+
+        final Map<SpreadsheetId, SpreadsheetStoreRepository> spreadsheetIdToSpreadsheetStoreRepository = Maps.sorted();
+
+        spreadsheetIdToSpreadsheetStoreRepository.put(
+            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
+            SpreadsheetStoreRepositories.treeMap(metadataStore)
+        );
+
+        final SpreadsheetMetadata otherMetadata = metadataStore.save(
+            spreadsheetMetadata.set(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
+                SpreadsheetId.with(999)
+            )
+        );
+        spreadsheetIdToSpreadsheetStoreRepository.put(
+            otherMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
+            SpreadsheetStoreRepositories.treeMap(metadataStore)
+        );
+
+        final SpreadsheetEngineContext spreadsheetEngineContext = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.SCRIPTING,
-            metadata.set(
-                SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
-                metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER)
-            ).set(
-                SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS,
-                metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS)
-            ),
-            environmentContext,
-            TerminalContexts.basic(
-                TerminalId.with(1),
-                () -> true,
-                () -> {
+            SpreadsheetContexts.mutableSpreadsheetId(
+                (SpreadsheetId id) -> {
+                    final SpreadsheetStoreRepository repo = spreadsheetIdToSpreadsheetStoreRepository.get(id);
+                    if (null == repo) {
+                        throw new IllegalArgumentException("Unknown spreadsheet id: " + id);
+                    }
+                    return repo;
                 },
-                terminalInput,
-                Printers.stringBuilder(
-                    printed,
-                    LineEnding.NL
+                SpreadsheetMetadataContexts.basic(
+                    (u, dl) -> {
+                        throw new UnsupportedOperationException();
+                    },
+                    metadataStore
                 ),
-                Printers.fake(),
-                (e, c) -> {
-                    throw new UnsupportedOperationException();
-                },
-                environmentContext
+                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
+                SpreadsheetEnvironmentContexts.basic(
+                    environmentContext.setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SERVER_URL,
+                        SERVER_URL
+                    ).setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+                        saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+                    )
+                ),
+                LOCALE_CONTEXT,
+                this.spreadsheetProvider(spreadsheetMetadata),
+                ProviderContexts.fake()
             ),
-            ProviderContexts.fake()
+            terminalContext
         );
 
         // only SCRIPTING allows updatable EnvironmentContext
@@ -4653,16 +4704,35 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                       final TerminalContext terminalContext) {
         final SpreadsheetEngine engine = SpreadsheetEngines.basic();
 
-        final SpreadsheetEngineContext context = this.spreadsheetEngineContext(
-            save.formula()
-                .text()
-                .contains("spreadsheetMetadataSet") ? // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
-                SpreadsheetMetadataMode.SCRIPTING :
-                SpreadsheetMetadataMode.FORMULA,
-            metadata,
-            EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
-            terminalContext,
-            PROVIDER_CONTEXT
+        final SpreadsheetMetadataMode mode = save.formula()
+            .text()
+            .contains("spreadsheetMetadataSet") ? // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
+            SpreadsheetMetadataMode.SCRIPTING :
+            SpreadsheetMetadataMode.FORMULA;
+        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
+        final SpreadsheetMetadata saved1 = metadataStore.save(metadata);
+
+        // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
+        final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
+            mode,
+            SpreadsheetContexts.fixedSpreadsheetId(
+                SpreadsheetStoreRepositories.treeMap(metadataStore),
+                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
+                HATEOS_ROUTER_FACTORY,
+                SpreadsheetEnvironmentContexts.basic(
+                    EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT).setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SERVER_URL,
+                        SERVER_URL
+                    ).setEnvironmentValue(
+                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+                        saved1.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+                    )
+                ),
+                LOCALE_CONTEXT,
+                this.spreadsheetProvider(metadata),
+                PROVIDER_CONTEXT
+            ),
+            terminalContext
         );
 
         // save all the preload cells, these will contain references in the test cell.
@@ -4712,50 +4782,23 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         return context;
     }
 
-    private SpreadsheetEngineContext spreadsheetEngineContext(final SpreadsheetMetadataMode mode,
-                                                              final SpreadsheetMetadata spreadsheetMetadata,
-                                                              final EnvironmentContext environmentContext,
-                                                              final TerminalContext terminalContext,
-                                                              final ProviderContext providerContext) {
-        final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
-        final SpreadsheetMetadata saved = metadataStore.save(spreadsheetMetadata);
-
-        return SpreadsheetEngineContexts.spreadsheetContext(
-            mode,
-            SpreadsheetContexts.fixedSpreadsheetId(
-                SpreadsheetStoreRepositories.treeMap(metadataStore),
-                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
-                HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(
-                    environmentContext.setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SERVER_URL,
-                        SERVER_URL
-                    ).setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-                        saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-                    )
-                ),
-                LOCALE_CONTEXT,
-                SpreadsheetProviders.basic(
-                    SpreadsheetConvertersConverterProviders.spreadsheetConverters(
-                        (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
-                            SPREADSHEET_FORMATTER_PROVIDER,
-                            SPREADSHEET_PARSER_PROVIDER,
-                            p
-                        )
-                    ),
-                    EXPRESSION_FUNCTION_PROVIDER,
-                    SPREADSHEET_COMPARATOR_PROVIDER,
-                    SPREADSHEET_EXPORTER_PROVIDER,
+    private SpreadsheetProvider spreadsheetProvider(final SpreadsheetMetadata spreadsheetMetadata) {
+        return SpreadsheetProviders.basic(
+            SpreadsheetConvertersConverterProviders.spreadsheetConverters(
+                (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
                     SPREADSHEET_FORMATTER_PROVIDER,
-                    FORM_HANDLER_PROVIDER,
-                    SPREADSHEET_IMPORTER_PROVIDER,
                     SPREADSHEET_PARSER_PROVIDER,
-                    VALIDATOR_PROVIDER
-                ),
-                providerContext
+                    p
+                )
             ),
-            terminalContext
+            EXPRESSION_FUNCTION_PROVIDER,
+            SPREADSHEET_COMPARATOR_PROVIDER,
+            SPREADSHEET_EXPORTER_PROVIDER,
+            SPREADSHEET_FORMATTER_PROVIDER,
+            FORM_HANDLER_PROVIDER,
+            SPREADSHEET_IMPORTER_PROVIDER,
+            SPREADSHEET_PARSER_PROVIDER,
+            VALIDATOR_PROVIDER
         );
     }
 
