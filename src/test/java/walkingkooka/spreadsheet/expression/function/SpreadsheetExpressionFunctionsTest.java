@@ -59,6 +59,7 @@ import walkingkooka.spreadsheet.engine.SpreadsheetEngineContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngines;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContextFactory;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContexts;
 import walkingkooka.spreadsheet.export.provider.SpreadsheetExporterAliasSet;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
@@ -3124,6 +3125,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             environmentContext,
             name,
             "Replacement2"
+        );
+    }
+
+    @Test
+    public void testEvaluateSetEnvWithSpreadsheetIdStringAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+
+        final EnvironmentValueName<SpreadsheetId> name = SpreadsheetEnvironmentContextFactory.SPREADSHEET_ID;
+
+        environmentContext.setEnvironmentValue(
+            name,
+            SpreadsheetId.with(1)
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(setEnv(\"spreadsheetId\", 2))",
+            environmentContext,
+            ""
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            SpreadsheetId.with(2)
         );
     }
 
