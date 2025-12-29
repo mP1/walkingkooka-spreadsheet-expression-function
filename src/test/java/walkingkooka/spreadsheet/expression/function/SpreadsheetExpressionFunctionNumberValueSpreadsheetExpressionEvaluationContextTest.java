@@ -43,6 +43,7 @@ import walkingkooka.text.LineEnding;
 import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -401,6 +402,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
                     SPREADSHEET_ENVIRONMENT_CONTEXT.setLocale(locale);
                     return this;
+                }
+
+                @Override
+                public LocalDateTime now() {
+                    return SPREADSHEET_ENVIRONMENT_CONTEXT.now();
                 }
 
                 @Override
