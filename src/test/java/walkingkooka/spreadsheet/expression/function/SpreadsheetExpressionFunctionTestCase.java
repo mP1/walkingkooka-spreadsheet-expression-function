@@ -141,46 +141,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
             .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
-//        return SpreadsheetExpressionEvaluationContexts.basic(
-//            metadata,
-//            SpreadsheetMetadataMode.FORMULA,
-//            new FakeSpreadsheetStoreRepository() {
-//
-//                @Override
-//                public SpreadsheetCellStore cells() {
-//                    return this.cells;
-//                }
-//
-//                private final SpreadsheetCellStore cells = SpreadsheetCellStores.treeMap();
-//
-//                @Override
-//                public Storage<StorageExpressionEvaluationContext> storage() {
-//                    return storage;
-//                }
-//
-//                private final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-//            },
-//            SPREADSHEET_ENVIRONMENT_CONTEXT,
-//            Optional.of(CELL),
-//            new FakeSpreadsheetExpressionReferenceLoader() {
-//                @Override
-//                public Optional<SpreadsheetCell> loadCell(final SpreadsheetCellReference cell,
-//                                                          final SpreadsheetExpressionEvaluationContext context) {
-//                    if (LOAD_CELL_REFERENCE.equals(cell)) {
-//                        return Optional.of(LOAD_CELL);
-//                    }
-//                    if (CELL_EMPTY_FORMULA.reference().equals(cell)) {
-//                        return Optional.of(CELL_EMPTY_FORMULA);
-//                    }
-//                    return Optional.empty();
-//                }
-//            },
-//            SPREADSHEET_LABEL_NAME_RESOLVER,
-//            LOCALE_CONTEXT,
-//            TERMINAL_CONTEXT,
-//            SPREADSHEET_PROVIDER,
-//            PROVIDER_CONTEXT
-//        );
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
             Optional.of(CELL),
