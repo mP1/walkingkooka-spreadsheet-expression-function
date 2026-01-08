@@ -3380,8 +3380,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateStorageDelete() {
         this.evaluateAndPrintedCheck(
             "=storageDelete(\"/file.txt\")",
-            SpreadsheetErrorKind.VALUE
-                .setMessage("storageDelete: path: Cannot convert \"/file.txt\" to StoragePath"), // expected value
+            (Object) null, // expected value
             ""// printed
         );
     }
@@ -4624,7 +4623,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation)");
+        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, text-to-storage-path)");
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
