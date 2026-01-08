@@ -214,6 +214,7 @@ majority of these functions are formula expression functions.
 - sqrt
 - storageDelete
 - storageReadText
+- storageWriteText
 - style
 - styledText
 - styleGet
