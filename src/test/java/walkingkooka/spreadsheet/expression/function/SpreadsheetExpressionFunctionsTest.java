@@ -3380,7 +3380,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateStorageDelete() {
         this.evaluateAndPrintedCheck(
             "=storageDelete(\"/file.txt\")",
-            "" // printed
+            SpreadsheetErrorKind.VALUE
+                .setMessage("storageDelete: path: Cannot convert \"/file.txt\" to StoragePath"), // expected value
+            ""// printed
         );
     }
 
