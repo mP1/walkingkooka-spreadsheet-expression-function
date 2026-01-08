@@ -47,6 +47,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
+import walkingkooka.storage.expression.function.StorageExpressionFunctions;
 import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -1735,6 +1736,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
         return fixName(
             NumberExpressionFunctions.sqrt()
+        );
+    }
+
+    /**
+     * {@see StorageExpressionFunctions#storageDelete}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageDelete() {
+        return fixName(
+            StorageExpressionFunctions.storageDelete()
         );
     }
 
