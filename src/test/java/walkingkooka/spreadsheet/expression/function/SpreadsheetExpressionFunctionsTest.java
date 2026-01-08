@@ -3414,6 +3414,39 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateStorageWriteText() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(STORAGE_READ_TEXT_USER)
+            )
+        );
+
+        final SpreadsheetExpressionEvaluationContext context = this.evaluateAndPrintedCheck(
+            "=storageWriteText(\"/created.txt\",\"Hello\")",
+            environmentContext,
+            null, // expected value
+            "" // printed
+        ).spreadsheetExpressionEvaluationContext(
+            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetExpressionReferenceLoaders.empty()
+        );
+
+        this.checkEquals(
+            "Hello",
+            context.storage()
+                .load(
+                    StoragePath.parse("/created.txt"),
+                    context
+                ).flatMap(
+                    v -> v.value()
+                ).orElse(null)
+        );
+    }
+
+    @Test
     public void testEvaluateStyle() {
         this.evaluateAndValueCheck(
             "=style(\"text-align: left;\")",
@@ -4916,6 +4949,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlocale":
                         case "storagedelete":
                         case "storagereadtext":
+                        case "storagewritetext":
                         case "getvalidator":
                         case "validationerrorif":
                         case "validationvalue":

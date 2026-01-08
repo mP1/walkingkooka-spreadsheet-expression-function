@@ -1758,6 +1758,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageWriteText}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageWriteText() {
+        return fixName(
+            StorageExpressionFunctions.storageWriteText()
+        );
+    }
+
+    /**
      * {@see TreeTextExpressionFunctions#style}
      */
     public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> style() {
