@@ -353,6 +353,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.spreadsheetMetadataRemove(),
                     SpreadsheetExpressionFunctions.spreadsheetMetadataSet(),
                     SpreadsheetExpressionFunctions.sqrt(),
+                    SpreadsheetExpressionFunctions.storageDelete(),
                     SpreadsheetExpressionFunctions.style(),
                     SpreadsheetExpressionFunctions.styleGet(),
                     SpreadsheetExpressionFunctions.styleRemove(),

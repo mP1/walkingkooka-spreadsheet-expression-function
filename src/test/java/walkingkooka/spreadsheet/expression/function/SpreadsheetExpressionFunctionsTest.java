@@ -3377,6 +3377,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateStorageDelete() {
+        this.evaluateAndPrintedCheck(
+            "=storageDelete(\"/file.txt\")",
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateStyle() {
         this.evaluateAndValueCheck(
             "=style(\"text-align: left;\")",
@@ -4869,6 +4877,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "removeenv":
                         case "setenv":
                         case "setlocale":
+                        case "storagedelete":
                         case "getvalidator":
                         case "validationerrorif":
                         case "validationvalue":
