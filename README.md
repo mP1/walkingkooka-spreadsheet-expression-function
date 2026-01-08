@@ -213,6 +213,7 @@ majority of these functions are formula expression functions.
 - spreadsheetMetadataSet
 - sqrt
 - storageDelete
+- storageReadText
 - style
 - styledText
 - styleGet

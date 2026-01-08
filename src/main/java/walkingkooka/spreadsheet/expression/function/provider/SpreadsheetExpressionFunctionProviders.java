@@ -354,6 +354,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.spreadsheetMetadataSet(),
                     SpreadsheetExpressionFunctions.sqrt(),
                     SpreadsheetExpressionFunctions.storageDelete(),
+                    SpreadsheetExpressionFunctions.storageReadText(),
                     SpreadsheetExpressionFunctions.style(),
                     SpreadsheetExpressionFunctions.styleGet(),
                     SpreadsheetExpressionFunctions.styleRemove(),

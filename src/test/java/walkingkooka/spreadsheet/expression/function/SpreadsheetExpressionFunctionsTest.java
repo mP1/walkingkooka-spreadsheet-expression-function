@@ -90,6 +90,8 @@ import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
+import walkingkooka.storage.StoragePath;
+import walkingkooka.storage.StorageValue;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
 import walkingkooka.terminal.TerminalId;
@@ -3385,6 +3387,32 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    private final static EmailAddress STORAGE_READ_TEXT_USER = EmailAddress.parse("storageReadText@example.com");
+
+    private final static StoragePath STORAGE_READ_TEXT_PATH = StoragePath.parse("/file.txt");
+
+    private final static String FILE_CONTENT_TEXT = "FileContentText123\n" +
+        "line2";
+
+    @Test
+    public void testEvaluateStorageReadText() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(STORAGE_READ_TEXT_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=storageReadText(\"/file.txt\")",
+            environmentContext,
+            FILE_CONTENT_TEXT, // expected value
+            "" // printed
+        );
+    }
+
     @Test
     public void testEvaluateStyle() {
         this.evaluateAndValueCheck(
@@ -4466,6 +4494,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 )
             );
 
+        if (Optional.of(STORAGE_READ_TEXT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
+            spreadsheetExpressionEvaluationContext.storage()
+                .save(
+                    StorageValue.with(
+                        STORAGE_READ_TEXT_PATH,
+                        Optional.of(FILE_CONTENT_TEXT)
+                    ),
+                    spreadsheetExpressionEvaluationContext
+                );
+        }
+
         final Object value = spreadsheetExpressionEvaluationContext.evaluateExpression(
             spreadsheetEngineContext.parseFormula(
                     TextCursors.charSequence(formula),
@@ -4876,6 +4915,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setenv":
                         case "setlocale":
                         case "storagedelete":
+                        case "storagereadtext":
                         case "getvalidator":
                         case "validationerrorif":
                         case "validationvalue":

@@ -1749,6 +1749,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageReadText}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> storageReadText() {
+        return fixName(
+            StorageExpressionFunctions.storageReadText()
+        );
+    }
+
+    /**
      * {@see TreeTextExpressionFunctions#style}
      */
     public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> style() {
