@@ -4384,9 +4384,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadata metadata = this.metadata();
 
         final SpreadsheetMetadata spreadsheetMetadata = metadata.set(
-            SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
-            metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER)
-        ).set(
             SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS,
             metadata.getOrFail(SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS)
         );
