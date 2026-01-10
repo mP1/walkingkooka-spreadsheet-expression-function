@@ -47,6 +47,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
+import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctions;
 import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
 import walkingkooka.tree.expression.ExpressionFunctionName;
@@ -1745,6 +1746,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageDelete() {
         return fixName(
             StorageExpressionFunctions.storageDelete()
+        );
+    }
+
+    /**
+     * {@see StorageExpressionFunctions#storageList}
+     */
+    public static ExpressionFunction<StorageValueInfoList, SpreadsheetExpressionEvaluationContext> storageList() {
+        return fixName(
+            StorageExpressionFunctions.storageList()
         );
     }
 
