@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * This function is intended to be used within a search query expression to match text using a GLOB pattern
- * against a given {@link walkingkooka.spreadsheet.SpreadsheetCell} property in text form.
+ * against a given {@link walkingkooka.spreadsheet.value.SpreadsheetCell} property in text form.
  */
 final class SpreadsheetExpressionFunctionBooleanTextMatch extends SpreadsheetExpressionFunctionBoolean {
 

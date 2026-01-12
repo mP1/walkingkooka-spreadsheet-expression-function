@@ -27,7 +27,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import java.util.List;
 
 /**
- * A function that may be used to get the value from a {@link walkingkooka.spreadsheet.SpreadsheetCell}
+ * A function that may be used to get the value from a {@link walkingkooka.spreadsheet.value.SpreadsheetCell}
  */
 final class SpreadsheetExpressionFunctionGetValue extends SpreadsheetExpressionFunction<Object> {
 

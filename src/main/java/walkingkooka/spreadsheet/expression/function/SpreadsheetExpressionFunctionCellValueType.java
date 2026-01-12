@@ -20,7 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 
 /**
- * A custom function that retrieves the {@link walkingkooka.validation.ValidationValueTypeName} for the current cell.
+ * A custom function that retrieves the {@link walkingkooka.validation.ValueType} for the current cell.
  * This function exists primarily to support filtering cells using a predicate of the current cell.
  */
 final class SpreadsheetExpressionFunctionCellValueType extends SpreadsheetExpressionFunctionCell<Object> {
