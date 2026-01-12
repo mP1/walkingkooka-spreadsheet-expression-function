@@ -94,6 +94,7 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageValueInfoList;
+import walkingkooka.storage.Storages;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
 import walkingkooka.terminal.TerminalId;
@@ -3827,7 +3828,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         final SpreadsheetMetadata saved = metadataStore.save(metadata);
 
-        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(metadataStore);
+        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(
+            metadataStore,
+            Storages.fake()
+        );
 
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
@@ -4504,7 +4508,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         spreadsheetIdToSpreadsheetStoreRepository.put(
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
-            SpreadsheetStoreRepositories.treeMap(metadataStore)
+            SpreadsheetStoreRepositories.treeMap(
+                metadataStore,
+                Storages.tree()
+            )
         );
 
         final SpreadsheetMetadata otherMetadata = metadataStore.save(
@@ -4515,7 +4522,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
         spreadsheetIdToSpreadsheetStoreRepository.put(
             otherMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
-            SpreadsheetStoreRepositories.treeMap(metadataStore)
+            SpreadsheetStoreRepositories.treeMap(
+                metadataStore,
+                Storages.fake()
+            )
         );
 
         final SpreadsheetEngineContext spreadsheetEngineContext = SpreadsheetEngineContexts.spreadsheetContext(
@@ -4866,7 +4876,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             mode,
             SpreadsheetContexts.fixedSpreadsheetId(
-                SpreadsheetStoreRepositories.treeMap(metadataStore),
+                SpreadsheetStoreRepositories.treeMap(
+                    metadataStore,
+                    Storages.fake()
+                ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
                 SpreadsheetEnvironmentContexts.basic(
