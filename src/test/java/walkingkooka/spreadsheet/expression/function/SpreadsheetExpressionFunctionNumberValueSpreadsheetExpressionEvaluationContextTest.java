@@ -399,9 +399,8 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public SpreadsheetExpressionEvaluationContext setLocale(final Locale locale) {
+                public void setLocale(final Locale locale) {
                     SPREADSHEET_ENVIRONMENT_CONTEXT.setLocale(locale);
-                    return this;
                 }
 
                 @Override
