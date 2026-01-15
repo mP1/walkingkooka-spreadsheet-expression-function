@@ -356,19 +356,17 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+                public void removeEnvironmentValue(final EnvironmentValueName<?> name) {
                     SPREADSHEET_ENVIRONMENT_CONTEXT.removeEnvironmentValue(name);
-                    return this;
                 }
 
                 @Override
-                public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                                                      final T value) {
+                public <T> void setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                    final T value) {
                     SPREADSHEET_ENVIRONMENT_CONTEXT.setEnvironmentValue(
                         name,
                         value
                     );
-                    return this;
                 }
 
                 @Override
@@ -377,9 +375,8 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+                public void setUser(final Optional<EmailAddress> user) {
                     SPREADSHEET_ENVIRONMENT_CONTEXT.setUser(user);
-                    return this;
                 }
 
                 @Override
@@ -388,9 +385,8 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public SpreadsheetExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+                public void setLineEnding(final LineEnding lineEnding) {
                     SPREADSHEET_ENVIRONMENT_CONTEXT.setLineEnding(lineEnding);
-                    return this;
                 }
                 
                 @Override

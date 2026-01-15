@@ -1371,7 +1371,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
                 SpreadsheetCell.class
@@ -1400,7 +1401,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
                 SpreadsheetCell.class
@@ -1432,7 +1434,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
                 SpreadsheetCell.class
@@ -1493,7 +1496,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
                 SpreadsheetCell.class
@@ -1532,7 +1536,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
                 SpreadsheetCell.class
@@ -1577,7 +1582,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
                 SpreadsheetCell.class
@@ -1695,7 +1701,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "cell",
                 SpreadsheetCell.class
@@ -1738,7 +1745,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HAS_NOW,
                 EnvironmentContext.ANONYMOUS
             )
-        ).setEnvironmentValue(
+        );
+        environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "cell",
                 SpreadsheetCell.class
@@ -3833,19 +3841,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             Storages.fake()
         );
 
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+        );
+
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.fixedSpreadsheetId(
                 repo,
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(
-                    EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT)
-                        .setEnvironmentValue(
-                            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-                            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-                        )
-                ),
+                SpreadsheetEnvironmentContexts.basic(environmentContext),
                 LocaleContexts.jre(LOCALE),
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -4528,6 +4536,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             )
         );
 
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.SERVER_URL,
+            SERVER_URL
+        );
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+            saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+        );
+
         final SpreadsheetEngineContext spreadsheetEngineContext = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.SCRIPTING,
             SpreadsheetContexts.mutableSpreadsheetId(
@@ -4545,15 +4562,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     metadataStore
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(
-                    environmentContext.setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SERVER_URL,
-                        SERVER_URL
-                    ).setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-                        saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-                    )
-                ),
+                SpreadsheetEnvironmentContexts.basic(environmentContext),
                 LOCALE_CONTEXT,
                 this.spreadsheetProvider(spreadsheetMetadata),
                 ProviderContexts.fake()
@@ -4872,6 +4881,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         final SpreadsheetMetadata saved1 = metadataStore.save(metadata);
 
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.SERVER_URL,
+            SERVER_URL
+        );
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
+            saved1.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
+        );
+
         // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             mode,
@@ -4882,15 +4901,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(
-                    EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT).setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SERVER_URL,
-                        SERVER_URL
-                    ).setEnvironmentValue(
-                        SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-                        saved1.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-                    )
-                ),
+                SpreadsheetEnvironmentContexts.basic(environmentContext),
                 LOCALE_CONTEXT,
                 this.spreadsheetProvider(metadata),
                 PROVIDER_CONTEXT
