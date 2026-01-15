@@ -22,7 +22,6 @@ import walkingkooka.convert.Converter;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -52,7 +51,6 @@ import walkingkooka.storage.expression.function.StorageExpressionEvaluationConte
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
-import walkingkooka.text.LineEnding;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -170,12 +168,6 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     public void setSpreadsheetMetadata(final SpreadsheetMetadata metadata) {
         this.context.setSpreadsheetMetadata(metadata);
     }
-
-    @Override
-    public SpreadsheetExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
-        this.context.setLineEnding(lineEnding);
-        return this;
-    }
     
     @Override
     public void setLocale(final Locale locale) {
@@ -185,12 +177,6 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Optional<EmailAddress> user() {
         return this.context.user();
-    }
-
-    @Override
-    public SpreadsheetExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
-        this.context.setUser(user);
-        return this;
     }
 
     @Override
@@ -444,22 +430,6 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
                 this.groupSeparator,
                 after
             );
-    }
-
-    @Override
-    public <T> SpreadsheetExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                                          final T value) {
-        this.context.setEnvironmentValue(
-            name,
-            value
-        );
-        return this;
-    }
-
-    @Override
-    public SpreadsheetExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
-        this.context.removeEnvironmentValue(name);
-        return this;
     }
 
     @Override
