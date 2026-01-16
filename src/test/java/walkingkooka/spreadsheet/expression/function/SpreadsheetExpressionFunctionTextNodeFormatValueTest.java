@@ -34,7 +34,6 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.tree.text.TextNode;
 
-import java.util.Locale;
 import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends SpreadsheetExpressionFunctionTextNodeTestCase<SpreadsheetExpressionFunctionTextNodeFormatValue> {
@@ -59,8 +58,6 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
 
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
-        final Locale locale = Locale.ENGLISH;
-
         final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
 
         final SpreadsheetMetadata metadata = METADATA_EN_AU.set(
