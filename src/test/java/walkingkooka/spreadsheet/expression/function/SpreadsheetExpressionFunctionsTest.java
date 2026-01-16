@@ -3202,7 +3202,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetLocaleAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
 
         final EnvironmentValueName<Locale> name = EnvironmentValueName.LOCALE;
 
