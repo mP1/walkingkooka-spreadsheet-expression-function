@@ -29,6 +29,7 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -141,6 +142,9 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
             .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
+
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
             Optional.of(CELL),
@@ -195,8 +199,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 (c) -> {
                     throw new UnsupportedOperationException();
                 }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
-                SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-                    .setSpreadsheetId(spreadsheetId),
+                spreadsheetEnvironmentContext,
                 LOCALE_CONTEXT,
                 SPREADSHEET_PROVIDER,
                 PROVIDER_CONTEXT

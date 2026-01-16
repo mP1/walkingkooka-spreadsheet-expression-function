@@ -29,6 +29,7 @@ import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.spreadsheet.SpreadsheetStrings;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
@@ -224,6 +225,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     
     @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setSpreadsheetId(
+            SpreadsheetId.with(1)
+        );
+
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
             DECIMAL_SEPARATOR,
             GROUP_SEPARATOR,
@@ -352,18 +358,18 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public <T> Optional<T> environmentValue(final EnvironmentValueName<T> name) {
-                    return SPREADSHEET_ENVIRONMENT_CONTEXT.environmentValue(name);
+                    return spreadsheetEnvironmentContext.environmentValue(name);
                 }
 
                 @Override
                 public void removeEnvironmentValue(final EnvironmentValueName<?> name) {
-                    SPREADSHEET_ENVIRONMENT_CONTEXT.removeEnvironmentValue(name);
+                    spreadsheetEnvironmentContext.removeEnvironmentValue(name);
                 }
 
                 @Override
                 public <T> void setEnvironmentValue(final EnvironmentValueName<T> name,
                                                     final T value) {
-                    SPREADSHEET_ENVIRONMENT_CONTEXT.setEnvironmentValue(
+                    spreadsheetEnvironmentContext.setEnvironmentValue(
                         name,
                         value
                     );
@@ -371,53 +377,52 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public Optional<EmailAddress> user() {
-                    return SPREADSHEET_ENVIRONMENT_CONTEXT.user();
+                    return spreadsheetEnvironmentContext.user();
                 }
 
                 @Override
                 public void setUser(final Optional<EmailAddress> user) {
-                    SPREADSHEET_ENVIRONMENT_CONTEXT.setUser(user);
+                    spreadsheetEnvironmentContext.setUser(user);
                 }
 
                 @Override
                 public LineEnding lineEnding() {
-                    return SPREADSHEET_ENVIRONMENT_CONTEXT.lineEnding();
+                    return spreadsheetEnvironmentContext.lineEnding();
                 }
 
                 @Override
                 public void setLineEnding(final LineEnding lineEnding) {
-                    SPREADSHEET_ENVIRONMENT_CONTEXT.setLineEnding(lineEnding);
+                    spreadsheetEnvironmentContext.setLineEnding(lineEnding);
                 }
                 
                 @Override
                 public Locale locale() {
-                    return SPREADSHEET_ENVIRONMENT_CONTEXT.locale();
+                    return spreadsheetEnvironmentContext.locale();
                 }
 
                 @Override
                 public void setLocale(final Locale locale) {
-                    SPREADSHEET_ENVIRONMENT_CONTEXT.setLocale(locale);
+                    spreadsheetEnvironmentContext.setLocale(locale);
                 }
 
                 @Override
                 public LocalDateTime now() {
-                    return SPREADSHEET_ENVIRONMENT_CONTEXT.now();
+                    return spreadsheetEnvironmentContext.now();
                 }
 
                 @Override
                 public AbsoluteUrl serverUrl() {
-                    return SPREADSHEET_ENVIRONMENT_CONTEXT.serverUrl();
+                    return spreadsheetEnvironmentContext.serverUrl();
                 }
 
                 @Override
                 public SpreadsheetId spreadsheetId() {
-                    return SpreadsheetId.with(1);
+                    return spreadsheetEnvironmentContext.spreadsheetId();
                 }
 
                 @Override
-                public SpreadsheetExpressionEvaluationContext setSpreadsheetId(final SpreadsheetId spreadsheetId) {
-                    SPREADSHEET_ENVIRONMENT_CONTEXT.setSpreadsheetId(spreadsheetId);
-                    return this;
+                public void setSpreadsheetId(final SpreadsheetId spreadsheetId) {
+                    spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
                 }
 
                 @Override
