@@ -46,8 +46,10 @@ import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
-import walkingkooka.storage.Storage;
-import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
+import walkingkooka.storage.StoragePath;
+import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.StorageValueInfo;
+import walkingkooka.store.Store;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
@@ -71,6 +73,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -385,11 +388,6 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
-    public Storage<StorageExpressionEvaluationContext> storage() {
-        return this.context.storage();
-    }
-
-    @Override
     public SpreadsheetFormatterContext spreadsheetFormatterContext(final Optional<SpreadsheetCell> cell) {
         return this.context.spreadsheetFormatterContext(cell);
     }
@@ -498,6 +496,36 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Locale locale() {
         return this.context.locale();
+    }
+
+    @Override
+    public Optional<StorageValue> loadStorage(final StoragePath path) {
+        Objects.requireNonNull(path, "path");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public StorageValue saveStorage(final StorageValue value) {
+        Objects.requireNonNull(value, "value");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void deleteStorage(final StoragePath path) {
+        Objects.requireNonNull(path, "path");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<StorageValueInfo> listStorage(final StoragePath parent,
+                                              final int offset,
+                                              final int count) {
+        Objects.requireNonNull(parent, "parent");
+        Store.checkOffsetAndCount(
+            offset,
+            count
+        );
+        throw new UnsupportedOperationException();
     }
 
     // TerminalContextDelegator.........................................................................................

@@ -3480,10 +3480,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         this.checkEquals(
             "Hello",
-            context.storage()
-                .load(
-                    StoragePath.parse("/created.txt"),
-                    context
+            context.loadStorage(
+                StoragePath.parse("/created.txt")
                 ).flatMap(
                     v -> v.value()
                 ).orElse(null)
@@ -4582,27 +4580,23 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             );
 
         if (Optional.of(STORAGE_READ_TEXT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
-            spreadsheetExpressionEvaluationContext.storage()
-                .save(
-                    StorageValue.with(
-                        STORAGE_READ_TEXT_PATH,
-                        Optional.of(FILE_CONTENT_TEXT)
-                    ),
-                    spreadsheetExpressionEvaluationContext
-                );
+            spreadsheetExpressionEvaluationContext.saveStorage(
+                StorageValue.with(
+                    STORAGE_READ_TEXT_PATH,
+                    Optional.of(FILE_CONTENT_TEXT)
+                )
+            );
         }
 
         if (Optional.of(STORAGE_LIST_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
             STORAGE_VALUE_INFO_LIST.forEach(
                 i ->
-                    spreadsheetExpressionEvaluationContext.storage()
-                        .save(
-                            StorageValue.with(
-                                i.path(),
-                                Optional.of(1)
-                            ),
-                            spreadsheetExpressionEvaluationContext
+                    spreadsheetExpressionEvaluationContext.saveStorage(
+                        StorageValue.with(
+                            i.path(),
+                            Optional.of(1)
                         )
+                    )
             );
         }
 
