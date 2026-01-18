@@ -84,12 +84,14 @@ import walkingkooka.spreadsheet.provider.SpreadsheetProviders;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.spreadsheet.storage.SpreadsheetStorageContext;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -3841,8 +3843,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             Storages.fake()
         );
 
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
-        environmentContext.setEnvironmentValue(
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setEnvironmentValue(
             SpreadsheetEnvironmentContext.SPREADSHEET_ID,
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
         );
@@ -3853,7 +3855,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 repo,
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(environmentContext),
+                spreadsheetEnvironmentContext,
                 LocaleContexts.jre(LOCALE),
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
@@ -4514,11 +4516,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final Map<SpreadsheetId, SpreadsheetStoreRepository> spreadsheetIdToSpreadsheetStoreRepository = Maps.sorted();
 
+        final Storage<SpreadsheetStorageContext> storage = Storages.tree();
+
         spreadsheetIdToSpreadsheetStoreRepository.put(
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
             SpreadsheetStoreRepositories.treeMap(
                 metadataStore,
-                Storages.tree()
+                storage
             )
         );
 
@@ -4562,7 +4566,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     metadataStore
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(environmentContext),
+                SpreadsheetEnvironmentContexts.basic(
+                    storage,
+                    environmentContext
+                ),
                 LOCALE_CONTEXT,
                 this.spreadsheetProvider(spreadsheetMetadata),
                 ProviderContexts.fake()
@@ -4887,17 +4894,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             saved1.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
         );
 
+        final Storage<SpreadsheetStorageContext> storage = Storages.fake();
+
         // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             mode,
             SpreadsheetContexts.fixedSpreadsheetId(
                 SpreadsheetStoreRepositories.treeMap(
                     metadataStore,
-                    Storages.fake()
+                    storage
                 ),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
-                SpreadsheetEnvironmentContexts.basic(environmentContext),
+                SpreadsheetEnvironmentContexts.basic(
+                    storage,
+                    environmentContext
+                ),
                 LOCALE_CONTEXT,
                 this.spreadsheetProvider(metadata),
                 PROVIDER_CONTEXT
