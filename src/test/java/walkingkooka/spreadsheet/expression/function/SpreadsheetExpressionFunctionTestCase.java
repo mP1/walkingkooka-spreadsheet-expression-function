@@ -30,6 +30,7 @@ import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
+import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContexts;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
@@ -44,12 +45,10 @@ import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.FakeSpreadsheetExpressionReferenceLoader;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
-import walkingkooka.spreadsheet.storage.SpreadsheetStorageContext;
 import walkingkooka.spreadsheet.store.SpreadsheetCellStore;
 import walkingkooka.spreadsheet.store.SpreadsheetCellStores;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
-import walkingkooka.storage.Storage;
 import walkingkooka.storage.Storages;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -142,7 +141,10 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .set(SpreadsheetMetadataPropertyName.TWO_DIGIT_YEAR, 20)
             .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
-        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SpreadsheetEnvironmentContexts.basic(
+            Storages.tree(),
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
         spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
 
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
@@ -185,13 +187,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                             }
                         };
                     }
-
-                    @Override
-                    public Storage<SpreadsheetStorageContext> storage() {
-                        return storage;
-                    }
-
-                    private final Storage<SpreadsheetStorageContext> storage = Storages.tree();
                 },
                 (c) -> {
                     throw new UnsupportedOperationException();
