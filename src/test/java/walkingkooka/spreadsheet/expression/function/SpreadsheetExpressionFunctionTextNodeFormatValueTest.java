@@ -74,6 +74,7 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
             SpreadsheetContexts.fixedSpreadsheetId(
+                SPREADSHEET_ENGINE,
                 new FakeSpreadsheetStoreRepository() {
                     @Override
                     public SpreadsheetMetadataStore metadatas() {
