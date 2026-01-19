@@ -113,6 +113,7 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
             SpreadsheetContexts.fixedSpreadsheetId(
+                SPREADSHEET_ENGINE,
                 new FakeSpreadsheetStoreRepository() {
                     @Override
                     public SpreadsheetMetadataStore metadatas() {

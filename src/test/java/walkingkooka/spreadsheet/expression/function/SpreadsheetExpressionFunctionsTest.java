@@ -3827,8 +3827,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateTemplateWithLabel() {
-        final SpreadsheetEngine engine = SpreadsheetEngines.basic();
-
         final SpreadsheetMetadata metadata = this.metadata()
             .set(
                 SpreadsheetMetadataPropertyName.TEXT_FORMATTER,
@@ -3849,6 +3847,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.fixedSpreadsheetId(
+                SPREADSHEET_ENGINE,
                 repo,
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
@@ -3878,13 +3877,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final SpreadsheetCellReference labelTarget = SpreadsheetSelection.parseCell("B2");
 
-        engine.saveLabel(
+        SPREADSHEET_ENGINE.saveLabel(
             SpreadsheetSelection.labelName("Hello")
                 .setLabelMappingReference(labelTarget),
             context
         );
 
-        engine.saveCell(
+        SPREADSHEET_ENGINE.saveCell(
             labelTarget.setFormula(
                 SpreadsheetFormula.EMPTY.setValue(
                     Optional.of("WORLD")
@@ -3897,7 +3896,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetFormula.EMPTY.setText("=template(\"${Hello} 123\")")
         );
 
-        final SpreadsheetCell savedCell = engine.saveCell(
+        final SpreadsheetCell savedCell = SPREADSHEET_ENGINE.saveCell(
                 cell,
                 context
             ).cell(cell.reference())
@@ -4543,6 +4542,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext spreadsheetEngineContext = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.SCRIPTING,
             SpreadsheetContexts.mutableSpreadsheetId(
+                SPREADSHEET_ENGINE,
                 (SpreadsheetId id) -> {
                     final SpreadsheetStoreRepository repo = spreadsheetIdToSpreadsheetStoreRepository.get(id);
                     if (null == repo) {
@@ -4891,6 +4891,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             mode,
             SpreadsheetContexts.fixedSpreadsheetId(
+                SPREADSHEET_ENGINE,
                 SpreadsheetStoreRepositories.treeMap(metadataStore),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
