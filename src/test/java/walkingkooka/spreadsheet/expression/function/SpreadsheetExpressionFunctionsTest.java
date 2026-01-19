@@ -3838,10 +3838,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         final SpreadsheetMetadata saved = metadataStore.save(metadata);
 
-        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(
-            metadataStore,
-            Storages.fake()
-        );
+        final SpreadsheetStoreRepository repo = SpreadsheetStoreRepositories.treeMap(metadataStore);
 
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
         spreadsheetEnvironmentContext.setEnvironmentValue(
@@ -4520,10 +4517,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         spreadsheetIdToSpreadsheetStoreRepository.put(
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
-            SpreadsheetStoreRepositories.treeMap(
-                metadataStore,
-                storage
-            )
+            SpreadsheetStoreRepositories.treeMap(metadataStore)
         );
 
         final SpreadsheetMetadata otherMetadata = metadataStore.save(
@@ -4534,10 +4528,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
         spreadsheetIdToSpreadsheetStoreRepository.put(
             otherMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
-            SpreadsheetStoreRepositories.treeMap(
-                metadataStore,
-                Storages.fake()
-            )
+            SpreadsheetStoreRepositories.treeMap(metadataStore)
         );
 
         environmentContext.setEnvironmentValue(
@@ -4900,10 +4891,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             mode,
             SpreadsheetContexts.fixedSpreadsheetId(
-                SpreadsheetStoreRepositories.treeMap(
-                    metadataStore,
-                    storage
-                ),
+                SpreadsheetStoreRepositories.treeMap(metadataStore),
                 SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
                 SpreadsheetEnvironmentContexts.basic(
