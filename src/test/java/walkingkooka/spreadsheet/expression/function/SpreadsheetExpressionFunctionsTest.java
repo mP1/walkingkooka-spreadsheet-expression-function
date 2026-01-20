@@ -3157,7 +3157,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndPrintedCheck(
             "=print(setEnv(\"spreadsheetId\", 2))",
             environmentContext,
-            ""
+            "1234"
         );
 
         this.environmentValueAndCheck(
