@@ -154,11 +154,6 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
-    public void testEnvironmentValueNameWithSpreadsheetId() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testRemoveEnvironmentValueWithNowFails() {
         throw new UnsupportedOperationException();
     }
