@@ -53,6 +53,7 @@ import walkingkooka.store.Store;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -296,6 +297,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public long dateOffset() {
         return this.context.dateOffset();
+    }
+
+    @Override
+    public Indentation indentation() {
+        return this.context.indentation();
     }
 
     @Override
