@@ -40,6 +40,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.validation.form.FormField;
 
@@ -155,6 +156,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
     @Override
     public void testSetEnvironmentValueWithNowFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetIndentationWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -375,6 +381,16 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     spreadsheetEnvironmentContext.setUser(user);
                 }
 
+                @Override
+                public Indentation indentation() {
+                    return spreadsheetEnvironmentContext.indentation();
+                }
+
+                @Override
+                public void setIndentation(final Indentation indentation) {
+                    spreadsheetEnvironmentContext.setIndentation(indentation);
+                }
+                
                 @Override
                 public LineEnding lineEnding() {
                     return spreadsheetEnvironmentContext.lineEnding();
