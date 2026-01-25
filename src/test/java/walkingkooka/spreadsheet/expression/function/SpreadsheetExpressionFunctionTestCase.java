@@ -145,7 +145,9 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             Storages.tree(),
             SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
         );
-        spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
+        spreadsheetEnvironmentContext.setSpreadsheetId(
+            Optional.of(spreadsheetId)
+        );
 
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,

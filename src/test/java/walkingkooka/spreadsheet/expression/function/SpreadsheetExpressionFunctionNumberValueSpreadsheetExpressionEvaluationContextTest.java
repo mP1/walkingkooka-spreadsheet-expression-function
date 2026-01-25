@@ -223,7 +223,9 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
         spreadsheetEnvironmentContext.setSpreadsheetId(
-            SpreadsheetId.with(1)
+            Optional.of(
+                SpreadsheetId.with(1)
+            )
         );
 
         return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
@@ -422,12 +424,12 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public SpreadsheetId spreadsheetId() {
+                public Optional<SpreadsheetId> spreadsheetId() {
                     return spreadsheetEnvironmentContext.spreadsheetId();
                 }
 
                 @Override
-                public void setSpreadsheetId(final SpreadsheetId spreadsheetId) {
+                public void setSpreadsheetId(final Optional<SpreadsheetId> spreadsheetId) {
                     spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
                 }
 

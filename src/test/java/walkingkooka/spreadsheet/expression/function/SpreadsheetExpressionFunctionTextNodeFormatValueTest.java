@@ -66,7 +66,9 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
         );
 
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
+        spreadsheetEnvironmentContext.setSpreadsheetId(
+            Optional.of(spreadsheetId)
+        );
 
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,

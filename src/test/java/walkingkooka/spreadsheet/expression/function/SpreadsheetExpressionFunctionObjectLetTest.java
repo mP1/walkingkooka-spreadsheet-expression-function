@@ -292,7 +292,9 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
         );
 
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        spreadsheetEnvironmentContext.setSpreadsheetId(spreadsheetId);
+        spreadsheetEnvironmentContext.setSpreadsheetId(
+            Optional.of(spreadsheetId)
+        );
 
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
