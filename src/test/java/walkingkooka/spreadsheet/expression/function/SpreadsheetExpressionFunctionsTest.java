@@ -50,7 +50,6 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.route.Router;
 import walkingkooka.spreadsheet.FakeSpreadsheetContext;
-import walkingkooka.spreadsheet.SpreadsheetContext;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.compare.provider.SpreadsheetComparatorAliasSet;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
@@ -143,12 +142,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
-
-    private final static Function<SpreadsheetContext, SpreadsheetEngineContext> SPREADSHEET_ENGINE_CONTEXT_FACTORY = (c) -> SpreadsheetEngineContexts.spreadsheetContext(
-        SpreadsheetMetadataMode.FORMULA,
-        c,
-        TERMINAL_CONTEXT
-    );
 
     private final static Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> HATEOS_ROUTER_FACTORY = (SpreadsheetEngineContext c) ->
         new Router<>() {
@@ -3862,7 +3855,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetContexts.fixedSpreadsheetId(
                 SPREADSHEET_ENGINE,
                 repo,
-                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
                 spreadsheetEnvironmentContext,
                 LocaleContexts.jre(LOCALE),
@@ -4576,7 +4568,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     },
                     metadataStore
                 ),
-                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
                     environmentContext
@@ -4913,7 +4904,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetContexts.fixedSpreadsheetId(
                 SPREADSHEET_ENGINE,
                 SpreadsheetStoreRepositories.treeMap(metadataStore),
-                SPREADSHEET_ENGINE_CONTEXT_FACTORY,
                 HATEOS_ROUTER_FACTORY,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,

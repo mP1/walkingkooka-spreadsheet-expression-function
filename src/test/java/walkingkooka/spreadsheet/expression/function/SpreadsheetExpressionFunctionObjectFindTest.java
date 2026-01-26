@@ -107,9 +107,6 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                 },
                 (c) -> {
                     throw new UnsupportedOperationException();
-                }, // Function<SpreadsheetContext, SpreadsheetEngineContext> spreadsheetEngineContextFactory
-                (c) -> {
-                    throw new UnsupportedOperationException();
                 }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
                 spreadsheetEnvironmentContext,
                 LOCALE_CONTEXT,
