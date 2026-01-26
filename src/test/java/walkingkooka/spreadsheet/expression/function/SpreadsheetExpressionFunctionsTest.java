@@ -49,6 +49,7 @@ import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.route.Router;
+import walkingkooka.spreadsheet.FakeSpreadsheetContext;
 import walkingkooka.spreadsheet.SpreadsheetContext;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.compare.provider.SpreadsheetComparatorAliasSet;
@@ -4560,7 +4561,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     if (null == repo) {
                         throw new IllegalArgumentException("Unknown spreadsheet id: " + id);
                     }
-                    return repo;
+                    return Optional.of(
+                        new FakeSpreadsheetContext() {
+                            @Override
+                            public SpreadsheetStoreRepository storeRepository() {
+                                return repo;
+                            }
+                        }
+                    );
                 },
                 SpreadsheetMetadataContexts.basic(
                     (u, dl) -> {
