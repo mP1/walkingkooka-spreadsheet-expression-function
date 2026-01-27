@@ -3491,7 +3491,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             context.loadStorage(
                 StoragePath.parse("/created.txt")
                 ).flatMap(
-                    v -> v.value()
+                StorageValue::value
                 ).orElse(null)
         );
     }
