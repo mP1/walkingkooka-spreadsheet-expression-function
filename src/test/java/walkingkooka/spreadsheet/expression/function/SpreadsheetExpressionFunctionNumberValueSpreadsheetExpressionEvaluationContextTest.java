@@ -218,6 +218,108 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     public void testParseValueOrExpressionWithOnlyWhitespaceStringFails2() {
         throw new UnsupportedOperationException();
     }
+
+    // DateTimeContextTesting2..........................................................................................
+
+    @Override
+    public void testAmpms() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testAmpmNegativeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testAmpmInvalidFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNames() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNames2() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNameNegativeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNameInvalidFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNameAbbreviations() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNamesAbbreviation2() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNameAbbrevationNegativeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMonthNameAbbreviationInvalidFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testTwoDigitYear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNames() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNames2() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNameNegativeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNameInvalidFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNameAbbreviations() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNameAbbreviations2() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNameAbbrevationNegativeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testWeekDayNameAbbreviationInvalidFails() {
+        throw new UnsupportedOperationException();
+    }
     
     @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {

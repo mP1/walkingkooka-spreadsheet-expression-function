@@ -504,6 +504,13 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         return this.context.locale();
     }
 
+    // StorageExpressionEvaluationContext...............................................................................
+
+    @Override
+    public Optional<StoragePath> currentWorkingDirectory() {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public Optional<StorageValue> loadStorage(final StoragePath path) {
         Objects.requireNonNull(path, "path");
