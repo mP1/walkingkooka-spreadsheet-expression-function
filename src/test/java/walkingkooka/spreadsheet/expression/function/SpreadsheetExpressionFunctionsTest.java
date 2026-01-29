@@ -3399,7 +3399,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateStorageDelete() {
         this.evaluateAndPrintedCheck(
-            "=storageDelete(\"/file.txt\")",
+            "=storageDelete(\"/parent123/file.txt\")",
             (Object) null, // expected value
             ""// printed
         );
@@ -3439,7 +3439,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static EmailAddress STORAGE_READ_TEXT_USER = EmailAddress.parse("storageReadText@example.com");
 
-    private final static StoragePath STORAGE_READ_TEXT_PATH = StoragePath.parse("/file.txt");
+    private final static StoragePath STORAGE_READ_TEXT_PATH = StoragePath.parse("/parent123/file.txt");
 
     private final static String FILE_CONTENT_TEXT = "FileContentText123\n" +
         "line2";
@@ -3457,7 +3457,32 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         this.evaluateAndPrintedCheck(
-            "=storageReadText(\"/file.txt\")",
+            "=storageReadText(\"/parent123/file.txt\")",
+            environmentContext,
+            FILE_CONTENT_TEXT, // expected value
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateStorageReadTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(STORAGE_READ_TEXT_USER)
+            )
+        );
+
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.CURRENT_WORKING_DIRECTORY,
+            StoragePath.parse("/parent123")
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=storageReadText(\"file.txt\")",
             environmentContext,
             FILE_CONTENT_TEXT, // expected value
             "" // printed
