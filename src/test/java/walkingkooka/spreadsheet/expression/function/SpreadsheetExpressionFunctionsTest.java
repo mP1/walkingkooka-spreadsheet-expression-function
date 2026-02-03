@@ -3399,7 +3399,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateStorageDelete() {
         this.evaluateAndPrintedCheck(
-            "=storageDelete(\"/parent123/file.txt\")",
+            "=storageDelete(\"/parent123/file.json\")",
             (Object) null, // expected value
             ""// printed
         );
@@ -3439,7 +3439,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static EmailAddress STORAGE_READ_TEXT_USER = EmailAddress.parse("storageReadText@example.com");
 
-    private final static StoragePath STORAGE_READ_TEXT_PATH = StoragePath.parse("/parent123/file.txt");
+    private final static StoragePath STORAGE_READ_TEXT_PATH = StoragePath.parse("/parent123/file.json");
 
     private final static String FILE_CONTENT_TEXT = "FileContentText123\n" +
         "line2";
@@ -3457,7 +3457,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         this.evaluateAndPrintedCheck(
-            "=storageReadText(\"/parent123/file.txt\")",
+            "=storageReadText(\"/parent123/file.json\")",
             environmentContext,
             FILE_CONTENT_TEXT, // expected value
             "" // printed
@@ -3482,7 +3482,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         this.evaluateAndPrintedCheck(
-            "=storageReadText(\"file.txt\")",
+            "=storageReadText(\"file.json\")",
             environmentContext,
             FILE_CONTENT_TEXT, // expected value
             "" // printed
@@ -4791,7 +4791,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, text-to-storage-path)");
+        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, storage-path-json-to-class, text-to-storage-path, json)");
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
