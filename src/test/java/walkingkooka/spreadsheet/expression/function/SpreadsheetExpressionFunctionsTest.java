@@ -127,6 +127,7 @@ import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -3278,6 +3279,34 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetTimeOffsetAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        final EnvironmentValueName<ZoneOffset> name = EnvironmentValueName.TIME_OFFSET;
+
+        environmentContext.setEnvironmentValue(
+            name,
+            ZoneOffset.ofHours(1)
+        );
+
+        System.out.println(ZoneOffset.ofHours(2));
+
+        this.evaluateAndPrintedCheck(
+            "=print(setTimeOffset(\"+02:00\"))",
+            environmentContext,
+            "null"
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            ZoneOffset.ofHours(2)
+        );
+    }
+
+    @Test
     public void testEvaluateSignWithNegativeNumber() {
         this.evaluateAndValueCheck(
             "=sign(-123)",
@@ -5050,6 +5079,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "removeenv":
                         case "setenv":
                         case "setlocale":
+                        case "settimeoffset":
                         case "storagedelete":
                         case "storagelist":
                         case "storagereadtext":

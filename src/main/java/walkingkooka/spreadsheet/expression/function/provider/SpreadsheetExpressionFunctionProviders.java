@@ -345,6 +345,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setRed(),
                     SpreadsheetExpressionFunctions.setStyle(),
                     SpreadsheetExpressionFunctions.setText(),
+                    SpreadsheetExpressionFunctions.setTimeOffset(),
                     SpreadsheetExpressionFunctions.shell(),
                     SpreadsheetExpressionFunctions.sign(),
                     SpreadsheetExpressionFunctions.sin(),
