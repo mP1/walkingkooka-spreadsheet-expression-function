@@ -1673,6 +1673,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetTimeOffsetWithoutParameter() {
+        this.evaluateAndValueCheck(
+            "=getTimeOffset()",
+            EnvironmentContext.DEFAULT_TIME_OFFSET
+        );
+    }
+
+    @Test
+    public void testEvaluateGetTimeOffsetWithStringWithZoneOffset() {
+        this.evaluateAndValueCheck(
+            "=getTimeOffset(\"+2\")",
+            ZoneOffset.of("+2")
+        );
+    }
+    
+    @Test
     public void testEvaluateGetUser() {
         final EmailAddress user = EmailAddress.parse("user123@example.com");
 
@@ -5071,6 +5087,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "info":
                         case "getenv":
                         case "getlocale":
+                        case "gettimeoffset":    
                         case "getuser":
                         case "print":
                         case "printenv":
