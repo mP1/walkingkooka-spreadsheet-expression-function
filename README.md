@@ -204,6 +204,7 @@ majority of these functions are formula expression functions.
 - setRed
 - setStyle
 - setText
+- setTimeOffset
 - shell
 - sign
 - sin

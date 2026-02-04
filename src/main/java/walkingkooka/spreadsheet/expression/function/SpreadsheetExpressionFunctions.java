@@ -1675,6 +1675,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setTimeOffset}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setTimeOffset() {
+        return fixName(
+            EnvironmentExpressionFunctions.setTimeOffset()
+        );
+    }
+    
+    /**
      * {@see TerminalExpressionFunctions#shell}
      */
     public static ExpressionFunction<Integer, SpreadsheetExpressionEvaluationContext> shell() {
