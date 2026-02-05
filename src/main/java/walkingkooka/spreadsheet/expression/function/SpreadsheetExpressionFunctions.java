@@ -50,6 +50,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctions;
 import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -827,6 +828,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<HostAddress, SpreadsheetExpressionEvaluationContext> getHost() {
         return fixName(
             NetExpressionFunctions.getHost()
+        );
+    }
+
+    /**
+     * {@see EnvironmentExpressionFunctions#getLineEnding}
+     */
+    public static ExpressionFunction<LineEnding, SpreadsheetExpressionEvaluationContext> getLineEnding() {
+        return fixName(
+            EnvironmentExpressionFunctions.getLineEnding()
         );
     }
 

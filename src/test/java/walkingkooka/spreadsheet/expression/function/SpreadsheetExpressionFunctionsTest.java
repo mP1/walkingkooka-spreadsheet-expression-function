@@ -1566,6 +1566,64 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetLineEndingWithoutParameter() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                EnvironmentContext.ANONYMOUS
+            )
+        );
+        environmentContext.setEnvironmentValue(
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getLineEnding(\"crnl\")",
+            environmentContext,
+            LineEnding.CRNL,
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateGetLineEndingWithString() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                EnvironmentContext.ANONYMOUS
+            )
+        );
+        environmentContext.setEnvironmentValue(
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getLineEnding()",
+            environmentContext,
+            LINE_ENDING,
+            "" // printed
+        );
+    }
+    
+    @Test
     public void testEvaluateGetLocaleWithStringWithLanguageTag() {
         this.evaluateAndValueCheck(
             "=getLocale(\"en-AU\")",
@@ -4836,7 +4894,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, storage-path-json-to-class, text-to-storage-path, json)");
+        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, storage-path-json-to-class, text-to-line-ending, text-to-storage-path, json)");
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
@@ -5086,6 +5144,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "cell":
                         case "info":
                         case "getenv":
+                        case "getlineending":
                         case "getlocale":
                         case "gettimeoffset":    
                         case "getuser":
