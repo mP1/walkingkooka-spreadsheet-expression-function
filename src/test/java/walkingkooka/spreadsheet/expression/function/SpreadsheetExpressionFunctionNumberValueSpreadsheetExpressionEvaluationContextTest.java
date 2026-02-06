@@ -39,6 +39,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
+import walkingkooka.storage.StoragePath;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -451,6 +452,14 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public CaseSensitivity stringEqualsCaseSensitivity() {
                     return SpreadsheetStrings.CASE_SENSITIVITY;
+                }
+
+                @Override
+                public StoragePath parseStoragePath(final String text) {
+                    return StoragePath.parseMaybeRelative(
+                        text,
+                        NO_CURRENT_WORKING_DIRECTORY
+                    );
                 }
 
                 // EnvironmentContext...................................................................................

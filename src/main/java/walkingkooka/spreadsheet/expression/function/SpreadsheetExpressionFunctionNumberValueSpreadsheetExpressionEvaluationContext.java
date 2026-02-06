@@ -394,6 +394,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public StoragePath parseStoragePath(final String path) {
+        return this.context.parseStoragePath(path);
+    }
+
+    @Override
     public SpreadsheetFormatterContext spreadsheetFormatterContext(final Optional<SpreadsheetCell> cell) {
         return this.context.spreadsheetFormatterContext(cell);
     }
