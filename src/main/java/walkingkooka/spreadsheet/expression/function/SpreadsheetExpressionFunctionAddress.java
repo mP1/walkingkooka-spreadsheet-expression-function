@@ -105,9 +105,9 @@ final class SpreadsheetExpressionFunctionAddress extends SpreadsheetExpressionFu
             throw new IllegalArgumentException("Invalid " + A1_STYLE + " must be true, got " + absNum);
         }
 
-        return rowKind.row(row - 1)
+        return rowKind.row(row)
             .setColumn(
-                columnKind.column(column - 1)
+                columnKind.column(column)
             );
     }
 

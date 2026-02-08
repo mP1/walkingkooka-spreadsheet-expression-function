@@ -72,7 +72,8 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
 
         return context.expressionNumberKind()
             .create(
-                BIAS + this.mapper.apply(reference).value()
+                this.mapper.apply(reference)
+                    .value()
             );
     }
 
