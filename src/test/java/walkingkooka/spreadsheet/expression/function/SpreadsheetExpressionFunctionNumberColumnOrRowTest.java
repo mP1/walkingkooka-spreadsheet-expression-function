@@ -42,7 +42,10 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
             Lists.empty(),
-            KIND.create(1 + REFERENCE.column().value())
+            KIND.create(
+                REFERENCE.column()
+                    .value()
+            )
         );
     }
 
@@ -51,7 +54,10 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
             Lists.empty(),
-            KIND.create(1 + REFERENCE.row().value())
+            KIND.create(
+                REFERENCE.row()
+                    .value()
+            )
         );
     }
 
@@ -62,7 +68,10 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
             Lists.of(B5),
-            KIND.create(1 + B5.column().value())
+            KIND.create(
+                B5.column()
+                    .value()
+            )
         );
     }
 
@@ -71,7 +80,10 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
             Lists.of(B5),
-            KIND.create(1 + B5.row().value())
+            KIND.create(
+                B5.row()
+                    .value()
+            )
         );
     }
 

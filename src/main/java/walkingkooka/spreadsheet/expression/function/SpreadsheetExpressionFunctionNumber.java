@@ -24,8 +24,6 @@ import walkingkooka.tree.expression.ExpressionNumber;
  */
 abstract class SpreadsheetExpressionFunctionNumber extends SpreadsheetExpressionFunction<ExpressionNumber> {
 
-    final static int BIAS = 1;
-
     /**
      * Package private ctor
      */
