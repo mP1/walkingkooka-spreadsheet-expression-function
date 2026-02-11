@@ -4637,6 +4637,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             (e, c) -> {
                 throw new UnsupportedOperationException();
             },
+            (Object exitValue) -> {
+                throw new UnsupportedOperationException();
+            },
             environmentContext
         );
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
