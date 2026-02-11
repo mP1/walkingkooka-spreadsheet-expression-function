@@ -4626,8 +4626,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final TerminalContext terminalContext = TerminalContexts.basic(
             TerminalId.with(1),
             () -> true,
-            () -> {
-            },
             terminalInput,
             Printers.stringBuilder(
                 printed,
