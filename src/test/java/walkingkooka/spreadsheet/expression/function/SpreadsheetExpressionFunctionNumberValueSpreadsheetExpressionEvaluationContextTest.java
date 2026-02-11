@@ -458,7 +458,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 public StoragePath parseStoragePath(final String text) {
                     return StoragePath.parseMaybeRelative(
                         text,
-                        NO_CURRENT_WORKING_DIRECTORY
+                        this // HasUserDirectories
                     );
                 }
 
