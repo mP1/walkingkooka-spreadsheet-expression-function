@@ -1651,6 +1651,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setCurrentWorkingDirectory}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setCurrentWorkingDirectory() {
+        return fixName(
+            StorageExpressionFunctions.setCurrentWorkingDirectory()
+        );
+    }
+    
+    /**
      * {@see EnvironmentExpressionFunctions.setEnv()}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> setEnv() {

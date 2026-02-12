@@ -93,6 +93,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageEnvironmentContext;
+import walkingkooka.storage.StorageEnvironmentContextTesting;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -140,7 +141,8 @@ import java.util.stream.Collectors;
 public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHelperTesting<SpreadsheetExpressionFunctions>,
     SpreadsheetMetadataTesting,
     TreePrintableTesting,
-    EnvironmentContextTesting {
+    EnvironmentContextTesting,
+    StorageEnvironmentContextTesting {
 
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
@@ -3213,6 +3215,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetCurrentWorkingDirectory() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        final EnvironmentValueName<StoragePath> name = StorageEnvironmentContext.CURRENT_WORKING_DIRECTORY;
+
+        environmentContext.removeEnvironmentValue(
+            name
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=setCurrentWorkingDirectory(\"/dir1/dir2/dir3\")",
+            environmentContext,
+            ""
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            StoragePath.parse("/dir1/dir2/dir3")
+        );
+    }
+
+    @Test
     public void testEvaluateSetEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
 
@@ -5183,6 +5210,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "println":
                         case "readline":
                         case "removeenv":
+                        case "setcurrentworkingdirectory":
                         case "setenv":
                         case "setlocale":
                         case "settimeoffset":

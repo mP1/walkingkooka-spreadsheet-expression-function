@@ -201,6 +201,7 @@ majority of these functions are formula expression functions.
 - second
 - setAlpha
 - setBlue
+- setCurrentWorkingDirectory
 - setEnv
 - setGreen
 - setHost
