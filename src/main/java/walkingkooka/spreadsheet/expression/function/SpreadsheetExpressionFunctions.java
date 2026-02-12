@@ -47,6 +47,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
+import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctions;
 import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
@@ -773,6 +774,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<BlueRgbColorComponent, SpreadsheetExpressionEvaluationContext> getBlue() {
         return fixName(
             ColorExpressionFunctions.getBlue()
+        );
+    }
+
+    /**
+     * {@see StorageExpressionFunctions#getCurrentWorkingDirectory()}
+     */
+    public static ExpressionFunction<StoragePath, SpreadsheetExpressionEvaluationContext> getCurrentWorkingDirectory() {
+        return fixName(
+            StorageExpressionFunctions.getCurrentWorkingDirectory()
         );
     }
 

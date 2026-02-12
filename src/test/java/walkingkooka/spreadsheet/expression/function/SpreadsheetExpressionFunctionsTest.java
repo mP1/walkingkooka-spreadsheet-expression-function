@@ -92,6 +92,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
 import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -1352,6 +1353,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=getBlue(color(\"#11223380\"))",
             Color.parseRgb("#11223380")
                 .blue()
+        );
+    }
+
+    @Test
+    public void testEvaluateGetCurrentWorkingDirectory() {
+        this.evaluateAndValueCheck(
+            "=getCurrentWorkingDirectory()",
+            CURRENT_WORKING_DIRECTORY
+                .orElse(null)
         );
     }
 
@@ -5017,6 +5027,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
         environmentContext.setEnvironmentValue(
+            StorageEnvironmentContext.CURRENT_WORKING_DIRECTORY,
+            CURRENT_WORKING_DIRECTORY.orElse(null)
+        );
+        environmentContext.setEnvironmentValue(
             SpreadsheetEnvironmentContext.SERVER_URL,
             SERVER_URL
         );
@@ -5144,6 +5158,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "offset":
                         case "cell":
                         case "info":
+                        case "getcurrentworkingdirectory":
                         case "getenv":
                         case "getlineending":
                         case "getlocale":

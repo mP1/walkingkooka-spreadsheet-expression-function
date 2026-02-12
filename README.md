@@ -99,6 +99,7 @@ majority of these functions are formula expression functions.
 - formulatext
 - getAlpha
 - getBlue
+- getCurrentWorkingDirectory
 - getDateTimeSymbols
 - getDecimalNumberSymbols
 - getEnv
