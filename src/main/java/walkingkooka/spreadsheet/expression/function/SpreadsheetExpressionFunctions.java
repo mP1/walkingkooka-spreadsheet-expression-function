@@ -1678,6 +1678,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setHomeDirectory}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setHomeDirectory() {
+        return fixName(
+            StorageExpressionFunctions.setHomeDirectory()
+        );
+    }
+    
+    /**
      * {@see NetExpressionFunctions#setHost}
      */
     public static ExpressionFunction<HasHostAddress, SpreadsheetExpressionEvaluationContext> setHost() {

@@ -3303,6 +3303,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetHomeDirectory() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        final EnvironmentValueName<StoragePath> name = StorageEnvironmentContext.HOME_DIRECTORY;
+
+        environmentContext.removeEnvironmentValue(
+            name
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=setHomeDirectory(\"/dir1/dir2/dir3\")",
+            environmentContext,
+            ""
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            StoragePath.parse("/dir1/dir2/dir3")
+        );
+    }
+    
+    @Test
     public void testEvaluateSetHostWithAbsoluteUrlAndString() {
         this.evaluateAndValueCheck(
             "=setHost(\"https://example.com/path1\", \"DIFFERENT.EXAMPLE.COM\")",
@@ -5212,6 +5237,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "removeenv":
                         case "setcurrentworkingdirectory":
                         case "setenv":
+                        case "sethomedirectory":
                         case "setlocale":
                         case "settimeoffset":
                         case "storagedelete":
