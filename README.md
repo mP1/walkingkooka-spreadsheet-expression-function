@@ -204,6 +204,7 @@ majority of these functions are formula expression functions.
 - setCurrentWorkingDirectory
 - setEnv
 - setGreen
+- setHomeDirectory
 - setHost
 - setLocale
 - setRed
