@@ -248,6 +248,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.getFormatter(),
                     SpreadsheetExpressionFunctions.getFormatValue(),
                     SpreadsheetExpressionFunctions.getFormulaText(),
+                    SpreadsheetExpressionFunctions.getHomeDirectory(),
                     SpreadsheetExpressionFunctions.getHost(),
                     SpreadsheetExpressionFunctions.getLineEnding(),
                     SpreadsheetExpressionFunctions.getLocale(),

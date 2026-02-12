@@ -833,6 +833,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#getHomeDirectory()}
+     */
+    public static ExpressionFunction<StoragePath, SpreadsheetExpressionEvaluationContext> getHomeDirectory() {
+        return fixName(
+            StorageExpressionFunctions.getHomeDirectory()
+        );
+    }
+    
+    /**
      * {@see NetExpressionFunctions#getHost}
      */
     public static ExpressionFunction<HostAddress, SpreadsheetExpressionEvaluationContext> getHost() {

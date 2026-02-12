@@ -107,6 +107,7 @@ majority of these functions are formula expression functions.
 - getFormatValue
 - getFormulaText
 - getGreen
+- getHomeDirectory
 - getHost
 - getLineEnding
 - getLocale

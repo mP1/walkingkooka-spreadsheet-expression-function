@@ -1568,6 +1568,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetHomeDirectory() {
+        this.evaluateAndValueCheck(
+            "=getHomeDirectory()",
+            HOME_DIRECTORY
+                .orElse(null)
+        );
+    }
+    
+    @Test
     public void testEvaluateGetHostWithString() {
         this.evaluateAndValueCheck(
             "=getHost(\"https://example.com/path1\")",
@@ -5031,6 +5040,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             CURRENT_WORKING_DIRECTORY.orElse(null)
         );
         environmentContext.setEnvironmentValue(
+            StorageEnvironmentContext.HOME_DIRECTORY,
+            HOME_DIRECTORY.orElse(null)
+        );
+        environmentContext.setEnvironmentValue(
             SpreadsheetEnvironmentContext.SERVER_URL,
             SERVER_URL
         );
@@ -5160,6 +5173,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "info":
                         case "getcurrentworkingdirectory":
                         case "getenv":
+                        case "gethomedirectory":
                         case "getlineending":
                         case "getlocale":
                         case "gettimeoffset":    
