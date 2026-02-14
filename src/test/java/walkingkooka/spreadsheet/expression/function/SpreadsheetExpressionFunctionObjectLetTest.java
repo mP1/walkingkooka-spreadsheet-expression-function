@@ -321,6 +321,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
                 (c) -> {
                     throw new UnsupportedOperationException();
                 }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
+                CURRENCY_CONTEXT,
                 spreadsheetEnvironmentContext,
                 LOCALE_CONTEXT,
                 SPREADSHEET_PROVIDER,

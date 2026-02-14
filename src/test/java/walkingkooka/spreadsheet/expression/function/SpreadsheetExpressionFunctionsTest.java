@@ -4070,6 +4070,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_ENGINE,
                 repo,
                 HATEOS_ROUTER_FACTORY,
+                CURRENCY_CONTEXT,
                 spreadsheetEnvironmentContext,
                 LocaleContexts.jre(LOCALE),
                 SpreadsheetProviders.basic(
@@ -4783,6 +4784,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     },
                     metadataStore
                 ),
+                CURRENCY_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
                     environmentContext
@@ -5128,6 +5130,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_ENGINE,
                 SpreadsheetStoreRepositories.treeMap(metadataStore),
                 HATEOS_ROUTER_FACTORY,
+                CURRENCY_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
                     environmentContext
