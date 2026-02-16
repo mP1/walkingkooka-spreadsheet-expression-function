@@ -116,11 +116,6 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
-    public void testFindByLocaleTextWithNullLocaleFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testIsPureNullNameFails() {
         throw new UnsupportedOperationException();
     }
