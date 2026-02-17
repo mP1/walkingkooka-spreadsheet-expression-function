@@ -122,6 +122,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testLocaleForLanguageTagWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testLocaleTextWithNullFails() {
         throw new UnsupportedOperationException();
     }
