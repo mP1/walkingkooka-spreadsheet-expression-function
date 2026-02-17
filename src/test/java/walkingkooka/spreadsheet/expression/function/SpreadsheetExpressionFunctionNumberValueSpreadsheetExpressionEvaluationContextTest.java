@@ -47,6 +47,7 @@ import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -440,6 +441,13 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
                     Objects.requireNonNull(reference, "reference");
+
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public Optional<Currency> currencyForLocale(final Locale locale) {
+                    Objects.requireNonNull(locale, "locale");
 
                     throw new UnsupportedOperationException();
                 }
