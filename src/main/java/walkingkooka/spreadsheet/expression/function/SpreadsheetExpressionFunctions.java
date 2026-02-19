@@ -1614,6 +1614,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#script}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> script() {
+        return fixName(
+            StorageExpressionFunctions.script()
+        );
+    }
+
+    /**
      * {@see StringExpressionFunctions#searchCaseInsensitive}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> search() {

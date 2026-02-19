@@ -338,6 +338,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.roundUp(),
                     SpreadsheetExpressionFunctions.row(),
                     SpreadsheetExpressionFunctions.rows(),
+                    SpreadsheetExpressionFunctions.script(),
                     SpreadsheetExpressionFunctions.search(),
                     SpreadsheetExpressionFunctions.second(),
                     SpreadsheetExpressionFunctions.setAlpha(),

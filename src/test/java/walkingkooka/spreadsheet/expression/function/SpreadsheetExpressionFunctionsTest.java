@@ -3148,6 +3148,33 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateScript() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(STORAGE_SCRIPT_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=script(\"/test.script\")",
+            environmentContext,
+            "ScriptResponse123", // expected value
+            "" // printed
+        );
+    }
+
+    private final static StoragePath SCRIPT_PATH = StoragePath.parse("/test.script");
+
+    private final static String SCRIPT_FILE = "=concat(\"Script\", \"Response123\")";
+
+    private final static EmailAddress STORAGE_SCRIPT_USER = EmailAddress.parse("script@example.com");
+
+    @Test
     public void testEvaluateSearchCaseWithInsensitiveFound() {
         this.evaluateAndValueCheck(
             "=search(\"bc\", \"ABCDE\")",
@@ -4826,6 +4853,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             );
         }
 
+        if (Optional.of(STORAGE_SCRIPT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
+            spreadsheetExpressionEvaluationContext.saveStorage(
+                StorageValue.with(
+                    SCRIPT_PATH,
+                    Optional.of(SCRIPT_FILE)
+                )
+            );
+        }
+
         final Object value = spreadsheetExpressionEvaluationContext.evaluateExpression(
             spreadsheetEngineContext.parseFormula(
                     TextCursors.charSequence(formula),
@@ -5253,6 +5289,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "println":
                         case "readline":
                         case "removeenv":
+                        case "script":
                         case "setcurrentworkingdirectory":
                         case "setenv":
                         case "sethomedirectory":
