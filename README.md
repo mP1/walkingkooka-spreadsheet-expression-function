@@ -268,10 +268,17 @@ majority of these functions are formula expression functions.
 
 Many more functions are outstanding and remain [TODO](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues).
 
-# Search functions
+# SpreadsheetForm functions
 
-The following functions are only useful within a search context, each extracting a
-[SpreadsheetCell](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/SpreadsheetCell.java)
+These functions exist to support forms that display and store cell values in the enclosing spreadsheet.
+
+- nextEmptyColumn
+- validationError
+
+# Query functions
+
+The following functions are only useful within a search context, each extracting
+a [SpreadsheetCell](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/SpreadsheetCell.java)
 so the value may be used by a predicate to filter cells. They are not intended to be used with formula expressions.
 
 - cellDateTimeSymbols
@@ -296,7 +303,7 @@ purposes (TODO share example)
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
 
-# SpreadsheetFormatter functions
+# TextStyle functions
 
 Functions that are especially useful when formatting a value via
 an [Expression](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/Expression.java).
@@ -323,10 +330,3 @@ an [Expression](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/ja
 - [toRgbColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToRgbColor.java)
 - [toRgbHexString](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToRgbHexString.java)
 - [toWebColorName](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToWebColorName)
-
-# SpreadsheetForm function
-
-These functions exist to support forms that display and store cell values in the enclosing spreadsheet.
-
-- nextEmptyColumn
-- validationError
