@@ -5026,7 +5026,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
             .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
             .loadFromLocale(
-                LocaleContexts.jre(LOCALE)
+                CURRENCY_CONTEXT.setLocaleContext(
+                    LocaleContexts.jre(LOCALE)
+                )
             )
             .set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
