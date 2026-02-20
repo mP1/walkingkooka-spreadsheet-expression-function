@@ -287,7 +287,9 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
             .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
             .loadFromLocale(
-                LocaleContexts.jre(locale)
+                CURRENCY_CONTEXT.setLocaleContext(
+                    LocaleContexts.jre(locale)
+                )
             ).set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
                 AuditInfo.create(
