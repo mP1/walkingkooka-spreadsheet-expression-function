@@ -339,9 +339,8 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
                 (c) -> {
                     throw new UnsupportedOperationException();
                 }, // Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> httpRouterFactory
-                CURRENCY_CONTEXT,
+                CURRENCY_LOCALE_CONTEXT,
                 spreadsheetEnvironmentContext,
-                LOCALE_CONTEXT,
                 SPREADSHEET_PROVIDER,
                 PROVIDER_CONTEXT
             ),
