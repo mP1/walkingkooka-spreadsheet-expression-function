@@ -4097,9 +4097,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_ENGINE,
                 repo,
                 HATEOS_ROUTER_FACTORY,
-                CURRENCY_CONTEXT,
+                CURRENCY_LOCALE_CONTEXT,
                 spreadsheetEnvironmentContext,
-                LocaleContexts.jre(LOCALE),
                 SpreadsheetProviders.basic(
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                         (ProviderContext p) -> metadata.dateTimeConverter(
@@ -4811,12 +4810,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     },
                     metadataStore
                 ),
-                CURRENCY_CONTEXT,
+                CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
                     environmentContext
                 ),
-                LOCALE_CONTEXT,
                 this.spreadsheetProvider(spreadsheetMetadata),
                 ProviderContexts.fake()
             ),
@@ -5168,12 +5166,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_ENGINE,
                 SpreadsheetStoreRepositories.treeMap(metadataStore),
                 HATEOS_ROUTER_FACTORY,
-                CURRENCY_CONTEXT,
+                CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
                     environmentContext
                 ),
-                LOCALE_CONTEXT,
                 this.spreadsheetProvider(metadata),
                 PROVIDER_CONTEXT
             ),
