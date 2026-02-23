@@ -94,6 +94,7 @@ majority of these functions are formula expression functions.
 - false
 - find
 - fixed
+- flag
 - floor
 - formatValue
 - formulatext

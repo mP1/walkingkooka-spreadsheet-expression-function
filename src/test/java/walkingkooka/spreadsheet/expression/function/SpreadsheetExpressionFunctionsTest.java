@@ -1308,6 +1308,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateFlag() {
+        this.evaluateAndValueCheck(
+            "=flag(\"AU\")",
+            TextNode.flag("au")
+        );
+    }
+
+    @Test
     public void testEvaluateFloorWithNumber() {
         this.evaluateAndValueCheck(
             "=floor(1.8)",

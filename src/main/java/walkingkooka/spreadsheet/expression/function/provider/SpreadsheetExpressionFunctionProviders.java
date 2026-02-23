@@ -235,6 +235,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.falseFunction(),
                     SpreadsheetExpressionFunctions.find(),
                     SpreadsheetExpressionFunctions.fixed(),
+                    SpreadsheetExpressionFunctions.flag(),
                     SpreadsheetExpressionFunctions.floor(),
                     SpreadsheetExpressionFunctions.formatValue(),
                     SpreadsheetExpressionFunctions.formulaText(),
