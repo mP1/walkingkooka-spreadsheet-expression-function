@@ -4759,7 +4759,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final Map<SpreadsheetId, SpreadsheetStoreRepository> spreadsheetIdToSpreadsheetStoreRepository = Maps.sorted();
 
-        final Storage<SpreadsheetStorageContext> storage = Storages.tree();
+        final Storage<SpreadsheetStorageContext> storage = Storages.treeMapStore();
 
         spreadsheetIdToSpreadsheetStoreRepository.put(
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
