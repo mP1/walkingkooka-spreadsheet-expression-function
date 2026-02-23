@@ -64,6 +64,7 @@ import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomt
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.text.Badge;
+import walkingkooka.tree.text.Flag;
 import walkingkooka.tree.text.Hyperlink;
 import walkingkooka.tree.text.Image;
 import walkingkooka.tree.text.Styleable;
@@ -726,6 +727,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> fixed() {
         return fixName(
             NumberExpressionFunctions.fixed()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#floor}
+     */
+    public static ExpressionFunction<Flag, SpreadsheetExpressionEvaluationContext> flag() {
+        return fixName(
+            TreeTextExpressionFunctions.flag()
         );
     }
 
