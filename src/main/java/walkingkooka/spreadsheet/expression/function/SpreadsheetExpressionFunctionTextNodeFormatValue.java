@@ -31,8 +31,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A {@link ExpressionFunction} which accepts a {@link SpreadsheetFormatterSelector} and value
- * and proceeds to format it returning the {@link TextNode}.
+ * A {@link ExpressionFunction} which accepts a {@link SpreadsheetFormatterSelector} and a {@link Object value}.
+ * A {@link SpreadsheetFormatter} identified by the {@link SpreadsheetFormatterSelector} will be fetched and used to
+ * format the given value.
  */
 final class SpreadsheetExpressionFunctionTextNodeFormatValue extends SpreadsheetExpressionFunctionTextNode {
 
