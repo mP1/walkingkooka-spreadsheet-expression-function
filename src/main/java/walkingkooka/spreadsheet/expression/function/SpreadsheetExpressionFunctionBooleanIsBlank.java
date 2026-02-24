@@ -50,8 +50,8 @@ final class SpreadsheetExpressionFunctionBooleanIsBlank extends SpreadsheetExpre
         boolean blank = false;
 
         if (maybeReference instanceof SpreadsheetCellReference) {
-            blank = !context.loadCell((SpreadsheetCellReference) maybeReference)
-                .isPresent();
+            blank = context.loadCell((SpreadsheetCellReference) maybeReference)
+                .isEmpty();
         }
 
         return blank;
