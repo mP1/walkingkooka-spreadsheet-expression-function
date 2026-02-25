@@ -3875,10 +3875,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateStyledText() {
         this.evaluateAndValueCheck(
-            "=styledText(\"Text123\",\"{color:#123456\")",
+            "=styledText(\"Text123\",\"color:#123456\")",
             TextNode.text("Text123")
                 .setTextStyle(
-                    TextStyle.parse("{color:#123456}")
+                    TextStyle.parse("color:#123456")
                 )
         );
     }
