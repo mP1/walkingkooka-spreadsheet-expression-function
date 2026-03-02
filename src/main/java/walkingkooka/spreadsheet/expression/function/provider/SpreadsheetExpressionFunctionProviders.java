@@ -287,6 +287,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.isoWeekNum(),
                     SpreadsheetExpressionFunctions.isRef(),
                     SpreadsheetExpressionFunctions.isText(),
+                    SpreadsheetExpressionFunctions.json(),
                     SpreadsheetExpressionFunctions.lambda(),
                     SpreadsheetExpressionFunctions.left(),
                     SpreadsheetExpressionFunctions.len(),
