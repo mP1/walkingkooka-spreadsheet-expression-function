@@ -110,6 +110,7 @@ import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
+import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
@@ -2402,6 +2403,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=isText(\"abc\")",
             true
+        );
+    }
+
+    @Test
+    public void testEvaluateJsonWithString() {
+        this.evaluateAndValueCheck(
+            "=json(\"[true, 1, {}]\")",
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.booleanNode(true)
+                ).appendChild(
+                    JsonNode.number(1)
+                ).appendChild(
+                    JsonNode.object()
+                )
         );
     }
 

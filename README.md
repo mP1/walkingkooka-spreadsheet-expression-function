@@ -146,6 +146,7 @@ majority of these functions are formula expression functions.
 - isoweeknum
 - isRef
 - isText
+- json
 - lambda
 - left
 - len

@@ -63,6 +63,8 @@ import walkingkooka.tree.expression.function.number.NumberExpressionFunctions;
 import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomteryExpressionFunctions;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.expression.function.JsonNodeExpressionFunctions;
 import walkingkooka.tree.text.Badge;
 import walkingkooka.tree.text.Flag;
 import walkingkooka.tree.text.Hyperlink;
@@ -1164,6 +1166,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> isText() {
         return fixName(
             StringExpressionFunctions.isText()
+        );
+    }
+
+    /**
+     * {@see JsonNodeExpressionFunctions#json}
+     */
+    public static ExpressionFunction<JsonNode, SpreadsheetExpressionEvaluationContext> json() {
+        return fixName(
+            JsonNodeExpressionFunctions.json()
         );
     }
 
