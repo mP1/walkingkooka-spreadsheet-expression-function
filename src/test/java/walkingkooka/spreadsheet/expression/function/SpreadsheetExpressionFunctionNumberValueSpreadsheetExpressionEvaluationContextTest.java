@@ -72,6 +72,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     private final static char ZERO_DIGIT = '0';
 
     @Override
+    public void testCurrencyForCurrencyCodeWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testLoadCellWithNullCellFails() {
         throw new UnsupportedOperationException();
     }
