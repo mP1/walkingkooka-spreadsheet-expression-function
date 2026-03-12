@@ -39,11 +39,11 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetColumnReference;
-import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelMapping;
 import walkingkooka.spreadsheet.reference.SpreadsheetLabelName;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
+import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.storage.StoragePath;
@@ -415,7 +415,7 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
-    public SpreadsheetExpressionReference validationReference() {
+    public SpreadsheetValidationReference validationReference() {
         return this.context.validationReference();
     }
 
@@ -470,27 +470,27 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     // FormHandlerContext...............................................................................................
 
     @Override
-    public Form<SpreadsheetExpressionReference> form() {
+    public Form<SpreadsheetValidationReference> form() {
         return this.context.form();
     }
 
     @Override
-    public Comparator<SpreadsheetExpressionReference> formFieldReferenceComparator() {
+    public Comparator<SpreadsheetValidationReference> formFieldReferenceComparator() {
         return this.context.formFieldReferenceComparator();
     }
 
     @Override
-    public Optional<Object> loadFormFieldValue(final SpreadsheetExpressionReference reference) {
+    public Optional<Object> loadFormFieldValue(final SpreadsheetValidationReference reference) {
         return this.context.loadFormFieldValue(reference);
     }
 
     @Override
-    public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
+    public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetValidationReference>> fields) {
         return this.context.saveFormFieldValues(fields);
     }
 
     @Override
-    public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
+    public SpreadsheetValidatorContext validatorContext(final SpreadsheetValidationReference reference) {
         return this.context.validatorContext(reference);
     }
 

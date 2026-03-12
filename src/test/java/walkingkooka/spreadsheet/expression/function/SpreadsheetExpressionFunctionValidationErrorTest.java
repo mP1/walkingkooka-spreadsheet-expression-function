@@ -20,12 +20,12 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.validation.ValidationError;
 
-public final class SpreadsheetExpressionFunctionValidationErrorTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionValidationError, ValidationError<SpreadsheetExpressionReference>> {
+public final class SpreadsheetExpressionFunctionValidationErrorTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionValidationError, ValidationError<SpreadsheetValidationReference>> {
 
     @Test
     public void testApply() {
