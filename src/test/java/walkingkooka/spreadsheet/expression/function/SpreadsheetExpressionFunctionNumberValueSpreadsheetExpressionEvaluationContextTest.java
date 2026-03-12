@@ -36,7 +36,7 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
-import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
+import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.storage.StoragePath;
@@ -435,21 +435,21 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 // FormHandlerContext...................................................................................
 
                 @Override
-                public Optional<Object> loadFormFieldValue(final SpreadsheetExpressionReference reference) {
+                public Optional<Object> loadFormFieldValue(final SpreadsheetValidationReference reference) {
                     Objects.requireNonNull(reference, "reference");
 
                     throw new UnsupportedOperationException();
                 }
 
                 @Override
-                public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetExpressionReference>> fields) {
+                public SpreadsheetDelta saveFormFieldValues(final List<FormField<SpreadsheetValidationReference>> fields) {
                     Objects.requireNonNull(fields, "fields");
 
                     throw new UnsupportedOperationException();
                 }
 
                 @Override
-                public SpreadsheetValidatorContext validatorContext(final SpreadsheetExpressionReference reference) {
+                public SpreadsheetValidatorContext validatorContext(final SpreadsheetValidationReference reference) {
                     Objects.requireNonNull(reference, "reference");
 
                     throw new UnsupportedOperationException();

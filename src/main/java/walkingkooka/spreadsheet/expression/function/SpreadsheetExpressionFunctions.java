@@ -45,6 +45,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetColumnReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
+import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.storage.StoragePath;
@@ -2170,14 +2171,14 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see SpreadsheetExpressionFunctionValidationError}
      */
-    public static ExpressionFunction<ValidationError<SpreadsheetExpressionReference>, SpreadsheetExpressionEvaluationContext> validationError() {
+    public static ExpressionFunction<ValidationError<SpreadsheetValidationReference>, SpreadsheetExpressionEvaluationContext> validationError() {
         return SpreadsheetExpressionFunctionValidationError.INSTANCE;
     }
 
     /**
      * {@see ValidatorExpressionFunctions#validationErrorIf}
      */
-    public static ExpressionFunction<ValidationError<SpreadsheetExpressionReference>, SpreadsheetExpressionEvaluationContext> validationErrorIf() {
+    public static ExpressionFunction<ValidationError<SpreadsheetValidationReference>, SpreadsheetExpressionEvaluationContext> validationErrorIf() {
         return fixName(
             ValidatorExpressionFunctions.validationErrorIf()
         );
