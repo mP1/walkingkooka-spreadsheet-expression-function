@@ -135,6 +135,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     );
 
     /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#locale()} ()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_LOCALE = cellFindWizardHelperFunction(
+        cellLocale()
+    );
+
+    /**
      * The function name of the getter that retrieve the {@link SpreadsheetCell#parser()} within a find.
      */
     public final static ExpressionFunctionName CELL_PARSER = cellFindWizardHelperFunction(
