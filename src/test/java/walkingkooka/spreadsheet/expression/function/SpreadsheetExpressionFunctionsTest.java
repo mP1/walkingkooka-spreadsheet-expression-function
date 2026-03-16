@@ -132,6 +132,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -555,6 +556,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=cell(\"address\", B2)",
             Maps.of("b2", "=1*2"),
             SpreadsheetSelection.parseCell("B2")
+        );
+    }
+
+    @Test
+    public void testEvaluateCellCurrency() {
+        final Currency currency = Currency.getInstance("NZD");
+
+        this.evaluateAndValueCheck(
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=cellCurrency()")
+            ).setCurrency(
+                Optional.of(currency)
+            ),
+            currency
         );
     }
 

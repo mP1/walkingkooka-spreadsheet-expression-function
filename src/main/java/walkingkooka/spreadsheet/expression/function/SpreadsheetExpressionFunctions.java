@@ -83,6 +83,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -106,6 +107,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         textMatch()
     );
 
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#currency()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_CURRENCY = cellFindWizardHelperFunction(
+        cellCurrency()
+    );
+    
     /**
      * The function name of the getter that retrieve the {@link SpreadsheetCell#dateTimeSymbols()} within a find.
      */
@@ -352,6 +360,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> cell() {
         return SpreadsheetExpressionFunctionObjectCell.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionCellCurrency}
+     */
+    public static ExpressionFunction<Currency, SpreadsheetExpressionEvaluationContext> cellCurrency() {
+        return SpreadsheetExpressionFunctionCellCurrency.INSTANCE;
     }
 
     /**
