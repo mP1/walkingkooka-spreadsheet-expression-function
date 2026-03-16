@@ -120,11 +120,12 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         cellDecimalNumberSymbols()
     );
 
+
     /**
-     * The function name of the getter that retrieve the {@link SpreadsheetCell#formula()} within a find.
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
      */
-    public final static ExpressionFunctionName CELL_FORMULA = cellFindWizardHelperFunction(
-        cellFormula()
+    public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
+        cellFormattedValue()
     );
 
     /**
@@ -132,6 +133,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public final static ExpressionFunctionName CELL_FORMATTER = cellFindWizardHelperFunction(
         cellFormatter()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#formula()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_FORMULA = cellFindWizardHelperFunction(
+        cellFormula()
     );
 
     /**
@@ -167,13 +175,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public final static ExpressionFunctionName CELL_VALUE_TYPE = cellFindWizardHelperFunction(
         cellValueType()
-    );
-
-    /**
-     * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
-     */
-    public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
-        cellFormattedValue()
     );
 
     /**
