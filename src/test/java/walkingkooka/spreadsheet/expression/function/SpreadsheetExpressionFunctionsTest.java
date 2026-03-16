@@ -632,6 +632,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateCellValidator() {
+        // any other validator will fail to validate the formula
+        final ValidatorSelector validator = ValidatorSelector.parse("non-null");
+        this.evaluateAndValueCheck(
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=cellValidator()")
+            ).setValidator(
+                Optional.of(validator)
+            ),
+            validator
+        );
+    }
+
+    @Test
     public void testEvaluateCellValueMissing() {
         // cellValue cannot be used within a regular formula because it tries to get the value from itself.
         // it is intended to be only used within find/highlighting queries.
