@@ -618,6 +618,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateCellLocale() {
+        final Locale locale = Locale.forLanguageTag("en-NZ");
+
+        this.evaluateAndValueCheck(
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText("=cellLocale()")
+            ).setLocale(
+                Optional.of(locale)
+            ),
+            locale
+        );
+    }
+
+    @Test
     public void testEvaluateCellValueMissing() {
         // cellValue cannot be used within a regular formula because it tries to get the value from itself.
         // it is intended to be only used within find/highlighting queries.
