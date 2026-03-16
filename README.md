@@ -49,6 +49,7 @@ majority of these functions are formula expression functions.
 - bitxor
 - ceil
 - cell
+- cellCurrency
 - cellDateTimeSymbols
 - cellDecimalNumberSymbols
 - cellFormattedValue
