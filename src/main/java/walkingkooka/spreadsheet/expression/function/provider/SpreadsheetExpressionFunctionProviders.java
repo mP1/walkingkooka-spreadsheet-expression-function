@@ -322,6 +322,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.odd(),
                     SpreadsheetExpressionFunctions.offset(),
                     SpreadsheetExpressionFunctions.or(),
+                    SpreadsheetExpressionFunctions.padding(),
                     SpreadsheetExpressionFunctions.pi(),
                     SpreadsheetExpressionFunctions.print(),
                     SpreadsheetExpressionFunctions.printEnv(),

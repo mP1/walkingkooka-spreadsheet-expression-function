@@ -72,6 +72,7 @@ import walkingkooka.tree.text.Flag;
 import walkingkooka.tree.text.Hyperlink;
 import walkingkooka.tree.text.Image;
 import walkingkooka.tree.text.Margin;
+import walkingkooka.tree.text.Padding;
 import walkingkooka.tree.text.Styleable;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
@@ -1486,6 +1487,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> or() {
         return fixName(
             BooleanExpressionFunctions.or()
+        );
+    }
+
+    /**
+     * {@see TreeTextExpressionFunctions#padding}
+     */
+    public static ExpressionFunction<Padding, SpreadsheetExpressionEvaluationContext> padding() {
+        return fixName(
+            TreeTextExpressionFunctions.padding()
         );
     }
 

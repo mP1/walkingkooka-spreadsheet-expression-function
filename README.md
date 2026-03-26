@@ -181,6 +181,7 @@ majority of these functions are formula expression functions.
 - odd
 - offset
 - or
+- padding
 - pi
 - print
 - printEnv
