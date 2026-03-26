@@ -188,6 +188,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.bitAnd(),
                     SpreadsheetExpressionFunctions.bitOr(),
                     SpreadsheetExpressionFunctions.bitXor(),
+                    SpreadsheetExpressionFunctions.border(),
                     SpreadsheetExpressionFunctions.ceil(),
                     SpreadsheetExpressionFunctions.cell(),
                     SpreadsheetExpressionFunctions.cellCurrency(),
