@@ -158,6 +158,7 @@ majority of these functions are formula expression functions.
 - log
 - log10
 - lower
+- margin
 - max
 - maxIf
 - mergeStyle

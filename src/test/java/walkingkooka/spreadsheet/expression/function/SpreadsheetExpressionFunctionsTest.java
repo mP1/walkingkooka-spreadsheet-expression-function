@@ -115,6 +115,7 @@ import walkingkooka.tree.text.Border;
 import walkingkooka.tree.text.BorderStyle;
 import walkingkooka.tree.text.BoxEdge;
 import walkingkooka.tree.text.Length;
+import walkingkooka.tree.text.Margin;
 import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
@@ -2676,6 +2677,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=lower(\"ABCxyz\")",
             this.metadataWithStrangeNumberFormatPattern(),
             "abcxyz"
+        );
+    }
+
+    @Test
+    public void testEvaluateMarginWithString() {
+        final Margin margin = TextStyle.EMPTY.setMargin(
+            Length.pixel(1.0)
+        ).margin(BoxEdge.ALL);
+
+        this.evaluateAndValueCheck(
+            "=margin(\"@\")"
+                .replace("@", margin.text()),
+            margin
         );
     }
 

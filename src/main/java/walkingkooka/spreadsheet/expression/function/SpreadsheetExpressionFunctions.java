@@ -71,6 +71,7 @@ import walkingkooka.tree.text.Border;
 import walkingkooka.tree.text.Flag;
 import walkingkooka.tree.text.Hyperlink;
 import walkingkooka.tree.text.Image;
+import walkingkooka.tree.text.Margin;
 import walkingkooka.tree.text.Styleable;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
@@ -1293,6 +1294,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             functionName("lower")
         );
 
+    /**
+     * {@see TreeTextExpressionFunctions#margin}
+     */
+    public static ExpressionFunction<Margin, SpreadsheetExpressionEvaluationContext> margin() {
+        return fixName(
+            TreeTextExpressionFunctions.margin()
+        );
+    }
+    
     /**
      * {@see StatExpressionFunctions#max}
      */
