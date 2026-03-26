@@ -116,6 +116,7 @@ import walkingkooka.tree.text.BorderStyle;
 import walkingkooka.tree.text.BoxEdge;
 import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.Margin;
+import walkingkooka.tree.text.Padding;
 import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
 import walkingkooka.tree.text.TextStyle;
@@ -2980,6 +2981,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    @Test
+    public void testEvaluatePaddingWithString() {
+        final Padding padding = TextStyle.EMPTY.setPadding(
+            Length.pixel(1.0)
+        ).padding(BoxEdge.ALL);
+
+        this.evaluateAndValueCheck(
+            "=padding(\"@\")"
+                .replace("@", padding.text()),
+            padding
+        );
+    }
+    
     @Test
     public void testEvaluatePi() {
         this.evaluateAndValueCheck(
