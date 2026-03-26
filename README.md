@@ -47,6 +47,7 @@ majority of these functions are formula expression functions.
 - bitand
 - bitor
 - bitxor
+- border
 - ceil
 - cell
 - cellCurrency

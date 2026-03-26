@@ -67,6 +67,7 @@ import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.function.JsonNodeExpressionFunctions;
 import walkingkooka.tree.text.Badge;
+import walkingkooka.tree.text.Border;
 import walkingkooka.tree.text.Flag;
 import walkingkooka.tree.text.Hyperlink;
 import walkingkooka.tree.text.Image;
@@ -346,6 +347,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         EngineeringExpressionFunctions.bitXor()
     );
 
+    /**
+     * {@see TreeTextExpressionFunctions#border}
+     */
+    public static ExpressionFunction<Border, SpreadsheetExpressionEvaluationContext> border() {
+        return fixName(
+            TreeTextExpressionFunctions.border()
+        );
+    }
+    
     /**
      * {@see NumberExpressionFunctions#ceil}
      */

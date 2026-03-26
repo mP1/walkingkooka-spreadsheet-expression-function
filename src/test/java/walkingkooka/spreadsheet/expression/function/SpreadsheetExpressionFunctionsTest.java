@@ -111,6 +111,9 @@ import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.text.Border;
+import walkingkooka.tree.text.BorderStyle;
+import walkingkooka.tree.text.BoxEdge;
 import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.TextAlign;
 import walkingkooka.tree.text.TextNode;
@@ -531,6 +534,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=bitxor(\"7\", \"3\")",
             EXPRESSION_NUMBER_KIND.create(4)
+        );
+    }
+
+    @Test
+    public void testEvaluateBorderWithString() {
+        final Border border = TextStyle.EMPTY.setBorder(
+            Color.BLACK,
+            BorderStyle.DASHED,
+            Length.pixel(1.0)
+        ).border(BoxEdge.ALL);
+
+        this.evaluateAndValueCheck(
+            "=border(\"@\")"
+                .replace("@", border.text()),
+            border
         );
     }
 
