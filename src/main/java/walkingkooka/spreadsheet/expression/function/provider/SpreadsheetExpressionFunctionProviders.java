@@ -299,6 +299,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.log(),
                     SpreadsheetExpressionFunctions.log10(),
                     SpreadsheetExpressionFunctions.lower(),
+                    SpreadsheetExpressionFunctions.margin(),
                     SpreadsheetExpressionFunctions.max(),
                     SpreadsheetExpressionFunctions.maxIf(),
                     SpreadsheetExpressionFunctions.mergeStyle(),
