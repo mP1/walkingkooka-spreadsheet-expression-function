@@ -2683,11 +2683,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateMarginWithString() {
-        final Margin margin = TextStyle.EMPTY.setMargin(
-            Optional.of(
-                Length.pixel(1.0)
-            )
-        ).margin(BoxEdge.ALL);
+        final Margin margin = Margin.parse("1px");
 
         this.evaluateAndValueCheck(
             "=margin(\"@\")"
@@ -2985,11 +2981,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluatePaddingWithString() {
-        final Padding padding = TextStyle.EMPTY.setPadding(
-            Optional.of(
-                Length.pixel(1.0)
-            )
-        ).padding(BoxEdge.ALL);
+        final Padding padding = Padding.parse("1px");
 
         this.evaluateAndValueCheck(
             "=padding(\"@\")"
