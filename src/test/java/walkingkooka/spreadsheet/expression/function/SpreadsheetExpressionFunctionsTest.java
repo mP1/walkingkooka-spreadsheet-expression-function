@@ -112,8 +112,6 @@ import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.text.Border;
-import walkingkooka.tree.text.BorderStyle;
-import walkingkooka.tree.text.BoxEdge;
 import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.Margin;
 import walkingkooka.tree.text.Padding;
@@ -541,11 +539,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateBorderWithString() {
-        final Border border = TextStyle.EMPTY.setBorder(
-            Color.BLACK,
-            BorderStyle.DASHED,
-            Length.pixel(1.0)
-        ).border(BoxEdge.ALL);
+        final Border border = Border.parse("BLACK SOLID 1px");
 
         this.evaluateAndValueCheck(
             "=border(\"@\")"
