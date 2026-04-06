@@ -157,6 +157,7 @@ majority of these functions are formula expression functions.
 - list
 - ln
 - locale
+- localeLanguageTag
 - log
 - log10
 - lower
