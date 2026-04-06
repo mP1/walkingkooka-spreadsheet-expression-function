@@ -2643,6 +2643,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLocale() {
+        this.evaluateAndValueCheck(
+            "=locale(\"en-AU\")",
+            Locale.forLanguageTag("en-AU")
+        );
+    }
+
+    @Test
+    public void testEvaluateLocale2() {
+        this.evaluateAndValueCheck(
+            "=locale(\"en-NZ\")",
+            Locale.forLanguageTag("en-NZ")
+        );
+    }
+
+    @Test
     public void testEvaluateLogWIthNumbers() {
         this.evaluateAndValueCheck(
             "=log(3, 2)",

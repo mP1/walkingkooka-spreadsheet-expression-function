@@ -1276,6 +1276,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ExpressionFunctions#locale}
+     */
+    public static ExpressionFunction<Locale, SpreadsheetExpressionEvaluationContext> locale() {
+        return fixName(
+            ExpressionFunctions.locale()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#log}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> log() {
