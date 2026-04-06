@@ -27,6 +27,7 @@ import walkingkooka.color.RgbColorComponent;
 import walkingkooka.color.WebColorName;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.environment.EnvironmentContext;
@@ -1088,6 +1089,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 "A5", "=\"200\"" // string are ignored
             ),
             EXPRESSION_NUMBER_KIND.one()
+        );
+    }
+
+    @Test
+    public void testEvaluateCurrencyCode() {
+        this.evaluateAndValueCheck(
+            "=currencyCode(\"AUD\")",
+            CurrencyCode.parse("AUD")
+        );
+    }
+
+    @Test
+    public void testEvaluateCurrencyCode2() {
+        this.evaluateAndValueCheck(
+            "=currencyCode(\"NZD\")",
+            CurrencyCode.parse("NZD")
         );
     }
 
@@ -5149,7 +5166,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, storage, text-to-line-ending, text-to-storage-path, json)");
+        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, currency, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, storage, text-to-line-ending, text-to-storage-path, json)");
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))

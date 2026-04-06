@@ -28,6 +28,7 @@ import walkingkooka.color.RedRgbColorComponent;
 import walkingkooka.color.RgbColor;
 import walkingkooka.color.WebColorName;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -582,6 +583,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countIf() {
         return SpreadsheetExpressionFunctionNumberIf.countIf();
+    }
+
+    /**
+     * {@see ExpressionFunctions#currencyCode}
+     */
+    public static ExpressionFunction<CurrencyCode, SpreadsheetExpressionEvaluationContext> currencyCode() {
+        return fixName(
+            ExpressionFunctions.currencyCode()
+        );
     }
 
     /**

@@ -75,6 +75,7 @@ majority of these functions are formula expression functions.
 - countA
 - countBlank
 - countIf
+- currencyCode
 - date
 - day
 - days
