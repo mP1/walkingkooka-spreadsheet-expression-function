@@ -38,6 +38,7 @@ import walkingkooka.io.FakeTextReader;
 import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.HostAddress;
@@ -2655,6 +2656,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=locale(\"en-NZ\")",
             Locale.forLanguageTag("en-NZ")
+        );
+    }
+
+    @Test
+    public void testEvaluateLocaleLanguageTag() {
+        this.evaluateAndValueCheck(
+            "=localeLanguageTag(\"en-AU\")",
+            LocaleLanguageTag.parse("en-AU")
+        );
+    }
+
+    @Test
+    public void testEvaluateLocaleLanguageTag2() {
+        this.evaluateAndValueCheck(
+            "=localeLanguageTag(\"en-NZ\")",
+            LocaleLanguageTag.parse("en-NZ")
         );
     }
 

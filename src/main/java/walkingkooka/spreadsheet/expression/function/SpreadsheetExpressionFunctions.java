@@ -31,6 +31,7 @@ import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.HasHostAddress;
 import walkingkooka.net.HostAddress;
@@ -1281,6 +1282,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Locale, SpreadsheetExpressionEvaluationContext> locale() {
         return fixName(
             ExpressionFunctions.locale()
+        );
+    }
+
+    /**
+     * {@see ExpressionFunctions#localeLanguageTag}
+     */
+    public static ExpressionFunction<LocaleLanguageTag, SpreadsheetExpressionEvaluationContext> localeLanguageTag() {
+        return fixName(
+            ExpressionFunctions.localeLanguageTag()
         );
     }
 

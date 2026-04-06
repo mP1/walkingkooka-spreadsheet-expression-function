@@ -298,6 +298,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.list(),
                     SpreadsheetExpressionFunctions.ln(),
                     SpreadsheetExpressionFunctions.locale(),
+                    SpreadsheetExpressionFunctions.localeLanguageTag(),
                     SpreadsheetExpressionFunctions.log(),
                     SpreadsheetExpressionFunctions.log10(),
                     SpreadsheetExpressionFunctions.lower(),
