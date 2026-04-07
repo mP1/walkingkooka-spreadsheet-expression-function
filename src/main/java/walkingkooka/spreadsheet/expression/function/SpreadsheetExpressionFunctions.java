@@ -711,10 +711,12 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectEval}
+     * {@see ExpressionFunctions#eval()}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> eval() {
-        return SpreadsheetExpressionFunctionObjectEval.INSTANCE;
+        return fixName(
+            ExpressionFunctions.eval()
+        );
     }
 
     /**
