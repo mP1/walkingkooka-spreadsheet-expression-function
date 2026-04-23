@@ -1094,6 +1094,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateCurrency() {
+        this.evaluateAndValueCheck(
+            "=currency(\"AUD\")",
+            Currency.getInstance("AUD")
+        );
+    }
+
+    @Test
     public void testEvaluateCurrencyCode() {
         this.evaluateAndValueCheck(
             "=currencyCode(\"AUD\")",
