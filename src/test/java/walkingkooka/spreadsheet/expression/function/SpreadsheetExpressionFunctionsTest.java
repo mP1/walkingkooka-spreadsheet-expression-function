@@ -28,6 +28,7 @@ import walkingkooka.color.WebColorName;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyValue;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.environment.EnvironmentContext;
@@ -128,6 +129,7 @@ import walkingkooka.validation.provider.ValidatorAliasSet;
 import walkingkooka.validation.provider.ValidatorSelector;
 
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DateFormatSymbols;
@@ -1114,6 +1116,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=currencyCode(\"NZD\")",
             CurrencyCode.parse("NZD")
+        );
+    }
+
+    // TODO https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues/736
+    // ExpressionFunction: currencyValue String -> Number gives BigDecimal should give ExpressionNumber
+    @Test
+    public void testEvaluateCurrencyValue() {
+        this.evaluateAndValueCheck(
+            "=currencyValue(\"NZD 1.5\")",
+            CurrencyValue.with(
+                BigDecimal.valueOf(1.5),
+                CurrencyCode.parse("NZD")
+            )
         );
     }
 

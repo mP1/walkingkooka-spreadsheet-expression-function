@@ -218,6 +218,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.countIf(),
                     SpreadsheetExpressionFunctions.currency(),
                     SpreadsheetExpressionFunctions.currencyCode(),
+                    SpreadsheetExpressionFunctions.currencyValue(),
                     SpreadsheetExpressionFunctions.date(),
                     SpreadsheetExpressionFunctions.day(),
                     SpreadsheetExpressionFunctions.days(),
