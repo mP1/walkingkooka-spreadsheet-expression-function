@@ -587,6 +587,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ExpressionFunctions#currency}
+     */
+    public static ExpressionFunction<Currency, SpreadsheetExpressionEvaluationContext> currency() {
+        return fixName(
+            ExpressionFunctions.currency()
+        );
+    }
+    
+    /**
      * {@see ExpressionFunctions#currencyCode}
      */
     public static ExpressionFunction<CurrencyCode, SpreadsheetExpressionEvaluationContext> currencyCode() {
