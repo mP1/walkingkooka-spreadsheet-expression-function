@@ -77,6 +77,7 @@ majority of these functions are formula expression functions.
 - countIf
 - currency
 - currencyCode
+- currencyValue
 - date
 - day
 - days

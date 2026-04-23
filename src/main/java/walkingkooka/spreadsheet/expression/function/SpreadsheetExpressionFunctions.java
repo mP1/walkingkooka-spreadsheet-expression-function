@@ -29,6 +29,7 @@ import walkingkooka.color.RgbColor;
 import walkingkooka.color.WebColorName;
 import walkingkooka.color.expression.function.ColorExpressionFunctions;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyValue;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
 import walkingkooka.locale.LocaleLanguageTag;
@@ -601,6 +602,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<CurrencyCode, SpreadsheetExpressionEvaluationContext> currencyCode() {
         return fixName(
             ExpressionFunctions.currencyCode()
+        );
+    }
+
+    /**
+     * {@see ExpressionFunctions#currencyValue}
+     */
+    public static ExpressionFunction<CurrencyValue, SpreadsheetExpressionEvaluationContext> currencyValue() {
+        return fixName(
+            ExpressionFunctions.currencyValue()
         );
     }
 
