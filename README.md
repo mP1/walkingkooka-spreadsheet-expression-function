@@ -28,8 +28,13 @@ The two links below provide links to available functions in Excel and Sheets
 
 ## [Functions](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/ExpressionFunction.java)
 
-Note the list is incomplete when compared to Excel and Sheets and should be considered a work in progress. The vast
-majority of these functions are formula expression functions.
+Google Sheets and Microsoft Excel have over 500 functions.
+
+- [Official Google sheets functions (513)](https://support.google.com/docs/table/25273?hl=en)
+- [Official Microsoft Excel functions](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188)
+
+The list below (with 244) is incomplete and constantly being updated as new functions are added. A small number are not
+found in Sheets or Excel and may be used to interact with features not found in those two platforms.
 
 - abs
 - acos
