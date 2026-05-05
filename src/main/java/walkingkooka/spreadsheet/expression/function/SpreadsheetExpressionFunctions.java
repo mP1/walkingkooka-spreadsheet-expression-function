@@ -2013,6 +2013,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeTextExpressionFunctions#styleReplaceIf}
+     */
+    public static ExpressionFunction<Styleable, SpreadsheetExpressionEvaluationContext> styleReplaceIf() {
+        return fixName(
+            TreeTextExpressionFunctions.styleReplaceIf()
+        );
+    }
+
+    /**
      * {@see TreeTextExpressionFunctions#styleSet}
      */
     public static ExpressionFunction<Styleable, SpreadsheetExpressionEvaluationContext> styleSet() {

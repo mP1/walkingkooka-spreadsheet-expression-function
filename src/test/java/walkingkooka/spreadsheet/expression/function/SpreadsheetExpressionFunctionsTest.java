@@ -4024,6 +4024,25 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateStyleReplaceIfWithTextStyleAndString() {
+        this.evaluateAndValueCheck(
+            "=styleReplaceIf(\"background-color: #111111; color: #222222\",\"color\", \"#222222\",\"#333333\")",
+            TextStyle.parse("background-color: #111111; color: #333333")
+        );
+    }
+
+    @Test
+    public void testEvaluateStyleReplaceIfWithTextNodeAndString() {
+        this.evaluateAndValueCheck(
+            "=styleReplaceIf(styledText(\"HelloText\",\"background-color: #111111; color: #222222\"),\"color\",\"#222222\",\"#333333\")",
+            TextNode.text("HelloText")
+                .setTextStyle(
+                    TextStyle.parse("background-color: #111111; color: #333333")
+                )
+        );
+    }
+
+    @Test
     public void testEvaluateStyleSetWithStringAndStringAndString() {
         this.evaluateAndValueCheck(
             "=styleSet(\"background-color: #111111\",\"color\",\"#222222\")",
