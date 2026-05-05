@@ -379,6 +379,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.style(),
                     SpreadsheetExpressionFunctions.styleGet(),
                     SpreadsheetExpressionFunctions.styleRemove(),
+                    SpreadsheetExpressionFunctions.styleRemoveIf(),
                     SpreadsheetExpressionFunctions.styleSet(),
                     SpreadsheetExpressionFunctions.styledText(),
                     SpreadsheetExpressionFunctions.substitute(),
