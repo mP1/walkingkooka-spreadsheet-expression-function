@@ -17,7 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.Value;
+import walkingkooka.HasValue;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -47,7 +47,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
     );
 
     private SpreadsheetExpressionFunctionNumberColumnOrRow(final String name,
-                                                           final Function<SpreadsheetCellReference, Value<Integer>> mapper) {
+                                                           final Function<SpreadsheetCellReference, HasValue<Integer>> mapper) {
         super(name);
         this.mapper = mapper;
     }
@@ -84,7 +84,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
     /**
      * Lambda that returns either the column or row for a given {@link SpreadsheetCellReference}.
      */
-    private final Function<SpreadsheetCellReference, Value<Integer>> mapper;
+    private final Function<SpreadsheetCellReference, HasValue<Integer>> mapper;
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
