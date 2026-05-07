@@ -18,7 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.CanBeEmpty;
-import walkingkooka.Value;
+import walkingkooka.HasValue;
 import walkingkooka.predicate.Predicates;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.HasCaseSensitivity;
@@ -30,7 +30,7 @@ import java.util.function.Predicate;
 /**
  * Contains a text match pattern and is also a {@link Predicate}.
  */
-public final class TextMatch implements Value<String>,
+public final class TextMatch implements HasValue<String>,
     HasText,
     Predicate<CharSequence>,
     HasCaseSensitivity,
