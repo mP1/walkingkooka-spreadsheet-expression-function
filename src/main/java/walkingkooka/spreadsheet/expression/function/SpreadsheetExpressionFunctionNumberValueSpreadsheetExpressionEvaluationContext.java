@@ -317,6 +317,17 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public <N extends Number> N multiply(final Number left,
+                                         final Number right,
+                                         final Class<N> type) {
+        return this.context.multiply(
+            left,
+            right,
+            type
+        );
+    }
+
+    @Override
     public char valueSeparator() {
         return this.context.valueSeparator();
     }

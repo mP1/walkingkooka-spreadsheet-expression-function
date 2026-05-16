@@ -142,6 +142,21 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     }
 
     @Override
+    public void testMultiplyWithNullLeftFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMultiplyWithNullRightFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testMultiplyWithNullTypeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testParseExpressionNullFails() {
         throw new UnsupportedOperationException();
     }
