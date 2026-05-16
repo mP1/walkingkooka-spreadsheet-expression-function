@@ -4334,6 +4334,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetContexts.fixedSpreadsheetId(
+                MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 repo,
                 HATEOS_ROUTER_FACTORY,
@@ -5029,6 +5030,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext spreadsheetEngineContext = SpreadsheetEngineContexts.spreadsheetContext(
             SpreadsheetMetadataMode.SCRIPTING,
             SpreadsheetContexts.mutableSpreadsheetId(
+                MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 (SpreadsheetId id) -> {
                     final SpreadsheetStoreRepository repo = spreadsheetIdToSpreadsheetStoreRepository.get(id);
@@ -5409,6 +5411,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
             mode,
             SpreadsheetContexts.fixedSpreadsheetId(
+                MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 SpreadsheetStoreRepositories.treeMap(metadataStore),
                 HATEOS_ROUTER_FACTORY,
