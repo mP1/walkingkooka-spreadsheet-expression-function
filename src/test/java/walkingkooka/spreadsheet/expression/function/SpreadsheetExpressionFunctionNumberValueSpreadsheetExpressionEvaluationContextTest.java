@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
@@ -466,6 +467,15 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public SpreadsheetValidatorContext validatorContext(final SpreadsheetValidationReference reference) {
                     Objects.requireNonNull(reference, "reference");
+
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                             final Optional<LocalDateTime> dateTime) {
+                    Objects.requireNonNull(currencyExchange, "currencyExchange");
+                    Objects.requireNonNull(dateTime, "dateTime");
 
                     throw new UnsupportedOperationException();
                 }

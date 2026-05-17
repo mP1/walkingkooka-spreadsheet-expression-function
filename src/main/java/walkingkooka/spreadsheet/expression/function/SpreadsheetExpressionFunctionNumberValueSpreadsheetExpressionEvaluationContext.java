@@ -19,6 +19,8 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
+import walkingkooka.currency.CurrencyExchangeRater;
+import walkingkooka.currency.CurrencyExchangeRaterDelegator;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentContext;
@@ -85,6 +87,7 @@ import java.util.Set;
  * that uses the provided decimal separator and group separator.
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
+    CurrencyExchangeRaterDelegator,
     DateTimeContextDelegator,
     SpreadsheetEnvironmentContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
@@ -504,6 +507,13 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public SpreadsheetValidatorContext validatorContext(final SpreadsheetValidationReference reference) {
         return this.context.validatorContext(reference);
+    }
+
+    // CurrencyExchangeRaterDelegator...................................................................................
+
+    @Override
+    public CurrencyExchangeRater currencyExchangeRater() {
+        return this.context;
     }
 
     // DateTimeContextDelegator.........................................................................................
