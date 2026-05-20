@@ -5074,16 +5074,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         if (Optional.of(STORAGE_READ_TEXT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
             spreadsheetExpressionEvaluationContext.saveStorage(
-                StorageValue.with(
-                    STORAGE_READ_TEXT_JSON_PATH,
-                    Optional.of(FILE_CONTENT_TEXT)
-                )
+                StorageValue.with(STORAGE_READ_TEXT_JSON_PATH)
+                    .setValue(
+                        Optional.of(FILE_CONTENT_TEXT)
+                    )
             );
             spreadsheetExpressionEvaluationContext.saveStorage(
-                StorageValue.with(
-                    STORAGE_READ_TEXT_TXT_PATH,
-                    Optional.of(FILE_CONTENT_TEXT)
-                )
+                StorageValue.with(STORAGE_READ_TEXT_TXT_PATH)
+                    .setValue(
+                        Optional.of(FILE_CONTENT_TEXT)
+                    )
             );
         }
 
@@ -5092,7 +5092,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 i ->
                     spreadsheetExpressionEvaluationContext.saveStorage(
                         StorageValue.with(
-                            i.path(),
+                            i.path()
+                        ).setValue(
                             Optional.of(1)
                         )
                     )
@@ -5101,10 +5102,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         if (Optional.of(STORAGE_SCRIPT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
             spreadsheetExpressionEvaluationContext.saveStorage(
-                StorageValue.with(
-                    SCRIPT_PATH,
-                    Optional.of(SCRIPT_FILE)
-                )
+                StorageValue.with(SCRIPT_PATH)
+                    .setValue(
+                        Optional.of(SCRIPT_FILE)
+                    )
             );
         }
 
