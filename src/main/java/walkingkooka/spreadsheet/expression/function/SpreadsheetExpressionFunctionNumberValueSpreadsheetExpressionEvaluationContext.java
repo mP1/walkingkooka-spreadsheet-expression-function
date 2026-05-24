@@ -73,6 +73,7 @@ import walkingkooka.validation.form.Form;
 import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Currency;
@@ -297,6 +298,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public boolean canNumbersHaveGroupSeparator() {
         return true;
+    }
+
+    @Override
+    public Charset charset() {
+        return this.context.charset();
     }
 
     @Override
