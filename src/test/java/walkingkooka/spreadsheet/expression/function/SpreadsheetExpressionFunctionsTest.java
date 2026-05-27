@@ -1463,6 +1463,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetCurrency() {
+        this.evaluateAndValueCheck(
+            "=getCurrency()",
+            CURRENCY
+        );
+    }
+
+    @Test
     public void testEvaluateGetCurrentWorkingDirectory() {
         this.evaluateAndValueCheck(
             "=getCurrentWorkingDirectory()",
@@ -5569,6 +5577,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "offset":
                         case "cell":
                         case "info":
+                        case "getcurrency":
                         case "getcurrentworkingdirectory":
                         case "getenv":
                         case "gethomedirectory":

@@ -881,6 +881,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#getCurrency}
+     */
+    public static ExpressionFunction<Currency, SpreadsheetExpressionEvaluationContext> getCurrency() {
+        return fixName(
+            EnvironmentExpressionFunctions.getCurrency()
+        );
+    }
+    
+    /**
      * {@see EnvironmentExpressionFunctions#getEnv}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getEnv() {
