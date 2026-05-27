@@ -246,6 +246,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.formulaText(),
                     SpreadsheetExpressionFunctions.getAlpha(),
                     SpreadsheetExpressionFunctions.getBlue(),
+                    SpreadsheetExpressionFunctions.getCurrency(),
                     SpreadsheetExpressionFunctions.getCurrentWorkingDirectory(),
                     SpreadsheetExpressionFunctions.getDateTimeSymbols(),
                     SpreadsheetExpressionFunctions.getDecimalNumberSymbols(),
