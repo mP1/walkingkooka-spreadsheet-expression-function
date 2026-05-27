@@ -3446,6 +3446,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetCurrency() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=setCurrency(\"NZD\")",
+            environmentContext,
+            ""
+        );
+
+        this.currencyAndCheck(
+            environmentContext,
+            Currency.getInstance("NZD")
+        );
+    }
+    
+    @Test
     public void testEvaluateSetCurrentWorkingDirectory() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
@@ -5594,6 +5612,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setcurrentworkingdirectory":
                         case "setenv":
                         case "sethomedirectory":
+                        case "setcurrency":
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
