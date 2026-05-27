@@ -115,7 +115,6 @@ public final class SpreadsheetExpressionFunctionNumberValueTest extends Spreadsh
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
             SpreadsheetContexts.fixedSpreadsheetId(
-                CHARSET,
                 MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 new FakeSpreadsheetStoreRepository() {

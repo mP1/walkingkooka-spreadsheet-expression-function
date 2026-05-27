@@ -169,7 +169,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             },
             SPREADSHEET_LABEL_NAME_RESOLVER,
             SpreadsheetContexts.fixedSpreadsheetId(
-                CHARSET,
                 MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 new FakeSpreadsheetStoreRepository() {
