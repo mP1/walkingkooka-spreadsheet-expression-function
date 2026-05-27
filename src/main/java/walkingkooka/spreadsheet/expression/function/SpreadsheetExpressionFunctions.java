@@ -833,13 +833,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionObjectGetFormatValue}
-     */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getFormatValue() {
-        return SpreadsheetExpressionFunctionObjectGetFormatValue.INSTANCE;
-    }
-
-    /**
      * {@see ColorExpressionFunctions#getAlpha}
      */
     public static ExpressionFunction<AlphaRgbColorComponent, SpreadsheetExpressionEvaluationContext> getAlpha() {
@@ -854,6 +847,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<BlueRgbColorComponent, SpreadsheetExpressionEvaluationContext> getBlue() {
         return fixName(
             ColorExpressionFunctions.getBlue()
+        );
+    }
+
+    /**
+     * {@see EnvironmentExpressionFunctions#getCurrency}
+     */
+    public static ExpressionFunction<Currency, SpreadsheetExpressionEvaluationContext> getCurrency() {
+        return fixName(
+            EnvironmentExpressionFunctions.getCurrency()
         );
     }
 
@@ -879,15 +881,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<DecimalNumberSymbols, SpreadsheetExpressionEvaluationContext> getDecimalNumberSymbols() {
         return SpreadsheetExpressionFunctionGetDecimalNumberSymbols.INSTANCE;
     }
-
-    /**
-     * {@see EnvironmentExpressionFunctions#getCurrency}
-     */
-    public static ExpressionFunction<Currency, SpreadsheetExpressionEvaluationContext> getCurrency() {
-        return fixName(
-            EnvironmentExpressionFunctions.getCurrency()
-        );
-    }
     
     /**
      * {@see EnvironmentExpressionFunctions#getEnv}
@@ -903,6 +896,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetFormatterSelector, SpreadsheetExpressionEvaluationContext> getFormatter() {
         return SpreadsheetExpressionFunctionGetFormatter.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionObjectGetFormatValue}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getFormatValue() {
+        return SpreadsheetExpressionFunctionObjectGetFormatValue.INSTANCE;
     }
 
     /**
