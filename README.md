@@ -223,6 +223,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - setGreen
 - setHomeDirectory
 - setHost
+- setLineEnding
 - setLocale
 - setRed
 - setStyle

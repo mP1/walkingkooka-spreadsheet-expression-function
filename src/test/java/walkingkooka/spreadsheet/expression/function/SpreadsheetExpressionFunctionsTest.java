@@ -3575,6 +3575,32 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetLineEndingAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        final EnvironmentValueName<LineEnding> name = EnvironmentValueName.LINE_ENDING;
+
+        environmentContext.setEnvironmentValue(
+            name,
+            LineEnding.NL
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(setLineEnding(\"CR\"))",
+            environmentContext,
+            "null"
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            LineEnding.CR
+        );
+    }
+    
+    @Test
     public void testEvaluateSetLocaleAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
@@ -5559,6 +5585,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setcurrentworkingdirectory":
                         case "setenv":
                         case "sethomedirectory":
+                        case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
                         case "storagedelete":

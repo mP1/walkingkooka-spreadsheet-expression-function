@@ -1830,6 +1830,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setLineEnding}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setLineEnding() {
+        return fixName(
+            EnvironmentExpressionFunctions.setLineEnding()
+        );
+    }
+    
+    /**
      * {@see EnvironmentExpressionFunctions#setLocale}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setLocale() {
