@@ -106,6 +106,7 @@ import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
 import walkingkooka.terminal.TerminalId;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.printer.Printers;
@@ -3628,6 +3629,32 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetIndentationAndPrint() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        final EnvironmentValueName<Indentation> name = EnvironmentValueName.INDENTATION;
+
+        environmentContext.setEnvironmentValue(
+            name,
+            Indentation.SPACES4
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(setIndentation(\"      \"))",
+            environmentContext,
+            "null"
+        );
+
+        this.environmentValueAndCheck(
+            environmentContext,
+            name,
+            Indentation.with("      ")
+        );
+    }
+    
+    @Test
     public void testEvaluateSetLineEndingAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
@@ -5642,6 +5669,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setenv":
                         case "sethomedirectory":
                         case "setcurrency":
+                        case "setindentation":
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":

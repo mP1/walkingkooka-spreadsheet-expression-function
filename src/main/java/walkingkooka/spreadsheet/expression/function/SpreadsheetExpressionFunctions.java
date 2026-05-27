@@ -1868,6 +1868,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setIndentation}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setIndentation() {
+        return fixName(
+            EnvironmentExpressionFunctions.setIndentation()
+        );
+    }
+    
+    /**
      * {@see EnvironmentExpressionFunctions#setLineEnding}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setLineEnding() {
