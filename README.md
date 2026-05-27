@@ -220,6 +220,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - second
 - setAlpha
 - setBlue
+- setCharset
 - setCurrentWorkingDirectory
 - setEnv
 - setGreen

@@ -356,6 +356,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.second(),
                     SpreadsheetExpressionFunctions.setAlpha(),
                     SpreadsheetExpressionFunctions.setBlue(),
+                    SpreadsheetExpressionFunctions.setCharset(),
                     SpreadsheetExpressionFunctions.setCurrency(),
                     SpreadsheetExpressionFunctions.setCurrentWorkingDirectory(),
                     SpreadsheetExpressionFunctions.setEnv(),

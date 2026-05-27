@@ -131,6 +131,7 @@ import walkingkooka.validation.provider.ValidatorSelector;
 import java.lang.reflect.Method;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
@@ -3454,6 +3455,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetCharset() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=setCharset(\"US-ASCII\")",
+            environmentContext,
+            ""
+        );
+
+        this.charsetAndCheck(
+            environmentContext,
+            StandardCharsets.US_ASCII
+        );
+    }
+    
+    @Test
     public void testEvaluateSetCurrency() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
@@ -5618,6 +5637,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "readline":
                         case "removeenv":
                         case "script":
+                        case "setcharset":
                         case "setcurrentworkingdirectory":
                         case "setenv":
                         case "sethomedirectory":
