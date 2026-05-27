@@ -1804,6 +1804,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setCharset}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setCharset() {
+        return fixName(
+            EnvironmentExpressionFunctions.setCharset()
+        );
+    }
+
+    /**
      * {@see EnvironmentExpressionFunctions#setCurrency}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setCurrency() {
@@ -1838,6 +1847,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             ColorExpressionFunctions.setGreen()
         );
     }
+
 
     /**
      * {@see EnvironmentExpressionFunctions#setHomeDirectory}
