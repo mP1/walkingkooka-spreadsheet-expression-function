@@ -301,6 +301,7 @@ The following functions are only useful within a search context, each extracting
 a [SpreadsheetCell](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/SpreadsheetCell.java)
 so the value may be used by a predicate to filter cells. They are not intended to be used with formula expressions.
 
+- cellCurrency
 - cellDateTimeSymbols
 - cellDecimalNumberSymbols
 - cellFormattedValue
