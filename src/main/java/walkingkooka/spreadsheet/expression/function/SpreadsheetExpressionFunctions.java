@@ -85,6 +85,7 @@ import walkingkooka.validation.ValidationError;
 import walkingkooka.validation.expression.function.ValidatorExpressionFunctions;
 import walkingkooka.validation.provider.ValidatorSelector;
 
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -850,6 +851,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         );
     }
 
+    /**
+     * {@see EnvironmentExpressionFunctions#getCharset}
+     */
+    public static ExpressionFunction<Charset, SpreadsheetExpressionEvaluationContext> getCharset() {
+        return fixName(
+            EnvironmentExpressionFunctions.getCharset()
+        );
+    }
+    
     /**
      * {@see EnvironmentExpressionFunctions#getCurrency}
      */
