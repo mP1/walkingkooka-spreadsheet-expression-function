@@ -302,7 +302,6 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
             SpreadsheetExpressionReferenceLoaders.fake(),
             SPREADSHEET_LABEL_NAME_RESOLVER,
             SpreadsheetContexts.fixedSpreadsheetId(
-                CHARSET,
                 MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 new FakeSpreadsheetStoreRepository() {
