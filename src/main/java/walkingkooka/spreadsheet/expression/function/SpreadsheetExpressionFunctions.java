@@ -1794,6 +1794,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see EnvironmentExpressionFunctions#setCurrency}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setCurrency() {
+        return fixName(
+            EnvironmentExpressionFunctions.setCurrency()
+        );
+    }
+
+    /**
      * {@see EnvironmentExpressionFunctions#setCurrentWorkingDirectory}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> setCurrentWorkingDirectory() {
