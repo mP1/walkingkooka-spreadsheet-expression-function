@@ -1719,6 +1719,68 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetIndentationWithoutParameter() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                EnvironmentContext.ANONYMOUS
+            )
+        );
+        environmentContext.setEnvironmentValue(
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getIndentation(\"    \")",
+            environmentContext,
+            Indentation.SPACES4,
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateGetIndentationWithString() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                EnvironmentContext.ANONYMOUS
+            )
+        );
+        environmentContext.setEnvironmentValue(
+            EnvironmentValueName.with(
+                "SpreadsheetCell",
+                SpreadsheetCell.class
+            ),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=getIndentation()",
+            environmentContext,
+            INDENTATION,
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateGetLineEndingWithoutParameter() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
@@ -5654,6 +5716,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "getcurrentworkingdirectory":
                         case "getenv":
                         case "gethomedirectory":
+                        case "getindentation":
                         case "getlineending":
                         case "getlocale":
                         case "gettimeoffset":    

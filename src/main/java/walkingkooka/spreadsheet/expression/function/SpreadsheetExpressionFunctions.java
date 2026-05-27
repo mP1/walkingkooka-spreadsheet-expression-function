@@ -55,6 +55,7 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctions;
 import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
@@ -949,6 +950,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         );
     }
 
+    /**
+     * {@see EnvironmentExpressionFunctions#getIndentation}
+     */
+    public static ExpressionFunction<Indentation, SpreadsheetExpressionEvaluationContext> getIndentation() {
+        return fixName(
+            EnvironmentExpressionFunctions.getIndentation()
+        );
+    }
+    
     /**
      * {@see EnvironmentExpressionFunctions#getLineEnding}
      */
