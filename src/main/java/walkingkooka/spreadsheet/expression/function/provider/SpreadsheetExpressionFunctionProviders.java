@@ -363,6 +363,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setGreen(),
                     SpreadsheetExpressionFunctions.setHomeDirectory(),
                     SpreadsheetExpressionFunctions.setHost(),
+                    SpreadsheetExpressionFunctions.setIndentation(),
                     SpreadsheetExpressionFunctions.setLineEnding(),
                     SpreadsheetExpressionFunctions.setLocale(),
                     SpreadsheetExpressionFunctions.setRed(),
