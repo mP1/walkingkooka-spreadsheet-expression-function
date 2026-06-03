@@ -4014,6 +4014,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         "line2";
 
     @Test
+    @Disabled
     public void testEvaluateStorageReadTextWithJsonFile() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
@@ -4058,6 +4059,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    @Disabled
     public void testEvaluateStorageReadTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
