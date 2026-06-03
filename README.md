@@ -245,6 +245,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sqrt
 - storageDelete
 - storageList
+- storageRead
 - storageReadText
 - storageWriteText
 - style
