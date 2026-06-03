@@ -4008,6 +4008,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static StoragePath STORAGE_READ_TEXT_JSON_PATH = StoragePath.parse("/parent123/file.json");
 
+    private final static String STORAGE_READ_TEXT_JSON_TEXT = "{ \"hello\": \"world\" }";
+
     private final static StoragePath STORAGE_READ_TEXT_TXT_PATH = StoragePath.parse("/parent123/file.txt");
 
     private final static String FILE_CONTENT_TEXT = "FileContentText123\n" +
@@ -4030,7 +4032,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndPrintedCheck(
             "=storageReadText(\"/parent123/file.json\")",
             environmentContext,
-            FILE_CONTENT_TEXT, // expected value
+            STORAGE_READ_TEXT_JSON_TEXT, // expected value
             "" // printed
         );
     }
@@ -4079,7 +4081,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndPrintedCheck(
             "=storageReadText(\"file.json\")",
             environmentContext,
-            FILE_CONTENT_TEXT, // expected value
+            STORAGE_READ_TEXT_JSON_TEXT, // expected value
             "" // printed
         );
     }
@@ -5263,7 +5265,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             spreadsheetExpressionEvaluationContext.saveStorage(
                 StorageValue.with(STORAGE_READ_TEXT_JSON_PATH)
                     .setValue(
-                        Optional.of(FILE_CONTENT_TEXT)
+                        Optional.of(STORAGE_READ_TEXT_JSON_TEXT)
                     )
             );
             spreadsheetExpressionEvaluationContext.saveStorage(
