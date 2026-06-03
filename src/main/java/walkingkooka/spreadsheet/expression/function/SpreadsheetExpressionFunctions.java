@@ -2025,6 +2025,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageRead}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> storageRead() {
+        return fixName(
+            StorageExpressionFunctions.storageRead()
+        );
+    }
+
+    /**
      * {@see StorageExpressionFunctions#storageReadText}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> storageReadText() {

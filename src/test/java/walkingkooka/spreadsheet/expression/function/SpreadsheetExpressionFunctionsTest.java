@@ -4016,6 +4016,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         "line2";
 
     @Test
+    public void testEvaluateStorageReadWithJsonFile() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(STORAGE_READ_TEXT_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=storageRead(\"/parent123/file.json\")",
+            environmentContext,
+            JsonNode.parse(STORAGE_READ_TEXT_JSON_TEXT), // expected value
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateStorageReadTextWithJsonFile() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
@@ -5747,6 +5769,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "settimeoffset":
                         case "storagedelete":
                         case "storagelist":
+                        case "storageread":
                         case "storagereadtext":
                         case "storagewritetext":
                         case "getvalidator":
