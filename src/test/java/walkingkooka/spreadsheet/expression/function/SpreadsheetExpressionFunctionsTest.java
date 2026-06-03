@@ -4036,7 +4036,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    @Disabled
     @Test
     public void testEvaluateStorageReadTextWithTxtFile() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
