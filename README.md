@@ -6,20 +6,28 @@
 ![](https://tokei.rs/b1/github/mP1/walkingkooka-spreadsheet-expression-function)
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
-# walkingkooka-spreadsheet-expression-function
+### [Functions](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctions.java)
 
 An assembly of functions that faithfully match their Excel equivalents in terms of functionality and errors.
 
 This includes an assembly of other general purpose `ExpressionFunction(s)` from other repos.
 
 - [boolean](https://github.com/mP1/walkingkooka-tree-expression-function-boolean)
+- [color](https://github.com/mP1/walkingkooka-color/tree/master/src/main/java/walkingkooka/color/expression/function)
 - [datetime](https://github.com/mP1/walkingkooka-tree-expression-function-datetime)
 - [engineering](https://github.com/mP1/walkingkooka-tree-expression-function-engineering)
+- [environment](https://github.com/mP1/walkingkooka-environment-expression-function)
+- [json](https://github.com/mP1/walkingkooka-tree-json)
 - [net](https://github.com/mP1/walkingkooka-tree-expression-function-net)
+- [net-expression-function](https://github.com/mP1/walkingkooka-net-expression-function/tree/master/src/main/java/walkingkooka/net/expression/function)
 - [number](https://github.com/mP1/walkingkooka-tree-expression-function-number)
 - [number-trigonometry](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry)
 - [stat](https://github.com/mP1/walkingkooka-tree-expression-function-stat)
+- [storage-expression-function](https://github.com/mP1/walkingkooka-storage-expression-function)
 - [string](https://github.com/mP1/walkingkooka-tree-expression-function-string)
+- [terminal](https://github.com/mP1/walkingkooka-terminal)
+- [tree-text](https://github.com/mP1/walkingkooka-tree-text)
+- [validation](https://github.com/mP1/walkingkooka-validation/)
 
 The two links below provide links to available functions in Excel and Sheets
 
