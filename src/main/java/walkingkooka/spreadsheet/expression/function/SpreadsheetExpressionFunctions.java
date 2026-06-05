@@ -2043,6 +2043,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageWrite}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageWrite() {
+        return fixName(
+            StorageExpressionFunctions.storageWrite()
+        );
+    }
+    
+    /**
      * {@see StorageExpressionFunctions#storageWriteText}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageWriteText() {
