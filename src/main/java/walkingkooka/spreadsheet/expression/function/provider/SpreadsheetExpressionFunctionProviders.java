@@ -383,6 +383,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.storageList(),
                     SpreadsheetExpressionFunctions.storageRead(),
                     SpreadsheetExpressionFunctions.storageReadText(),
+                    SpreadsheetExpressionFunctions.storageWrite(),
                     SpreadsheetExpressionFunctions.storageWriteText(),
                     SpreadsheetExpressionFunctions.style(),
                     SpreadsheetExpressionFunctions.styleGet(),
