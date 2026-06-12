@@ -2739,6 +2739,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateListNonNull() {
+        this.evaluateAndPrintedCheck(
+            "=listNonNull(TRUE, 2, null(), \"Cat\")",
+            Lists.of(
+                Boolean.TRUE,
+                EXPRESSION_NUMBER_KIND.create(2),
+                "Cat"
+            ),
+            "" // expectedPrinted
+        );
+    }
+
+    @Test
     public void testEvaluateLnWithNumber() {
         this.evaluateAndValueCheck(
             "=ln(2)",

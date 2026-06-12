@@ -1320,6 +1320,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@link ExpressionFunctions#listNonNull()}
+     */
+    public static ExpressionFunction<List<?>, SpreadsheetExpressionEvaluationContext> listNonNull() {
+        return fixName(
+            ExpressionFunctions.listNonNull()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#ln}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ln() {

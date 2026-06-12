@@ -173,6 +173,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - len
 - let
 - list
+- listNonNull
 - ln
 - locale
 - localeLanguageTag
