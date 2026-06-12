@@ -1311,10 +1311,12 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionList}
+     * {@link ExpressionFunctions#list()}
      */
     public static ExpressionFunction<List<?>, SpreadsheetExpressionEvaluationContext> list() {
-        return SpreadsheetExpressionFunctionList.INSTANCE;
+        return fixName(
+            ExpressionFunctions.list()
+        );
     }
 
     /**
