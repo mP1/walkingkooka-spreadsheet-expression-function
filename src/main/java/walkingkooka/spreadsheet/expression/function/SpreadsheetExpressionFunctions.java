@@ -2009,6 +2009,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionUrlSpreadsheetUrl}
+     */
+    public static ExpressionFunction<Url, SpreadsheetExpressionEvaluationContext> spreadsheetUrl() {
+        return SpreadsheetExpressionFunctionUrlSpreadsheetUrl.INSTANCE;
+    }
+
+    /**
      * {@see NumberExpressionFunctions#sqrt}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {

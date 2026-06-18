@@ -251,6 +251,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - spreadsheetMetadataGet
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
+- spreadsheetUrl
 - sqrt
 - storageDelete
 - storageList
