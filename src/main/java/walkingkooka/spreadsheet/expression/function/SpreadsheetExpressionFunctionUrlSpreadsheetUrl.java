@@ -19,7 +19,6 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.net.Url;
 import walkingkooka.net.UrlFragment;
-import walkingkooka.net.UrlPath;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
@@ -68,8 +67,8 @@ final class SpreadsheetExpressionFunctionUrlSpreadsheetUrl extends SpreadsheetEx
         );
 
         return Url.EMPTY_RELATIVE_URL.setFragment(
-            UrlFragment.with(
-                UrlPath.SEPARATOR.string() + spreadsheetId
+            UrlFragment.SLASH.append(
+                spreadsheetId.urlFragment()
             )
         );
     }
