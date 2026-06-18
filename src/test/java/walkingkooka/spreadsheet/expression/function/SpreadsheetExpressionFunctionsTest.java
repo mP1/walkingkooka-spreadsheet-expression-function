@@ -165,6 +165,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             }
         };
 
+    private final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(0x1234);
+
     // wizard function names are all case-insensitive...................................................................
 
     @Test
@@ -3947,6 +3949,26 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .loadOrFail(id)
                 .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
             "spreadsheetMetadata"
+        );
+    }
+
+    @Test
+    public void testEvaluateSpreadsheetUrl() {
+        this.evaluateAndValueCheck(
+            "=spreadsheetUrl()",
+            Url.parseRelative("#/" + SPREADSHEET_ID.urlFragment())
+        );
+    }
+
+    @Test
+    public void testEvaluateSpreadsheetUrlWithString() {
+        this.evaluateAndValueCheck(
+            "=spreadsheetUrl(123456)",
+            Url.parseRelative(
+                "#/" +
+                    SpreadsheetId.parse("123456")
+                        .urlFragment()
+            )
         );
     }
 
