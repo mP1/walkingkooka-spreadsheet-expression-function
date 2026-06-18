@@ -17,7 +17,11 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.Cast;
 import walkingkooka.net.Url;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+
+import java.util.List;
 
 /**
  * Base for any function that returns an {@link walkingkooka.net.Url}
@@ -30,6 +34,23 @@ abstract class SpreadsheetExpressionFunctionUrl extends SpreadsheetExpressionFun
     SpreadsheetExpressionFunctionUrl(final String name) {
         super(name);
     }
+
+    @Override
+    public final Url apply(final List<Object> parameters,
+                           final SpreadsheetExpressionEvaluationContext context) {
+        this.checkParameterCount(parameters);
+
+        return this.apply0(
+            context.prepareParameters(
+                Cast.to(this),
+                parameters
+            ),
+            context
+        );
+    }
+
+    abstract Url apply0(final List<Object> parameters,
+                        final SpreadsheetExpressionEvaluationContext context);
 
     @Override
     public final Class<Url> returnType() {
