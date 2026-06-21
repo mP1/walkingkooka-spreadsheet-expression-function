@@ -1896,6 +1896,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+
+    @Test
+    public void testEvaluateGetSpreadsheetMetadata() {
+        this.evaluateAndValueCheck(
+            "=getSpreadsheetMetadata(\"spreadsheetName\", \"missing!!!\")",
+            SpreadsheetName.with("Untitled5678")
+        );
+    }
+
     @Test
     public void testEvaluateGetStyleWithString() {
         this.evaluateAndValueCheck(
@@ -3918,14 +3927,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=sinh(\"1\")",
             EXPRESSION_NUMBER_KIND.create(1.175201)
-        );
-    }
-
-    @Test
-    public void testEvaluateSpreadsheetMetadataGet() {
-        this.evaluateAndValueCheck(
-            "=spreadsheetMetadataGet(\"spreadsheetName\", \"missing!!!\")",
-            SpreadsheetName.with("Untitled5678")
         );
     }
 

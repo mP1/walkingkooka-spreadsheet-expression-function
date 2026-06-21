@@ -135,6 +135,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - getLocale
 - getParser
 - getRed
+- getSpreadsheetMetadata
 - getStyle
 - getTextNode
 - getTimeOffset
@@ -248,7 +249,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sign
 - sin
 - sinh
-- spreadsheetMetadataGet
 - spreadsheetMetadataRemove
 - spreadsheetMetadataSet
 - spreadsheetUrl
