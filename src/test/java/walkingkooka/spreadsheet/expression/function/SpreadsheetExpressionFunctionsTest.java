@@ -5812,6 +5812,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "offset":
                         case "cell":
                         case "info":
+                        case "deletestorage":
                         case "getcharset":
                         case "getcurrency":
                         case "getcurrentworkingdirectory":
@@ -5837,7 +5838,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
-                        case "storagedelete":
                         case "storagelist":
                         case "storageread":
                         case "storagereadtext":

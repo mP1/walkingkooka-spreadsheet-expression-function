@@ -99,6 +99,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - dec2oct
 - decimal
 - degrees
+- deleteStorage
 - delta
 - dollar
 - e
@@ -253,7 +254,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sinh
 - spreadsheetUrl
 - sqrt
-- storageDelete
 - storageList
 - storageRead
 - storageReadText
