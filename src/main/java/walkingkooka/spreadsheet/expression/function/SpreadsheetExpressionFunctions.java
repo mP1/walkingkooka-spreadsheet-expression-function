@@ -689,6 +689,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageDelete}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> deleteStorage() {
+        return fixName(
+            StorageExpressionFunctions.deleteStorage()
+        );
+    }
+
+    /**
      * {@see EngineeringExpressionFunctions#delta}
      */
     public static ExpressionFunction<Boolean, SpreadsheetExpressionEvaluationContext> delta() {
@@ -2021,15 +2030,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
         return fixName(
             NumberExpressionFunctions.sqrt()
-        );
-    }
-
-    /**
-     * {@see StorageExpressionFunctions#storageDelete}
-     */
-    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageDelete() {
-        return fixName(
-            StorageExpressionFunctions.storageDelete()
         );
     }
 
