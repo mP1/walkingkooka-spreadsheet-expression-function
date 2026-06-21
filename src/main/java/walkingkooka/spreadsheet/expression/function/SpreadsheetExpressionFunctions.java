@@ -1349,7 +1349,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<StorageValueInfoList, SpreadsheetExpressionEvaluationContext> listStorage() {
         return fixName(
-            StorageExpressionFunctions.storageList()
+            StorageExpressionFunctions.listStorage()
         );
     }
 
