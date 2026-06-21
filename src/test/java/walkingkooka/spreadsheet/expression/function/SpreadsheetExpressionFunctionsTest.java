@@ -2762,6 +2762,40 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    private final static EmailAddress STORAGE_LIST_USER = EmailAddress.parse("storageList@example.com");
+
+    private final static StorageValueInfoList STORAGE_VALUE_INFO_LIST = StorageValueInfoList.EMPTY.concat(
+        StorageValueInfo.with(
+            StoragePath.parse("/path1/file2.txt"),
+            AuditInfo.create(
+                STORAGE_LIST_USER,
+                HAS_NOW.now()
+            )
+        )
+    );
+
+    @Test
+    public void testEvaluateListStorage() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(STORAGE_LIST_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=listStorage(\"/path1/\")",
+            environmentContext,
+            STORAGE_VALUE_INFO_LIST, // expected value
+            "" // printed
+        );
+    }
+
     @Test
     public void testEvaluateLnWithNumber() {
         this.evaluateAndValueCheck(
@@ -4003,40 +4037,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=storageDelete(\"/parent123/file.json\")",
             (Object) null, // expected value
             ""// printed
-        );
-    }
-
-    private final static EmailAddress STORAGE_LIST_USER = EmailAddress.parse("storageList@example.com");
-
-    private final static StorageValueInfoList STORAGE_VALUE_INFO_LIST = StorageValueInfoList.EMPTY.concat(
-        StorageValueInfo.with(
-            StoragePath.parse("/path1/file2.txt"),
-            AuditInfo.create(
-                STORAGE_LIST_USER,
-                HAS_NOW.now()
-            )
-        )
-    );
-
-    @Test
-    public void testEvaluateStorageList() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_LIST_USER)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=storageList(\"/path1/\")",
-            environmentContext,
-            STORAGE_VALUE_INFO_LIST, // expected value
-            "" // printed
         );
     }
 
@@ -5823,6 +5823,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "getlocale":
                         case "gettimeoffset":    
                         case "getuser":
+                        case "liststorage":
                         case "print":
                         case "printenv":
                         case "println":
@@ -5838,7 +5839,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
-                        case "storagelist":
                         case "storageread":
                         case "storagereadtext":
                         case "storagewrite":
