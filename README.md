@@ -176,6 +176,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - let
 - list
 - listNonNull
+- listStorage
 - ln
 - locale
 - localeLanguageTag
@@ -254,7 +255,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sinh
 - spreadsheetUrl
 - sqrt
-- storageList
 - storageRead
 - storageReadText
 - storageWrite
