@@ -217,6 +217,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - randBetween
 - readLine
 - removeEnv
+- removeSpreadsheetMetadata
 - replace
 - rept
 - right
@@ -249,7 +250,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sign
 - sin
 - sinh
-- spreadsheetMetadataRemove
 - spreadsheetMetadataSet
 - spreadsheetUrl
 - sqrt

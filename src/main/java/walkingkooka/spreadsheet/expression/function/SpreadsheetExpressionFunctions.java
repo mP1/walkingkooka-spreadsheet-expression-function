@@ -1707,6 +1707,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataRemove}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemove.INSTANCE;
+    }
+
+    /**
      * {@see StringExpressionFunctions#replace}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> replace() {
@@ -1992,13 +1999,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return fixName(
             NumberTrigonomteryExpressionFunctions.sinh()
         );
-    }
-
-    /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataRemove}
-     */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> spreadsheetMetadataRemove() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemove.INSTANCE;
     }
 
     /**
