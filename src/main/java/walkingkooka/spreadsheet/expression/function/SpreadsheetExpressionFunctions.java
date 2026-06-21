@@ -1939,6 +1939,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSet}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> setSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataSet.INSTANCE;
+    }
+
+    /**
      * {@see TreeTextExpressionFunctions#setStyle}
      */
     public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> setStyle() {
@@ -1999,13 +2006,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return fixName(
             NumberTrigonomteryExpressionFunctions.sinh()
         );
-    }
-
-    /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSet}
-     */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> spreadsheetMetadataSet() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSet.INSTANCE;
     }
 
     /**

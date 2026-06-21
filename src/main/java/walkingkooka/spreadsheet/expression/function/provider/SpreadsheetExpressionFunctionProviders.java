@@ -378,7 +378,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.sign(),
                     SpreadsheetExpressionFunctions.sin(),
                     SpreadsheetExpressionFunctions.sinh(),
-                    SpreadsheetExpressionFunctions.spreadsheetMetadataSet(),
+                    SpreadsheetExpressionFunctions.setSpreadsheetMetadata(),
                     SpreadsheetExpressionFunctions.spreadsheetUrl(),
                     SpreadsheetExpressionFunctions.sqrt(),
                     SpreadsheetExpressionFunctions.storageDelete(),

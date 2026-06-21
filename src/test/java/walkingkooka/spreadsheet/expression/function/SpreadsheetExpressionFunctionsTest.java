@@ -3804,6 +3804,29 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSetSpreadsheetMetadata() {
+        final SpreadsheetName expected = SpreadsheetName.with("NewName222");
+
+        final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
+            "=setSpreadsheetMetadata(\"spreadsheetName\", \"NewName222\")",
+            expected
+        );
+
+        // must load SpreadsheetMetadata because BasicSpreadsheetEngineContext#spreadsheetMetadata is not refreshed after spreadsheet save.
+        final SpreadsheetId id = context.spreadsheetMetadata()
+            .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
+
+        this.checkEquals(
+            expected,
+            context.storeRepository()
+                .metadatas()
+                .loadOrFail(id)
+                .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
+            "spreadsheetMetadata"
+        );
+    }
+
+    @Test
     public void testEvaluateSetStyle() {
         this.evaluateAndValueCheck(
             "=setStyle(hyperlink(\"https://example.com\"),\"color: #123456\")",
@@ -3927,29 +3950,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=sinh(\"1\")",
             EXPRESSION_NUMBER_KIND.create(1.175201)
-        );
-    }
-
-    @Test
-    public void testEvaluateSpreadsheetMetadataSet() {
-        final SpreadsheetName expected = SpreadsheetName.with("NewName222");
-
-        final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
-            "=spreadsheetMetadataSet(\"spreadsheetName\", \"NewName222\")",
-            expected
-        );
-
-        // must load SpreadsheetMetadata because BasicSpreadsheetEngineContext#spreadsheetMetadata is not refreshed after spreadsheet save.
-        final SpreadsheetId id = context.spreadsheetMetadata()
-            .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
-
-        this.checkEquals(
-            expected,
-            context.storeRepository()
-                .metadatas()
-                .loadOrFail(id)
-                .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
-            "spreadsheetMetadata"
         );
     }
 
