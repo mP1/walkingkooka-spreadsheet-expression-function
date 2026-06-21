@@ -2059,15 +2059,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             NumberExpressionFunctions.sqrt()
         );
     }
-    
-    /**
-     * {@see StorageExpressionFunctions#storageWriteText}
-     */
-    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageWriteText() {
-        return fixName(
-            StorageExpressionFunctions.storageWriteText()
-        );
-    }
 
     /**
      * {@see TreeTextExpressionFunctions#style}
@@ -2441,6 +2432,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> writeStorage() {
         return fixName(
             StorageExpressionFunctions.writeStorage()
+        );
+    }
+
+    /**
+     * {@see StorageExpressionFunctions#storageWriteText}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> writeStorageText() {
+        return fixName(
+            StorageExpressionFunctions.writeStorageText()
         );
     }
 

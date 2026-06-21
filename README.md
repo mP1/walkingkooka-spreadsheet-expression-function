@@ -257,7 +257,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sinh
 - spreadsheetUrl
 - sqrt
-- storageWriteText
 - style
 - styledText
 - styleGet
@@ -300,6 +299,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - weekday
 - weeknum
 - writeStorage
+- writeStorageText
 - xor
 - year
 
