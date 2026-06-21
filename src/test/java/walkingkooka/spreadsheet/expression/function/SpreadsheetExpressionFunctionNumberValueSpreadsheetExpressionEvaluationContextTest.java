@@ -36,11 +36,16 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContext;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.storage.StoragePath;
+import walkingkooka.store.StoreWatcher;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -798,6 +803,58 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                         this, // CurrencyCodeLanguageTagContext
                         this.mathContext()
                     )
+                );
+
+                // SpreadsheetMetadataContext...................................................................................
+
+                @Override
+                public SpreadsheetMetadata createMetadata(final EmailAddress user,
+                                                          final Optional<Locale> locale) {
+                    return this.spreadsheetMetadataContext.createMetadata(
+                        user,
+                        locale
+                    );
+                }
+
+                @Override
+                public Optional<SpreadsheetMetadata> loadMetadata(final SpreadsheetId id) {
+                    return this.spreadsheetMetadataContext.loadMetadata(id);
+                }
+
+                @Override
+                public SpreadsheetMetadata saveMetadata(final SpreadsheetMetadata metadata) {
+                    return this.spreadsheetMetadataContext.saveMetadata(metadata);
+                }
+
+                @Override
+                public void deleteMetadata(final SpreadsheetId id) {
+                    this.spreadsheetMetadataContext.deleteMetadata(id);
+                }
+
+                @Override
+                public Runnable addMetadataWatcher(final StoreWatcher<SpreadsheetMetadata> watcher) {
+                    return this.spreadsheetMetadataContext.addMetadataWatcher(watcher);
+                }
+
+                @Override
+                public Runnable addMetadataWatcherOnce(final StoreWatcher<SpreadsheetMetadata> watcher) {
+                    return this.spreadsheetMetadataContext.addMetadataWatcherOnce(watcher);
+                }
+
+                @Override
+                public List<SpreadsheetMetadata> findMetadataBySpreadsheetName(final String name,
+                                                                               final int offset,
+                                                                               final int count) {
+                    return this.spreadsheetMetadataContext.findMetadataBySpreadsheetName(
+                        name,
+                        offset,
+                        count
+                    );
+                }
+
+                private final SpreadsheetMetadataContext spreadsheetMetadataContext = SpreadsheetMetadataContexts.basic(
+                    (e, l) -> SpreadsheetMetadataTesting.METADATA_EN_AU,
+                    SpreadsheetMetadataStores.treeMap()
                 );
             }
         );

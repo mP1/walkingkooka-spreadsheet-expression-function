@@ -39,6 +39,8 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.format.SpreadsheetFormatterContext;
 import walkingkooka.spreadsheet.formula.parser.SpreadsheetFormulaParserToken;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContext;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContextDelegator;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetColumnReference;
@@ -93,6 +95,7 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     SpreadsheetEnvironmentContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
     LocaleContextDelegator,
+    SpreadsheetMetadataContextDelegator,
     TerminalContextDelegator {
 
     static SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext with(final char decimalSeparator,
@@ -583,6 +586,12 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
             count
         );
         throw new UnsupportedOperationException();
+    }
+    // SpreadsheetMetadataContextDelegator..............................................................................
+
+    @Override
+    public SpreadsheetMetadataContext spreadsheetMetadataContext() {
+        return this.context;
     }
 
     // TerminalContextDelegator.........................................................................................
