@@ -994,6 +994,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataGet}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataGet.INSTANCE;
+    }
+
+    /**
      * {@see TreeTextExpressionFunctions#getStyle}
      */
     public static ExpressionFunction<TextStyle, SpreadsheetExpressionEvaluationContext> getStyle() {
@@ -1985,13 +1992,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         return fixName(
             NumberTrigonomteryExpressionFunctions.sinh()
         );
-    }
-
-    /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataGet}
-     */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> spreadsheetMetadataGet() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGet.INSTANCE;
     }
 
     /**

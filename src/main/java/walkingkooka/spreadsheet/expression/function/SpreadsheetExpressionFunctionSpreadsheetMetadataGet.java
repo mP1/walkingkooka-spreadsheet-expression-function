@@ -43,7 +43,7 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataGet extends Spreadsh
      * Private constructor use singleton
      */
     private SpreadsheetExpressionFunctionSpreadsheetMetadataGet() {
-        super("spreadsheetMetadataGet");
+        super("getSpreadsheetMetadata");
     }
 
     @Override

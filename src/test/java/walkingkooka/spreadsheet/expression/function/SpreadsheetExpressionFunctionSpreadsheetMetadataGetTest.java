@@ -86,7 +86,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest exten
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "spreadsheetMetadataGet"
+            "getSpreadsheetMetadata"
         );
     }
 
