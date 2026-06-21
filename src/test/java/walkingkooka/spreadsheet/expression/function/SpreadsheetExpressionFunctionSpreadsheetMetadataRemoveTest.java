@@ -97,7 +97,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "spreadsheetMetadataRemove"
+            "removeSpreadsheetMetadata"
         );
     }
 

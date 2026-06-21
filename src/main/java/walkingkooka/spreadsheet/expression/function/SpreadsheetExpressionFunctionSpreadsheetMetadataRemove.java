@@ -40,7 +40,7 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemove extends Sprea
      * Private constructor use singleton
      */
     private SpreadsheetExpressionFunctionSpreadsheetMetadataRemove() {
-        super("spreadsheetMetadataRemove");
+        super("removeSpreadsheetMetadata");
     }
 
     @Override
