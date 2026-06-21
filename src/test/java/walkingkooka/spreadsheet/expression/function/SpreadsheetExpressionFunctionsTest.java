@@ -4052,7 +4052,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         "line2";
 
     @Test
-    public void testEvaluateStorageReadWithJsonFile() {
+    public void testEvaluateReadStorageWithJsonFile() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
                 CHARSET,
@@ -4066,7 +4066,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         this.evaluateAndPrintedCheck(
-            "=storageRead(\"/parent123/file.json\")",
+            "=readStorage(\"/parent123/file.json\")",
             environmentContext,
             JsonNode.parse(STORAGE_READ_TEXT_JSON_TEXT), // expected value
             "" // printed
@@ -4074,7 +4074,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateStorageReadTextWithJsonFile() {
+    public void testEvaluateReadStorageTextWithJsonFile() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
                 CHARSET,
@@ -4097,7 +4097,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateStorageReadTextWithTxtFile() {
+    public void testEvaluateReadStorageTextWithTxtFile() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
                 CHARSET,
@@ -4119,7 +4119,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateStorageReadTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
+    public void testEvaluateReadStorageTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
                 CHARSET,
@@ -5828,6 +5828,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "printenv":
                         case "println":
                         case "readline":
+                        case "readstorage":
                         case "removeenv":
                         case "script":
                         case "setcharset":
@@ -5839,7 +5840,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
-                        case "storageread":
                         case "storagereadtext":
                         case "storagewrite":
                         case "storagewritetext":

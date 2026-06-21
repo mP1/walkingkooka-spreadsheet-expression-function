@@ -1716,6 +1716,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageRead}
+     */
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> readStorage() {
+        return fixName(
+            StorageExpressionFunctions.readStorage()
+        );
+    }
+
+    /**
      * {@see EnvironmentExpressionFunctions#removeEnv}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeEnv() {
@@ -2039,15 +2048,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
         return fixName(
             NumberExpressionFunctions.sqrt()
-        );
-    }
-
-    /**
-     * {@see StorageExpressionFunctions#storageRead}
-     */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> storageRead() {
-        return fixName(
-            StorageExpressionFunctions.storageRead()
         );
     }
 
