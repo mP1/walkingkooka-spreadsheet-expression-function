@@ -1345,6 +1345,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctions#storageList}
+     */
+    public static ExpressionFunction<StorageValueInfoList, SpreadsheetExpressionEvaluationContext> listStorage() {
+        return fixName(
+            StorageExpressionFunctions.storageList()
+        );
+    }
+
+    /**
      * {@see NumberExpressionFunctions#ln}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> ln() {
@@ -2030,15 +2039,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sqrt() {
         return fixName(
             NumberExpressionFunctions.sqrt()
-        );
-    }
-
-    /**
-     * {@see StorageExpressionFunctions#storageList}
-     */
-    public static ExpressionFunction<StorageValueInfoList, SpreadsheetExpressionEvaluationContext> storageList() {
-        return fixName(
-            StorageExpressionFunctions.storageList()
         );
     }
 

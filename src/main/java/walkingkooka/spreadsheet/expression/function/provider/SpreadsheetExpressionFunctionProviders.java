@@ -382,7 +382,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setSpreadsheetMetadata(),
                     SpreadsheetExpressionFunctions.spreadsheetUrl(),
                     SpreadsheetExpressionFunctions.sqrt(),
-                    SpreadsheetExpressionFunctions.storageList(),
+                    SpreadsheetExpressionFunctions.listStorage(),
                     SpreadsheetExpressionFunctions.storageRead(),
                     SpreadsheetExpressionFunctions.storageReadText(),
                     SpreadsheetExpressionFunctions.storageWrite(),
