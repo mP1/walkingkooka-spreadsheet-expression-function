@@ -243,6 +243,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - setLineEnding
 - setLocale
 - setRed
+- setSpreadsheetMetadata
 - setStyle
 - setText
 - setTimeOffset
@@ -250,7 +251,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sign
 - sin
 - sinh
-- spreadsheetMetadataSet
 - spreadsheetUrl
 - sqrt
 - storageDelete
