@@ -4147,40 +4147,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateStorageWriteText() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
-        );
-
-        final SpreadsheetExpressionEvaluationContext context = this.evaluateAndPrintedCheck(
-            "=storageWriteText(\"/created.txt\",\"Hello\")",
-            environmentContext,
-            null, // expected value
-            "" // printed
-        ).spreadsheetExpressionEvaluationContext(
-            SpreadsheetExpressionEvaluationContext.NO_CELL,
-            SpreadsheetExpressionReferenceLoaders.empty()
-        );
-
-        this.checkEquals(
-            "Hello",
-            context.loadStorage(
-                StoragePath.parse("/created.txt")
-                ).flatMap(
-                StorageValue::value
-                ).orElse(null)
-        );
-    }
-
-    @Test
     public void testEvaluateStyle() {
         this.evaluateAndValueCheck(
             "=style(\"text-align: left;\")",
@@ -5129,6 +5095,40 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateWriteStorageText() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(READ_STORAGE_TEXT_USER)
+            )
+        );
+
+        final SpreadsheetExpressionEvaluationContext context = this.evaluateAndPrintedCheck(
+            "=writeStorageText(\"/created.txt\",\"Hello\")",
+            environmentContext,
+            null, // expected value
+            "" // printed
+        ).spreadsheetExpressionEvaluationContext(
+            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetExpressionReferenceLoaders.empty()
+        );
+
+        this.checkEquals(
+            "Hello",
+            context.loadStorage(
+                StoragePath.parse("/created.txt")
+            ).flatMap(
+                StorageValue::value
+            ).orElse(null)
+        );
+    }
+
+    @Test
     public void testEvaluateYear() {
         this.evaluateAndValueCheck(
             "=year(date(1999, 12, 31))",
@@ -5841,11 +5841,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
-                        case "storagewritetext":
                         case "getvalidator":
                         case "validationerrorif":
                         case "validationvalue":
                         case "writestorage":
+                        case "writestoragetext":
                         case "exit":
                         case "shell":
                             pure = false;

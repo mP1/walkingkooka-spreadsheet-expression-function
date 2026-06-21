@@ -385,7 +385,6 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setSpreadsheetMetadata(),
                     SpreadsheetExpressionFunctions.spreadsheetUrl(),
                     SpreadsheetExpressionFunctions.sqrt(),
-                    SpreadsheetExpressionFunctions.storageWriteText(),
                     SpreadsheetExpressionFunctions.style(),
                     SpreadsheetExpressionFunctions.styleGet(),
                     SpreadsheetExpressionFunctions.styleRemove(),
@@ -428,6 +427,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.weekDay(),
                     SpreadsheetExpressionFunctions.weekNum(),
                     SpreadsheetExpressionFunctions.writeStorage(),
+                    SpreadsheetExpressionFunctions.writeStorageText(),
                     SpreadsheetExpressionFunctions.year(),
                     SpreadsheetExpressionFunctions.xor()
                 )
