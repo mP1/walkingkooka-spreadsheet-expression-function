@@ -2059,15 +2059,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             NumberExpressionFunctions.sqrt()
         );
     }
-
-    /**
-     * {@see StorageExpressionFunctions#storageWrite}
-     */
-    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> storageWrite() {
-        return fixName(
-            StorageExpressionFunctions.storageWrite()
-        );
-    }
     
     /**
      * {@see StorageExpressionFunctions#storageWriteText}
@@ -2441,6 +2432,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> weekNum() {
         return fixName(
             DateTimeExpressionFunctions.weekNum()
+        );
+    }
+
+    /**
+     * {@see StorageExpressionFunctions#storageWrite}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> writeStorage() {
+        return fixName(
+            StorageExpressionFunctions.writeStorage()
         );
     }
 
