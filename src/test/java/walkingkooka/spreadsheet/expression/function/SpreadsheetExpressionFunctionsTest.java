@@ -3330,6 +3330,112 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    private final static EmailAddress READ_STORAGE_TEXT_USER = EmailAddress.parse("storageReadText@example.com");
+
+    private final static StoragePath READ_STORAGE_TEXT_JSON_PATH = StoragePath.parse("/parent123/file.json");
+
+    private final static String READ_STORAGE_TEXT_JSON_TEXT = "{ \"hello\": \"world\" }";
+
+    private final static StoragePath READ_STORAGE_TEXT_TXT_PATH = StoragePath.parse("/parent123/file.txt");
+
+    private final static String READ_STORAGE_TEXT_FILE_CONTENT_TEXT = "FileContentText123\n" +
+        "line2";
+
+    @Test
+    public void testEvaluateReadStorageWithJsonFile() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(READ_STORAGE_TEXT_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=readStorage(\"/parent123/file.json\")",
+            environmentContext,
+            JsonNode.parse(READ_STORAGE_TEXT_JSON_TEXT), // expected value
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateReadStorageTextWithJsonFile() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(READ_STORAGE_TEXT_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=readStorageText(\"/parent123/file.json\")",
+            environmentContext,
+            JsonNode.parse(READ_STORAGE_TEXT_JSON_TEXT)
+                .text(), // expected value
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateReadStorageTextWithTxtFile() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(READ_STORAGE_TEXT_USER)
+            )
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=readStorageText(\"/parent123/file.txt\")",
+            environmentContext,
+            READ_STORAGE_TEXT_FILE_CONTENT_TEXT, // expected value
+            "" // printed
+        );
+    }
+
+    @Test
+    public void testEvaluateReadStorageTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
+        final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                CHARSET,
+                CURRENCY,
+                INDENTATION,
+                LINE_ENDING,
+                LOCALE,
+                HAS_NOW,
+                Optional.of(READ_STORAGE_TEXT_USER)
+            )
+        );
+
+        environmentContext.setEnvironmentValue(
+            SpreadsheetEnvironmentContext.CURRENT_WORKING_DIRECTORY,
+            StoragePath.parse("/parent123")
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=readStorageText(\"file.json\")",
+            environmentContext,
+            JsonNode.parse(READ_STORAGE_TEXT_JSON_TEXT)
+                .text(), // expected value
+            "" // printed
+        );
+    }
+    
     @Test
     public void testEvaluateRemoveEnvAndPrint() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
@@ -4040,112 +4146,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    private final static EmailAddress STORAGE_READ_TEXT_USER = EmailAddress.parse("storageReadText@example.com");
-
-    private final static StoragePath STORAGE_READ_TEXT_JSON_PATH = StoragePath.parse("/parent123/file.json");
-
-    private final static String STORAGE_READ_TEXT_JSON_TEXT = "{ \"hello\": \"world\" }";
-
-    private final static StoragePath STORAGE_READ_TEXT_TXT_PATH = StoragePath.parse("/parent123/file.txt");
-
-    private final static String FILE_CONTENT_TEXT = "FileContentText123\n" +
-        "line2";
-
-    @Test
-    public void testEvaluateReadStorageWithJsonFile() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_READ_TEXT_USER)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=readStorage(\"/parent123/file.json\")",
-            environmentContext,
-            JsonNode.parse(STORAGE_READ_TEXT_JSON_TEXT), // expected value
-            "" // printed
-        );
-    }
-
-    @Test
-    public void testEvaluateReadStorageTextWithJsonFile() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_READ_TEXT_USER)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=storageReadText(\"/parent123/file.json\")",
-            environmentContext,
-            JsonNode.parse(STORAGE_READ_TEXT_JSON_TEXT)
-                .text(), // expected value
-            "" // printed
-        );
-    }
-
-    @Test
-    public void testEvaluateReadStorageTextWithTxtFile() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_READ_TEXT_USER)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=storageReadText(\"/parent123/file.txt\")",
-            environmentContext,
-            FILE_CONTENT_TEXT, // expected value
-            "" // printed
-        );
-    }
-
-    @Test
-    public void testEvaluateReadStorageTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_READ_TEXT_USER)
-            )
-        );
-
-        environmentContext.setEnvironmentValue(
-            SpreadsheetEnvironmentContext.CURRENT_WORKING_DIRECTORY,
-            StoragePath.parse("/parent123")
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=storageReadText(\"file.json\")",
-            environmentContext,
-            JsonNode.parse(STORAGE_READ_TEXT_JSON_TEXT)
-                .text(), // expected value
-            "" // printed
-        );
-    }
-
     @Test
     public void testEvaluateStorageWrite() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
@@ -4156,7 +4156,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.of(STORAGE_READ_TEXT_USER)
+                Optional.of(READ_STORAGE_TEXT_USER)
             )
         );
 
@@ -4190,7 +4190,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 LINE_ENDING,
                 LOCALE,
                 HAS_NOW,
-                Optional.of(STORAGE_READ_TEXT_USER)
+                Optional.of(READ_STORAGE_TEXT_USER)
             )
         );
 
@@ -5355,19 +5355,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 )
             );
 
-        if (Optional.of(STORAGE_READ_TEXT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
+        if (Optional.of(READ_STORAGE_TEXT_USER).equals(spreadsheetExpressionEvaluationContext.user())) {
             spreadsheetExpressionEvaluationContext.saveStorage(
-                StorageValue.with(STORAGE_READ_TEXT_JSON_PATH)
+                StorageValue.with(READ_STORAGE_TEXT_JSON_PATH)
                     .setValue(
                         Optional.of(
-                            JsonNode.parse(STORAGE_READ_TEXT_JSON_TEXT)
+                            JsonNode.parse(READ_STORAGE_TEXT_JSON_TEXT)
                         )
                     )
             );
             spreadsheetExpressionEvaluationContext.saveStorage(
-                StorageValue.with(STORAGE_READ_TEXT_TXT_PATH)
+                StorageValue.with(READ_STORAGE_TEXT_TXT_PATH)
                     .setValue(
-                        Optional.of(FILE_CONTENT_TEXT)
+                        Optional.of(READ_STORAGE_TEXT_FILE_CONTENT_TEXT)
                     )
             );
         }
@@ -5829,6 +5829,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "println":
                         case "readline":
                         case "readstorage":
+                        case "readstoragetext":
                         case "removeenv":
                         case "script":
                         case "setcharset":
@@ -5840,7 +5841,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
-                        case "storagereadtext":
                         case "storagewrite":
                         case "storagewritetext":
                         case "getvalidator":
