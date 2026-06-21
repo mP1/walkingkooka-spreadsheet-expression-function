@@ -218,6 +218,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - rand
 - randBetween
 - readLine
+- readStorage
 - removeEnv
 - removeSpreadsheetMetadata
 - replace
@@ -255,7 +256,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sinh
 - spreadsheetUrl
 - sqrt
-- storageRead
 - storageReadText
 - storageWrite
 - storageWriteText
