@@ -1238,6 +1238,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateDeleteStorage() {
+        this.evaluateAndPrintedCheck(
+            "=deleteStorage(\"/parent123/file.json\")",
+            (Object) null, // expected value
+            ""// printed
+        );
+    }
+
+    @Test
     public void testEvaluateDeltaNumbersEquals() {
         this.evaluateAndValueCheck(
             "=delta(1.25, \"1.25\")",
@@ -4028,15 +4037,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=sqrt(\"100\")",
             EXPRESSION_NUMBER_KIND.create(10)
-        );
-    }
-
-    @Test
-    public void testEvaluateStorageDelete() {
-        this.evaluateAndPrintedCheck(
-            "=storageDelete(\"/parent123/file.json\")",
-            (Object) null, // expected value
-            ""// printed
         );
     }
 
