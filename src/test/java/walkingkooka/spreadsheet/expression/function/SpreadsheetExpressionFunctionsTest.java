@@ -2857,6 +2857,32 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLoadSpreadsheetMetadataWithUnknownSpreadsheetId() {
+        this.evaluateAndValueCheck(
+            "=loadSpreadsheetMetadata(\"404\")",
+            null
+        );
+    }
+
+    @Test
+    public void testEvaluateLoadSpreadsheetMetadataWithSpreadsheetId() {
+        this.checkEquals(
+            SPREADSHEET_ID,
+            SpreadsheetId.with(0x1234)
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=loadSpreadsheetMetadata(\"1234\")",
+            this.metadata()
+                .set(
+                    SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
+                    SPREADSHEET_ID
+                ), // expected value
+            "" // expected printed
+        );
+    }
+
+    @Test
     public void testEvaluateLocale() {
         this.evaluateAndValueCheck(
             "=locale(\"en-AU\")",

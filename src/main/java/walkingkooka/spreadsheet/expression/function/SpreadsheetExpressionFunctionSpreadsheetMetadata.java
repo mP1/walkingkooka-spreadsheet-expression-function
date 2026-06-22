@@ -18,6 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Cast;
+import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
@@ -34,4 +35,8 @@ abstract class SpreadsheetExpressionFunctionSpreadsheetMetadata<T> extends Sprea
             .required(SpreadsheetMetadataPropertyName.class)
             .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE)
     );
+
+    final static ExpressionFunctionParameter<SpreadsheetId> SPREADSHEET_ID = ExpressionFunctionParameterName.with("spreadsheetId")
+        .required(SpreadsheetId.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 }
