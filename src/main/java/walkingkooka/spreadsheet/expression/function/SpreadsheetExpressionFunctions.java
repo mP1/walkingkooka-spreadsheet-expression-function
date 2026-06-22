@@ -1751,10 +1751,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataRemove}
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeSpreadsheetMetadata() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemove.INSTANCE;
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeSpreadsheetMetadataValue() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue.INSTANCE;
     }
 
     /**

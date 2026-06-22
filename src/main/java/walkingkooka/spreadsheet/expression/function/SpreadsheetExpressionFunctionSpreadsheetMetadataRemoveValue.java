@@ -29,18 +29,18 @@ import java.util.Objects;
 /**
  * A function that removes a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata} returning the original value if it was present.
  */
-final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemove extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
+final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionSpreadsheetMetadataRemove INSTANCE = new SpreadsheetExpressionFunctionSpreadsheetMetadataRemove();
+    final static SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue INSTANCE = new SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue();
 
     /**
      * Private constructor use singleton
      */
-    private SpreadsheetExpressionFunctionSpreadsheetMetadataRemove() {
-        super("removeSpreadsheetMetadata");
+    private SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue() {
+        super("removeSpreadsheetMetadataValue");
     }
 
     @Override

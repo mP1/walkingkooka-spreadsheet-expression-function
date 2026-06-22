@@ -350,7 +350,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.readStorage(),
                     SpreadsheetExpressionFunctions.readStorageText(),
                     SpreadsheetExpressionFunctions.removeEnv(),
-                    SpreadsheetExpressionFunctions.removeSpreadsheetMetadata(),
+                    SpreadsheetExpressionFunctions.removeSpreadsheetMetadataValue(),
                     SpreadsheetExpressionFunctions.replace(),
                     SpreadsheetExpressionFunctions.rept(),
                     SpreadsheetExpressionFunctions.right(),
