@@ -1371,6 +1371,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataLoad}
+     */
+    public static ExpressionFunction<SpreadsheetMetadata, SpreadsheetExpressionEvaluationContext> loadSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataLoad.INSTANCE;
+    }
+
+    /**
      * {@see ExpressionFunctions#locale}
      */
     public static ExpressionFunction<Locale, SpreadsheetExpressionEvaluationContext> locale() {
