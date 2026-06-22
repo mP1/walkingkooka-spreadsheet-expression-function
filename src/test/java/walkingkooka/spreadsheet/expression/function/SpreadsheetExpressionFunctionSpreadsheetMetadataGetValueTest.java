@@ -25,7 +25,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataGet, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue, Object>
     implements SpreadsheetMetadataTesting {
 
     @Test
@@ -61,8 +61,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest exten
     }
 
     @Override
-    public SpreadsheetExpressionFunctionSpreadsheetMetadataGet createBiFunction() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGet.INSTANCE;
+    public SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue createBiFunction() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.INSTANCE;
     }
 
     @Override
@@ -86,15 +86,15 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetTest exten
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "getSpreadsheetMetadata"
+            "getSpreadsheetMetadataValue"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataGet> type() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGet.class;
+    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue> type() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.class;
     }
 
     @Override
