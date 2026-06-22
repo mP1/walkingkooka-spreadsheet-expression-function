@@ -3988,11 +3988,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateSetSpreadsheetMetadata() {
+    public void testEvaluateSetSpreadsheetMetadataValue() {
         final SpreadsheetName expected = SpreadsheetName.with("NewName222");
 
         final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
-            "=setSpreadsheetMetadata(\"spreadsheetName\", \"NewName222\")",
+            "=setSpreadsheetMetadataValue(\"spreadsheetName\", \"NewName222\")",
             expected
         );
 
