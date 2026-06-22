@@ -248,7 +248,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - setLineEnding
 - setLocale
 - setRed
-- setSpreadsheetMetadata
+- setSpreadsheetMetadataValue
 - setStyle
 - setText
 - setTimeOffset

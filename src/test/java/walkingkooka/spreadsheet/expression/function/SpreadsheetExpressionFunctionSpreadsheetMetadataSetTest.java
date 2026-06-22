@@ -93,7 +93,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "setSpreadsheetMetadata"
+            "setSpreadsheetMetadataValue"
         );
     }
 

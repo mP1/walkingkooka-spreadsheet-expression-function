@@ -376,7 +376,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.setLineEnding(),
                     SpreadsheetExpressionFunctions.setLocale(),
                     SpreadsheetExpressionFunctions.setRed(),
-                    SpreadsheetExpressionFunctions.setSpreadsheetMetadata(),
+                    SpreadsheetExpressionFunctions.setSpreadsheetMetadataValue(),
                     SpreadsheetExpressionFunctions.setStyle(),
                     SpreadsheetExpressionFunctions.setText(),
                     SpreadsheetExpressionFunctions.setTimeOffset(),
