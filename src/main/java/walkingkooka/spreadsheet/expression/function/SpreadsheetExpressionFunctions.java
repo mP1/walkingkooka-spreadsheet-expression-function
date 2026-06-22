@@ -1983,10 +1983,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSet}
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> setSpreadsheetMetadataValue() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSet.INSTANCE;
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue.INSTANCE;
     }
 
     /**

@@ -27,7 +27,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataSet, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue, Object>
     implements SpreadsheetMetadataTesting {
 
     @Test
@@ -51,8 +51,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
     }
 
     @Override
-    public SpreadsheetExpressionFunctionSpreadsheetMetadataSet createBiFunction() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSet.INSTANCE;
+    public SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue createBiFunction() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue.INSTANCE;
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
 
             @Override
             public void setSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata) {
-                SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest.this.metadata = spreadsheetMetadata;
+                SpreadsheetExpressionFunctionSpreadsheetMetadataSetValueTest.this.metadata = spreadsheetMetadata;
             }
 
             @Override
@@ -100,8 +100,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetTest exten
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataSet> type() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSet.class;
+    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue> type() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue.class;
     }
 
     @Override
