@@ -3660,6 +3660,36 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateSaveSpreadsheetMetadata() {
+        this.checkEquals(
+            SPREADSHEET_ID,
+            SpreadsheetId.with(0x1234)
+        );
+
+        final SpreadsheetMetadata expected = this.metadata()
+            .set(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
+                SPREADSHEET_ID
+            ).set(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
+                SpreadsheetName.with("Hello")
+            );
+
+        final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
+            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"1234\"),\"spreadsheetName\",\"Hello\"))",
+            expected, // expected value
+            "" // expected printed
+        );
+
+        this.checkEquals(
+            expected,
+            context.loadMetadata(SPREADSHEET_ID)
+                .orElse(null),
+            "Unable to load saved SpreadsheetMetadata"
+        );
+    }
+
+    @Test
     public void testEvaluateScript() {
         final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(

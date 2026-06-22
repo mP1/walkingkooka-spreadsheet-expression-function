@@ -233,6 +233,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - roundUp
 - row
 - rows
+- saveSpreadsheetMetadata
 - script
 - search
 - second
