@@ -1099,6 +1099,41 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateCreateSpreadsheetMetadataWithoutLocale() {
+        this.evaluateAndValueCheck(
+            "=createSpreadsheetMetadata()",
+            METADATA_EN_AU.set(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
+                SpreadsheetId.with(
+                    SPREADSHEET_ID.value() + 3
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testEvaluateCreateSpreadsheetMetadataWithLocale() {
+        final Locale locale = Locale.forLanguageTag("en-NZ");
+        checkNotEquals(
+            LOCALE,
+            locale
+        );
+
+        this.evaluateAndValueCheck(
+            "=createSpreadsheetMetadata(\"en-NZ\")",
+            METADATA_EN_AU.set(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
+                SpreadsheetId.with(
+                    SPREADSHEET_ID.value() + 3
+                )
+            ).set(
+                SpreadsheetMetadataPropertyName.LOCALE,
+                locale
+            )
+        );
+    }
+
+    @Test
     public void testEvaluateCurrency() {
         this.evaluateAndValueCheck(
             "=currency(\"AUD\")",

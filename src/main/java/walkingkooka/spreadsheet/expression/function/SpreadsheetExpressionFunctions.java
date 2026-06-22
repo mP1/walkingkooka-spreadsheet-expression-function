@@ -43,6 +43,7 @@ import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
+import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserSelector;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetColumnReference;
@@ -580,6 +581,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> countBlank() {
         return SpreadsheetExpressionFunctionNumberCountBlank.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataCreate}
+     */
+    public static ExpressionFunction<SpreadsheetMetadata, SpreadsheetExpressionEvaluationContext> createSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataCreate.INSTANCE;
     }
 
     /**

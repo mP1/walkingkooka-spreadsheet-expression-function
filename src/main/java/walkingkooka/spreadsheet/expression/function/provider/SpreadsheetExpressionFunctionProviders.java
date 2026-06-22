@@ -216,6 +216,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.countA(),
                     SpreadsheetExpressionFunctions.countBlank(),
                     SpreadsheetExpressionFunctions.countIf(),
+                    SpreadsheetExpressionFunctions.createSpreadsheetMetadata(),
                     SpreadsheetExpressionFunctions.currency(),
                     SpreadsheetExpressionFunctions.currencyCode(),
                     SpreadsheetExpressionFunctions.currencyValue(),
