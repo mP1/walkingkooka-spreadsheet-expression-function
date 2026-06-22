@@ -26,7 +26,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataRemove, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue, Object>
     implements SpreadsheetMetadataTesting {
 
     private final static SpreadsheetMetadataPropertyName<Boolean> PROPERTY_NAME = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
@@ -52,8 +52,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
     }
 
     @Override
-    public SpreadsheetExpressionFunctionSpreadsheetMetadataRemove createBiFunction() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemove.INSTANCE;
+    public SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue createBiFunction() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue.INSTANCE;
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
 
             @Override
             public void setSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata) {
-                SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest.this.metadata = spreadsheetMetadata;
+                SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValueTest.this.metadata = spreadsheetMetadata;
             }
 
             @Override
@@ -97,15 +97,15 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveTest ex
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "removeSpreadsheetMetadata"
+            "removeSpreadsheetMetadataValue"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataRemove> type() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemove.class;
+    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue> type() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue.class;
     }
 
     @Override
