@@ -32,18 +32,18 @@ import java.util.Objects;
 /**
  * A function that gets a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata} accepting a default value.
  */
-final class SpreadsheetExpressionFunctionSpreadsheetMetadataGet extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
+final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionSpreadsheetMetadataGet INSTANCE = new SpreadsheetExpressionFunctionSpreadsheetMetadataGet();
+    final static SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue INSTANCE = new SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue();
 
     /**
      * Private constructor use singleton
      */
-    private SpreadsheetExpressionFunctionSpreadsheetMetadataGet() {
-        super("getSpreadsheetMetadata");
+    private SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue() {
+        super("getSpreadsheetMetadataValue");
     }
 
     @Override

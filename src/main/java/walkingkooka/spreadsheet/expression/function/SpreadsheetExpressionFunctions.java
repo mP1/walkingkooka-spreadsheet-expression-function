@@ -1011,10 +1011,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataGet}
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getSpreadsheetMetadata() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGet.INSTANCE;
+    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getSpreadsheetMetadataValue() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.INSTANCE;
     }
 
     /**

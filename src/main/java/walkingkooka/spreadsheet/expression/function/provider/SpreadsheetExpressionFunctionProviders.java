@@ -265,7 +265,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.getLocale(),
                     SpreadsheetExpressionFunctions.getParser(),
                     SpreadsheetExpressionFunctions.getRed(),
-                    SpreadsheetExpressionFunctions.getSpreadsheetMetadata(),
+                    SpreadsheetExpressionFunctions.getSpreadsheetMetadataValue(),
                     SpreadsheetExpressionFunctions.getStyle(),
                     SpreadsheetExpressionFunctions.getTextNode(),
                     SpreadsheetExpressionFunctions.getTimeOffset(),

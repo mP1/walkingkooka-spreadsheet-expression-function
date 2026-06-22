@@ -1942,9 +1942,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
 
     @Test
-    public void testEvaluateGetSpreadsheetMetadata() {
+    public void testEvaluateGetSpreadsheetMetadataValue() {
         this.evaluateAndValueCheck(
-            "=getSpreadsheetMetadata(\"spreadsheetName\", \"missing!!!\")",
+            "=getSpreadsheetMetadataValue(\"spreadsheetName\", \"missing!!!\")",
             SpreadsheetName.with("Untitled5678")
         );
     }
