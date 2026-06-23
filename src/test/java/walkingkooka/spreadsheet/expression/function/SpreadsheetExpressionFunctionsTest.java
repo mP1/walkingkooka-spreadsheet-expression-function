@@ -5375,7 +5375,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetMetadataMode.SCRIPTING,
             SpreadsheetContexts.mutableSpreadsheetId(
                 MEDIA_TYPE_DETECTOR,
-                SPREADSHEET_METADATA_CREATOR,
                 MULTIPLIER,
                 SPREADSHEET_ENGINE,
                 (SpreadsheetId id) -> {
@@ -5393,9 +5392,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     );
                 },
                 SpreadsheetMetadataContexts.basic(
-                    (u, dl) -> {
-                        throw new UnsupportedOperationException();
-                    },
+                    SPREADSHEET_METADATA_CREATOR,
                     metadataStore
                 ),
                 CURRENCY_LOCALE_CONTEXT,
