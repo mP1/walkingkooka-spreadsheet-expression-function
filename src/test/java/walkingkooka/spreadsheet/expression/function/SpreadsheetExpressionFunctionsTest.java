@@ -5611,7 +5611,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector formulaConverter = ConverterSelector.parse("collection(text, number, date-time, basic, spreadsheet-value, boolean, error-throwing, color, expression, environment, locale, currency, plugins, spreadsheet-metadata, style, text-node, template, net, form-and-validation, storage, text-to-line-ending, text-to-storage-path, json)");
+        final ConverterSelector scriptingConverter = SpreadsheetMetadataTesting.METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER);
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
@@ -5640,7 +5640,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             ).set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
             .set(
                 SpreadsheetMetadataPropertyName.FORMULA_CONVERTER,
-                formulaConverter
+                scriptingConverter
             ).set(
                 SpreadsheetMetadataPropertyName.FORMULA_FUNCTIONS,
                 EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
@@ -5653,7 +5653,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
             .set(
                 SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER,
-                formulaConverter
+                scriptingConverter
             ).set(
                 SpreadsheetMetadataPropertyName.SCRIPTING_FUNCTIONS,
                 EXPRESSION_FUNCTION_PROVIDER.expressionFunctionInfos()
