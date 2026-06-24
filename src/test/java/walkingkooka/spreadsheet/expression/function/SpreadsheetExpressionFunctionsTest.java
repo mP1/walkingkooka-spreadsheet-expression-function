@@ -1105,7 +1105,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             METADATA_EN_AU.set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
                 SpreadsheetId.with(
-                    SPREADSHEET_ID.value() + 3
+                    SPREADSHEET_ID.value() + 4
                 )
             )
         );
@@ -1124,7 +1124,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             METADATA_EN_AU.set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
                 SpreadsheetId.with(
-                    SPREADSHEET_ID.value() + 3
+                    SPREADSHEET_ID.value() + 4
                 )
             ).set(
                 SpreadsheetMetadataPropertyName.LOCALE,
@@ -1940,12 +1940,26 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-
     @Test
-    public void testEvaluateGetSpreadsheetMetadataValue() {
+    public void testEvaluateGetSpreadsheetMetadataValueWithPropertyName() {
         this.evaluateAndValueCheck(
             "=getSpreadsheetMetadataValue(\"spreadsheetName\", \"missing!!!\")",
             SpreadsheetName.with("Untitled5678")
+        );
+    }
+
+    private final static SpreadsheetName DIFFERENT_SPREADSHEET_NAME = SpreadsheetName.with("DifferentSpreadsheetName");
+
+    @Test
+    public void testEvaluateGetSpreadsheetMetadataValueWithSpreadsheetIdAndPropertyName() {
+        this.checkEquals(
+            Long.valueOf(0x1235),
+            SPREADSHEET_ID.value() + 1
+        );
+
+        this.evaluateAndValueCheck(
+            "=getSpreadsheetMetadataValue(\"1235\", \"spreadsheetName\", \"missing!!!\")",
+            DIFFERENT_SPREADSHEET_NAME
         );
     }
 
@@ -5732,6 +5746,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetMetadataMode.FORMULA;
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
         final SpreadsheetMetadata saved1 = metadataStore.save(metadata);
+
+        // #testEvaluateGetSpreadsheetMetadataValueWithSpreadsheetIdAndPropertyName
+        metadataStore.save(
+            metadata.remove(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_ID
+            ).set(
+                SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
+                DIFFERENT_SPREADSHEET_NAME
+            )
+        );
 
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
         environmentContext.setEnvironmentValue(

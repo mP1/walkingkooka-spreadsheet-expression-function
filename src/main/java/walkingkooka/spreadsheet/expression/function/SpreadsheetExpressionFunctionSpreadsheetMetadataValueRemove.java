@@ -24,7 +24,6 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * A function that removes a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata} returning the original value if it was present.
@@ -44,31 +43,25 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove extends 
     }
 
     @Override
-    public List<ExpressionFunctionParameter<?>> parameters(final int i) {
-        return PARAMETERS;
+    List<ExpressionFunctionParameter<?>> parametersWithoutSpreadsheetMetadata() {
+        return Lists.of(PROPERTY_NAME);
     }
 
-    private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-        PROPERTY_NAME
-    );
-
     @Override
-    public Object apply(final List<Object> parameters,
-                        final SpreadsheetExpressionEvaluationContext context) {
-        Objects.requireNonNull(parameters, "parameters");
-        Objects.requireNonNull(context, "context");
-
+    Object applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
+                                        final int parameterIndexOffset,
+                                        final List<Object> parameters,
+                                        final SpreadsheetExpressionEvaluationContext context) {
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
             parameters,
-            0
+            parameterIndexOffset + 0
         );
 
-        final SpreadsheetMetadata metadata = context.spreadsheetMetadata();
-        final Object removedValue = metadata.get(propertyName)
+        final Object removedValue = spreadsheetMetadata.get(propertyName)
             .orElse(null);
 
         context.setSpreadsheetMetadata(
-            metadata.remove(propertyName)
+            spreadsheetMetadata.remove(propertyName)
         );
 
         return removedValue;

@@ -26,22 +26,50 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
+import java.util.Locale;
+
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove>
     implements SpreadsheetMetadataTesting {
 
-    private final static SpreadsheetMetadataPropertyName<Boolean> PROPERTY_NAME = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
+    private final static SpreadsheetMetadataPropertyName<Locale> PROPERTY_NAME = SpreadsheetMetadataPropertyName.LOCALE;
 
-    private final static boolean PROPERTY_VALUE = true;
+    private final static Locale PROPERTY_VALUE = LOCALE;
 
     @Test
-    public void testApply() {
-        this.metadata = METADATA_EN_AU;
+    public void testApplyWithPropertyName() {
+        this.metadata = SPREADSHEET_METADATA;
+
+        this.applyAndCheck(
+            Lists.of(PROPERTY_NAME),
+            PROPERTY_VALUE
+        );
+
+        this.checkEquals(
+            null,
+            this.metadata.getIgnoringDefaults(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+                .orElse(null)
+        );
+    }
+
+    @Test
+    public void testApplyWithSpreadsheetMetadataAndPropertyName() {
+        final Locale localeRemoved = Locale.forLanguageTag("en-NZ");
+        checkNotEquals(
+            LOCALE,
+            localeRemoved
+        );
+
+        this.metadata = SPREADSHEET_METADATA.set(
+            SpreadsheetMetadataPropertyName.LOCALE,
+            localeRemoved
+        );
 
         this.applyAndCheck(
             Lists.of(
-                SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES
+                this.metadata,
+                PROPERTY_NAME
             ),
-            PROPERTY_VALUE
+            localeRemoved
         );
 
         this.checkEquals(
@@ -62,7 +90,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
 
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
-                return METADATA_EN_AU.set(
+                return SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest.this.metadata.set(
                     PROPERTY_NAME,
                     PROPERTY_VALUE
                 );

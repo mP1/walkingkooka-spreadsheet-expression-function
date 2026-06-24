@@ -27,25 +27,61 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
+import java.util.Locale;
+
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet>
     implements SpreadsheetMetadataTesting {
 
-    @Test
-    public void testApply() {
-        this.metadata = METADATA_EN_AU;
+    final static SpreadsheetMetadataPropertyName<SpreadsheetName> PROPERTY_NAME = SpreadsheetMetadataPropertyName.SPREADSHEET_NAME;
+    final static SpreadsheetName PROPERTY_VALUE = SpreadsheetName.with("SpreadsheetName111");
 
-        final SpreadsheetName name = SpreadsheetName.with("NewName222");
+    @Test
+    public void testApplyWithPropertyName() {
+        this.metadata = SPREADSHEET_METADATA;
 
         this.applyAndCheck(
             Lists.of(
-                SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                name
+                PROPERTY_NAME,
+                PROPERTY_VALUE
             ),
-            name
+            PROPERTY_VALUE
         );
 
         this.checkEquals(
-            name,
+            PROPERTY_VALUE,
+            this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+        );
+    }
+
+    @Test
+    public void testApplyWithSpreadsheetMetadataAndPropertyName() {
+        final SpreadsheetMetadata metadata = SPREADSHEET_METADATA.set(
+            SpreadsheetMetadataPropertyName.LOCALE,
+            Locale.forLanguageTag("en-NZ")
+        );
+
+        this.checkNotEquals(
+            metadata,
+            SPREADSHEET_METADATA
+        );
+
+        final SpreadsheetName spreadsheetName = SpreadsheetName.with("DifferentSpreadsheetName111");
+        this.checkNotEquals(
+            PROPERTY_VALUE,
+            spreadsheetName
+        );
+
+        this.applyAndCheck(
+            Lists.of(
+                metadata,
+                PROPERTY_NAME,
+                PROPERTY_VALUE
+            ),
+            PROPERTY_VALUE
+        );
+
+        this.checkEquals(
+            PROPERTY_VALUE,
             this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
         );
     }
@@ -61,7 +97,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
 
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
-                return METADATA_EN_AU;
+                return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest.this.metadata;
             }
 
             @Override
