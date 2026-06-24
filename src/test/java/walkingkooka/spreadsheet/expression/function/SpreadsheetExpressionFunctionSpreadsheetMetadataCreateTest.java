@@ -30,7 +30,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataCreateTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataCreate, SpreadsheetMetadata>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataCreateTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataCreate, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
 
     private final static Locale LOCALE = Locale.forLanguageTag("en-NZ");
@@ -128,10 +128,5 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataCreateTest ex
     @Override
     public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataCreate> type() {
         return SpreadsheetExpressionFunctionSpreadsheetMetadataCreate.class;
-    }
-
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
     }
 }
