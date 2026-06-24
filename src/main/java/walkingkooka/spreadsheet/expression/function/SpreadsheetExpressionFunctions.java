@@ -1844,6 +1844,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSave}
+     */
+    public static ExpressionFunction<SpreadsheetMetadata, SpreadsheetExpressionEvaluationContext> saveSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataSave.INSTANCE;
+    }
+
+    /**
      * {@see StorageExpressionFunctions#script}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> script() {
