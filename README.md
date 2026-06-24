@@ -100,6 +100,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - dec2oct
 - decimal
 - degrees
+- deleteSpreadsheetMetadata
 - deleteStorage
 - delta
 - dollar

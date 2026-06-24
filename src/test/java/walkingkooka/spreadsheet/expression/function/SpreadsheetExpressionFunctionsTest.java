@@ -1273,6 +1273,27 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateDeleteSpreadsheetId() {
+        this.checkEquals(
+            Long.valueOf(0x1235),
+            SPREADSHEET_ID.value() + 1
+        );
+
+        final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
+            "=deleteSpreadsheetMetadata(\"/1235\")",
+            (Object) null, // expected value
+            ""// printed
+        );
+
+        this.checkEquals(
+            null,
+            context.loadMetadata(
+                SpreadsheetId.with(0x1235)
+            ).orElse(null)
+        );
+    }
+
+    @Test
     public void testEvaluateDeleteStorage() {
         this.evaluateAndPrintedCheck(
             "=deleteStorage(\"/parent123/file.json\")",

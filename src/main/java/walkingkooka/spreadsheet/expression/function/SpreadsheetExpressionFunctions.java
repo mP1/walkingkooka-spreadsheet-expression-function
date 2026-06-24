@@ -699,6 +699,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see StorageExpressionFunctions#storageDelete}
      */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> deleteSpreadsheetMetadata() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataDelete.INSTANCE;
+    }
+
+    /**
+     * {@see StorageExpressionFunctions#storageDelete}
+     */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> deleteStorage() {
         return fixName(
             StorageExpressionFunctions.deleteStorage()

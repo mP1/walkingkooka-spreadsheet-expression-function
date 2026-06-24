@@ -228,6 +228,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.dec2hex(),
                     SpreadsheetExpressionFunctions.dec2oct(),
                     SpreadsheetExpressionFunctions.degrees(),
+                    SpreadsheetExpressionFunctions.deleteSpreadsheetMetadata(),
                     SpreadsheetExpressionFunctions.deleteStorage(),
                     SpreadsheetExpressionFunctions.delta(),
                     SpreadsheetExpressionFunctions.dollar(),
