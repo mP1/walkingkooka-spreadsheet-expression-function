@@ -1011,10 +1011,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue}
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> getSpreadsheetMetadataValue() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.INSTANCE;
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet.INSTANCE;
     }
 
     /**
@@ -1758,10 +1758,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue}
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeSpreadsheetMetadataValue() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue.INSTANCE;
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove.INSTANCE;
     }
 
     /**
@@ -1990,10 +1990,10 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue}
+     * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> setSpreadsheetMetadataValue() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue.INSTANCE;
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet.INSTANCE;
     }
 
     /**

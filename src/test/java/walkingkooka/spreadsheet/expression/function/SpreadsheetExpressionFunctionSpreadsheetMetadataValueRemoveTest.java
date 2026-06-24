@@ -25,34 +25,35 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
-import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValueTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove, Object>
     implements SpreadsheetMetadataTesting {
+
+    private final static SpreadsheetMetadataPropertyName<Boolean> PROPERTY_NAME = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
+
+    private final static boolean PROPERTY_VALUE = true;
 
     @Test
     public void testApply() {
         this.metadata = METADATA_EN_AU;
 
-        final SpreadsheetName name = SpreadsheetName.with("NewName222");
-
         this.applyAndCheck(
             Lists.of(
-                SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                name
+                SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES
             ),
-            name
+            PROPERTY_VALUE
         );
 
         this.checkEquals(
-            name,
-            this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+            null,
+            this.metadata.getIgnoringDefaults(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+                .orElse(null)
         );
     }
 
     @Override
-    public SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue createBiFunction() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue.INSTANCE;
+    public SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove createBiFunction() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove.INSTANCE;
     }
 
     @Override
@@ -61,12 +62,15 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValueTest 
 
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
-                return METADATA_EN_AU;
+                return METADATA_EN_AU.set(
+                    PROPERTY_NAME,
+                    PROPERTY_VALUE
+                );
             }
 
             @Override
             public void setSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata) {
-                SpreadsheetExpressionFunctionSpreadsheetMetadataSetValueTest.this.metadata = spreadsheetMetadata;
+                SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest.this.metadata = spreadsheetMetadata;
             }
 
             @Override
@@ -93,14 +97,14 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValueTest 
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "setSpreadsheetMetadataValue"
+            "removeSpreadsheetMetadataValue"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue> type() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue.class;
+    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove> type() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove.class;
     }
 }

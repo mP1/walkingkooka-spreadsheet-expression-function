@@ -18,62 +18,69 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValueTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet, Object>
     implements SpreadsheetMetadataTesting {
 
     @Test
-    public void testApplyPropertyPresent() {
-        this.applyAndCheck(
-            Lists.of(
-                SpreadsheetMetadataPropertyName.LOCALE,
-                "missing!!!"
-            ),
-            METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
-        );
-    }
+    public void testApply() {
+        this.metadata = METADATA_EN_AU;
 
-    @Test
-    public void testApplyPropertyMissing() {
-        final SpreadsheetMetadataPropertyName<?> property = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
-
-        this.checkEquals(
-            null,
-            METADATA_EN_AU.get(property)
-                .orElse(null)
-        );
-
-        final Object defaultValue = "Missing!!!";
+        final SpreadsheetName name = SpreadsheetName.with("NewName222");
 
         this.applyAndCheck(
             Lists.of(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                defaultValue
+                name
             ),
-            defaultValue
+            name
+        );
+
+        this.checkEquals(
+            name,
+            this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
         );
     }
 
     @Override
-    public SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue createBiFunction() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.INSTANCE;
+    public SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet createBiFunction() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet.INSTANCE;
     }
 
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
         return new FakeSpreadsheetExpressionEvaluationContext() {
+
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
                 return METADATA_EN_AU;
             }
+
+            @Override
+            public void setSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata) {
+                SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest.this.metadata = spreadsheetMetadata;
+            }
+
+            @Override
+            public <T> Either<T, String> convert(final Object value,
+                                                 final Class<T> target) {
+                return this.successfulConversion(
+                    target.cast(value),
+                    target
+                );
+            }
         };
     }
+
+    private SpreadsheetMetadata metadata;
 
     @Override
     public int minimumParameterCount() {
@@ -86,14 +93,14 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValueTest 
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "getSpreadsheetMetadataValue"
+            "setSpreadsheetMetadataValue"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue> type() {
-        return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.class;
+    public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet> type() {
+        return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet.class;
     }
 }
