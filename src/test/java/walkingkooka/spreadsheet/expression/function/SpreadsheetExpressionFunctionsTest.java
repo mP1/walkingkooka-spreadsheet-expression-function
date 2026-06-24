@@ -113,6 +113,7 @@ import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.function.ExpressionFunction;
+import walkingkooka.tree.expression.function.provider.ExpressionFunctionInfo;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.text.Border;
@@ -145,6 +146,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -6024,12 +6026,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     // not really a test, basically a tool to help update the function list present in the README.
     @Test
     public void testReadmePrintFunctionList() {
-        SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
-            .expressionFunctionInfos()
-            .forEach(
-                i ->
-                    System.out.println("  - " + i.name())
-            );
+        final Set<ExpressionFunctionInfo> functions = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY)
+            .expressionFunctionInfos();
+
+        System.out.println(functions.size());
+
+        functions.forEach(
+            i ->
+                System.out.println("  - " + i.name())
+        );
     }
 
     // PublicStaticHelperTesting........................................................................................
