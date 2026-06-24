@@ -41,7 +41,7 @@ Google Sheets and Microsoft Excel have over 500 functions.
 - [Official Google sheets functions (513)](https://support.google.com/docs/table/25273?hl=en)
 - [Official Microsoft Excel functions](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188)
 
-The list below (with 255) is incomplete and constantly being updated as new functions are added. A small number are not
+The list below (with 262) is incomplete and constantly being updated as new functions are added. A small number are not
 found in Sheets or Excel and may be used to interact with features not found in those two platforms.
 
 - abs
