@@ -28,7 +28,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataLoadTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataLoad, SpreadsheetMetadata>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataLoadTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataLoad, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
 
     private final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(1);
@@ -96,10 +96,5 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataLoadTest exte
     @Override
     public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataLoad> type() {
         return SpreadsheetExpressionFunctionSpreadsheetMetadataLoad.class;
-    }
-
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
     }
 }

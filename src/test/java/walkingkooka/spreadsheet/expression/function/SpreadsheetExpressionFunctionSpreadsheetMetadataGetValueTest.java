@@ -25,7 +25,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValueTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue, Object>
     implements SpreadsheetMetadataTesting {
 
     @Test
@@ -95,10 +95,5 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataGetValueTest 
     @Override
     public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue> type() {
         return SpreadsheetExpressionFunctionSpreadsheetMetadataGetValue.class;
-    }
-
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
     }
 }

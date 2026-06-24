@@ -26,7 +26,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValueTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue, Object>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValueTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue, Object>
     implements SpreadsheetMetadataTesting {
 
     private final static SpreadsheetMetadataPropertyName<Boolean> PROPERTY_NAME = SpreadsheetMetadataPropertyName.HIDE_ZERO_VALUES;
@@ -106,10 +106,5 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValueTe
     @Override
     public Class<SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue> type() {
         return SpreadsheetExpressionFunctionSpreadsheetMetadataRemoveValue.class;
-    }
-
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
     }
 }
