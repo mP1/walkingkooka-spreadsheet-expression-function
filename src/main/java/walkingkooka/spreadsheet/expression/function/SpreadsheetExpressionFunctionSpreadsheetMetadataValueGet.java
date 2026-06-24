@@ -32,7 +32,7 @@ import java.util.Objects;
 /**
  * A function that gets a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata} accepting a default value.
  */
-final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue<Object> {
+final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue {
 
     /**
      * Singleton
@@ -61,11 +61,6 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet extends Spr
         PROPERTY_NAME,
         DEFAULT_VALUE
     );
-
-    @Override
-    public Class<Object> returnType() {
-        return Object.class;
-    }
 
     @Override
     public Object apply(final List<Object> parameters,

@@ -22,12 +22,17 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 /**
  * Base class for functions that set/get/remove a {@link SpreadsheetMetadataPropertyName}.
  */
-abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue<T> extends SpreadsheetExpressionFunctionSpreadsheetMetadata<T> {
+abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
 
     /**
      * Package private constructor use singleton
      */
     SpreadsheetExpressionFunctionSpreadsheetMetadataValue(final String name) {
         super(name);
+    }
+
+    @Override
+    public final Class<Object> returnType() {
+        return Object.class;
     }
 }
