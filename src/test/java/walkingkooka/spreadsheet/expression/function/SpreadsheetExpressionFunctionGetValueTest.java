@@ -88,9 +88,4 @@ public final class SpreadsheetExpressionFunctionGetValueTest extends Spreadsheet
     public Class<SpreadsheetExpressionFunctionGetValue> type() {
         return SpreadsheetExpressionFunctionGetValue.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

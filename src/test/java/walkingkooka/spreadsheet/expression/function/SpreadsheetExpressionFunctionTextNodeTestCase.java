@@ -24,9 +24,4 @@ public abstract class SpreadsheetExpressionFunctionTextNodeTestCase<F extends Sp
     SpreadsheetExpressionFunctionTextNodeTestCase() {
         super();
     }
-
-    @Override
-    public final String typeNamePrefix() {
-        return SpreadsheetExpressionFunctionTextNode.class.getSimpleName();
-    }
 }

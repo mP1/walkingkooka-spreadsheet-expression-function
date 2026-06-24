@@ -64,9 +64,4 @@ public final class SpreadsheetExpressionFunctionNextEmptyRowTest extends Spreads
     public Class<SpreadsheetExpressionFunctionNextEmptyRow> type() {
         return SpreadsheetExpressionFunctionNextEmptyRow.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

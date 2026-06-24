@@ -65,9 +65,4 @@ public final class SpreadsheetExpressionFunctionGetParserTest extends Spreadshee
     public Class<SpreadsheetExpressionFunctionGetParser> type() {
         return SpreadsheetExpressionFunctionGetParser.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

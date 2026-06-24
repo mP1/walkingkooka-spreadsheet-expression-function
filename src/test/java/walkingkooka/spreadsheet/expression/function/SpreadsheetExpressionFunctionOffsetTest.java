@@ -288,9 +288,4 @@ public final class SpreadsheetExpressionFunctionOffsetTest extends SpreadsheetEx
     public Class<SpreadsheetExpressionFunctionOffset> type() {
         return SpreadsheetExpressionFunctionOffset.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

@@ -70,9 +70,4 @@ public final class SpreadsheetExpressionFunctionGetDecimalNumberSymbolsTest exte
     public Class<SpreadsheetExpressionFunctionGetDecimalNumberSymbols> type() {
         return SpreadsheetExpressionFunctionGetDecimalNumberSymbols.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

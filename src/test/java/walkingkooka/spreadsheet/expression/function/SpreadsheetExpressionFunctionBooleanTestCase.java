@@ -56,9 +56,4 @@ public abstract class SpreadsheetExpressionFunctionBooleanTestCase<F extends Spr
     public SpreadsheetExpressionEvaluationContext createContext() {
         return this.createContext0();
     }
-
-    @Override
-    public final String typeNamePrefix() {
-        return SpreadsheetExpressionFunctionBoolean.class.getSimpleName();
-    }
 }

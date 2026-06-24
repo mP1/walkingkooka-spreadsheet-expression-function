@@ -88,9 +88,4 @@ public final class SpreadsheetExpressionFunctionNaTest extends SpreadsheetExpres
     public Class<SpreadsheetExpressionFunctionNa> type() {
         return SpreadsheetExpressionFunctionNa.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

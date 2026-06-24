@@ -69,9 +69,4 @@ public final class SpreadsheetExpressionFunctionGetDateTimeSymbolsTest extends S
     public Class<SpreadsheetExpressionFunctionGetDateTimeSymbols> type() {
         return SpreadsheetExpressionFunctionGetDateTimeSymbols.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

@@ -170,9 +170,4 @@ public final class SpreadsheetExpressionFunctionAddressTest extends SpreadsheetE
     public Class<SpreadsheetExpressionFunctionAddress> type() {
         return SpreadsheetExpressionFunctionAddress.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }
