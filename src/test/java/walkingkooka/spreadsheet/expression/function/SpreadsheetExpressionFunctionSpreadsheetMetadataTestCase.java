@@ -22,9 +22,4 @@ public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<F
     SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase() {
         super();
     }
-
-    @Override
-    public final void testTypeNaming() {
-        throw new UnsupportedOperationException();
-    }
 }

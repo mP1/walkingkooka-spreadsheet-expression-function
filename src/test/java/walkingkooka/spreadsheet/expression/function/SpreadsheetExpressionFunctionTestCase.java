@@ -18,6 +18,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
@@ -50,6 +51,7 @@ import walkingkooka.spreadsheet.store.SpreadsheetCellStores;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.storage.Storages;
+import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
@@ -211,6 +213,31 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     @Override
     public final JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
+    }
+
+    @Override
+    public final void testTypeNaming() {
+        ExpressionFunctionTesting.super.testTypeNaming();
+    }
+
+    @Override
+    public final String typeNamePrefix() {
+        final String superTestCaseName = this.getClass()
+            .getSuperclass()
+            .getSimpleName();
+
+        final String testCase = "TestCase";
+        if (false == superTestCaseName.endsWith(testCase)) {
+            Assertions.fail(
+                superTestCaseName + " missing suffix " + testCase
+            );
+        }
+
+        return CharSequences.subSequence(
+            superTestCaseName,
+            0,
+            -testCase.length()
+        ).toString();
     }
 
     @Override

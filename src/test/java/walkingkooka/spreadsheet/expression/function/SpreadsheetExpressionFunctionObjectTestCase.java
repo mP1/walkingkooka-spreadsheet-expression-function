@@ -56,9 +56,4 @@ public abstract class SpreadsheetExpressionFunctionObjectTestCase<F extends Spre
     public SpreadsheetExpressionEvaluationContext createContext() {
         return this.createContext0();
     }
-
-    @Override
-    public final String typeNamePrefix() {
-        return SpreadsheetExpressionFunctionObject.class.getSimpleName();
-    }
 }

@@ -68,9 +68,4 @@ public final class SpreadsheetExpressionFunctionGetFormulaTextTest extends Sprea
     public Class<SpreadsheetExpressionFunctionGetFormulaText> type() {
         return SpreadsheetExpressionFunctionGetFormulaText.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

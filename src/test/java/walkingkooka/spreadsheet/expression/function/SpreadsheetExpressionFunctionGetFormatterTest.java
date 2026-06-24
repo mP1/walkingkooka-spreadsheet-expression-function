@@ -65,9 +65,4 @@ public final class SpreadsheetExpressionFunctionGetFormatterTest extends Spreads
     public Class<SpreadsheetExpressionFunctionGetFormatter> type() {
         return SpreadsheetExpressionFunctionGetFormatter.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

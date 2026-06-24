@@ -23,9 +23,4 @@ public abstract class SpreadsheetExpressionFunctionUrlTestCase<F extends Spreads
     SpreadsheetExpressionFunctionUrlTestCase() {
         super();
     }
-
-    @Override
-    public final String typeNamePrefix() {
-        return SpreadsheetExpressionFunctionUrl.class.getSimpleName();
-    }
 }

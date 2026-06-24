@@ -91,11 +91,4 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
     public SpreadsheetExpressionEvaluationContext createContext() {
         return SpreadsheetExpressionEvaluationContexts.fake();
     }
-
-    // class............................................................................................................
-
-    @Override
-    public final String typeNamePrefix() {
-        return SpreadsheetExpressionFunctionCell.class.getSimpleName();
-    }
 }

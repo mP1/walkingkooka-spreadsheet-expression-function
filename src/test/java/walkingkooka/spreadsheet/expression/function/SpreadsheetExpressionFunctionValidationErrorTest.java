@@ -68,9 +68,4 @@ public final class SpreadsheetExpressionFunctionValidationErrorTest extends Spre
     public Class<SpreadsheetExpressionFunctionValidationError> type() {
         return SpreadsheetExpressionFunctionValidationError.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }

@@ -39,11 +39,6 @@ public final class SpreadsheetExpressionFunctionLambdaTest extends SpreadsheetEx
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
-    }
-
     @Test
     public void testZeroParametersMissingExpressionFails() {
         final IllegalArgumentException thrown = assertThrows(

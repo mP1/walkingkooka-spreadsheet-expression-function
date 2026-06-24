@@ -59,9 +59,4 @@ public final class SpreadsheetExpressionFunctionIndirectTest extends Spreadsheet
     public Class<SpreadsheetExpressionFunctionIndirect> type() {
         return SpreadsheetExpressionFunctionIndirect.class;
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return SpreadsheetExpressionFunction.class.getSimpleName();
-    }
 }
