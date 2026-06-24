@@ -21,9 +21,12 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+
+import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet>
     implements SpreadsheetMetadataTesting {
@@ -35,7 +38,31 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
                 SpreadsheetMetadataPropertyName.LOCALE,
                 "missing!!!"
             ),
-            METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+            SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+        );
+    }
+
+    @Test
+    public void testApplySpreadsheetMetadataAndPropertyPresent() {
+        this.applyAndCheck(
+            this.createBiFunction(),
+            Lists.of(
+                SPREADSHEET_METADATA,
+                SpreadsheetMetadataPropertyName.LOCALE,
+                "missing!!!"
+            ),
+            new FakeSpreadsheetExpressionEvaluationContext() {
+
+                @Override
+                public Optional<SpreadsheetMetadata> loadMetadata(final SpreadsheetId id) {
+                    return Optional.ofNullable(
+                        SPREADSHEET_ID.equals(id) ?
+                            SPREADSHEET_METADATA :
+                            null
+                    );
+                }
+            },
+            SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
         );
     }
 
@@ -45,7 +72,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
 
         this.checkEquals(
             null,
-            METADATA_EN_AU.get(property)
+            SPREADSHEET_METADATA.get(property)
                 .orElse(null)
         );
 
@@ -70,7 +97,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
         return new FakeSpreadsheetExpressionEvaluationContext() {
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
-                return METADATA_EN_AU;
+                return SPREADSHEET_METADATA;
             }
         };
     }
