@@ -1760,7 +1760,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> removeSpreadsheetMetadataValue() {
+    public static ExpressionFunction<SpreadsheetMetadata, SpreadsheetExpressionEvaluationContext> removeSpreadsheetMetadataValue() {
         return SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove.INSTANCE;
     }
 
@@ -1992,7 +1992,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet}
      */
-    public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> setSpreadsheetMetadataValue() {
+    public static ExpressionFunction<SpreadsheetMetadata, SpreadsheetExpressionEvaluationContext> setSpreadsheetMetadataValue() {
         return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet.INSTANCE;
     }
 

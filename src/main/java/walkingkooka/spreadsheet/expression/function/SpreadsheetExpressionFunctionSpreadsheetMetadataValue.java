@@ -32,7 +32,7 @@ import java.util.Objects;
 /**
  * Base class for functions that set/get/remove a {@link SpreadsheetMetadataPropertyName}.
  */
-abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
+abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue<T> extends SpreadsheetExpressionFunctionSpreadsheetMetadata<T> {
 
     /**
      * Package private constructor use singleton
@@ -48,11 +48,6 @@ abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue extends Spr
         parametersWithSpreadsheetMetadata.addAll(parametersWithoutSpreadsheetMetadata);
 
         this.parametersWithSpreadsheetMetadata = Lists.immutable(parametersWithSpreadsheetMetadata);
-    }
-
-    @Override
-    public final Class<Object> returnType() {
-        return Object.class;
     }
 
     abstract List<ExpressionFunctionParameter<?>> parametersWithoutSpreadsheetMetadata();
@@ -88,8 +83,8 @@ abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue extends Spr
     private final List<ExpressionFunctionParameter<?>> parametersWithSpreadsheetMetadata;
 
     @Override
-    public final Object apply(final List<Object> parameters,
-                              final SpreadsheetExpressionEvaluationContext context) {
+    public final T apply(final List<Object> parameters,
+                         final SpreadsheetExpressionEvaluationContext context) {
         Objects.requireNonNull(parameters, "parameters");
         Objects.requireNonNull(context, "context");
 
@@ -114,8 +109,8 @@ abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue extends Spr
     /**
      * Invokes the function resolving the {@link SpreadsheetMetadata} from parameters or {@link SpreadsheetExpressionEvaluationContext}.
      */
-    abstract Object applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
-                                                 final int parameterIndexOffset,
-                                                 final List<Object> parameters,
-                                                 final SpreadsheetExpressionEvaluationContext context);
+    abstract T applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
+                                            final int parameterIndexOffset,
+                                            final List<Object> parameters,
+                                            final SpreadsheetExpressionEvaluationContext context);
 }

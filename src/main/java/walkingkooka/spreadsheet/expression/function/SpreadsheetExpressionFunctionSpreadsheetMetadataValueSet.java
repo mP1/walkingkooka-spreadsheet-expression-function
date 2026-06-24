@@ -27,9 +27,10 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import java.util.List;
 
 /**
- * A function that sets a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata}.
+ * A function that the {@link SpreadsheetMetadata} after setting the given {@link SpreadsheetMetadataPropertyName} and value.
+ * If the {@link SpreadsheetMetadata} is missing the current is used.
  */
-final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue {
+final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue<SpreadsheetMetadata> {
 
     /**
      * Singleton
@@ -44,6 +45,11 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet extends Spr
     }
 
     @Override
+    public Class<SpreadsheetMetadata> returnType() {
+        return SpreadsheetMetadata.class;
+    }
+
+    @Override
     List<ExpressionFunctionParameter<?>> parametersWithoutSpreadsheetMetadata() {
         return Lists.of(
             PROPERTY_NAME,
@@ -52,10 +58,10 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet extends Spr
     }
 
     @Override
-    Object applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
-                                        final int parameterIndexOffset,
-                                        final List<Object> parameters,
-                                        final SpreadsheetExpressionEvaluationContext context) {
+    SpreadsheetMetadata applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
+                                                     final int parameterIndexOffset,
+                                                     final List<Object> parameters,
+                                                     final SpreadsheetExpressionEvaluationContext context) {
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
             parameters,
             parameterIndexOffset + 0
@@ -69,13 +75,9 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet extends Spr
             propertyName.type()
         );
 
-        context.setSpreadsheetMetadata(
-            spreadsheetMetadata.set(
-                propertyName,
-                Cast.to(value)
-            )
+        return spreadsheetMetadata.set(
+            propertyName,
+            Cast.to(value)
         );
-
-        return value;
     }
 }
