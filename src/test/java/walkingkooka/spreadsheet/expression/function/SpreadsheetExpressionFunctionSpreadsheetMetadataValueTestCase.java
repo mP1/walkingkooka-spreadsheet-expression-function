@@ -17,7 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<F extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object>> extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<F, Object> {
+public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<F extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue> extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<F, Object> {
 
     SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase() {
         super();
