@@ -30,20 +30,20 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * A function that sets a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata}.
+ * A function that gets a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata} accepting a default value.
  */
-final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue extends SpreadsheetExpressionFunctionSpreadsheetMetadata<Object> {
+final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue<Object> {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue INSTANCE = new SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue();
+    final static SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet INSTANCE = new SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet();
 
     /**
      * Private constructor use singleton
      */
-    private SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue() {
-        super("setSpreadsheetMetadataValue");
+    private SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet() {
+        super("getSpreadsheetMetadataValue");
     }
 
     @Override
@@ -51,7 +51,7 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue extends Spr
         return PARAMETERS;
     }
 
-    private final static ExpressionFunctionParameter<Object> VALUE = ExpressionFunctionParameterName.with("value")
+    private final static ExpressionFunctionParameter<Object> DEFAULT_VALUE = ExpressionFunctionParameterName.with("defaultValue")
         .required(Object.class)
         .setKinds(
             Sets.of(ExpressionFunctionParameterKind.EVALUATE)
@@ -59,7 +59,7 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue extends Spr
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
         PROPERTY_NAME,
-        VALUE
+        DEFAULT_VALUE
     );
 
     @Override
@@ -77,23 +77,12 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataSetValue extends Spr
             parameters,
             0
         );
-
-        final Object value = context.convertOrFail(
-            VALUE.getOrFail(
-                parameters,
-                1
-            ),
-            propertyName.type()
+        final Object defaultValue = DEFAULT_VALUE.getOrFail(
+            parameters,
+            1
         );
-
-        context.setSpreadsheetMetadata(
-            context.spreadsheetMetadata()
-                .set(
-                    propertyName,
-                    Cast.to(value)
-                )
-        );
-
-        return value;
+        return context.spreadsheetMetadata()
+            .get(propertyName)
+            .orElse(Cast.to(defaultValue));
     }
 }
