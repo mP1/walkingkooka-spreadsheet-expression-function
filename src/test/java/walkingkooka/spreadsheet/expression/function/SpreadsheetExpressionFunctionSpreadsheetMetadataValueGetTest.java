@@ -28,7 +28,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet, Object>
     implements SpreadsheetMetadataTesting {
 
     @Test

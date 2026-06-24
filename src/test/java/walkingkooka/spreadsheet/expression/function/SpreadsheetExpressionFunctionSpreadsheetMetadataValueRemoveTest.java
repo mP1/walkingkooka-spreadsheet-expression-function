@@ -28,7 +28,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 import java.util.Locale;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
 
     private final static SpreadsheetMetadataPropertyName<Locale> PROPERTY_NAME = SpreadsheetMetadataPropertyName.LOCALE;
@@ -41,13 +41,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
 
         this.applyAndCheck(
             Lists.of(PROPERTY_NAME),
-            PROPERTY_VALUE
-        );
-
-        this.checkEquals(
-            null,
-            this.metadata.getIgnoringDefaults(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
-                .orElse(null)
+            this.metadata.remove(PROPERTY_NAME)
         );
     }
 
@@ -69,13 +63,9 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
                 this.metadata,
                 PROPERTY_NAME
             ),
-            localeRemoved
-        );
-
-        this.checkEquals(
-            null,
-            this.metadata.getIgnoringDefaults(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
-                .orElse(null)
+            SPREADSHEET_METADATA.remove(
+                SpreadsheetMetadataPropertyName.LOCALE
+            )
         );
     }
 
@@ -94,11 +84,6 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
                     PROPERTY_NAME,
                     PROPERTY_VALUE
                 );
-            }
-
-            @Override
-            public void setSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata) {
-                SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest.this.metadata = spreadsheetMetadata;
             }
 
             @Override

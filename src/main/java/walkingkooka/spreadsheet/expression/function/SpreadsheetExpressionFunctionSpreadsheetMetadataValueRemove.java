@@ -26,9 +26,11 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import java.util.List;
 
 /**
- * A function that removes a value from the given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata} returning the original value if it was present.
+ * A function that returns a {@link SpreadsheetMetadata} after removing a {@link SpreadsheetMetadataPropertyName} from the
+ * given {@link walkingkooka.spreadsheet.meta.SpreadsheetMetadata}. If the {@link SpreadsheetMetadata} is missing
+ * the current is used.
  */
-final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue {
+final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue<SpreadsheetMetadata> {
 
     /**
      * Singleton
@@ -43,27 +45,25 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove extends 
     }
 
     @Override
+    public Class<SpreadsheetMetadata> returnType() {
+        return SpreadsheetMetadata.class;
+    }
+
+    @Override
     List<ExpressionFunctionParameter<?>> parametersWithoutSpreadsheetMetadata() {
         return Lists.of(PROPERTY_NAME);
     }
 
     @Override
-    Object applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
-                                        final int parameterIndexOffset,
-                                        final List<Object> parameters,
-                                        final SpreadsheetExpressionEvaluationContext context) {
+    SpreadsheetMetadata applyWithSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata,
+                                                     final int parameterIndexOffset,
+                                                     final List<Object> parameters,
+                                                     final SpreadsheetExpressionEvaluationContext context) {
         final SpreadsheetMetadataPropertyName<?> propertyName = PROPERTY_NAME.getOrFail(
             parameters,
             parameterIndexOffset + 0
         );
 
-        final Object removedValue = spreadsheetMetadata.get(propertyName)
-            .orElse(null);
-
-        context.setSpreadsheetMetadata(
-            spreadsheetMetadata.remove(propertyName)
-        );
-
-        return removedValue;
+        return spreadsheetMetadata.remove(propertyName);
     }
 }

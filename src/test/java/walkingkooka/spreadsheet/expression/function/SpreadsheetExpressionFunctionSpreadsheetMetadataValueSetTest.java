@@ -29,7 +29,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
 import java.util.Locale;
 
-public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet>
+public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
 
     final static SpreadsheetMetadataPropertyName<SpreadsheetName> PROPERTY_NAME = SpreadsheetMetadataPropertyName.SPREADSHEET_NAME;
@@ -44,12 +44,10 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
                 PROPERTY_NAME,
                 PROPERTY_VALUE
             ),
-            PROPERTY_VALUE
-        );
-
-        this.checkEquals(
-            PROPERTY_VALUE,
-            this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+            SPREADSHEET_METADATA.set(
+                PROPERTY_NAME,
+                PROPERTY_VALUE
+            )
         );
     }
 
@@ -75,14 +73,12 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
             Lists.of(
                 metadata,
                 PROPERTY_NAME,
-                PROPERTY_VALUE
+                spreadsheetName
             ),
-            PROPERTY_VALUE
-        );
-
-        this.checkEquals(
-            PROPERTY_VALUE,
-            this.metadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME)
+            metadata.set(
+                PROPERTY_NAME,
+                spreadsheetName
+            )
         );
     }
 
@@ -98,11 +94,6 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
                 return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest.this.metadata;
-            }
-
-            @Override
-            public void setSpreadsheetMetadata(final SpreadsheetMetadata spreadsheetMetadata) {
-                SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest.this.metadata = spreadsheetMetadata;
             }
 
             @Override

@@ -4029,19 +4029,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetSpreadsheetMetadataValue() {
-        final SpreadsheetName expected = SpreadsheetName.with("NewName222");
+        final SpreadsheetMetadata spreadsheetMetadata = this.metadata();
+
+        final SpreadsheetName newSpreadsheetName = SpreadsheetName.with("NewName222");
+        this.checkNotEquals(
+            spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
+            newSpreadsheetName
+        );
+
 
         final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
             "=setSpreadsheetMetadataValue(\"spreadsheetName\", \"NewName222\")",
-            expected
+            spreadsheetMetadata
+                .set(
+                    SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
+                    newSpreadsheetName
+                )
         );
 
         // must load SpreadsheetMetadata because BasicSpreadsheetEngineContext#spreadsheetMetadata is not refreshed after spreadsheet save.
         final SpreadsheetId id = context.spreadsheetMetadata()
             .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
 
-        this.checkEquals(
-            expected,
+        this.checkNotEquals(
+            newSpreadsheetName,
             context.storeRepository()
                 .metadatas()
                 .loadOrFail(id)

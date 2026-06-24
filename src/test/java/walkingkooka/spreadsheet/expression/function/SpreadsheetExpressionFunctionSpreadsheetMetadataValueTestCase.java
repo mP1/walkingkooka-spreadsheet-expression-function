@@ -21,7 +21,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 
-public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<F extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue> extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<F, Object> {
+public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<F extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue<T>, T> extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<F, T> {
 
     SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase() {
         super();
