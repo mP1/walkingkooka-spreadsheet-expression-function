@@ -46,6 +46,7 @@ import walkingkooka.net.HostAddress;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.net.http.server.HttpHandler;
+import walkingkooka.net.http.server.HttpHandlerContext;
 import walkingkooka.net.http.server.HttpRequestAttribute;
 import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
@@ -159,10 +160,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
-    private final static Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler>> HATEOS_ROUTER_FACTORY = (SpreadsheetEngineContext c) ->
+    private final static Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler<HttpHandlerContext>>> HATEOS_ROUTER_FACTORY = (SpreadsheetEngineContext c) ->
         new Router<>() {
             @Override
-            public Optional<HttpHandler> route(final Map<HttpRequestAttribute<?>, Object> parameters) {
+            public Optional<HttpHandler<HttpHandlerContext>> route(final Map<HttpRequestAttribute<?>, Object> parameters) {
                 throw new UnsupportedOperationException();
             }
         };
