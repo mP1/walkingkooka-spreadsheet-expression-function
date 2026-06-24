@@ -67,8 +67,7 @@ final class SpreadsheetExpressionFunctionSpreadsheetMetadataSave extends Spreads
                                      final SpreadsheetExpressionEvaluationContext context) {
         Objects.requireNonNull(parameters, "parameters");
         Objects.requireNonNull(context, "context");
-        System.out.println(parameters.size());
-        System.out.println(parameters);
+
         final SpreadsheetMetadata spreadsheetMetadata = SPREADSHEET_METADATA.getOrFail(
             parameters,
             0
