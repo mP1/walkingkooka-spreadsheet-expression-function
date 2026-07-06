@@ -171,7 +171,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - isoweeknum
 - isRef
 - isText
-- json
+- [json](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJson.java)
 - [lambda](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionLambda.java)
 - left
 - len
