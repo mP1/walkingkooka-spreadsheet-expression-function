@@ -105,7 +105,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - delta
 - dollar
 - e
-- emailAddress
+- [emailAddress](https://github.com/mP1/walkingkooka-net-expression-function/blob/master/src/main/java/walkingkooka/net/expression/function/NetExpressionFunctionEmailAddress.java)
 - error
 - [eval](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionEval.java)
 - even
@@ -132,7 +132,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - getFormulaText
 - [getGreen](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionGetGreen.java)
 - [getHomeDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionGetHomeDirectory.java)
-- getHost
+- [getHost](https://github.com/mP1/walkingkooka-net-expression-function/blob/master/src/main/java/walkingkooka/net/expression/function/NetExpressionFunctionGetHost.java)
 - getIndentation
 - getLineEnding
 - getLocale
@@ -246,7 +246,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - setEnv
 - [setGreen](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionSetGreen.java)
 - [setHomeDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionSetHomeDirectory.java)
-- setHost
+- [setHost](https://github.com/mP1/walkingkooka-net-expression-function/blob/master/src/main/java/walkingkooka/net/expression/function/NetExpressionFunctionSetHost.java)
 - setIndentation
 - setLineEnding
 - setLocale
@@ -295,7 +295,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - unichar
 - unicode
 - upper
-- url
+- [url](https://github.com/mP1/walkingkooka-net-expression-function/blob/master/src/main/java/walkingkooka/net/expression/function/NetExpressionFunctionUrl.java)
 - validationChoiceList
 - validationError
 - validationErrorIf
