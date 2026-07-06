@@ -143,7 +143,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [getTextNode](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionGetTextNode.java)
 - [getTimeOffset](https://github.com/mP1/walkingkooka-environment-expression-function/tree/master/src/main/java/walkingkooka/environment/expression/function/EnvironmentExpressionFunctionGetTimeOffset.java)
 - [getUser](https://github.com/mP1/walkingkooka-environment-expression-function/tree/master/src/main/java/walkingkooka/environment/expression/function/EnvironmentExpressionFunctionGetUser.java)
-- getValidator
+- [getValidator](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionGetValidator.java)
 - getValue
 - hex2bin
 - hex2dec
@@ -296,10 +296,10 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - unicode
 - upper
 - [url](https://github.com/mP1/walkingkooka-net-expression-function/blob/master/src/main/java/walkingkooka/net/expression/function/NetExpressionFunctionUrl.java)
-- validationChoiceList
+- [validationChoiceList](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValidationChoiceList.java)
 - validationError
-- validationErrorIf
-- validationValue
+- [validationErrorIf](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValidationErrorIf.java)
+- [validationValue](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValidationValue.java)
 - value
 - weekday
 - weeknum
