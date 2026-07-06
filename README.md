@@ -101,7 +101,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - decimal
 - degrees
 - deleteSpreadsheetMetadata
-- deleteStorage
+- [deleteStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionDelete.java)
 - delta
 - dollar
 - e
@@ -123,7 +123,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [getBlue](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionGetBlue.java)
 - getCharset
 - getCurrency
-- getCurrentWorkingDirectory
+- [getCurrentWorkingDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionGetCurrentWorkingDirectory.java)
 - getDateTimeSymbols
 - getDecimalNumberSymbols
 - getEnv
@@ -131,7 +131,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - getFormatValue
 - getFormulaText
 - [getGreen](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionGetGreen.java)
-- getHomeDirectory
+- [getHomeDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionGetHomeDirectory.java)
 - getHost
 - getIndentation
 - getLineEnding
@@ -178,7 +178,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - let
 - list
 - listNonNull
-- listStorage
+- [listStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionList.java)
 - ln
 - loadSpreadsheetMetadata
 - locale
@@ -221,8 +221,8 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - rand
 - randBetween
 - readLine
-- readStorage
-- readStorageText
+- [readStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionRead.java)
+- [readStorageText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionReadText.java)
 - removeEnv
 - removeSpreadsheetMetadataValue
 - replace
@@ -235,17 +235,17 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - row
 - rows
 - saveSpreadsheetMetadata
-- script
+- [script](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionScript.java)
 - search
 - second
 - [setAlpha](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionSetAlpha.java)
 - [setBlue](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionSetBlue.java)
 - setCharset
 - setCurrency
-- setCurrentWorkingDirectory
+- [setCurrentWorkingDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionSetCurrentWorkingDirectory.java)
 - setEnv
 - [setGreen](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionSetGreen.java)
-- setHomeDirectory
+- [setHomeDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionSetHomeDirectory.java)
 - setHost
 - setIndentation
 - setLineEnding
@@ -303,8 +303,8 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - value
 - weekday
 - weeknum
-- writeStorage
-- writeStorageText
+- [writeStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWrite.java)
+- [writeStorageText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWriteText.java)
 - xor
 - year
 
