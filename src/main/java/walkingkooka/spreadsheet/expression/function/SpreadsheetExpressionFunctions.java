@@ -66,7 +66,7 @@ import walkingkooka.tree.expression.function.booleann.BooleanExpressionFunctions
 import walkingkooka.tree.expression.function.datetime.DateTimeExpressionFunctions;
 import walkingkooka.tree.expression.function.engineering.EngineeringExpressionFunctions;
 import walkingkooka.tree.expression.function.number.NumberExpressionFunctions;
-import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonomteryExpressionFunctions;
+import walkingkooka.tree.expression.function.number.trigonometry.NumberTrigonometryExpressionFunctions;
 import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.json.JsonNode;
@@ -219,11 +219,11 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#acos}
+     * {@see NumberTrigonometryExpressionFunctions#acos}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> acos() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.acos()
+            NumberTrigonometryExpressionFunctions.acos()
         );
     }
 
@@ -244,20 +244,20 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#asin}
+     * {@see NumberTrigonometryExpressionFunctions#asin}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> asin() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.asin()
+            NumberTrigonometryExpressionFunctions.asin()
         );
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#atan}
+     * {@see NumberTrigonometryExpressionFunctions#atan}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> atan() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.atan()
+            NumberTrigonometryExpressionFunctions.atan()
         );
     }
 
@@ -537,11 +537,11 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     ).filterParameterValues(SpreadsheetExpressionFunctions::filterNonNullAndNotMissingCell);
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#cos}
+     * {@see NumberTrigonometryExpressionFunctions#cos}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> cos() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.cos()
+            NumberTrigonometryExpressionFunctions.cos()
         );
     }
 
@@ -688,11 +688,11 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#degrees}
+     * {@see NumberTrigonometryExpressionFunctions#degrees}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> degrees() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.degrees()
+            NumberTrigonometryExpressionFunctions.degrees()
         );
     }
 
@@ -1700,11 +1700,11 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#radians}
+     * {@see NumberTrigonometryExpressionFunctions#radians}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> radians() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.radians()
+            NumberTrigonometryExpressionFunctions.radians()
         );
     }
 
@@ -2056,20 +2056,20 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#sin}
+     * {@see NumberTrigonometryExpressionFunctions#sin}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sin() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.sin()
+            NumberTrigonometryExpressionFunctions.sin()
         );
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#sinh}
+     * {@see NumberTrigonometryExpressionFunctions#sinh}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> sinh() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.sinh()
+            NumberTrigonometryExpressionFunctions.sinh()
         );
     }
 
@@ -2196,20 +2196,20 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#tan}
+     * {@see NumberTrigonometryExpressionFunctions#tan}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> tan() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.tan()
+            NumberTrigonometryExpressionFunctions.tan()
         );
     }
 
     /**
-     * {@see NumberTrigonomteryExpressionFunctions#tanh}
+     * {@see NumberTrigonometryExpressionFunctions#tanh}
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> tanh() {
         return fixName(
-            NumberTrigonomteryExpressionFunctions.tanh()
+            NumberTrigonometryExpressionFunctions.tanh()
         );
     }
 
