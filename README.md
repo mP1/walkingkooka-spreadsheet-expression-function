@@ -47,7 +47,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - abs
 - acos
 - address
-- and
+- [and](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionLogicalAnd.java)
 - asin
 - atan
 - average
@@ -76,7 +76,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - cellValue
 - cellValueType
 - char
-- choose
+- [choose](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/ObjectExpressionFunctionChoose.java)
 - clean
 - code
 - [color](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionColor.java)
@@ -112,7 +112,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - exact
 - [exit](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionExit.java)
 - exp
-- false
+- [false](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionFalse.java)
 - find
 - fixed
 - flag
@@ -150,8 +150,8 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - hex2oct
 - hour
 - [hyperlink](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionHyperlink.java)
-- if
-- ifs
+- [if](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/ObjectExpressionFunctionIf.java)
+- [ifs](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/ObjectExpressionFunctionIfs.java)
 - [image](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionImage.java)
 - indirect
 - int
@@ -165,11 +165,11 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - isLogical
 - isNa
 - isNonText
-- isNull
+- [isNull](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionIsNull.java)
 - isNumber
 - isOdd
 - isoweeknum
-- isRef
+- [isRef](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionIsReference.java)
 - isText
 - [json](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJson.java)
 - [lambda](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionLambda.java)
@@ -199,7 +199,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - month
 - nextEmptyColumn
 - nextEmptyRow
-- not
+- [not](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionNot.java)
 - now
 - [null](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionNull.java)
 - numberValue
@@ -208,7 +208,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - oct2hex
 - odd
 - offset
-- or
+- [or](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionLogicalOr.java)
 - padding
 - pi
 - [print](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionPrint.java)
@@ -272,7 +272,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - substitute
 - sum
 - sumIf
-- switch
+- [switch](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/ObjectExpressionFunctionSwitch.java)
 - t
 - tan
 - tanh
@@ -289,7 +289,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [toRgbHexString](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToRgbHexString.java)
 - [toWebColorName](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToWebColorName.java)
 - trim
-- true
+- [true](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionTrue.java)
 - trunc
 - type
 - unichar
@@ -305,7 +305,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - weeknum
 - [writeStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWrite.java)
 - [writeStorageText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWriteText.java)
-- xor
+- [xor](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionLogicalXor.java)
 - year
 
 Many more functions are outstanding and remain [TODO](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/issues).
