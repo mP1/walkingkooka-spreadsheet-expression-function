@@ -52,7 +52,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - atan
 - average
 - averageIf
-- badge
+- [badge](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionBadge.java)
 - [base](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/StringExpressionFunctionBase.java)
 - [bin2dec](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/StringExpressionFunctionParseBase2Base.java)
 - [bin2hex](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/StringExpressionFunctionParseBase2Base.java)
@@ -60,7 +60,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [bitand](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/NumberExpressionFunctionBitAndOrXor.java)
 - [bitor](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/NumberExpressionFunctionBitAndOrXor.java)
 - [bitxor](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/NumberExpressionFunctionBitAndOrXor.java)
-- border
+- [border](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionBorder.java)
 - [ceil](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - cell
 - cellCurrency
@@ -115,7 +115,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [false](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionFalse.java)
 - find
 - [fixed](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/StringExpressionFunctionFixed.java)
-- flag
+- [flag](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionFlag.java)
 - [floor](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - [formatValue](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionObjectFormatValue.java)
 - formulatext
@@ -186,7 +186,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [log](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionLog.java)
 - [log10](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - lower
-- margin
+- [margin](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionMargin.java)
 - max
 - maxIf
 - [mergeStyle](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionMergeStyle.java)
@@ -209,7 +209,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [odd](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - offset
 - [or](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionLogicalOr.java)
-- padding
+- [padding](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionPadding.java)
 - [pi](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionConstants.java)
 - [print](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionPrint.java)
 - [printEnv](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionPrintEnv.java)
@@ -254,7 +254,6 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - setSpreadsheetMetadataValue
 - [setStyle](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionSetStyle.java)
 - [setText](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionSetText.java)
-- setText
 - [setTimeOffset](https://github.com/mP1/walkingkooka-environment-expression-function/tree/master/src/main/java/walkingkooka/environment/expression/function/EnvironmentExpressionFunctionSetTimeOffset.java)
 - [shell](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionShell.java)
 - [sign](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
