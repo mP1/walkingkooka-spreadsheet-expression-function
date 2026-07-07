@@ -110,7 +110,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [error](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/expression/ErrorExpressionFunction.java)
 - [eval](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionEval.java)
 - [even](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
-- exact
+- [exact](https://github.com/mP1/walkingkooka-tree-expression-function-string/blob/master/src/main/java/walkingkooka/tree/expression/function/string/BooleanExpressionFunctionEquals.java)
 - [exit](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionExit.java)
 - [exp](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - [false](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionFalse.java)
