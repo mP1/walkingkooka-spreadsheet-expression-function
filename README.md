@@ -107,7 +107,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [dollar](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionStringDollar.java)
 - [e](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionConstants.java)
 - [emailAddress](https://github.com/mP1/walkingkooka-net-expression-function/blob/master/src/main/java/walkingkooka/net/expression/function/NetExpressionFunctionEmailAddress.java)
-- error
+- [error](https://github.com/mP1/walkingkooka-spreadsheet/blob/master/src/main/java/walkingkooka/spreadsheet/expression/ErrorExpressionFunction.java)
 - [eval](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionEval.java)
 - [even](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - exact
