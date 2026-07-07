@@ -899,6 +899,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateCoshWithNumber() {
+        this.evaluateAndValueCheck(
+            "=cosh(1)",
+            EXPRESSION_NUMBER_KIND.create(1.543081)
+        );
+    }
+
+    @Test
     public void testEvaluateCountWithDate() {
         this.evaluateAndValueCheck(
             "=count(date(1999, 12, 31))",

@@ -212,6 +212,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.columns(),
                     SpreadsheetExpressionFunctions.concat(),
                     SpreadsheetExpressionFunctions.cos(),
+                    SpreadsheetExpressionFunctions.cosh(),
                     SpreadsheetExpressionFunctions.count(),
                     SpreadsheetExpressionFunctions.countA(),
                     SpreadsheetExpressionFunctions.countBlank(),
