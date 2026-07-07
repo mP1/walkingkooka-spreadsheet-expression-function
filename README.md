@@ -45,11 +45,11 @@ The list below (with 262) is incomplete and constantly being updated as new func
 found in Sheets or Excel and may be used to interact with features not found in those two platforms.
 
 - [abs](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
-- acos
+- [acos](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - address
 - [and](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionLogicalAnd.java)
-- asin
-- atan
+- [asin](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
+- [atan](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - average
 - averageIf
 - [badge](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionBadge.java)
@@ -83,7 +83,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - column
 - columns
 - concat
-- cos
+- [cos](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - count
 - countA
 - countBlank
@@ -99,7 +99,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [dec2hex](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/StringExpressionFunctionParseBase2Base.java)
 - [dec2oct](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/StringExpressionFunctionParseBase2Base.java)
 - [decimal](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionDecimal.java)
-- degrees
+- [degrees](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - deleteSpreadsheetMetadata
 - [deleteStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionDelete.java)
 - [delta](https://github.com/mP1/walkingkooka-tree-expression-function-engineering/blob/master/src/main/java/walkingkooka/tree/expression/function/engineering/BooleanExpressionFunctionDelta.java)
@@ -217,7 +217,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [product](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionProduct.java)
 - proper
 - [quotient](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionQuotient.java)
-- radians
+- [radians](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - [random](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionRandom.java)
 - [randomBetween](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionRandomBetween.java)
 - [readLine](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionReadLine.java)
@@ -257,8 +257,8 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [setTimeOffset](https://github.com/mP1/walkingkooka-environment-expression-function/tree/master/src/main/java/walkingkooka/environment/expression/function/EnvironmentExpressionFunctionSetTimeOffset.java)
 - [shell](https://github.com/mP1/walkingkooka-terminal/tree/master/src/main/java/walkingkooka/terminal/expression/function/TerminalExpressionFunctionShell.java)
 - [sign](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
-- sin
-- sinh
+- [sin](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
+- [sinh](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - spreadsheetUrl
 - [sqrt](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - [style](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionTextStyle.java)
@@ -273,8 +273,8 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - sumIf
 - [switch](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/ObjectExpressionFunctionSwitch.java)
 - t
-- tan
-- tanh
+- [tan](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
+- [tanh](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - template
 - text
 - textJoin
