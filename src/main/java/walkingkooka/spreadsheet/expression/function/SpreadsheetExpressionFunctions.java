@@ -546,6 +546,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see NumberTrigonometryExpressionFunctions#cosh}
+     */
+    public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> cosh() {
+        return fixName(
+            NumberTrigonometryExpressionFunctions.cosh()
+        );
+    }
+
+    /**
      * Counts the {@link ExpressionNumber} present in the parameter values
      */
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> count() {
