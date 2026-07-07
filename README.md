@@ -50,7 +50,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [and](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionLogicalAnd.java)
 - [asin](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - [atan](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
-- average
+- [average](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionAverage.java)
 - averageIf
 - [badge](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionBadge.java)
 - [base](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/StringExpressionFunctionBase.java)
@@ -85,7 +85,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - concat
 - [cos](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
 - [cosh](https://github.com/mP1/walkingkooka-tree-expression-function-number-trigonometry/blob/master/src/main/java/walkingkooka/tree/expression/function/number/trigonometry/NumberExpressionFunction.java)
-- count
+- [count](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionCount.java)
 - countA
 - countBlank
 - countIf
@@ -188,11 +188,11 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [log10](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
 - lower
 - [margin](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionMargin.java)
-- max
+- [max](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionMax.java)
 - maxIf
 - [mergeStyle](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionMergeStyle.java)
 - mid
-- min
+- [min](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionMin.java)
 - minIf
 - [minute](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionLocalTime.java)
 - [mixColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionMixColor.java)
@@ -270,7 +270,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [styleReplaceIf](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionTextStyleReplaceIf.java)
 - [styleSet](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionTextStyleSet.java)
 - substitute
-- sum
+- [sum](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionSum.java)
 - sumIf
 - [switch](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/ObjectExpressionFunctionSwitch.java)
 - t
