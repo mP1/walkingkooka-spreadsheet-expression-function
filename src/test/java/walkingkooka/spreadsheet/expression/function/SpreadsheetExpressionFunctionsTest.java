@@ -2776,6 +2776,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLenWithNull() {
+        this.evaluateAndValueCheck(
+            "=len(null())",
+            this.metadataWithStrangeNumberFormatPattern(),
+            EXPRESSION_NUMBER_KIND.zero()
+        );
+    }
+
+    @Test
     public void testEvaluateLenWithNumber() {
         this.evaluateAndValueCheck(
             "=len(1.23)",
