@@ -30,6 +30,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.store.FakeSpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
+import walkingkooka.spreadsheet.reference.SpreadsheetLabelNameResolvers;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.store.repo.FakeSpreadsheetStoreRepository;
 import walkingkooka.text.CharSequences;
@@ -300,7 +301,7 @@ public final class SpreadsheetExpressionFunctionObjectLetTest extends Spreadshee
             SpreadsheetMetadataMode.FORMULA,
             SpreadsheetMetadata.NO_CELL,
             SpreadsheetExpressionReferenceLoaders.fake(),
-            SPREADSHEET_LABEL_NAME_RESOLVER,
+            SpreadsheetLabelNameResolvers.empty(),
             SpreadsheetContexts.fixedSpreadsheetId(
                 MEDIA_TYPE_DETECTOR,
                 SPREADSHEET_METADATA_CREATOR,
