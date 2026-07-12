@@ -1567,7 +1567,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    @Test
+    @Disabled("Converter: HasDateTimeSymbols: https://github.com/mP1/walkingkooka-convert/issues/569")
+    //@Test
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCell() {
         final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
             DateFormatSymbols.getInstance(Locale.FRENCH)
@@ -1634,8 +1635,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "" // printed
         );
     }
-    
-    @Test
+
+    @Disabled // "Converter: HasDecimalNumberSymbols: https://github.com/mP1/walkingkooka-convert/issues/570"
+    //@Test
     public void testEvaluateGetDecimalNumberSymbolsWithSpreadsheetCell() {
         final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
             '+',
