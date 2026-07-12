@@ -1567,8 +1567,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    @Disabled("Converter: HasDateTimeSymbols: https://github.com/mP1/walkingkooka-convert/issues/569")
-    //@Test
+    @Test
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCell() {
         final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
             DateFormatSymbols.getInstance(Locale.FRENCH)
