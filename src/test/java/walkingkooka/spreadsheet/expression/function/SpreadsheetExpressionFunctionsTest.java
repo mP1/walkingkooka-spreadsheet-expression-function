@@ -17,7 +17,6 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
@@ -1635,8 +1634,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
-    @Disabled // "Converter: HasDecimalNumberSymbols: https://github.com/mP1/walkingkooka-convert/issues/570"
-    //@Test
+    @Test
     public void testEvaluateGetDecimalNumberSymbolsWithSpreadsheetCell() {
         final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
             '+',
