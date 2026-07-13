@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.Binary;
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.currency.CurrencyExchangeRater;
@@ -30,6 +31,7 @@ import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.net.header.MediaType;
 import walkingkooka.spreadsheet.convert.SpreadsheetConverterContext;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
@@ -549,6 +551,17 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Locale locale() {
         return this.context.locale();
+    }
+
+    // MediaTypeDetector................................................................................................
+
+    @Override
+    public MediaType detect(final String filename,
+                            final Binary binary) {
+        return this.context.detect(
+            filename,
+            binary
+        );
     }
 
     // StorageExpressionEvaluationContext...............................................................................
