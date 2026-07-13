@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.Binary;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
@@ -28,6 +29,7 @@ import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.net.header.MediaType;
 import walkingkooka.spreadsheet.SpreadsheetStrings;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
@@ -402,6 +404,15 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
             DECIMAL_SEPARATOR,
             GROUP_SEPARATOR,
             new FakeSpreadsheetExpressionEvaluationContext() {
+
+                @Override
+                public MediaType detect(final String filename,
+                                        final Binary content) {
+                    return MEDIA_TYPE_DETECTOR.detect(
+                        filename,
+                        content
+                    );
+                }
 
                 @Override
                 public Optional<SpreadsheetCell> cell() {
