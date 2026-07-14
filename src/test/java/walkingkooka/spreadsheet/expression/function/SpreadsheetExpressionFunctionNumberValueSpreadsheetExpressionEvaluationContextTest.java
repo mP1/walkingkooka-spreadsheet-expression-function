@@ -64,7 +64,6 @@ import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Currency;
@@ -580,7 +579,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public Charset charset() {
-                    return StandardCharsets.UTF_8;
+                    return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest.CHARSET;
                 }
 
                 @Override
