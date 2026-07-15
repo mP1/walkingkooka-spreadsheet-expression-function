@@ -78,8 +78,6 @@ import java.util.function.Function;
 public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext>,
     SpreadsheetMetadataTesting {
 
-    private final static MathContext MATH_CONTEXT = MathContext.DECIMAL128;
-
     private final static String CURRENCY_SYMBOL = "AUD";
     private final static char DECIMAL_SEPARATOR = '/';
     private final static String EXPONENT_SYMBOL = "HELLO";
