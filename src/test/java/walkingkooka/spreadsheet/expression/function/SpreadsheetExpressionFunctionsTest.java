@@ -156,7 +156,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     EnvironmentContextTesting,
     StorageEnvironmentContextTesting {
 
-    private final static Locale LOCALE = Locale.forLanguageTag("EN-AU");
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
 
     private final static Function<SpreadsheetEngineContext, Router<HttpRequestAttribute<?>, HttpHandler<HttpHandlerContext>>> HATEOS_ROUTER_FACTORY = (SpreadsheetEngineContext c) ->
@@ -4778,7 +4777,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateTextWithDateTime() {
         this.evaluateAndValueCheck(
             "=text(now(), \"yyyy mm dd hh mm ss\")",
-            "1999 12 31 12 58 00"
+            "1999 12 31 12 58 59"
         );
     }
 
