@@ -40,7 +40,6 @@ import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
-import walkingkooka.spreadsheet.meta.SpreadsheetName;
 import walkingkooka.spreadsheet.meta.store.FakeSpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.FakeSpreadsheetExpressionReferenceLoader;
@@ -120,7 +119,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, spreadsheetId)
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SPREADSHEET_NAME)
             .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
             .loadFromLocale(
                 CURRENCY_CONTEXT.setLocaleContext(

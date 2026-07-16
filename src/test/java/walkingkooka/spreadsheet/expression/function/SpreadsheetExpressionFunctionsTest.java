@@ -78,7 +78,6 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
-import walkingkooka.spreadsheet.meta.SpreadsheetName;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserAliasSet;
@@ -1970,11 +1969,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetSpreadsheetMetadataValueWithPropertyName() {
         this.evaluateAndValueCheck(
             "=getSpreadsheetMetadataValue(\"spreadsheetName\", \"missing!!!\")",
-            SpreadsheetName.with("Untitled5678")
+            SPREADSHEET_NAME
         );
     }
-
-    private final static SpreadsheetName DIFFERENT_SPREADSHEET_NAME = SpreadsheetName.with("DifferentSpreadsheetName");
 
     @Test
     public void testEvaluateGetSpreadsheetMetadataValueWithSpreadsheetIdAndPropertyName() {
@@ -3696,11 +3693,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SPREADSHEET_ID
             ).set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                SpreadsheetName.with("Hello")
+                SPREADSHEET_NAME
             );
 
         final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
-            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"123\"),\"spreadsheetName\",\"Hello\"))",
+            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"123\"),\"spreadsheetName\",\"SpreadsheetName456\"))",
             expected, // expected value
             "" // expected printed
         );
@@ -4085,19 +4082,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateSetSpreadsheetMetadataValue() {
         final SpreadsheetMetadata spreadsheetMetadata = this.metadata();
 
-        final SpreadsheetName newSpreadsheetName = SpreadsheetName.with("NewName222");
-        this.checkNotEquals(
-            spreadsheetMetadata.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME),
-            newSpreadsheetName
-        );
-
-
         final SpreadsheetEngineContext context = this.evaluateAndValueCheck(
-            "=setSpreadsheetMetadataValue(\"spreadsheetName\", \"NewName222\")",
+            "=setSpreadsheetMetadataValue(\"spreadsheetName\", \"DifferentSpreadsheetName789\")",
             spreadsheetMetadata
                 .set(
                     SpreadsheetMetadataPropertyName.SPREADSHEET_NAME,
-                    newSpreadsheetName
+                    DIFFERENT_SPREADSHEET_NAME
                 )
         );
 
@@ -4106,7 +4096,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
 
         this.checkNotEquals(
-            newSpreadsheetName,
+            DIFFERENT_SPREADSHEET_NAME,
             context.storeRepository()
                 .metadatas()
                 .loadOrFail(id)
@@ -5694,7 +5684,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SPREADSHEET_ID)
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SPREADSHEET_NAME)
             .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
             .loadFromLocale(
                 CURRENCY_CONTEXT.setLocaleContext(
