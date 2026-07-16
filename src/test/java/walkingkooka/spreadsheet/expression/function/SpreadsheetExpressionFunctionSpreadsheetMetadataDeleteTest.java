@@ -27,8 +27,6 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataDeleteTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataDelete, Void>
     implements SpreadsheetMetadataTesting {
 
-    private final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(1);
-
     @Test
     public void testApply() {
         this.deleted = false;

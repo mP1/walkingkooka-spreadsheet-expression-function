@@ -31,8 +31,6 @@ import java.util.Optional;
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataLoadTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataLoad, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
 
-    private final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(1);
-
     private final static SpreadsheetMetadata METADATA = METADATA_EN_AU.set(
         SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
         SPREADSHEET_ID

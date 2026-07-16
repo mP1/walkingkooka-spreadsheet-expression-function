@@ -17,7 +17,6 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
-import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 
@@ -26,8 +25,6 @@ public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestC
     SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase() {
         super();
     }
-
-    final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(111);
 
     final static SpreadsheetMetadata SPREADSHEET_METADATA = METADATA_EN_AU.set(
         SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
