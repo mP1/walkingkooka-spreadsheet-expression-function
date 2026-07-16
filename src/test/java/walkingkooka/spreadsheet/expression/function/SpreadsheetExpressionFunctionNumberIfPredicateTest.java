@@ -44,7 +44,6 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements PredicateTesting,
@@ -289,7 +288,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
                 AuditInfo.create(
                     EmailAddress.parse("creator@example.com"),
-                    LocalDateTime.of(1999, 12, 31, 12, 58, 59)
+                    NOW
                 )
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
