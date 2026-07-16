@@ -33,7 +33,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
     implements SpreadsheetMetadataTesting {
 
     final static SpreadsheetMetadataPropertyName<SpreadsheetName> PROPERTY_NAME = SpreadsheetMetadataPropertyName.SPREADSHEET_NAME;
-    final static SpreadsheetName PROPERTY_VALUE = SpreadsheetName.with("SpreadsheetName111");
+    final static SpreadsheetName PROPERTY_VALUE = SPREADSHEET_NAME;
 
     @Test
     public void testApplyWithPropertyName() {
