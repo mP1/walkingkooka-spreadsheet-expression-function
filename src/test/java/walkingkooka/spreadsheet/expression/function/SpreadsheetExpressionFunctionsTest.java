@@ -1282,12 +1282,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateDeleteSpreadsheetId() {
         this.checkEquals(
-            Long.valueOf(0x2),
+            Long.valueOf(0x124),
             SPREADSHEET_ID.value() + 1
         );
 
         final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
-            "=deleteSpreadsheetMetadata(\"/2\")",
+            "=deleteSpreadsheetMetadata(\"/124\")",
             (Object) null, // expected value
             ""// printed
         );
@@ -1295,7 +1295,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.checkEquals(
             null,
             context.loadMetadata(
-                SpreadsheetId.with(0x1235)
+                SpreadsheetId.with(0x124)
             ).orElse(null)
         );
     }
@@ -1979,12 +1979,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateGetSpreadsheetMetadataValueWithSpreadsheetIdAndPropertyName() {
         this.checkEquals(
-            Long.valueOf(2),
+            Long.valueOf(0x124),
             SPREADSHEET_ID.value() + 1
         );
 
         this.evaluateAndValueCheck(
-            "=getSpreadsheetMetadataValue(\"2\", \"spreadsheetName\", \"missing!!!\")",
+            "=getSpreadsheetMetadataValue(\"124\", \"spreadsheetName\", \"missing!!!\")",
             DIFFERENT_SPREADSHEET_NAME
         );
     }
@@ -2916,7 +2916,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateLoadSpreadsheetMetadataWithSpreadsheetId() {
         this.evaluateAndPrintedCheck(
-            "=loadSpreadsheetMetadata(\"1\")",
+            "=loadSpreadsheetMetadata(\"123\")",
             this.metadata()
                 .set(
                     SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
@@ -3700,7 +3700,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             );
 
         final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
-            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"1\"),\"spreadsheetName\",\"Hello\"))",
+            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"123\"),\"spreadsheetName\",\"Hello\"))",
             expected, // expected value
             "" // expected printed
         );
@@ -3920,15 +3920,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         this.evaluateAndPrintedCheck(
-            "=print(setEnv(\"spreadsheetId\", 2))",
+            "=print(setEnv(\"spreadsheetId\", 123))",
             environmentContext,
-            "1"
+            "123"
         );
 
         this.environmentValueAndCheck(
             environmentContext,
             name,
-            SpreadsheetId.with(2)
+            SPREADSHEET_ID
         );
     }
 
