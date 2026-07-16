@@ -71,17 +71,13 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
 
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
-        final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
-
         final SpreadsheetMetadata metadata = METADATA_EN_AU.set(
             SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
-            spreadsheetId
+            SPREADSHEET_ID
         );
 
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        spreadsheetEnvironmentContext.setSpreadsheetId(
-            Optional.of(spreadsheetId)
-        );
+        spreadsheetEnvironmentContext.setSpreadsheetId(OPTIONAL_SPREADSHEET_ID);
 
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
@@ -100,7 +96,7 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
                             @Override
                             public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
                                 return Optional.ofNullable(
-                                    id.equals(spreadsheetId) ?
+                                    id.equals(SPREADSHEET_ID) ?
                                         metadata :
                                         null
                                 );
