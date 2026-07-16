@@ -21,15 +21,12 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSaveTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataSave, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
-
-    private final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(1);
 
     private final static SpreadsheetMetadata UNSAVED_METADATA = METADATA_EN_AU;
 

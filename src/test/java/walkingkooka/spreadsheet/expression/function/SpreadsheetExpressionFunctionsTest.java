@@ -166,8 +166,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             }
         };
 
-    private final static SpreadsheetId SPREADSHEET_ID = SpreadsheetId.with(0x1234);
-
     // wizard function names are all case-insensitive...................................................................
 
     @Test
@@ -1284,12 +1282,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateDeleteSpreadsheetId() {
         this.checkEquals(
-            Long.valueOf(0x1235),
+            Long.valueOf(0x2),
             SPREADSHEET_ID.value() + 1
         );
 
         final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
-            "=deleteSpreadsheetMetadata(\"/1235\")",
+            "=deleteSpreadsheetMetadata(\"/2\")",
             (Object) null, // expected value
             ""// printed
         );
@@ -1561,7 +1559,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=getCurrentWorkingDirectory()",
             CURRENT_WORKING_DIRECTORY
-                .orElse(null)
         );
     }
 
@@ -1782,7 +1779,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=getHomeDirectory()",
             HOME_DIRECTORY
-                .orElse(null)
         );
     }
     
@@ -1983,12 +1979,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     @Test
     public void testEvaluateGetSpreadsheetMetadataValueWithSpreadsheetIdAndPropertyName() {
         this.checkEquals(
-            Long.valueOf(0x1235),
+            Long.valueOf(2),
             SPREADSHEET_ID.value() + 1
         );
 
         this.evaluateAndValueCheck(
-            "=getSpreadsheetMetadataValue(\"1235\", \"spreadsheetName\", \"missing!!!\")",
+            "=getSpreadsheetMetadataValue(\"2\", \"spreadsheetName\", \"missing!!!\")",
             DIFFERENT_SPREADSHEET_NAME
         );
     }
@@ -2919,13 +2915,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateLoadSpreadsheetMetadataWithSpreadsheetId() {
-        this.checkEquals(
-            SPREADSHEET_ID,
-            SpreadsheetId.with(0x1234)
-        );
-
         this.evaluateAndPrintedCheck(
-            "=loadSpreadsheetMetadata(\"1234\")",
+            "=loadSpreadsheetMetadata(\"1\")",
             this.metadata()
                 .set(
                     SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
@@ -3699,11 +3690,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSaveSpreadsheetMetadata() {
-        this.checkEquals(
-            SPREADSHEET_ID,
-            SpreadsheetId.with(0x1234)
-        );
-
         final SpreadsheetMetadata expected = this.metadata()
             .set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
@@ -3714,7 +3700,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             );
 
         final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
-            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"1234\"),\"spreadsheetName\",\"Hello\"))",
+            "=saveSpreadsheetMetadata(setSpreadsheetMetadataValue(loadSpreadsheetMetadata(\"1\"),\"spreadsheetName\",\"Hello\"))",
             expected, // expected value
             "" // expected printed
         );
@@ -3930,13 +3916,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         environmentContext.setEnvironmentValue(
             name,
-            SpreadsheetId.with(1)
+            SPREADSHEET_ID
         );
 
         this.evaluateAndPrintedCheck(
             "=print(setEnv(\"spreadsheetId\", 2))",
             environmentContext,
-            "1234"
+            "1"
         );
 
         this.environmentValueAndCheck(
@@ -5707,7 +5693,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final ConverterSelector scriptingConverter = SpreadsheetMetadataTesting.METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER);
 
         return SpreadsheetMetadata.EMPTY
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SpreadsheetId.parse("1234"))
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SPREADSHEET_ID)
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
             .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
             .loadFromLocale(
@@ -5839,11 +5825,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
         environmentContext.setEnvironmentValue(
             StorageEnvironmentContext.CURRENT_WORKING_DIRECTORY,
-            CURRENT_WORKING_DIRECTORY.orElse(null)
+            CURRENT_WORKING_DIRECTORY
         );
         environmentContext.setEnvironmentValue(
             StorageEnvironmentContext.HOME_DIRECTORY,
-            HOME_DIRECTORY.orElse(null)
+            HOME_DIRECTORY
         );
         environmentContext.setEnvironmentValue(
             SpreadsheetEnvironmentContext.SERVER_URL,
