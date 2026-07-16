@@ -45,7 +45,6 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.util.Locale;
 import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements PredicateTesting,
@@ -278,17 +277,13 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
     }
 
     private SpreadsheetExpressionEvaluationContext context() {
-        final Locale locale = Locale.ENGLISH;
-
-        final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
-
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
-            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, spreadsheetId)
+            .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SPREADSHEET_ID)
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SpreadsheetName.with("Untitled5678"))
-            .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
+            .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
             .loadFromLocale(
                 CURRENCY_CONTEXT.setLocaleContext(
-                    LocaleContexts.jre(locale)
+                    LocaleContexts.jre(LOCALE)
                 )
             ).set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
@@ -310,9 +305,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        spreadsheetEnvironmentContext.setSpreadsheetId(
-            Optional.of(spreadsheetId)
-        );
+        spreadsheetEnvironmentContext.setSpreadsheetId(OPTIONAL_SPREADSHEET_ID);
 
         return SpreadsheetExpressionEvaluationContexts.spreadsheetContext(
             SpreadsheetMetadataMode.FORMULA,
@@ -331,7 +324,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
                             @Override
                             public Optional<SpreadsheetMetadata> load(final SpreadsheetId id) {
                                 return Optional.ofNullable(
-                                    id.equals(spreadsheetId) ?
+                                    id.equals(SPREADSHEET_ID) ?
                                         metadata :
                                         null
                                 );
