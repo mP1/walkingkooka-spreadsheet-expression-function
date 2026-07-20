@@ -163,7 +163,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [isError](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionBooleanIsErrErrorNa.java)
 - [isEven](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/BooleanExpressionFunctionIsEvenIsOdd.java)
 - [isFormula](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionBooleanIsFormula.java)
-- isLogical
+- [isLogical](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionIsBoolean.java)
 - [isNa](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionBooleanIsErrErrorNa.java)
 - [isNonText](https://github.com/mP1/walkingkooka-tree-expression-function-string/blob/master/src/main/java/walkingkooka/tree/expression/function/string/BooleanExpressionFunctionIsTextIsNonText.java)
 - [isNull](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionIsNull.java)
