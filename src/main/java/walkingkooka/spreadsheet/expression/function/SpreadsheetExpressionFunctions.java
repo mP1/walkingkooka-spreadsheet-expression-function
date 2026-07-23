@@ -2336,6 +2336,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see TreeExpressionFunctionTreeText}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> treeText() {
+        return fixName(
+            ExpressionFunctions.treeText()
+        );
+    }
+
+    /**
      * {@see StringExpressionFunctions#trim}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> trim() {
