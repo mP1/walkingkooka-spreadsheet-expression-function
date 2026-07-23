@@ -4949,6 +4949,24 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateTreeTextWithJsonNode() {
+        this.evaluateAndValueCheck(
+            "=treeText(json(\"{\"\"hello\"\": \"\"world\"\"}\"))",
+            "{\n" +
+                "  \"hello\": \"world\"\n" +
+                "}\n"
+        );
+    }
+
+    @Test
+    public void testEvaluateTreeTextWithString() {
+        this.evaluateAndValueCheck(
+            "=treeText(\"a b c\")",
+            "a b c"
+        );
+    }
+
+    @Test
     public void testEvaluateTrim() {
         this.evaluateAndValueCheck(
             "=trim(\"  a  b  c  \")",

@@ -417,6 +417,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.toRgbColor(),
                     SpreadsheetExpressionFunctions.toRgbHexString(),
                     SpreadsheetExpressionFunctions.toWebColorName(),
+                    SpreadsheetExpressionFunctions.treeText(),
                     SpreadsheetExpressionFunctions.trim(),
                     SpreadsheetExpressionFunctions.trueFunction(),
                     SpreadsheetExpressionFunctions.trunc(),
