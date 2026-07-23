@@ -2700,6 +2700,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateJsoTextWithJson() {
+        this.evaluateAndValueCheck(
+            "=jsonText(json(\"{}\"))",
+            "{}"
+        );
+    }
+
+    @Test
+    public void testEvaluateJsoTextnWithString() {
+        this.evaluateAndValueCheck(
+            "=jsonText(\"Hello World\")",
+            "\"Hello World\""
+        );
+    }
+
+    @Test
     public void testEvaluateLambdaWithParameters() {
         this.evaluateAndValueCheck(
             "=lambda(x,y,x*y)(10,20)",
