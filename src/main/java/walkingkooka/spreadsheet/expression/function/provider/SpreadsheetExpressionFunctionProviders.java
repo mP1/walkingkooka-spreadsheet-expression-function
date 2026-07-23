@@ -301,6 +301,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.isRef(),
                     SpreadsheetExpressionFunctions.isText(),
                     SpreadsheetExpressionFunctions.json(),
+                    SpreadsheetExpressionFunctions.jsonText(),
                     SpreadsheetExpressionFunctions.lambda(),
                     SpreadsheetExpressionFunctions.left(),
                     SpreadsheetExpressionFunctions.len(),

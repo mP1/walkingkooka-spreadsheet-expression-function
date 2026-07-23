@@ -1316,6 +1316,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see JsonNodeExpressionFunctions#jsonText}
+     */
+    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> jsonText() {
+        return fixName(
+            JsonNodeExpressionFunctions.jsonText()
+        );
+    }
+
+    /**
      * {@see SpreadsheetExpressionFunctionLambda}
      */
     public static ExpressionFunction<ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> lambda() {
