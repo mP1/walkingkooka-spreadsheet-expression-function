@@ -32,7 +32,6 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextTesting;
-import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.io.FakeTextReader;
 import walkingkooka.io.TextReader;
@@ -1630,7 +1629,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final String value = "Goodbye!";
 
@@ -3380,7 +3379,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     
     @Test
     public void testEvaluateRemoveEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<String> name = EnvironmentValueName.with(
             "Hello",
@@ -3652,9 +3651,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetCharset() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         this.evaluateAndPrintedCheck(
             "=setCharset(\"US-ASCII\")",
@@ -3670,9 +3667,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     
     @Test
     public void testEvaluateSetCurrency() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         this.evaluateAndPrintedCheck(
             "=setCurrency(\"NZD\")",
@@ -3688,9 +3683,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     
     @Test
     public void testEvaluateSetCurrentWorkingDirectory() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<StoragePath> name = StorageEnvironmentContext.CURRENT_WORKING_DIRECTORY;
 
@@ -3713,7 +3706,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetEnvAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<String> name = EnvironmentValueName.with(
             "Hello",
@@ -3741,7 +3734,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetEnvWithSpreadsheetIdStringAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<SpreadsheetId> name = SpreadsheetEnvironmentContextFactory.SPREADSHEET_ID;
 
@@ -3776,9 +3769,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetHomeDirectory() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<StoragePath> name = StorageEnvironmentContext.HOME_DIRECTORY;
 
@@ -3825,9 +3816,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetIndentationAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<Indentation> name = EnvironmentValueName.INDENTATION;
 
@@ -3851,9 +3840,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     
     @Test
     public void testEvaluateSetLineEndingAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<LineEnding> name = EnvironmentValueName.LINE_ENDING;
 
@@ -3877,9 +3864,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     
     @Test
     public void testEvaluateSetLocaleAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<Locale> name = EnvironmentValueName.LOCALE;
 
@@ -3976,9 +3961,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetTimeOffsetAndPrint() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         final EnvironmentValueName<ZoneOffset> name = EnvironmentValueName.TIME_OFFSET;
 
@@ -5161,7 +5144,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expectedPrinted) {
         return this.evaluateAndPrintedCheck(
             formula,
-            EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
+            ENVIRONMENT_CONTEXT.cloneEnvironment(),
             expectedValue,
             expectedPrinted
         );
@@ -5185,7 +5168,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         return this.evaluateAndPrintedCheck(
             formula,
             terminalInput,
-            EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT),
+            ENVIRONMENT_CONTEXT.cloneEnvironment(),
             expectedValue,
             expectedPrinted
         );
@@ -5650,7 +5633,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             )
         );
 
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(SPREADSHEET_ENVIRONMENT_CONTEXT);
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             StorageEnvironmentContext.CURRENT_WORKING_DIRECTORY,
             CURRENT_WORKING_DIRECTORY
