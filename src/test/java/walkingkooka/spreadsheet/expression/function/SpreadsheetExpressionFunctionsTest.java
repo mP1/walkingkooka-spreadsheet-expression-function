@@ -1563,21 +1563,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCell() {
-        final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
-            DateFormatSymbols.getInstance(Locale.FRENCH)
-        );
-
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1586,14 +1572,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setDateTimeSymbols(
-                Optional.of(dateTimeSymbols)
+                Optional.of(DIFFERENT_DATE_TIME_SYMBOLS)
             )
         );
 
         this.evaluateAndPrintedCheck(
             "=getDateTimeSymbols(getEnv(\"SpreadsheetCell\"))",
             environmentContext,
-            dateTimeSymbols,
+            DIFFERENT_DATE_TIME_SYMBOLS,
             "" // printed
         );
     }
@@ -1631,22 +1617,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetDecimalNumberSymbolsWithSpreadsheetCell() {
-        final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
-            '+',
-            DecimalFormatSymbols.getInstance(Locale.FRENCH)
-        );
-
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1655,14 +1626,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setDecimalNumberSymbols(
-                Optional.of(decimalNumberSymbols)
+                Optional.of(DIFFERENT_DECIMAL_NUMBER_SYMBOLS)
             )
         );
 
         this.evaluateAndPrintedCheck(
             "=getDecimalNumberSymbols(getEnv(\"SpreadsheetCell\"))",
             environmentContext,
-            decimalNumberSymbols,
+            DIFFERENT_DECIMAL_NUMBER_SYMBOLS,
             "" // printed
         );
     }
@@ -1701,17 +1672,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetFormatterWithSpreadsheetCell() {
         final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("hello-formatter");
 
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1744,17 +1705,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetFormulaTextWithSpreadsheetCell() {
         final String formulaText = "=1+2";
 
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1791,17 +1742,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetIndentationWithoutParameter() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1822,17 +1763,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetIndentationWithString() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1853,17 +1784,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetLineEndingWithoutParameter() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1884,17 +1805,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetLineEndingWithString() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1923,19 +1834,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetLocaleWithSpreadsheetCell() {
-        final Locale locale = Locale.FRENCH;
-
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
@@ -1944,14 +1843,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setLocale(
-                Optional.of(locale)
+                Optional.of(DIFFERENT_LOCALE)
             )
         );
 
         this.evaluateAndPrintedCheck(
             "=getLocale(getEnv(\"SpreadsheetCell\"))",
             environmentContext,
-            locale,
+            DIFFERENT_LOCALE,
             "" // printed
         );
     }
@@ -2061,24 +1960,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     
     @Test
     public void testEvaluateGetUser() {
-        final EmailAddress user = EmailAddress.parse("user123@example.com");
-
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(user)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(DIFFERENT_USER)
         );
 
         this.evaluateAndPrintedCheck(
             "=getUser()",
             environmentContext,
-            user,
+            DIFFERENT_USER,
             "" // printed
         );
     }
@@ -2087,17 +1977,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetValidator() {
         final ValidatorSelector validator = ValidatorSelector.parse("hello-validator-123");
 
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "cell",
@@ -2134,17 +2014,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     private void evaluateGetValueAndCheck(final Object value) {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "cell",
@@ -2882,16 +2752,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateListStorage() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_LIST_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(STORAGE_LIST_USER)
         );
 
         this.evaluateAndPrintedCheck(
@@ -3460,16 +3323,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateReadStorageWithJsonFile() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(READ_STORAGE_TEXT_USER)
         );
 
         this.evaluateAndPrintedCheck(
@@ -3482,16 +3338,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateReadStorageTextWithJsonFile() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(READ_STORAGE_TEXT_USER)
         );
 
         this.evaluateAndPrintedCheck(
@@ -3505,16 +3354,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateReadStorageTextWithTxtFile() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(READ_STORAGE_TEXT_USER)
         );
 
         this.evaluateAndPrintedCheck(
@@ -3527,16 +3369,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateReadStorageTextAndEnvironmentValueCurrentWorkingDirectoryAndRelativePath() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(READ_STORAGE_TEXT_USER)
         );
 
         environmentContext.setEnvironmentValue(
@@ -3728,16 +3563,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateScript() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(STORAGE_SCRIPT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(STORAGE_SCRIPT_USER)
         );
 
         this.evaluateAndPrintedCheck(
@@ -5227,16 +5055,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateWriteStorage() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(READ_STORAGE_TEXT_USER)
         );
 
         final SpreadsheetExpressionEvaluationContext context = this.evaluateAndPrintedCheck(
@@ -5261,16 +5082,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateWriteStorageText() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                Optional.of(READ_STORAGE_TEXT_USER)
-            )
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+        environmentContext.setUser(
+            Optional.of(READ_STORAGE_TEXT_USER)
         );
 
         final SpreadsheetExpressionEvaluationContext context = this.evaluateAndPrintedCheck(
