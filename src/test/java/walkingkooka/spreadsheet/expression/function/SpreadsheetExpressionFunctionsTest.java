@@ -1586,17 +1586,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCellMissingDateTimeSymbols() {
-        final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                CHARSET,
-                CURRENCY,
-                INDENTATION,
-                LINE_ENDING,
-                LOCALE,
-                HAS_NOW,
-                EnvironmentContext.ANONYMOUS
-            )
-        );
+        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
         environmentContext.setEnvironmentValue(
             EnvironmentValueName.with(
                 "SpreadsheetCell",
