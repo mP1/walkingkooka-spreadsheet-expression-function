@@ -5634,25 +5634,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             )
         );
 
-        final EnvironmentContext environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
-        environmentContext.setEnvironmentValue(
-            StorageEnvironmentContext.CURRENT_WORKING_DIRECTORY,
-            CURRENT_WORKING_DIRECTORY
+        final StorageEnvironmentContext storageEnvironmentContext = StorageEnvironmentContexts.basic(
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment()
         );
-        environmentContext.setEnvironmentValue(
-            StorageEnvironmentContext.HOME_DIRECTORY,
-            HOME_DIRECTORY
+        SpreadsheetEnvironmentContext.SERVER_URL.setEnvironmentValue(
+            SERVER_URL,
+            storageEnvironmentContext
         );
-        environmentContext.setEnvironmentValue(
-            SpreadsheetEnvironmentContext.SERVER_URL,
-            SERVER_URL
+        SpreadsheetEnvironmentContext.SPREADSHEET_ID.setEnvironmentValue(
+            saved1.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
+            storageEnvironmentContext
         );
-        environmentContext.setEnvironmentValue(
-            SpreadsheetEnvironmentContext.SPREADSHEET_ID,
-            saved1.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
-        );
-
-        final Storage<SpreadsheetStorageContext> storage = Storages.fake();
 
         // HACK: testEvaluateSpreadsheetMetadataSet if FORMULA spreadsheetMetadataSet will fail because environment is readonly
         final SpreadsheetEngineContext context = SpreadsheetEngineContexts.spreadsheetContext(
@@ -5666,8 +5658,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HATEOS_ROUTER_FACTORY,
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
-                    storage,
-                    StorageEnvironmentContexts.basic(environmentContext)
+                    Storages.fake(),
+                    storageEnvironmentContext
                 ),
                 this.spreadsheetProvider(metadata),
                 PROVIDER_CONTEXT
