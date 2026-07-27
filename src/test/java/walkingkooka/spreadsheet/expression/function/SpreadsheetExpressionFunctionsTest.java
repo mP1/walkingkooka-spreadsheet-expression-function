@@ -95,6 +95,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
+import walkingkooka.storage.StorageEnvironmentContexts;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -5288,7 +5289,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
-                    environmentContext
+                    StorageEnvironmentContexts.basic(environmentContext)
                 ),
                 this.spreadsheetProvider(spreadsheetMetadata),
                 ProviderContexts.fake()
@@ -5666,7 +5667,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
-                    environmentContext
+                    StorageEnvironmentContexts.basic(environmentContext)
                 ),
                 this.spreadsheetProvider(metadata),
                 PROVIDER_CONTEXT
