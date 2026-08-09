@@ -192,6 +192,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [max](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionMax.java)
 - [maxIf](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionNumberIf.java)
 - [mergeStyle](https://github.com/mP1/walkingkooka-tree-text/blob/master/src/main/java/walkingkooka/tree/text/expression/function/TreeTextExpressionFunctionMergeStyle.java)
+- [memoryStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionTreeMapStorage.java)
 - [mid](https://github.com/mP1/walkingkooka-tree-expression-function-string/blob/master/src/main/java/walkingkooka/tree/expression/function/string/StringExpressionFunctionMid.java)
 - [min](https://github.com/mP1/walkingkooka-tree-expression-function-stat/blob/master/src/main/java/walkingkooka/tree/expression/function/stat/NumberExpressionFunctionMin.java)
 - [minIf](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionNumberIf.java)

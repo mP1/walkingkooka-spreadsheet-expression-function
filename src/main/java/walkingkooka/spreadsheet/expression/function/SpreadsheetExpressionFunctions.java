@@ -52,6 +52,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetRowReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctions;
@@ -1474,6 +1475,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> maxIf() {
         return SpreadsheetExpressionFunctionNumberIf.maxIf();
     }
+
+    /**
+     * {@see StringExpressionFunctions#left}
+     */
+    public static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> memoryStorage() {
+        return MEMORY_STORAGE;
+    }
+
+    private final static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> MEMORY_STORAGE = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>treeMapStorage()
+        .setName(
+            functionName("memoryStorage")
+        );
 
     /**
      * {@see TreeTextExpressionFunctions#mergeStyle}
