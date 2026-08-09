@@ -319,6 +319,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.margin(),
                     SpreadsheetExpressionFunctions.max(),
                     SpreadsheetExpressionFunctions.maxIf(),
+                    SpreadsheetExpressionFunctions.memoryStorage(),
                     SpreadsheetExpressionFunctions.mergeStyle(),
                     SpreadsheetExpressionFunctions.mid(),
                     SpreadsheetExpressionFunctions.min(),

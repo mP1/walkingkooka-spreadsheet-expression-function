@@ -2912,6 +2912,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateMemoryStorage() {
+        this.evaluateAndValueCheck(
+            "=memoryStorage()",
+            Storages.treeMapStore()
+        );
+    }
+
+    @Test
     public void testEvaluateMergeStyleWithStringAndString() {
         this.evaluateAndValueCheck(
             "=mergeStyle(\"background-color:#111;\",\"color:#222;\")",
@@ -5778,6 +5786,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "gettimeoffset":    
                         case "getuser":
                         case "liststorage":
+                        case "memorystorage":
                         case "print":
                         case "printenv":
                         case "println":
