@@ -53,6 +53,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
+import walkingkooka.storage.HasUserDirectories;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -192,6 +193,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Optional<EmailAddress> user() {
         return this.context.user();
+    }
+
+    @Override
+    public HasUserDirectories hasUserDirectories() {
+        return this.context;
     }
 
     @Override
@@ -481,6 +487,16 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public LocalDateTime now() {
         return this.context.now();
+    }
+
+    @Override
+    public void setCurrentWorkingDirectory(final Optional<StoragePath> currentWorkingDirectory) {
+        SpreadsheetEnvironmentContextDelegator.super.setCurrentWorkingDirectory(currentWorkingDirectory);
+    }
+
+    @Override
+    public void setHomeDirectory(final Optional<StoragePath> homeDirectory) {
+        SpreadsheetEnvironmentContextDelegator.super.setHomeDirectory(homeDirectory);
     }
 
     @Override
