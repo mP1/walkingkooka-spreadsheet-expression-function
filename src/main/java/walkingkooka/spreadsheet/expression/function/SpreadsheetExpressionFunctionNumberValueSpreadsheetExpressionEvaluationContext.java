@@ -619,7 +619,7 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
-    public void mountStoragePoint(final StorageMountPoint<?> storageMountPoint) {
+    public void mountStorage(final StorageMountPoint<?> storageMountPoint) {
         Objects.requireNonNull(storageMountPoint, "storageMountPoint");
 
         throw new UnsupportedOperationException();
