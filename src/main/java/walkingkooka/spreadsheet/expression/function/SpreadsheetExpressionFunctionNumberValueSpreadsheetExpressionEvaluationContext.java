@@ -625,6 +625,13 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void unmountStorage(final StoragePath path) {
+        Objects.requireNonNull(path, "path");
+
+        throw new UnsupportedOperationException();
+    }
+
     // SpreadsheetMetadataContextDelegator..............................................................................
 
     @Override
