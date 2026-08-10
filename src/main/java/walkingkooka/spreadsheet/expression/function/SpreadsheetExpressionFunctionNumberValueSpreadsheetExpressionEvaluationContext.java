@@ -54,6 +54,7 @@ import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.storage.HasUserDirectories;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -616,6 +617,14 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         );
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void mountStoragePoint(final StorageMountPoint<?> storageMountPoint) {
+        Objects.requireNonNull(storageMountPoint, "storageMountPoint");
+
+        throw new UnsupportedOperationException();
+    }
+
     // SpreadsheetMetadataContextDelegator..............................................................................
 
     @Override
