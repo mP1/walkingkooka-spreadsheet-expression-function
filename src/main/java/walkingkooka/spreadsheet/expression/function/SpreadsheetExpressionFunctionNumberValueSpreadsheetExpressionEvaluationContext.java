@@ -632,6 +632,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public List<StorageMountPoint<?>> storageMountPoints() {
+        throw new UnsupportedOperationException();
+    }
+
     // SpreadsheetMetadataContextDelegator..............................................................................
 
     @Override
