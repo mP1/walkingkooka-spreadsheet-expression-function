@@ -2413,6 +2413,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         .setName(functionName("unicode"));
 
     /**
+     * {@see StorageExpressionFunctionUnmount}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> unmount() {
+        return UNMOUNT;
+    }
+
+    private final static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> UNMOUNT = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>unmountStorage()
+        .setName(
+            functionName("unmount")
+        );
+
+    /**
      * {@see StringExpressionFunctions#upper}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> upper() {

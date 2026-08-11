@@ -57,6 +57,7 @@ import walkingkooka.spreadsheet.compare.provider.SpreadsheetComparatorAliasSet;
 import walkingkooka.spreadsheet.convert.provider.SpreadsheetConvertersConverterProviders;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngine;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContext;
+import walkingkooka.spreadsheet.engine.SpreadsheetEngineContextTesting;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngineContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetEngines;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
@@ -95,6 +96,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -152,6 +154,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     SpreadsheetMetadataTesting,
     TreePrintableTesting,
     EnvironmentContextTesting,
+    SpreadsheetEngineContextTesting,
     StorageEnvironmentContextTesting {
 
     private final static ExpressionFunctionProvider<SpreadsheetExpressionEvaluationContext> EXPRESSION_FUNCTION_PROVIDER = SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY);
@@ -4881,6 +4884,20 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    private final static StoragePath MOUNT_POINT = StoragePath.parse("/mount1/");
+
+    @Test
+    public void testEvaluateUnmountStorage() {
+        final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
+            "=unmount(\"/mount1/\")",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
+            null, // expected value
+            "" // printed
+        );
+
+        this.storageMountPointsAndCheck(context);
+    }
+
     @Test
     public void testEvaluateUpperWithNumber() {
         this.evaluateAndValueCheck(
@@ -5242,7 +5259,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final Map<SpreadsheetId, SpreadsheetStoreRepository> spreadsheetIdToSpreadsheetStoreRepository = Maps.sorted();
 
-        final Storage<SpreadsheetStorageContext> storage = Storages.treeMapStore();
+        final Storage<SpreadsheetStorageContext> storage = Storages.mount(
+            Storages.treeMapStore()
+        );
 
         spreadsheetIdToSpreadsheetStoreRepository.put(
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID),
@@ -5302,6 +5321,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ProviderContexts.fake()
             ),
             terminalContext
+        );
+
+        // testEvaluateUnmountStorage will unmount
+        storage.mount(
+            StorageMountPoint.with(
+                MOUNT_POINT,
+                Storages.treeMapStore()
+            ),
+            spreadsheetEngineContext
         );
 
         // only SCRIPTING allows updatable EnvironmentContext
@@ -5663,7 +5691,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HATEOS_ROUTER_FACTORY,
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
-                    Storages.fake(),
+                    Storages.mount(
+                        Storages.treeMapStore()
+                    ),
                     storageEnvironmentContext
                 ),
                 this.spreadsheetProvider(metadata),
@@ -5802,6 +5832,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlocale":
                         case "settimeoffset":
                         case "getvalidator":
+                        case "unmount":
                         case "validationerrorif":
                         case "validationvalue":
                         case "writestorage":
