@@ -425,6 +425,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.type(),
                     SpreadsheetExpressionFunctions.unichar(),
                     SpreadsheetExpressionFunctions.unicode(),
+                    SpreadsheetExpressionFunctions.unmount(),
                     SpreadsheetExpressionFunctions.upper(),
                     SpreadsheetExpressionFunctions.url(),
                     SpreadsheetExpressionFunctions.validationChoiceList(),
