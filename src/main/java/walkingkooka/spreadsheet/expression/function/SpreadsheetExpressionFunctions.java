@@ -1559,6 +1559,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageExpressionFunctionMount}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> mount() {
+        return MOUNT;
+    }
+
+    private final static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> MOUNT = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>mountStorage()
+        .setName(
+            functionName("mount")
+        );
+
+    /**
      * {@see SpreadsheetExpressionFunctionNextEmptyColumn#not}
      */
     public static ExpressionFunction<SpreadsheetColumnReference, SpreadsheetExpressionEvaluationContext> nextEmptyColumn() {

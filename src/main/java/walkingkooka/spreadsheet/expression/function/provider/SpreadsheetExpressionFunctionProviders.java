@@ -328,6 +328,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.mixColor(),
                     SpreadsheetExpressionFunctions.mod(),
                     SpreadsheetExpressionFunctions.month(),
+                    SpreadsheetExpressionFunctions.mount(),
                     SpreadsheetExpressionFunctions.nextEmptyColumn(),
                     SpreadsheetExpressionFunctions.nextEmptyRow(),
                     SpreadsheetExpressionFunctions.not(),

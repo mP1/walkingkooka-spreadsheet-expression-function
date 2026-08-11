@@ -3030,6 +3030,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateMountStorage() {
+        final SpreadsheetEngineContext context = this.evaluateAndPrintedCheck(
+            "=mount(\"/mount2/\", memoryStorage())",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
+            null, // expected value
+            "" // printed
+        );
+
+        this.storageMountPointsAndCheck(
+            context,
+            StorageMountPoint.with(
+                StoragePath.parse("/mount2/"),
+                Storages.treeMapStore()
+            ),
+            StorageMountPoint.with(
+                MOUNT_POINT,
+                Storages.treeMapStore()
+            )
+        );
+    }
+
+    @Test
     public void testEvaluateNextEmptyColumn() {
         this.evaluateAndValueCheck(
             "=nextEmptyColumn(\"2\")",
@@ -5814,6 +5836,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "getuser":
                         case "liststorage":
                         case "memorystorage":
+                        case "mount":
                         case "print":
                         case "printenv":
                         case "println":
