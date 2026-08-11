@@ -200,6 +200,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [mixColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionMixColor.java)
 - [mod](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionMod.java)
 - [month](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionLocalDateComponent.java)
+- [mount](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionMount.java)
 - [nextEmptyColumn](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionNextEmptyColumn.java)
 - [nextEmptyRow](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionNextEmptyRow.java)
 - [not](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionNot.java)
