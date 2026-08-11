@@ -3041,11 +3041,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.storageMountPointsAndCheck(
             context,
             StorageMountPoint.with(
-                StoragePath.parse("/mount2/"),
+                StoragePath.ROOT,
                 Storages.treeMapStore()
             ),
             StorageMountPoint.with(
                 MOUNT_POINT,
+                Storages.treeMapStore()
+            ),
+            StorageMountPoint.with(
+                StoragePath.parse("/mount2/"),
                 Storages.treeMapStore()
             )
         );
@@ -4917,7 +4921,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "" // printed
         );
 
-        this.storageMountPointsAndCheck(context);
+        this.storageMountPointsAndCheck(
+            context,
+            StorageMountPoint.with(
+                StoragePath.ROOT,
+                Storages.treeMapStore()
+            )
+        );
     }
 
     @Test
