@@ -137,7 +137,6 @@ import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
@@ -5582,10 +5581,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             )
             .set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                AuditInfo.create(
-                    EmailAddress.parse("creator@example.com"),
-                    LocalDateTime.of(1999, 12, 31, 12, 58, 59)
-                )
+                AUDIT_INFO
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
             .set(
