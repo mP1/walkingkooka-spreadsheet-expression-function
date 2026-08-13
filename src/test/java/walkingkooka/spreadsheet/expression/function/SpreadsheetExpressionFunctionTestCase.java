@@ -22,9 +22,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
-import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
@@ -57,7 +55,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -128,10 +125,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             )
             .set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                AuditInfo.create(
-                    EmailAddress.parse("creator@example.com"),
-                    LocalDateTime.of(1999, 12, 31, 12, 58, 59)
-                )
+                AUDIT_INFO
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
             .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)

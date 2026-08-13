@@ -20,10 +20,8 @@ package walkingkooka.spreadsheet.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
-import walkingkooka.environment.AuditInfo;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.predicate.PredicateTesting;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
@@ -285,10 +283,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
                 )
             ).set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
-                AuditInfo.create(
-                    EmailAddress.parse("creator@example.com"),
-                    NOW
-                )
+                AUDIT_INFO
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
             .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
             .set(SpreadsheetMetadataPropertyName.DECIMAL_NUMBER_DIGIT_COUNT, DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT)
