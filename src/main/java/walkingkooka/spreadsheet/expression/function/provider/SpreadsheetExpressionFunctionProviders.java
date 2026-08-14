@@ -242,6 +242,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.exit(),
                     SpreadsheetExpressionFunctions.exp(),
                     SpreadsheetExpressionFunctions.falseFunction(),
+                    SpreadsheetExpressionFunctions.fileStorage(),
                     SpreadsheetExpressionFunctions.find(),
                     SpreadsheetExpressionFunctions.fixed(),
                     SpreadsheetExpressionFunctions.flag(),
