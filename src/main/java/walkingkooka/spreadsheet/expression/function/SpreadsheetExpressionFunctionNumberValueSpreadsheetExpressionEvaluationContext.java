@@ -589,6 +589,12 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public boolean canReadStorage(final StoragePath path) {
+        Objects.requireNonNull(path, "path");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Optional<StorageValue> loadStorage(final StoragePath path) {
         Objects.requireNonNull(path, "path");
         throw new UnsupportedOperationException();
