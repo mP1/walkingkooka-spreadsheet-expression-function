@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.Cast;
 import walkingkooka.color.AlphaRgbColorComponent;
 import walkingkooka.color.BlueRgbColorComponent;
@@ -824,10 +825,12 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see StorageShared2NativeFile}
      */
+    @GwtIncompatible
     public static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> fileStorage() {
         return FILE_STORAGE;
     }
 
+    @GwtIncompatible
     private final static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> FILE_STORAGE = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>fileStorage()
         .setName(
             functionName("fileStorage")
