@@ -631,6 +631,11 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     }
 
     @Override
+    public void setAuditInfoStorage(final StorageValueInfo info) {
+        Objects.requireNonNull(info, "info");
+        throw new UnsupportedOperationException();
+    }
+    @Override
     public void mountStorage(final StorageMountPoint<?> storageMountPoint) {
         Objects.requireNonNull(storageMountPoint, "storageMountPoint");
 
