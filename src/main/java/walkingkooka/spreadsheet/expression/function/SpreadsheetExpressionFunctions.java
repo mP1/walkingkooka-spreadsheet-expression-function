@@ -821,6 +821,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see StorageShared2NativeFile}
+     */
+    public static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> fileStorage() {
+        return FILE_STORAGE;
+    }
+
+    private final static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> FILE_STORAGE = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>fileStorage()
+        .setName(
+            functionName("fileStorage")
+        );
+
+    /**
      * {@see SpreadsheetExpressionFunctionObjectFind}
      */
     public static ExpressionFunction<Object, SpreadsheetExpressionEvaluationContext> find() {

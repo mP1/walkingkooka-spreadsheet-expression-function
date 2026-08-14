@@ -94,6 +94,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
 import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageContexts;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
 import walkingkooka.storage.StorageMountPoint;
@@ -134,6 +135,7 @@ import java.lang.reflect.Method;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
@@ -1428,6 +1430,17 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=false()",
             Boolean.FALSE
+        );
+    }
+
+    @Test
+    public void testEvaluateFileStorage() {
+        this.evaluateAndValueCheck(
+            "=fileStorage(\".\")",
+            Storages.nativeStorage(
+                Path.of("."),
+                StorageContexts.fake()
+            )
         );
     }
 
@@ -5830,6 +5843,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "cell":
                         case "info":
                         case "deletestorage":
+                        case "filestorage":
                         case "getcharset":
                         case "getcurrency":
                         case "getcurrentworkingdirectory":
