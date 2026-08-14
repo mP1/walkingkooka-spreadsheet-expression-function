@@ -1489,7 +1489,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see StringExpressionFunctions#left}
+     * {@see StorageShared2TreeMapStore}
      */
     public static ExpressionFunction<Storage<SpreadsheetExpressionEvaluationContext>, SpreadsheetExpressionEvaluationContext> memoryStorage() {
         return MEMORY_STORAGE;
