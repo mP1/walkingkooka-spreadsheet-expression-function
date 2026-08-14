@@ -53,6 +53,7 @@ import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctions;
@@ -1580,6 +1581,18 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     private final static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> MOUNT = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>mountStorage()
         .setName(
             functionName("mount")
+        );
+
+    /**
+     * {@see StorageExpressionFunctionMountPoints}
+     */
+    public static ExpressionFunction<List<StorageMountPoint<SpreadsheetExpressionEvaluationContext>>, SpreadsheetExpressionEvaluationContext> mountPoints() {
+        return MOUNT_POINTS;
+    }
+
+    private final static ExpressionFunction<List<StorageMountPoint<SpreadsheetExpressionEvaluationContext>>, SpreadsheetExpressionEvaluationContext> MOUNT_POINTS = StorageExpressionFunctions.<SpreadsheetExpressionEvaluationContext>mountPoints()
+        .setName(
+            functionName("mountPoints")
         );
 
     /**

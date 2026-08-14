@@ -3068,6 +3068,25 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateMountPoints() {
+        this.evaluateAndPrintedCheck(
+            "=mountPoints()",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
+            Lists.of(
+                StorageMountPoint.with(
+                    StoragePath.ROOT,
+                    Storages.treeMapStore()
+                ),
+                StorageMountPoint.with(
+                    MOUNT_POINT,
+                    Storages.treeMapStore()
+                )
+            ), //
+            "" // printed
+        );
+    }
+
+    @Test
     public void testEvaluateNextEmptyColumn() {
         this.evaluateAndValueCheck(
             "=nextEmptyColumn(\"2\")",
@@ -5857,6 +5876,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "liststorage":
                         case "memorystorage":
                         case "mount":
+                        case "mountpoints":
                         case "print":
                         case "printenv":
                         case "println":

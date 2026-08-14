@@ -330,6 +330,7 @@ public final class SpreadsheetExpressionFunctionProviders implements PublicStati
                     SpreadsheetExpressionFunctions.mod(),
                     SpreadsheetExpressionFunctions.month(),
                     SpreadsheetExpressionFunctions.mount(),
+                    SpreadsheetExpressionFunctions.mountPoints(),
                     SpreadsheetExpressionFunctions.nextEmptyColumn(),
                     SpreadsheetExpressionFunctions.nextEmptyRow(),
                     SpreadsheetExpressionFunctions.not(),
