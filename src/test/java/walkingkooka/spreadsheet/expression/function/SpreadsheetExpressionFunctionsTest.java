@@ -87,6 +87,7 @@ import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetExpressionReferenceLoaders;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.storage.SpreadsheetStorageContext;
+import walkingkooka.spreadsheet.storage.SpreadsheetStorages;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
@@ -2929,7 +2930,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateMemoryStorage() {
         this.evaluateAndValueCheck(
             "=memoryStorage()",
-            Storages.treeMapStore()
+            SpreadsheetStorages.treeMapStore()
         );
     }
 
@@ -3054,15 +3055,15 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             context,
             StorageMountPoint.with(
                 StoragePath.ROOT,
-                Storages.treeMapStore()
+                SpreadsheetStorages.treeMapStore()
             ),
             StorageMountPoint.with(
                 MOUNT_POINT,
-                Storages.treeMapStore()
+                SpreadsheetStorages.treeMapStore()
             ),
             StorageMountPoint.with(
                 StoragePath.parse("/mount2/"),
-                Storages.treeMapStore()
+                SpreadsheetStorages.treeMapStore()
             )
         );
     }
@@ -3075,11 +3076,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             Lists.of(
                 StorageMountPoint.with(
                     StoragePath.ROOT,
-                    Storages.treeMapStore()
+                    SpreadsheetStorages.treeMapStore()
                 ),
                 StorageMountPoint.with(
                     MOUNT_POINT,
-                    Storages.treeMapStore()
+                    SpreadsheetStorages.treeMapStore()
                 )
             ), //
             "" // printed
@@ -4956,7 +4957,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             context,
             StorageMountPoint.with(
                 StoragePath.ROOT,
-                Storages.treeMapStore()
+                SpreadsheetStorages.treeMapStore()
             )
         );
     }
@@ -5323,7 +5324,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final Map<SpreadsheetId, SpreadsheetStoreRepository> spreadsheetIdToSpreadsheetStoreRepository = Maps.sorted();
 
         final Storage<SpreadsheetStorageContext> storage = Storages.mount(
-            Storages.treeMapStore()
+            SpreadsheetStorages.treeMapStore()
         );
 
         spreadsheetIdToSpreadsheetStoreRepository.put(
@@ -5390,7 +5391,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         storage.mount(
             StorageMountPoint.with(
                 MOUNT_POINT,
-                Storages.treeMapStore()
+                SpreadsheetStorages.treeMapStore()
             ),
             spreadsheetEngineContext
         );
@@ -5752,7 +5753,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     Storages.mount(
-                        Storages.treeMapStore()
+                        SpreadsheetStorages.treeMapStore()
                     ),
                     storageEnvironmentContext
                 ),
