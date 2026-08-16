@@ -35,7 +35,7 @@ import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
-import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting;
+import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting2;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
@@ -75,7 +75,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
-public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext>,
+public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting2<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext>,
     SpreadsheetMetadataTesting {
 
     private final static String CURRENCY_SYMBOL = "AUD";
