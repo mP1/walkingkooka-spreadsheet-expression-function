@@ -5323,7 +5323,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         final Map<SpreadsheetId, SpreadsheetStoreRepository> spreadsheetIdToSpreadsheetStoreRepository = Maps.sorted();
 
-        final Storage<SpreadsheetStorageContext> storage = Storages.mount(
+        final Storage<SpreadsheetStorageContext> storage = SpreadsheetStorages.mount(
             SpreadsheetStorages.treeMapStore()
         );
 
@@ -5752,7 +5752,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HATEOS_ROUTER_FACTORY,
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
-                    Storages.mount(
+                    SpreadsheetStorages.mount(
                         SpreadsheetStorages.treeMapStore()
                     ),
                     storageEnvironmentContext
