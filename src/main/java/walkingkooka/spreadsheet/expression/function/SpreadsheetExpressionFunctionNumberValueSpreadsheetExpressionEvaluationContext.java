@@ -20,8 +20,7 @@ package walkingkooka.spreadsheet.expression.function;
 import walkingkooka.Binary;
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
-import walkingkooka.currency.CurrencyExchangeRater;
-import walkingkooka.currency.CurrencyExchangeRaterDelegator;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.environment.EnvironmentContext;
@@ -95,7 +94,6 @@ import java.util.Set;
  * that uses the provided decimal separator and group separator.
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
-    CurrencyExchangeRaterDelegator,
     DateTimeContextDelegator,
     SpreadsheetEnvironmentContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
@@ -511,6 +509,24 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         return this.context;
     }
 
+    // CanCurrencyExchangeRate..........................................................................................
+
+    @Override
+    public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                 final Optional<LocalDateTime> dateTime) {
+        return this.context.currencyExchangeRate(
+            currencyExchange,
+            dateTime
+        );
+    }
+
+    // CanCurrencyExchanges.............................................................................................
+
+    @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        return this.context.currencyExchanges();
+    }
+
     // FormHandlerContext...............................................................................................
 
     @Override
@@ -536,13 +552,6 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public SpreadsheetValidatorContext validatorContext(final SpreadsheetValidationReference reference) {
         return this.context.validatorContext(reference);
-    }
-
-    // CurrencyExchangeRaterDelegator...................................................................................
-
-    @Override
-    public CurrencyExchangeRater currencyExchangeRater() {
-        return this.context;
     }
 
     // DateTimeContextDelegator.........................................................................................
