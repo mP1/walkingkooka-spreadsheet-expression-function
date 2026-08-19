@@ -64,6 +64,7 @@ import walkingkooka.terminal.TerminalContextDelegator;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.cursor.TextCursor;
+import walkingkooka.tree.expression.CanEvaluateString;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionFunctionName;
@@ -525,6 +526,13 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
     @Override
     public Set<CurrencyExchange> currencyExchanges() {
         return this.context.currencyExchanges();
+    }
+
+    // CanEvaluateStringDelegator.......................................................................................
+
+    @Override
+    public CanEvaluateString canEvaluateString() {
+        return this.context;
     }
 
     // FormHandlerContext...............................................................................................
