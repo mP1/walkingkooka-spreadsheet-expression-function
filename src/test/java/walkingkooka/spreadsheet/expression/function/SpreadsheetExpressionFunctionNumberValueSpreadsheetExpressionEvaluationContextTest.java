@@ -23,6 +23,8 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentWatcher;
+import walkingkooka.io.TextReader;
+import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
@@ -51,6 +53,8 @@ import walkingkooka.store.StoreWatcher;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.printer.Printer;
+import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
@@ -864,6 +868,24 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     (e, l) -> SpreadsheetMetadataTesting.METADATA_EN_AU,
                     SpreadsheetMetadataStores.treeMap()
                 );
+
+                // TerminalContext......................................................................................
+
+                @Override
+                public Printer error() {
+                    return Printers.fake();
+                }
+
+
+                @Override
+                public TextReader input() {
+                    return TextReaders.fake();
+                }
+
+                @Override
+                public Printer output() {
+                    return Printers.fake();
+                }
             }
         );
     }
