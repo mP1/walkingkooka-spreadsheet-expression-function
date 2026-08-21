@@ -25,8 +25,6 @@ import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentWatcher;
 import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
-import walkingkooka.locale.LocaleContext;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.AbsoluteUrl;
@@ -55,15 +53,10 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.Printer;
 import walkingkooka.text.printer.Printers;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 import walkingkooka.validation.form.FormField;
 
 import java.math.MathContext;
@@ -197,46 +190,6 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
     @Override
     public void testSpreadsheetFormatterContextWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testRemoveEnvironmentValueWithNowFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNowFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetCurrencyWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetIndentationWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetLineEndingWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetLocaleWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetTimeOffsetWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetUserWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -516,27 +469,25 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
                                                              final Optional<LocalDateTime> dateTime) {
-                    Objects.requireNonNull(currencyExchange, "currencyExchange");
-                    Objects.requireNonNull(dateTime, "dateTime");
-
-                    throw new UnsupportedOperationException();
+                    return CURRENCY_CONTEXT.currencyExchangeRate(
+                        currencyExchange,
+                        dateTime
+                    );
                 }
 
                 @Override
                 public Optional<Currency> currencyForLocale(final Locale locale) {
-                    Objects.requireNonNull(locale, "locale");
-
-                    throw new UnsupportedOperationException();
+                    return CURRENCY_CONTEXT.currencyForLocale(locale);
                 }
 
                 @Override
                 public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return this.localeContext.dateTimeSymbolsForLocale(locale);
+                    return LOCALE_CONTEXT.dateTimeSymbolsForLocale(locale);
                 }
 
                 @Override
                 public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
-                    return this.localeContext.decimalNumberSymbolsForLocale(locale);
+                    return LOCALE_CONTEXT.decimalNumberSymbolsForLocale(locale);
                 }
 
                 @Override
@@ -581,7 +532,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public Charset charset() {
-                    return SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest.CHARSET;
+                    return spreadsheetEnvironmentContext.charset();
                 }
 
                 @Override
@@ -646,14 +597,12 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public Runnable addEnvironmentWatcher(final EnvironmentWatcher watcher) {
-                    Objects.requireNonNull(watcher, "watcher");
-                    throw new UnsupportedOperationException();
+                    return spreadsheetEnvironmentContext.addEnvironmentWatcher(watcher);
                 }
 
                 @Override
                 public Runnable addEnvironmentWatcherOnce(final EnvironmentWatcher watcher) {
-                    Objects.requireNonNull(watcher, "watcher");
-                    throw new UnsupportedOperationException();
+                    return spreadsheetEnvironmentContext.addEnvironmentWatcherOnce(watcher);
                 }
 
                 @Override
@@ -661,51 +610,49 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     return spreadsheetEnvironmentContext.parseEnvironmentValueName(name);
                 }
 
-                private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
-
                 @Override
                 public JsonNode marshall(final Object value) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshall(value);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshall(value);
                 }
 
                 @Override
                 public JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallEnumSet(enumSet);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallEnumSet(enumSet);
                 }
 
                 @Override
                 public JsonNode marshallOptional(final Optional<?> optional) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallOptional(optional);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallOptional(optional);
                 }
 
                 @Override
                 public JsonNode marshallOptionalWithType(final Optional<?> optional) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallOptionalWithType(optional);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallOptionalWithType(optional);
                 }
 
                 @Override
                 public JsonNode marshallWithType(final Object value) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallWithType(value);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallWithType(value);
                 }
 
                 @Override
                 public JsonNode marshallCollection(final Collection<?> collection) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallCollection(collection);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallCollection(collection);
                 }
 
                 @Override
                 public JsonNode marshallMap(final Map<?, ?> map) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallMap(map);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallMap(map);
                 }
 
                 @Override
                 public JsonNode marshallCollectionWithType(final Collection<?> collection) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallCollectionWithType(collection);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallCollectionWithType(collection);
                 }
 
                 @Override
                 public JsonNode marshallMapWithType(final Map<?, ?> map) {
-                    return this.jsonNodeMarshallUnmarshallContext.marshallMapWithType(map);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.marshallMapWithType(map);
                 }
 
                 @Override
@@ -722,18 +669,18 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public Optional<Class<?>> registeredType(final JsonString string) {
-                    return this.jsonNodeMarshallUnmarshallContext.registeredType(string);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.registeredType(string);
                 }
 
                 @Override
                 public Optional<JsonString> typeName(final Class<?> type) {
-                    return this.jsonNodeMarshallUnmarshallContext.typeName(type);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.typeName(type);
                 }
 
                 @Override
                 public <T> T unmarshall(final JsonNode node,
                                         final Class<T> type) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshall(
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshall(
                         node,
                         type
                     );
@@ -743,7 +690,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 public <T extends Enum<T>> Set<T> unmarshallEnumSet(final JsonNode node,
                                                                     final Class<T> enumClass,
                                                                     final Function<String, T> stringToEnum) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallEnumSet(
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallEnumSet(
                         node,
                         enumClass,
                         stringToEnum
@@ -753,7 +700,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public <T> Optional<T> unmarshallOptional(final JsonNode node,
                                                           final Class<T> type) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallOptional(
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallOptional(
                         node,
                         type
                     );
@@ -761,13 +708,13 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public <T> Optional<T> unmarshallOptionalWithType(final JsonNode node) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallOptionalWithType(node);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallOptionalWithType(node);
                 }
 
                 @Override
                 public <T> List<T> unmarshallList(final JsonNode node,
                                                   final Class<T> elementType) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallList(
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallList(
                         node,
                         elementType
                     );
@@ -776,7 +723,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public <T> Set<T> unmarshallSet(final JsonNode node,
                                                 final Class<T> elementType) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallSet(
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallSet(
                         node,
                         elementType
                     );
@@ -786,7 +733,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 public <K, V> Map<K, V> unmarshallMap(final JsonNode node,
                                                       final Class<K> keyType,
                                                       final Class<V> valueType) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallMap(
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallMap(
                         node,
                         keyType,
                         valueType
@@ -795,32 +742,23 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
 
                 @Override
                 public <T> T unmarshallWithType(final JsonNode node) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallWithType(node);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallWithType(node);
                 }
 
                 @Override
                 public <T> List<T> unmarshallListWithType(final JsonNode node) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallListWithType(node);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallListWithType(node);
                 }
 
                 @Override
                 public <T> Set<T> unmarshallSetWithType(final JsonNode node) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallSetWithType(node);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallSetWithType(node);
                 }
 
                 @Override
                 public <K, V> Map<K, V> unmarshallMapWithType(final JsonNode node) {
-                    return this.jsonNodeMarshallUnmarshallContext.unmarshallMapWithType(node);
+                    return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshallMapWithType(node);
                 }
-
-                private final JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext = JsonNodeMarshallUnmarshallContexts.basic(
-                    JsonNodeMarshallContexts.basic(),
-                    JsonNodeUnmarshallContexts.basic(
-                        ExpressionNumberKind.DEFAULT,
-                        this, // CurrencyCodeLanguageTagContext
-                        this.mathContext()
-                    )
-                );
 
                 // SpreadsheetMetadataContext...................................................................................
 
