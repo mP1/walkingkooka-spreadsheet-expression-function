@@ -289,7 +289,7 @@ public final class SpreadsheetExpressionFunctionNumberIfPredicateTest implements
             .set(SpreadsheetMetadataPropertyName.DECIMAL_NUMBER_DIGIT_COUNT, DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT)
             .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
             .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, ExpressionNumberKind.BIG_DECIMAL)
-            .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("collection(text, number, basic, spreadsheet-value)"))
+            .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("collection(text, number, basic, value)"))
             .set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
