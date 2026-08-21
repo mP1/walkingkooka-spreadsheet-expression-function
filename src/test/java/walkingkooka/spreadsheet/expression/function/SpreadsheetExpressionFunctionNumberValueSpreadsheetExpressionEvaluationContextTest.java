@@ -656,6 +656,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     throw new UnsupportedOperationException();
                 }
 
+                @Override
+                public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+                    return spreadsheetEnvironmentContext.parseEnvironmentValueName(name);
+                }
+
                 private final LocaleContext localeContext = LocaleContexts.jre(Locale.ENGLISH);
 
                 @Override
