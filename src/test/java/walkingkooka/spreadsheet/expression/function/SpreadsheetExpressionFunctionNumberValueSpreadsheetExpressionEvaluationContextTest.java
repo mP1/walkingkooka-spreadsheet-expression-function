@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.Binary;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -344,7 +345,24 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
     public void testWeekDayNameAbbreviationInvalidFails() {
         throw new UnsupportedOperationException();
     }
-    
+
+    // HasEnvironmentContext............................................................................................
+
+    @Test
+    @Override
+    public void testEnvironmentContext() {
+        final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = new FakeSpreadsheetExpressionEvaluationContext();
+
+        this.environmentContextAndCheck(
+            SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext.with(
+                DECIMAL_SEPARATOR,
+                GROUP_SEPARATOR,
+                spreadsheetExpressionEvaluationContext
+            ),
+            spreadsheetExpressionEvaluationContext
+        );
+    }
+
     @Override
     public SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext createContext() {
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
