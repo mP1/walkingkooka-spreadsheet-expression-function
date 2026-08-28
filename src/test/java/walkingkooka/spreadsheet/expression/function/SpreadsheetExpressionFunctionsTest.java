@@ -3636,7 +3636,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private final static StoragePath SCRIPT_PATH = StoragePath.parse("/test.script");
 
-    private final static String SCRIPT_FILE = "=concat(\"Script\", \"Response123\")";
+    private final static String SCRIPT_FILE = "concat(\"Script\", \"Response123\")";
 
     private final static EmailAddress STORAGE_SCRIPT_USER = EmailAddress.parse("script@example.com");
 
