@@ -4572,6 +4572,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 CURRENCY_LOCALE_CONTEXT,
                 spreadsheetEnvironmentContext,
                 SpreadsheetProviders.basic(
+                    SPREADSHEET_COMPARATOR_PROVIDER,
                     SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                         (ProviderContext p) -> metadata.dateTimeConverter(
                             SPREADSHEET_FORMATTER_PROVIDER,
@@ -4579,9 +4580,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                             p
                         )
                     ),
-                    EXPRESSION_FUNCTION_PROVIDER,
-                    SPREADSHEET_COMPARATOR_PROVIDER,
                     SPREADSHEET_EXPORTER_PROVIDER,
+                    EXPRESSION_FUNCTION_PROVIDER,
                     SPREADSHEET_FORMATTER_PROVIDER,
                     FORM_HANDLER_PROVIDER,
                     SPREADSHEET_IMPORTER_PROVIDER,
@@ -5812,6 +5812,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     private SpreadsheetProvider spreadsheetProvider(final SpreadsheetMetadata spreadsheetMetadata) {
         return SpreadsheetProviders.basic(
+            SPREADSHEET_COMPARATOR_PROVIDER,
             SpreadsheetConvertersConverterProviders.spreadsheetConverters(
                 (ProviderContext p) -> spreadsheetMetadata.dateTimeConverter(
                     SPREADSHEET_FORMATTER_PROVIDER,
@@ -5819,9 +5820,8 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     p
                 )
             ),
-            EXPRESSION_FUNCTION_PROVIDER,
-            SPREADSHEET_COMPARATOR_PROVIDER,
             SPREADSHEET_EXPORTER_PROVIDER,
+            EXPRESSION_FUNCTION_PROVIDER,
             SPREADSHEET_FORMATTER_PROVIDER,
             FORM_HANDLER_PROVIDER,
             SPREADSHEET_IMPORTER_PROVIDER,
