@@ -4580,6 +4580,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                             p
                         )
                     ),
+                    CURRENCY_EXCHANGE_RATER_PROVIDER,
                     SPREADSHEET_EXPORTER_PROVIDER,
                     EXPRESSION_FUNCTION_PROVIDER,
                     SPREADSHEET_FORMATTER_PROVIDER,
@@ -5820,6 +5821,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     p
                 )
             ),
+            CURRENCY_EXCHANGE_RATER_PROVIDER,
             SPREADSHEET_EXPORTER_PROVIDER,
             EXPRESSION_FUNCTION_PROVIDER,
             SPREADSHEET_FORMATTER_PROVIDER,
