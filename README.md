@@ -41,7 +41,7 @@ Google Sheets and Microsoft Excel have over 500 functions.
 - [Official Google sheets functions (513)](https://support.google.com/docs/table/25273?hl=en)
 - [Official Microsoft Excel functions](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188)
 
-The list below (with 270) is incomplete and constantly being updated as new functions are added. A small number are not
+The list below (with 271) is incomplete and constantly being updated as new functions are added. A small number are not
 found in Sheets or Excel and may be used to interact with features not found in those two platforms.
 
 - [abs](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
@@ -174,6 +174,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [isRef](https://github.com/mP1/walkingkooka-tree-expression-function-boolean/blob/master/src/main/java/walkingkooka/tree/expression/function/booleann/BooleanExpressionFunctionIsReference.java)
 - [isText](https://github.com/mP1/walkingkooka-tree-expression-function-string/blob/master/src/main/java/walkingkooka/tree/expression/function/string/BooleanExpressionFunctionIsTextIsNonText.java)
 - [json](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJson.java)
+- [jsonSelector](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonSelector.java)
 - [jsonText](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonText.java)
 - [lambda](https://github.com/mP1/walkingkooka-tree/blob/master/src/main/java/walkingkooka/tree/expression/function/TreeExpressionFunctionLambda.java)
 - [left](https://github.com/mP1/walkingkooka-tree-expression-function-string/blob/master/src/main/java/walkingkooka/tree/expression/function/string/StringExpressionFunctionStringNumberLeft.java)

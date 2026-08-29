@@ -118,6 +118,7 @@ import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionInfo;
 import walkingkooka.tree.expression.function.provider.ExpressionFunctionProvider;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.select.JsonSelector;
 import walkingkooka.tree.text.Border;
 import walkingkooka.tree.text.Length;
 import walkingkooka.tree.text.Margin;
@@ -2571,6 +2572,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ).appendChild(
                     JsonNode.object()
                 )
+        );
+    }
+
+    @Test
+    public void testEvaluateJsonSelector() {
+        this.evaluateAndValueCheck(
+            "=jsonSelector(\"/hello-json-selector\")",
+            JsonSelector.parse("/hello-json-selector")
         );
     }
 
