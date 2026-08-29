@@ -2584,7 +2584,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateJsoTextWithJson() {
+    public void testEvaluateJsonTextWithJson() {
         this.evaluateAndValueCheck(
             "=jsonText(json(\"{}\"))",
             "{}"
@@ -2592,7 +2592,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
-    public void testEvaluateJsoTextnWithString() {
+    public void testEvaluateJsonTextWithString() {
         this.evaluateAndValueCheck(
             "=jsonText(\"Hello World\")",
             "\"Hello World\""
