@@ -74,6 +74,7 @@ import walkingkooka.tree.expression.function.stat.StatExpressionFunctions;
 import walkingkooka.tree.expression.function.string.StringExpressionFunctions;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.function.JsonNodeExpressionFunctions;
+import walkingkooka.tree.json.pointer.JsonPointer;
 import walkingkooka.tree.json.select.JsonSelector;
 import walkingkooka.tree.text.Badge;
 import walkingkooka.tree.text.Border;
@@ -1333,6 +1334,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         );
     }
 
+    /**
+     * {@see JsonNodeExpressionFunctions#jsonPointer}
+     */
+    public static ExpressionFunction<JsonPointer, SpreadsheetExpressionEvaluationContext> jsonPointer() {
+        return fixName(
+            JsonNodeExpressionFunctions.jsonPointer()
+        );
+    }
+    
     /**
      * {@see JsonNodeExpressionFunctions#jsonSelector}
      */
