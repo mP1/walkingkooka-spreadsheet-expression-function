@@ -1342,6 +1342,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
             JsonNodeExpressionFunctions.jsonPointer()
         );
     }
+
+    /**
+     * {@see JsonNodeExpressionFunctions#jsonPointerEval}
+     */
+    public static ExpressionFunction<JsonNode, SpreadsheetExpressionEvaluationContext> jsonPointerEval() {
+        return fixName(
+            JsonNodeExpressionFunctions.jsonPointerEval()
+        );
+    }
     
     /**
      * {@see JsonNodeExpressionFunctions#jsonSelector}
