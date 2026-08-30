@@ -2585,6 +2585,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateJsonPointerEvalWithEmptyJsonObject() {
+        this.evaluateAndValueCheck(
+            "=jsonPointerEval(\"/hello\", \"{}\")",
+            null
+        );
+    }
+
+    @Test
+    public void testEvaluateJsonPointerEvalWithArray() {
+        this.evaluateAndValueCheck(
+            "=jsonPointerEval(\"/1\", \"[\"\"abc\"\", \"\"xyz\"\"]\")",
+            JsonNode.string("xyz")
+        );
+    }
+
+    // json("{}")
+    @Test
+    public void testEvaluateJsonPointerEvalWithJsonObject() {
+        this.evaluateAndValueCheck(
+            "=jsonPointerEval(\"/hello\", \"{ \"\"hello\"\": \"\"world123\"\" }\")",
+            JsonNode.string("world123")
+        );
+    }
+
+    @Test
     public void testEvaluateJsonSelector() {
         this.evaluateAndValueCheck(
             "=jsonSelector(\"/hello-json-selector\")",
