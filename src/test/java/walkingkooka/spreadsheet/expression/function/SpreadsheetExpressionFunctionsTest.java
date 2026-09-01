@@ -2618,6 +2618,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateJsonSelectorEval() {
+        this.evaluateAndPrintedCheck(
+            "=jsonSelectorEval(\"/hello\", \"{ \"\"hello\"\": \"\"world123\"\" }\")",
+            Lists.of(
+                JsonNode.string("world123")
+            ),
+            ""
+        );
+    }
+
+    @Test
+    public void testEvaluateJsonSelectorEval2() {
+        this.evaluateAndPrintedCheck(
+            "=jsonSelectorEval(\"/hello/hello2\", \"{ \"\"hello\"\": { \"\"hello2\"\": \"\"world123\"\" } }\")",
+            Lists.of(
+                JsonNode.string("world123")
+            ),
+            ""
+        );
+    }
+
+    @Test
     public void testEvaluateJsonTextWithJson() {
         this.evaluateAndValueCheck(
             "=jsonText(json(\"{}\"))",

@@ -310,6 +310,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.jsonPointer(),
                         SpreadsheetExpressionFunctions.jsonPointerEval(),
                         SpreadsheetExpressionFunctions.jsonSelector(),
+                        SpreadsheetExpressionFunctions.jsonSelectorEval(),
                         SpreadsheetExpressionFunctions.jsonText(),
                         SpreadsheetExpressionFunctions.lambda(),
                         SpreadsheetExpressionFunctions.left(),
