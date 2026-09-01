@@ -175,7 +175,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [isText](https://github.com/mP1/walkingkooka-tree-expression-function-string/blob/master/src/main/java/walkingkooka/tree/expression/function/string/BooleanExpressionFunctionIsTextIsNonText.java)
 - [json](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJson.java)
 - [jsonPointer](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonPointer.java)
-  [jsonPointerEval](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonPointerEval.java)
+- [jsonPointerEval](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonPointerEval.java)
 - [jsonSelector](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonSelector.java)
 - [jsonSelectorEval](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonSelectorEval.java)
 - [jsonText](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonText.java)
