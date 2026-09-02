@@ -110,6 +110,7 @@ import walkingkooka.terminal.TerminalId;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -2643,7 +2644,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateJsonTextWithJson() {
         this.evaluateAndValueCheck(
             "=jsonText(json(\"{}\"))",
-            "{}"
+            MultiLineText.with("{}")
         );
     }
 
@@ -2651,7 +2652,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateJsonTextWithString() {
         this.evaluateAndValueCheck(
             "=jsonText(\"Hello World\")",
-            "\"Hello World\""
+            MultiLineText.with("\"Hello World\"")
         );
     }
 

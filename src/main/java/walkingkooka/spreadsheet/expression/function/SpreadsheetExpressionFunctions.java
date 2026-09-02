@@ -61,6 +61,7 @@ import walkingkooka.storage.expression.function.StorageExpressionFunctions;
 import walkingkooka.terminal.expression.function.TerminalExpressionFunctions;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -1373,7 +1374,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     /**
      * {@see JsonNodeExpressionFunctions#jsonText}
      */
-    public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> jsonText() {
+    public static ExpressionFunction<MultiLineText, SpreadsheetExpressionEvaluationContext> jsonText() {
         return fixName(
             JsonNodeExpressionFunctions.jsonText()
         );
