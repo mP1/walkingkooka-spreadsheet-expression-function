@@ -3470,8 +3470,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndPrintedCheck(
             "=readStorageText(\"/parent123/file.json\")",
             storageEnvironmentContext,
-            JsonNode.parse(READ_STORAGE_TEXT_JSON_TEXT)
-                .text(), // expected value
+            "{\n" +
+                "  \"hello\": \"world\"\n" +
+                "}", // expected value
             "" // printed
         );
     }
@@ -3506,8 +3507,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndPrintedCheck(
             "=readStorageText(\"file.json\")",
             storageEnvironmentContext,
-            JsonNode.parse(READ_STORAGE_TEXT_JSON_TEXT)
-                .text(), // expected value
+            "{\n" +
+                "  \"hello\": \"world\"\n" +
+                "}", // expected value
             "" // printed
         );
     }
