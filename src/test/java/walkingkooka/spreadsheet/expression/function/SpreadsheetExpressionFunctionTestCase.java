@@ -24,7 +24,6 @@ import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
@@ -201,11 +200,6 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             ),
             TERMINAL_CONTEXT
         );
-    }
-
-    @Override
-    public final JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 
     @Override
