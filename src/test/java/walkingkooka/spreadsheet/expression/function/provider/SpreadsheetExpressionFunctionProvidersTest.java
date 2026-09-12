@@ -25,7 +25,10 @@ import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctio
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -91,6 +94,19 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
                     walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY
                 ).expressionFunctionInfos()
                 .size()
+        );
+    }
+
+    @Test
+    public void testReadmeFunctionCount() throws IOException {
+        final String readme = Files.readString(
+            Path.of("README.md")
+        );
+
+        this.checkEquals(
+            true,
+            readme.contains("276"),
+            readme
         );
     }
 
