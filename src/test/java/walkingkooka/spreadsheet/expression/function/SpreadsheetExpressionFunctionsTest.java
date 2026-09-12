@@ -5565,7 +5565,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         if (null != expectedError) {
             this.checkEquals(
                 expectedError,
-                output.toString(),
+                error.toString(),
                 () -> "Evaluated " + CharSequences.quoteAndEscape(formula) + " printed error"
             );
         }
