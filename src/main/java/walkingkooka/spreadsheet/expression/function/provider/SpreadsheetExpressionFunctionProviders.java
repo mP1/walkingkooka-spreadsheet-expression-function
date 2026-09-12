@@ -229,6 +229,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.date(),
                         SpreadsheetExpressionFunctions.day(),
                         SpreadsheetExpressionFunctions.days(),
+                        SpreadsheetExpressionFunctions.debug(),
                         SpreadsheetExpressionFunctions.decimal(),
                         SpreadsheetExpressionFunctions.dec2bin(),
                         SpreadsheetExpressionFunctions.dec2hex(),

@@ -667,6 +667,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@see ExpressionFunctions#debug}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> debug() {
+        return fixName(
+            ExpressionFunctions.debug()
+        );
+    }
+
+    /**
      * {@see EngineeringExpressionFunctions#dec2bin}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> dec2bin() {

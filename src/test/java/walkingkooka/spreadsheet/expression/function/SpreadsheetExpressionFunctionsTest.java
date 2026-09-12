@@ -38,6 +38,8 @@ import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.CanLog;
+import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.HostAddress;
@@ -98,6 +100,7 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContexts;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
+import walkingkooka.storage.StorageEnvironmentContexts;
 import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
@@ -150,6 +153,7 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
@@ -1202,6 +1206,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             "=days(date(2000, 1, 28), date(1999, 12, 31))",
             EXPRESSION_NUMBER_KIND.create(28)
+        );
+    }
+
+    @Test
+    public void testEvaluateDebug() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.DEBUG);
+
+        this.evaluateAndPrintedCheck(
+            "=debug(\"debug-message-111\")",
+            spreadsheetEnvironmentContext,
+            (Object) null, // expected value
+            "debug-message-111" + LINE_ENDING// output
         );
     }
 
@@ -3529,7 +3546,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             value
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=print(removeEnv(\"Hello\"))",
             storageEnvironmentContext,
             value
@@ -3537,7 +3554,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         // value deleted should be missing now
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name
         );
     }
@@ -3788,32 +3805,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateSetCharset() {
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=setCharset(\"US-ASCII\")",
-            storageEnvironmentContext,
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
             ""
         );
 
         this.charsetAndCheck(
-            storageEnvironmentContext,
+            after,
             StandardCharsets.US_ASCII
         );
     }
     
     @Test
     public void testEvaluateSetCurrency() {
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext context = this.evaluateAndPrintedCheck(
             "=setCurrency(\"NZD\")",
-            storageEnvironmentContext,
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
             ""
         );
 
         this.currencyAndCheck(
-            storageEnvironmentContext,
+            context,
             Currency.getInstance("NZD")
         );
     }
@@ -3828,14 +3841,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             name
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=setCurrentWorkingDirectory(\"/dir1/dir2/dir3\")",
             storageEnvironmentContext,
             ""
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             StoragePath.parse("/dir1/dir2/dir3")
         );
@@ -3856,14 +3869,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             value
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=print(setEnv(\"Hello\", \"Replacement2\"))",
             storageEnvironmentContext,
             value
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             "Replacement2"
         );
@@ -3914,14 +3927,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             name
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=setHomeDirectory(\"/dir1/dir2/dir3\")",
             storageEnvironmentContext,
             ""
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             StoragePath.parse("/dir1/dir2/dir3")
         );
@@ -3962,14 +3975,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             Indentation.SPACES4
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=print(setIndentation(\"      \"))",
             storageEnvironmentContext,
             "null"
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             Indentation.with("      ")
         );
@@ -3986,14 +3999,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             LineEnding.NL
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=print(setLineEnding(\"CR\"))",
             storageEnvironmentContext,
             "null"
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             LineEnding.CR
         );
@@ -4010,14 +4023,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             Locale.ENGLISH
         );
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=print(setLocale(\"FR\"))",
             storageEnvironmentContext,
             "null"
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             Locale.forLanguageTag("FR")
         );
@@ -4109,14 +4122,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         System.out.println(ZoneOffset.ofHours(2));
 
-        this.evaluateAndPrintedCheck(
+        final EnvironmentContext after = this.evaluateAndPrintedCheck(
             "=print(setTimeOffset(\"+02:00\"))",
             storageEnvironmentContext,
             "null"
         );
 
         this.environmentValueAndCheck(
-            storageEnvironmentContext,
+            after,
             name,
             ZoneOffset.ofHours(2)
         );
@@ -5387,6 +5400,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final StringBuilder output = new StringBuilder();
         final StringBuilder error = new StringBuilder();
 
+        StorageEnvironmentContext storageEnvironmentContext2 = StorageEnvironmentContexts.basic(
+            storageEnvironmentContext
+                .environment()
+                .setCanLog(
+                    new CanLog() {
+                        @Override
+                        public void log(final LoggingLevel loggingLevel,
+                                        final String message,
+                                        final Throwable throwable) {
+                            Objects.requireNonNull(loggingLevel, "loggingLevel");
+
+                            final LineEnding lineEnding = storageEnvironmentContext.lineEnding();
+                            if (LoggingLevel.ERROR.equals(loggingLevel)) {
+                                error.append(message)
+                                    .append(lineEnding);
+                            } else {
+                                output.append(message)
+                                    .append(lineEnding);
+                            }
+                        }
+                    }
+                ).environmentContext()
+                .cloneEnvironment()
+        );
+
         final TerminalContext terminalContext = TerminalContexts.basic(
             TerminalId.with(1),
             () -> true,
@@ -5409,7 +5447,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             (Object exitValue) -> {
                 throw new UnsupportedOperationException();
             },
-            storageEnvironmentContext
+            storageEnvironmentContext2
         );
         final SpreadsheetMetadataStore metadataStore = SpreadsheetMetadataStores.treeMap();
 
@@ -5437,11 +5475,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             SpreadsheetStoreRepositories.treeMap(metadataStore)
         );
 
-        storageEnvironmentContext.setEnvironmentValue(
+        storageEnvironmentContext2.setEnvironmentValue(
             SpreadsheetEnvironmentContext.SERVER_URL,
             SERVER_URL
         );
-        storageEnvironmentContext.setEnvironmentValue(
+        storageEnvironmentContext2.setEnvironmentValue(
             SpreadsheetEnvironmentContext.SPREADSHEET_ID,
             saved.getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID)
         );
@@ -5473,7 +5511,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
                     storage,
-                    storageEnvironmentContext
+                    storageEnvironmentContext2
                 ),
                 this.spreadsheetProvider(spreadsheetMetadata),
                 ProviderContexts.fake()
@@ -5964,6 +6002,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "randbetween":
                         case "offset":
                         case "cell":
+                        case "debug":
                         case "info":
                         case "deletestorage":
                         case "filestorage":
