@@ -6039,15 +6039,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     final ExpressionFunctionName name = i.name();
 
                     switch (name.value().toLowerCase()) {
-                        case "now":
-                        case "today":
-                        case "rand":
-                        case "randbetween":
-                        case "offset":
                         case "cell":
                         case "debug":
-                        case "info":
                         case "deletestorage":
+                        case "exit":
                         case "filestorage":
                         case "getcharset":
                         case "getcurrency":
@@ -6057,16 +6052,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "getindentation":
                         case "getlineending":
                         case "getlocale":
-                        case "gettimeoffset":    
+                        case "gettimeoffset":
                         case "getuser":
+                        case "getvalidator":
+                        case "info":
                         case "liststorage":
                         case "logmessage":
                         case "memorystorage":
                         case "mount":
                         case "mountpoints":
+                        case "now":
+                        case "offset":
                         case "print":
                         case "printenv":
                         case "println":
+                        case "rand":
+                        case "randbetween":
                         case "readline":
                         case "readstorage":
                         case "readstoragetext":
@@ -6081,14 +6082,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "setlineending":
                         case "setlocale":
                         case "settimeoffset":
-                        case "getvalidator":
+                        case "shell":
+                        case "today":
                         case "unmount":
                         case "validationerrorif":
                         case "validationvalue":
                         case "writestorage":
                         case "writestoragetext":
-                        case "exit":
-                        case "shell":
                             pure = false;
                             break;
                         default:
