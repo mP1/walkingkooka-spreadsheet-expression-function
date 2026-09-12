@@ -326,6 +326,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.localeLanguageTag(),
                         SpreadsheetExpressionFunctions.log(),
                         SpreadsheetExpressionFunctions.log10(),
+                        SpreadsheetExpressionFunctions.logMessage(),
                         SpreadsheetExpressionFunctions.lower(),
                         SpreadsheetExpressionFunctions.margin(),
                         SpreadsheetExpressionFunctions.max(),

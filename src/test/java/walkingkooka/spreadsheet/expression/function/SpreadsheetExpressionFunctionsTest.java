@@ -2955,6 +2955,47 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLogMessageWithDebugDisabled() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.INFO);
+
+        this.evaluateAndPrintedCheck(
+            "=logMessage(\"DEBUG\", \"debug-message-111\")",
+            spreadsheetEnvironmentContext,
+            (Object) null, // expected value
+            "" // output
+        );
+    }
+
+    @Test
+    public void testEvaluateLogMessageWithDebugEnabled() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.DEBUG);
+
+        this.evaluateAndPrintedCheck(
+            "=logMessage(\"DEBUG\", \"debug-message-111\")",
+            spreadsheetEnvironmentContext,
+            (Object) null, // expected value
+            "debug-message-111" + LINE_ENDING// output
+        );
+    }
+
+    @Test
+    public void testEvaluateLogMessageWithErrorEnabled() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.ERROR);
+
+        this.evaluateAndPrintedCheck(
+            "=logMessage(\"ERROR\", \"error-message-111\")",
+            null, // input
+            spreadsheetEnvironmentContext,
+            (Object) null, // expected value
+            null, // output
+            "error-message-111" + LINE_ENDING// error
+        );
+    }
+
+    @Test
     public void testEvaluateLowerWithNumber() {
         this.evaluateAndValueCheck(
             "=lower(1.25)",
@@ -5362,7 +5403,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                                                              final String expectedOutput) {
         return this.evaluateAndPrintedCheck(
             formula,
-            TextReaders.fake(),
+            null, // input
             storageEnvironmentContext,
             expectedValue,
             expectedOutput
@@ -5428,7 +5469,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final TerminalContext terminalContext = TerminalContexts.basic(
             TerminalId.with(1),
             () -> true,
-            terminalInput,
+            null != terminalInput ?
+                terminalInput :
+                TextReaders.fake(),
             null != output ?
                 Printers.stringBuilder(
                     output,
@@ -6017,6 +6060,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "gettimeoffset":    
                         case "getuser":
                         case "liststorage":
+                        case "logmessage":
                         case "memorystorage":
                         case "mount":
                         case "mountpoints":
