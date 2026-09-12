@@ -2955,6 +2955,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLoggingLevelWithoutParameters() {
+        this.evaluateAndValueCheck(
+            "=loggingLevel()",
+            LOGGING_LEVEL
+        );
+    }
+
+    @Test
+    public void testEvaluateLoggingLevelWithDebugString() {
+        this.evaluateAndValueCheck(
+            "=loggingLevel(\"DEBUG\")",
+            LoggingLevel.DEBUG
+        );
+    }
+
+    @Test
+    public void testEvaluateLoggingLevelWithInfoString() {
+        this.evaluateAndValueCheck(
+            "=loggingLevel(\"INFO\")",
+            LoggingLevel.INFO
+        );
+    }
+
+    @Test
     public void testEvaluateLogMessageWithDebugDisabled() {
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
         spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.INFO);
@@ -6057,6 +6081,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "getvalidator":
                         case "info":
                         case "liststorage":
+                        case "logginglevel":
                         case "logmessage":
                         case "memorystorage":
                         case "mount":

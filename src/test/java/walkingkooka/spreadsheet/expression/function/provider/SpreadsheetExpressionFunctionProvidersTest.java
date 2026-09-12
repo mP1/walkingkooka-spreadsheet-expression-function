@@ -89,7 +89,7 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
     @Test
     public void testExpressionFunctionInfosCount() {
         this.checkEquals(
-            276, // Remember to update README function count.
+            277, // Remember to update README function count.
             SpreadsheetExpressionFunctionProviders.expressionFunctionProvider(
                     walkingkooka.spreadsheet.expression.SpreadsheetExpressionFunctions.NAME_CASE_SENSITIVITY
                 ).expressionFunctionInfos()
@@ -105,7 +105,7 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
 
         this.checkEquals(
             true,
-            readme.contains("276"),
+            readme.contains("277"),
             readme
         );
     }

@@ -34,6 +34,7 @@ import walkingkooka.currency.CurrencyValue;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.expression.function.EnvironmentExpressionFunctions;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.HasHostAddress;
 import walkingkooka.net.HostAddress;
@@ -1500,6 +1501,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     public static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> log10() {
         return fixName(
             NumberExpressionFunctions.log10()
+        );
+    }
+
+    /**
+     * {@see ExpressionFunctions#loggingLevel}
+     */
+    public static ExpressionFunction<LoggingLevel, SpreadsheetExpressionEvaluationContext> loggingLevel() {
+        return fixName(
+            ExpressionFunctions.loggingLevel()
         );
     }
 
