@@ -19,7 +19,6 @@ package walkingkooka.spreadsheet.expression.function.provider;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.set.SortedSets;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.spreadsheet.expression.function.SpreadsheetExpressionFunctions;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -113,11 +112,6 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
     @Override
     public Class<SpreadsheetExpressionFunctionProviders> type() {
         return SpreadsheetExpressionFunctionProviders.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override
