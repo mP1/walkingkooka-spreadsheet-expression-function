@@ -3033,6 +3033,19 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLogWarn() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.WARN);
+
+        this.evaluateAndPrintedCheck(
+            "=logWarn(\"warn-message-111\")",
+            spreadsheetEnvironmentContext,
+            (Object) null, // expected value
+            "WARN warn-message-111\n" // output
+        );
+    }
+
+    @Test
     public void testEvaluateLowerWithNumber() {
         this.evaluateAndValueCheck(
             "=lower(1.25)",
@@ -6104,6 +6117,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "logginglevel":
                         case "loginfo":
                         case "logmessage":
+                        case "logwarn":
                         case "memorystorage":
                         case "mount":
                         case "mountpoints":

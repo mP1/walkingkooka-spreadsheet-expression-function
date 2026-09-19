@@ -329,6 +329,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.loggingLevel(),
                         SpreadsheetExpressionFunctions.logInfo(),
                         SpreadsheetExpressionFunctions.logMessage(),
+                        SpreadsheetExpressionFunctions.logWarn(),
                         SpreadsheetExpressionFunctions.lower(),
                         SpreadsheetExpressionFunctions.margin(),
                         SpreadsheetExpressionFunctions.max(),

@@ -1536,6 +1536,17 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@link ExpressionFunctions#warn}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> logWarn() {
+        return fixName(
+            ExpressionFunctions.warn()
+        ).setName(
+            functionName("logWarn")
+        );
+    }
+    
+    /**
      * {@see StringExpressionFunctions#lower}
      */
     public static ExpressionFunction<String, SpreadsheetExpressionEvaluationContext> lower() {
