@@ -104,7 +104,7 @@ public final class SpreadsheetExpressionFunctionProvidersTest implements PublicS
 
         this.checkEquals(
             true,
-            readme.contains("277"),
+            readme.contains("278"),
             readme
         );
     }
