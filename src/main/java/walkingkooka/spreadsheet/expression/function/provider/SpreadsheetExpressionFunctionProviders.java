@@ -327,6 +327,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.log(),
                         SpreadsheetExpressionFunctions.log10(),
                         SpreadsheetExpressionFunctions.loggingLevel(),
+                        SpreadsheetExpressionFunctions.logInfo(),
                         SpreadsheetExpressionFunctions.logMessage(),
                         SpreadsheetExpressionFunctions.lower(),
                         SpreadsheetExpressionFunctions.margin(),

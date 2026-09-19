@@ -1514,6 +1514,17 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
+     * {@link ExpressionFunctions#info}
+     */
+    public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> logInfo() {
+        return fixName(
+            ExpressionFunctions.info()
+        ).setName(
+            functionName("logInfo")
+        );
+    }
+
+    /**
      * {@see ExpressionFunctions#log}
      */
     public static ExpressionFunction<Void, SpreadsheetExpressionEvaluationContext> logMessage() {
