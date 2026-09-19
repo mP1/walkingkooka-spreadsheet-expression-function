@@ -1217,7 +1217,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=debug(\"debug-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "debug-message-111" + LINE_ENDING// output
+            "DEBUG debug-message-111" + LINE_ENDING// output
         );
     }
 
@@ -2986,7 +2986,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=logInfo(\"info-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "info-message-111\n" // output
+            "INFO info-message-111\n" // output
         );
     }
 
@@ -3012,7 +3012,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=logMessage(\"DEBUG\", \"debug-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "debug-message-111" + LINE_ENDING// output
+            "DEBUG debug-message-111" + LINE_ENDING// output
         );
     }
 
@@ -3027,7 +3027,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
             null, // output
-            "error-message-111" + LINE_ENDING// error
+            "ERROR error-message-111" + LINE_ENDING// error
         );
     }
 
@@ -5490,10 +5490,10 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
                             final LineEnding lineEnding = storageEnvironmentContext.lineEnding();
                             if (LoggingLevel.ERROR.equals(loggingLevel)) {
-                                error.append(message)
+                                error.append(loggingLevel + " " + message)
                                     .append(lineEnding);
                             } else {
-                                output.append(message)
+                                output.append(loggingLevel + " " + message)
                                     .append(lineEnding);
                             }
                         }
