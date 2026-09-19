@@ -38,7 +38,6 @@ import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
-import walkingkooka.logging.CanLog;
 import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -106,14 +105,17 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.Storages;
+import walkingkooka.terminal.FakeTerminalContext;
 import walkingkooka.terminal.TerminalContext;
 import walkingkooka.terminal.TerminalContexts;
 import walkingkooka.terminal.TerminalId;
+import walkingkooka.terminal.logging.TerminalCanLogs;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.MultiLineText;
 import walkingkooka.text.cursor.TextCursors;
+import walkingkooka.text.printer.Printer;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionFunctionName;
@@ -152,7 +154,6 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
@@ -5481,23 +5482,30 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             storageEnvironmentContext
                 .environment()
                 .setCanLog(
-                    new CanLog() {
-                        @Override
-                        public void log(final LoggingLevel loggingLevel,
-                                        final String message,
-                                        final Throwable throwable) {
-                            Objects.requireNonNull(loggingLevel, "loggingLevel");
+                    TerminalCanLogs.terminalContext(
+                        new FakeTerminalContext() {
 
-                            final LineEnding lineEnding = storageEnvironmentContext.lineEnding();
-                            if (LoggingLevel.ERROR.equals(loggingLevel)) {
-                                error.append(loggingLevel + " " + message)
-                                    .append(lineEnding);
-                            } else {
-                                output.append(loggingLevel + " " + message)
-                                    .append(lineEnding);
+                            @Override
+                            public Printer output() {
+                                return this.outputPrinter;
                             }
+
+                            private final Printer outputPrinter = Printers.stringBuilder(
+                                output,
+                                storageEnvironmentContext
+                            );
+
+                            @Override
+                            public Printer error() {
+                                return this.errorPrinter;
+                            }
+
+                            private final Printer errorPrinter = Printers.stringBuilder(
+                                error,
+                                storageEnvironmentContext
+                            );
                         }
-                    }
+                    )
                 ).environmentContext()
                 .cloneEnvironment()
         );
