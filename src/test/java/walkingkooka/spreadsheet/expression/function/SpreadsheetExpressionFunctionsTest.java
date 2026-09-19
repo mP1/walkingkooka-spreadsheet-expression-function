@@ -2979,6 +2979,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateLogError() {
+        final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.ERROR);
+
+        this.evaluateAndPrintedCheck(
+            "=logError(\"error-message-111\")",
+            null, // input
+            spreadsheetEnvironmentContext,
+            (Object) null, // expected value
+            "", // output
+            "ERROR error-message-111\n" // error
+        );
+    }
+
+    @Test
     public void testEvaluateLogInfoEnabled() {
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment();
         spreadsheetEnvironmentContext.setLoggingLevel(LoggingLevel.INFO);
@@ -6115,6 +6130,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                         case "info":
                         case "liststorage":
                         case "logginglevel":
+                        case "logerror":
                         case "loginfo":
                         case "logmessage":
                         case "logwarn":
