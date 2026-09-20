@@ -6,11 +6,12 @@
 ![](https://tokei.rs/b1/github/mP1/walkingkooka-spreadsheet-expression-function)
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
-### [Functions](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctions.java)
+# [Functions](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctions.java)
 
 An assembly of functions that faithfully match their Excel equivalents in terms of functionality and errors.
 
-This includes an assembly of other general purpose `ExpressionFunction(s)` from other repos.
+This includes an assembly of other general purpose `ExpressionFunction(s)` from other repos. In some cases function
+names have been changed to avoid clashes with excel functions (eg log aka math log vs log aka log a message).
 
 - [boolean](https://github.com/mP1/walkingkooka-tree-expression-function-boolean)
 - [color](https://github.com/mP1/walkingkooka-color/tree/master/src/main/java/walkingkooka/color/expression/function)
