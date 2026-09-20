@@ -26,6 +26,7 @@ This includes an assembly of other general purpose `ExpressionFunction(s)` from 
 - [storage-expression-function](https://github.com/mP1/walkingkooka-storage-expression-function)
 - [string](https://github.com/mP1/walkingkooka-tree-expression-function-string)
 - [terminal](https://github.com/mP1/walkingkooka-terminal)
+- [tree](https://github.com/mP1/walkingkooka-tree)
 - [tree-text](https://github.com/mP1/walkingkooka-tree-text)
 - [validation](https://github.com/mP1/walkingkooka-validation/)
 
