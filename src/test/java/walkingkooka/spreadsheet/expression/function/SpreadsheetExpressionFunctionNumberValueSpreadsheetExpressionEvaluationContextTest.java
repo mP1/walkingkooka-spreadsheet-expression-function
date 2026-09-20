@@ -26,6 +26,7 @@ import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentWatcher;
 import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
+import walkingkooka.logging.LoggerPath;
 import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -627,6 +628,16 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
                     return spreadsheetEnvironmentContext.parseEnvironmentValueName(name);
+                }
+
+                @Override
+                public void logEnter(final LoggerPath logger) {
+                    spreadsheetEnvironmentContext.logEnter(logger);
+                }
+
+                @Override
+                public void logExit() {
+                    spreadsheetEnvironmentContext.logExit();
                 }
 
                 @Override
