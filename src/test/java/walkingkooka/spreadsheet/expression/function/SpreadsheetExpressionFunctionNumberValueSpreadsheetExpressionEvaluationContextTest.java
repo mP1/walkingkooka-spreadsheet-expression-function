@@ -631,6 +631,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
+                public boolean isLoggingEnabled(final LoggingLevel loggingLevel) {
+                    return spreadsheetEnvironmentContext.isLoggingEnabled(loggingLevel);
+                }
+
+                @Override
                 public void logEnter(final LoggerPath logger) {
                     spreadsheetEnvironmentContext.logEnter(logger);
                 }
