@@ -641,11 +641,11 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public void log(final LoggingLevel level,
+                public void log(final LoggingLevel loggingLevel,
                                 final String message,
                                 final Throwable throwable) {
                     spreadsheetEnvironmentContext.log(
-                        level,
+                        loggingLevel,
                         message,
                         throwable
                     );
