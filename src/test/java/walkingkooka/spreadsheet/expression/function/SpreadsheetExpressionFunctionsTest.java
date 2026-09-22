@@ -2720,7 +2720,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateLeftMissingCellReference() {
         this.evaluateAndValueCheck(
             "=left(Z99)",
-            SpreadsheetErrorKind.VALUE.toError()
+            SpreadsheetErrorKind.VALUE.spreadsheetError()
         );
     }
 
@@ -5205,7 +5205,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         // SpreadsheetCell#SpreadsheetFormula will wrap any Collection with a SpreadsheetError#VALUE
         this.evaluateAndValueCheck(
             "=ValidationChoiceList(list(\"Label1\"))",
-            SpreadsheetErrorKind.VALUE.toError()
+            SpreadsheetErrorKind.VALUE.spreadsheetError()
                 .setValue(
                     Optional.of(
                         ValidationChoiceList.EMPTY.concat(
@@ -5224,7 +5224,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         // SpreadsheetCell#SpreadsheetFormula will wrap any Collection with a SpreadsheetError#VALUE
         this.evaluateAndValueCheck(
             "=ValidationChoiceList(\"Label1,Label2,Label3\")",
-            SpreadsheetErrorKind.VALUE.toError()
+            SpreadsheetErrorKind.VALUE.spreadsheetError()
                 .setValue(
                     Optional.of(
                         "validationChoiceList: values: Cannot convert \"Label1,Label2,Label3\" to List"
