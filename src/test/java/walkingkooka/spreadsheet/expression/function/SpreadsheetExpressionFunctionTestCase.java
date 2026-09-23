@@ -50,7 +50,7 @@ import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionEvaluationContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.tree.expression.function.ExpressionFunctionTesting2;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -58,7 +58,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
-    implements ExpressionFunctionTesting<F, T, SpreadsheetExpressionEvaluationContext>,
+    implements ExpressionFunctionTesting2<F, T, SpreadsheetExpressionEvaluationContext>,
     ClassTesting2<F>,
     TypeNameTesting<F>,
     SpreadsheetMetadataTesting {
@@ -204,7 +204,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
 
     @Override
     public final void testTypeNaming() {
-        ExpressionFunctionTesting.super.testTypeNaming();
+        ExpressionFunctionTesting2.super.testTypeNaming();
     }
 
     @Override
