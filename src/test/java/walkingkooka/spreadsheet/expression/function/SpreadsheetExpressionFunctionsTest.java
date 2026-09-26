@@ -1218,7 +1218,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=debug(\"debug-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "DEBUG debug-message-111" + LINE_ENDING// output
+            "DEBUG fire value change null to currentWorkingDirectory=/current1/working2/directory3\n" +
+                "DEBUG fire value change null to homeDirectory=/users/user123@example.com\n" +
+                "DEBUG fire value change null to serverUrl=https://example.com\n" +
+                "DEBUG fire value change null to terminalId=1\n" +
+                "DEBUG fire value change null to spreadsheetId=123\n" +
+                "DEBUG debug-message-111\n" // output
         );
     }
 
@@ -3028,7 +3033,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=logMessage(\"DEBUG\", \"debug-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "DEBUG debug-message-111" + LINE_ENDING// output
+            "DEBUG fire value change null to currentWorkingDirectory=/current1/working2/directory3\n" +
+                "DEBUG fire value change null to homeDirectory=/users/user123@example.com\n" +
+                "DEBUG fire value change null to serverUrl=https://example.com\n" +
+                "DEBUG fire value change null to terminalId=1\n" +
+                "DEBUG fire value change null to spreadsheetId=123\n" +
+                "DEBUG debug-message-111\n" // output
         );
     }
 
