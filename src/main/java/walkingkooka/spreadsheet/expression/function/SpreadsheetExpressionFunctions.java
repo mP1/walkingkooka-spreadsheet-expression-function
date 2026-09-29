@@ -2697,6 +2697,9 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         );
     }
 
+    /**
+     * This is necessary to ensure that all {@link ExpressionFunction#name()} have the correct {@link walkingkooka.text.CaseSensitivity}.
+     */
     private static <T> ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> fixName(final ExpressionFunction<T, SpreadsheetExpressionEvaluationContext> function) {
         return function.setName(
             function.name()
