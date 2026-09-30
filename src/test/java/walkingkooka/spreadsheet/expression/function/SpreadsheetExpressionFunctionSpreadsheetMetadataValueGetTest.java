@@ -56,7 +56,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
                 @Override
                 public Optional<SpreadsheetMetadata> loadMetadata(final SpreadsheetId id) {
                     return Optional.ofNullable(
-                        SPREADSHEET_ID.equals(id) ?
+                        SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest.SPREADSHEET_ID.equals(id) ?
                             SPREADSHEET_METADATA :
                             null
                     );
