@@ -5899,7 +5899,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                     .aliasSet()
             ).set(
                 SpreadsheetMetadataPropertyName.FORMATTING_CONVERTER,
-                ConverterSelector.parse("collection(text, number, date-time, basic, value, boolean, error-throwing, color, expression, environment, locale, plugins, properties, spreadsheet-metadata, style, text-node, template, net)")
+                ConverterSelector.parse("collection(null-to-number, simple, text, number, date-time, value, boolean, error-throwing, color, expression, environment, locale, plugins, properties, spreadsheet-metadata, style, text-node, template, net, optional-to, collection-to)")
             ).set(SpreadsheetMetadataPropertyName.PRECISION, MathContext.DECIMAL32.getPrecision())
             .set(SpreadsheetMetadataPropertyName.ROUNDING_MODE, RoundingMode.HALF_UP)
             .set(SpreadsheetMetadataPropertyName.NUMBER_FORMATTER, SpreadsheetPattern.parseNumberFormatPattern("#.###").spreadsheetFormatterSelector())
@@ -5945,7 +5945,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ValidatorAliasSet.EMPTY
             ).set(
                 SpreadsheetMetadataPropertyName.VALIDATION_CONVERTER,
-                ConverterSelector.parse("basic")
+                ConverterSelector.parse("simple")
             );
     }
 
