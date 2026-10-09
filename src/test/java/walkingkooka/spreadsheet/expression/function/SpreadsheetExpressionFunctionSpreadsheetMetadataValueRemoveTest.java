@@ -47,15 +47,9 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
 
     @Test
     public void testApplyWithSpreadsheetMetadataAndPropertyName() {
-        final Locale localeRemoved = Locale.forLanguageTag("en-NZ");
-        checkNotEquals(
-            LOCALE,
-            localeRemoved
-        );
-
         this.metadata = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.LOCALE,
-            localeRemoved
+            DIFFERENT_LOCALE
         );
 
         this.applyAndCheck(
