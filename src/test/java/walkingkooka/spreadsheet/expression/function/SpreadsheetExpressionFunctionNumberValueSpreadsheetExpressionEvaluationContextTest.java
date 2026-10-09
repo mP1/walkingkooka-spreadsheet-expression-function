@@ -40,11 +40,11 @@ import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationCo
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContextTesting2;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContext;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContexts;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidationReference;
 import walkingkooka.spreadsheet.validation.SpreadsheetValidatorContext;
@@ -76,7 +76,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting2<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext>,
-    SpreadsheetMetadataTesting {
+    HasSpreadsheetMetadataTesting {
 
     private final static String CURRENCY_SYMBOL = "AUD";
     private final static char DECIMAL_SEPARATOR = '/';
@@ -854,7 +854,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 private final SpreadsheetMetadataContext spreadsheetMetadataContext = SpreadsheetMetadataContexts.basic(
-                    (e, l) -> SpreadsheetMetadataTesting.SPREADSHEET_METADATA,
+                    (e, l) -> HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA,
                     SpreadsheetMetadataStores.treeMap()
                 );
 

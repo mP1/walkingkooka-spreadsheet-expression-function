@@ -73,11 +73,11 @@ import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterAliasSet;
 import walkingkooka.spreadsheet.format.provider.SpreadsheetFormatterSelector;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
 import walkingkooka.spreadsheet.importer.provider.SpreadsheetImporterAliasSet;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataContexts;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStores;
 import walkingkooka.spreadsheet.parser.provider.SpreadsheetParserAliasSet;
@@ -160,7 +160,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHelperTesting<SpreadsheetExpressionFunctions>,
-    SpreadsheetMetadataTesting,
+    HasSpreadsheetMetadataTesting,
     TreePrintableTesting,
     EnvironmentContextTesting,
     SpreadsheetEngineContextTesting,
@@ -5866,7 +5866,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector scriptingConverter = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER);
+        final ConverterSelector scriptingConverter = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER);
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SPREADSHEET_ID)

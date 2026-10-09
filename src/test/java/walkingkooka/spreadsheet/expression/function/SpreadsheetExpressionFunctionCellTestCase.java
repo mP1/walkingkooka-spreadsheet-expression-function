@@ -24,7 +24,7 @@ import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationCo
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 
@@ -32,7 +32,7 @@ import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends SpreadsheetExpressionFunctionCell<T>, T> extends SpreadsheetExpressionFunctionTestCase<F, T>
     implements ConverterTesting,
-    SpreadsheetMetadataTesting {
+    HasSpreadsheetMetadataTesting {
 
     SpreadsheetExpressionFunctionCellTestCase() {
         super();

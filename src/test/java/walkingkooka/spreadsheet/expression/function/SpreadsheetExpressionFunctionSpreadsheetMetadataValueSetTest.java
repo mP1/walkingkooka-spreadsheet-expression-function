@@ -22,29 +22,29 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
 import java.util.Locale;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet, SpreadsheetMetadata>
-    implements SpreadsheetMetadataTesting {
+    implements HasSpreadsheetMetadataTesting {
 
     final static SpreadsheetMetadataPropertyName<SpreadsheetName> PROPERTY_NAME = SpreadsheetMetadataPropertyName.SPREADSHEET_NAME;
     final static SpreadsheetName PROPERTY_VALUE = SPREADSHEET_NAME;
 
     @Test
     public void testApplyWithPropertyName() {
-        this.metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA;
+        this.metadata = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA;
 
         this.applyAndCheck(
             Lists.of(
                 PROPERTY_NAME,
                 PROPERTY_VALUE
             ),
-            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
+            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
                 PROPERTY_NAME,
                 PROPERTY_VALUE
             )
@@ -53,14 +53,14 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
 
     @Test
     public void testApplyWithSpreadsheetMetadataAndPropertyName() {
-        final SpreadsheetMetadata metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
+        final SpreadsheetMetadata metadata = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.LOCALE,
             Locale.forLanguageTag("en-NZ")
         );
 
         this.checkNotEquals(
             metadata,
-            SpreadsheetMetadataTesting.SPREADSHEET_METADATA
+            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA
         );
 
         final SpreadsheetName spreadsheetName = SpreadsheetName.with("DifferentSpreadsheetName111");

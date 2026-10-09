@@ -22,14 +22,14 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 import java.util.Locale;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove, SpreadsheetMetadata>
-    implements SpreadsheetMetadataTesting {
+    implements HasSpreadsheetMetadataTesting {
 
     private final static SpreadsheetMetadataPropertyName<Locale> PROPERTY_NAME = SpreadsheetMetadataPropertyName.LOCALE;
 
@@ -37,7 +37,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
 
     @Test
     public void testApplyWithPropertyName() {
-        this.metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA;
+        this.metadata = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA;
 
         this.applyAndCheck(
             Lists.of(PROPERTY_NAME),
@@ -53,7 +53,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
             localeRemoved
         );
 
-        this.metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
+        this.metadata = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.LOCALE,
             localeRemoved
         );
@@ -63,7 +63,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
                 this.metadata,
                 PROPERTY_NAME
             ),
-            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.remove(
+            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.remove(
                 SpreadsheetMetadataPropertyName.LOCALE
             )
         );
