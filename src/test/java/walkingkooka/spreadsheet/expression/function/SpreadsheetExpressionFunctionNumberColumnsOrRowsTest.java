@@ -66,7 +66,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
             Lists.of(B5),
-            KIND.one()
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
@@ -75,7 +75,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
             Lists.of(B5),
-            KIND.one()
+            EXPRESSION_NUMBER_KIND.one()
         );
     }
 
@@ -104,7 +104,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
         this.applyAndCheck2(
             function,
             Lists.of(selection),
-            KIND.create(expected)
+            EXPRESSION_NUMBER_KIND.create(expected)
         );
     }
 

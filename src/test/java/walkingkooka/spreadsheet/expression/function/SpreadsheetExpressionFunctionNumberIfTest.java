@@ -119,7 +119,7 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
                 condition
             ),
             this.createContext(),
-            KIND.create(expected)
+            EXPRESSION_NUMBER_KIND.create(expected)
         );
     }
 
@@ -131,7 +131,7 @@ public final class SpreadsheetExpressionFunctionNumberIfTest extends Spreadsheet
 
     private Object wrapIfNumber(final Object value) {
         return value instanceof Number ?
-            KIND.create((Number) value) :
+            EXPRESSION_NUMBER_KIND.create((Number) value) :
             value;
     }
 

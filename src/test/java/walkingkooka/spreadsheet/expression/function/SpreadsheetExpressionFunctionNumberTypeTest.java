@@ -40,7 +40,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     @Test
     public void testNumber() {
         this.typeAndCheck(
-            KIND.create(123),
+            EXPRESSION_NUMBER_KIND.create(123),
             1
         );
     }
@@ -147,7 +147,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
                               final int expected) {
         this.applyAndCheck2(
             Lists.of(value),
-            KIND.create(expected)
+            EXPRESSION_NUMBER_KIND.create(expected)
         );
     }
 
