@@ -60,7 +60,7 @@ public final class SpreadsheetExpressionFunctionTextNodeFormatValueTest extends 
     public SpreadsheetExpressionEvaluationContext createContext() {
         final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
 
-        final SpreadsheetMetadata metadata = METADATA_EN_AU.set(
+        final SpreadsheetMetadata metadata = SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
             spreadsheetId
         );

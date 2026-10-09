@@ -37,7 +37,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataCreateTest ex
 
     private final static EmailAddress USER = EmailAddress.parse("SpreadsheetExpressionFunctionSpreadsheetMetadataCreateTest@example.com");
 
-    private final static SpreadsheetMetadata METADATA = METADATA_EN_AU.set(
+    private final static SpreadsheetMetadata METADATA = SPREADSHEET_METADATA.set(
         SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
         SpreadsheetId.with(1)
     );

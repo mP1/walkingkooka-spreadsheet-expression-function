@@ -28,7 +28,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataSaveTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataSave, SpreadsheetMetadata>
     implements SpreadsheetMetadataTesting {
 
-    private final static SpreadsheetMetadata UNSAVED_METADATA = METADATA_EN_AU;
+    private final static SpreadsheetMetadata UNSAVED_METADATA = SPREADSHEET_METADATA;
 
     private final static SpreadsheetMetadata SAVED_METADATA = UNSAVED_METADATA.set(
         SpreadsheetMetadataPropertyName.SPREADSHEET_ID,

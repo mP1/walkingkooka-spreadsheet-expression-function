@@ -1119,7 +1119,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateCreateSpreadsheetMetadataWithoutLocale() {
         this.evaluateAndValueCheck(
             "=createSpreadsheetMetadata()",
-            METADATA_EN_AU.set(
+            SPREADSHEET_METADATA.set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
                 SpreadsheetId.with(
                     SPREADSHEET_ID.value() + 4
@@ -1138,7 +1138,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         this.evaluateAndValueCheck(
             "=createSpreadsheetMetadata(\"en-NZ\")",
-            METADATA_EN_AU.set(
+            SPREADSHEET_METADATA.set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
                 SpreadsheetId.with(
                     SPREADSHEET_ID.value() + 4
@@ -5866,7 +5866,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     // FORMULA_CONVERTER added "form-and-validation" allowing some validation functions to be better tested.
     private SpreadsheetMetadata metadata() {
-        final ConverterSelector scriptingConverter = SpreadsheetMetadataTesting.METADATA_EN_AU.getOrFail(SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER);
+        final ConverterSelector scriptingConverter = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.SCRIPTING_CONVERTER);
 
         return SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, SPREADSHEET_ID)

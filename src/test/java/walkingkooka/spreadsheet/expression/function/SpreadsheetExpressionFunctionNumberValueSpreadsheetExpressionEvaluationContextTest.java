@@ -854,7 +854,7 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 private final SpreadsheetMetadataContext spreadsheetMetadataContext = SpreadsheetMetadataContexts.basic(
-                    (e, l) -> SpreadsheetMetadataTesting.METADATA_EN_AU,
+                    (e, l) -> SpreadsheetMetadataTesting.SPREADSHEET_METADATA,
                     SpreadsheetMetadataStores.treeMap()
                 );
 

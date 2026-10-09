@@ -38,7 +38,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
                 SpreadsheetMetadataPropertyName.LOCALE,
                 "missing!!!"
             ),
-            SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
         );
     }
 
@@ -47,7 +47,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
         this.applyAndCheck(
             this.createBiFunction(),
             Lists.of(
-                SPREADSHEET_METADATA,
+                SpreadsheetMetadataTesting.SPREADSHEET_METADATA,
                 SpreadsheetMetadataPropertyName.LOCALE,
                 "missing!!!"
             ),
@@ -57,12 +57,12 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
                 public Optional<SpreadsheetMetadata> loadMetadata(final SpreadsheetId id) {
                     return Optional.ofNullable(
                         SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest.SPREADSHEET_ID.equals(id) ?
-                            SPREADSHEET_METADATA :
+                            SpreadsheetMetadataTesting.SPREADSHEET_METADATA :
                             null
                     );
                 }
             },
-            SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
         );
     }
 
@@ -72,7 +72,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
 
         this.checkEquals(
             null,
-            SPREADSHEET_METADATA.get(property)
+            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.get(property)
                 .orElse(null)
         );
 
@@ -97,7 +97,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
         return new FakeSpreadsheetExpressionEvaluationContext() {
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
-                return SPREADSHEET_METADATA;
+                return SpreadsheetMetadataTesting.SPREADSHEET_METADATA;
             }
         };
     }

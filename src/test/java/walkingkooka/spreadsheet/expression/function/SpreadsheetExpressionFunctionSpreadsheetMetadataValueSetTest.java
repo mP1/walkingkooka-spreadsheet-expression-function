@@ -37,14 +37,14 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
 
     @Test
     public void testApplyWithPropertyName() {
-        this.metadata = SPREADSHEET_METADATA;
+        this.metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA;
 
         this.applyAndCheck(
             Lists.of(
                 PROPERTY_NAME,
                 PROPERTY_VALUE
             ),
-            SPREADSHEET_METADATA.set(
+            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
                 PROPERTY_NAME,
                 PROPERTY_VALUE
             )
@@ -53,14 +53,14 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
 
     @Test
     public void testApplyWithSpreadsheetMetadataAndPropertyName() {
-        final SpreadsheetMetadata metadata = SPREADSHEET_METADATA.set(
+        final SpreadsheetMetadata metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.LOCALE,
             Locale.forLanguageTag("en-NZ")
         );
 
         this.checkNotEquals(
             metadata,
-            SPREADSHEET_METADATA
+            SpreadsheetMetadataTesting.SPREADSHEET_METADATA
         );
 
         final SpreadsheetName spreadsheetName = SpreadsheetName.with("DifferentSpreadsheetName111");
