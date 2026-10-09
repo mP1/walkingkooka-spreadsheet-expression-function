@@ -27,8 +27,6 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
-import java.util.Locale;
-
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet, SpreadsheetMetadata>
     implements HasSpreadsheetMetadataTesting {
 
@@ -55,7 +53,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
     public void testApplyWithSpreadsheetMetadataAndPropertyName() {
         final SpreadsheetMetadata metadata = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.LOCALE,
-            Locale.forLanguageTag("en-NZ")
+            DIFFERENT_LOCALE
         );
 
         this.checkNotEquals(
