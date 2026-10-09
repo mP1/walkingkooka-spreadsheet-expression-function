@@ -71,7 +71,7 @@ public final class SpreadsheetExpressionFunctionObjectFindTest extends Spreadshe
 
     @Override
     public SpreadsheetExpressionEvaluationContext createContext() {
-        final SpreadsheetMetadata metadata = METADATA_EN_AU.set(
+        final SpreadsheetMetadata metadata = SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
             SPREADSHEET_ID
         );

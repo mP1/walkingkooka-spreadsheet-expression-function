@@ -37,7 +37,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
 
     @Test
     public void testApplyWithPropertyName() {
-        this.metadata = SPREADSHEET_METADATA;
+        this.metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA;
 
         this.applyAndCheck(
             Lists.of(PROPERTY_NAME),
@@ -53,7 +53,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
             localeRemoved
         );
 
-        this.metadata = SPREADSHEET_METADATA.set(
+        this.metadata = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
             SpreadsheetMetadataPropertyName.LOCALE,
             localeRemoved
         );
@@ -63,7 +63,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
                 this.metadata,
                 PROPERTY_NAME
             ),
-            SPREADSHEET_METADATA.remove(
+            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.remove(
                 SpreadsheetMetadataPropertyName.LOCALE
             )
         );
