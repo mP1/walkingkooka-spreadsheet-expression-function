@@ -21,15 +21,15 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueGet, Object>
-    implements SpreadsheetMetadataTesting {
+    implements HasSpreadsheetMetadataTesting {
 
     @Test
     public void testApplyPropertyPresent() {
@@ -38,7 +38,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
                 SpreadsheetMetadataPropertyName.LOCALE,
                 "missing!!!"
             ),
-            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
         );
     }
 
@@ -47,7 +47,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
         this.applyAndCheck(
             this.createBiFunction(),
             Lists.of(
-                SpreadsheetMetadataTesting.SPREADSHEET_METADATA,
+                HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA,
                 SpreadsheetMetadataPropertyName.LOCALE,
                 "missing!!!"
             ),
@@ -57,12 +57,12 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
                 public Optional<SpreadsheetMetadata> loadMetadata(final SpreadsheetId id) {
                     return Optional.ofNullable(
                         SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest.SPREADSHEET_ID.equals(id) ?
-                            SpreadsheetMetadataTesting.SPREADSHEET_METADATA :
+                            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA :
                             null
                     );
                 }
             },
-            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
+            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.getOrFail(SpreadsheetMetadataPropertyName.LOCALE)
         );
     }
 
@@ -72,7 +72,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
 
         this.checkEquals(
             null,
-            SpreadsheetMetadataTesting.SPREADSHEET_METADATA.get(property)
+            HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.get(property)
                 .orElse(null)
         );
 
@@ -97,7 +97,7 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
         return new FakeSpreadsheetExpressionEvaluationContext() {
             @Override
             public SpreadsheetMetadata spreadsheetMetadata() {
-                return SpreadsheetMetadataTesting.SPREADSHEET_METADATA;
+                return HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA;
             }
         };
     }

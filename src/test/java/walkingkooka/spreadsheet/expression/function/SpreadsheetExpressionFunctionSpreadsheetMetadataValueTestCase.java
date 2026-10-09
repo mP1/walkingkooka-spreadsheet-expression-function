@@ -17,9 +17,9 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 
 public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<F extends SpreadsheetExpressionFunctionSpreadsheetMetadataValue<T>, T> extends SpreadsheetExpressionFunctionSpreadsheetMetadataTestCase<F, T> {
 
@@ -27,7 +27,7 @@ public abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestC
         super();
     }
 
-    final static SpreadsheetMetadata SPREADSHEET_METADATA = SpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
+    final static SpreadsheetMetadata SPREADSHEET_METADATA = HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA.set(
         SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
         SPREADSHEET_ID
     );

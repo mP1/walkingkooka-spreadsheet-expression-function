@@ -33,10 +33,10 @@ import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContex
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContexts;
 import walkingkooka.spreadsheet.format.pattern.SpreadsheetPattern;
 import walkingkooka.spreadsheet.formula.SpreadsheetFormula;
+import walkingkooka.spreadsheet.meta.HasSpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.SpreadsheetId;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
-import walkingkooka.spreadsheet.meta.SpreadsheetMetadataTesting;
 import walkingkooka.spreadsheet.meta.store.FakeSpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.meta.store.SpreadsheetMetadataStore;
 import walkingkooka.spreadsheet.reference.FakeSpreadsheetExpressionReferenceLoader;
@@ -61,7 +61,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     implements ExpressionFunctionTesting2<F, T, SpreadsheetExpressionEvaluationContext>,
     ClassTesting2<F>,
     TypeNameTesting<F>,
-    SpreadsheetMetadataTesting {
+    HasSpreadsheetMetadataTesting {
 
     final static SpreadsheetCellReference REFERENCE = SpreadsheetSelection.parseCell("Z99");
 
@@ -87,7 +87,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
         FORMULA
     );
 
-    final static ExpressionNumberKind KIND = SpreadsheetMetadataTesting.EXPRESSION_NUMBER_KIND;
+    final static ExpressionNumberKind KIND = HasSpreadsheetMetadataTesting.EXPRESSION_NUMBER_KIND;
 
     SpreadsheetExpressionFunctionTestCase() {
         super();
