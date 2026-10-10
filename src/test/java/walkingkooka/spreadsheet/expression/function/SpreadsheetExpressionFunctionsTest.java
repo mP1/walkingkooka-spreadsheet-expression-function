@@ -5326,7 +5326,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             null, // expected value
             "" // printed
         ).spreadsheetExpressionEvaluationContext(
-            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetExpressionEvaluationContext.NO_SPREADSHEET_CELL,
             SpreadsheetExpressionReferenceLoaders.empty()
         );
 
@@ -5353,7 +5353,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             null, // expected value
             "" // printed
         ).spreadsheetExpressionEvaluationContext(
-            SpreadsheetExpressionEvaluationContext.NO_CELL,
+            SpreadsheetExpressionEvaluationContext.NO_SPREADSHEET_CELL,
             SpreadsheetExpressionReferenceLoaders.empty()
         );
 
@@ -5656,7 +5656,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         // only SCRIPTING allows updatable EnvironmentContext
         final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.setSpreadsheetMetadataMode(SpreadsheetMetadataMode.SCRIPTING)
             .spreadsheetExpressionEvaluationContext(
-                SpreadsheetExpressionEvaluationContext.NO_CELL, // no cell
+                SpreadsheetExpressionEvaluationContext.NO_SPREADSHEET_CELL, // no cell
                 SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
                     spreadsheetEngineContext.storeRepository()
                 )
@@ -5704,7 +5704,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final Object value = spreadsheetExpressionEvaluationContext.evaluateExpression(
             spreadsheetEngineContext.parseFormula(
                     TextCursors.charSequence(formula),
-                    SpreadsheetExpressionEvaluationContext.NO_CELL
+                    SpreadsheetExpressionEvaluationContext.NO_SPREADSHEET_CELL
                 ).toExpression(spreadsheetExpressionEvaluationContext)
                 .orElseThrow(() -> new IllegalStateException("Unable to make Expression"))
         );
