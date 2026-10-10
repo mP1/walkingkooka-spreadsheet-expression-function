@@ -61,7 +61,7 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
             Lists.empty(),
             new FakeSpreadsheetExpressionEvaluationContext() {
                 @Override
-                public Optional<SpreadsheetCell> cell() {
+                public Optional<SpreadsheetCell> spreadsheetCell() {
                     return Optional.of(
                         setProperty(
                             SpreadsheetSelection.A1.setFormula(SpreadsheetFormula.EMPTY),
@@ -72,7 +72,7 @@ public abstract class SpreadsheetExpressionFunctionCellTestCase<F extends Spread
 
                 @Override
                 public String toString() {
-                    return "cell: " + this.cell();
+                    return "cell: " + this.spreadsheetCell();
                 }
             },
             value

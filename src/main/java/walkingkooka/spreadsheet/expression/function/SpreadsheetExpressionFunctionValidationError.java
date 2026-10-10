@@ -72,7 +72,7 @@ final class SpreadsheetExpressionFunctionValidationError extends SpreadsheetExpr
         final SpreadsheetError spreadsheetError = ERROR.getOrFail(parameters, 0);
 
         return spreadsheetError.toValidationError(
-            context.cellOrFail()
+            context.spreadsheetCellOrFail()
                 .reference()
         );
     }

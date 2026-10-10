@@ -186,8 +186,9 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
             new FakeSpreadsheetExpressionEvaluationContext() {
 
                 @Override
-                public Optional<SpreadsheetCell> cell() {
-                    return createContext().cell();
+                public Optional<SpreadsheetCell> spreadsheetCell() {
+                    return createContext()
+                        .spreadsheetCell();
                 }
 
                 @Override
@@ -371,13 +372,13 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
             selection,
             new FakeSpreadsheetExpressionEvaluationContext() {
                 @Override
-                public Optional<SpreadsheetCell> cell() {
+                public Optional<SpreadsheetCell> spreadsheetCell() {
                     return Optional.of(cell);
                 }
 
                 @Override
                 public String toString() {
-                    return "cell: " + this.cell();
+                    return "cell: " + cell;
                 }
             },
             expected

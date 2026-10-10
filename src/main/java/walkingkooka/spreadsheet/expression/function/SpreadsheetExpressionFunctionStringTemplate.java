@@ -136,7 +136,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
         return SpreadsheetTemplateContexts.spreadsheet(
             context.spreadsheetMetadata()
                 .spreadsheetParserContext(
-                    context.cell(),
+                    context.spreadsheetCell(),
                     LocaleContexts.jre(
                         context.locale() // TODO
                     ), // LocaleContext
