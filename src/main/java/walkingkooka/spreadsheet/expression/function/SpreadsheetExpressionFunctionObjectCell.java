@@ -57,7 +57,7 @@ final class SpreadsheetExpressionFunctionObjectCell extends SpreadsheetExpressio
                         final SpreadsheetExpressionEvaluationContext context) {
         this.checkParameterCount(parameters);
 
-        final SpreadsheetCell cell = context.cellOrFail();
+        final SpreadsheetCell cell = context.spreadsheetCellOrFail();
 
         final String typeInfo = TYPE_INFO.getOrFail(parameters, 0);
         final SpreadsheetExpressionReference selection = CELL_OR_RANGE_REFERENCE_OPTIONAL.get(parameters, 1)

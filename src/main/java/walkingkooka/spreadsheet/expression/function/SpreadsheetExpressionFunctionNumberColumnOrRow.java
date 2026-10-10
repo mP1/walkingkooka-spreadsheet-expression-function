@@ -66,7 +66,7 @@ final class SpreadsheetExpressionFunctionNumberColumnOrRow extends SpreadsheetEx
 
         final SpreadsheetCellReference reference = REFERENCE_OPTIONAL.get(parameters, 0)
             .orElseGet(
-                () -> context.cellOrFail()
+                () -> context.spreadsheetCellOrFail()
                     .reference()
             );
 

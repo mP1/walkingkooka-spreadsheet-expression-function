@@ -70,7 +70,7 @@ final class SpreadsheetExpressionFunctionTextNodeFormatValue extends Spreadsheet
     public TextNode apply(final List<Object> parameters,
                           final SpreadsheetExpressionEvaluationContext context) {
         final SpreadsheetFormatterContext formatterContext = context.spreadsheetFormatterContext(
-            context.cell()
+            context.spreadsheetCell()
         );
 
         final SpreadsheetFormatter formatter = formatterContext.spreadsheetFormatter(
