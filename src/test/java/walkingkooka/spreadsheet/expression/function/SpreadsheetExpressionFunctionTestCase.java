@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
@@ -53,7 +52,6 @@ import walkingkooka.tree.expression.function.ExpressionFunctionTesting2;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Locale;
 import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
@@ -106,19 +104,13 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
     }
 
     final SpreadsheetExpressionEvaluationContext createContext0() {
-        final Locale locale = Locale.ENGLISH;
-
         final SpreadsheetId spreadsheetId = SpreadsheetId.parse("1234");
 
         final SpreadsheetMetadata metadata = SpreadsheetMetadata.EMPTY
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_ID, spreadsheetId)
             .set(SpreadsheetMetadataPropertyName.SPREADSHEET_NAME, SPREADSHEET_NAME)
-            .set(SpreadsheetMetadataPropertyName.LOCALE, locale)
-            .loadFromLocale(
-                CURRENCY_CONTEXT.setLocaleContext(
-                    LocaleContexts.jre(locale)
-                )
-            )
+            .set(SpreadsheetMetadataPropertyName.LOCALE, LOCALE)
+            .loadFromLocale(CURRENCY_LOCALE_CONTEXT)
             .set(
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
                 AUDIT_INFO
