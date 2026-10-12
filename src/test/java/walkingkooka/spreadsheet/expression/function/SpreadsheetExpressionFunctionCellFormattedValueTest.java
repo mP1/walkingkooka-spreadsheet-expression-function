@@ -34,7 +34,7 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
 
     @Override
     TextNode valuePresent() {
-        return SpreadsheetText.with("Hello123")
+        return SpreadsheetText.EMPTY.setText("Hello123")
             .setColor(
                 Optional.of(
                     Color.parse("#123456")
