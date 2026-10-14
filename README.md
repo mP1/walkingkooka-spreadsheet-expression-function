@@ -299,7 +299,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [textMatch](https://github.com/mP1/walkingkooka-spreadsheet-expression-function/blob/master/src/main/java/walkingkooka/spreadsheet/expression/function/SpreadsheetExpressionFunctionBooleanTextMatch.java)
 - [time](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/LocalTimeExpressionFunctionTime.java)
 - [today](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/LocalDateExpressionFunctionToday.java)
-- [toGray](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionRgbColorToGray.java)
+- [toGray](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToGray.java)
 - [toHslColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToHslColor.java)
 - [toHsvColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToHsvColor.java)
 - [toRgbColor](https://github.com/mP1/walkingkooka-color/blob/master/src/main/java/walkingkooka/color/expression/function/ColorExpressionFunctionToRgbColor.java)
