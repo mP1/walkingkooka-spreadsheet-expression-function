@@ -19,6 +19,10 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Binary;
+import walkingkooka.color.Color;
+import walkingkooka.color.ColorContext;
+import walkingkooka.color.IndexedColor;
+import walkingkooka.color.NamedColor;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
@@ -34,6 +38,8 @@ import walkingkooka.net.AbsoluteUrl;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.spreadsheet.SpreadsheetStrings;
+import walkingkooka.spreadsheet.color.SpreadsheetColorContextTesting;
+import walkingkooka.spreadsheet.color.SpreadsheetColorContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetDelta;
 import walkingkooka.spreadsheet.environment.SpreadsheetEnvironmentContext;
 import walkingkooka.spreadsheet.expression.FakeSpreadsheetExpressionEvaluationContext;
@@ -76,7 +82,10 @@ import java.util.Set;
 import java.util.function.Function;
 
 public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContextTest implements SpreadsheetExpressionEvaluationContextTesting2<SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext>,
+    SpreadsheetColorContextTesting,
     HasSpreadsheetMetadataTesting {
+
+    private final static ColorContext COLOR_CONTEXT = SpreadsheetColorContexts.empty();
 
     private final static String CURRENCY_SYMBOL = "AUD";
     private final static char DECIMAL_SEPARATOR = '/';
@@ -461,6 +470,28 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 @Override
                 public char zeroDigit() {
                     return ZERO_DIGIT;
+                }
+
+                // ColorContext.........................................................................................
+
+                @Override
+                public IndexedColor indexedColor(final int index) {
+                    return COLOR_CONTEXT.indexedColor(index);
+                }
+
+                @Override
+                public Optional<Color> lookupColor(final Color color) {
+                    return COLOR_CONTEXT.lookupColor(color);
+                }
+
+                @Override
+                public NamedColor namedColor(final String name) {
+                    return COLOR_CONTEXT.namedColor(name);
+                }
+
+                @Override
+                public Color parseColor(final String color) {
+                    return COLOR_CONTEXT.parseColor(color);
                 }
 
                 // FormHandlerContext...................................................................................
