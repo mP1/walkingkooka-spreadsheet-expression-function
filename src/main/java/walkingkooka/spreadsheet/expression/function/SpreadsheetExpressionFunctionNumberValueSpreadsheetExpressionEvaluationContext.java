@@ -19,8 +19,8 @@ package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.Binary;
 import walkingkooka.Either;
-import walkingkooka.color.CanIndexedNamedColor;
-import walkingkooka.color.CanIndexedNamedColorDelegator;
+import walkingkooka.color.ColorContext;
+import walkingkooka.color.ColorContextDelegator;
 import walkingkooka.convert.Converter;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeContext;
@@ -99,7 +99,7 @@ import java.util.Set;
  * that uses the provided decimal separator and group separator.
  */
 final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluationContext implements SpreadsheetExpressionEvaluationContext,
-    CanIndexedNamedColorDelegator,
+    ColorContextDelegator,
     DateTimeContextDelegator,
     SpreadsheetEnvironmentContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
@@ -703,10 +703,10 @@ final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpressionEvaluat
         throw new UnsupportedOperationException();
     }
 
-    // CanIndexedNamedColorDelegator....................................................................................
+    // ColorContextDelegator............................................................................................
 
     @Override
-    public CanIndexedNamedColor canIndexedNamedColor() {
+    public ColorContext colorContext() {
         return this.context;
     }
 
