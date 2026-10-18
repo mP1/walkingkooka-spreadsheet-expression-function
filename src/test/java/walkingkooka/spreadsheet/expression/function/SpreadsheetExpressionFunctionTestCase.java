@@ -115,7 +115,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
                 AUDIT_INFO
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-            .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+            .set(SpreadsheetMetadataPropertyName.DATE_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
             .set(SpreadsheetMetadataPropertyName.DEFAULT_YEAR, 20)
             .set(SpreadsheetMetadataPropertyName.EXPRESSION_NUMBER_KIND, EXPRESSION_NUMBER_KIND)
             .set(SpreadsheetMetadataPropertyName.FORMULA_CONVERTER, ConverterSelector.parse("collection(null-to-number, simple, text, number, value)"))

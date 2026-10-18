@@ -5881,7 +5881,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 SpreadsheetMetadataPropertyName.AUDIT_INFO,
                 AUDIT_INFO
             ).set(SpreadsheetMetadataPropertyName.CELL_CHARACTER_WIDTH, 1)
-            .set(SpreadsheetMetadataPropertyName.DATE_TIME_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
+            .set(SpreadsheetMetadataPropertyName.DATE_OFFSET, Converters.EXCEL_1904_DATE_SYSTEM_OFFSET)
             .set(
                 SpreadsheetMetadataPropertyName.DECIMAL_NUMBER_DIGIT_COUNT,
                 DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT
