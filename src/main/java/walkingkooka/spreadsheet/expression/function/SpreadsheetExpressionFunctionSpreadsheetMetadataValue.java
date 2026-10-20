@@ -93,7 +93,7 @@ abstract class SpreadsheetExpressionFunctionSpreadsheetMetadataValue<T> extends 
         final boolean missingSpreadsheetMetadata = this.parametersWithoutSpreadsheetMetadata.size() == parameters.size();
 
         final SpreadsheetMetadata spreadsheetMetadata = missingSpreadsheetMetadata ?
-            context.spreadsheetMetadata() :
+            context.spreadsheetMetadataOrFail() :
             SPREADSHEET_METADATA.getOrFail(parameters, 0);
 
         return this.applyWithSpreadsheetMetadata(

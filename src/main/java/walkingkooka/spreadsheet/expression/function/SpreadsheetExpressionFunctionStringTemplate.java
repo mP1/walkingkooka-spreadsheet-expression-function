@@ -134,7 +134,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
 
         // TODO would be good to be able to pass templates as values.
         return SpreadsheetTemplateContexts.spreadsheet(
-            context.spreadsheetMetadata()
+            context.spreadsheetMetadataOrFail()
                 .spreadsheetParserContext(
                     context.spreadsheetCell(),
                     LocaleContexts.jre(

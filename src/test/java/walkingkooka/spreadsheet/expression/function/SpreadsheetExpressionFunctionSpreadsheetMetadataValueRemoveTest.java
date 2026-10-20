@@ -27,6 +27,7 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 
 import java.util.Locale;
+import java.util.Optional;
 
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemove, SpreadsheetMetadata>
     implements HasSpreadsheetMetadataTesting {
@@ -73,10 +74,12 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTe
         return new FakeSpreadsheetExpressionEvaluationContext() {
 
             @Override
-            public SpreadsheetMetadata spreadsheetMetadata() {
-                return SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest.this.metadata.set(
-                    PROPERTY_NAME,
-                    PROPERTY_VALUE
+            public Optional<SpreadsheetMetadata> spreadsheetMetadata() {
+                return Optional.of(
+                    SpreadsheetExpressionFunctionSpreadsheetMetadataValueRemoveTest.this.metadata.set(
+                        PROPERTY_NAME,
+                        PROPERTY_VALUE
+                    )
                 );
             }
 
