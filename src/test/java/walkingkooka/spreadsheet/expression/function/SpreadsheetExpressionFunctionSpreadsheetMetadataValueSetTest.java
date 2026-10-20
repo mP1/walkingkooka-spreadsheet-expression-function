@@ -27,6 +27,8 @@ import walkingkooka.spreadsheet.meta.SpreadsheetMetadata;
 import walkingkooka.spreadsheet.meta.SpreadsheetMetadataPropertyName;
 import walkingkooka.spreadsheet.meta.SpreadsheetName;
 
+import java.util.Optional;
+
 public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest extends SpreadsheetExpressionFunctionSpreadsheetMetadataValueTestCase<SpreadsheetExpressionFunctionSpreadsheetMetadataValueSet, SpreadsheetMetadata>
     implements HasSpreadsheetMetadataTesting {
 
@@ -90,8 +92,10 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest 
         return new FakeSpreadsheetExpressionEvaluationContext() {
 
             @Override
-            public SpreadsheetMetadata spreadsheetMetadata() {
-                return SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest.this.metadata;
+            public Optional<SpreadsheetMetadata> spreadsheetMetadata() {
+                return Optional.of(
+                    SpreadsheetExpressionFunctionSpreadsheetMetadataValueSetTest.this.metadata
+                );
             }
 
             @Override

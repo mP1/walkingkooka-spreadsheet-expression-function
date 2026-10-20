@@ -96,8 +96,8 @@ public final class SpreadsheetExpressionFunctionSpreadsheetMetadataValueGetTest 
     public SpreadsheetExpressionEvaluationContext createContext() {
         return new FakeSpreadsheetExpressionEvaluationContext() {
             @Override
-            public SpreadsheetMetadata spreadsheetMetadata() {
-                return HasSpreadsheetMetadataTesting.SPREADSHEET_METADATA;
+            public Optional<SpreadsheetMetadata> spreadsheetMetadata() {
+                return OPTIONAL_SPREADSHEET_METADATA;
             }
         };
     }

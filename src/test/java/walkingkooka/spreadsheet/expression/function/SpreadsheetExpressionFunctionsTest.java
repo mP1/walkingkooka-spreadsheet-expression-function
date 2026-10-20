@@ -4177,7 +4177,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
 
         // must load SpreadsheetMetadata because BasicSpreadsheetEngineContext#spreadsheetMetadata is not refreshed after spreadsheet save.
-        final SpreadsheetId id = context.spreadsheetMetadata()
+        final SpreadsheetId id = context.spreadsheetMetadataOrFail()
             .getOrFail(SpreadsheetMetadataPropertyName.SPREADSHEET_ID);
 
         this.checkNotEquals(
