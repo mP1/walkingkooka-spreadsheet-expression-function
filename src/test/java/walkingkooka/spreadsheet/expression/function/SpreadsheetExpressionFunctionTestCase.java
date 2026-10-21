@@ -127,6 +127,7 @@ public abstract class SpreadsheetExpressionFunctionTestCase<F extends Spreadshee
             .setDefaults(SpreadsheetMetadata.NON_LOCALE_DEFAULTS);
 
         final SpreadsheetEnvironmentContext spreadsheetEnvironmentContext = SpreadsheetEnvironmentContexts.basic(
+            SPREADSHEET_METADATA_LOADER,
             SpreadsheetStorages.treeMapStore(),
             SPREADSHEET_ENVIRONMENT_CONTEXT.cloneEnvironment()
         );
