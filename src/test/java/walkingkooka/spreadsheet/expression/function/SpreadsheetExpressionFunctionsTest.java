@@ -5635,6 +5635,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 ),
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
+                    SPREADSHEET_METADATA_LOADER,
                     storage,
                     storageEnvironmentContext2
                 ),
@@ -6017,6 +6018,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 HATEOS_ROUTER_FACTORY,
                 CURRENCY_LOCALE_CONTEXT,
                 SpreadsheetEnvironmentContexts.basic(
+                    SPREADSHEET_METADATA_LOADER,
                     SpreadsheetStorages.mount(
                         SpreadsheetStorages.treeMapStore()
                     ),
