@@ -3591,6 +3591,133 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluatePrintlnLoadSpreadsheetMetadataWithDifferentLineEnding() {
+        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        storageEnvironmentContext.setLineEnding(DIFFERENT_LINE_ENDING);
+
+        this.evaluateAndPrintedCheck(
+            "=println(loadSpreadsheetMetadata(\"123\"))",
+            storageEnvironmentContext,
+            "{\n" +
+                "  \"spreadsheetId\": \"123\",\n" +
+                "  \"auditInfo\": {\n" +
+                "    \"createdBy\": \"user123@example.com\",\n" +
+                "    \"createdTimestamp\": \"1999-12-31T12:58:59\",\n" +
+                "    \"modifiedBy\": \"user123@example.com\",\n" +
+                "    \"modifiedTimestamp\": \"1999-12-31T12:58:59\"\n" +
+                "  },\n" +
+                "  \"cellCharacterWidth\": 1,\n" +
+                "  \"comparators\": \"\",\n" +
+                "  \"converters\": \"binary, binary-to-text, boolean, boolean-to-text, collection, collection-to, collection-to-list, color, color-to-number, csv, currency, currency-code-to-currency, currency-value-to, currency-value-to-number, date-time, date-time-symbols, decimal-number-symbols, environment, environment-to-binary, environment-to-text, error-throwing, error-to-error, error-to-number, expression, form-and-validation, format-pattern-to-string, json, json-to, locale, locale-to-text, logging, net, never, null-to-number, number, number-to-color, number-to-currency-value, number-to-number, number-to-text, optional-to, plugins, properties, properties-to-date-time-symbols, properties-to-decimal-number-symbols, properties-to-spreadsheet-metadata, properties-to-text-style, simple, spreadsheet-cell-set, spreadsheet-id-to-spreadsheet-metadata, spreadsheet-metadata, spreadsheet-metadata-to-text, spreadsheet-selection, spreadsheet-selection-to-spreadsheet-selection, spreadsheet-selection-to-text, storage, storage-binary-to-storage-value-binary, storage-binary-to-storage-value-csv, storage-binary-to-storage-value-environment, storage-binary-to-storage-value-expression, storage-binary-to-storage-value-json, storage-binary-to-storage-value-properties, storage-binary-to-storage-value-tsv, storage-binary-to-storage-value-txt, storage-value-info-list-to-text, storage-value-to-storage-binary-binary, storage-value-to-storage-binary-csv, storage-value-to-storage-binary-environment, storage-value-to-storage-binary-expression, storage-value-to-storage-binary-json, storage-value-to-storage-binary-properties, storage-value-to-storage-binary-tsv, storage-value-to-storage-binary-txt, style, system, template, text, text-node, text-to-binary, text-to-boolean-list, text-to-border, text-to-charset, text-to-color, text-to-converter-selector, text-to-csv-string-list, text-to-csv-string-set, text-to-currency, text-to-currency-code, text-to-currency-exchange-rater-selector, text-to-currency-value, text-to-date-list, text-to-date-time-list, text-to-email-address, text-to-environment, text-to-environment-value-name, text-to-error, text-to-expression, text-to-expression-function-selector, text-to-flag, text-to-form-name, text-to-has-host-address, text-to-host-address, text-to-indentation, text-to-json, text-to-json-pointer, text-to-json-selector, text-to-line-ending, text-to-locale, text-to-locale-language-tag, text-to-logging-level, text-to-margin, text-to-media-type, text-to-number-list, text-to-object, text-to-padding, text-to-path, text-to-properties, text-to-spreadsheet-comparator-selector, text-to-spreadsheet-formatter-selector, text-to-spreadsheet-id, text-to-spreadsheet-metadata, text-to-spreadsheet-metadata-color, text-to-spreadsheet-metadata-property-name, text-to-spreadsheet-name, text-to-spreadsheet-parser-selector, text-to-spreadsheet-selection, text-to-spreadsheet-text, text-to-storage-path, text-to-string-list, text-to-template-value-name, text-to-text, text-to-text-node, text-to-text-style, text-to-text-style-property-name, text-to-time-list, text-to-tsv-string-list, text-to-tsv-string-set, text-to-url, text-to-url-fragment, text-to-url-query-string, text-to-validation-error, text-to-validator-selector, text-to-value-type, text-to-web-color-name, text-to-zone-offset, to-binary, to-boolean, to-color, to-color-properties, to-csv-string-list, to-currency, to-currency-code, to-date-time-symbols, to-decimal-number-symbols, to-environment, to-formatter-selector, to-has-host-address, to-host-address, to-json-node, to-locale, to-locale-language-tag, to-multi-line-text, to-number, to-parser-selector, to-properties, to-spreadsheet-selection, to-string, to-style, to-styleable, to-text-node, to-tsv-string-list, to-validation-checkbox, to-validation-choice, to-validation-choice-list, to-validation-error-list, to-validator-selector, to-value, to-value-type, tsv, url, url-to-hyperlink, url-to-image, value\",\n" +
+                "  \"currency\": \"AUD\",\n" +
+                "  \"dateFormatter\": \"date dddd, d mmmm yyyy\",\n" +
+                "  \"dateOffset\": \"-24107\",\n" +
+                "  \"dateParser\": \"date dddd, d mmmm yyyy;dddd, d mmmm yy;dddd, d mmmm;d mmmm yyyy;d mmmm yy;d mmmm;d mmm yyyy;d mmm yy;d mmm;d/m/yy;d/m/yyyy;d/m\",\n" +
+                "  \"dateTimeFormatter\": \"date-time dddd, d mmmm yyyy \\\\a\\\\t h:mm:ss AM/PM\",\n" +
+                "  \"dateTimeParser\": \"date-time dddd, d mmmm yyyy \\\\a\\\\t h:mm:ss AM/PM;dddd, d mmmm yy \\\\a\\\\t h:mm:ss AM/PM;dddd, d mmmm yy \\\\a\\\\t h:mm:ss;dddd, d mmmm yy \\\\a\\\\t h:mm AM/PM;dddd, d mmmm yyyy \\\\a\\\\t h:mm:ss.0 AM/PM;dddd, d mmmm yyyy \\\\a\\\\t h:mm:ss.0;dddd, d mmmm yyyy \\\\a\\\\t h:mm:ss;dddd, d mmmm yyyy \\\\a\\\\t h:mm AM/PM;dddd, d mmmm yyyy \\\\a\\\\t h:mm;dddd, d mmmm yyyy, h:mm:ss AM/PM;dddd, d mmmm yy, h:mm:ss AM/PM;dddd, d mmmm yy, h:mm:ss;dddd, d mmmm yy, h:mm AM/PM;dddd, d mmmm yyyy, h:mm:ss.0 AM/PM;dddd, d mmmm yyyy, h:mm:ss.0;dddd, d mmmm yyyy, h:mm:ss;dddd, d mmmm yyyy, h:mm AM/PM;dddd, d mmmm yyyy, h:mm;dddd, d mmmm yy, h:mm;d mmmm yyyy \\\\a\\\\t h:mm:ss AM/PM;d mmmm yy \\\\a\\\\t h:mm:ss AM/PM;d mmmm yy \\\\a\\\\t h:mm:ss;d mmmm yy \\\\a\\\\t h:mm AM/PM;d mmmm yyyy \\\\a\\\\t h:mm:ss.0 AM/PM;d mmmm yyyy \\\\a\\\\t h:mm:ss.0;d mmmm yyyy \\\\a\\\\t h:mm:ss;d mmmm yyyy \\\\a\\\\t h:mm AM/PM;d mmmm yyyy \\\\a\\\\t h:mm;d mmmm yyyy, h:mm:ss AM/PM;d mmmm yy, h:mm:ss AM/PM;d mmmm yy, h:mm:ss;d mmmm yy, h:mm AM/PM;d mmmm yyyy, h:mm:ss.0 AM/PM;d mmmm yyyy, h:mm:ss.0;d mmmm yyyy, h:mm:ss;d mmmm yyyy, h:mm AM/PM;d mmmm yyyy, h:mm;d mmmm yy, h:mm;d mmm yyyy, h:mm:ss AM/PM;d mmm yy, h:mm:ss AM/PM;d mmm yy, h:mm:ss;d mmm yy, h:mm AM/PM;d mmm yyyy, h:mm:ss.0 AM/PM;d mmm yyyy, h:mm:ss.0;d mmm yyyy, h:mm:ss;d mmm yyyy, h:mm AM/PM;d mmm yyyy, h:mm;d mmm yy, h:mm;d/m/yy, h:mm:ss AM/PM;d/m/yy, h:mm:ss;d/m/yy, h:mm AM/PM;d/m/yyyy, h:mm:ss AM/PM;d/m/yyyy, h:mm:ss.0 AM/PM;d/m/yyyy, h:mm:ss.0;d/m/yyyy, h:mm:ss;d/m/yyyy, h:mm AM/PM;d/m/yy, h:mm:ss.0;d/m/yy, h:mm;d/m/yyyy, h:mm\",\n" +
+                "  \"dateTimeSymbols\": {\n" +
+                "    \"ampms\": [\n" +
+                "      \"am\",\n" +
+                "      \"pm\"\n" +
+                "    ],\n" +
+                "    \"monthNames\": [\n" +
+                "      \"January\",\n" +
+                "      \"February\",\n" +
+                "      \"March\",\n" +
+                "      \"April\",\n" +
+                "      \"May\",\n" +
+                "      \"June\",\n" +
+                "      \"July\",\n" +
+                "      \"August\",\n" +
+                "      \"September\",\n" +
+                "      \"October\",\n" +
+                "      \"November\",\n" +
+                "      \"December\"\n" +
+                "    ],\n" +
+                "    \"monthNameAbbreviations\": [\n" +
+                "      \"Jan.\",\n" +
+                "      \"Feb.\",\n" +
+                "      \"Mar.\",\n" +
+                "      \"Apr.\",\n" +
+                "      \"May\",\n" +
+                "      \"Jun.\",\n" +
+                "      \"Jul.\",\n" +
+                "      \"Aug.\",\n" +
+                "      \"Sep.\",\n" +
+                "      \"Oct.\",\n" +
+                "      \"Nov.\",\n" +
+                "      \"Dec.\"\n" +
+                "    ],\n" +
+                "    \"weekDayNames\": [\n" +
+                "      \"Sunday\",\n" +
+                "      \"Monday\",\n" +
+                "      \"Tuesday\",\n" +
+                "      \"Wednesday\",\n" +
+                "      \"Thursday\",\n" +
+                "      \"Friday\",\n" +
+                "      \"Saturday\"\n" +
+                "    ],\n" +
+                "    \"weekDayNameAbbreviations\": [\n" +
+                "      \"Sun.\",\n" +
+                "      \"Mon.\",\n" +
+                "      \"Tue.\",\n" +
+                "      \"Wed.\",\n" +
+                "      \"Thu.\",\n" +
+                "      \"Fri.\",\n" +
+                "      \"Sat.\"\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"decimalNumberDigitCount\": 9,\n" +
+                "  \"decimalNumberSymbols\": {\n" +
+                "    \"negativeSign\": \"-\",\n" +
+                "    \"positiveSign\": \"+\",\n" +
+                "    \"zeroDigit\": \"0\",\n" +
+                "    \"currencySymbol\": \"$\",\n" +
+                "    \"decimalSeparator\": \".\",\n" +
+                "    \"exponentSymbol\": \"e\",\n" +
+                "    \"groupSeparator\": \",\",\n" +
+                "    \"infinitySymbol\": \"∞\",\n" +
+                "    \"monetaryDecimalSeparator\": \".\",\n" +
+                "    \"nanSymbol\": \"NaN\",\n" +
+                "    \"percentSymbol\": \"%\",\n" +
+                "    \"permillSymbol\": \"‰\"\n" +
+                "  },\n" +
+                "  \"defaultYear\": 20,\n" +
+                "  \"errorFormatter\": \"badge-error default-text\",\n" +
+                "  \"exporters\": \"\",\n" +
+                "  \"expressionNumberKind\": \"BIG_DECIMAL\",\n" +
+                "  \"formatters\": \"\",\n" +
+                "  \"formattingConverter\": \"collection(null-to-number, simple, text, number, date-time, value, boolean, error-throwing, color, expression, environment, locale, plugins, properties, spreadsheet-metadata, style, text-node, template, net, optional-to, collection-to)\",\n" +
+                "  \"formHandlers\": \"\",\n" +
+                "  \"formulaConverter\": \"collection(null-to-number, simple, text, boolean, number, date-time, environment, locale, value, error-throwing, color, expression, json, currency, logging, plugins, properties, spreadsheet-metadata, storage, style, text-node, template, net, optional-to, collection-to)\",\n" +
+                "  \"formulaFunctions\": \"@abs, acos, address, and, asin, atan, average, averageIf, badge, base, bin2dec, bin2hex, bin2oct, bitand, bitor, bitxor, border, ceil, cell, cellCurrency, cellDateTimeSymbols, cellDecimalNumberSymbols, cellFormattedValue, cellFormatter, cellFormula, cellLocale, cellParser, cellStyle, cellValidator, cellValue, cellValueType, char, choose, clean, code, color, column, columns, concat, cos, cosh, count, countA, countBlank, countIf, createSpreadsheetMetadata, currency, currencyCode, currencyValue, date, day, days, debug, dec2bin, dec2hex, dec2oct, decimal, degrees, deleteSpreadsheetMetadata, deleteStorage, delta, dollar, e, emailAddress, error, eval, even, exact, exit, exp, false, fileStorage, find, fixed, flag, floor, formatValue, formulatext, getAlpha, getBlue, getCharset, getCurrency, getCurrentWorkingDirectory, getDateTimeSymbols, getDecimalNumberSymbols, getEnv, getFormatter, getFormatValue, getFormulaText, getGreen, getHomeDirectory, getHost, getIndentation, getLineEnding, getLocale, getParser, getRed, getSpreadsheetMetadataValue, getStyle, getTextNode, getTimeOffset, getUser, getValidator, getValue, hex2bin, hex2dec, hex2oct, hour, hyperlink, if, ifs, image, indirect, int, invertColor, isBlank, isDate, isErr, isError, isEven, isFormula, isLogical, isNa, isNonText, isNull, isNumber, isOdd, isoweeknum, isRef, isText, json, jsonPointer, jsonPointerEval, jsonSelector, jsonSelectorEval, jsonText, lambda, left, len, let, list, listNonNull, listStorage, ln, loadSpreadsheetMetadata, locale, localeLanguageTag, log, log10, logError, loggingLevel, logInfo, logMessage, logWarn, lower, margin, max, maxIf, memoryStorage, mergeStyle, mid, min, minIf, minute, mixColor, mod, month, mount, mountPoints, nextEmptyColumn, nextEmptyRow, not, now, null, numberValue, oct2bin, oct2dec, oct2hex, odd, offset, or, padding, pi, print, printEnv, println, product, proper, quotient, radians, rand, randBetween, readLine, readStorage, readStorageText, removeEnv, removeSpreadsheetMetadataValue, replace, rept, right, roman, round, roundDown, roundUp, row, rows, saveSpreadsheetMetadata, script, search, second, setAlpha, setBlue, setCharset, setCurrency, setCurrentWorkingDirectory, setEnv, setGreen, setHomeDirectory, setHost, setIndentation, setLineEnding, setLocale, setRed, setSpreadsheetMetadataValue, setStyle, setText, setTimeOffset, shell, sign, sin, sinh, spreadsheetUrl, sqrt, style, styledText, styleGet, styleRemove, styleRemoveIf, styleReplaceIf, styleSet, substitute, sum, sumIf, switch, t, tan, tanh, template, text, textJoin, textMatch, time, today, toGray, toHslColor, toHsvColor, toRgbColor, toRgbHexString, toWebColorName, treeText, trim, true, trunc, type, unichar, unicode, unmount, upper, url, validationChoiceList, validationError, validationErrorIf, validationValue, value, weekday, weeknum, writeStorage, writeStorageText, xor, year\",\n" +
+                "  \"functions\": \"@abs, acos, address, and, asin, atan, average, averageIf, badge, base, bin2dec, bin2hex, bin2oct, bitand, bitor, bitxor, border, ceil, cell, cellCurrency, cellDateTimeSymbols, cellDecimalNumberSymbols, cellFormattedValue, cellFormatter, cellFormula, cellLocale, cellParser, cellStyle, cellValidator, cellValue, cellValueType, char, choose, clean, code, color, column, columns, concat, cos, cosh, count, countA, countBlank, countIf, createSpreadsheetMetadata, currency, currencyCode, currencyValue, date, day, days, debug, dec2bin, dec2hex, dec2oct, decimal, degrees, deleteSpreadsheetMetadata, deleteStorage, delta, dollar, e, emailAddress, error, eval, even, exact, exit, exp, false, fileStorage, find, fixed, flag, floor, formatValue, formulatext, getAlpha, getBlue, getCharset, getCurrency, getCurrentWorkingDirectory, getDateTimeSymbols, getDecimalNumberSymbols, getEnv, getFormatter, getFormatValue, getFormulaText, getGreen, getHomeDirectory, getHost, getIndentation, getLineEnding, getLocale, getParser, getRed, getSpreadsheetMetadataValue, getStyle, getTextNode, getTimeOffset, getUser, getValidator, getValue, hex2bin, hex2dec, hex2oct, hour, hyperlink, if, ifs, image, indirect, int, invertColor, isBlank, isDate, isErr, isError, isEven, isFormula, isLogical, isNa, isNonText, isNull, isNumber, isOdd, isoweeknum, isRef, isText, json, jsonPointer, jsonPointerEval, jsonSelector, jsonSelectorEval, jsonText, lambda, left, len, let, list, listNonNull, listStorage, ln, loadSpreadsheetMetadata, locale, localeLanguageTag, log, log10, logError, loggingLevel, logInfo, logMessage, logWarn, lower, margin, max, maxIf, memoryStorage, mergeStyle, mid, min, minIf, minute, mixColor, mod, month, mount, mountPoints, nextEmptyColumn, nextEmptyRow, not, now, null, numberValue, oct2bin, oct2dec, oct2hex, odd, offset, or, padding, pi, print, printEnv, println, product, proper, quotient, radians, rand, randBetween, readLine, readStorage, readStorageText, removeEnv, removeSpreadsheetMetadataValue, replace, rept, right, roman, round, roundDown, roundUp, row, rows, saveSpreadsheetMetadata, script, search, second, setAlpha, setBlue, setCharset, setCurrency, setCurrentWorkingDirectory, setEnv, setGreen, setHomeDirectory, setHost, setIndentation, setLineEnding, setLocale, setRed, setSpreadsheetMetadataValue, setStyle, setText, setTimeOffset, shell, sign, sin, sinh, spreadsheetUrl, sqrt, style, styledText, styleGet, styleRemove, styleRemoveIf, styleReplaceIf, styleSet, substitute, sum, sumIf, switch, t, tan, tanh, template, text, textJoin, textMatch, time, today, toGray, toHslColor, toHsvColor, toRgbColor, toRgbHexString, toWebColorName, treeText, trim, true, trunc, type, unichar, unicode, unmount, upper, url, validationChoiceList, validationError, validationErrorIf, validationValue, value, weekday, weeknum, writeStorage, writeStorageText, xor, year\",\n" +
+                "  \"importers\": \"\",\n" +
+                "  \"locale\": \"en-AU\",\n" +
+                "  \"numberFormatter\": \"number #.###\",\n" +
+                "  \"numberParser\": \"number #,##0.###;#,##0\",\n" +
+                "  \"parsers\": \"\",\n" +
+                "  \"precision\": 7,\n" +
+                "  \"roundingMode\": \"HALF_UP\",\n" +
+                "  \"scriptingConverter\": \"collection(null-to-number, simple, text, boolean, number, date-time, environment, locale, value, error-throwing, color, expression, json, currency, logging, plugins, properties, spreadsheet-metadata, storage, style, text-node, template, net, optional-to, collection-to)\",\n" +
+                "  \"scriptingFunctions\": \"@abs, acos, address, and, asin, atan, average, averageIf, badge, base, bin2dec, bin2hex, bin2oct, bitand, bitor, bitxor, border, ceil, cell, cellCurrency, cellDateTimeSymbols, cellDecimalNumberSymbols, cellFormattedValue, cellFormatter, cellFormula, cellLocale, cellParser, cellStyle, cellValidator, cellValue, cellValueType, char, choose, clean, code, color, column, columns, concat, cos, cosh, count, countA, countBlank, countIf, createSpreadsheetMetadata, currency, currencyCode, currencyValue, date, day, days, debug, dec2bin, dec2hex, dec2oct, decimal, degrees, deleteSpreadsheetMetadata, deleteStorage, delta, dollar, e, emailAddress, error, eval, even, exact, exit, exp, false, fileStorage, find, fixed, flag, floor, formatValue, formulatext, getAlpha, getBlue, getCharset, getCurrency, getCurrentWorkingDirectory, getDateTimeSymbols, getDecimalNumberSymbols, getEnv, getFormatter, getFormatValue, getFormulaText, getGreen, getHomeDirectory, getHost, getIndentation, getLineEnding, getLocale, getParser, getRed, getSpreadsheetMetadataValue, getStyle, getTextNode, getTimeOffset, getUser, getValidator, getValue, hex2bin, hex2dec, hex2oct, hour, hyperlink, if, ifs, image, indirect, int, invertColor, isBlank, isDate, isErr, isError, isEven, isFormula, isLogical, isNa, isNonText, isNull, isNumber, isOdd, isoweeknum, isRef, isText, json, jsonPointer, jsonPointerEval, jsonSelector, jsonSelectorEval, jsonText, lambda, left, len, let, list, listNonNull, listStorage, ln, loadSpreadsheetMetadata, locale, localeLanguageTag, log, log10, logError, loggingLevel, logInfo, logMessage, logWarn, lower, margin, max, maxIf, memoryStorage, mergeStyle, mid, min, minIf, minute, mixColor, mod, month, mount, mountPoints, nextEmptyColumn, nextEmptyRow, not, now, null, numberValue, oct2bin, oct2dec, oct2hex, odd, offset, or, padding, pi, print, printEnv, println, product, proper, quotient, radians, rand, randBetween, readLine, readStorage, readStorageText, removeEnv, removeSpreadsheetMetadataValue, replace, rept, right, roman, round, roundDown, roundUp, row, rows, saveSpreadsheetMetadata, script, search, second, setAlpha, setBlue, setCharset, setCurrency, setCurrentWorkingDirectory, setEnv, setGreen, setHomeDirectory, setHost, setIndentation, setLineEnding, setLocale, setRed, setSpreadsheetMetadataValue, setStyle, setText, setTimeOffset, shell, sign, sin, sinh, spreadsheetUrl, sqrt, style, styledText, styleGet, styleRemove, styleRemoveIf, styleReplaceIf, styleSet, substitute, sum, sumIf, switch, t, tan, tanh, template, text, textJoin, textMatch, time, today, toGray, toHslColor, toHsvColor, toRgbColor, toRgbHexString, toWebColorName, treeText, trim, true, trunc, type, unichar, unicode, unmount, upper, url, validationChoiceList, validationError, validationErrorIf, validationValue, value, weekday, weeknum, writeStorage, writeStorageText, xor, year\",\n" +
+                "  \"spreadsheetName\": \"SpreadsheetName456\",\n" +
+                "  \"style\": {\n" +
+                "    \"height\": \"50px\",\n" +
+                "    \"width\": \"50px\"\n" +
+                "  },\n" +
+                "  \"textFormatter\": \"text @@\",\n" +
+                "  \"timeFormatter\": \"time h:mm:ss AM/PM\",\n" +
+                "  \"timeParser\": \"time h:mm:ss AM/PM;h:mm:ss;h:mm:ss.0;h:mm AM/PM;h:mm\",\n" +
+                "  \"twoDigitYear\": 20,\n" +
+                "  \"validationConverter\": \"simple\",\n" +
+                "  \"validators\": \"\",\n" +
+                "  \"valueSeparator\": \",\"\n" +
+                "}\n"
+        );
+    }
+
+    @Test
     public void testEvaluateProductWithNumbers() {
         this.evaluateAndValueCheck(
             "=product(2, 5)",
