@@ -26,9 +26,7 @@ import walkingkooka.color.RgbColorComponent;
 import walkingkooka.color.WebColorName;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
-import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyValue;
-import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextTesting;
@@ -40,7 +38,6 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
-import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.net.HostAddress;
 import walkingkooka.net.Url;
 import walkingkooka.net.email.EmailAddress;
@@ -144,8 +141,6 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.text.DateFormatSymbols;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -591,46 +586,31 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateCellCurrency() {
-        final Currency currency = Currency.getInstance("NZD");
-
         this.evaluateAndValueCheck(
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=cellCurrency()")
-            ).setCurrency(
-                Optional.of(currency)
-            ),
-            currency
+            ).setCurrency(OPTIONAL_DIFFERENT_CURRENCY),
+            DIFFERENT_CURRENCY
         );
     }
 
     @Test
     public void testEvaluateCellDateTimeSymbols() {
-        final DateTimeSymbols dateTimeSymbols = DateTimeSymbols.fromDateFormatSymbols(
-            new DateFormatSymbols(Locale.ENGLISH)
-        );
         this.evaluateAndValueCheck(
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=cellDateTimeSymbols()")
-            ).setDateTimeSymbols(
-                Optional.of(dateTimeSymbols)
-            ),
-            dateTimeSymbols
+            ).setDateTimeSymbols(OPTIONAL_DATE_TIME_SYMBOLS),
+            DATE_TIME_SYMBOLS
         );
     }
 
     @Test
     public void testEvaluateCellDecimalNumberSymbols() {
-        final DecimalNumberSymbols decimalNumberSymbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
-            '+',
-            new DecimalFormatSymbols(Locale.ENGLISH)
-        );
         this.evaluateAndValueCheck(
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=cellDecimalNumberSymbols()")
-            ).setDecimalNumberSymbols(
-                Optional.of(decimalNumberSymbols)
-            ),
-            decimalNumberSymbols
+            ).setDecimalNumberSymbols(OPTIONAL_DECIMAL_NUMBER_SYMBOLS),
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 
@@ -649,15 +629,13 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateCellLocale() {
-        final Locale locale = Locale.forLanguageTag("en-NZ");
-
         this.evaluateAndValueCheck(
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=cellLocale()")
             ).setLocale(
-                Optional.of(locale)
+                OPTIONAL_DIFFERENT_LOCALE
             ),
-            locale
+            DIFFERENT_LOCALE
         );
     }
 
@@ -1130,12 +1108,6 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateCreateSpreadsheetMetadataWithLocale() {
-        final Locale locale = Locale.forLanguageTag("en-NZ");
-        checkNotEquals(
-            LOCALE,
-            locale
-        );
-
         this.evaluateAndValueCheck(
             "=createSpreadsheetMetadata(\"en-NZ\")",
             SPREADSHEET_METADATA.set(
@@ -1145,7 +1117,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 )
             ).set(
                 SpreadsheetMetadataPropertyName.LOCALE,
-                locale
+                DIFFERENT_LOCALE
             )
         );
     }
@@ -1154,7 +1126,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateCurrency() {
         this.evaluateAndValueCheck(
             "=currency(\"AUD\")",
-            Currency.getInstance("AUD")
+            CURRENCY
         );
     }
 
@@ -1162,7 +1134,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateCurrencyCode() {
         this.evaluateAndValueCheck(
             "=currencyCode(\"AUD\")",
-            CurrencyCode.parse("AUD")
+            CURRENCY_CODE
         );
     }
 
@@ -1170,7 +1142,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateCurrencyCode2() {
         this.evaluateAndValueCheck(
             "=currencyCode(\"NZD\")",
-            CurrencyCode.parse("NZD")
+            DIFFERENT_CURRENCY_CODE
         );
     }
 
@@ -1180,7 +1152,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=currencyValue(\"NZD 1.5\")",
             CurrencyValue.with(
                 EXPRESSION_NUMBER_KIND.create(1.5),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -1880,7 +1852,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetLocaleWithStringWithLanguageTag() {
         this.evaluateAndValueCheck(
             "=getLocale(\"en-AU\")",
-            Locale.forLanguageTag("en-AU")
+            LOCALE
         );
     }
 
@@ -2921,7 +2893,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateLocale() {
         this.evaluateAndValueCheck(
             "=locale(\"en-AU\")",
-            Locale.forLanguageTag("en-AU")
+            LOCALE
         );
     }
 
@@ -2929,7 +2901,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateLocale2() {
         this.evaluateAndValueCheck(
             "=locale(\"en-NZ\")",
-            Locale.forLanguageTag("en-NZ")
+            DIFFERENT_LOCALE
         );
     }
 
