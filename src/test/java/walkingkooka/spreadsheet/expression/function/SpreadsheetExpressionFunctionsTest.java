@@ -1690,6 +1690,28 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     }
 
     @Test
+    public void testEvaluateGetEnvAndPrintDifferentLineEnding() {
+        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
+        storageEnvironmentContext.setLineEnding(DIFFERENT_LINE_ENDING);
+
+        final String value = "Goodbye!";
+
+        storageEnvironmentContext.setEnvironmentValue(
+            EnvironmentValueName.with(
+                "Hello",
+                String.class
+            ),
+            value
+        );
+
+        this.evaluateAndPrintedCheck(
+            "=print(getEnv(\"Hello\"))",
+            storageEnvironmentContext,
+            value // printed
+        );
+    }
+
+    @Test
     public void testEvaluateGetGreen() {
         this.evaluateAndValueCheck(
             "=getGreen(color(\"#11223380\"))",
