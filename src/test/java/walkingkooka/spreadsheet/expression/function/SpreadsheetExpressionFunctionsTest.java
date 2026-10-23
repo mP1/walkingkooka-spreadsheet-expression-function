@@ -5614,7 +5614,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         final SpreadsheetMetadata otherMetadata = metadataStore.save(
             spreadsheetMetadata.set(
                 SpreadsheetMetadataPropertyName.SPREADSHEET_ID,
-                SpreadsheetId.with(999)
+                SPREADSHEET_ID
             )
         );
         spreadsheetIdToSpreadsheetStoreRepository.put(
