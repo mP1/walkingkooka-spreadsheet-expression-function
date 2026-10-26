@@ -18,7 +18,6 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.collect.list.Lists;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.template.SpreadsheetTemplateContexts;
@@ -137,9 +136,7 @@ final class SpreadsheetExpressionFunctionStringTemplate extends SpreadsheetExpre
             context.spreadsheetMetadataOrFail()
                 .spreadsheetParserContext(
                     context.spreadsheetCell(),
-                    LocaleContexts.jre(
-                        context.locale() // TODO
-                    ), // LocaleContext
+                    context, // LocaleContext
                     context::now
                 ), // SpreadsheetParserContext
             context, // SpreadsheetExpressionEvaluationContext
