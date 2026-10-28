@@ -1190,11 +1190,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=debug(\"debug-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "DEBUG fire value change null to currentWorkingDirectory=/current1/working2/directory3\n" +
-                "DEBUG fire value change null to homeDirectory=/users/user123@example.com\n" +
-                "DEBUG fire value change null to serverUrl=https://example.com\n" +
-                "DEBUG fire value change null to terminalId=1\n" +
-                "DEBUG fire value change null to spreadsheetId=123\n" +
+            "DEBUG environmentValue currentWorkingDirectory change null to /current1/working2/directory3\n" +
+                "DEBUG environmentValue homeDirectory change null to /users/user123@example.com\n" +
+                "DEBUG environmentValue serverUrl change null to https://example.com\n" +
+                "DEBUG environmentValue terminalId change null to 1\n" +
+                "DEBUG environmentValue spreadsheetId change null to 123\n" +
                 "DEBUG debug-message-111\n" // output
         );
     }
@@ -3027,11 +3027,11 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=logMessage(\"DEBUG\", \"debug-message-111\")",
             spreadsheetEnvironmentContext,
             (Object) null, // expected value
-            "DEBUG fire value change null to currentWorkingDirectory=/current1/working2/directory3\n" +
-                "DEBUG fire value change null to homeDirectory=/users/user123@example.com\n" +
-                "DEBUG fire value change null to serverUrl=https://example.com\n" +
-                "DEBUG fire value change null to terminalId=1\n" +
-                "DEBUG fire value change null to spreadsheetId=123\n" +
+            "DEBUG environmentValue currentWorkingDirectory change null to /current1/working2/directory3\n" +
+                "DEBUG environmentValue homeDirectory change null to /users/user123@example.com\n" +
+                "DEBUG environmentValue serverUrl change null to https://example.com\n" +
+                "DEBUG environmentValue terminalId change null to 1\n" +
+                "DEBUG environmentValue spreadsheetId change null to 123\n" +
                 "DEBUG debug-message-111\n" // output
         );
     }
