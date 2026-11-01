@@ -43,7 +43,7 @@ Google Sheets and Microsoft Excel have over 500 functions.
 - [Official Google sheets functions (513)](https://support.google.com/docs/table/25273?hl=en)
 - [Official Microsoft Excel functions](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188)
 
-The list below (with 280) is incomplete and constantly being updated as new functions are added. A small number are not
+The list below (with 281) is incomplete and constantly being updated as new functions are added. A small number are not
 found in Sheets or Excel and may be used to interact with features not found in those two platforms.
 
 - [abs](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/NumberExpressionFunctionUnary.java)
@@ -320,6 +320,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [validationErrorIf](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValidationErrorIf.java)
 - [validationValue](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValidationValue.java)
 - [value](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/BooleanExpressionFunctionIsNumber.java)
+- [valueType](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValueType.java)
 - [weekday](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionIsoWeekNum.java))
 - [weeknum](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionLocalDateWeekdayWeekNum.java)
 - [writeStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWrite.java)
