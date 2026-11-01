@@ -91,6 +91,7 @@ import walkingkooka.tree.text.TextStyle;
 import walkingkooka.tree.text.expression.function.TreeTextExpressionFunctions;
 import walkingkooka.validation.ValidationChoiceList;
 import walkingkooka.validation.ValidationError;
+import walkingkooka.validation.ValueType;
 import walkingkooka.validation.expression.function.ValidatorExpressionFunctions;
 import walkingkooka.validation.provider.ValidatorSelector;
 
@@ -2630,6 +2631,15 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
 
     private final static ExpressionFunction<ExpressionNumber, SpreadsheetExpressionEvaluationContext> VALUE = NumberExpressionFunctions.<SpreadsheetExpressionEvaluationContext>number()
         .setName(functionName("value"));
+
+    /**
+     * {@see ValidatorExpressionFunctions#valueTYpe}
+     */
+    public static ExpressionFunction<ValueType, SpreadsheetExpressionEvaluationContext> valueType() {
+        return fixName(
+            ValidatorExpressionFunctions.valueType()
+        );
+    }
 
     /**
      * {@see DateTimeExpressionFunctions#weekDay}

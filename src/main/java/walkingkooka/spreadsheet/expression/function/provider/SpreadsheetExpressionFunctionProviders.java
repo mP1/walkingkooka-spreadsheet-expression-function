@@ -451,6 +451,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.validationErrorIf(),
                         SpreadsheetExpressionFunctions.validationValue(),
                         SpreadsheetExpressionFunctions.value(),
+                        SpreadsheetExpressionFunctions.valueType(),
                         SpreadsheetExpressionFunctions.weekDay(),
                         SpreadsheetExpressionFunctions.weekNum(),
                         SpreadsheetExpressionFunctions.writeStorage(),
