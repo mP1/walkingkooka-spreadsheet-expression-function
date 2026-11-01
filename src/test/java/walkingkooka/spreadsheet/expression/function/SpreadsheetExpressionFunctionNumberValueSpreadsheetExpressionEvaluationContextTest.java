@@ -398,11 +398,6 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                 }
 
                 @Override
-                public Optional<SpreadsheetCell> spreadsheetCell() {
-                    return Optional.empty();
-                }
-
-                @Override
                 public String currencySymbol() {
                     return CURRENCY_SYMBOL;
                 }
@@ -636,6 +631,16 @@ public final class SpreadsheetExpressionFunctionNumberValueSpreadsheetExpression
                     return spreadsheetEnvironmentContext.serverUrl();
                 }
 
+                @Override
+                public Optional<SpreadsheetCell> spreadsheetCell() {
+                    return spreadsheetEnvironmentContext.spreadsheetCell();
+                }
+
+                @Override
+                public void setSpreadsheetCell(final Optional<SpreadsheetCell> spreadsheetCell) {
+                    spreadsheetEnvironmentContext.setSpreadsheetCell(spreadsheetCell);
+                }
+                
                 @Override
                 public Optional<SpreadsheetId> spreadsheetId() {
                     return spreadsheetEnvironmentContext.spreadsheetId();

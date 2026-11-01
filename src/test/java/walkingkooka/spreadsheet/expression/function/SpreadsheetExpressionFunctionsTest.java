@@ -88,6 +88,7 @@ import walkingkooka.spreadsheet.storage.SpreadsheetStorages;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepositories;
 import walkingkooka.spreadsheet.store.repo.SpreadsheetStoreRepository;
 import walkingkooka.spreadsheet.validation.form.SpreadsheetForms;
+import walkingkooka.spreadsheet.value.HasSpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
@@ -1575,22 +1576,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCell() {
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        storageEnvironmentContext.setEnvironmentValue(
-            EnvironmentValueName.with(
-                "SpreadsheetCell",
-                SpreadsheetCell.class
-            ),
+        this.evaluateAndPrintedCheck(
+            "=getDateTimeSymbols(getEnv(\"SpreadsheetCell\"))",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setDateTimeSymbols(
                 Optional.of(DIFFERENT_DATE_TIME_SYMBOLS)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=getDateTimeSymbols(getEnv(\"SpreadsheetCell\"))",
-            storageEnvironmentContext,
+            ),
             DIFFERENT_DATE_TIME_SYMBOLS,
             "" // printed
         );
@@ -1598,20 +1591,21 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetDateTimeSymbolsWithSpreadsheetCellMissingDateTimeSymbols() {
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        storageEnvironmentContext.setEnvironmentValue(
-            EnvironmentValueName.with(
-                "SpreadsheetCell",
-                SpreadsheetCell.class
-            ),
-            SpreadsheetSelection.A1.setFormula(
-                SpreadsheetFormula.EMPTY
-            )
-        );
+//        final StorageEnvironmentContext storageEnvironmentContext = ;
+//        storageEnvironmentContext.setEnvironmentValue(
+//            EnvironmentValueName.with(
+//                "SpreadsheetCell",
+//                SpreadsheetCell.class
+//            ),
+//
+//        );
 
         this.evaluateAndPrintedCheck(
             "=getDateTimeSymbols(getEnv(\"SpreadsheetCell\"))",
-            storageEnvironmentContext,
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY
+            ),
             null,
             "" // printed
         );
@@ -1619,22 +1613,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetDecimalNumberSymbolsWithSpreadsheetCell() {
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        storageEnvironmentContext.setEnvironmentValue(
-            EnvironmentValueName.with(
-                "SpreadsheetCell",
-                SpreadsheetCell.class
-            ),
+        this.evaluateAndPrintedCheck(
+            "=getDecimalNumberSymbols(getEnv(\"SpreadsheetCell\"))",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setDecimalNumberSymbols(
                 Optional.of(DIFFERENT_DECIMAL_NUMBER_SYMBOLS)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=getDecimalNumberSymbols(getEnv(\"SpreadsheetCell\"))",
-            storageEnvironmentContext,
+            ),
             DIFFERENT_DECIMAL_NUMBER_SYMBOLS,
             "" // printed
         );
@@ -1696,22 +1682,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetFormatterWithSpreadsheetCell() {
         final SpreadsheetFormatterSelector formatter = SpreadsheetFormatterSelector.parse("hello-formatter");
 
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        storageEnvironmentContext.setEnvironmentValue(
-            EnvironmentValueName.with(
-                "SpreadsheetCell",
-                SpreadsheetCell.class
-            ),
+        this.evaluateAndPrintedCheck(
+            "=getFormatter(getEnv(\"SpreadsheetCell\"))",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setFormatter(
                 Optional.of(formatter)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=getFormatter(getEnv(\"SpreadsheetCell\"))",
-            storageEnvironmentContext,
+            ),
             formatter,
             "" // printed
         );
@@ -1729,20 +1707,12 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateGetFormulaTextWithSpreadsheetCell() {
         final String formulaText = "=1+2";
 
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        storageEnvironmentContext.setEnvironmentValue(
-            EnvironmentValueName.with(
-                "SpreadsheetCell",
-                SpreadsheetCell.class
-            ),
-            SpreadsheetSelection.A1.setFormula(
-                SpreadsheetFormula.EMPTY.setText(formulaText)
-            )
-        );
-
         this.evaluateAndPrintedCheck(
             "=getFormulaText(getEnv(\"SpreadsheetCell\"))",
-            storageEnvironmentContext,
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
+            SpreadsheetSelection.A1.setFormula(
+                SpreadsheetFormula.EMPTY.setText(formulaText)
+            ),
             formulaText,
             "" // printed
         );
@@ -1858,22 +1828,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
     @Test
     public void testEvaluateGetLocaleWithSpreadsheetCell() {
-        final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-        storageEnvironmentContext.setEnvironmentValue(
-            EnvironmentValueName.with(
-                "SpreadsheetCell",
-                SpreadsheetCell.class
-            ),
+        this.evaluateAndPrintedCheck(
+            "=getLocale(getEnv(\"SpreadsheetCell\"))",
+            STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY
             ).setLocale(
                 Optional.of(DIFFERENT_LOCALE)
-            )
-        );
-
-        this.evaluateAndPrintedCheck(
-            "=getLocale(getEnv(\"SpreadsheetCell\"))",
-            storageEnvironmentContext,
+            ),
             DIFFERENT_LOCALE,
             "" // printed
         );
@@ -2986,6 +2948,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=logError(\"error-message-111\")",
             null, // input
             spreadsheetEnvironmentContext,
+            HasSpreadsheetCell.NO_SPREADSHEET_CELL,
             (Object) null, // expected value
             "", // output
             "ERROR error-message-111\n" // error
@@ -3045,6 +3008,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             "=logMessage(\"ERROR\", \"error-message-111\")",
             null, // input
             spreadsheetEnvironmentContext,
+            HasSpreadsheetCell.NO_SPREADSHEET_CELL,
             (Object) null, // expected value
             null, // output
             "ERROR error-message-111" + LINE_ENDING// error
@@ -5700,6 +5664,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             formula,
             terminalInput,
             STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment(),
+            HasSpreadsheetCell.NO_SPREADSHEET_CELL,
             expectedValue,
             expectedOutput
         );
@@ -5724,6 +5689,22 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
             formula,
             null, // input
             storageEnvironmentContext,
+            HasSpreadsheetCell.NO_SPREADSHEET_CELL,
+            expectedValue,
+            expectedOutput
+        );
+    }
+
+    private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
+                                                             final StorageEnvironmentContext storageEnvironmentContext,
+                                                             final SpreadsheetCell spreadsheetCell,
+                                                             final Object expectedValue,
+                                                             final String expectedOutput) {
+        return this.evaluateAndPrintedCheck(
+            formula,
+            null, // input
+            storageEnvironmentContext,
+            Optional.of(spreadsheetCell),
             expectedValue,
             expectedOutput
         );
@@ -5732,12 +5713,14 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final TextReader terminalInput,
                                                              final StorageEnvironmentContext storageEnvironmentContext,
+                                                             final Optional<SpreadsheetCell> spreadsheetCell,
                                                              final Object expectedValue,
                                                              final String expectedOutput) {
         return this.evaluateAndPrintedCheck(
             formula,
             terminalInput,
             storageEnvironmentContext,
+            spreadsheetCell,
             expectedValue,
             expectedOutput,
             null // expectedError
@@ -5747,6 +5730,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     private SpreadsheetEngineContext evaluateAndPrintedCheck(final String formula,
                                                              final TextReader terminalInput,
                                                              final StorageEnvironmentContext storageEnvironmentContext,
+                                                             final Optional<SpreadsheetCell> spreadsheetCell,
                                                              final Object expectedValue,
                                                              final String expectedOutput,
                                                              final String expectedError) {
@@ -5901,7 +5885,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         // only SCRIPTING allows updatable EnvironmentContext
         final SpreadsheetExpressionEvaluationContext spreadsheetExpressionEvaluationContext = spreadsheetEngineContext.setSpreadsheetMetadataMode(SpreadsheetMetadataMode.SCRIPTING)
             .spreadsheetExpressionEvaluationContext(
-                SpreadsheetExpressionEvaluationContext.NO_SPREADSHEET_CELL, // no cell
+                spreadsheetCell,
                 SpreadsheetExpressionReferenceLoaders.spreadsheetStoreRepository(
                     spreadsheetEngineContext.storeRepository()
                 )
