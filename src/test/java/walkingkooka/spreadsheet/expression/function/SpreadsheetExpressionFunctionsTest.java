@@ -36,6 +36,7 @@ import walkingkooka.io.TextReader;
 import walkingkooka.io.TextReaders;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.LoggerPath;
 import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.net.HostAddress;
@@ -5759,6 +5760,16 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
                 .setCanLog(
                     TerminalCanLogs.terminalContext(
                         new FakeTerminalContext() {
+
+                            @Override
+                            public void logEnter(final LoggerPath logger) {
+                                // nop
+                            }
+
+                            @Override
+                            public void logExit() {
+                                // nop
+                            }
 
                             @Override
                             public Printer output() {
