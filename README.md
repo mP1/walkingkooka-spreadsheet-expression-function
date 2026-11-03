@@ -321,7 +321,7 @@ found in Sheets or Excel and may be used to interact with features not found in 
 - [validationValue](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValidationValue.java)
 - [value](https://github.com/mP1/walkingkooka-tree-expression-function-number/blob/master/src/main/java/walkingkooka/tree/expression/function/number/BooleanExpressionFunctionIsNumber.java)
 - [valueType](https://github.com/mP1/walkingkooka-validation/blob/master/src/main/java/walkingkooka/validation/expression/function/ValidationExpressionFunctionValueType.java)
-- [weekday](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionIsoWeekNum.java))
+- [weekday](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionIsoWeekNum.java)
 - [weeknum](https://github.com/mP1/walkingkooka-tree-expression-function-datetime/blob/master/src/main/java/walkingkooka/tree/expression/function/datetime/NumberExpressionFunctionLocalDateWeekdayWeekNum.java)
 - [writeStorage](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWrite.java)
 - [writeStorageText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWriteText.java)
