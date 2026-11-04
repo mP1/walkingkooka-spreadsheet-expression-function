@@ -93,6 +93,7 @@ import walkingkooka.spreadsheet.value.HasSpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetCell;
 import walkingkooka.spreadsheet.value.SpreadsheetError;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
+import walkingkooka.spreadsheet.value.SpreadsheetValueType;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContexts;
 import walkingkooka.storage.StorageEnvironmentContext;
@@ -592,6 +593,9 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         this.evaluateAndValueCheck(
             SpreadsheetSelection.A1.setFormula(
                 SpreadsheetFormula.EMPTY.setText("=cellCurrency()")
+                    .setValueType(
+                        Optional.of(SpreadsheetValueType.ANY)
+                    )
             ).setCurrency(OPTIONAL_DIFFERENT_CURRENCY),
             DIFFERENT_CURRENCY
         );
