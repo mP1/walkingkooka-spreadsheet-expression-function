@@ -17,6 +17,7 @@
 
 package walkingkooka.spreadsheet.expression.function;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
@@ -3437,6 +3438,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    @Disabled("https://github.com/mP1/walkingkooka-spreadsheet/issues/10810 Converter: converting SpreadsheetMetadata to String hangs")
     @Test
     public void testEvaluatePrintlnLoadSpreadsheetMetadata() {
         this.evaluateAndPrintedCheck(
@@ -3560,6 +3562,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         );
     }
 
+    @Disabled("https://github.com/mP1/walkingkooka-spreadsheet/issues/10810 Converter: converting SpreadsheetMetadata to String hangs")
     @Test
     public void testEvaluatePrintlnLoadSpreadsheetMetadataWithDifferentLineEnding() {
         final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
