@@ -32,7 +32,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class SpreadsheetExpressionFunctionLambdaTest extends SpreadsheetExpressionFunctionTestCase<SpreadsheetExpressionFunctionLambda, ExpressionFunction<?, SpreadsheetExpressionEvaluationContext>>
-    implements ToStringTesting<SpreadsheetExpressionFunctionLambda> {
+    implements ToStringTesting {
 
     @Override
     public void testSetParametersSame() {
