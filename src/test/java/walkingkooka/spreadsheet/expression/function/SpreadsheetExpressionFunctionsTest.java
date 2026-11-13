@@ -2628,7 +2628,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateJsonTextWithJson() {
         this.evaluateAndValueCheck(
             "=jsonText(json(\"{}\"))",
-            MultiLineText.with("{}")
+            MultiLineText.EMPTY.setText("{}")
         );
     }
 
@@ -2636,7 +2636,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
     public void testEvaluateJsonTextWithString() {
         this.evaluateAndValueCheck(
             "=jsonText(\"Hello World\")",
-            MultiLineText.with("\"Hello World\"")
+            MultiLineText.EMPTY.setText("\"Hello World\"")
         );
     }
 
