@@ -17,7 +17,7 @@
   -->
 
 <module>
-    <inherits name="walkingkooka.environment.expression.function.EnvironmentExpressionFunction"/>
+    <inherits name="walkingkooka.environment.expression.EnvironmentExpression"/>
     <inherits name="walkingkooka.net.expression.function.NetExpressionFunction"/>
     <inherits name="walkingkooka.spreadsheet.Spreadsheet"/>
     <inherits name="walkingkooka.tree.expression.function.booleann.Boolean"/>
