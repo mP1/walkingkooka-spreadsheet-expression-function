@@ -18,6 +18,7 @@
 package walkingkooka.spreadsheet.expression.function;
 
 import walkingkooka.collect.set.Sets;
+import walkingkooka.currency.CurrencyValue;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellRangeReference;
 import walkingkooka.spreadsheet.reference.SpreadsheetCellReference;
@@ -47,7 +48,8 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
         final Object value = VALUE.getOrFail(parameters, 0);
         int type = 0;
 
-        if (null == value || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
+        // CurrencyValue is equivalent to a Number
+        if (null == value || value instanceof CurrencyValue || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
             type = 1;
         } else {
             if (context.isText(value)) {
