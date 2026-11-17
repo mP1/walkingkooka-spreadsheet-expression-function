@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends SpreadsheetExpressionFunctionNumberTestCase<SpreadsheetExpressionFunctionNumberColumnsOrRows> {
 
     @Test
-    public void testTwoParametersFails() {
+    public void testApplyWithTwoParametersFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.apply2(
@@ -38,7 +38,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     }
 
     @Test
-    public void testColumnReferenceParameterMissingFails() {
+    public void testApplyWithColumnReferenceParameterMissingFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.apply2(
@@ -49,7 +49,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     }
 
     @Test
-    public void testRowReferenceParameterMissingFails() {
+    public void testApplyWithRowReferenceParameterMissingFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.apply2(
@@ -62,7 +62,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     private final static SpreadsheetCellReference B5 = SpreadsheetSelection.parseCell("B5");
 
     @Test
-    public void testColumnReferenceParameter() {
+    public void testApplyWithColumnReferenceParameter() {
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
             Lists.of(B5),
@@ -71,7 +71,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     }
 
     @Test
-    public void testRowReferenceParameter() {
+    public void testApplyWithRowReferenceParameter() {
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
             Lists.of(B5),
@@ -81,7 +81,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
 
 
     @Test
-    public void testColumnReferenceRange() {
+    public void testApplyWithColumnReferenceRange() {
         this.applyAndCheck3(
             SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
             SpreadsheetSelection.parseCellRange("B2:E3"),
@@ -90,7 +90,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     }
 
     @Test
-    public void testRowReferenceRange() {
+    public void testApplyWithRowReferenceRange() {
         this.applyAndCheck3(
             SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
             SpreadsheetSelection.parseCellRange("B2:C5"),
@@ -108,16 +108,6 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
         );
     }
 
-    @Test
-    public void testToStringColumn() {
-        this.toStringAndCheck(SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS, "columns");
-    }
-
-    @Test
-    public void testToStringRows() {
-        this.toStringAndCheck(SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS, "rows");
-    }
-
     @Override
     public SpreadsheetExpressionFunctionNumberColumnsOrRows createBiFunction() {
         return SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS;
@@ -132,6 +122,26 @@ public final class SpreadsheetExpressionFunctionNumberColumnsOrRowsTest extends 
     public SpreadsheetExpressionEvaluationContext createContext() {
         return this.createContext0();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToStringColumn() {
+        this.toStringAndCheck(
+            SpreadsheetExpressionFunctionNumberColumnsOrRows.COLUMNS,
+            "columns"
+        );
+    }
+
+    @Test
+    public void testApplyWithToStringRows() {
+        this.toStringAndCheck(
+            SpreadsheetExpressionFunctionNumberColumnsOrRows.ROWS,
+            "rows"
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<SpreadsheetExpressionFunctionNumberColumnsOrRows> type() {
