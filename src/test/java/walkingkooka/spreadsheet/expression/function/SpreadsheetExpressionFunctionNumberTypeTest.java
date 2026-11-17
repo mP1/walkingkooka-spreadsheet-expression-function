@@ -19,6 +19,7 @@ package walkingkooka.spreadsheet.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.currency.CurrencyValue;
 import walkingkooka.spreadsheet.expression.SpreadsheetExpressionEvaluationContext;
 import walkingkooka.spreadsheet.reference.SpreadsheetSelection;
 import walkingkooka.spreadsheet.value.SpreadsheetErrorKind;
@@ -33,6 +34,17 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     public void testNull() {
         this.typeAndCheck(
             null,
+            1
+        );
+    }
+
+    @Test
+    public void testCurrencyValue() {
+        this.typeAndCheck(
+            CurrencyValue.with(
+                EXPRESSION_NUMBER_KIND.create(123),
+                CURRENCY_CODE
+            ),
             1
         );
     }
