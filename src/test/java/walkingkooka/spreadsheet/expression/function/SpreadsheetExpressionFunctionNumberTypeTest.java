@@ -50,7 +50,15 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testNumber() {
+    public void testInteger() {
+        this.typeAndCheck(
+            123,
+            1
+        );
+    }
+
+    @Test
+    public void testExpressionNumber() {
         this.typeAndCheck(
             EXPRESSION_NUMBER_KIND.create(123),
             1
