@@ -31,7 +31,7 @@ import java.time.LocalTime;
 public final class SpreadsheetExpressionFunctionNumberTypeTest extends SpreadsheetExpressionFunctionNumberTestCase<SpreadsheetExpressionFunctionNumberType> {
 
     @Test
-    public void testNull() {
+    public void testApplyWithNull() {
         this.typeAndCheck(
             null,
             1
@@ -39,7 +39,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testCurrencyValue() {
+    public void testApplyWithCurrencyValue() {
         this.typeAndCheck(
             CurrencyValue.with(
                 EXPRESSION_NUMBER_KIND.create(123),
@@ -50,7 +50,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testInteger() {
+    public void testApplyWithInteger() {
         this.typeAndCheck(
             123,
             1
@@ -58,7 +58,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testExpressionNumber() {
+    public void testApplyWithExpressionNumber() {
         this.typeAndCheck(
             EXPRESSION_NUMBER_KIND.create(123),
             1
@@ -66,7 +66,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testLocalDate() {
+    public void testApplyWithLocalDate() {
         this.typeAndCheck(
             LocalDate.now(),
             1
@@ -74,7 +74,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testLocalDateTime() {
+    public void testApplyWithLocalDateTime() {
         this.typeAndCheck(
             LocalDateTime.now(),
             1
@@ -82,7 +82,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testLocalTime() {
+    public void testApplyWithLocalTime() {
         this.typeAndCheck(
             LocalTime.now(),
             1
@@ -90,7 +90,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testCell() {
+    public void testApplyWithCell() {
         this.typeAndCheck(
             SpreadsheetSelection.parseCell("A1"),
             1
@@ -98,7 +98,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testCharacter() {
+    public void testApplyWithCharacter() {
         this.typeAndCheck(
             'A',
             2
@@ -106,7 +106,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testString() {
+    public void testApplyWithString() {
         this.typeAndCheck(
             "Abc",
             2
@@ -114,7 +114,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testBooleanTrue() {
+    public void testApplyWithBooleanTrue() {
         this.typeAndCheck(
             true,
             4
@@ -122,7 +122,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testBooleanFalse() {
+    public void testApplyWithBooleanFalse() {
         this.typeAndCheck(
             false,
             4
@@ -130,7 +130,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testError() {
+    public void testApplyWithError() {
         for (final SpreadsheetErrorKind error : SpreadsheetErrorKind.values()) {
             this.typeAndCheck(
                 error.setMessage("message 123"),
@@ -140,7 +140,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testCellRange() {
+    public void testApplyWithCellRange() {
         this.typeAndCheck(
             SpreadsheetSelection.parseCellRange("A1:A1"),
             64
@@ -148,7 +148,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testCellRange2() {
+    public void testApplyWithCellRange2() {
         this.typeAndCheck(
             SpreadsheetSelection.parseCellRange("A1:Z99"),
             64
@@ -156,7 +156,7 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     }
 
     @Test
-    public void testList() {
+    public void testApplyWithList() {
         this.typeAndCheck(
             Lists.empty(),
             64
@@ -168,14 +168,6 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
         this.applyAndCheck2(
             Lists.of(value),
             EXPRESSION_NUMBER_KIND.create(expected)
-        );
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(
-            SpreadsheetExpressionFunctionNumberType.INSTANCE,
-            "type"
         );
     }
 
@@ -193,6 +185,18 @@ public final class SpreadsheetExpressionFunctionNumberTypeTest extends Spreadshe
     public SpreadsheetExpressionEvaluationContext createContext() {
         return this.createContext0();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            SpreadsheetExpressionFunctionNumberType.INSTANCE,
+            "type"
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<SpreadsheetExpressionFunctionNumberType> type() {
