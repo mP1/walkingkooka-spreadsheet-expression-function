@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends SpreadsheetExpressionFunctionNumberTestCase<SpreadsheetExpressionFunctionNumberColumnOrRow> {
 
     @Test
-    public void testTwoParametersFails() {
+    public void testApplyWithTwoParametersFails() {
         assertThrows(
             IllegalArgumentException.class,
             () -> this.apply2(
@@ -38,7 +38,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     }
 
     @Test
-    public void testColumnReferenceParameterMissing() {
+    public void testApplyWithColumnReferenceParameterMissing() {
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
             Lists.empty(),
@@ -50,7 +50,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     }
 
     @Test
-    public void testRowReferenceParameterMissing() {
+    public void testApplyWithRowReferenceParameterMissing() {
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
             Lists.empty(),
@@ -64,7 +64,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     private final static SpreadsheetCellReference B5 = SpreadsheetSelection.parseCell("B5");
 
     @Test
-    public void testColumnReferenceParameterPresent() {
+    public void testApplyWithColumnReferenceParameterPresent() {
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
             Lists.of(B5),
@@ -76,7 +76,7 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     }
 
     @Test
-    public void testRowReferenceParameterPresent() {
+    public void testApplyWithRowReferenceParameterPresent() {
         this.applyAndCheck2(
             SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
             Lists.of(B5),
@@ -85,16 +85,6 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
                     .value()
             )
         );
-    }
-
-    @Test
-    public void testToStringColumn() {
-        this.toStringAndCheck(SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN, "column");
-    }
-
-    @Test
-    public void testToStringRow() {
-        this.toStringAndCheck(SpreadsheetExpressionFunctionNumberColumnOrRow.ROW, "row");
     }
 
     @Override
@@ -111,6 +101,26 @@ public final class SpreadsheetExpressionFunctionNumberColumnOrRowTest extends Sp
     public SpreadsheetExpressionEvaluationContext createContext() {
         return this.createContext0();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToStringColumn() {
+        this.toStringAndCheck(
+            SpreadsheetExpressionFunctionNumberColumnOrRow.COLUMN,
+            "column"
+        );
+    }
+
+    @Test
+    public void testToStringRow() {
+        this.toStringAndCheck(
+            SpreadsheetExpressionFunctionNumberColumnOrRow.ROW,
+            "row"
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<SpreadsheetExpressionFunctionNumberColumnOrRow> type() {
