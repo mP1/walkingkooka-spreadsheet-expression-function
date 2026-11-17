@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.Converters;
 import walkingkooka.convert.provider.ConverterSelector;
-import walkingkooka.reflect.ClassTesting2;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.spreadsheet.SpreadsheetContexts;
 import walkingkooka.spreadsheet.engine.SpreadsheetMetadataMode;
@@ -56,7 +56,7 @@ import java.util.Optional;
 
 public abstract class SpreadsheetExpressionFunctionTestCase<F extends SpreadsheetExpressionFunction<T>, T>
     implements ExpressionFunctionTesting2<F, T, SpreadsheetExpressionEvaluationContext>,
-    ClassTesting2<F>,
+    PackagePrivateClassTesting<F>,
     TypeNameTesting<F>,
     SpreadsheetEnvironmentContextTesting {
 
