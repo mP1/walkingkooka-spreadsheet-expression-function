@@ -49,7 +49,7 @@ final class SpreadsheetExpressionFunctionNumberType extends SpreadsheetExpressio
         int type = 0;
 
         // CurrencyValue is equivalent to a Number
-        if (null == value || value instanceof CurrencyValue || value instanceof ExpressionNumber || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
+        if (null == value || value instanceof CurrencyValue || value instanceof Number || value instanceof Temporal || value instanceof SpreadsheetCellReference) {
             type = 1;
         } else {
             if (context.isText(value)) {
