@@ -72,7 +72,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
             final Optional<SpreadsheetCell> loaded = context.loadCell(reference);
             return loaded.isPresent() ?
                 loaded.get()
-                    .formattedValue()
+                    .output()
                     .get()
                     .text() :
                 "0"; // cell absent use 0
@@ -113,7 +113,7 @@ enum SpreadsheetExpressionFunctionObjectCellTypeInfo {
                      final SpreadsheetExpressionEvaluationContext context) {
             String value = "";
 
-            if (cell.formattedValue().isPresent()) {
+            if (cell.output().isPresent()) {
                 final Optional<TextAlign> maybeTextAlign = cell.style()
                     .get(TextStylePropertyName.TEXT_ALIGN);
                 if (maybeTextAlign.isPresent()) {

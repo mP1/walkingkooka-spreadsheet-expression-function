@@ -42,7 +42,7 @@ final class SpreadsheetExpressionFunctionCellFormattedValue extends SpreadsheetE
 
     @Override
     TextNode extractCellPropertyOrNull(final SpreadsheetCell cell) {
-        return cell.formattedValue()
+        return cell.output()
             .orElse(null);
     }
 }
