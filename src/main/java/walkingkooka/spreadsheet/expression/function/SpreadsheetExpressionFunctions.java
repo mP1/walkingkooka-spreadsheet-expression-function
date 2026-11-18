@@ -145,14 +145,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
         cellDecimalNumberSymbols()
     );
 
-
-    /**
-     * The function name of the getter that retrieve the {@link SpreadsheetCell#output()} within a find.
-     */
-    public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
-        cellFormattedValue()
-    );
-
     /**
      * The function name of the getter that retrieve the {@link SpreadsheetCell#formatter()} within a find.
      */
@@ -172,6 +164,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public final static ExpressionFunctionName CELL_LOCALE = cellFindWizardHelperFunction(
         cellLocale()
+    );
+
+    /**
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#output()} within a find.
+     */
+    public final static ExpressionFunctionName CELL_OUTPUT = cellFindWizardHelperFunction(
+        cellOutput()
     );
 
     /**
@@ -410,13 +409,6 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see SpreadsheetExpressionFunctionCellFormattedValue}
-     */
-    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> cellFormattedValue() {
-        return SpreadsheetExpressionFunctionCellFormattedValue.INSTANCE;
-    }
-
-    /**
      * {@see SpreadsheetExpressionFunctionCellFormatter}
      */
     public static ExpressionFunction<SpreadsheetFormatterSelector, SpreadsheetExpressionEvaluationContext> cellFormatter() {
@@ -435,6 +427,13 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
      */
     public static ExpressionFunction<SpreadsheetFormula, SpreadsheetExpressionEvaluationContext> cellFormula() {
         return SpreadsheetExpressionFunctionCellFormula.INSTANCE;
+    }
+
+    /**
+     * {@see SpreadsheetExpressionFunctionCellOutput}
+     */
+    public static ExpressionFunction<TextNode, SpreadsheetExpressionEvaluationContext> cellOutput() {
+        return SpreadsheetExpressionFunctionCellOutput.INSTANCE;
     }
 
     /**

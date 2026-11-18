@@ -199,7 +199,7 @@ public final class SpreadsheetExpressionFunctionProviders extends SpreadsheetExp
                         SpreadsheetExpressionFunctions.cellCurrency(),
                         SpreadsheetExpressionFunctions.cellDateTimeSymbols(),
                         SpreadsheetExpressionFunctions.cellDecimalNumberSymbols(),
-                        SpreadsheetExpressionFunctions.cellFormattedValue(),
+                        SpreadsheetExpressionFunctions.cellOutput(),
                         SpreadsheetExpressionFunctions.cellFormatter(),
                         SpreadsheetExpressionFunctions.cellFormula(),
                         SpreadsheetExpressionFunctions.cellLocale(),
