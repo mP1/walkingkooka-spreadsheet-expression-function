@@ -25,11 +25,11 @@ import walkingkooka.tree.text.TextNode;
 
 import java.util.Optional;
 
-public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends SpreadsheetExpressionFunctionCellTestCase<SpreadsheetExpressionFunctionCellFormattedValue, TextNode> {
+public final class SpreadsheetExpressionFunctionCellOutputTest extends SpreadsheetExpressionFunctionCellTestCase<SpreadsheetExpressionFunctionCellOutput, TextNode> {
 
     @Override
-    public SpreadsheetExpressionFunctionCellFormattedValue createBiFunction() {
-        return SpreadsheetExpressionFunctionCellFormattedValue.INSTANCE;
+    public SpreadsheetExpressionFunctionCellOutput createBiFunction() {
+        return SpreadsheetExpressionFunctionCellOutput.INSTANCE;
     }
 
     @Override
@@ -61,14 +61,14 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
     public void testToString() {
         this.toStringAndCheck(
             this.createBiFunction(),
-            "cellFormattedValue"
+            "cellOutput"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<SpreadsheetExpressionFunctionCellFormattedValue> type() {
-        return SpreadsheetExpressionFunctionCellFormattedValue.class;
+    public Class<SpreadsheetExpressionFunctionCellOutput> type() {
+        return SpreadsheetExpressionFunctionCellOutput.class;
     }
 }

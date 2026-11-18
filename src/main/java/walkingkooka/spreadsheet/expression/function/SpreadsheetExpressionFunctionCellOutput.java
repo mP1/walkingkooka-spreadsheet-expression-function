@@ -24,15 +24,15 @@ import walkingkooka.tree.text.TextNode;
  * A custom function that retrieves the current cell formatted value, returning null when missing.
  * This is intended to be used to create a query expression and not actual cell formulas.
  */
-final class SpreadsheetExpressionFunctionCellFormattedValue extends SpreadsheetExpressionFunctionCell<TextNode> {
+final class SpreadsheetExpressionFunctionCellOutput extends SpreadsheetExpressionFunctionCell<TextNode> {
 
     /**
      * Singleton
      */
-    final static SpreadsheetExpressionFunctionCellFormattedValue INSTANCE = new SpreadsheetExpressionFunctionCellFormattedValue();
+    final static SpreadsheetExpressionFunctionCellOutput INSTANCE = new SpreadsheetExpressionFunctionCellOutput();
 
-    private SpreadsheetExpressionFunctionCellFormattedValue() {
-        super("cellFormattedValue");
+    private SpreadsheetExpressionFunctionCellOutput() {
+        super("cellOutput");
     }
 
     @Override
