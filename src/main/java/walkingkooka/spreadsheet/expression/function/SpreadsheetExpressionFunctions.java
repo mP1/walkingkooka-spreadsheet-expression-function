@@ -147,7 +147,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
 
 
     /**
-     * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#output()} within a find.
      */
     public final static ExpressionFunctionName CELL_FORMATTED_VALUE = cellFindWizardHelperFunction(
         cellFormattedValue()
@@ -203,7 +203,7 @@ public final class SpreadsheetExpressionFunctions implements PublicStaticHelper 
     );
 
     /**
-     * The function name of the getter that retrieve the {@link SpreadsheetCell#formattedValue()} within a find.
+     * The function name of the getter that retrieve the {@link SpreadsheetCell#output()} within a find.
      */
     public final static ExpressionFunctionName CELL_VALIDATOR = cellFindWizardHelperFunction(
         cellValidator()

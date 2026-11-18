@@ -5034,7 +5034,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
 
         this.checkEquals(
             TextNode.text("WORLD 123"),
-            savedCell.formattedValue()
+            savedCell.output()
                 .orElse(null)
         );
     }
@@ -6306,7 +6306,7 @@ public final class SpreadsheetExpressionFunctionsTest implements PublicStaticHel
         if (null != formatted) {
             this.checkEquals(
                 formatted,
-                saved.formattedValue(),
+                saved.output(),
                 cellReference + "=" + cellFormula + "\n" +
                     preload.entrySet().stream()
                         .map(e -> e.getKey() + "=" + e.getValue())

@@ -50,7 +50,7 @@ public final class SpreadsheetExpressionFunctionCellFormattedValueTest extends S
     @Override
     SpreadsheetCell setProperty(final SpreadsheetCell cell,
                                 final TextNode value) {
-        return cell.setFormattedValue(
+        return cell.setOutput(
             Optional.ofNullable(value)
         );
     }

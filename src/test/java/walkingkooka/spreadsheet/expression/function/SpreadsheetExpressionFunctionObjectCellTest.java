@@ -168,7 +168,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
             SpreadsheetCell.with(
                 REFERENCE,
                 SpreadsheetFormula.EMPTY.setText("=function()")
-            ).setFormattedValue(
+            ).setOutput(
                 Optional.of(
                     TextNode.text(contents)
                 )
@@ -288,7 +288,7 @@ public final class SpreadsheetExpressionFunctionObjectCellTest extends Spreadshe
                 SpreadsheetFormula.EMPTY.setText("'Hello")
             ).setStyle(
                 textStyle
-            ).setFormattedValue(
+            ).setOutput(
                 Optional.of(
                     TextNode.text("Hello")
                 )
