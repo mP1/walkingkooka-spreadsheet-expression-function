@@ -81,16 +81,6 @@ public final class TextMatchTest implements ParseStringTesting<TextMatch>,
         return TextMatch.parse(text);
     }
 
-    @Override
-    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> thrown) {
-        return thrown;
-    }
-
-    @Override
-    public RuntimeException parseStringFailedExpected(final RuntimeException thrown) {
-        return thrown;
-    }
-
     // isEmpty..........................................................................................................
 
     @Test
